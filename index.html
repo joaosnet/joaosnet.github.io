@@ -758,6 +758,37 @@
         .menu-open .menu-toggle span:nth-child(3) {
             transform: translateY(-9px) rotate(-45deg);
         }
+
+        /* Efeito de shine para botão */
+        @keyframes shineEffect {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* Melhorando inputs do formulário */
+        .form-control {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-control:focus {
+            outline: none;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent);
+        }
+
+        .contact-form label {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Adicional para responsividade do formulário melhorado */
+        @media (max-width: 768px) {
+            .form-background-effects {
+                opacity: 0.5;
+            }
+        }
     </style>
 </head>
 <body>    
@@ -882,12 +913,12 @@
             <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para você.</p>
             
             <!-- Banner de disponibilidade limitada -->
-            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px; margin-bottom: 25px; border-left: 4px solid var(--accent);">
+            <!-- <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px; margin-bottom: 25px; border-left: 4px solid var(--accent);">
                 <p style="margin: 0; display: flex; align-items: center; justify-content: center;">
                     <i class="fas fa-clock" style="color: var(--accent); margin-right: 10px; font-size: 1.2rem;"></i>
                     <span><strong>Agenda quase lotada!</strong> Restam apenas <span style="color: var(--accent); font-weight: 700;">3 vagas</span> para novos projetos em junho.</span>
                 </p>
-            </div>
+            </div> -->
             
             <!-- Depoimentos de clientes -->
             <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px;">
@@ -913,49 +944,72 @@
                 </div>
             </div>
             
-            <div class="contact-form">
-                <form id="contactForm" action="https://formspree.io/f/xwplwyko" method="POST">
-                    <div class="form-group">
-                        <label for="name">Nome</label>
-                        <i class="fas fa-user form-icon"></i>
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <i class="fas fa-envelope form-icon"></i>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="whatsapp">WhatsApp (Opcional)</label>
-                        <i class="fab fa-whatsapp form-icon"></i>
-                        <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="Seu número com DDD">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="message">Descreva seu problema</label>
-                        <i class="fas fa-comment-alt form-icon"></i>
-                        <textarea class="form-control" id="message" name="message" placeholder="Conte-me detalhes sobre o problema que precisa resolver..." required rows="5"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
-                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Enviar Solicitação
-                    </button>
-                    
-                    <div id="form-status" style="margin-top: 15px; text-align: center; display: none;">
-                        <div id="success-message" style="background-color: rgba(52, 211, 153, 0.2); padding: 10px; border-radius: 5px; display: none;">
-                            Mensagem enviada com sucesso! Entrarei em contato em breve.
+            <!-- Formulário com elementos visuais aprimorados -->
+            <div class="form-container" style="position: relative; max-width: 600px; margin: 0 auto;">
+                <!-- Efeitos visuais atrás do formulário -->
+                <div class="form-background-effects" style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; overflow: hidden; border-radius: 20px; z-index: 0;">
+                    <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(37, 99, 235, 0) 70%); top: -50px; right: -50px;"></div>
+                    <div style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%); bottom: -30px; left: -30px;"></div>
+                    <div style="position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); top: 30%; left: -30px;"></div>
+                    <div style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); bottom: 25%; right: -20px;"></div>
+                </div>
+                
+                <!-- Ícones de tecnologia flutuantes atrás do formulário -->
+                <div style="position: absolute; font-size: 1.5rem; color: rgba(255, 255, 255, 0.1); top: 20px; right: 30px; z-index: 1; animation: float 8s infinite ease-in-out;"><i class="fab fa-react"></i></div>
+                <div style="position: absolute; font-size: 1.2rem; color: rgba(255, 255, 255, 0.1); bottom: 30px; left: 25px; z-index: 1; animation: float 10s infinite ease-in-out;"><i class="fab fa-python"></i></div>
+                <div style="position: absolute; font-size: 1.3rem; color: rgba(255, 255, 255, 0.1); top: 40%; right: 25px; z-index: 1; animation: float 9s infinite ease-in-out 1s;"><i class="fab fa-node-js"></i></div>
+                
+                <div class="contact-form" style="position: relative; z-index: 10; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
+                    <form id="contactForm" action="https://formspree.io/f/xwplwyko" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <i class="fas fa-user form-icon"></i>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required>
                         </div>
-                        <div id="error-message" style="background-color: rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 5px; display: none;">
-                            Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <i class="fas fa-envelope form-icon"></i>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail" required>
                         </div>
-                    </div>
-                    
-                    <!-- Campo escondido para redirecionar após envio -->
-                    <input type="hidden" name="_next" value="https://joaosnet.github.io/">
-                    <input type="hidden" name="_subject" value="Nova mensagem do website">
-                </form>
+                        
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp (Opcional)</label>
+                            <i class="fab fa-whatsapp form-icon"></i>
+                            <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="Seu número com DDD">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Descreva seu problema</label>
+                            <i class="fas fa-comment-alt form-icon"></i>
+                            <textarea class="form-control" id="message" name="message" placeholder="Conte-me detalhes sobre o problema que precisa resolver..." required rows="5"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px; position: relative; overflow: hidden; z-index: 1;">
+                            <span style="position: relative; z-index: 2;"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Enviar Solicitação</span>
+                            <div style="position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); z-index: 1; animation: shineEffect 2s infinite;"></div>
+                        </button>
+                        
+                        <!-- Mensagem flutuante de garantia -->
+                        <div style="margin-top: 15px; text-align: center; padding: 8px; border-radius: 5px; background: rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i>
+                            <span>Resposta garantida em até 24h!</span>
+                        </div>
+                        
+                        <div id="form-status" style="margin-top: 15px; text-align: center; display: none;">
+                            <div id="success-message" style="background-color: rgba(52, 211, 153, 0.2); padding: 10px; border-radius: 5px; display: none;">
+                                Mensagem enviada com sucesso! Entrarei em contato em breve.
+                            </div>
+                            <div id="error-message" style="background-color: rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 5px; display: none;">
+                                Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.
+                            </div>
+                        </div>
+                        
+                        <!-- Campo escondido para redirecionar após envio -->
+                        <input type="hidden" name="_next" value="https://joaosnet.github.io/">
+                        <input type="hidden" name="_subject" value="Nova mensagem do website">
+                    </form>
+                </div>
             </div>
         </div>
     </section>
