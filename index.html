@@ -1,47 +1,929 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Meu agregador de links</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="icon" href="assets/css/images/icon.png" type="image/x-icon">
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<div id="wrapper">
-			<div id="bg"></div>
-			<div id="overlay"></div>
-			<div id="main">
-
-				<!-- Header -->
-					<header id="header">
-						<h1>João Natividade</h1>
-						<p>Desenvolverdor Python &nbsp;&bull;&nbsp; Engenheiro da Computação&nbsp;&bull;&nbsp; Vivendo e Aprendendo</p>
-						<nav>
-							<ul>
-								<li><a href="https://www.instagram.com/jaonativi/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-								<li><a href="https://www.facebook.com/Joao.da.cruz.neto.456/" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-								<li><a href="https://www.linkedin.com/in/joaonativi/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-								<li><a href="https://github.com/joaosnet" class="icon brands fa-github"><span class="label">Github</span></a></li>
-								<li><a href="mailto:joao.silva.neto@itec.ufpa.br" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-								<li><a href="https://www.solucoesinovadora.com/" class="icon solid fa-sitemap"><span class="label">Site Pessoal</span></a></li>
-								<li><a href="https://www.solucoesinovadora.com/" class="icon solid fa-person-booth"><span class="label">Portifólio</span></a></li>
-							</ul>
-						</nav>
-					</header>
-
-				<!-- Footer -->
-					<!-- <footer id="footer">
-						<span class="copyright">&copy; Untitled. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
-					</footer> -->
-
-			</div>
-		</div>
-		<script>
-			window.onload = function() { document.body.classList.remove('is-preload'); }
-			window.ontouchmove = function() { return false; }
-			window.onorientationchange = function() { document.body.scrollTop = 0; }
-		</script>
-	</body>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>João Desenvolvedor | Soluções em Tecnologia</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="assets/css/images/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #f59e0b;
+            --text: #333;
+            --light: #f8fafc;
+            --dark: #0f172a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+          .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding: 5px 15px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateY(-5px) rotate(1deg);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 2.2rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+          nav ul {
+            display: flex;
+            list-style: none;
+            perspective: 500px;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding: 8px 12px;
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+        }
+        
+        nav ul li a:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+        }
+        
+        nav ul li a:hover:before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+            text-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+        }
+          .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .shape:nth-child(1) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .shape:nth-child(2) {
+            width: 80px;
+            height: 80px;
+            top: 60%;
+            left: 20%;
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+        
+        .shape:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 15%;
+            animation-delay: 4s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation-duration: 20s;
+        }
+        
+        .shape:nth-child(4) {
+            width: 120px;
+            height: 120px;
+            bottom: 15%;
+            right: 25%;
+            animation-delay: 6s;
+            border-radius: 30% 70% 40% 60% / 60% 30% 70% 40%;
+        }
+        
+        .shape:nth-child(5) {
+            width: 100px;
+            height: 100px;
+            top: 40%;
+            right: 10%;
+            animation-delay: 8s;
+            animation-duration: 12s;
+            border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: left;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            transform: perspective(1000px) rotateY(-5deg);
+            animation: fadeIn 1s ease-in;
+            margin-left: 5%;
+            overflow: hidden;
+        }
+        
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.03) 50%,
+                transparent 100%
+            );
+            animation: glassSweep 8s infinite linear;
+            z-index: -1;
+        }
+        
+        @keyframes glassSweep {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--light);
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--light);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--light);
+            border: 2px solid var(--light);
+            margin-left: 15px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .features {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .specs {
+            padding: 100px 0;
+            background-color: #f8fafc;
+        }
+        
+        .specs-flex {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .specs-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .specs-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .specs-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .specs-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .specs-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+          .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-color: var(--accent);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-code"></i> João Desenvolvedor
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#skills">Habilidades</a></li>
+                        <li><a href="#projects">Projetos</a></li>
+                        <li><a href="#contact">Fale Comigo</a></li>
+                    </ul>                </nav>
+            </div>
+        </div>
+    </header>    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tech Solutions para Acadêmicos e Startups</h1>
+                <p>E aí! Sou João, dev full-stack que transforma desafios universitários e empresariais em soluções tecnológicas descomplicadas. Do TCC ao MVP, estou aqui para fazer acontecer! 🚀</p>
+                <a href="#contact" class="btn btn-primary">Bora conversar!</a>
+                <a href="#skills" class="btn btn-secondary">Ver tecnologias</a>
+            </div>
+        </div>
+    </section>    <section id="skills" class="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Stack Tecnológico</h2>
+                <p>Do front-end ao deploy, conheça as tecnologias que uso para criar soluções sob medida para universitários e empresas em crescimento.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-tools"></i>
+                    <h3>Suporte Técnico Completo</h3>
+                    <p>Conserto de computadores, formatação, instalação de sistemas operacionais e programas. Solução rápida para problemas técnicos de hardware e software.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Websites Descolados</h3>
+                    <p>Sites que impressionam a banca! Desenvolvimento com React, Next.js e TailwindCSS para projetos acadêmicos e landing pages matadoras para startups.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Apps que Bombam</h3>
+                    <p>Transformo sua ideia em app! Protótipos rápidos com Flutter e React Native para TCC ou MVP da sua startup - do conceito à loja em tempo recorde.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Backend Robusto</h3>
+                    <p>APIs e sistemas de alta performance com Python (FastAPI, Django) e Node.js. Perfeito para projetos de graduação ou soluções B2B escaláveis.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>DevOps & Cloud</h3>
+                    <p>Implementação de CI/CD, containerização com Docker e implantação em ambientes AWS, Azure e Google Cloud.</p>
+                </div>
+            </div>
+        </div>
+    </section>    <section id="projects" class="specs">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projetos Realizados</h2>
+                <p>Conheça alguns dos meus trabalhos mais recentes e as soluções que desenvolvi para diferentes clientes.</p>
+            </div>            <div class="specs-flex">
+                <div class="specs-image">
+                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joaosnet&layout=compact&theme=dark" alt="Linguagens Mais Utilizadas">
+                </div>
+                <div class="specs-content">
+                    <div class="specs-item" style="border-left: 4px solid var(--accent); padding-left: 22px; background: rgba(37, 99, 235, 0.05); border-radius: 0 8px 8px 0;">
+                        <h3>ask <span style="font-size: 0.7em; background: var(--accent); color: white; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px;">Destaque</span></h3>
+                        <p>O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoas com deficiência visual em áreas urbanas, oferecendo uma solução inovadora para navegação em vias públicas.</p>
+                        <a href="https://github.com/joaosnet/ask" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
+                    </div>
+                    <div class="specs-item">
+                        <h3>AppVendasComKivy</h3>
+                        <p>Aplicativo de vendas multiplataforma desenvolvido com o framework Kivy em Python para a empresa HashTag, oferecendo uma interface intuitiva para gestão de vendas.</p>
+                        <a href="https://github.com/joaosnet/appvendascomkivy" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
+                    </div>
+                    <div class="specs-item">
+                        <h3>ATmega328 I2C TWI Watchdog</h3>
+                        <p>Implementação de comunicação I2C/TWI com sistema watchdog em microcontroladores ATmega328, aumentando a confiabilidade em sistemas embarcados.</p>
+                        <a href="https://github.com/joaosnet/ATmega328_I2C_TWI_Watchdog" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
+                    </div>
+                    <div class="specs-item">
+                        <h3>FlappyBirdPython</h3>
+                        <p>Recriação do famoso jogo Flappy Bird em Python, demonstrando habilidades em desenvolvimento de jogos, física e interfaces interativas.</p>
+                        <a href="https://github.com/joaosnet/FlappyBirdPython" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <section id="contact" class="cta">
+        <div class="container">
+            <h2>Precisa de ajuda com algum problema técnico?</h2>
+            <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para você.</p>
+            
+            <div class="contact-form">
+                <form id="contactForm" action="https://formspree.io/f/xwplwyko" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nome</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">WhatsApp</label>
+                        <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="Seu número com DDD" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Descreva seu problema</label>
+                        <textarea class="form-control" id="message" name="message" placeholder="Conte-me detalhes sobre o problema que precisa resolver..." required rows="5"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Enviar Solicitação</button>
+                    
+                    <div id="form-status" style="margin-top: 15px; text-align: center; display: none;">
+                        <div id="success-message" style="background-color: rgba(52, 211, 153, 0.2); padding: 10px; border-radius: 5px; display: none;">
+                            Mensagem enviada com sucesso! Entrarei em contato em breve.
+                        </div>
+                        <div id="error-message" style="background-color: rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 5px; display: none;">
+                            Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.
+                        </div>
+                    </div>
+                    
+                    <!-- Campo escondido para redirecionar após envio -->
+                    <input type="hidden" name="_next" value="https://joaosnet.github.io/">
+                    <input type="hidden" name="_subject" value="Nova mensagem do website">
+                </form>
+            </div>
+        </div>
+    </section>    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Navegação</h3>
+                    <ul>
+                        <li><a href="#skills">Habilidades</a></li>
+                        <li><a href="#projects">Projetos</a></li>
+                        <li><a href="#contact">Fale Comigo</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Serviços</h3>
+                    <ul>
+                        <li><a href="#">Desenvolvimento Web</a></li>
+                        <li><a href="#">Aplicativos Mobile</a></li>
+                        <li><a href="#">Sistemas Personalizados</a></li>
+                        <li><a href="#">Consultoria Técnica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <ul>
+                        <li><a href="#">Blog Técnico</a></li>
+                        <li><a href="#">Tutoriais</a></li>
+                        <li><a href="#">Dicas de Programação</a></li>
+                        <li><a href="#">Ferramentas Recomendadas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul>
+                        <li><a href="mailto:joao.silva.neto@itec.ufpa.br">joao.silva.neto@itec.ufpa.br</a></li>
+                        <li><a href="https://github.com/joaosnet"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/joaonativi/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 João Desenvolvedor. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* Configuração do Particles.js */
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#ffffff"
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#ffffff",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 2,
+                        "direction": "none",
+                        "random": false,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 100,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+            
+            /* Efeito de movimento nas formas com movimento do mouse */
+            const shapes = document.querySelectorAll('.shape');
+            document.addEventListener('mousemove', function(e) {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                shapes.forEach((shape, index) => {
+                    const factor = (index + 1) * 0.01;
+                    const moveX = (x - 0.5) * factor * 50;
+                    const moveY = (y - 0.5) * factor * 50;
+                    
+                    shape.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.2}deg)`;
+                });
+            });
+            
+            /* Configuração do formulário de contato */
+            (function() {
+                // Seleciona o formulário
+                const form = document.getElementById('contactForm');
+                
+                // Adiciona o event listener para envio do formulário
+                form.addEventListener('submit', function(event) {
+                    // Não interceptamos o evento submit porque o Formspree precisa receber o formulário
+                    
+                    // Mostra um feedback visual de "enviando..."
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.textContent;
+                    submitBtn.textContent = 'Enviando...';
+                    submitBtn.disabled = true;
+                    
+                    // Após o envio bem-sucedido, o Formspree redireciona para a página definida em _next
+                    // Não precisamos lidar com o sucesso ou erro manualmente
+                    
+                    // Se quiser mostrar o status sem redirecionar, será necessário usar fetch() para envio assíncrono
+                    // Exemplo simplificado com fetch:
+                    /*
+                    event.preventDefault();
+                    
+                    fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Mostra mensagem de sucesso
+                            document.getElementById('form-status').style.display = 'block';
+                            document.getElementById('success-message').style.display = 'block';
+                            document.getElementById('error-message').style.display = 'none';
+                            
+                            // Limpa o formulário
+                            form.reset();
+                        } else {
+                            throw new Error('Erro ao enviar o formulário');
+                        }
+                    })
+                    .catch(error => {
+                        // Mostra mensagem de erro
+                        document.getElementById('form-status').style.display = 'block';
+                        document.getElementById('error-message').style.display = 'block';
+                        document.getElementById('success-message').style.display = 'none';
+                    })
+                    .finally(() => {
+                        // Restaura o botão
+                        submitBtn.textContent = originalBtnText;
+                        submitBtn.disabled = false;
+                    });
+                    */
+                });
+            })();
+        });
+    </script>
+</body>
 </html>
