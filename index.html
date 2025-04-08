@@ -444,6 +444,7 @@
         
         .form-group {
             margin-bottom: 20px;
+            position: relative;
         }
         
         .form-group label {
@@ -455,7 +456,7 @@
         
         .form-control {
             width: 100%;
-            padding: 12px 15px;
+            padding: 12px 15px 12px 45px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.1);
@@ -477,6 +478,14 @@
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
+        }
+        
+        .form-icon {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
         }
         
         footer {
@@ -706,6 +715,11 @@
                 padding: 10px;
                 font-size: 0.9rem;
             }
+            
+            .form-icon {
+                top: 38px;
+                font-size: 1rem;
+            }
         }
         
         /* Menu hamburguer para mobile */
@@ -871,25 +885,31 @@
                 <form id="contactForm" action="https://formspree.io/f/xwplwyko" method="POST">
                     <div class="form-group">
                         <label for="name">Nome</label>
+                        <i class="fas fa-user form-icon"></i>
                         <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">E-mail</label>
+                        <i class="fas fa-envelope form-icon"></i>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="whatsapp">WhatsApp (Opcional)</label>
+                        <i class="fab fa-whatsapp form-icon"></i>
                         <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="Seu número com DDD">
                     </div>
                     
                     <div class="form-group">
                         <label for="message">Descreva seu problema</label>
+                        <i class="fas fa-comment-alt form-icon"></i>
                         <textarea class="form-control" id="message" name="message" placeholder="Conte-me detalhes sobre o problema que precisa resolver..." required rows="5"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Enviar Solicitação</button>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Enviar Solicitação
+                    </button>
                     
                     <div id="form-status" style="margin-top: 15px; text-align: center; display: none;">
                         <div id="success-message" style="background-color: rgba(52, 211, 153, 0.2); padding: 10px; border-radius: 5px; display: none;">
