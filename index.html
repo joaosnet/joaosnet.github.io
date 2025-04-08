@@ -4,7 +4,7 @@
     <title>João Desenvolvedor | Soluções em Tecnologia</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="assets/css/images/icon.png" type="image/x-icon">
+    <link rel="icon" href="assets/css/images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -45,7 +45,8 @@
             z-index: 1000;
             padding: 15px 0;
         }
-          .header-content {
+        
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -86,7 +87,8 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-          nav ul {
+        
+        nav ul {
             display: flex;
             list-style: none;
             perspective: 500px;
@@ -133,7 +135,8 @@
             color: var(--primary);
             text-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
         }
-          .hero {
+        
+        .hero {
             height: 100vh;
             display: flex;
             align-items: center;
@@ -408,7 +411,8 @@
             margin-bottom: 10px;
             color: var(--dark);
         }
-          .cta {
+        
+        .cta {
             background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             padding: 100px 0;
             text-align: center;
@@ -527,49 +531,247 @@
         
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: white;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                z-index: 100;
+                padding-top: 80px;
+                overflow-y: auto;
+            }
+            
+            .menu-open nav {
+                right: 0;
             }
             
             nav ul {
-                margin-top: 20px;
+                flex-direction: column;
+                margin-top: 0;
+                padding: 20px;
             }
             
             nav ul li {
-                margin-left: 15px;
-                margin-right: 15px;
+                margin: 0 0 20px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 12px 15px;
+                font-size: 1.1rem;
+                border-radius: 8px;
+                background-color: rgba(37, 99, 235, 0.05);
+            }
+            
+            nav ul li a:hover {
+                background-color: rgba(37, 99, 235, 0.1);
             }
             
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+                padding: 30px 20px;
+                text-align: center;
             }
             
             .btn {
-                display: block;
-                margin: 10px 0;
-                text-align: center;
+                display: inline-block;
+                padding: 10px 20px;
+                margin: 10px 5px;
+                font-size: 1rem;
             }
             
             .btn-secondary {
                 margin-left: 0;
             }
+            
+            .feature-card {
+                padding: 20px;
+            }
+            
+            .feature-card i {
+                font-size: 2.5rem;
+            }
+            
+            .feature-card h3 {
+                font-size: 1.3rem;
+            }
+            
+            .specs-flex {
+                flex-direction: column;
+            }
+            
+            .specs-image, .specs-content {
+                width: 100%;
+                padding: 15px 0;
+            }
+            
+            .specs-item {
+                padding-left: 15px;
+            }
+            
+            .cta h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title p {
+                padding: 0 15px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            /* Overlay para o menu mobile */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 90;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+            
+            .menu-open .overlay {
+                display: block;
+                opacity: 1;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-column ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 10px;
+            }
+            
+            .footer-column ul li {
+                margin-bottom: 5px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .form-group label {
+                font-size: 0.9rem;
+            }
+            
+            .form-control {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Menu hamburguer para mobile */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 200;
+        }
+        
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Classe para quando o menu está aberto */
+        .menu-open {
+            overflow: hidden;
+        }
+        
+        .menu-open .menu-toggle span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .menu-open .menu-toggle span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-open .menu-toggle span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
         }
     </style>
 </head>
-<body>    <header>
+<body>    
+    <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
                     <i class="fas fa-code"></i> João Desenvolvedor
+                </div>
+                <div class="menu-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
                 <nav>
                     <ul>
                         <li><a href="#skills">Habilidades</a></li>
                         <li><a href="#projects">Projetos</a></li>
                         <li><a href="#contact">Fale Comigo</a></li>
-                    </ul>                </nav>
+                    </ul>
+                </nav>
             </div>
         </div>
-    </header>    <section class="hero">
+    </header>
+    
+    <div class="overlay"></div>
+    
+    <section class="hero">
         <div id="particles-js"></div>
         <div class="floating-shapes">
             <div class="shape"></div>
@@ -586,7 +788,9 @@
                 <a href="#skills" class="btn btn-secondary">Ver tecnologias</a>
             </div>
         </div>
-    </section>    <section id="skills" class="features">
+    </section>
+    
+    <section id="skills" class="features">
         <div class="container">
             <div class="section-title">
                 <h2>Stack Tecnológico</h2>
@@ -620,12 +824,15 @@
                 </div>
             </div>
         </div>
-    </section>    <section id="projects" class="specs">
+    </section>
+    
+    <section id="projects" class="specs">
         <div class="container">
             <div class="section-title">
                 <h2>Projetos Realizados</h2>
                 <p>Conheça alguns dos meus trabalhos mais recentes e as soluções que desenvolvi para diferentes clientes.</p>
-            </div>            <div class="specs-flex">
+            </div>
+            <div class="specs-flex">
                 <div class="specs-image">
                     <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joaosnet&layout=compact&theme=dark" alt="Linguagens Mais Utilizadas">
                 </div>
@@ -653,7 +860,9 @@
                 </div>
             </div>
         </div>
-    </section>    <section id="contact" class="cta">
+    </section>
+    
+    <section id="contact" class="cta">
         <div class="container">
             <h2>Precisa de ajuda com algum problema técnico?</h2>
             <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para você.</p>
@@ -697,7 +906,9 @@
                 </form>
             </div>
         </div>
-    </section>    <footer>
+    </section>
+    
+    <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
@@ -740,6 +951,7 @@
             </div>
         </div>
     </footer>
+    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
@@ -923,6 +1135,47 @@
                     */
                 });
             })();
+            
+            /* Menu Mobile */
+            const menuToggle = document.querySelector('.menu-toggle');
+            const body = document.body;
+            const overlay = document.querySelector('.overlay');
+            const navLinks = document.querySelectorAll('nav ul li a');
+            
+            menuToggle.addEventListener('click', function() {
+                body.classList.toggle('menu-open');
+            });
+            
+            overlay.addEventListener('click', function() {
+                body.classList.remove('menu-open');
+            });
+            
+            // Fecha o menu ao clicar em um link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    body.classList.remove('menu-open');
+                });
+            });
+            
+            // Ajusta o scroll suave para links de navegação
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
         });
     </script>
 </body>
