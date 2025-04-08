@@ -680,6 +680,27 @@
                 display: block;
                 opacity: 1;
             }
+
+            /* Correção para evitar que os ícones sobreponham o texto em dispositivos móveis */
+            .form-control {
+                padding-left: 40px; /* Ajustando o padding para garantir espaço para o ícone */
+            }
+            
+            .form-icon {
+                top: 40px; /* Ajustando a posição vertical do ícone */
+                left: 12px; /* Ajustando a posição horizontal do ícone */
+                font-size: 1rem; /* Reduzindo ligeiramente o tamanho do ícone */
+            }
+
+            .logo {
+                font-size: 1.4rem; /* Reduzido de 1.8rem */
+                padding: 5px 10px; /* Reduzindo o padding */
+            }
+            
+            .logo i {
+                font-size: 1.8rem; /* Reduzido de 2.2rem */
+                margin-right: 8px; /* Menos espaço entre o ícone e o texto */
+            }
         }
         
         @media (max-width: 480px) {
@@ -720,8 +741,52 @@
                 top: 38px;
                 font-size: 1rem;
             }
+
+            /* Ajustes adicionais para telas muito pequenas */
+            .form-control {
+                padding-left: 35px; /* Reduzindo um pouco mais o padding */
+            }
+            
+            .form-icon {
+                top: 37px; /* Ajustando a posição para telas menores */
+                left: 10px;
+                font-size: 0.9rem; /* Reduzindo mais o tamanho */
+            }
+            
+            /* Ajustando o padding do input específico para mobile */
+            input.form-control {
+                font-size: 16px; /* Previne zoom automático em iPhones */
+                padding-top: 8px;
+                padding-bottom: 8px;
+            }
+
+            /* Ajustes específicos para telas muito pequenas */
+            .logo {
+                font-size: 1.1rem; /* Ainda menor para telas muito pequenas */
+                padding: 4px 8px;
+            }
+            
+            .logo i {
+                font-size: 1.5rem;
+                margin-right: 5px;
+            }
+            
+            /* Versão encurtada do logo para telas muito pequenas */
+            .logo .logo-full {
+                display: none;
+            }
+            
+            .logo .logo-short {
+                display: inline;
+            }
+            
+            /* Ajustes adicionais para a navegação em telas muito pequenas */
+            nav ul li a {
+                font-size: 1rem;
+                padding: 10px;
+            }
         }
-        
+
         /* Menu hamburguer para mobile */
         .menu-toggle {
             display: none;
@@ -731,15 +796,6 @@
             height: 21px;
             cursor: pointer;
             z-index: 200;
-        }
-        
-        .menu-toggle span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background-color: var(--primary);
-            border-radius: 3px;
-            transition: all 0.3s ease;
         }
         
         /* Classe para quando o menu está aberto */
@@ -789,6 +845,11 @@
                 opacity: 0.5;
             }
         }
+
+        /* Opções para o logo responsivo */
+        .logo .logo-short {
+            display: none; /* Escondido por padrão */
+        }
     </style>
 </head>
 <body>    
@@ -796,7 +857,9 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-code"></i> João Desenvolvedor
+                    <i class="fas fa-code"></i> 
+                    <span class="logo-full">João Desenvolvedor</span>
+                    <span class="logo-short">João Dev</span>
                 </div>
                 <div class="menu-toggle">
                     <span></span>
