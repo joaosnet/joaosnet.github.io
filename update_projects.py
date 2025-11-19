@@ -306,34 +306,39 @@ def find_image_in_readme(owner, repo_name, token):
         print(f"    ℹ Encontradas {len(matches)} imagens no README, filtrando...")
         
         for idx, (alt_text, img_url) in enumerate(matches):
+            # Debug: mostrar padrão da URL
+            print(f"      [img {idx+1}] alt='{alt_text}' url='{img_url}'")
+            
             # Skip known badge/status badges
             if any(skip in img_url.lower() for skip in ['shields.io', 'badge', 'codecov', 'travis', 'circleci', 'github.com/.*/workflows', '.github/workflows']):
-                print(f"      - Imagem {idx+1}: badge detectado, pulando")
+                print(f"        → badge detectado, pulando")
                 continue
             
             # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, not content images
             if 'avatars.githubusercontent.com' in img_url:
-                print(f"      - Imagem {idx+1}: avatar do GitHub, pulando")
+                print(f"        → avatar do GitHub, pulando")
                 continue
             
             # Very small common badges (by checking alt text)
             if alt_text.lower() in ['build', 'status', 'coverage', 'license', 'version', 'downloads']:
-                print(f"      - Imagem {idx+1}: alt text '{alt_text}' é um badge, pulando")
+                print(f"        → alt text é um badge, pulando")
                 continue
             
             # Skip single-line badges at the start (usually status badges)
             if len(alt_text) < 20 and alt_text.isupper():
-                print(f"      - Imagem {idx+1}: alt text muito curto e maiúsculo, pulando")
+                print(f"        → alt text muito curto e maiúsculo, pulando")
                 continue
             
             # Ensure URL is absolute or can be converted to absolute
             if img_url.startswith('http'):
+                print(f"        ✓ URL absoluta, aceitando!")
                 print(f"  ✓ Imagem encontrada no README: {img_url[:60]}...")
                 return img_url
             elif img_url.startswith('/'):
                 # Absolute path from repo root
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
+                print(f"        ✓ Caminho absoluto, aceitando!")
                 print(f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}...")
                 return img_url_full
             elif not img_url.startswith('.'):
@@ -341,10 +346,11 @@ def find_image_in_readme(owner, repo_name, token):
                 # Common patterns: assets/, images/, docs/, screenshots/, public/, src/, etc
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url}"
+                print(f"        ✓ Caminho relativo simples, aceitando!")
                 print(f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}...")
                 return img_url_full
             else:
-                print(f"      - Imagem {idx+1}: URL relativa complexa (../ ou ./): {img_url[:40]}...")
+                print(f"        → URL relativa complexa (../ ou ./), pulando")
         
         print(f"    ℹ Nenhuma imagem válida encontrada após filtrar")
         return None
