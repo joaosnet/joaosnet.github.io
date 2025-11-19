@@ -219,6 +219,64 @@ def generate_project_html(project, is_last=False, position='left'):
     return html
 
 
+def download_image_for_private_repo(owner, repo_name, img_path, token):
+    """
+    For private repos, download the image and save it locally in the portfolio.
+    Returns the relative path for the downloaded image.
+    """
+    try:
+        if not token:
+            return None
+        
+        # Get default branch
+        default_branch = get_repo_default_branch(owner, repo_name, token)
+        
+        # Download the image from raw.githubusercontent.com
+        download_url = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_path}"
+        
+        # Create local directory for downloaded images
+        local_dir = "assets/project-images"
+        if not os.path.exists(local_dir):
+            os.makedirs(local_dir)
+        
+        # Generate safe filename from repo and image
+        safe_repo_name = f"{owner}_{repo_name}".replace('/', '_')
+        safe_img_name = os.path.basename(img_path).replace('%20', '_').lower()
+        local_filename = f"{safe_repo_name}_{safe_img_name}"
+        local_path = os.path.join(local_dir, local_filename)
+        
+        # Download if not already exists
+        if not os.path.exists(local_path):
+            try:
+                if _HAS_REQUESTS:
+                    response = requests.get(download_url, headers={'Authorization': f'token {token}'}, timeout=10)
+                    if response.status_code == 200:
+                        with open(local_path, 'wb') as f:
+                            f.write(response.content)
+                        print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        return f"/{local_dir}/{local_filename}"
+                    else:
+                        print(f"      ⚠ Falha ao baixar imagem: status {response.status_code}")
+                        return None
+                else:
+                    req = urllib.request.Request(download_url, headers={'Authorization': f'token {token}'})
+                    with urllib.request.urlopen(req, timeout=10) as r:
+                        with open(local_path, 'wb') as f:
+                            f.write(r.read())
+                        print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        return f"/{local_dir}/{local_filename}"
+            except Exception as e:
+                print(f"      ⚠ Erro ao baixar imagem: {str(e)[:50]}")
+                return None
+        else:
+            # Already exists locally
+            return f"/{local_dir}/{local_filename}"
+    except Exception as e:
+        print(f"      ⚠ Erro processando imagem privada: {str(e)[:50]}")
+        return None
+
+
+
 def get_repo_default_branch(owner, repo_name, token):
     """Get the default branch of a repository using GitHub API."""
     try:
@@ -354,13 +412,22 @@ def find_image_in_readme(owner, repo_name, token):
                 return img_url_full
             elif not img_url.startswith('.'):
                 # Relative path (without leading ./ or ../)
-                # Decode URL-encoded characters (e.g., %20 -> space)
+                # For private repos, download the image locally
                 img_url_decoded = unquote(img_url)
-                default_branch = get_repo_default_branch(owner, repo_name, token)
-                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url_decoded}"
-                print(f"        ✓ Caminho relativo simples, aceitando!")
-                print(f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}...")
-                return img_url_full
+                local_img_url = download_image_for_private_repo(owner, repo_name, img_url_decoded, token)
+                
+                if local_img_url:
+                    # Successfully downloaded and saved locally
+                    print(f"        ✓ Caminho relativo baixado localmente!")
+                    print(f"  ✓ Imagem encontrada no README (salva localmente): {local_img_url[:60]}...")
+                    return local_img_url
+                else:
+                    # Fallback to raw.githubusercontent.com if download fails
+                    default_branch = get_repo_default_branch(owner, repo_name, token)
+                    img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url_decoded}"
+                    print(f"        ✓ Caminho relativo simples, aceitando!")
+                    print(f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}...")
+                    return img_url_full
             else:
                 print(f"        → URL relativa complexa (../ ou ./), pulando")
         
