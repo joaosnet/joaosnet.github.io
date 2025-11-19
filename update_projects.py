@@ -31,32 +31,60 @@ import re
 import json
 
 def fetch_projects():
-    # If we have a token, use the authenticated user endpoint to get private repos too
+    """Fetch repositories from GitHub API.
+    Tries authenticated endpoint first (public + private), then falls back to public only.
+    Returns a combined list of all accessible repositories.
+    """
     token = os.environ.get('GITHUB_TOKEN')
+    repos = []
+    
+    # Try authenticated endpoint first if token is available
     if token:
-        url = "https://api.github.com/user/repos?visibility=all&affiliation=owner,collaborator&sort=updated"
-        headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
-    else:
-        # Fallback to public only if no token
-        url = "https://api.github.com/users/joaosnet/repos"
-        headers = {'Accept': 'application/vnd.github.v3+json'}
-
+        headers_auth = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
+        url_auth = "https://api.github.com/user/repos?visibility=all&sort=updated&per_page=100&affiliation=owner"
+        try:
+            if _HAS_REQUESTS:
+                response = requests.get(url_auth, headers=headers_auth, timeout=10)
+                if response.status_code == 200:
+                    repos = response.json()
+                    print(f"Successfully fetched {len(repos)} repos (public + private) via authenticated endpoint")
+                    return repos
+                else:
+                    print(f"Authenticated endpoint returned {response.status_code}; falling back to public repos...")
+            else:
+                req = urllib.request.Request(url_auth, headers=headers_auth)
+                with urllib.request.urlopen(req) as r:
+                    repos = json.loads(r.read().decode('utf-8'))
+                    print(f"Successfully fetched {len(repos)} repos (public + private) via authenticated endpoint")
+                    return repos
+        except urllib.error.HTTPError as e:
+            print(f"Authenticated endpoint error ({e.code}); falling back to public repos...")
+        except Exception as e:
+            print(f"Error fetching from authenticated endpoint: {e}; falling back to public repos...")
+    
+    # Fallback to public endpoint
+    headers_public = {'Accept': 'application/vnd.github.v3+json'}
+    url_public = "https://api.github.com/users/joaosnet/repos?sort=updated&per_page=100"
     try:
         if _HAS_REQUESTS:
-            response = requests.get(url, headers=headers)
-            if response.status_code != 200:
-                print(f"Error fetching repos: {response.status_code}")
-                return []
-            return response.json()
+            response = requests.get(url_public, headers=headers_public, timeout=10)
+            if response.status_code == 200:
+                repos = response.json()
+                print(f"Successfully fetched {len(repos)} public repos via public endpoint")
+                return repos
+            else:
+                print(f"Error fetching public repos: {response.status_code}")
         else:
-            req = urllib.request.Request(url, headers=headers)
+            req = urllib.request.Request(url_public, headers=headers_public)
             with urllib.request.urlopen(req) as r:
-                data = r.read()
-                import json
-                return json.loads(data.decode('utf-8'))
+                repos = json.loads(r.read().decode('utf-8'))
+                print(f"Successfully fetched {len(repos)} public repos via public endpoint")
+                return repos
     except Exception as e:
-        print(f"Error fetching repos: {e}")
-        return []
+        print(f"Error fetching public repos: {e}")
+    
+    print("Could not fetch repos from any endpoint")
+    return []
 
 def generate_project_html(project, is_last=False):
     name = project['name']
@@ -142,64 +170,73 @@ def generate_project_html(project, is_last=False):
 def find_repo_preview_image(repo):
     """Fetch social preview image URL using GitHub GraphQL API.
     The openGraphImageUrl field is only available via GraphQL API v4.
-    Returns the social preview image URL or None.
+    Returns tuple: (image_url, source_name) or (None, None) if not found.
     """
-    owner = repo['owner']['login']
-    name = repo['name']
-    token = os.environ.get('GITHUB_TOKEN')
-    
-    if not token:
-        print(f"Warning: GITHUB_TOKEN not set; cannot fetch social preview for {name}")
-        return None, None
-    
-    # Use GraphQL API to get openGraphImageUrl
-    graphql_query = """
-    query($owner: String!, $name: String!) {
-      repository(owner: $owner, name: $name) {
-        openGraphImageUrl
-      }
-    }
-    """
-    
-    url = "https://api.github.com/graphql"
-    headers = {
-        'Authorization': f'Bearer {token}',
-        'Content-Type': 'application/json'
-    }
-    
-    payload = {
-        'query': graphql_query,
-        'variables': {
-            'owner': owner,
-            'name': name
-        }
-    }
-    
     try:
+        owner = repo.get('owner', {}).get('login')
+        name = repo.get('name')
+        
+        if not owner or not name:
+            print(f"Warning: Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
+            return None, None
+        
+        token = os.environ.get('GITHUB_TOKEN')
+        if not token:
+            print(f"Warning: GITHUB_TOKEN not set; cannot fetch social preview for {name}")
+            return None, None
+        
+        # Use GraphQL API to get openGraphImageUrl
+        graphql_query = """
+        query($owner: String!, $name: String!) {
+          repository(owner: $owner, name: $name) {
+            openGraphImageUrl
+          }
+        }
+        """
+        
+        url = "https://api.github.com/graphql"
+        headers = {
+            'Authorization': f'token {token}',
+            'Content-Type': 'application/json'
+        }
+        
+        payload = {
+            'query': graphql_query,
+            'variables': {
+                'owner': owner,
+                'name': name
+            }
+        }
+        
         if _HAS_REQUESTS:
             response = requests.post(url, json=payload, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
+                if 'errors' in data:
+                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
+                    return None, None
                 if 'data' in data and data['data'] and 'repository' in data['data']:
                     og_url = data['data']['repository'].get('openGraphImageUrl')
                     if og_url:
-                        print(f"Using openGraphImageUrl for {name}: {og_url}")
-                        return og_url, 'openGraphImageUrl (graphql)'
-                elif 'errors' in data:
-                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
+                        print(f"✓ Found social preview for {name}: {og_url}")
+                        return og_url, 'openGraphImageUrl'
+            else:
+                print(f"GraphQL request failed with status {response.status_code} for {owner}/{name}")
         else:
             req = urllib.request.Request(url, headers=headers, data=json.dumps(payload).encode('utf-8'))
-            with urllib.request.urlopen(req) as r:
+            with urllib.request.urlopen(req, timeout=10) as r:
                 data = json.loads(r.read().decode('utf-8'))
+                if 'errors' in data:
+                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
+                    return None, None
                 if 'data' in data and data['data'] and 'repository' in data['data']:
                     og_url = data['data']['repository'].get('openGraphImageUrl')
                     if og_url:
-                        print(f"Using openGraphImageUrl for {name}: {og_url}")
-                        return og_url, 'openGraphImageUrl (graphql)'
+                        print(f"✓ Found social preview for {name}: {og_url}")
+                        return og_url, 'openGraphImageUrl'
     except Exception as e:
-        print(f"Error querying GraphQL for {owner}/{name}: {e}")
-
-    # If nothing found, return None to force placeholder
+        print(f"⚠ Error fetching social preview for {repo.get('name', 'unknown')}: {e}")
+    
     return None, None
 
 def update_index_html(projects_html):
@@ -230,7 +267,7 @@ def update_index_html(projects_html):
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        now = datetime.utcnow()
+        now = datetime.now()
         content = re.sub(r'©\s*\d{4}', f'© {now.year}', content)
         content = re.sub(r'&copy;\s*\d{4}', f'&copy; {now.year}', content)
         # Update or insert a visible 'Última atualização' element in the footer
@@ -309,17 +346,21 @@ def main():
     # Take top 4
     top_projects = my_repos[:4]
     
+    print(f"\nProcessing {len(top_projects)} top projects...")
     projects_html = ""
     for i, project in enumerate(top_projects):
+        print(f"  [{i+1}] {project['name']}")
+        
         # find preview image (social preview only)
         img, source = find_repo_preview_image(project)
         if img:
-            print(f"Project {project['name']} social preview chosen: {img} (source={source})")
+            print(f"      └─ Using social preview: {img}")
         else:
-            # fallback to local placeholder; do NOT default to owner's avatar
+            # fallback to local placeholder
             fallback_img = './assets/css/images/icon.png'
-            print(f"No social preview set for {project['name']}; using placeholder: {fallback_img}")
+            print(f"      └─ No social preview; using placeholder")
             img = fallback_img
+        
         # attach to project for template
         project['preview_image'] = img
         
@@ -334,7 +375,7 @@ def main():
                 </div>"""
     
     update_index_html(timeline_html)
-    print(f"Processed {len(top_projects)} projects and updated index.html.")
+    print(f"\n✓ Successfully processed {len(top_projects)} projects and updated index.html.")
 
 if __name__ == "__main__":
     main()
