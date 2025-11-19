@@ -54,6 +54,16 @@ def fetch_projects():
                 if response.status_code == 200:
                     repos = response.json()
                     print(f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint")
+                    
+                    # Debug: breakdown by type
+                    owner_repos = [r for r in repos if r.get('owner', {}).get('login') == 'joaosnet']
+                    org_repos = [r for r in repos if r.get('owner', {}).get('login') != 'joaosnet']
+                    print(f"  - Owner repos: {len(owner_repos)}")
+                    print(f"  - Organization repos: {len(org_repos)}")
+                    if org_repos:
+                        org_names = set(r.get('owner', {}).get('login') for r in org_repos)
+                        print(f"    Organizations: {', '.join(org_names)}")
+                    
                     return repos
                 else:
                     print(f"Authenticated endpoint returned {response.status_code}; falling back to public repos...")
@@ -62,6 +72,15 @@ def fetch_projects():
                 with urllib.request.urlopen(req, timeout=10) as r:
                     repos = json.loads(r.read().decode('utf-8'))
                     print(f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint")
+                    
+                    owner_repos = [r for r in repos if r.get('owner', {}).get('login') == 'joaosnet']
+                    org_repos = [r for r in repos if r.get('owner', {}).get('login') != 'joaosnet']
+                    print(f"  - Owner repos: {len(owner_repos)}")
+                    print(f"  - Organization repos: {len(org_repos)}")
+                    if org_repos:
+                        org_names = set(r.get('owner', {}).get('login') for r in org_repos)
+                        print(f"    Organizations: {', '.join(org_names)}")
+                    
                     return repos
         except urllib.error.HTTPError as e:
             print(f"Authenticated endpoint error ({e.code}); falling back to public repos...")
@@ -209,7 +228,7 @@ def generate_project_html(project, is_last=False, position='left'):
 
 def find_repo_preview_image(repo):
     """Fetch social preview image URL using GitHub GraphQL API.
-    The openGraphImageUrl field is only available via GraphQL API v4.
+    Prefers actual repo social previews over organization avatars.
     Returns tuple: (image_url, source_name) or (None, None) if not found.
     """
     try:
@@ -217,12 +236,12 @@ def find_repo_preview_image(repo):
         name = repo.get('name')
         
         if not owner or not name:
-            print(f"⚠ Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
+            print(f"  ⚠ Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
             return None, None
         
         token = get_api_token()
         if not token:
-            print(f"⚠ Nenhum token disponível; não será possível buscar preview para {name}")
+            print(f"  ⚠ Nenhum token disponível; não será possível buscar preview para {name}")
             return None, None
         
         # Use GraphQL API to get openGraphImageUrl
@@ -230,6 +249,13 @@ def find_repo_preview_image(repo):
         query($owner: String!, $name: String!) {
           repository(owner: $owner, name: $name) {
             openGraphImageUrl
+            repositoryTopics(first: 1) {
+              nodes {
+                topic {
+                  name
+                }
+              }
+            }
           }
         }
         """
@@ -254,25 +280,29 @@ def find_repo_preview_image(repo):
                 data = response.json()
                 if 'errors' in data:
                     error_msgs = [e.get('message', str(e)) for e in data['errors']]
-                    print(f"⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
+                    print(f"  ⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
                     return None, None
                 if 'data' in data and data['data'] and 'repository' in data['data']:
                     repo_data = data['data']['repository']
                     if repo_data:
                         og_url = repo_data.get('openGraphImageUrl')
                         if og_url:
-                            print(f"  ✓ Social preview encontrada: {og_url}")
-                            return og_url, 'openGraphImageUrl'
+                            # Check if it's an avatar image (from org) - these are typically not good repo previews
+                            is_avatar = 'avatars.githubusercontent.com' in og_url and ('?s=' in og_url or '/u/' in og_url)
+                            if is_avatar:
+                                print(f"  ⚠ Found org avatar (not using): {og_url[:80]}...")
+                                return None, None
+                            else:
+                                print(f"  ✓ Found real social preview")
+                                return og_url, 'openGraphImageUrl'
                         else:
-                            print(f"  ⚠ Sem social preview configurada para {owner}/{name}")
+                            print(f"  ⚠ Sem social preview configurada")
                     else:
-                        print(f"  ⚠ Repositório não encontrado ou sem acesso: {owner}/{name}")
+                        print(f"  ⚠ Repositório não encontrado ou sem acesso")
                 else:
-                    print(f"  ⚠ Resposta GraphQL inválida para {owner}/{name}")
+                    print(f"  ⚠ Resposta GraphQL inválida")
             else:
-                print(f"  ⚠ GraphQL request falhou com status {response.status_code} para {owner}/{name}")
-                if response.text:
-                    print(f"    Resposta: {response.text[:200]}")
+                print(f"  ⚠ GraphQL request falhou com status {response.status_code}")
         else:
             req = urllib.request.Request(url, headers=headers, data=json.dumps(payload).encode('utf-8'))
             try:
@@ -287,16 +317,21 @@ def find_repo_preview_image(repo):
                         if repo_data:
                             og_url = repo_data.get('openGraphImageUrl')
                             if og_url:
-                                print(f"  ✓ Social preview encontrada: {og_url}")
-                                return og_url, 'openGraphImageUrl'
+                                is_avatar = 'avatars.githubusercontent.com' in og_url and ('?s=' in og_url or '/u/' in og_url)
+                                if is_avatar:
+                                    print(f"  ⚠ Found org avatar (not using)")
+                                    return None, None
+                                else:
+                                    print(f"  ✓ Found real social preview")
+                                    return og_url, 'openGraphImageUrl'
                             else:
-                                print(f"  ⚠ Sem social preview configurada para {owner}/{name}")
+                                print(f"  ⚠ Sem social preview configurada")
                         else:
-                            print(f"  ⚠ Repositório não encontrado ou sem acesso: {owner}/{name}")
+                            print(f"  ⚠ Repositório não encontrado ou sem acesso")
             except urllib.error.HTTPError as e:
-                print(f"  ⚠ HTTP error {e.code} para {owner}/{name}")
+                print(f"  ⚠ HTTP error {e.code}")
     except Exception as e:
-        print(f"  ⚠ Erro buscando preview para {repo.get('name', 'unknown')}: {e}")
+        print(f"  ⚠ Erro buscando preview: {e}")
     
     return None, None
 
@@ -397,9 +432,20 @@ def main():
         sanitize_existing_project_images()
         return
     
+    # Debug: show all repos before filtering
+    print(f"\nAll repos fetched: {len(repos)}")
+    for repo in repos[:10]:  # Show first 10
+        has_desc = "✓ desc" if repo.get('description') else "✗ no desc"
+        is_fork = "fork" if repo.get('fork') else "own"
+        print(f"  - {repo.get('owner', {}).get('login')}/{repo['name']} ({is_fork}, {has_desc})")
+    if len(repos) > 10:
+        print(f"  ... and {len(repos) - 10} more")
+    
     # Filter and sort
     # Exclude forks and repos without description
     my_repos = [repo for repo in repos if not repo['fork'] and repo['description']]
+    
+    print(f"\nAfter filtering (no forks, with description): {len(my_repos)}")
     
     # Sort by updated_at descending
     my_repos.sort(key=lambda x: x['updated_at'], reverse=True)
@@ -410,16 +456,24 @@ def main():
     print(f"\nProcessing {len(top_projects)} top projects...")
     projects_html = ""
     for i, project in enumerate(top_projects):
-        print(f"  [{i+1}] {project['name']}")
+        repo_owner = project.get('owner', {}).get('login', 'unknown')
+        print(f"  [{i+1}] {project['name']} (owner: {repo_owner})")
         
         # find preview image (social preview only)
         img, source = find_repo_preview_image(project)
         if img:
-            print(f"      └─ Using social preview: {img}")
-        else:
+            # Reject avatar-like images (they are typically small org avatars)
+            is_org_avatar = 'avatars.githubusercontent.com' in img and '?s=' in img
+            if is_org_avatar:
+                print(f"      ⚠ Found org avatar (ignoring): {img}")
+                img = None
+            else:
+                print(f"      ✓ Using social preview: {img}")
+        
+        if not img:
             # fallback to local placeholder
             fallback_img = './assets/css/images/icon.png'
-            print(f"      └─ No social preview; using placeholder")
+            print(f"      └─ Using placeholder")
             img = fallback_img
         
         # attach to project for template
