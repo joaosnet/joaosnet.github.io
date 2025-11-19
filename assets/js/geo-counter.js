@@ -20,7 +20,7 @@ class GeoViewsCounter {
         }
         
         // URL do Google Apps Script - VOCÊ DEVE PREENCHER ISSO COM A URL GERADA
-        this.GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP5GRTqg6H2n7ueIWohyI5wK3EDqWupwmbfkx3FEUNH4cx0Sk6zv8r8wK7T69sMHNG0g/exec";
+        this.GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP5GRTqg6H2n7ueIWohyI5wK3EDqWupwmbfkx3FEUNH4cx0Sk6zv8r8wK7T69sMHNG0g/exechttps://script.google.com/macros/s/AKfycbyP5GRTqg6H2n7ueIWohyI5wK3EDqWupwmbfkx3FEUNH4cx0Sk6zv8r8wK7T69sMHNG0g/exec";
         
         // Elementos HTML
         this.counterEl = document.getElementById('unique-views');
