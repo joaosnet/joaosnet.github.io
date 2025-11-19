@@ -9,8 +9,8 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - **Styling**: Uses CSS variables for theming (Light/Dark mode). Critical styles are inline in `index.html`. SCSS files are in `assets/sass/` for maintainability.
 - **Assets**: Located in `assets/`:
   - `assets/js/theme.js` - Theme toggling (light/dark), contact form submission with Formspree fallback, view counter, and FAB behavior
-  - `assets/css/main.css` - Compiled CSS
-  - `assets/sass/` - SCSS source files (main.scss, variables, mixins, breakpoints)
+  - `assets/css/` - Compiled CSS files (main.css, noscript.css, fontawesome-all.min.css)
+  - `assets/sass/` - SCSS source files (main.scss, noscript.scss, libs/ with _breakpoints.scss, _functions.scss, _mixins.scss, _vars.scss, _vendor.scss)
   - `assets/project-images/` - Downloaded images from private repositories
   - `assets/webfonts/` - FontAwesome webfonts
 
