@@ -19,12 +19,6 @@ except Exception:
     import urllib.request
     import urllib.error
     _HAS_REQUESTS = False
-try:
-    from github import Github as PyGithub
-    from github import Auth as PyGithubAuth
-    _HAS_PYGITHUB = True
-except Exception:
-    _HAS_PYGITHUB = False
 import os
 from datetime import datetime
 import re
