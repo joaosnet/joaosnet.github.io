@@ -106,7 +106,8 @@ def find_repo_preview_image(repo):
     else:
         print('Warning: GITHUB_TOKEN not set; you may hit GitHub API rate limits. Consider setting it in GitHub Actions as env var GITHUB_TOKEN.')
 
-    # First, if GitHub provides an explicit open_graph_image_url, use it (social preview)
+    # Only use social preview (open_graph_image_url). Do NOT use content files, owner avatar,
+    # or constructed opengraph URLs. This ensures the preview is intentionally set by repo owner.
     # Try PyGithub first using the repo from REST API if available
     token = os.environ.get('GITHUB_TOKEN')
     if _HAS_PYGITHUB and token:
@@ -134,49 +135,8 @@ def find_repo_preview_image(repo):
         print(f"Using repo.open_graph_image_url from API JSON for {name}: {og_json}")
         return og_json, 'open_graph_image_url (json)'
 
-    for p in possible_paths:
-        url = f'https://api.github.com/repos/{owner}/{name}/contents/{p}?ref={branch}'
-        try:
-            if _HAS_REQUESTS:
-                r = requests.get(url, headers=headers)
-                if r.status_code == 200:
-                    data = r.json()
-                    download_url = data.get('download_url')
-                    if download_url:
-                        print(f"Found preview file {p} for {name}: {download_url}")
-                        return download_url, 'content_file'
-            else:
-                req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req) as r:
-                    import json
-                    data = json.loads(r.read().decode('utf-8'))
-                    download_url = data.get('download_url')
-                    if download_url:
-                        print(f"Found preview file {p} for {name}: {download_url}")
-                        return download_url, 'content_file'
-        except urllib.error.HTTPError:
-            # file not found or other HTTP error
-            continue
-        except Exception:
-            continue
-    # As a fallback, try using GitHub's OpenGraph image for the repo (constructed URL)
-    try:
-        opengraph_url = f'https://opengraph.githubassets.com/1/{owner}/{name}'
-        # Do a quick HEAD request to see if it exists
-        if _HAS_REQUESTS:
-            r = requests.head(opengraph_url)
-            if r.status_code == 200:
-                print(f"Using constructed opengraph image for {name}: {opengraph_url}")
-                return opengraph_url, 'opengraph_constructed'
-        else:
-            req = urllib.request.Request(opengraph_url, method='HEAD')
-            with urllib.request.urlopen(req) as r:
-                    if r.status == 200:
-                        print(f"Using constructed opengraph image for {name}: {opengraph_url}")
-                        return opengraph_url, 'opengraph_constructed'
-    except Exception:
-        pass
-
+    # We intentionally don't check for content file previews or construct OpenGraph URL.
+    # If nothing is set, return None to force placeholder in the UI.
     return None, None
 
 def update_index_html(projects_html):
@@ -244,8 +204,17 @@ def sanitize_existing_project_images(file_path='index.html', placeholder='./asse
             return 0
 
         block = content[start_index:end_index]
-        # Replace avatars in img src attributes within the block
-        replaced_block, n = re.subn(r'(<img[^>]+src=["\'])(https:\/\/avatars\.githubusercontent\.com\/[^"\']+)(["\'])', r"\1" + placeholder + r"\3", block, flags=re.I)
+        # Replace any image in the projects block that is NOT a social preview URL
+        # We treat social preview host (opengraph.githubassets.com) and direct repo-hosted images as allowed,
+        # otherwise replace with placeholder.
+        def repl(match):
+            src = match.group(2)
+            # If it's opengraph or a repo-hosted preview (assets), keep it; else replace
+            if 'opengraph.githubassets.com' in src or 'raw.githubusercontent.com' in src:
+                return match.group(0)
+            return match.group(1) + placeholder + match.group(3)
+
+        replaced_block, n = re.subn(r'(<img[^>]+src=["\'])([^"\']+)(["\'])', repl, block, flags=re.I)
         if n > 0:
             content = content[:start_index] + replaced_block + content[end_index:]
             with open(file_path, 'w', encoding='utf-8') as f:
@@ -279,14 +248,14 @@ def main():
     
     projects_html = ""
     for project in top_projects:
-        # find preview image
+        # find preview image (social preview only)
         img, source = find_repo_preview_image(project)
         if img:
-            print(f"Project {project['name']} preview image chosen: {img} (source={source})")
+            print(f"Project {project['name']} social preview chosen: {img} (source={source})")
         else:
             # fallback to local placeholder; do NOT default to owner's avatar
             fallback_img = './assets/css/images/icon.png'
-            print(f"No preview image found for {project['name']}; using placeholder: {fallback_img}")
+            print(f"No social preview set for {project['name']}; using placeholder: {fallback_img}")
             img = fallback_img
         # attach to project for template
         project['preview_image'] = img
