@@ -28,6 +28,7 @@ except Exception:
 import os
 from datetime import datetime
 import re
+import json
 
 def fetch_projects():
     url = "https://api.github.com/users/joaosnet/repos"
@@ -87,54 +88,66 @@ def generate_project_html(project):
 
 
 def find_repo_preview_image(repo):
-    """Try to find a preview image in the repository contents.
-    Returns a download_url or None.
+    """Fetch social preview image URL using GitHub GraphQL API.
+    The openGraphImageUrl field is only available via GraphQL API v4.
+    Returns the social preview image URL or None.
     """
     owner = repo['owner']['login']
     name = repo['name']
-    branch = repo.get('default_branch', 'main')
-    possible_paths = [
-        'preview.png', 'preview.jpg', 'preview.jpeg', 'screenshot.png', 'screenshot.jpg',
-        'screenshot.jpeg', 'screenshot-1.png', 'screenshot-1.jpg', 'cover.png', 'cover.jpg',
-        'og.png', 'og.jpg', 'assets/preview.png', 'assets/screenshot.png', 'docs/preview.png',
-        'docs/screenshot.png', 'images/preview.png', 'images/screenshot.png'
-    ]
     token = os.environ.get('GITHUB_TOKEN')
-    headers = {'Accept': 'application/vnd.github.v3+json'}
-    if token:
-        headers['Authorization'] = f'token {token}'
-    else:
-        print('Warning: GITHUB_TOKEN not set; you may hit GitHub API rate limits. Consider setting it in GitHub Actions as env var GITHUB_TOKEN.')
+    
+    if not token:
+        print(f"Warning: GITHUB_TOKEN not set; cannot fetch social preview for {name}")
+        return None, None
+    
+    # Use GraphQL API to get openGraphImageUrl
+    graphql_query = """
+    query($owner: String!, $name: String!) {
+      repository(owner: $owner, name: $name) {
+        openGraphImageUrl
+      }
+    }
+    """
+    
+    url = "https://api.github.com/graphql"
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json'
+    }
+    
+    payload = {
+        'query': graphql_query,
+        'variables': {
+            'owner': owner,
+            'name': name
+        }
+    }
+    
+    try:
+        if _HAS_REQUESTS:
+            response = requests.post(url, json=payload, headers=headers, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if 'data' in data and data['data'] and 'repository' in data['data']:
+                    og_url = data['data']['repository'].get('openGraphImageUrl')
+                    if og_url:
+                        print(f"Using openGraphImageUrl for {name}: {og_url}")
+                        return og_url, 'openGraphImageUrl (graphql)'
+                elif 'errors' in data:
+                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
+        else:
+            req = urllib.request.Request(url, headers=headers, data=json.dumps(payload).encode('utf-8'))
+            with urllib.request.urlopen(req) as r:
+                data = json.loads(r.read().decode('utf-8'))
+                if 'data' in data and data['data'] and 'repository' in data['data']:
+                    og_url = data['data']['repository'].get('openGraphImageUrl')
+                    if og_url:
+                        print(f"Using openGraphImageUrl for {name}: {og_url}")
+                        return og_url, 'openGraphImageUrl (graphql)'
+    except Exception as e:
+        print(f"Error querying GraphQL for {owner}/{name}: {e}")
 
-    # Only use social preview (open_graph_image_url). Do NOT use content files, owner avatar,
-    # or constructed opengraph URLs. This ensures the preview is intentionally set by repo owner.
-    # Try PyGithub first to access the repo's detailed metadata
-    token = os.environ.get('GITHUB_TOKEN')
-    if _HAS_PYGITHUB and token:
-        try:
-            try:
-                gh = PyGithub(auth=PyGithubAuth.Token(token))
-            except Exception:
-                # fall back for older versions of PyGithub
-                gh = PyGithub(token)
-            gh_repo = gh.get_repo(f"{owner}/{name}")
-            # Access the raw attributes dict to get open_graph_image_url
-            if hasattr(gh_repo, '_rawData') and gh_repo._rawData:
-                og_url = gh_repo._rawData.get('open_graph_image_url')
-                if og_url:
-                    print(f"Using open_graph_image_url for {name}: {og_url}")
-                    return og_url, 'open_graph_image_url (pygithub)'
-        except Exception as e:
-            print(f"PyGithub lookup failed for {owner}/{name}: {e}")
-
-    # If the repo JSON from REST API already contains an open_graph_image_url, use it
-    og_json = repo.get('open_graph_image_url')
-    if og_json:
-        print(f"Using open_graph_image_url from REST API for {name}: {og_json}")
-        return og_json, 'open_graph_image_url (rest_api)'
-
-    # We intentionally don't check for content file previews or construct OpenGraph URL.
-    # If nothing is set, return None to force placeholder in the UI.
+    # If nothing found, return None to force placeholder
     return None, None
 
 def update_index_html(projects_html):
