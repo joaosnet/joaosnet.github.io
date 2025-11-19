@@ -108,7 +108,7 @@ def find_repo_preview_image(repo):
 
     # Only use social preview (open_graph_image_url). Do NOT use content files, owner avatar,
     # or constructed opengraph URLs. This ensures the preview is intentionally set by repo owner.
-    # Try PyGithub first using the repo from REST API if available
+    # Try PyGithub first to access the repo's detailed metadata
     token = os.environ.get('GITHUB_TOKEN')
     if _HAS_PYGITHUB and token:
         try:
@@ -118,22 +118,20 @@ def find_repo_preview_image(repo):
                 # fall back for older versions of PyGithub
                 gh = PyGithub(token)
             gh_repo = gh.get_repo(f"{owner}/{name}")
-            og_url = getattr(gh_repo, 'open_graph_image_url', None)
-            if og_url:
-                print(f"Using repo.open_graph_image_url (PyGithub) for {name}: {og_url}")
-                return og_url, 'open_graph_image_url (pygithub)'
+            # Access the raw attributes dict to get open_graph_image_url
+            if hasattr(gh_repo, '_rawData') and gh_repo._rawData:
+                og_url = gh_repo._rawData.get('open_graph_image_url')
+                if og_url:
+                    print(f"Using open_graph_image_url for {name}: {og_url}")
+                    return og_url, 'open_graph_image_url (pygithub)'
         except Exception as e:
             print(f"PyGithub lookup failed for {owner}/{name}: {e}")
-            # fallback to rest of checks
-    else:
-        if not _HAS_PYGITHUB:
-            print('PyGithub not available; falling back to REST/requests for preview retrieval.')
 
-    # If the repo JSON already contains an open_graph_image_url, prefer it
-    og_json = repo.get('open_graph_image_url') or repo.get('open_graph_image') or repo.get('social_preview')
+    # If the repo JSON from REST API already contains an open_graph_image_url, use it
+    og_json = repo.get('open_graph_image_url')
     if og_json:
-        print(f"Using repo.open_graph_image_url from API JSON for {name}: {og_json}")
-        return og_json, 'open_graph_image_url (json)'
+        print(f"Using open_graph_image_url from REST API for {name}: {og_json}")
+        return og_json, 'open_graph_image_url (rest_api)'
 
     # We intentionally don't check for content file previews or construct OpenGraph URL.
     # If nothing is set, return None to force placeholder in the UI.
