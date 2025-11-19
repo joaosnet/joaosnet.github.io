@@ -331,19 +331,20 @@ def find_image_in_readme(owner, repo_name, token):
                 print(f"  ✓ Imagem encontrada no README: {img_url[:60]}...")
                 return img_url
             elif img_url.startswith('/'):
-                # Relative path from repo root - use default branch
+                # Absolute path from repo root
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
-                print(f"  ✓ Imagem encontrada no README (relativa): {img_url_full[:60]}...")
+                print(f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}...")
                 return img_url_full
-            elif any(img_url.startswith(prefix) for prefix in ['assets/', 'images/', 'docs/', 'screenshots/', 'public/', 'src/']):
-                # Common relative paths
+            elif not img_url.startswith('.'):
+                # Relative path (without leading ./ or ../)
+                # Common patterns: assets/, images/, docs/, screenshots/, public/, src/, etc
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url}"
-                print(f"  ✓ Imagem encontrada no README (relativa): {img_url_full[:60]}...")
+                print(f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}...")
                 return img_url_full
             else:
-                print(f"      - Imagem {idx+1}: URL relativa desconhecida: {img_url[:40]}...")
+                print(f"      - Imagem {idx+1}: URL relativa complexa (../ ou ./): {img_url[:40]}...")
         
         print(f"    ℹ Nenhuma imagem válida encontrada após filtrar")
         return None
