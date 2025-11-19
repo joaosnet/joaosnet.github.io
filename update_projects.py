@@ -354,8 +354,13 @@ def find_image_in_readme(owner, repo_name, token):
 
 
 def find_repo_preview_image(repo):
-    """Fetch social preview image URL using GitHub GraphQL API.
-    Attempts to find actual repo social previews. If not available, uses org avatar as fallback.
+    """Find the best preview image for a repository.
+    
+    Strategy (in order):
+    1. Try to find image in README (real content image)
+    2. Use custom social preview if available (opengraph or repository-images)
+    3. Use organization avatar as last resort
+    
     Returns tuple: (image_url, source_name) or (None, None) if not found.
     """
     try:
@@ -363,28 +368,28 @@ def find_repo_preview_image(repo):
         name = repo.get('name')
         
         if not owner or not name:
-            print(f"  ⚠ Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
+            print(f"  ⚠ Não conseguiu determinar owner/name")
             return None, None
         
         token = get_api_token()
         if not token:
-            print(f"  ⚠ Nenhum token disponível; não será possível buscar preview para {name}")
+            print(f"  ⚠ Sem token disponível")
             return None, None
         
-        # Use GraphQL API to get openGraphImageUrl and check if it's from custom preview
+        print(f"  ℹ Buscando imagem para {owner}/{name}...")
+        
+        # STEP 1: Try README first - prioritize real content images
+        readme_image = find_image_in_readme(owner, name, token)
+        if readme_image:
+            print(f"  ✓ Usando imagem do README")
+            return readme_image, 'readme_image'
+        
+        # STEP 2: Try GraphQL for custom social preview
+        print(f"    Buscando social preview...")
         graphql_query = """
         query($owner: String!, $name: String!) {
           repository(owner: $owner, name: $name) {
             openGraphImageUrl
-            description
-            homepageUrl
-            repositoryTopics(first: 1) {
-              nodes {
-                topic {
-                  name
-                }
-              }
-            }
           }
         }
         """
@@ -403,60 +408,33 @@ def find_repo_preview_image(repo):
             }
         }
         
+        social_preview = None
+        org_avatar = repo.get('owner', {}).get('avatar_url')
+        
         if _HAS_REQUESTS:
             response = requests.post(url, json=payload, headers=headers, timeout=10)
             if response.status_code == 200:
                 data = response.json()
-                if 'errors' in data:
-                    error_msgs = [e.get('message', str(e)) for e in data['errors']]
-                    print(f"  ⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
-                    return None, None
                 if 'data' in data and data['data'] and 'repository' in data['data']:
                     repo_data = data['data']['repository']
                     if repo_data:
                         og_url = repo_data.get('openGraphImageUrl')
                         if og_url:
                             # Check if it's a custom social preview (not just avatar)
-                            # Real previews come from: opengraph.githubassets.com or repository-images.githubusercontent.com
                             is_custom_preview = ('opengraph.githubassets.com' in og_url or 
                                                'repository-images.githubusercontent.com' in og_url)
-                            is_org_avatar = 'avatars.githubusercontent.com' in og_url and '?s=' in og_url
                             
                             if is_custom_preview:
-                                print(f"  ✓ Found custom social preview")
+                                print(f"  ✓ Usando custom social preview")
                                 return og_url, 'openGraphImageUrl'
-                            elif is_org_avatar:
-                                # Try README first before using org avatar
-                                readme_image = find_image_in_readme(owner, name, token)
-                                if readme_image:
-                                    print(f"  ✓ Using README image instead of avatar")
-                                    return readme_image, 'readme_image'
-                                print(f"  ✓ Using org avatar as preview")
-                                return og_url, 'org_avatar'
-                            else:
-                                # Other types of images
-                                print(f"  ✓ Using social image: {og_url[:60]}...")
-                                return og_url, 'openGraphImageUrl'
-                        else:
-                            print(f"  ⚠ Sem social preview. Buscando no README...")
-                            readme_image = find_image_in_readme(owner, name, token)
-                            if readme_image:
-                                return readme_image, 'readme_image'
-                    else:
-                        print(f"  ⚠ Repositório não encontrado ou sem acesso")
-                else:
-                    print(f"  ⚠ Resposta GraphQL inválida")
-            else:
-                print(f"  ⚠ GraphQL request falhou com status {response.status_code}")
+                            elif org_avatar:
+                                print(f"  ✓ Usando avatar da organização")
+                                return org_avatar, 'org_avatar'
         else:
             req = urllib.request.Request(url, headers=headers, data=json.dumps(payload).encode('utf-8'))
             try:
                 with urllib.request.urlopen(req, timeout=10) as r:
                     data = json.loads(r.read().decode('utf-8'))
-                    if 'errors' in data:
-                        error_msgs = [e.get('message', str(e)) for e in data['errors']]
-                        print(f"  ⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
-                        return None, None
                     if 'data' in data and data['data'] and 'repository' in data['data']:
                         repo_data = data['data']['repository']
                         if repo_data:
@@ -464,54 +442,27 @@ def find_repo_preview_image(repo):
                             if og_url:
                                 is_custom_preview = ('opengraph.githubassets.com' in og_url or 
                                                    'repository-images.githubusercontent.com' in og_url)
-                                is_org_avatar = 'avatars.githubusercontent.com' in og_url and '?s=' in og_url
                                 
                                 if is_custom_preview:
-                                    print(f"  ✓ Found custom social preview")
+                                    print(f"  ✓ Usando custom social preview")
                                     return og_url, 'openGraphImageUrl'
-                                elif is_org_avatar:
-                                    # Try README first before using org avatar
-                                    readme_image = find_image_in_readme(owner, name, token)
-                                    if readme_image:
-                                        print(f"  ✓ Using README image instead of avatar")
-                                        return readme_image, 'readme_image'
-                                    print(f"  ✓ Using org avatar as preview")
-                                    return og_url, 'org_avatar'
-                                else:
-                                    print(f"  ✓ Using social image: {og_url[:60]}...")
-                                    return og_url, 'openGraphImageUrl'
-                            else:
-                                print(f"  ⚠ Sem social preview. Buscando no README...")
-                                readme_image = find_image_in_readme(owner, name, token)
-                                if readme_image:
-                                    return readme_image, 'readme_image'
-                        else:
-                            print(f"  ⚠ Repositório não encontrado ou sem acesso")
+                                elif org_avatar:
+                                    print(f"  ✓ Usando avatar da organização")
+                                    return org_avatar, 'org_avatar'
             except urllib.error.HTTPError as e:
-                print(f"  ⚠ HTTP error {e.code}")
+                pass
+        
+        # STEP 3: Fallback to org avatar if no preview found
+        if org_avatar:
+            print(f"  ✓ Usando avatar da organização (fallback)")
+            return org_avatar, 'org_avatar'
+        
+        print(f"  ⚠ Nenhuma imagem encontrada")
+        return None, None
+        
     except Exception as e:
-        print(f"  ⚠ Erro buscando preview: {e}")
-    
-    # Final fallback: try to find image in README if nothing worked
-    print(f"  → Tentando fallback final (README)...")
-    owner = repo.get('owner', {}).get('login')
-    name = repo.get('name')
-    token = get_api_token()
-    
-    if owner and name:
-        if not token:
-            print(f"    ⚠ Sem token para buscar README")
-            return None, None
-        readme_image = find_image_in_readme(owner, name, token)
-        if readme_image:
-            print(f"  ✓ Sucesso no fallback README!")
-            return readme_image, 'readme_image'
-        else:
-            print(f"    ℹ README não contém imagens utilizáveis")
-    else:
-        print(f"    ⚠ Não conseguiu determinar owner/name do repositório")
-    
-    return None, None
+        print(f"  ⚠ Erro ao buscar imagem: {str(e)[:70]}")
+        return None, None
 
 
 def update_index_html(projects_html):
