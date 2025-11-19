@@ -5,7 +5,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Architecture & Key Components
 - **Frontend**: Vanilla HTML5, CSS3 (SCSS), and JavaScript. No framework (React/Vue/etc.) is used for the runtime site.
-- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (5 specialized modules).
+- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (6 specialized modules).
 - **Automation**: `update_projects.py` is the core automation engine. It fetches repository data from the GitHub API and injects HTML into `index.html`. Supports both public and private repositories (with authentication).
 - **Styling**: Uses CSS variables for theming (Light/Dark mode). Styles are now separated into `assets/css/styles.css` with SCSS source files in `assets/sass/` for maintainability.
 - **Assets**: Located in `assets/`:
@@ -14,12 +14,13 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - `assets/css/main.css` - Compiled from SCSS (legacy)
     - `assets/css/noscript.css` - No-JavaScript fallbacks
     - `assets/css/fontawesome-all.min.css` - FontAwesome icons
-  - **JavaScript** (5 specialized modules):
+  - **JavaScript** (6 specialized modules):
     - `assets/js/theme-manager.js` - Light/dark theme toggling (class ThemeManager)
     - `assets/js/mobile-menu.js` - Mobile menu handling (class MobileMenuHandler)
     - `assets/js/animations.js` - Scroll animations and observers (class AnimationsHandler)
     - `assets/js/contact-form.js` - Form submission and FAB (class ContactFormHandler)
     - `assets/js/utils.js` - Particles, floating shapes, and view counter (FloatingShapesHandler, ViewsCounter, initParticles)
+    - `assets/js/geo-counter.js` - Visitor tracking (class GeoViewsCounter) - collects IP, geolocation, timestamp, user-agent
     - `assets/js/theme.js` - Legacy theme handling (kept for compatibility)
   - `assets/sass/` - SCSS source files (main.scss, noscript.scss, libs/ with _breakpoints.scss, _functions.scss, _mixins.scss, _vars.scss, _vendor.scss)
   - `assets/project-images/` - Downloaded images from private repositories
@@ -47,10 +48,28 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Code Conventions & Patterns
 - **Language**: The site content is in Portuguese (pt-br).
+- **Visitor Tracking System** (Google Drive Analytics):
+  - **Architecture**: Collects visitor data (IP, geolocation, timestamp, user-agent) via frontend and stores privately in Google Sheets
+  - **Frontend Component**: `assets/js/geo-counter.js` (class GeoViewsCounter)
+    - Collects: IP via ip-api.com, country, city, ISP, timestamp (ISO), user-agent, URL, referrer
+    - Sends on every visit async (non-blocking with keepalive: true)
+    - Stores in localStorage for last 7 days (~5-10MB max)
+    - Rate limiting: 1 hour between sends per IP
+    - Error handling: graceful fallbacks, never breaks site
+  - **Backend Component**: Google Apps Script Web App (code in `GOOGLE_APPS_SCRIPT_CODE.gs`)
+    - Function `doPost(e)`: receives visitor data JSON
+    - Function `appendVisitToSheet(data)`: writes to "Visitas" aba with headers
+    - Function `updateStatistics()`: calculates Top 10 countries/cities in "Estatísticas" aba
+    - Automatic table creation on first run
+  - **Setup**: User must: create Google Sheet "Portfolio Analytics", create Apps Script, deploy as Web App, paste URL into geo-counter.js
+    - Documentation: `SETUP_GOOGLE_DRIVE_TRACKING.md` (detailed), `QUICK_START.md` (5 min)
+  - **Privacy**: Data completely private (never exposed publicly), LGPD compliant, only you access (secure with Google Drive permissions)
+  - **Display**: Counter in footer styled with gradient, icon 👁, number updated yearly per localStorage
+  - **Related Files**: Assets/css/styles.css has `.views-counter` styling (gradient background, shadow, hover effect)
 - **HTML Structure**:
   - `index.html` is now lean (~434 lines) containing only semantic HTML structure.
   - All styles are referenced from `assets/css/styles.css`.
-  - All JavaScript is loaded via 5 modular scripts in the correct order.
+  - All JavaScript is loaded via 6 modular scripts in the correct order.
   - The `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers must be preserved for `update_projects.py`.
 - **CSS Architecture**:
   - **Main file**: `assets/css/styles.css` (~1000 lines, organized by sections):
@@ -99,6 +118,13 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Class: ViewsCounter - localStorage-based view counter (yearly)
     - Function: initParticles() - particles.js configuration
     - All initialize on `DOMContentLoaded`
+  - **`geo-counter.js`** (Class: GeoViewsCounter)
+    - Methods: `collectAndSendGeoData()`, `fetchGeoData()`, `storeVisitData()`, `sendToGoogleAppsScript()`, `cleanOldData()`, `getStoredData()`, `getLocalStatistics()`
+    - Collects IP, country, city, ISP, timestamp, user-agent
+    - Sends async to Google Apps Script (non-blocking)
+    - Stores in localStorage with 7-day retention
+    - Rate limiting (1 hour per IP)
+    - Initializes on `DOMContentLoaded`
 - **HTML Injection** (via update_projects.py):
   - The script looks for `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers. **Do not remove these.**
   - Fetches up to 100 repositories with affiliation filter (owner, collaborator, organization_member).
@@ -124,7 +150,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Toast notifications via `showToast()` helper with auto-hide after 3.5 seconds.
   - FAB smoothly scrolls to contact form and focuses message field.
   - Theme persistence uses `localStorage.setItem('theme', theme)`.
-  - Load order matters: particles.js → utils.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js.
+  - Load order matters: particles.js → utils.js → geo-counter.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js.
 
 ## Development Guidelines
 - **CSS**: 
@@ -154,6 +180,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - **Scroll**: Edit `assets/js/animations.js` (logic and intersection thresholds) and `.hidden`, `.show` classes in `assets/css/styles.css`.
   - **Contact**: Edit `assets/js/contact-form.js` (form logic) and `.contact-form`, `.form-*` classes in `assets/css/styles.css`.
   - **Utilities**: Edit `assets/js/utils.js` (particles config, shapes animation, counter logic).
+  - **Visitor Tracking**: Edit `assets/js/geo-counter.js` (coleta de dados, envio para Google Apps Script) and `.views-counter` in `assets/css/styles.css`. Must configure Google Apps Script URL in `GeoViewsCounter.GOOGLE_APPS_SCRIPT_URL`.
 - **Python Script (`update_projects.py`)**:
   - Use `requests` library if available, maintain `urllib` fallback for compatibility.
   - Handle API errors gracefully with try-except blocks and informative print statements.
@@ -177,5 +204,8 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - `assets/js/animations.js`: Scroll animations, intersection observers, smooth scrolling.
 - `assets/js/contact-form.js`: Form submission, email utilities, FAB, toast notifications.
 - `assets/js/utils.js`: Particles configuration, floating shapes, view counter.
+- `assets/js/geo-counter.js`: Visitor tracking (IP, geolocation, timestamp, user-agent collection and Google Drive integration).
 - `assets/js/theme.js`: Legacy theme handling (kept for compatibility).
+- `GOOGLE_APPS_SCRIPT_CODE.gs`: Google Apps Script backend code for receiving and storing visitor data in Google Sheets.
+- `SETUP_GOOGLE_DRIVE_TRACKING.md`: Detailed instructions for configuring Google Apps Script and visitor tracking.
 - `update_projects.py`: Automation script to fetch GitHub repos and update project timeline.
