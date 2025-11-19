@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="dark light">
     <title>João Desenvolvedor - Tech Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -235,6 +235,7 @@
             line-height: 1.1;
             background: linear-gradient(to right, var(--light), var(--text-gray));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
@@ -386,6 +387,7 @@
             margin-bottom: 20px;
             background: linear-gradient(to right, var(--light), var(--text-gray));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -440,6 +442,8 @@
             font-size: 2.5rem;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
+            background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 25px;
             display: inline-block;
@@ -1081,108 +1085,85 @@
         .gtranslate_wrapper {
             position: fixed !important;
             right: 20px !important;
-            bottom: 90px !important; /* above the contact FAB */
-            z-index: 99999 !important; /* ensure visibility above site UI */
-            pointer-events: auto !important;
+            top: 100px !important;
+            z-index: 99999 !important;
         }
-        /* Styling the GTranslate floating switcher to match site theme */
-        .gtranslate_wrapper .gt_float_switcher,
-        .gtranslate_wrapper .gt_float_wrapper,
-        .gtranslate_wrapper .gt_current_lang,
-        .gtranslate_wrapper .gt-selected,
-        .gtranslate_wrapper a.gt-current-lang,
-        .gtranslate_wrapper select {
+
+        .gtranslate_wrapper .gt_switcher {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
             color: white !important;
-            border-radius: 999px !important;
             border: none !important;
+            border-radius: 50% !important;
             width: 56px !important;
             height: 56px !important;
-            display: inline-flex !important;
+            display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
-            font-weight: 700 !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
             font-size: 18px !important;
+            cursor: pointer !important;
         }
-        /* hide flag image in the switcher to use a FontAwesome globe icon */
-        .gtranslate_wrapper .gt_current_lang img,
-        .gtranslate_wrapper .gt_float_switcher img { display: none !important; }
-        /* Insert a globe icon if flag isn't present; use FontAwesome */
-        .gtranslate_wrapper .gt_current_lang::before,
-        .gtranslate_wrapper .gt_float_switcher::before,
-        .gtranslate_wrapper .gt-selected::before {
-            content: "\f0ac"; /* globe icon */
-            font-family: 'Font Awesome 6 Free' !important;
-            font-weight: 900 !important;
-            margin: 0 !important;
-            font-size: 18px !important;
-            display: inline-block !important;
-            line-height: 1 !important;
+
+        .gtranslate_wrapper .gt_switcher:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45) !important;
         }
-        /* Hide default labels like AUTO and keep only the icon */
-        .gtranslate_wrapper .gt-current-lang .gt_current_lang_name,
-        .gtranslate_wrapper .gt_current_lang .gt_current_lang_code,
-        .gtranslate_wrapper a.gt-current-lang .gt-current-lang-text {
-            display: none !important;
-        }
-        /* Style dropdown list */
-        .gtranslate_wrapper .gt_options,
-        .gtranslate_wrapper .gt-list,
-        .gtranslate_wrapper .gt_dropdown {
+
+        .gtranslate_wrapper .goog-te-gadget-simple {
             background: var(--bg-card) !important;
             border: 1px solid var(--border-light) !important;
-            color: var(--light) !important;
-            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6) !important;
-            padding: 8px 10px !important;
-            border-radius: 12px !important;
-            min-width: 220px !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important;
+            backdrop-filter: blur(10px) !important;
             overflow: hidden !important;
         }
-        .gtranslate_wrapper .gt_options a,
-        .gtranslate_wrapper .gt_options li,
-        .gtranslate_wrapper .gt_options .gt-item {
-            color: var(--light) !important;
+
+        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item {
             display: flex !important;
-            gap: 8px !important;
             align-items: center !important;
-            padding: 6px 8px !important;
-            border-radius: 8px !important;
-            transition: background 0.2s ease !important;
+            gap: 12px !important;
+            padding: 12px 16px !important;
+            color: var(--light) !important;
+            border-radius: 12px !important;
         }
-        .gtranslate_wrapper .gt_options a:hover,
-        .gtranslate_wrapper .gt_options li:hover,
-        .gtranslate_wrapper .gt_options .gt-item:hover {
-            background: rgba(255,255,255,0.04) !important;
+
+        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item img {
+            width: 24px !important;
+            height: 16px !important;
+            border-radius: 4px !important;
+            border: 1px solid rgba(255,255,255,0.2) !important;
         }
-        /* Adjust mobile position to avoid being overlapped */
+
+        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item:hover {
+            background: rgba(255,255,255,0.1) !important;
+        }
+
+        html[data-theme="light"] .gtranslate_wrapper .goog-te-gadget-simple {
+            background: rgba(255,255,255,0.98) !important;
+            border-color: #e5e7eb !important;
+        }
+
         @media (max-width: 768px) {
-            .gtranslate_wrapper { right: 14px !important; bottom: 78px !important; }
-            .gtranslate_wrapper .gt_float_switcher { width: 48px !important; height: 48px !important; }
+            .gtranslate_wrapper { right: 16px !important; top: 80px !important; }
+            .gtranslate_wrapper .gt_switcher { width: 48px !important; height: 48px !important; }
         }
 
-        .form-background-effects {
-            box-sizing: border-box;
-            left: -12px; right: -12px; top: -12px; bottom: -12px;
-            overflow: hidden;
-        }
-
-        .contact-form {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
     </style>
+
+    <!-- GTRANSLATE JS - CARREGAMENTO DEFINITIVO -->
     <script>
-        (function(){
-            const stored = localStorage.getItem('theme');
-            if (stored) {
-                document.documentElement.setAttribute('data-theme', stored);
-            } else {
-                // Default to dark theme if no preference is stored
-                document.documentElement.setAttribute('data-theme', 'dark');
-            }
-        })();
+    window.gtranslateSettings = {
+        "default_language": "pt",
+        "detect_browser_language": true,
+        "languages": "pt,en,es,fr,de,it"
+    };
+
+    (function(){
+        const script = document.createElement('script');
+        script.src = 'https://cdn.gtranslate.net/widgets/latest/dropdown.js';
+        script.async = true;
+        document.head.appendChild(script);
+    })();
     </script>
 </head>
 
@@ -1665,8 +1646,104 @@
 
         const hiddenElements = document.querySelectorAll('.hidden');
         hiddenElements.forEach((el) => observer.observe(el));
+
+        /* REMOVER CountAPI - contador 100% local */
+        (function() {
+            const el = document.getElementById('unique-views');
+            if (!el) return;
+            
+            const key = `joaosnet_views_${new Date().getFullYear()}`;
+            let count = parseInt(localStorage.getItem(key) || '0') + 1;
+            localStorage.setItem(key, count.toString());
+            el.textContent = count.toLocaleString();
+            
+            // Reset diário para contagem única por dia
+            const today = new Date().toDateString();
+            if (!localStorage.getItem('joaosnet_last_visit')) {
+                localStorage.setItem('joaosnet_last_visit', today);
+            } else if (localStorage.getItem('joaosnet_last_visit') !== today) {
+                localStorage.setItem('joaosnet_last_visit', today);
+                // Incrementa contador global anual
+                const globalKey = `joaosnet_global_${new Date().getFullYear()}`;
+                let globalCount = parseInt(localStorage.getItem(globalKey) || '0') + 1;
+                localStorage.setItem(globalKey, globalCount.toString());
+            }
+        })();
+
+        /* GTRANSLATE - FORÇAR FLOAT DEFINITIVO */
+        window.gtranslateSettings = {
+            "default_language": "pt",
+            "detect_browser_language": true,
+            "layout": "float",
+            "float_position": "bottom-right"
+        };
+
+        // Remove TODOS scripts GTranslate existentes
+        setTimeout(() => {
+            // Limpa qualquer widget anterior
+            const existingScripts = document.querySelectorAll('script[src*="gtranslate"]');
+            existingScripts.forEach(s => s.remove());
+            
+            const existingWrappers = document.querySelectorAll('.gtranslate_wrapper, .gt_wrapper');
+            existingWrappers.forEach(w => w.remove());
+            
+            // Cria novo wrapper limpo
+            let wrapper = document.querySelector('.gtranslate_wrapper');
+            if (!wrapper) {
+                wrapper = document.createElement('div');
+                wrapper.className = 'gtranslate_wrapper';
+                document.body.appendChild(wrapper);
+            }
+            
+            // Carrega float.js FORÇADAMENTE
+            const floatScript = document.createElement('script');
+            floatScript.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
+            floatScript.async = true;
+            floatScript.id = 'gtranslate-float';
+            document.head.appendChild(floatScript);
+            
+            console.log('✅ GTranslate float widget carregado definitivamente');
+        }, 300);
+
+        // VERIFICAÇÃO FINAL - garante float em 3s
+        setTimeout(() => {
+            const hasFloat = document.querySelector('.gt_float_switcher, .gt_float_wrapper');
+            if (!hasFloat) {
+                console.warn('GTranslate: ainda sem float, recarregando...');
+                location.reload();
+            } else {
+                console.log('✅ GTranslate float widget confirmado!');
+            }
+        }, 3000);
     </script>
-    <script src="assets/js/theme.js"></script>
+    <!-- FORÇAR BOTÃO TEMA FUNCIONAR -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+    
+    if (!toggleBtn) return;
+    
+    function currentTheme() {
+        return htmlEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    }
+    
+    function applyTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        toggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+        toggleBtn.title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+        const newTheme = currentTheme() === 'light' ? 'dark' : 'light';
+        applyTheme(newTheme);
+    });
+    
+    // Inicializar ícone
+    applyTheme(currentTheme());
+});
+    </script>
         <!-- GTranslate settings: keep minimal to allow all languages and detect browser language. -->
         <!-- NOTE: If the floating widget does not appear, confirm the floating selector is enabled in the
                  GTranslate dashboard for your domain and that the account has the proper plan / license.

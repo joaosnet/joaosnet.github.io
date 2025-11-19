@@ -160,34 +160,27 @@ function initUniqueViews() {
     const NS = 'joaosnet-github-io';
     const KEY = 'unique-views';
     const flagKey = `visited_${NS}_${KEY}`;
+    
+    // Check if already counted in this browser session
+    if (localStorage.getItem(flagKey)) {
+        el.textContent = 'Nunca 🤫';
+        return;
+    }
+    
     const countUrl = `https://api.countapi.xyz/get/${NS}/${KEY}`;
     const hitUrl = `https://api.countapi.xyz/hit/${NS}/${KEY}`;
-
-    async function refreshCount() {
-        try {
-            const resp = await fetch(countUrl);
-            if (!resp.ok) return;
-            const data = await resp.json();
-            el.textContent = data.value.toLocaleString();
-        } catch (e) {
-            // ignore
-        }
-    }
-
-    async function hitIfNeeded() {
-        const visited = localStorage.getItem(flagKey);
-        if (!visited) {
-            try {
-                await fetch(hitUrl);
-                localStorage.setItem(flagKey, '1');
-            } catch (e) {
-                // ignore
-            }
-        }
-        await refreshCount();
-    }
-
-    hitIfNeeded();
+    
+    fetch(countUrl)
+        .then(res => res.json())
+        .then(data => {
+            el.textContent = data.value === 0 ? 'Nunca 🤫' : data.value.toLocaleString();
+            // Count unique visit
+            localStorage.setItem(flagKey, 'true');
+            fetch(hitUrl);
+        })
+        .catch(() => {
+            el.textContent = 'Nunca 🤫';
+        });
 }
 
 /* Initialize features after load */
