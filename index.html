@@ -1,790 +1,816 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <title>João Desenvolvedor | Soluções em Tecnologia</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="assets/css/images/icon.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>João Desenvolvedor - Tech Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --accent: #f59e0b;
-            --text: #333;
+            --primary: #3b82f6;
+            --secondary: #8b5cf6;
+            --dark: #020617;
             --light: #f8fafc;
-            --dark: #0f172a;
+            --accent: #06b6d4;
+            --text-gray: #94a3b8;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --border-light: rgba(255, 255, 255, 0.1);
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
-        
+
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text);
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f2 100%);
+            background-color: var(--dark);
+            color: var(--light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
-        
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
         .container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         header {
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 20px 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
         }
-        
+
+        header.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-            z-index: 10;
         }
-        
+
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary);
+            color: white;
             display: flex;
             align-items: center;
-            position: relative;
-            overflow: hidden;
-            padding: 5px 15px;
-            border-radius: 8px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            padding: 8px 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
-        .logo:hover {
-            transform: translateY(-5px) rotate(1deg);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        
+
         .logo i {
             margin-right: 10px;
             color: var(--accent);
             font-size: 2.2rem;
-            animation: pulse 2s infinite;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
+
         nav ul {
             display: flex;
             list-style: none;
-            perspective: 500px;
         }
-        
+
         nav ul li {
-            margin-left: 25px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.5s;
+            margin-left: 30px;
         }
-        
+
         nav ul li a {
             text-decoration: none;
-            color: var(--text);
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            padding: 8px 12px;
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1.05rem;
             position: relative;
-            display: inline-block;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1);
         }
-        
-        nav ul li a:before {
-            content: "";
+
+        nav ul li a::after {
+            content: '';
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
+            width: 0;
             height: 2px;
-            background: var(--accent);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.4s cubic-bezier(0.42, 0, 0.58, 1);
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
         }
-        
-        nav ul li a:hover:before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-        
+
         nav ul li a:hover {
-            color: var(--primary);
-            text-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+            color: white;
         }
-        
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
         .hero {
             height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+            padding-top: 80px;
+            background: transparent;
         }
-        
-        #particles-js {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1;
-        }
-        
-        .floating-shapes {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 2;
-        }
-        
-        .shape {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50%;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: float 15s infinite ease-in-out;
-        }
-        
-        .shape:nth-child(1) {
-            width: 150px;
-            height: 150px;
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-        
-        .shape:nth-child(2) {
-            width: 80px;
-            height: 80px;
-            top: 60%;
-            left: 20%;
-            animation-delay: 2s;
-            animation-duration: 18s;
-        }
-        
-        .shape:nth-child(3) {
-            width: 200px;
-            height: 200px;
-            top: 10%;
-            right: 15%;
-            animation-delay: 4s;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation-duration: 20s;
-        }
-        
-        .shape:nth-child(4) {
-            width: 120px;
-            height: 120px;
-            bottom: 15%;
-            right: 25%;
-            animation-delay: 6s;
-            border-radius: 30% 70% 40% 60% / 60% 30% 70% 40%;
-        }
-        
-        .shape:nth-child(5) {
-            width: 100px;
-            height: 100px;
-            top: 40%;
-            right: 10%;
-            animation-delay: 8s;
-            animation-duration: 12s;
-            border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
-        }
-        
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
-            100% {
-                transform: translateY(0) rotate(0deg);
-            }
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: left;
-            max-width: 600px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border-left: 1px solid rgba(255, 255, 255, 0.2);
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            transform: perspective(1000px) rotateY(-5deg);
-            animation: fadeIn 1s ease-in;
-            margin-left: 5%;
-            overflow: hidden;
-        }
-        
-        .hero-content::before {
+
+        .hero::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 0%,
-                rgba(255, 255, 255, 0.03) 50%,
-                transparent 100%
-            );
-            animation: glassSweep 8s infinite linear;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(2, 6, 23, 0) 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            right: -20%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, rgba(2, 6, 23, 0) 70%);
             z-index: -1;
         }
-        
-        @keyframes glassSweep {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
-        
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 40px;
+        }
+
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin-bottom: 20px;
-            color: var(--light);
-            font-weight: 700;
+            line-height: 1.1;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        
+
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: var(--light);
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        
+
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
+            padding: 14px 35px;
+            border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            cursor: pointer;
             font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
         }
-        
+
         .btn-primary {
-            background-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border: 2px solid var(--primary);
+            border: none;
+            box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
         }
-        
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+            animation: shineEffect 1.5s infinite;
+        }
+
         .btn-primary:hover {
-            background-color: transparent;
-            color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 20px 35px -10px rgba(59, 130, 246, 0.6);
         }
-        
+
         .btn-secondary {
-            background-color: transparent;
-            color: var(--light);
-            border: 2px solid var(--light);
-            margin-left: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-left: 20px;
+            backdrop-filter: blur(5px);
         }
-        
+
         .btn-secondary:hover {
-            background-color: var(--light);
-            color: var(--dark);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-3px);
         }
-        
+
+        .floating-shapes div {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: -1;
+            animation: float 15s infinite linear;
+        }
+
+        .floating-shapes div:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+        }
+
+        .floating-shapes div:nth-child(2) {
+            top: 60%;
+            left: 5%;
+            width: 50px;
+            height: 50px;
+            animation-delay: 2s;
+        }
+
+        .floating-shapes div:nth-child(3) {
+            top: 30%;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            animation-delay: 4s;
+        }
+
+        .floating-shapes div:nth-child(4) {
+            bottom: 15%;
+            right: 10%;
+            width: 70px;
+            height: 70px;
+            animation-delay: 6s;
+        }
+
+        .floating-shapes div:nth-child(5) {
+            bottom: 20%;
+            left: 20%;
+            width: 40px;
+            height: 40px;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+
+            100% {
+                transform: translateY(0) rotate(360deg);
+            }
+        }
+
         .features {
             padding: 100px 0;
+            position: relative;
         }
-        
+
         .section-title {
             text-align: center;
             margin-bottom: 60px;
         }
-        
+
         .section-title h2 {
             font-size: 2.5rem;
-            color: var(--dark);
+            color: white;
             margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .section-title p {
             font-size: 1.1rem;
-            color: #64748b;
+            color: var(--text-gray);
             max-width: 700px;
             margin: 0 auto;
         }
-        
+
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
-        
+
         .feature-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            text-align: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 40px 30px;
+            transition: all 0.4s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
-        
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
         .feature-card:hover {
             transform: translateY(-10px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
         }
-        
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
         .feature-card i {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 25px;
+            display: inline-block;
         }
-        
+
         .feature-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--dark);
+            color: white;
         }
-        
+
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 1rem;
+        }
+
         .specs {
             padding: 100px 0;
-            background-color: #f8fafc;
+            background-color: rgba(2, 6, 23, 0.5);
         }
-        
+
         .specs-flex {
             display: flex;
             align-items: center;
             flex-wrap: wrap;
+            gap: 40px;
         }
-        
+
         .specs-image {
             flex: 1;
             min-width: 300px;
-            text-align: center;
-            padding: 20px;
+            position: relative;
         }
-        
+
         .specs-image img {
             max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border-light);
         }
-        
+
         .specs-content {
             flex: 1;
             min-width: 300px;
-            padding: 20px;
         }
-        
+
         .specs-item {
-            margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 3px solid var(--primary);
+            margin-bottom: 25px;
+            padding: 25px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            transition: all 0.3s;
         }
-        
+
+        .specs-item:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
         .specs-item h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
-            color: var(--dark);
+            color: white;
+            display: flex;
+            align-items: center;
         }
-        
+
+        .specs-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            margin-right: 10px;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .specs-item p {
+            color: var(--text-gray);
+            margin-left: 18px;
+        }
+
         .cta {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            background: radial-gradient(circle at center, #1e293b 0%, #020617 100%);
             padding: 100px 0;
             text-align: center;
             color: white;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+        }
+
         .cta h2 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        
+
         .cta p {
             font-size: 1.2rem;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            color: var(--text-gray);
         }
-        
+
         .contact-form {
             max-width: 600px;
             margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-card);
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             text-align: left;
+            border: 1px solid var(--border-light);
+            backdrop-filter: blur(10px);
         }
-        
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             position: relative;
         }
-        
+
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             font-weight: 500;
             color: white;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
-        
+
         .form-control {
             width: 100%;
-            padding: 12px 15px 12px 45px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px 20px 15px 50px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background-color: rgba(2, 6, 23, 0.5);
             color: white;
             font-size: 1rem;
             transition: all 0.3s;
         }
-        
+
         .form-control:focus {
             outline: none;
-            background-color: rgba(255, 255, 255, 0.2);
+            background-color: rgba(2, 6, 23, 0.8);
             border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.1);
         }
-        
+
         .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 0.3);
         }
-        
+
         textarea.form-control {
             min-height: 150px;
             resize: vertical;
         }
-        
+
         .form-icon {
             position: absolute;
-            left: 15px;
-            top: 42px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.2rem;
+            left: 20px;
+            top: 48px;
+            color: var(--accent);
+            font-size: 1.1rem;
+            transition: all 0.3s;
         }
-        
+
+        .form-control:focus+.form-icon {
+            color: var(--primary);
+        }
+
         footer {
-            background-color: var(--dark);
+            background-color: #020617;
             color: white;
-            padding: 60px 0 30px;
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
+
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
         }
-        
+
         .footer-column h3 {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: white;
         }
-        
+
+        .footer-column p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
         .footer-column ul {
             list-style: none;
         }
-        
+
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
-        
+
         .footer-column ul li a {
-            color: #cbd5e1;
+            color: var(--text-gray);
             text-decoration: none;
             transition: color 0.3s;
+            display: inline-block;
         }
-        
+
         .footer-column ul li a:hover {
-            color: white;
+            color: var(--accent);
+            transform: translateX(5px);
         }
-        
+
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.3);
             font-size: 0.9rem;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
             }
-            
+
             .menu-toggle {
                 display: flex;
             }
-            
+
             nav {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 75%;
-                max-width: 300px;
+                width: 85%;
+                max-width: 350px;
                 height: 100vh;
-                background-color: white;
-                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-                transition: right 0.3s ease;
+                background-color: rgba(2, 6, 23, 0.95);
+                backdrop-filter: blur(20px);
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 z-index: 100;
-                padding-top: 80px;
+                padding-top: 100px;
                 overflow-y: auto;
             }
-            
+
             .menu-open nav {
                 right: 0;
             }
-            
+
             nav ul {
                 flex-direction: column;
                 margin-top: 0;
                 padding: 20px;
             }
-            
+
             nav ul li {
-                margin: 0 0 20px 0;
+                margin: 0 0 25px 0;
                 width: 100%;
-                text-align: center;
+                text-align: left;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.3s ease;
             }
-            
+
+            .menu-open nav ul li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .menu-open nav ul li:nth-child(1) {
+                transition-delay: 0.1s;
+            }
+
+            .menu-open nav ul li:nth-child(2) {
+                transition-delay: 0.2s;
+            }
+
+            .menu-open nav ul li:nth-child(3) {
+                transition-delay: 0.3s;
+            }
+
             nav ul li a {
                 display: block;
-                padding: 12px 15px;
-                font-size: 1.1rem;
-                border-radius: 8px;
-                background-color: rgba(37, 99, 235, 0.05);
+                padding: 15px 20px;
+                font-size: 1.2rem;
+                border-radius: 12px;
+                background-color: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.05);
             }
-            
+
             nav ul li a:hover {
-                background-color: rgba(37, 99, 235, 0.1);
+                background-color: rgba(255, 255, 255, 0.08);
+                padding-left: 25px;
             }
-            
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
-            
+
             .hero p {
-                font-size: 1rem;
+                font-size: 1.1rem;
             }
-            
+
             .hero-content {
-                margin: 0 auto;
-                padding: 30px 20px;
+                padding: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                margin: 10px 0;
                 text-align: center;
             }
-            
-            .btn {
-                display: inline-block;
-                padding: 10px 20px;
-                margin: 10px 5px;
-                font-size: 1rem;
-            }
-            
+
             .btn-secondary {
                 margin-left: 0;
             }
-            
+
             .feature-card {
-                padding: 20px;
+                padding: 30px 20px;
             }
-            
-            .feature-card i {
-                font-size: 2.5rem;
-            }
-            
-            .feature-card h3 {
-                font-size: 1.3rem;
-            }
-            
+
             .specs-flex {
                 flex-direction: column;
             }
-            
-            .specs-image, .specs-content {
+
+            .specs-image,
+            .specs-content {
                 width: 100%;
-                padding: 15px 0;
+                padding: 0;
             }
-            
-            .specs-item {
-                padding-left: 15px;
-            }
-            
+
             .cta h2 {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
-            
+
             .contact-form {
-                padding: 20px;
+                padding: 25px;
             }
-            
+
             .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title p {
-                padding: 0 15px;
-            }
-            
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            /* Overlay para o menu mobile */
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 90;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-            
-            .menu-open .overlay {
-                display: block;
-                opacity: 1;
+                font-size: 2.2rem;
             }
 
-            /* Correção para evitar que os ícones sobreponham o texto em dispositivos móveis */
-            .form-control {
-                padding-left: 40px; /* Ajustando o padding para garantir espaço para o ícone */
-            }
-            
-            .form-icon {
-                top: 40px; /* Ajustando a posição vertical do ícone */
-                left: 12px; /* Ajustando a posição horizontal do ícone */
-                font-size: 1rem; /* Reduzindo ligeiramente o tamanho do ícone */
-            }
-
-            .logo {
-                font-size: 1.4rem; /* Reduzido de 1.8rem */
-                padding: 5px 10px; /* Reduzindo o padding */
-            }
-            
-            .logo i {
-                font-size: 1.8rem; /* Reduzido de 2.2rem */
-                margin-right: 8px; /* Menos espaço entre o ícone e o texto */
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
             .footer-grid {
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .footer-column ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 10px;
-            }
-            
-            .footer-column ul li {
-                margin-bottom: 5px;
-            }
-            
-            .section-title h2 {
-                font-size: 1.8rem;
-            }
-            
-            .form-group label {
-                font-size: 0.9rem;
-            }
-            
-            .form-control {
-                padding: 10px;
-                font-size: 0.9rem;
-            }
-            
-            .form-icon {
-                top: 38px;
-                font-size: 1rem;
-            }
 
-            /* Ajustes adicionais para telas muito pequenas */
-            .form-control {
-                padding-left: 35px; /* Reduzindo um pouco mais o padding */
+            .footer-column ul li a:hover {
+                transform: none;
             }
-            
-            .form-icon {
-                top: 37px; /* Ajustando a posição para telas menores */
-                left: 10px;
-                font-size: 0.9rem; /* Reduzindo mais o tamanho */
-            }
-            
-            /* Ajustando o padding do input específico para mobile */
-            input.form-control {
-                font-size: 16px; /* Previne zoom automático em iPhones */
-                padding-top: 8px;
-                padding-bottom: 8px;
-            }
+        }
 
-            /* Ajustes específicos para telas muito pequenas */
-            .logo {
-                font-size: 1.1rem; /* Ainda menor para telas muito pequenas */
-                padding: 4px 8px;
-            }
-            
-            .logo i {
-                font-size: 1.5rem;
-                margin-right: 5px;
-            }
-            
-            /* Versão encurtada do logo para telas muito pequenas */
-            .logo .logo-full {
-                display: none;
-            }
-            
-            .logo .logo-short {
-                display: inline;
-            }
-            
-            /* Ajustes adicionais para a navegação em telas muito pequenas */
-            nav ul li a {
-                font-size: 1rem;
-                padding: 10px;
-            }
+        /* Overlay para o menu mobile */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(3px);
+            z-index: 90;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .menu-open .overlay {
+            display: block;
+            opacity: 1;
         }
 
         /* Menu hamburguer para mobile */
@@ -797,67 +823,141 @@
             cursor: pointer;
             z-index: 200;
         }
-        
+
         /* Classe para quando o menu está aberto */
         .menu-open {
             overflow: hidden;
         }
-        
+
         .menu-open .menu-toggle span:nth-child(1) {
             transform: translateY(9px) rotate(45deg);
+            background-color: white;
         }
-        
+
         .menu-open .menu-toggle span:nth-child(2) {
             opacity: 0;
         }
-        
+
         .menu-open .menu-toggle span:nth-child(3) {
             transform: translateY(-9px) rotate(-45deg);
+            background-color: white;
+        }
+
+        .menu-toggle span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
         }
 
         /* Efeito de shine para botão */
         @keyframes shineEffect {
-            0% { left: -100%; }
-            20% { left: 100%; }
-            100% { left: 100%; }
-        }
+            0% {
+                left: -100%;
+            }
 
-        /* Melhorando inputs do formulário */
-        .form-control {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+            20% {
+                left: 100%;
+            }
 
-        .form-control:focus {
-            outline: none;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            border-color: var(--accent);
-        }
-
-        .contact-form label {
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Adicional para responsividade do formulário melhorado */
-        @media (max-width: 768px) {
-            .form-background-effects {
-                opacity: 0.5;
+            100% {
+                left: 100%;
             }
         }
 
-        /* Opções para o logo responsivo */
-        .logo .logo-short {
-            display: none; /* Escondido por padrão */
+        /* Scroll Animations */
+        .hidden {
+            opacity: 0;
+            filter: blur(5px);
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Staggered delays for children */
+        .feature-card:nth-child(2) {
+            transition-delay: 200ms;
+        }
+
+        .feature-card:nth-child(3) {
+            transition-delay: 400ms;
+        }
+
+        .feature-card:nth-child(4) {
+            transition-delay: 600ms;
+        }
+
+        .feature-card:nth-child(5) {
+            transition-delay: 800ms;
+        }
+
+        .specs-item:nth-child(2) {
+            transition-delay: 200ms;
+        }
+
+        .specs-item:nth-child(3) {
+            transition-delay: 400ms;
+        }
+
+        .specs-item:nth-child(4) {
+            transition-delay: 600ms;
+        }
+
+        /* Ajustes específicos para telas muito pequenas */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.1rem;
+                padding: 4px 8px;
+            }
+
+            .logo i {
+                font-size: 1.5rem;
+                margin-right: 5px;
+            }
+
+            .logo .logo-full {
+                display: none;
+            }
+
+            .logo .logo-short {
+                display: inline;
+            }
+
+            .logo .logo-short {
+                display: none;
+            }
+
+            /* Mostrar logo short apenas em telas muito pequenas se desejado, ou ajustar CSS acima */
+            /* Correção: vamos mostrar o logo-short apenas quando logo-full estiver oculto */
+            .logo .logo-full {
+                display: none;
+            }
+
+            .logo .logo-short {
+                display: inline;
+            }
+        }
+
+        /* Default state for logo parts */
+        .logo-short {
+            display: none;
         }
     </style>
 </head>
-<body>    
+
+<body>
     <header>
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-code"></i> 
+                    <i class="fas fa-code"></i>
                     <span class="logo-full">João Desenvolvedor</span>
                     <span class="logo-short">João Dev</span>
                 </div>
@@ -876,9 +976,9 @@
             </div>
         </div>
     </header>
-    
+
     <div class="overlay"></div>
-    
+
     <section class="hero">
         <div id="particles-js"></div>
         <div class="floating-shapes">
@@ -889,463 +989,260 @@
             <div class="shape"></div>
         </div>
         <div class="container">
-            <div class="hero-content">
+            <div class="hero-content hidden">
                 <h1>Tech Solutions para Acadêmicos e Startups</h1>
-                <p>E aí! Sou João, dev full-stack que transforma desafios universitários e empresariais em soluções tecnológicas descomplicadas. Do TCC ao MVP, estou aqui para fazer acontecer! 🚀</p>
+                <p>E aí! Sou João, dev full-stack que transforma desafios universitários e empresariais em soluções
+                    tecnológicas descomplicadas. Do TCC ao MVP, estou aqui para fazer acontecer! 🚀</p>
                 <a href="#contact" class="btn btn-primary">Bora conversar!</a>
                 <a href="#skills" class="btn btn-secondary">Ver tecnologias</a>
             </div>
         </div>
     </section>
-    
+
     <section id="skills" class="features">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title hidden">
                 <h2>Stack Tecnológico</h2>
-                <p>Do front-end ao deploy, conheça as tecnologias que uso para criar soluções sob medida para universitários e empresas em crescimento.</p>
+                <p>Do front-end ao deploy, conheça as tecnologias que uso para criar soluções sob medida para
+                    universitários e empresas em crescimento.</p>
             </div>
             <div class="features-grid">
-                <div class="feature-card">
+                <div class="feature-card hidden">
                     <i class="fas fa-tools"></i>
                     <h3>Suporte Técnico Completo</h3>
-                    <p>Conserto de computadores, formatação, instalação de sistemas operacionais e programas. Solução rápida para problemas técnicos de hardware e software.</p>
+                    <p>Conserto de computadores, formatação, instalação de sistemas operacionais e programas. Solução
+                        rápida para problemas técnicos de hardware e software.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card hidden">
                     <i class="fas fa-laptop-code"></i>
                     <h3>Websites Descolados</h3>
-                    <p>Sites que impressionam a banca! Desenvolvimento com React, Next.js e TailwindCSS para projetos acadêmicos e landing pages matadoras para startups.</p>
+                    <p>Sites que impressionam a banca! Desenvolvimento com React, Next.js e TailwindCSS para projetos
+                        acadêmicos e landing pages matadoras para startups.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card hidden">
                     <i class="fas fa-mobile-alt"></i>
                     <h3>Apps que Bombam</h3>
-                    <p>Transformo sua ideia em app! Protótipos rápidos com Flutter e React Native para TCC ou MVP da sua startup - do conceito à loja em tempo recorde.</p>
+                    <p>Transformo sua ideia em app! Protótipos rápidos com Flutter e React Native para TCC ou MVP da sua
+                        startup - do conceito à loja em tempo recorde.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card hidden">
                     <i class="fas fa-database"></i>
                     <h3>Backend Robusto</h3>
-                    <p>APIs e sistemas de alta performance com Python (FastAPI, Django) e Node.js. Perfeito para projetos de graduação ou soluções B2B escaláveis.</p>
+                    <p>APIs e sistemas de alta performance com Python (FastAPI, Django) e Node.js. Perfeito para
+                        projetos de graduação ou soluções B2B escaláveis.</p>
                 </div>
-                <div class="feature-card">
+                <div class="feature-card hidden">
                     <i class="fas fa-cloud"></i>
                     <h3>DevOps & Cloud</h3>
-                    <p>Implementação de CI/CD, containerização com Docker e implantação em ambientes AWS, Azure e Google Cloud.</p>
+                    <p>Implementação de CI/CD, containerização com Docker e implantação em ambientes AWS, Azure e Google
+                        Cloud.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <section id="projects" class="specs">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title hidden">
                 <h2>Projetos Realizados</h2>
-                <p>Conheça alguns dos meus trabalhos mais recentes e as soluções que desenvolvi para diferentes clientes.</p>
+                <p>Conheça alguns dos meus trabalhos mais recentes e as soluções que desenvolvi para diferentes
+                    clientes.</p>
             </div>
             <div class="specs-flex">
-                <div class="specs-image">
-                    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=joaosnet&layout=compact&theme=dark" alt="Linguagens Mais Utilizadas">
-                </div>
-                <div class="specs-content">
-                    <div class="specs-item" style="border-left: 4px solid var(--accent); padding-left: 22px; background: rgba(37, 99, 235, 0.05); border-radius: 0 8px 8px 0;">
-                        <h3>ask <span style="font-size: 0.7em; background: var(--accent); color: white; padding: 2px 8px; border-radius: 20px; vertical-align: middle; margin-left: 10px;">Destaque</span></h3>
-                        <p>O projeto InclusiveWay da organização ASK visa melhorar a mobilidade de pessoas com deficiência visual em áreas urbanas, oferecendo uma solução inovadora para navegação em vias públicas.</p>
-                        <a href="https://github.com/joaosnet/ask" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
-                    </div>
-                    <div class="specs-item">
-                        <h3>AppVendasComKivy</h3>
-                        <p>Aplicativo de vendas multiplataforma desenvolvido com o framework Kivy em Python para a empresa HashTag, oferecendo uma interface intuitiva para gestão de vendas.</p>
-                        <a href="https://github.com/joaosnet/appvendascomkivy" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
-                    </div>
-                    <div class="specs-item">
-                        <h3>ATmega328 I2C TWI Watchdog</h3>
-                        <p>Implementação de comunicação I2C/TWI com sistema watchdog em microcontroladores ATmega328, aumentando a confiabilidade em sistemas embarcados.</p>
-                        <a href="https://github.com/joaosnet/ATmega328_I2C_TWI_Watchdog" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
-                    </div>
-                    <div class="specs-item">
-                        <h3>FlappyBirdPython</h3>
-                        <p>Recriação do famoso jogo Flappy Bird em Python, demonstrando habilidades em desenvolvimento de jogos, física e interfaces interativas.</p>
-                        <a href="https://github.com/joaosnet/FlappyBirdPython" target="_blank" class="btn btn-primary" style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
+                <div class="container">
+                    <h2>Precisa de ajuda com algum problema técnico?</h2>
+                    <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para
+                        você.
+                    </p>
+
+                    <!-- Formulário com elementos visuais aprimorados -->
+                    <div class="form-container" style="position: relative; max-width: 600px; margin: 0 auto;">
+                        <!-- Efeitos visuais atrás do formulário -->
+                        <div class="form-background-effects"
+                            style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; overflow: hidden; border-radius: 20px; z-index: 0;">
+                            <div
+                                style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(37, 99, 235, 0) 70%); top: -50px; right: -50px;">
+                            </div>
+                            <div
+                                style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%); bottom: -30px; left: -30px;">
+                            </div>
+                            <div
+                                style="position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); top: 30%; left: -30px;">
+                            </div>
+                            <div
+                                style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); bottom: 25%; right: -20px;">
+                            </div>
+                        </div>
+
+                        <!-- Ícones de tecnologia flutuantes atrás do formulário -->
+                        <div
+                            style="position: absolute; font-size: 1.5rem; color: rgba(255, 255, 255, 0.1); top: 20px; right: 30px; z-index: 1; animation: float 8s infinite ease-in-out;">
+                            <i class="fab fa-react"></i>
+                        </div>
+
+                        <div class="contact-form hidden"
+                            style="position: relative; z-index: 10; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
+                            <form action="https://formspree.io/f/mdoqyljj" method="POST">
+                                <div class="form-group">
+                                    <label for="name">Nome</label>
+                                    <i class="fas fa-user form-icon"></i>
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome"
+                                        required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <i class="fas fa-envelope form-icon"></i>
+                                    <input type="email" id="email" name="email" class="form-control"
+                                        placeholder="Seu melhor email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Mensagem</label>
+                                    <i class="fas fa-comment-alt form-icon"></i>
+                                    <textarea id="message" name="message" class="form-control"
+                                        placeholder="Como posso te ajudar?" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary"
+                                    style="width: 100%; justify-content: center;">Enviar Mensagem</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="contact" class="cta">
-        <div class="container">
-            <h2>Precisa de ajuda com algum problema técnico?</h2>
-            <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para você.</p>
-            
-            <!-- Banner de disponibilidade limitada -->
-            <!-- <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 15px; margin-bottom: 25px; border-left: 4px solid var(--accent);">
-                <p style="margin: 0; display: flex; align-items: center; justify-content: center;">
-                    <i class="fas fa-clock" style="color: var(--accent); margin-right: 10px; font-size: 1.2rem;"></i>
-                    <span><strong>Agenda quase lotada!</strong> Restam apenas <span style="color: var(--accent); font-weight: 700;">3 vagas</span> para novos projetos em junho.</span>
-                </p>
-            </div> -->
-            
-            <!-- Depoimentos de clientes -->
-            <!-- <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; margin-bottom: 30px;">
-                <div style="background: rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 15px; flex: 1; min-width: 250px; max-width: 32%;">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--accent); margin-right: 10px;"></i>
-                        <div>
-                            <p style="margin: 0; font-weight: bold;">Marina Silva</p>
-                            <p style="margin: 0; font-size: 0.8rem;">Graduanda em Engenharia</p>
-                        </div>
-                    </div>
-                    <p style="margin: 0; font-size: 0.9rem; font-style: italic;">"Meu TCC estava quase perdido até que o João me ajudou! Em apenas 2 semanas tínhamos um protótipo funcionando. Resposta super rápida!"</p>
-                </div>
-                <div style="background: rgba(255, 255, 255, 0.1); border-radius: 8px; padding: 15px; flex: 1; min-width: 250px; max-width: 32%;">
-                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
-                        <i class="fas fa-user-circle" style="font-size: 2.5rem; color: var(--accent); margin-right: 10px;"></i>
-                        <div>
-                            <p style="margin: 0; font-weight: bold;">Rafael Mendes</p>
-                            <p style="margin: 0; font-size: 0.8rem;">Fundador Startup TechFlow</p>
-                        </div>
-                    </div>
-                    <p style="margin: 0; font-size: 0.9rem; font-style: italic;">"Consegui levantar investimento com o MVP que o João desenvolveu. Sorte que entrei em contato logo, pois a agenda dele enche rápido!"</p>
-                </div>
-            </div>
-             -->
-            <!-- Formulário com elementos visuais aprimorados -->
-            <div class="form-container" style="position: relative; max-width: 600px; margin: 0 auto;">
-                <!-- Efeitos visuais atrás do formulário -->
-                <div class="form-background-effects" style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; overflow: hidden; border-radius: 20px; z-index: 0;">
-                    <div style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(37, 99, 235, 0) 70%); top: -50px; right: -50px;"></div>
-                    <div style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%); bottom: -30px; left: -30px;"></div>
-                    <div style="position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); top: 30%; left: -30px;"></div>
-                    <div style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); bottom: 25%; right: -20px;"></div>
-                </div>
-                
-                <!-- Ícones de tecnologia flutuantes atrás do formulário -->
-                <div style="position: absolute; font-size: 1.5rem; color: rgba(255, 255, 255, 0.1); top: 20px; right: 30px; z-index: 1; animation: float 8s infinite ease-in-out;"><i class="fab fa-react"></i></div>
-                <div style="position: absolute; font-size: 1.2rem; color: rgba(255, 255, 255, 0.1); bottom: 30px; left: 25px; z-index: 1; animation: float 10s infinite ease-in-out;"><i class="fab fa-python"></i></div>
-                <div style="position: absolute; font-size: 1.3rem; color: rgba(255, 255, 255, 0.1); top: 40%; right: 25px; z-index: 1; animation: float 9s infinite ease-in-out 1s;"><i class="fab fa-node-js"></i></div>
-                
-                <div class="contact-form" style="position: relative; z-index: 10; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
-                    <form id="contactForm" action="https://formspree.io/f/xwplwyko" method="POST">
-                        <div class="form-group">
-                            <label for="name">Nome</label>
-                            <i class="fas fa-user form-icon"></i>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Seu nome completo" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="email">E-mail</label>
-                            <i class="fas fa-envelope form-icon"></i>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Seu endereço de e-mail" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="whatsapp">WhatsApp (Opcional)</label>
-                            <i class="fab fa-whatsapp form-icon"></i>
-                            <input type="tel" class="form-control" id="whatsapp" name="whatsapp" placeholder="Seu número com DDD">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Descreva seu problema</label>
-                            <i class="fas fa-comment-alt form-icon"></i>
-                            <textarea class="form-control" id="message" name="message" placeholder="Conte-me detalhes sobre o problema que precisa resolver..." required rows="5"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px; position: relative; overflow: hidden; z-index: 1;">
-                            <span style="position: relative; z-index: 2;"><i class="fas fa-paper-plane" style="margin-right: 8px;"></i> Enviar Solicitação</span>
-                            <div style="position: absolute; top: 0; left: -100%; width: 200%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent); z-index: 1; animation: shineEffect 2s infinite;"></div>
-                        </button>
-                        
-                        <!-- Mensagem flutuante de garantia -->
-                        <div style="margin-top: 15px; text-align: center; padding: 8px; border-radius: 5px; background: rgba(255, 255, 255, 0.1); font-size: 0.9rem; color: white; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-shield-alt" style="color: var(--accent); margin-right: 8px;"></i>
-                            <span>Resposta garantida em até 24h!</span>
-                        </div>
-                        
-                        <div id="form-status" style="margin-top: 15px; text-align: center; display: none;">
-                            <div id="success-message" style="background-color: rgba(52, 211, 153, 0.2); padding: 10px; border-radius: 5px; display: none;">
-                                Mensagem enviada com sucesso! Entrarei em contato em breve.
-                            </div>
-                            <div id="error-message" style="background-color: rgba(239, 68, 68, 0.2); padding: 10px; border-radius: 5px; display: none;">
-                                Ocorreu um erro ao enviar sua mensagem. Por favor, tente novamente.
-                            </div>
-                        </div>
-                        
-                        <!-- Campo escondido para redirecionar após envio -->
-                        <input type="hidden" name="_next" value="https://joaosnet.github.io/">
-                        <input type="hidden" name="_subject" value="Nova mensagem do website">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
     <footer>
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
-                    <h3>Navegação</h3>
+                    <h3>João Dev</h3>
+                    <p>Transformando ideias em realidade digital com código limpo e soluções inovadoras.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
                     <ul>
                         <li><a href="#skills">Habilidades</a></li>
                         <li><a href="#projects">Projetos</a></li>
-                        <li><a href="#contact">Fale Comigo</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Serviços</h3>
-                    <ul>
-                        <li><a href="#">Desenvolvimento Web</a></li>
-                        <li><a href="#">Aplicativos Mobile</a></li>
-                        <li><a href="#">Sistemas Personalizados</a></li>
-                        <li><a href="#">Consultoria Técnica</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Recursos</h3>
-                    <ul>
-                        <li><a href="#">Blog Técnico</a></li>
-                        <li><a href="#">Tutoriais</a></li>
-                        <li><a href="#">Dicas de Programação</a></li>
-                        <li><a href="#">Ferramentas Recomendadas</a></li>
+                        <li><a href="#contact">Contato</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3>Contato</h3>
                     <ul>
-                        <li><a href="mailto:joao.silva.neto@itec.ufpa.br">joao.silva.neto@itec.ufpa.br</a></li>
-                        <li><a href="https://github.com/joaosnet"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li><a href="https://www.linkedin.com/in/joaonativi/"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:joao@exemplo.com">joao@exemplo.com</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 João Desenvolvedor. Todos os direitos reservados.</p>
+                <p>&copy; 2024 João Desenvolvedor. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Scripts -->
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            /* Configuração do Particles.js */
-            particlesJS("particles-js", {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": "#ffffff"
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        },
-                        "polygon": {
-                            "nb_sides": 5
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
-                        "enable": true,
-                        "distance": 150,
-                        "color": "#ffffff",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
-                        "enable": true,
-                        "speed": 2,
-                        "direction": "none",
-                        "random": false,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false,
-                        "attract": {
-                            "enable": false,
-                            "rotateX": 600,
-                            "rotateY": 1200
-                        }
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "repulse"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 400,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "bubble": {
-                            "distance": 400,
-                            "size": 40,
-                            "duration": 2,
-                            "opacity": 8,
-                            "speed": 3
-                        },
-                        "repulse": {
-                            "distance": 100,
-                            "duration": 0.4
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        },
-                        "remove": {
-                            "particles_nb": 2
-                        }
-                    }
-                },
-                "retina_detect": true
-            });
-            
-            /* Efeito de movimento nas formas com movimento do mouse */
-            const shapes = document.querySelectorAll('.shape');
-            document.addEventListener('mousemove', function(e) {
-                const x = e.clientX / window.innerWidth;
-                const y = e.clientY / window.innerHeight;
-                
-                shapes.forEach((shape, index) => {
-                    const factor = (index + 1) * 0.01;
-                    const moveX = (x - 0.5) * factor * 50;
-                    const moveY = (y - 0.5) * factor * 50;
-                    
-                    shape.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.2}deg)`;
-                });
-            });
-            
-            /* Configuração do formulário de contato */
-            (function() {
-                // Seleciona o formulário
-                const form = document.getElementById('contactForm');
-                
-                // Adiciona o event listener para envio do formulário
-                form.addEventListener('submit', function(event) {
-                    // Não interceptamos o evento submit porque o Formspree precisa receber o formulário
-                    
-                    // Mostra um feedback visual de "enviando..."
-                    const submitBtn = form.querySelector('button[type="submit"]');
-                    const originalBtnText = submitBtn.textContent;
-                    submitBtn.textContent = 'Enviando...';
-                    submitBtn.disabled = true;
-                    
-                    // Após o envio bem-sucedido, o Formspree redireciona para a página definida em _next
-                    // Não precisamos lidar com o sucesso ou erro manualmente
-                    
-                    // Se quiser mostrar o status sem redirecionar, será necessário usar fetch() para envio assíncrono
-                    // Exemplo simplificado com fetch:
-                    /*
-                    event.preventDefault();
-                    
-                    fetch(form.action, {
-                        method: form.method,
-                        body: new FormData(form),
-                        headers: {
-                            'Accept': 'application/json'
-                        }
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            // Mostra mensagem de sucesso
-                            document.getElementById('form-status').style.display = 'block';
-                            document.getElementById('success-message').style.display = 'block';
-                            document.getElementById('error-message').style.display = 'none';
-                            
-                            // Limpa o formulário
-                            form.reset();
-                        } else {
-                            throw new Error('Erro ao enviar o formulário');
-                        }
-                    })
-                    .catch(error => {
-                        // Mostra mensagem de erro
-                        document.getElementById('form-status').style.display = 'block';
-                        document.getElementById('error-message').style.display = 'block';
-                        document.getElementById('success-message').style.display = 'none';
-                    })
-                    .finally(() => {
-                        // Restaura o botão
-                        submitBtn.textContent = originalBtnText;
-                        submitBtn.disabled = false;
-                    });
-                    */
-                });
-            })();
-            
-            /* Menu Mobile */
-            const menuToggle = document.querySelector('.menu-toggle');
-            const body = document.body;
-            const overlay = document.querySelector('.overlay');
-            const navLinks = document.querySelectorAll('nav ul li a');
-            
-            menuToggle.addEventListener('click', function() {
-                body.classList.toggle('menu-open');
-            });
-            
-            overlay.addEventListener('click', function() {
-                body.classList.remove('menu-open');
-            });
-            
-            // Fecha o menu ao clicar em um link
-            navLinks.forEach(link => {
-                link.addEventListener('click', function() {
-                    body.classList.remove('menu-open');
-                });
-            });
-            
-            // Ajusta o scroll suave para links de navegação
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
-                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 } },
+                "opacity": { "value": 0.1, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.05, "sync": false } },
+                "size": { "value": 3, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false } },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.05, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } }
+            },
+            "retina_detect": true
+        });
+
+        /* Efeito de movimento nas formas com movimento do mouse */
+        const shapes = document.querySelectorAll('.shape');
+        document.addEventListener('mousemove', function (e) {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+
+            shapes.forEach((shape, index) => {
+                const factor = (index + 1) * 0.01;
+                const moveX = (x - 0.5) * factor * 50;
+                const moveY = (y - 0.5) * factor * 50;
+
+                shape.style.transform = `translate(${moveX}px, ${moveY}px) rotate(${moveX * 0.2}deg)`;
             });
         });
+
+        /* Header Scrolled Effect */
+        const header = document.querySelector('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        /* Menu Mobile */
+        const menuToggle = document.querySelector('.menu-toggle');
+        const body = document.body;
+        const overlay = document.querySelector('.overlay');
+        const navLinks = document.querySelectorAll('nav ul li a');
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function () {
+                body.classList.toggle('menu-open');
+            });
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', function () {
+                body.classList.remove('menu-open');
+            });
+        }
+
+        // Fecha o menu ao clicar em um link
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                body.classList.remove('menu-open');
+            });
+        });
+
+        // Ajusta o scroll suave para links de navegação
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        /* Intersection Observer for Scroll Animations */
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
     </script>
 </body>
+
 </html>
