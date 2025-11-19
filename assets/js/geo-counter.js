@@ -10,7 +10,15 @@
  */
 
 class GeoViewsCounter {
+    // Singleton pattern - garante uma única instância
+    static instance = null;
+    
     constructor() {
+        // Se já existe uma instância, retornar a existente
+        if (GeoViewsCounter.instance) {
+            return GeoViewsCounter.instance;
+        }
+        
         // URL do Google Apps Script - VOCÊ DEVE PREENCHER ISSO COM A URL GERADA
         this.GOOGLE_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyP5GRTqg6H2n7ueIWohyI5wK3EDqWupwmbfkx3FEUNH4cx0Sk6zv8r8wK7T69sMHNG0g/exec";
         
@@ -30,6 +38,9 @@ class GeoViewsCounter {
         // API endpoint para geolocalização
         this.GEO_API_URL = 'https://ip-api.com/json/';
         
+        // Salvar instância no singleton
+        GeoViewsCounter.instance = this;
+        
         if (this.counterEl) {
             this.init();
         }
@@ -40,6 +51,20 @@ class GeoViewsCounter {
      */
     async init() {
         try {
+            // Verificar se já foi inicializado (evitar múltiplas execuções)
+            const initKey = this.STORAGE_KEY_PREFIX + 'initialized_today';
+            const today = new Date().toDateString();
+            const lastInit = localStorage.getItem(initKey);
+            
+            // Se já foi inicializado hoje, não fazer novamente
+            if (lastInit === today) {
+                console.log('[GeoViewsCounter] Já inicializado hoje - pulando');
+                return;
+            }
+            
+            // Marcar como inicializado hoje
+            localStorage.setItem(initKey, today);
+            
             // Atualizar contador de visitas únicas
             this.updateViewCounter();
             
