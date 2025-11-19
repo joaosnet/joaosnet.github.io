@@ -110,85 +110,82 @@ def generate_project_html(project, is_last=False, position='left'):
     if image:
         img_html = f'<img src="{image}" alt="{name} preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>'
     
-    # Line style (extends from dot)
-    line_bg = "background:#d0d7de;"
-    if is_last:
-        line_bg = "background:linear-gradient(to bottom, #d0d7de 0%, transparent 100%);"
-
     # Private vs Public display logic
     if is_private:
-        title_html = f'''
-                                <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
+        title_html = f'''<span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
                                     {name} <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
                                 </span>'''
-        button_html = f'''
-                            <span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
+        button_html = f'''<span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
                                 Privado
                             </span>'''
     else:
-        title_html = f'''
-                                <a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
+        title_html = f'''<a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
                                     {name}
                                 </a>'''
-        button_html = f'''
-                            <a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
+        button_html = f'''<a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
                                 Ver no GitHub →
                             </a>'''
 
-    # Alternating layout styles
+    # Content card styles
+    card_style = "background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px;"
+    
     if position == 'left':
-        # Content on left, dot and line on right
-        layout_html = f"""
-                    <div class="timeline-item-alternating" style="display:flex; gap:24px; padding-bottom:40px; position:relative; flex-direction:row-reverse;">
-                        <!-- Timeline dot (right side) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
-                            <div style="width:2px; flex:1; {line_bg} margin-top:8px;"></div>
-                        </div>
-                        
-                        <!-- Content (left side) -->
-                        <div style="flex:1; padding-top:4px; text-align:right;">
+        # Content on LEFT side, dot on CENTER
+        html = f"""
+                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                        <!-- Content Left -->
+                        <div style="{card_style} text-align:right;">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:#f6f8fa; padding:4px 12px; border-radius:16px; margin-bottom:8px;">
+                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
                                 <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="text-align:right;">
+                            <div style="margin-bottom:12px;">
                                 {img_html}
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word; text-align:right;">
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
                                 {title_html}
                             </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5; text-align:right;">{description}</p>
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">{description}</p>
                             
                             <!-- Button -->
-                            <div style="text-align:right;">
-                                {button_html}
-                            </div>
-                        </div>
-                    </div>"""
-    else:
-        # Content on right, dot and line on left
-        layout_html = f"""
-                    <div class="timeline-item-alternating" style="display:flex; gap:24px; padding-bottom:40px; position:relative;">
-                        <!-- Timeline dot (left side) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
-                            <div style="width:2px; flex:1; {line_bg} margin-top:8px;"></div>
+                            {button_html}
                         </div>
                         
-                        <!-- Content (right side) -->
-                        <div style="flex:1; padding-top:4px;">
+                        <!-- Timeline Dot (CENTER) -->
+                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
+                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                        </div>
+                        
+                        <!-- Empty space on RIGHT -->
+                        <div></div>
+                    </div>"""
+    else:
+        # Content on RIGHT side, dot on CENTER
+        html = f"""
+                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                        <!-- Empty space on LEFT -->
+                        <div></div>
+                        
+                        <!-- Timeline Dot (CENTER) -->
+                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
+                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                        </div>
+                        
+                        <!-- Content Right -->
+                        <div style="{card_style} text-align:left;">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:#f6f8fa; padding:4px 12px; border-radius:16px; margin-bottom:8px;">
+                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
                                 <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
-                            {img_html}
+                            <div style="margin-bottom:12px;">
+                                {img_html}
+                            </div>
                             
                             <!-- Project info -->
                             <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
@@ -201,7 +198,7 @@ def generate_project_html(project, is_last=False, position='left'):
                         </div>
                     </div>"""
     
-    return layout_html
+    return html
 
 
 def find_repo_preview_image(repo):
@@ -408,9 +405,15 @@ def main():
     
     # Wrap projects in timeline container
     timeline_html = f"""
-                <!-- Timeline Container - Alternating Vertical Layout -->
-                <div style="position:relative; padding:20px 0; max-width:800px; margin:0 auto;">
-                    {projects_html}
+                <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
+                <div style="position:relative; padding:20px 0;">
+                    <!-- Central vertical line -->
+                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, #0969da 0%, #d0d7de 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
+                    
+                    <!-- Timeline items container -->
+                    <div style="position:relative; z-index:2;">
+                        {projects_html}
+                    </div>
                 </div>"""
     
     update_index_html(timeline_html)
