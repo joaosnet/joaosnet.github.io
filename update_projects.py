@@ -24,6 +24,10 @@ from datetime import datetime
 from urllib.parse import unquote
 import re
 import json
+import subprocess
+
+# Global set to track downloaded images that need to be committed
+downloaded_images = set()
 
 
 def get_api_token():
@@ -223,7 +227,11 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
     """
     For private repos, download the image and save it locally in the portfolio.
     Returns the relative path for the downloaded image.
+    
+    Note: Downloaded images are tracked in a set to be committed to git later.
     """
+    global downloaded_images  # Track which images were downloaded
+    
     try:
         if not token:
             return None
@@ -254,6 +262,8 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         with open(local_path, 'wb') as f:
                             f.write(response.content)
                         print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        # Track this file for git commit
+                        downloaded_images.add(local_path)
                         return f"/{local_dir}/{local_filename}"
                     else:
                         print(f"      ⚠ Falha ao baixar imagem: status {response.status_code}")
@@ -264,12 +274,15 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         with open(local_path, 'wb') as f:
                             f.write(r.read())
                         print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        # Track this file for git commit
+                        downloaded_images.add(local_path)
                         return f"/{local_dir}/{local_filename}"
             except Exception as e:
                 print(f"      ⚠ Erro ao baixar imagem: {str(e)[:50]}")
                 return None
         else:
-            # Already exists locally
+            # Already exists locally - still track it for consistency
+            downloaded_images.add(local_path)
             return f"/{local_dir}/{local_filename}"
     except Exception as e:
         print(f"      ⚠ Erro processando imagem privada: {str(e)[:50]}")
@@ -639,6 +652,38 @@ def sanitize_existing_project_images(file_path='index.html', placeholder='./asse
         print(f"Error sanitizing project images: {e}")
         return 0
 
+
+def commit_downloaded_images():
+    """Commit downloaded images to git."""
+    if not downloaded_images:
+        return
+    
+    try:
+        # Create or ensure .gitignore exists for the project-images folder
+        gitignore_path = "assets/project-images/.gitignore"
+        os.makedirs(os.path.dirname(gitignore_path), exist_ok=True)
+        
+        # Add downloaded images to git
+        for img_path in downloaded_images:
+            try:
+                subprocess.run(['git', 'add', img_path], check=True, capture_output=True)
+                print(f"✓ Git tracked: {img_path}")
+            except Exception as e:
+                print(f"⚠ Could not git add {img_path}: {e}")
+        
+        # Commit if there are changes
+        try:
+            result = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True)
+            if result.stdout.strip():
+                subprocess.run(['git', 'commit', '-m', 'Add: Downloaded images from private repos'], 
+                             capture_output=True, check=False)
+                print("✓ Downloaded images committed")
+        except Exception as e:
+            print(f"⚠ Could not commit images: {e}")
+    except Exception as e:
+        print(f"⚠ Error in commit_downloaded_images: {e}")
+
+
 def main():
     repos = fetch_projects()
     if not repos:
@@ -729,6 +774,10 @@ def main():
     
     update_index_html(timeline_html)
     print(f"\n✓ Successfully processed {len(top_projects)} projects and updated index.html.")
+    
+    # Commit downloaded images if any
+    if downloaded_images:
+        commit_downloaded_images()
 
 if __name__ == "__main__":
     main()
