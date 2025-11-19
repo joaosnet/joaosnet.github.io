@@ -1276,104 +1276,7 @@
             overflow: visible;
         }
 
-        /* GTranslate wrapper: force floating visible above FAB and overlays */
-        .gtranslate_wrapper {
-            position: fixed !important;
-            left: 20px !important;
-            bottom: 20px !important;
-            z-index: 99999 !important;
-        }
 
-        .gtranslate_wrapper .gt_switcher,
-        .gtranslate_wrapper .gt_float_switcher {
-            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
-            color: white !important;
-            border: none !important;
-            border-radius: 50% !important;
-            width: 56px !important;
-            height: 56px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
-            font-size: 18px !important;
-            cursor: pointer !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .gtranslate_wrapper .gt_switcher:hover,
-        .gtranslate_wrapper .gt_float_switcher:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45) !important;
-        }
-
-        /* Dropdown menu styling */
-        .gtranslate_wrapper .goog-te-gadget-simple,
-        .gtranslate_wrapper .gt_selected {
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border-light) !important;
-            border-radius: 16px !important;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important;
-            backdrop-filter: blur(10px) !important;
-            overflow: hidden !important;
-            color: var(--light) !important;
-        }
-
-        .gtranslate_wrapper .gt_option,
-        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item {
-            display: flex !important;
-            align-items: center !important;
-            gap: 12px !important;
-            padding: 12px 16px !important;
-            color: var(--light) !important;
-            border-radius: 12px !important;
-            transition: all 0.2s ease !important;
-        }
-
-        .gtranslate_wrapper .gt_option img,
-        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item img {
-            width: 24px !important;
-            height: 16px !important;
-            border-radius: 4px !important;
-            border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        }
-
-        .gtranslate_wrapper .gt_option:hover,
-        .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item:hover {
-            background: rgba(59, 130, 246, 0.1) !important;
-        }
-
-        /* Light theme adaptations for GTranslate */
-        html[data-theme="light"] .gtranslate_wrapper .goog-te-gadget-simple,
-        html[data-theme="light"] .gtranslate_wrapper .gt_selected {
-            background: rgba(255, 255, 255, 0.98) !important;
-            border-color: #cbd5e1 !important;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15) !important;
-        }
-
-        html[data-theme="light"] .gtranslate_wrapper .gt_option:hover,
-        html[data-theme="light"] .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item:hover {
-            background: rgba(29, 78, 216, 0.08) !important;
-        }
-
-        html[data-theme="light"] .gtranslate_wrapper .gt_option img,
-        html[data-theme="light"] .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item img {
-            border-color: rgba(0, 0, 0, 0.15) !important;
-        }
-
-        @media (max-width: 768px) {
-            .gtranslate_wrapper {
-                left: 16px !important;
-                bottom: 16px !important;
-            }
-
-            .gtranslate_wrapper .gt_switcher,
-            .gtranslate_wrapper .gt_float_switcher {
-                width: 48px !important;
-                height: 48px !important;
-                font-size: 16px !important;
-            }
-        }
     </style>
 
 
@@ -1942,20 +1845,15 @@
             applyTheme(currentTheme());
         });
     </script>
-    <!-- GTranslate Configuration - Fixed positioning and styling -->
+    <!-- GTranslate - Native Mode -->
     <script>
         window.gtranslateSettings = {
-            "default_language": "pt-BR",
+            "default_language": "pt-br",
             "detect_browser_language": true,
-            "languages": ["pt-BR", "en", "es", "fr", "de", "it"],
-            "wrapper_selector": ".gtranslate_wrapper",
-            "float_switcher_open_direction": "bottom",
-            "float_switcher_horizontal": "left",
-            "float_switcher_vertical": "bottom"
-        };
+            "wrapper_selector": ".gtranslate_wrapper"
+        }
     </script>
     <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-    <!-- Fixed GTranslate wrapper positioned correctly -->
     <div class="gtranslate_wrapper"></div>
 </body>
 
