@@ -86,7 +86,7 @@ def fetch_projects():
     print("Could not fetch repos from any endpoint")
     return []
 
-def generate_project_html(project, is_last=False):
+def generate_project_html(project, is_last=False, position='left'):
     name = project['name']
     description = project['description']
     html_url = project['html_url']
@@ -110,14 +110,13 @@ def generate_project_html(project, is_last=False):
     if image:
         img_html = f'<img src="{image}" alt="{name} preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>'
     
-    # Line style
+    # Line style (extends from dot)
     line_bg = "background:#d0d7de;"
     if is_last:
         line_bg = "background:linear-gradient(to bottom, #d0d7de 0%, transparent 100%);"
 
     # Private vs Public display logic
     if is_private:
-        # No link for private repos, and a lock icon
         title_html = f'''
                                 <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
                                     {name} <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
@@ -136,15 +135,52 @@ def generate_project_html(project, is_last=False):
                                 Ver no GitHub →
                             </a>'''
 
-    html = f"""
-                    <div class="timeline-item" style="display:flex; gap:24px; padding-bottom:40px; position:relative;">
-                        <!-- Timeline dot -->
+    # Alternating layout styles
+    if position == 'left':
+        # Content on left, dot and line on right
+        layout_html = f"""
+                    <div class="timeline-item-alternating" style="display:flex; gap:24px; padding-bottom:40px; position:relative; flex-direction:row-reverse;">
+                        <!-- Timeline dot (right side) -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
                             <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
                             <div style="width:2px; flex:1; {line_bg} margin-top:8px;"></div>
                         </div>
                         
-                        <!-- Content -->
+                        <!-- Content (left side) -->
+                        <div style="flex:1; padding-top:4px; text-align:right;">
+                            <!-- Date badge -->
+                            <div style="display:inline-block; background:#f6f8fa; padding:4px 12px; border-radius:16px; margin-bottom:8px;">
+                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
+                            </div>
+                            
+                            <!-- Image -->
+                            <div style="text-align:right;">
+                                {img_html}
+                            </div>
+                            
+                            <!-- Project info -->
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word; text-align:right;">
+                                {title_html}
+                            </h3>
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5; text-align:right;">{description}</p>
+                            
+                            <!-- Button -->
+                            <div style="text-align:right;">
+                                {button_html}
+                            </div>
+                        </div>
+                    </div>"""
+    else:
+        # Content on right, dot and line on left
+        layout_html = f"""
+                    <div class="timeline-item-alternating" style="display:flex; gap:24px; padding-bottom:40px; position:relative;">
+                        <!-- Timeline dot (left side) -->
+                        <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
+                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div style="width:2px; flex:1; {line_bg} margin-top:8px;"></div>
+                        </div>
+                        
+                        <!-- Content (right side) -->
                         <div style="flex:1; padding-top:4px;">
                             <!-- Date badge -->
                             <div style="display:inline-block; background:#f6f8fa; padding:4px 12px; border-radius:16px; margin-bottom:8px;">
@@ -164,7 +200,8 @@ def generate_project_html(project, is_last=False):
                             {button_html}
                         </div>
                     </div>"""
-    return html
+    
+    return layout_html
 
 
 def find_repo_preview_image(repo):
@@ -364,13 +401,15 @@ def main():
         # attach to project for template
         project['preview_image'] = img
         
+        # Alternate between left and right (0:left, 1:right, 2:left, 3:right)
+        position = 'left' if i % 2 == 0 else 'right'
         is_last = (i == len(top_projects) - 1)
-        projects_html += generate_project_html(project, is_last)
+        projects_html += generate_project_html(project, is_last, position)
     
     # Wrap projects in timeline container
     timeline_html = f"""
-                <!-- Timeline Container -->
-                <div style="position:relative; padding:20px 0;">
+                <!-- Timeline Container - Alternating Vertical Layout -->
+                <div style="position:relative; padding:20px 0; max-width:800px; margin:0 auto;">
                     {projects_html}
                 </div>"""
     
