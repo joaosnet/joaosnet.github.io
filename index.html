@@ -1085,6 +1085,81 @@
             z-index: 99999 !important; /* ensure visibility above site UI */
             pointer-events: auto !important;
         }
+        /* Styling the GTranslate floating switcher to match site theme */
+        .gtranslate_wrapper .gt_float_switcher,
+        .gtranslate_wrapper .gt_float_wrapper,
+        .gtranslate_wrapper .gt_current_lang,
+        .gtranslate_wrapper .gt-selected,
+        .gtranslate_wrapper a.gt-current-lang,
+        .gtranslate_wrapper select {
+            background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+            color: white !important;
+            border-radius: 999px !important;
+            border: none !important;
+            width: 56px !important;
+            height: 56px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25) !important;
+            font-weight: 700 !important;
+            font-size: 18px !important;
+        }
+        /* hide flag image in the switcher to use a FontAwesome globe icon */
+        .gtranslate_wrapper .gt_current_lang img,
+        .gtranslate_wrapper .gt_float_switcher img { display: none !important; }
+        /* Insert a globe icon if flag isn't present; use FontAwesome */
+        .gtranslate_wrapper .gt_current_lang::before,
+        .gtranslate_wrapper .gt_float_switcher::before,
+        .gtranslate_wrapper .gt-selected::before {
+            content: "\f0ac"; /* globe icon */
+            font-family: 'Font Awesome 6 Free' !important;
+            font-weight: 900 !important;
+            margin: 0 !important;
+            font-size: 18px !important;
+            display: inline-block !important;
+            line-height: 1 !important;
+        }
+        /* Hide default labels like AUTO and keep only the icon */
+        .gtranslate_wrapper .gt-current-lang .gt_current_lang_name,
+        .gtranslate_wrapper .gt_current_lang .gt_current_lang_code,
+        .gtranslate_wrapper a.gt-current-lang .gt-current-lang-text {
+            display: none !important;
+        }
+        /* Style dropdown list */
+        .gtranslate_wrapper .gt_options,
+        .gtranslate_wrapper .gt-list,
+        .gtranslate_wrapper .gt_dropdown {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border-light) !important;
+            color: var(--light) !important;
+            box-shadow: 0 18px 40px rgba(2, 6, 23, 0.6) !important;
+            padding: 8px 10px !important;
+            border-radius: 12px !important;
+            min-width: 220px !important;
+            overflow: hidden !important;
+        }
+        .gtranslate_wrapper .gt_options a,
+        .gtranslate_wrapper .gt_options li,
+        .gtranslate_wrapper .gt_options .gt-item {
+            color: var(--light) !important;
+            display: flex !important;
+            gap: 8px !important;
+            align-items: center !important;
+            padding: 6px 8px !important;
+            border-radius: 8px !important;
+            transition: background 0.2s ease !important;
+        }
+        .gtranslate_wrapper .gt_options a:hover,
+        .gtranslate_wrapper .gt_options li:hover,
+        .gtranslate_wrapper .gt_options .gt-item:hover {
+            background: rgba(255,255,255,0.04) !important;
+        }
+        /* Adjust mobile position to avoid being overlapped */
+        @media (max-width: 768px) {
+            .gtranslate_wrapper { right: 14px !important; bottom: 78px !important; }
+            .gtranslate_wrapper .gt_float_switcher { width: 48px !important; height: 48px !important; }
+        }
 
         .form-background-effects {
             box-sizing: border-box;
