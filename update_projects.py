@@ -249,7 +249,8 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
         
         # Generate safe filename from repo and image
         safe_repo_name = f"{owner}_{repo_name}".replace('/', '_')
-        safe_img_name = os.path.basename(img_path).replace('%20', '_').lower()
+        # Remove URL encoding AND spaces, convert to lowercase
+        safe_img_name = os.path.basename(img_path).replace('%20', '_').replace(' ', '_').lower()
         local_filename = f"{safe_repo_name}_{safe_img_name}"
         local_path = os.path.join(local_dir, local_filename)
         
