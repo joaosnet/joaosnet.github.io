@@ -37,7 +37,7 @@ def get_api_token():
 
 def fetch_projects():
     """Fetch repositories from GitHub API.
-    Tries authenticated endpoint first (public + private), then falls back to public only.
+    Tries authenticated endpoint first (public + private + collaborator + org), then falls back to public only.
     Returns a combined list of all accessible repositories.
     """
     token = get_api_token()
@@ -46,21 +46,22 @@ def fetch_projects():
     # Try authenticated endpoint first if token is available
     if token:
         headers_auth = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
-        url_auth = "https://api.github.com/user/repos?visibility=all&sort=updated&per_page=100&affiliation=owner"
+        # Include owner, collaborator, and organization_member affiliations to get all repos
+        url_auth = "https://api.github.com/user/repos?visibility=all&sort=updated&per_page=100&affiliation=owner,collaborator,organization_member"
         try:
             if _HAS_REQUESTS:
                 response = requests.get(url_auth, headers=headers_auth, timeout=10)
                 if response.status_code == 200:
                     repos = response.json()
-                    print(f"Successfully fetched {len(repos)} repos (public + private) via authenticated endpoint")
+                    print(f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint")
                     return repos
                 else:
                     print(f"Authenticated endpoint returned {response.status_code}; falling back to public repos...")
             else:
                 req = urllib.request.Request(url_auth, headers=headers_auth)
-                with urllib.request.urlopen(req) as r:
+                with urllib.request.urlopen(req, timeout=10) as r:
                     repos = json.loads(r.read().decode('utf-8'))
-                    print(f"Successfully fetched {len(repos)} repos (public + private) via authenticated endpoint")
+                    print(f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint")
                     return repos
         except urllib.error.HTTPError as e:
             print(f"Authenticated endpoint error ({e.code}); falling back to public repos...")
@@ -81,7 +82,7 @@ def fetch_projects():
                 print(f"Error fetching public repos: {response.status_code}")
         else:
             req = urllib.request.Request(url_public, headers=headers_public)
-            with urllib.request.urlopen(req) as r:
+            with urllib.request.urlopen(req, timeout=10) as r:
                 repos = json.loads(r.read().decode('utf-8'))
                 print(f"Successfully fetched {len(repos)} public repos via public endpoint")
                 return repos
