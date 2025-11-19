@@ -253,28 +253,45 @@ def find_image_in_readme(owner, repo_name, token):
     Returns the first suitable image URL found, or None.
     """
     try:
-        # Try to fetch README content
-        headers = {'Accept': 'application/vnd.github.v3.raw'}
-        if token:
-            headers['Authorization'] = f'token {token}'
+        if not token:
+            print(f"    ⚠ Token não disponível para ler README privado")
+            return None
         
-        # GitHub API endpoint for README - this endpoint returns the raw README content
+        # Try to fetch README content - first try raw format
+        headers = {'Accept': 'application/vnd.github.v3.raw', 'Authorization': f'token {token}'}
         url = f"https://api.github.com/repos/{owner}/{repo_name}/readme"
         
         readme_content = None
-        if _HAS_REQUESTS:
-            response = requests.get(url, headers=headers, timeout=10)
-            if response.status_code == 200:
-                readme_content = response.text
-        else:
-            try:
-                req = urllib.request.Request(url, headers=headers)
-                with urllib.request.urlopen(req, timeout=10) as r:
-                    readme_content = r.read().decode('utf-8')
-            except urllib.error.HTTPError:
-                pass
+        try:
+            if _HAS_REQUESTS:
+                response = requests.get(url, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    readme_content = response.text
+                    print(f"    ℹ README carregado com sucesso ({len(readme_content)} chars)")
+                elif response.status_code == 404:
+                    print(f"    ℹ README não encontrado")
+                    return None
+                else:
+                    print(f"    ⚠ README fetch retornou {response.status_code}")
+                    return None
+            else:
+                try:
+                    req = urllib.request.Request(url, headers=headers)
+                    with urllib.request.urlopen(req, timeout=10) as r:
+                        readme_content = r.read().decode('utf-8')
+                        print(f"    ℹ README carregado com sucesso ({len(readme_content)} chars)")
+                except urllib.error.HTTPError as e:
+                    if e.code == 404:
+                        print(f"    ℹ README não encontrado")
+                    else:
+                        print(f"    ⚠ README HTTP error: {e.code}")
+                    return None
+        except Exception as e:
+            print(f"    ⚠ README fetch error: {str(e)[:70]}")
+            return None
         
         if not readme_content:
+            print(f"    ℹ README vazio")
             return None
         
         # Extract images using regex
@@ -282,40 +299,52 @@ def find_image_in_readme(owner, repo_name, token):
         markdown_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
         matches = re.findall(markdown_pattern, readme_content)
         
-        for alt_text, img_url in matches:
+        if not matches:
+            print(f"    ℹ Nenhuma imagem encontrada no README")
+            return None
+        
+        print(f"    ℹ Encontradas {len(matches)} imagens no README, filtrando...")
+        
+        for idx, (alt_text, img_url) in enumerate(matches):
             # Skip known badge/status badges
             if any(skip in img_url.lower() for skip in ['shields.io', 'badge', 'codecov', 'travis', 'circleci', 'github.com/.*/workflows', '.github/workflows']):
+                print(f"      - Imagem {idx+1}: badge detectado, pulando")
                 continue
             
             # Skip very small common badges (by checking alt text)
             if alt_text.lower() in ['build', 'status', 'coverage', 'license', 'version', 'downloads']:
+                print(f"      - Imagem {idx+1}: alt text '{alt_text}' é um badge, pulando")
                 continue
             
             # Skip single-line badges at the start (usually status badges)
             if len(alt_text) < 20 and alt_text.isupper():
+                print(f"      - Imagem {idx+1}: alt text muito curto e maiúsculo, pulando")
                 continue
             
             # Ensure URL is absolute or can be converted to absolute
             if img_url.startswith('http'):
-                print(f"  ✓ Found image in README: {img_url[:60]}...")
+                print(f"  ✓ Imagem encontrada no README: {img_url[:60]}...")
                 return img_url
             elif img_url.startswith('/'):
                 # Relative path from repo root - use default branch
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
-                print(f"  ✓ Found image in README (relative): {img_url_full[:60]}...")
+                print(f"  ✓ Imagem encontrada no README (relativa): {img_url_full[:60]}...")
                 return img_url_full
             elif any(img_url.startswith(prefix) for prefix in ['assets/', 'images/', 'docs/', 'screenshots/', 'public/', 'src/']):
                 # Common relative paths
                 default_branch = get_repo_default_branch(owner, repo_name, token)
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url}"
-                print(f"  ✓ Found image in README (relative): {img_url_full[:60]}...")
+                print(f"  ✓ Imagem encontrada no README (relativa): {img_url_full[:60]}...")
                 return img_url_full
+            else:
+                print(f"      - Imagem {idx+1}: URL relativa desconhecida: {img_url[:40]}...")
         
+        print(f"    ℹ Nenhuma imagem válida encontrada após filtrar")
         return None
         
     except Exception as e:
-        print(f"  ⚠ Erro buscando imagens no README: {e}")
+        print(f"  ⚠ Erro buscando imagens no README: {str(e)[:70]}")
         return None
 
 
@@ -459,15 +488,23 @@ def find_repo_preview_image(repo):
         print(f"  ⚠ Erro buscando preview: {e}")
     
     # Final fallback: try to find image in README if nothing worked
-    print(f"  → Buscando imagens no README...")
+    print(f"  → Tentando fallback final (README)...")
     owner = repo.get('owner', {}).get('login')
     name = repo.get('name')
     token = get_api_token()
     
-    if owner and name and token:
+    if owner and name:
+        if not token:
+            print(f"    ⚠ Sem token para buscar README")
+            return None, None
         readme_image = find_image_in_readme(owner, name, token)
         if readme_image:
+            print(f"  ✓ Sucesso no fallback README!")
             return readme_image, 'readme_image'
+        else:
+            print(f"    ℹ README não contém imagens utilizáveis")
+    else:
+        print(f"    ⚠ Não conseguiu determinar owner/name do repositório")
     
     return None, None
 
