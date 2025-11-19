@@ -374,8 +374,8 @@ class GeoViewsCounter {
      */
     async sendToGoogleAppsScript(visitData) {
         try {
-            // Se URL não está configurada, pular
-            if (!this.GOOGLE_APPS_SCRIPT_URL.includes('userweb')) {
+            // Se URL não está configurada ou é inválida, pular
+            if (!this.GOOGLE_APPS_SCRIPT_URL || !this.GOOGLE_APPS_SCRIPT_URL.includes('script.google.com')) {
                 console.log('[GeoViewsCounter] Google Apps Script URL não configurada - dados não enviados');
                 return;
             }
