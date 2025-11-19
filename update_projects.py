@@ -21,6 +21,7 @@ except Exception:
     _HAS_REQUESTS = False
 import os
 from datetime import datetime
+from urllib.parse import unquote
 import re
 import json
 
@@ -353,9 +354,10 @@ def find_image_in_readme(owner, repo_name, token):
                 return img_url_full
             elif not img_url.startswith('.'):
                 # Relative path (without leading ./ or ../)
-                # Common patterns: assets/, images/, docs/, screenshots/, public/, src/, etc
+                # Decode URL-encoded characters (e.g., %20 -> space)
+                img_url_decoded = unquote(img_url)
                 default_branch = get_repo_default_branch(owner, repo_name, token)
-                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url}"
+                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url_decoded}"
                 print(f"        ✓ Caminho relativo simples, aceitando!")
                 print(f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}...")
                 return img_url_full
