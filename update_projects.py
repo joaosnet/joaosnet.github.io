@@ -70,19 +70,42 @@ def generate_project_html(project):
         except Exception:
             updated_str = updated_at
     
-    # Custom styling for specific projects if needed, or generic style
+    # Timeline style HTML with image
     img_html = ''
     if image:
-        img_html = f'<div style="margin-bottom:12px; max-width:100%; aspect-ratio:1.91/1; overflow:hidden; border-radius:12px;"><img src="{image}" alt="{name} preview" style="width:100%; height:100%; object-fit:cover; display:block;"/></div>'
-    date_html = f'<div style="margin-top:8px; color:#94a3b8; font-size:0.9rem; font-weight:600;"><time datetime="{updated_iso}">Atualizado: {updated_str}</time></div>' if updated_str else ''
+        img_html = f'<img src="{image}" alt="{name} preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>'
+    
     html = f"""
-                    <div class="specs-item">
-                        {img_html}
-                        <h3>{name}</h3>
-                        <p>{description}</p>
-                        <a href="{html_url}" target="_blank" class="btn btn-primary"
-                            style="font-size: 0.9rem; padding: 5px 15px; margin-top: 10px;">Ver no GitHub</a>
-                        {date_html}
+                    <div class="timeline-item" style="display:flex; gap:24px; margin-bottom:40px; position:relative;">
+                        <!-- Timeline dot -->
+                        <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
+                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div style="width:2px; height:80px; background:#d0d7de; margin-top:8px;"></div>
+                        </div>
+                        
+                        <!-- Content -->
+                        <div style="flex:1; padding-top:4px;">
+                            <!-- Date badge -->
+                            <div style="display:inline-block; background:#f6f8fa; padding:4px 12px; border-radius:16px; margin-bottom:8px;">
+                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
+                            </div>
+                            
+                            <!-- Image -->
+                            {img_html}
+                            
+                            <!-- Project info -->
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
+                                <a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
+                                    {name}
+                                </a>
+                            </h3>
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">{description}</p>
+                            
+                            <!-- Button -->
+                            <a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
+                                Ver no GitHub →
+                            </a>
+                        </div>
                     </div>"""
     return html
 
@@ -272,7 +295,14 @@ def main():
         project['preview_image'] = img
         projects_html += generate_project_html(project)
     
-    update_index_html(projects_html)
+    # Wrap projects in timeline container
+    timeline_html = f"""
+                <!-- Timeline Container -->
+                <div style="position:relative; padding:20px 0;">
+                    {projects_html}
+                </div>"""
+    
+    update_index_html(timeline_html)
     print(f"Processed {len(top_projects)} projects and updated index.html.")
 
 if __name__ == "__main__":
