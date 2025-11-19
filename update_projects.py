@@ -30,12 +30,17 @@ from datetime import datetime
 import re
 import json
 
+
+def get_api_token():
+    """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
+    return os.environ.get('PRIVATE_REPOS_TOKEN') or os.environ.get('GITHUB_TOKEN')
+
 def fetch_projects():
     """Fetch repositories from GitHub API.
     Tries authenticated endpoint first (public + private), then falls back to public only.
     Returns a combined list of all accessible repositories.
     """
-    token = os.environ.get('GITHUB_TOKEN')
+    token = get_api_token()
     repos = []
     
     # Try authenticated endpoint first if token is available
@@ -214,9 +219,9 @@ def find_repo_preview_image(repo):
             print(f"Warning: Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
             return None, None
         
-        token = os.environ.get('GITHUB_TOKEN')
+        token = get_api_token()
         if not token:
-            print(f"Warning: GITHUB_TOKEN not set; cannot fetch social preview for {name}")
+            print(f"Warning: nenhuma variável de token (PRIVATE_REPOS_TOKEN/GITHUB_TOKEN) disponível; não será possível buscar preview para {name}")
             return None, None
         
         # Use GraphQL API to get openGraphImageUrl
