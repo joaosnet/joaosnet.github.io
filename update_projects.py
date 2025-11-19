@@ -188,12 +188,45 @@ def update_index_html(projects_html):
     except Exception as e:
         print(f"Error updating copyright year: {e}")
 
+
+def sanitize_existing_project_images(file_path='index.html', placeholder='./assets/css/images/icon.png'):
+    """Replace owner avatar image URLs with a local placeholder inside the projects block.
+    Returns count of replacements.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        start_marker = '<!-- PROJECTS_START -->'
+        end_marker = '<!-- PROJECTS_END -->'
+        start_index = content.find(start_marker)
+        end_index = content.find(end_marker)
+        if start_index == -1 or end_index == -1:
+            print('Markers not found in index.html during sanitize')
+            return 0
+
+        block = content[start_index:end_index]
+        # Replace avatars in img src attributes within the block
+        replaced_block, n = re.subn(r'(<img[^>]+src=["\'])(https:\/\/avatars\.githubusercontent\.com\/[^"\']+)(["\'])', r"\1" + placeholder + r"\3", block, flags=re.I)
+        if n > 0:
+            content = content[:start_index] + replaced_block + content[end_index:]
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            print(f"Sanitized {n} avatar image(s) in index.html projects block.")
+        else:
+            print('No avatar images found to sanitize in projects block.')
+        return n
+    except Exception as e:
+        print(f"Error sanitizing project images: {e}")
+        return 0
+
 def main():
     repos = fetch_projects()
     if not repos:
         print("No repositories fetched. Will still update date elements but won't modify projects.")
         projects_html = ''
         update_index_html(projects_html)
+        sanitize_existing_project_images()
         return
     
     # Filter and sort
