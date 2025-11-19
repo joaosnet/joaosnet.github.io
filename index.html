@@ -1077,6 +1077,14 @@
             position: relative;
             overflow: visible;
         }
+        /* GTranslate wrapper: force floating visible above FAB and overlays */
+        .gtranslate_wrapper {
+            position: fixed !important;
+            right: 20px !important;
+            bottom: 90px !important; /* above the contact FAB */
+            z-index: 99999 !important; /* ensure visibility above site UI */
+            pointer-events: auto !important;
+        }
 
         .form-background-effects {
             box-sizing: border-box;
@@ -1584,14 +1592,43 @@
         hiddenElements.forEach((el) => observer.observe(el));
     </script>
     <script src="assets/js/theme.js"></script>
-    <script>
-        window.gtranslateSettings = {
-          "default_language": "pt",
-          "detect_browser_language": true,
-          "wrapper_selector": ".gtranslate_wrapper"
-        };
-    </script>
-    <script src="https://cdn.gtranslate.net/widgets/latest/float.js"></script>
+        <!-- GTranslate settings: keep minimal to allow all languages and detect browser language. -->
+        <!-- NOTE: If the floating widget does not appear, confirm the floating selector is enabled in the
+                 GTranslate dashboard for your domain and that the account has the proper plan / license.
+                 You can also remove "wrapper_selector" to let the widget use default placement. -->
+        <script>
+                window.gtranslateSettings = {
+                    "default_language": "pt",
+                    "detect_browser_language": true,
+                    "wrapper_selector": ".gtranslate_wrapper"
+                };
+        </script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/float.js"></script>
+        <script>
+            (function(){
+                function loadScript(url) {
+                    var s = document.createElement('script');
+                    s.src = url;
+                    s.async = true;
+                    document.body.appendChild(s);
+                }
+
+                // After a short delay, verify the widget was created; if not, load a dropdown fallback
+                setTimeout(function(){
+                    var wrapper = document.querySelector('.gtranslate_wrapper');
+                    var hasChild = wrapper && wrapper.children && wrapper.children.length > 0 && wrapper.innerText.trim().length > 0;
+                    if (!(wrapper && hasChild)) {
+                        console.warn('GTranslate: float widget not detected — loading dropdown fallback.');
+                        loadScript('https://cdn.gtranslate.net/widgets/latest/dropdown.js');
+                    } else {
+                        console.info('GTranslate: float widget detected and active.');
+                    }
+                }, 1200);
+            })();
+        </script>
+        <!-- Optional fallback: if float does not work and you want an inline/dropdown selector instead,
+            uncomment the following line and comment out the float.js script above: -->
+        <!-- <script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js"></script> -->
     <div class="gtranslate_wrapper"></div>
 </body>
 
