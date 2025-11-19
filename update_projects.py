@@ -217,12 +217,12 @@ def find_repo_preview_image(repo):
         name = repo.get('name')
         
         if not owner or not name:
-            print(f"Warning: Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
+            print(f"⚠ Cannot determine repo owner/name for {repo.get('name', 'unknown')}")
             return None, None
         
         token = get_api_token()
         if not token:
-            print(f"Warning: nenhuma variável de token (PRIVATE_REPOS_TOKEN/GITHUB_TOKEN) disponível; não será possível buscar preview para {name}")
+            print(f"⚠ Nenhum token disponível; não será possível buscar preview para {name}")
             return None, None
         
         # Use GraphQL API to get openGraphImageUrl
@@ -253,29 +253,50 @@ def find_repo_preview_image(repo):
             if response.status_code == 200:
                 data = response.json()
                 if 'errors' in data:
-                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
+                    error_msgs = [e.get('message', str(e)) for e in data['errors']]
+                    print(f"⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
                     return None, None
                 if 'data' in data and data['data'] and 'repository' in data['data']:
-                    og_url = data['data']['repository'].get('openGraphImageUrl')
-                    if og_url:
-                        print(f"✓ Found social preview for {name}: {og_url}")
-                        return og_url, 'openGraphImageUrl'
+                    repo_data = data['data']['repository']
+                    if repo_data:
+                        og_url = repo_data.get('openGraphImageUrl')
+                        if og_url:
+                            print(f"  ✓ Social preview encontrada: {og_url}")
+                            return og_url, 'openGraphImageUrl'
+                        else:
+                            print(f"  ⚠ Sem social preview configurada para {owner}/{name}")
+                    else:
+                        print(f"  ⚠ Repositório não encontrado ou sem acesso: {owner}/{name}")
+                else:
+                    print(f"  ⚠ Resposta GraphQL inválida para {owner}/{name}")
             else:
-                print(f"GraphQL request failed with status {response.status_code} for {owner}/{name}")
+                print(f"  ⚠ GraphQL request falhou com status {response.status_code} para {owner}/{name}")
+                if response.text:
+                    print(f"    Resposta: {response.text[:200]}")
         else:
             req = urllib.request.Request(url, headers=headers, data=json.dumps(payload).encode('utf-8'))
-            with urllib.request.urlopen(req, timeout=10) as r:
-                data = json.loads(r.read().decode('utf-8'))
-                if 'errors' in data:
-                    print(f"GraphQL error for {owner}/{name}: {data['errors']}")
-                    return None, None
-                if 'data' in data and data['data'] and 'repository' in data['data']:
-                    og_url = data['data']['repository'].get('openGraphImageUrl')
-                    if og_url:
-                        print(f"✓ Found social preview for {name}: {og_url}")
-                        return og_url, 'openGraphImageUrl'
+            try:
+                with urllib.request.urlopen(req, timeout=10) as r:
+                    data = json.loads(r.read().decode('utf-8'))
+                    if 'errors' in data:
+                        error_msgs = [e.get('message', str(e)) for e in data['errors']]
+                        print(f"  ⚠ GraphQL error para {owner}/{name}: {', '.join(error_msgs)}")
+                        return None, None
+                    if 'data' in data and data['data'] and 'repository' in data['data']:
+                        repo_data = data['data']['repository']
+                        if repo_data:
+                            og_url = repo_data.get('openGraphImageUrl')
+                            if og_url:
+                                print(f"  ✓ Social preview encontrada: {og_url}")
+                                return og_url, 'openGraphImageUrl'
+                            else:
+                                print(f"  ⚠ Sem social preview configurada para {owner}/{name}")
+                        else:
+                            print(f"  ⚠ Repositório não encontrado ou sem acesso: {owner}/{name}")
+            except urllib.error.HTTPError as e:
+                print(f"  ⚠ HTTP error {e.code} para {owner}/{name}")
     except Exception as e:
-        print(f"⚠ Error fetching social preview for {repo.get('name', 'unknown')}: {e}")
+        print(f"  ⚠ Erro buscando preview para {repo.get('name', 'unknown')}: {e}")
     
     return None, None
 
