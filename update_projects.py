@@ -31,6 +31,9 @@ import re
 import json
 
 
+# Configuration: Organizations to include in projects display
+FEATURED_ORGANIZATIONS = ['LAPSHub', 'UFPA-2025-2']
+
 def get_api_token():
     """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
     return os.environ.get('PRIVATE_REPOS_TOKEN') or os.environ.get('GITHUB_TOKEN')
@@ -450,8 +453,35 @@ def main():
     # Sort by updated_at descending
     my_repos.sort(key=lambda x: x['updated_at'], reverse=True)
     
-    # Take top 4
-    top_projects = my_repos[:4]
+    # Separate by owner type to balance representation
+    owner_repos = [r for r in my_repos if r.get('owner', {}).get('login') == 'joaosnet']
+    featured_org_repos = [r for r in my_repos if r.get('owner', {}).get('login') in FEATURED_ORGANIZATIONS]
+    other_org_repos = [r for r in my_repos if r.get('owner', {}).get('login') != 'joaosnet' and r.get('owner', {}).get('login') not in FEATURED_ORGANIZATIONS]
+    
+    print(f"\n  Owner repos (filtered): {len(owner_repos)}")
+    print(f"  Featured org repos (filtered): {len(featured_org_repos)}")
+    if featured_org_repos:
+        org_names = set(r.get('owner', {}).get('login') for r in featured_org_repos)
+        print(f"    Organizations: {', '.join(org_names)}")
+    print(f"  Other org repos (filtered): {len(other_org_repos)}")
+    
+    # Select top 4: prioritize featured org repos, then owner repos, then others
+    # Strategy: include at least one featured org repo if available
+    top_projects = []
+    
+    # Add featured org repos first (up to 2)
+    if featured_org_repos:
+        top_projects.extend(featured_org_repos[:min(2, len(featured_org_repos))])
+    
+    # Then add owner repos to fill up to 4
+    if len(top_projects) < 4:
+        top_projects.extend(owner_repos[:max(0, 4 - len(top_projects))])
+    
+    # Finally add other org repos if needed
+    if len(top_projects) < 4:
+        top_projects.extend(other_org_repos[:max(0, 4 - len(top_projects))])
+    
+    top_projects = top_projects[:4]
     
     print(f"\nProcessing {len(top_projects)} top projects...")
     projects_html = ""
