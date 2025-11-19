@@ -259,9 +259,12 @@ def find_image_in_readme(owner, repo_name, token):
         matches = re.findall(markdown_pattern, readme_content)
         
         for alt_text, img_url in matches:
-            # Skip badges/shields (they typically have shields.io, badge, or similar in URL)
-            if any(skip in img_url.lower() for skip in ['shields.io', 'badge', 'github.com/[^/]+/[^/]+/workflows', 
-                                                          'codecov', 'travis', 'circleci', '.svg', 'status']):
+            # Skip known badge/status badges
+            if any(skip in img_url.lower() for skip in ['shields.io', 'badge', 'codecov', 'travis', 'circleci', 'github.com/.*/workflows', '.github/workflows']):
+                continue
+            
+            # Skip very small common badges (by checking alt text)
+            if alt_text.lower() in ['build', 'status', 'coverage', 'license', 'version', 'downloads']:
                 continue
             
             # Ensure URL is absolute
@@ -273,7 +276,7 @@ def find_image_in_readme(owner, repo_name, token):
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main{img_url}"
                 print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
                 return img_url_full
-            elif img_url.startswith('assets/') or img_url.startswith('images/') or img_url.startswith('docs/'):
+            elif img_url.startswith('assets/') or img_url.startswith('images/') or img_url.startswith('docs/') or img_url.startswith('screenshots/'):
                 # Common relative paths
                 img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main/{img_url}"
                 print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
@@ -359,7 +362,11 @@ def find_repo_preview_image(repo):
                                 print(f"  ✓ Found custom social preview")
                                 return og_url, 'openGraphImageUrl'
                             elif is_org_avatar:
-                                # Use org avatar as fallback (better than placeholder)
+                                # Try README first before using org avatar
+                                readme_image = find_image_in_readme(owner, name, token)
+                                if readme_image:
+                                    print(f"  ✓ Using README image instead of avatar")
+                                    return readme_image, 'readme_image'
                                 print(f"  ✓ Using org avatar as preview")
                                 return og_url, 'org_avatar'
                             else:
@@ -367,7 +374,10 @@ def find_repo_preview_image(repo):
                                 print(f"  ✓ Using social image: {og_url[:60]}...")
                                 return og_url, 'openGraphImageUrl'
                         else:
-                            print(f"  ⚠ Sem social preview configurada")
+                            print(f"  ⚠ Sem social preview. Buscando no README...")
+                            readme_image = find_image_in_readme(owner, name, token)
+                            if readme_image:
+                                return readme_image, 'readme_image'
                     else:
                         print(f"  ⚠ Repositório não encontrado ou sem acesso")
                 else:
@@ -396,13 +406,21 @@ def find_repo_preview_image(repo):
                                     print(f"  ✓ Found custom social preview")
                                     return og_url, 'openGraphImageUrl'
                                 elif is_org_avatar:
+                                    # Try README first before using org avatar
+                                    readme_image = find_image_in_readme(owner, name, token)
+                                    if readme_image:
+                                        print(f"  ✓ Using README image instead of avatar")
+                                        return readme_image, 'readme_image'
                                     print(f"  ✓ Using org avatar as preview")
                                     return og_url, 'org_avatar'
                                 else:
                                     print(f"  ✓ Using social image: {og_url[:60]}...")
                                     return og_url, 'openGraphImageUrl'
                             else:
-                                print(f"  ⚠ Sem social preview configurada")
+                                print(f"  ⚠ Sem social preview. Buscando no README...")
+                                readme_image = find_image_in_readme(owner, name, token)
+                                if readme_image:
+                                    return readme_image, 'readme_image'
                         else:
                             print(f"  ⚠ Repositório não encontrado ou sem acesso")
             except urllib.error.HTTPError as e:
@@ -410,7 +428,7 @@ def find_repo_preview_image(repo):
     except Exception as e:
         print(f"  ⚠ Erro buscando preview: {e}")
     
-    # Fallback: try to find image in README
+    # Final fallback: try to find image in README if nothing worked
     print(f"  → Buscando imagens no README...")
     owner = repo.get('owner', {}).get('login')
     name = repo.get('name')
