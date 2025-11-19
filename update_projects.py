@@ -21,6 +21,7 @@ except Exception:
     _HAS_REQUESTS = False
 try:
     from github import Github as PyGithub
+    from github import Auth as PyGithubAuth
     _HAS_PYGITHUB = True
 except Exception:
     _HAS_PYGITHUB = False
@@ -110,7 +111,11 @@ def find_repo_preview_image(repo):
     token = os.environ.get('GITHUB_TOKEN')
     if _HAS_PYGITHUB and token:
         try:
-            gh = PyGithub(token)
+            try:
+                gh = PyGithub(auth=PyGithubAuth.Token(token))
+            except Exception:
+                # fall back for older versions of PyGithub
+                gh = PyGithub(token)
             gh_repo = gh.get_repo(f"{owner}/{name}")
             og_url = getattr(gh_repo, 'open_graph_image_url', None)
             if og_url:
