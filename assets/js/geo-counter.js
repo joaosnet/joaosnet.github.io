@@ -395,38 +395,58 @@ class GeoViewsCounter {
     }
 
     /**
-     * Envia dados para Google Apps Script
+     * Envia dados para Google Apps Script com retry
      */
     async sendToGoogleAppsScript(visitData) {
         try {
             // Se URL não está configurada ou é inválida, pular
             if (!this.GOOGLE_APPS_SCRIPT_URL || !this.GOOGLE_APPS_SCRIPT_URL.includes('script.google.com')) {
-                console.log('[GeoViewsCounter] Google Apps Script URL não configurada - dados não enviados');
+                console.log('[GeoViewsCounter] Google Apps Script URL não configurada - dados armazenados localmente');
                 return;
             }
             
             const payload = JSON.stringify(visitData);
             
-            // Usar fetch com keepalive para não bloquear navegação
-            const response = await fetch(this.GOOGLE_APPS_SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: payload,
-                keepalive: true // Permite que request continue mesmo se página fecha
-            });
+            // Tentar enviar com timeout de 5 segundos
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000);
             
-            if (response.ok) {
-                const result = await response.json();
-                console.log('[GeoViewsCounter] Enviado para Google Drive:', result);
-            } else {
-                console.warn('[GeoViewsCounter] Erro ao enviar para Google Drive:', response.status);
+            try {
+                const response = await fetch(this.GOOGLE_APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: payload,
+                    keepalive: true,
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+                
+                if (response.ok) {
+                    try {
+                        const result = await response.json();
+                        console.log('[GeoViewsCounter] ✓ Enviado para Google Drive:', result);
+                    } catch (parseError) {
+                        // Resposta sem JSON é ok também
+                        console.log('[GeoViewsCounter] ✓ Enviado para Google Drive (sem resposta)');
+                    }
+                } else {
+                    console.warn('[GeoViewsCounter] Google Drive retornou:', response.status, response.statusText);
+                }
+            } catch (fetchError) {
+                clearTimeout(timeoutId);
+                
+                if (fetchError.name === 'AbortError') {
+                    console.warn('[GeoViewsCounter] Timeout ao enviar para Google Drive (>5s) - dados armazenados localmente');
+                } else {
+                    console.warn('[GeoViewsCounter] Erro de conexão com Google Drive:', fetchError.message);
+                }
             }
             
         } catch (error) {
-            // Erros de envio não devem interromper o uso do site
-            console.warn('[GeoViewsCounter] Erro ao enviar para Google Apps Script:', error);
+            console.warn('[GeoViewsCounter] Erro ao enviar para Google Apps Script:', error.message);
         }
     }
 
