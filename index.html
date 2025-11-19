@@ -29,16 +29,16 @@
 
         html[data-theme="light"] {
             --primary: #1d4ed8;
-            --secondary: #9333ea;
-            --dark: #f9fafb;
-            --light: #111827;
-            --accent: #0e7490;
-            --text-gray: #6b7280;
-            --bg-card: #ffffff;
-            --border-light: #e5e7eb;
-            --header-bg: rgba(255, 255, 255, 0.8);
-            --glass-bg: rgba(255, 255, 255, 0.9);
-            --input-bg: rgba(255, 255, 255, 0.8);
+            --secondary: #7c3aed;
+            --dark: #ffffff;
+            --light: #0f172a;
+            --accent: #0891b2;
+            --text-gray: #475569;
+            --bg-card: #f8fafc;
+            --border-light: #cbd5e1;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --glass-bg: rgba(248, 250, 252, 0.95);
+            --input-bg: #ffffff;
         }
 
         * {
@@ -604,6 +604,7 @@
             font-size: 1rem;
             transition: all 0.3s;
         }
+
         .contact-form .btn {
             padding: 14px 20px;
             font-size: 1.05rem;
@@ -812,7 +813,7 @@
                 flex-direction: column;
             }
 
-            .specs-flex > .cta {
+            .specs-flex>.cta {
                 width: 100%;
                 flex: 1 0 100%;
             }
@@ -830,7 +831,11 @@
             .contact-form {
                 padding: 22px;
             }
-            .contact-form .btn { font-size: 1.05rem; padding: 12px 16px; }
+
+            .contact-form .btn {
+                font-size: 1.05rem;
+                padding: 12px 16px;
+            }
 
             .section-title h2 {
                 font-size: 2.2rem;
@@ -934,6 +939,141 @@
             transform: translateY(0);
         }
 
+        /* Timeline animations */
+        .timeline-item-left,
+        .timeline-item-right {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item-left {
+            transform: translateX(-60px);
+        }
+
+        .timeline-item-right {
+            transform: translateX(60px);
+        }
+
+        .timeline-item-left.show,
+        .timeline-item-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Pulse animation for timeline indicators */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .timeline-indicator {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* Form animations */
+        .form-control {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .form-control:focus {
+            transform: scale(1.01);
+        }
+
+        .form-icon {
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus~.form-icon {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Button loading animation */
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn.loading {
+            position: relative;
+            color: transparent;
+            pointer-events: none;
+        }
+
+        .btn.loading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        /* Button hover micro-animations */
+        .btn i {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn:hover i {
+            transform: translateX(3px);
+        }
+
+        .icon-button:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Success/Error feedback animations */
+        @keyframes slideInUp {
+            from {
+                transform: translate(-50%, 20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutDown {
+            from {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translate(-50%, 20px);
+                opacity: 0;
+            }
+        }
+
+        #toast.show {
+            animation: slideInUp 0.3s ease forwards;
+        }
+
+        #toast.hide {
+            animation: slideOutDown 0.3s ease forwards;
+        }
+
         /* Staggered delays for children */
         .feature-card:nth-child(2) {
             transition-delay: 200ms;
@@ -982,12 +1122,30 @@
             .logo .logo-short {
                 display: inline;
             }
+
             /* Ajustes mobile: garantir que o formulário caiba na tela */
-            .form-container { padding: 0 10px; }
-            .form-background-effects { left: -8px; right: -8px; top: -8px; bottom: -8px; }
-            .form-icon { left: 14px; }
-            .form-control { padding: 12px 16px 12px 46px; }
-            .contact-form { padding: 18px; }
+            .form-container {
+                padding: 0 10px;
+            }
+
+            .form-background-effects {
+                left: -8px;
+                right: -8px;
+                top: -8px;
+                bottom: -8px;
+            }
+
+            .form-icon {
+                left: 14px;
+            }
+
+            .form-control {
+                padding: 12px 16px 12px 46px;
+            }
+
+            .contact-form {
+                padding: 18px;
+            }
 
             .logo .logo-short {
                 display: none;
@@ -1008,17 +1166,20 @@
         .logo-short {
             display: none;
         }
+
         /* Force footer adherence to theme colors */
         html[data-theme="light"] footer {
             background-color: var(--header-bg) !important;
             color: var(--light) !important;
             border-top: 1px solid var(--border-light) !important;
         }
+
         html[data-theme="dark"] footer {
             background-color: var(--header-bg) !important;
             color: var(--light) !important;
             border-top: 1px solid var(--border-light) !important;
         }
+
         .views-counter {
             margin-top: 10px;
             color: var(--text-gray);
@@ -1030,6 +1191,7 @@
             color: var(--accent);
             margin-left: 6px;
         }
+
         /* Floating action contact button */
         #fab-contact {
             position: fixed;
@@ -1044,14 +1206,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
             cursor: pointer;
             z-index: 2000;
         }
-        #fab-contact:focus { outline: none; box-shadow: 0 0 0 4px rgba(6,182,212,0.12); }
+
+        #fab-contact:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(6, 182, 212, 0.12);
+        }
+
         /* Make contact form visually prominent */
-        .contact-form { border-color: rgba(6,182,212,0.15); }
-        .contact-form .btn { font-size: 1.05rem; padding: 12px 18px; }
+        .contact-form {
+            border-color: rgba(6, 182, 212, 0.15);
+        }
+
+        .contact-form .btn {
+            font-size: 1.05rem;
+            padding: 12px 18px;
+        }
 
         /* Utilities */
         .sr-only {
@@ -1066,12 +1239,27 @@
             border: 0 !important;
         }
 
-        .icon-button { display: inline-flex; align-items:center; justify-content:center; gap:8px; }
-        .icon-only { padding: 12px; width: auto; min-width: 48px; }
-        .icon-only i { font-size: 1.1rem; }
+        .icon-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .icon-only {
+            padding: 12px;
+            width: auto;
+            min-width: 48px;
+        }
+
+        .icon-only i {
+            font-size: 1.1rem;
+        }
 
         @media (max-width: 480px) {
-            .icon-only { min-height: 44px; }
+            .icon-only {
+                min-height: 44px;
+            }
         }
 
         /* Mobile responsive fixes: ensure form doesn't overflow or get cut off */
@@ -1084,6 +1272,7 @@
             position: relative;
             overflow: visible;
         }
+
         /* GTranslate wrapper: force floating visible above FAB and overlays */
         .gtranslate_wrapper {
             position: fixed !important;
@@ -1092,7 +1281,8 @@
             z-index: 99999 !important;
         }
 
-        .gtranslate_wrapper .gt_switcher {
+        .gtranslate_wrapper .gt_switcher,
+        .gtranslate_wrapper .gt_float_switcher {
             background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
             color: white !important;
             border: none !important;
@@ -1105,22 +1295,28 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35) !important;
             font-size: 18px !important;
             cursor: pointer !important;
+            transition: all 0.3s ease !important;
         }
 
-        .gtranslate_wrapper .gt_switcher:hover {
+        .gtranslate_wrapper .gt_switcher:hover,
+        .gtranslate_wrapper .gt_float_switcher:hover {
             transform: translateY(-2px) !important;
             box-shadow: 0 16px 35px rgba(0, 0, 0, 0.45) !important;
         }
 
-        .gtranslate_wrapper .goog-te-gadget-simple {
+        /* Dropdown menu styling */
+        .gtranslate_wrapper .goog-te-gadget-simple,
+        .gtranslate_wrapper .gt_selected {
             background: var(--bg-card) !important;
             border: 1px solid var(--border-light) !important;
             border-radius: 16px !important;
             box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4) !important;
             backdrop-filter: blur(10px) !important;
             overflow: hidden !important;
+            color: var(--light) !important;
         }
 
+        .gtranslate_wrapper .gt_option,
         .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item {
             display: flex !important;
             align-items: center !important;
@@ -1128,46 +1324,56 @@
             padding: 12px 16px !important;
             color: var(--light) !important;
             border-radius: 12px !important;
+            transition: all 0.2s ease !important;
         }
 
+        .gtranslate_wrapper .gt_option img,
         .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item img {
             width: 24px !important;
             height: 16px !important;
             border-radius: 4px !important;
-            border: 1px solid rgba(255,255,255,0.2) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
         }
 
+        .gtranslate_wrapper .gt_option:hover,
         .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item:hover {
-            background: rgba(255,255,255,0.1) !important;
+            background: rgba(59, 130, 246, 0.1) !important;
         }
 
-        html[data-theme="light"] .gtranslate_wrapper .goog-te-gadget-simple {
-            background: rgba(255,255,255,0.98) !important;
-            border-color: #e5e7eb !important;
+        /* Light theme adaptations for GTranslate */
+        html[data-theme="light"] .gtranslate_wrapper .goog-te-gadget-simple,
+        html[data-theme="light"] .gtranslate_wrapper .gt_selected {
+            background: rgba(255, 255, 255, 0.98) !important;
+            border-color: #cbd5e1 !important;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        html[data-theme="light"] .gtranslate_wrapper .gt_option:hover,
+        html[data-theme="light"] .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item:hover {
+            background: rgba(29, 78, 216, 0.08) !important;
+        }
+
+        html[data-theme="light"] .gtranslate_wrapper .gt_option img,
+        html[data-theme="light"] .gtranslate_wrapper .goog-te-menu-frame .goog-te-menu-item img {
+            border-color: rgba(0, 0, 0, 0.15) !important;
         }
 
         @media (max-width: 768px) {
-            .gtranslate_wrapper { right: 16px !important; top: 80px !important; }
-            .gtranslate_wrapper .gt_switcher { width: 48px !important; height: 48px !important; }
-        }
+            .gtranslate_wrapper {
+                right: 16px !important;
+                top: 80px !important;
+            }
 
+            .gtranslate_wrapper .gt_switcher,
+            .gtranslate_wrapper .gt_float_switcher {
+                width: 48px !important;
+                height: 48px !important;
+                font-size: 16px !important;
+            }
+        }
     </style>
 
-    <!-- GTRANSLATE JS - CARREGAMENTO DEFINITIVO -->
-    <script>
-    window.gtranslateSettings = {
-        "default_language": "pt",
-        "detect_browser_language": true,
-        "languages": "pt,en,es,fr,de,it"
-    };
 
-    (function(){
-        const script = document.createElement('script');
-        script.src = 'https://cdn.gtranslate.net/widgets/latest/dropdown.js';
-        script.async = true;
-        document.head.appendChild(script);
-    })();
-    </script>
 </head>
 
 <body>
@@ -1215,7 +1421,8 @@
                 <p>E aí! Sou João, dev full-stack que transforma desafios universitários e empresariais em soluções
                     tecnológicas descomplicadas. Do TCC ao MVP, estou aqui para fazer acontecer! 🚀</p>
                 <a href="#contact" class="btn btn-primary">Bora conversar!</a>
-                <a href="mailto:joao.silva.neto@itec.ufpa.br?subject=Contato%20pelo%20site" class="btn btn-primary" style="margin-left:10px;">Enviar Mensagem</a>
+                <a href="mailto:joao.silva.neto@itec.ufpa.br?subject=Contato%20pelo%20site" class="btn btn-primary"
+                    style="margin-left:10px;">Enviar Mensagem</a>
                 <a href="#skills" class="btn btn-secondary">Ver tecnologias</a>
             </div>
         </div>
@@ -1276,239 +1483,255 @@
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
                 <div style="position:relative; padding:20px 0;">
                     <!-- Central vertical line -->
-                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, #0969da 0%, #d0d7de 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
-                    
+                    <div
+                        style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, #0969da 0%, #d0d7de 50%, transparent 100%); transform:translateX(-50%); z-index:1;">
+                    </div>
+
                     <!-- Timeline items container -->
                     <div style="position:relative; z-index:2;">
-                        
-                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
-                        <!-- Content Left -->
-                        <div style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:right;">
-                            <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="2025-11-13T16:49:18+00:00" style="font-size:0.85rem; color:#57606a; font-weight:600;">13/11/2025</time>
+                    </div>
+                    <div class="timeline-item-right"
+                        style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                        <!-- Empty space on LEFT -->
+                        <div></div>
+
+                        <!-- Timeline Dot (CENTER) -->
+                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
+                            <div
+                                style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;">
                             </div>
-                            
+                        </div>
+
+                        <!-- Content Right -->
+                        <div
+                            style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:left;">
+                            <!-- Date badge -->
+                            <div
+                                style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
+                                <time datetime="2025-11-09T20:53:52+00:00"
+                                    style="font-size:0.85rem; color:#57606a; font-weight:600;">09/11/2025</time>
+                            </div>
+
                             <!-- Image -->
                             <div style="margin-bottom:12px;">
-                                <img src="https://avatars.githubusercontent.com/u/32203897?v=4" alt="dmovel-fastapi preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
+                                <img src="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=100&section=footer"
+                                    alt="flutter-learn-together preview"
+                                    style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;" />
                             </div>
-                            
+
                             <!-- Project info -->
                             <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
                                 <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
-                                    dmovel-fastapi <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
+                                    flutter-learn-together <i class="fas fa-lock"
+                                        style="font-size:0.7em; vertical-align: middle; margin-left:4px;"
+                                        title="Projeto Privado"></i>
                                 </span>
                             </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Api do Aplicativo DMovel</p>
-                            
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">
+                                Repositório colaborativo para aprender Flutter e Git na prática através de
+                                contribuições em equipe.</p>
+
                             <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
+                            <span
+                                style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
                                 Privado
                             </span>
                         </div>
-                        
+                    </div>
+                    <div class="timeline-item-left"
+                        style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                        <!-- Content Left -->
+                        <div
+                            style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:right;">
+                            <!-- Date badge -->
+                            <div
+                                style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
+                                <time datetime="2025-11-19T13:04:14+00:00"
+                                    style="font-size:0.85rem; color:#57606a; font-weight:600;">19/11/2025</time>
+                            </div>
+
+                            <!-- Image -->
+                            <div style="margin-bottom:12px;">
+                                <img src="/assets/project-images/joaosnet_Docker-Clennear_captura_de_tela_2025-11-19_100122.png"
+                                    alt="Docker-Clennear preview"
+                                    style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;" />
+                            </div>
+
+                            <!-- Project info -->
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
+                                <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
+                                    Docker-Clennear <i class="fas fa-lock"
+                                        style="font-size:0.7em; vertical-align: middle; margin-left:4px;"
+                                        title="Projeto Privado"></i>
+                                </span>
+                            </h3>
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Python
+                                for Windows Docker Otimizer images sizes in WSL system</p>
+
+                            <!-- Button -->
+                            <span
+                                style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
+                                Privado
+                            </span>
+                        </div>
+
                         <!-- Timeline Dot (CENTER) -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div
+                                style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;">
+                            </div>
                         </div>
-                        
+
                         <!-- Empty space on RIGHT -->
                         <div></div>
                     </div>
-                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item-right"
+                        style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
                         <!-- Empty space on LEFT -->
                         <div></div>
-                        
+
                         <!-- Timeline Dot (CENTER) -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div
+                                style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;">
+                            </div>
                         </div>
-                        
+
                         <!-- Content Right -->
-                        <div style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:left;">
+                        <div
+                            style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:left;">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="2025-11-09T20:53:52+00:00" style="font-size:0.85rem; color:#57606a; font-weight:600;">09/11/2025</time>
+                            <div
+                                style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
+                                <time datetime="2025-10-27T13:44:25+00:00"
+                                    style="font-size:0.85rem; color:#57606a; font-weight:600;">27/10/2025</time>
                             </div>
-                            
+
                             <!-- Image -->
                             <div style="margin-bottom:12px;">
-                                <img src="https://capsule-render.vercel.app/api?type=waving&color=0D1117&height=100&section=footer" alt="flutter-learn-together preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
+                                <img src="https://opengraph.githubassets.com/87c7e04b30e293a3e1c792323d50387cb01d93c791353a1a8ede3efeede04c41/joaosnet/sigaa-ufpa-mcp"
+                                    alt="sigaa-ufpa-mcp preview"
+                                    style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;" />
                             </div>
-                            
+
                             <!-- Project info -->
                             <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
-                                <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
-                                    flutter-learn-together <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
-                                </span>
-                            </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Repositório colaborativo para aprender Flutter e Git na prática através de contribuições em equipe.</p>
-                            
-                            <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
-                                Privado
-                            </span>
-                        </div>
-                    </div>
-                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
-                        <!-- Content Left -->
-                        <div style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:right;">
-                            <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="2025-11-19T13:04:14+00:00" style="font-size:0.85rem; color:#57606a; font-weight:600;">19/11/2025</time>
-                            </div>
-                            
-                            <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="/assets/project-images/joaosnet_Docker-Clennear_captura_de_tela_2025-11-19_100122.png" alt="Docker-Clennear preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
-                            </div>
-                            
-                            <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
-                                <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
-                                    Docker-Clennear <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
-                                </span>
-                            </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Python for Windows Docker Otimizer images sizes in WSL system</p>
-                            
-                            <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
-                                Privado
-                            </span>
-                        </div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
-                        </div>
-                        
-                        <!-- Empty space on RIGHT -->
-                        <div></div>
-                    </div>
-                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
-                        <!-- Empty space on LEFT -->
-                        <div></div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
-                        </div>
-                        
-                        <!-- Content Right -->
-                        <div style="background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px; text-align:left;">
-                            <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="2025-10-27T13:44:25+00:00" style="font-size:0.85rem; color:#57606a; font-weight:600;">27/10/2025</time>
-                            </div>
-                            
-                            <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="https://opengraph.githubassets.com/87c7e04b30e293a3e1c792323d50387cb01d93c791353a1a8ede3efeede04c41/joaosnet/sigaa-ufpa-mcp" alt="sigaa-ufpa-mcp preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
-                            </div>
-                            
-                            <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
-                                <a href="https://github.com/joaosnet/sigaa-ufpa-mcp" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
+                                <a href="https://github.com/joaosnet/sigaa-ufpa-mcp" target="_blank"
+                                    style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
                                     sigaa-ufpa-mcp
                                 </a>
                             </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Este projeto implementa um servidor MCP (Model Context Protocol) específico para automatizar o acesso ao SIGAA da UFPA usando browser-use com actors para autenticação automática.</p>
-                            
+                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">Este
+                                projeto implementa um servidor MCP (Model Context Protocol) específico para
+                                automatizar o acesso ao SIGAA da UFPA usando browser-use com actors para
+                                autenticação automática.</p>
+
                             <!-- Button -->
-                            <a href="https://github.com/joaosnet/sigaa-ufpa-mcp" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
+                            <a href="https://github.com/joaosnet/sigaa-ufpa-mcp" target="_blank"
+                                style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
                                 Ver no GitHub →
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- PROJECTS_END -->
+        </div>
+        <section id="contact" class="cta">
+            <div class="container">
+                <h2>Precisa de ajuda com algum problema técnico?</h2>
+                <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para
+                    você.
+                </p>
+
+                <!-- Formulário com elementos visuais aprimorados -->
+                <div class="form-container" style="position: relative; max-width: 600px; margin: 0 auto;">
+                    <!-- Efeitos visuais atrás do formulário -->
+                    <div class="form-background-effects"
+                        style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; overflow: hidden; border-radius: 20px; z-index: 0;">
+                        <div
+                            style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(37, 99, 235, 0) 70%); top: -50px; right: -50px;">
+                        </div>
+                        <div
+                            style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%); bottom: -30px; left: -30px;">
+                        </div>
+                        <div
+                            style="position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); top: 30%; left: -30px;">
+                        </div>
+                        <div
+                            style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); bottom: 25%; right: -20px;">
+                        </div>
+                    </div>
+
+                    <!-- Ícones de tecnologia flutuantes atrás do formulário -->
+                    <div
+                        style="position: absolute; font-size: 1.5rem; color: rgba(255, 255, 255, 0.1); top: 20px; right: 30px; z-index: 1; animation: float 8s infinite ease-in-out;">
+                        <i class="fab fa-react"></i>
+                    </div>
+
+                    <div class="contact-form"
+                        style="position: relative; z-index: 10; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
+                        <form action="https://formspree.io/f/mdoqyljj" method="POST" id="contact-form">
+                            <p
+                                style="color: var(--text-gray); margin-bottom: 8px; font-weight:600; display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-info-circle" title="Opções de contato" aria-hidden="true"></i>
+                                <span style="font-weight:700;">Opções:</span>
+                                <span style="color:var(--text-gray); font-weight:400;">Use os ícones abaixo para
+                                    abrir seu app de email, copiar o email ou abrir no Gmail.</span>
+                            </p>
+                            <div style="display:flex; gap: 10px; margin-bottom: 12px;">
+                                <button type="button" id="send-mail-btn" class="btn btn-primary icon-button icon-only"
+                                    aria-label="Enviar via email" title="Enviar via email" style="flex:1;">
+                                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                    <span class="sr-only">Enviar pelo email</span>
+                                </button>
+                                <button type="button" id="copy-email-btn"
+                                    class="btn btn-secondary icon-button icon-only" aria-label="Copiar email"
+                                    title="Copiar email" style="flex:1;">
+                                    <i class="fas fa-copy" aria-hidden="true"></i>
+                                    <span class="sr-only">Copiar email</span>
+                                </button>
+                                <button type="button" id="open-gmail-btn"
+                                    class="btn btn-secondary icon-button icon-only" aria-label="Abrir Gmail"
+                                    title="Abrir Gmail" style="flex:1;">
+                                    <i class="fab fa-google" aria-hidden="true"></i>
+                                    <span class="sr-only">Abrir no Gmail</span>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="sr-only">Nome</label>
+                                <i class="fas fa-user form-icon"></i>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Email</label>
+                                <i class="fas fa-envelope form-icon"></i>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="Seu melhor email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="sr-only">Mensagem</label>
+                                <i class="fas fa-comment-alt form-icon"></i>
+                                <textarea id="message" name="message" class="form-control"
+                                    placeholder="Como posso te ajudar?" required></textarea>
+                            </div>
+                            <p
+                                style="color:var(--text-gray); margin-bottom: 10px; font-size:0.95rem; display:flex; align-items:center; gap:8px;">
+                                <i class="fas fa-lightbulb" aria-hidden="true" title="Dica"></i>
+                                <span style="font-size:0.95rem;">Escreva algo simples — ou use os ícones acima para
+                                    abrir seu cliente de email.</span>
+                            </p>
+                            <button type="submit" class="btn btn-primary"
+                                style="width: 100%; justify-content: center;">Enviar Mensagem</button>
+                        </form>
+                        <div id="toast" aria-live="polite"
+                            style="display:none; position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color:#fff; padding:10px 18px; border-radius:12px; font-weight:600; z-index:50;">
+                        </div>
                     </div>
                 </div>
-                    <!-- PROJECTS_END -->
-            </div>
-            <section id="contact" class="cta">
-                    <div class="container">
-                    <h2>Precisa de ajuda com algum problema técnico?</h2>
-                    <p>Descreva seu problema abaixo e entrarei em contato para ajudar a encontrar a melhor solução para
-                        você.
-                    </p>
-
-                    <!-- Formulário com elementos visuais aprimorados -->
-                    <div class="form-container" style="position: relative; max-width: 600px; margin: 0 auto;">
-                        <!-- Efeitos visuais atrás do formulário -->
-                        <div class="form-background-effects"
-                            style="position: absolute; top: -15px; left: -15px; right: -15px; bottom: -15px; overflow: hidden; border-radius: 20px; z-index: 0;">
-                            <div
-                                style="position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.3) 0%, rgba(37, 99, 235, 0) 70%); top: -50px; right: -50px;">
-                            </div>
-                            <div
-                                style="position: absolute; width: 150px; height: 150px; border-radius: 50%; background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%); bottom: -30px; left: -30px;">
-                            </div>
-                            <div
-                                style="position: absolute; width: 60px; height: 60px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); top: 30%; left: -30px;">
-                            </div>
-                            <div
-                                style="position: absolute; width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); bottom: 25%; right: -20px;">
-                            </div>
-                        </div>
-
-                        <!-- Ícones de tecnologia flutuantes atrás do formulário -->
-                        <div
-                            style="position: absolute; font-size: 1.5rem; color: rgba(255, 255, 255, 0.1); top: 20px; right: 30px; z-index: 1; animation: float 8s infinite ease-in-out;">
-                            <i class="fab fa-react"></i>
-                        </div>
-
-                        <div class="contact-form"
-                            style="position: relative; z-index: 10; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);">
-                            <form action="https://formspree.io/f/mdoqyljj" method="POST" id="contact-form">
-                                <p style="color: var(--text-gray); margin-bottom: 8px; font-weight:600; display:flex; align-items:center; gap:8px;">
-                                    <i class="fas fa-info-circle" title="Opções de contato" aria-hidden="true"></i>
-                                    <span style="font-weight:700;">Opções:</span>
-                                    <span style="color:var(--text-gray); font-weight:400;">Use os ícones abaixo para abrir seu app de email, copiar o email ou abrir no Gmail.</span>
-                                </p>
-                                <div style="display:flex; gap: 10px; margin-bottom: 12px;">
-                                    <button type="button" id="send-mail-btn" class="btn btn-primary icon-button icon-only" aria-label="Enviar via email" title="Enviar via email" style="flex:1;">
-                                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                        <span class="sr-only">Enviar pelo email</span>
-                                    </button>
-                                    <button type="button" id="copy-email-btn" class="btn btn-secondary icon-button icon-only" aria-label="Copiar email" title="Copiar email" style="flex:1;">
-                                        <i class="fas fa-copy" aria-hidden="true"></i>
-                                        <span class="sr-only">Copiar email</span>
-                                    </button>
-                                    <button type="button" id="open-gmail-btn" class="btn btn-secondary icon-button icon-only" aria-label="Abrir Gmail" title="Abrir Gmail" style="flex:1;">
-                                        <i class="fab fa-google" aria-hidden="true"></i>
-                                        <span class="sr-only">Abrir no Gmail</span>
-                                    </button>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="sr-only">Nome</label>
-                                    <i class="fas fa-user form-icon"></i>
-                                    <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome"
-                                        required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="sr-only">Email</label>
-                                    <i class="fas fa-envelope form-icon"></i>
-                                    <input type="email" id="email" name="email" class="form-control"
-                                        placeholder="Seu melhor email" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="message" class="sr-only">Mensagem</label>
-                                    <i class="fas fa-comment-alt form-icon"></i>
-                                    <textarea id="message" name="message" class="form-control"
-                                        placeholder="Como posso te ajudar?" required></textarea>
-                                </div>
-                                <p style="color:var(--text-gray); margin-bottom: 10px; font-size:0.95rem; display:flex; align-items:center; gap:8px;">
-                                    <i class="fas fa-lightbulb" aria-hidden="true" title="Dica"></i>
-                                    <span style="font-size:0.95rem;">Escreva algo simples — ou use os ícones acima para abrir seu cliente de email.</span>
-                                </p>
-                                <button type="submit" class="btn btn-primary"
-                                    style="width: 100%; justify-content: center;">Enviar Mensagem</button>
-                            </form>
-                            <div id="toast" aria-live="polite" style="display:none; position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color:#fff; padding:10px 18px; border-radius:12px; font-weight:600; z-index:50;"></div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+        </section>
+        </div>
         </div>
     </section>
 
@@ -1538,7 +1761,8 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 João Desenvolvedor. Todos os direitos reservados.</p> <span id="page-last-updated">Última atualização: 19/11/2025</span>
+                <p>&copy; 2025 João Desenvolvedor. Todos os direitos reservados.</p> <span id="page-last-updated">Última
+                    atualização: 19/11/2025</span>
             </div>
         </div>
     </footer>
@@ -1645,21 +1869,39 @@
                     entry.target.classList.add('show');
                 }
             });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
         });
 
         const hiddenElements = document.querySelectorAll('.hidden');
         hiddenElements.forEach((el) => observer.observe(el));
 
+        /* Observer for timeline items */
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.2,
+            rootMargin: '0px'
+        });
+
+        const timelineItems = document.querySelectorAll('.timeline-item-left, .timeline-item-right');
+        timelineItems.forEach((item) => timelineObserver.observe(item));
+
         /* REMOVER CountAPI - contador 100% local */
-        (function() {
+        (function () {
             const el = document.getElementById('unique-views');
             if (!el) return;
-            
+
             const key = `joaosnet_views_${new Date().getFullYear()}`;
             let count = parseInt(localStorage.getItem(key) || '0') + 1;
             localStorage.setItem(key, count.toString());
             el.textContent = count.toLocaleString();
-            
+
             // Reset diário para contagem única por dia
             const today = new Date().toDateString();
             if (!localStorage.getItem('joaosnet_last_visit')) {
@@ -1673,117 +1915,48 @@
             }
         })();
 
-        /* GTRANSLATE - FORÇAR FLOAT DEFINITIVO */
-        window.gtranslateSettings = {
-            "default_language": "pt",
-            "detect_browser_language": true,
-            "layout": "float",
-            "float_position": "bottom-right"
-        };
 
-        // Remove TODOS scripts GTranslate existentes
-        setTimeout(() => {
-            // Limpa qualquer widget anterior
-            const existingScripts = document.querySelectorAll('script[src*="gtranslate"]');
-            existingScripts.forEach(s => s.remove());
-            
-            const existingWrappers = document.querySelectorAll('.gtranslate_wrapper, .gt_wrapper');
-            existingWrappers.forEach(w => w.remove());
-            
-            // Cria novo wrapper limpo
-            let wrapper = document.querySelector('.gtranslate_wrapper');
-            if (!wrapper) {
-                wrapper = document.createElement('div');
-                wrapper.className = 'gtranslate_wrapper';
-                document.body.appendChild(wrapper);
-            }
-            
-            // Carrega float.js FORÇADAMENTE
-            const floatScript = document.createElement('script');
-            floatScript.src = 'https://cdn.gtranslate.net/widgets/latest/float.js';
-            floatScript.async = true;
-            floatScript.id = 'gtranslate-float';
-            document.head.appendChild(floatScript);
-            
-            console.log('✅ GTranslate float widget carregado definitivamente');
-        }, 300);
-
-        // VERIFICAÇÃO FINAL - garante float em 3s
-        setTimeout(() => {
-            const hasFloat = document.querySelector('.gt_float_switcher, .gt_float_wrapper');
-            if (!hasFloat) {
-                console.warn('GTranslate: ainda sem float, recarregando...');
-                location.reload();
-            } else {
-                console.log('✅ GTranslate float widget confirmado!');
-            }
-        }, 3000);
     </script>
     <!-- FORÇAR BOTÃO TEMA FUNCIONAR -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    const toggleBtn = document.getElementById('theme-toggle');
-    const htmlEl = document.documentElement;
-    
-    if (!toggleBtn) return;
-    
-    function currentTheme() {
-        return htmlEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
-    }
-    
-    function applyTheme(theme) {
-        htmlEl.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        toggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-        toggleBtn.title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
-    }
-    
-    toggleBtn.addEventListener('click', () => {
-        const newTheme = currentTheme() === 'light' ? 'dark' : 'light';
-        applyTheme(newTheme);
-    });
-    
-    // Inicializar ícone
-    applyTheme(currentTheme());
-});
-    </script>
-        <!-- GTranslate settings: keep minimal to allow all languages and detect browser language. -->
-        <!-- NOTE: If the floating widget does not appear, confirm the floating selector is enabled in the
-                 GTranslate dashboard for your domain and that the account has the proper plan / license.
-                 You can also remove "wrapper_selector" to let the widget use default placement. -->
-        <script>
-                window.gtranslateSettings = {
-                    "default_language": "pt",
-                    "detect_browser_language": true,
-                    "wrapper_selector": ".gtranslate_wrapper"
-                };
-        </script>
-        <script src="https://cdn.gtranslate.net/widgets/latest/float.js"></script>
-        <script>
-            (function(){
-                function loadScript(url) {
-                    var s = document.createElement('script');
-                    s.src = url;
-                    s.async = true;
-                    document.body.appendChild(s);
-                }
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleBtn = document.getElementById('theme-toggle');
+            const htmlEl = document.documentElement;
 
-                // After a short delay, verify the widget was created; if not, load a dropdown fallback
-                setTimeout(function(){
-                    var wrapper = document.querySelector('.gtranslate_wrapper');
-                    var hasChild = wrapper && wrapper.children && wrapper.children.length > 0 && wrapper.innerText.trim().length > 0;
-                    if (!(wrapper && hasChild)) {
-                        console.warn('GTranslate: float widget not detected — loading dropdown fallback.');
-                        loadScript('https://cdn.gtranslate.net/widgets/latest/dropdown.js');
-                    } else {
-                        console.info('GTranslate: float widget detected and active.');
-                    }
-                }, 1200);
-            })();
-        </script>
-        <!-- Optional fallback: if float does not work and you want an inline/dropdown selector instead,
-            uncomment the following line and comment out the float.js script above: -->
-        <!-- <script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js"></script> -->
+            if (!toggleBtn) return;
+
+            function currentTheme() {
+                return htmlEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+            }
+
+            function applyTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                toggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+                toggleBtn.title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+            }
+
+            toggleBtn.addEventListener('click', () => {
+                const newTheme = currentTheme() === 'light' ? 'dark' : 'light';
+                applyTheme(newTheme);
+            });
+
+            // Inicializar ícone
+            applyTheme(currentTheme());
+        });
+    </script>
+    <!-- GTranslate Configuration - Optimized single load with Brazilian flag -->
+    <script>
+        window.gtranslateSettings = {
+            "default_language": "pt-BR",
+            "detect_browser_language": true,
+            "languages": ["pt-BR", "en", "es", "fr", "de", "it"],
+            "wrapper_selector": ".gtranslate_wrapper",
+            "float_switcher_open_direction": "bottom"
+        };
+    </script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+    <!-- Optional fallback for compatibility -->
     <div class="gtranslate_wrapper"></div>
 </body>
 

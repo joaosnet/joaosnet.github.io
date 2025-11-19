@@ -134,22 +134,22 @@ def generate_project_html(project, is_last=False, position='left'):
     
     # Private vs Public display logic
     if is_private:
-        title_html = f'''<span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
+        title_html = f'''<span style="color:var(--primary); border-bottom:2px solid var(--primary); cursor:default;">
                                     {name} <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
                                 </span>'''
-        button_html = f'''<span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
+        button_html = f'''<span style="display:inline-block; padding:8px 16px; background:var(--glass-bg); color:var(--text-gray); border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid var(--border-light); cursor:default;">
                                 Privado
                             </span>'''
     else:
-        title_html = f'''<a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
+        title_html = f'''<a href="{html_url}" target="_blank" style="color:var(--primary); text-decoration:none; border-bottom:2px solid var(--primary);">
                                     {name}
                                 </a>'''
-        button_html = f'''<a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
+        button_html = f'''<a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:var(--primary); color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid var(--primary);">
                                 Ver no GitHub →
                             </a>'''
 
     # Content card styles
-    card_style = "background:#f6f8fa; border:1px solid #d0d7de; border-radius:8px; padding:20px;"
+    card_style = "background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px;"
     
     if position == 'left':
         # Content on LEFT side, dot on CENTER
@@ -158,8 +158,8 @@ def generate_project_html(project, is_last=False, position='left'):
                         <!-- Content Left -->
                         <div style="{card_style} text-align:right;">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
+                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
+                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
@@ -168,10 +168,10 @@ def generate_project_html(project, is_last=False, position='left'):
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
                                 {title_html}
                             </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">{description}</p>
+                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">{description}</p>
                             
                             <!-- Button -->
                             {button_html}
@@ -179,7 +179,7 @@ def generate_project_html(project, is_last=False, position='left'):
                         
                         <!-- Timeline Dot (CENTER) -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
                         </div>
                         
                         <!-- Empty space on RIGHT -->
@@ -194,14 +194,14 @@ def generate_project_html(project, is_last=False, position='left'):
                         
                         <!-- Timeline Dot (CENTER) -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
+                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
                         </div>
                         
                         <!-- Content Right -->
                         <div style="{card_style} text-align:left;">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:#fff; padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid #d0d7de;">
-                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:#57606a; font-weight:600;">{updated_str}</time>
+                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
+                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
@@ -210,10 +210,10 @@ def generate_project_html(project, is_last=False, position='left'):
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
+                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
                                 {title_html}
                             </h3>
-                            <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">{description}</p>
+                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">{description}</p>
                             
                             <!-- Button -->
                             {button_html}
@@ -712,29 +712,8 @@ def main():
     # Sort by updated_at descending
     my_repos.sort(key=lambda x: x['updated_at'], reverse=True)
     
-    # Separate by owner type to balance representation
-    owner_repos = [r for r in my_repos if r.get('owner', {}).get('login') == 'joaosnet']
-    org_repos = [r for r in my_repos if r.get('owner', {}).get('login') != 'joaosnet']
-    
-    print(f"\n  Owner repos (filtered): {len(owner_repos)}")
-    print(f"  Organization repos (filtered): {len(org_repos)}")
-    if org_repos:
-        org_names = set(r.get('owner', {}).get('login') for r in org_repos)
-        print(f"    Organizations: {', '.join(org_names)}")
-    
-    # Select top 4: prioritize ANY organization repos first, then owner repos
-    # This way, any new organization you join will automatically appear at the top
-    top_projects = []
-    
-    # Add organization repos first (up to 2)
-    if org_repos:
-        top_projects.extend(org_repos[:min(2, len(org_repos))])
-    
-    # Then add owner repos to fill up to 4
-    if len(top_projects) < 4:
-        top_projects.extend(owner_repos[:max(0, 4 - len(top_projects))])
-    
-    top_projects = top_projects[:4]
+    # Select top 4 purely by date (updated_at)
+    top_projects = my_repos[:4]
     
     print(f"\nProcessing {len(top_projects)} top projects...")
     projects_html = ""
@@ -765,7 +744,7 @@ def main():
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
                 <div style="position:relative; padding:20px 0;">
                     <!-- Central vertical line -->
-                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, #0969da 0%, #d0d7de 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
+                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--primary) 0%, var(--border-light) 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
                     
                     <!-- Timeline items container -->
                     <div style="position:relative; z-index:2;">
