@@ -4,6 +4,12 @@ on:
   schedule:
     - cron: '0 0 * * *' # Runs every day at midnight
   workflow_dispatch: # Allows manual trigger
+  push:
+    branches:
+      - main
+    paths:
+      - 'update_projects.py' # Trigger when script is updated
+      - '.github/workflows/update_projects.yml' # Trigger when workflow is updated
 
 jobs:
   update-projects:
