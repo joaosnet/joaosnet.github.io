@@ -64,6 +64,8 @@ def generate_project_html(project, is_last=False):
     html_url = project['html_url']
     image = project.get('preview_image')
     updated_at = project.get('updated_at')
+    is_private = project.get('private', False)
+
     # format updated_at if present
     updated_str = ''
     updated_iso = ''
@@ -85,6 +87,27 @@ def generate_project_html(project, is_last=False):
     if is_last:
         line_bg = "background:linear-gradient(to bottom, #d0d7de 0%, transparent 100%);"
 
+    # Private vs Public display logic
+    if is_private:
+        # No link for private repos, and a lock icon
+        title_html = f'''
+                                <span style="color:#0969da; border-bottom:2px solid #0969da; cursor:default;">
+                                    {name} <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
+                                </span>'''
+        button_html = f'''
+                            <span style="display:inline-block; padding:8px 16px; background:#f6f8fa; color:#57606a; border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid #d0d7de; cursor:default;">
+                                Privado
+                            </span>'''
+    else:
+        title_html = f'''
+                                <a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
+                                    {name}
+                                </a>'''
+        button_html = f'''
+                            <a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
+                                Ver no GitHub →
+                            </a>'''
+
     html = f"""
                     <div class="timeline-item" style="display:flex; gap:24px; padding-bottom:40px; position:relative;">
                         <!-- Timeline dot -->
@@ -105,16 +128,12 @@ def generate_project_html(project, is_last=False):
                             
                             <!-- Project info -->
                             <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:#0969da; word-break:break-word;">
-                                <a href="{html_url}" target="_blank" style="color:#0969da; text-decoration:none; border-bottom:2px solid #0969da;">
-                                    {name}
-                                </a>
+                                {title_html}
                             </h3>
                             <p style="margin:0 0 12px 0; color:#57606a; font-size:0.95rem; line-height:1.5;">{description}</p>
                             
                             <!-- Button -->
-                            <a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:#0969da; color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid #0969da;">
-                                Ver no GitHub →
-                            </a>
+                            {button_html}
                         </div>
                     </div>"""
     return html
