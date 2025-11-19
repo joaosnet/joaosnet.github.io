@@ -224,6 +224,34 @@ def generate_project_html(project, is_last=False, position='left'):
     return html
 
 
+def get_repo_default_branch(owner, repo_name, token):
+    """Get the default branch of a repository using GitHub API."""
+    try:
+        headers = {'Accept': 'application/vnd.github.v3+json'}
+        if token:
+            headers['Authorization'] = f'token {token}'
+        
+        url = f"https://api.github.com/repos/{owner}/{repo_name}"
+        
+        if _HAS_REQUESTS:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                return data.get('default_branch', 'main')
+        else:
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as r:
+                    data = json.loads(r.read().decode('utf-8'))
+                    return data.get('default_branch', 'main')
+            except Exception:
+                pass
+    except Exception:
+        pass
+    
+    return 'main'  # Default fallback
+
+
 def find_image_in_readme(owner, repo_name, token):
     """Extract image URL from README file.
     Looks for markdown images: ![alt](url) or ![alt][ref] or HTML <img> tags.
@@ -236,22 +264,24 @@ def find_image_in_readme(owner, repo_name, token):
         if token:
             headers['Authorization'] = f'token {token}'
         
-        # GitHub API endpoint for README
+        # GitHub API endpoint for README - this endpoint returns the raw README content
         url = f"https://api.github.com/repos/{owner}/{repo_name}/readme"
         
+        readme_content = None
         if _HAS_REQUESTS:
             response = requests.get(url, headers=headers, timeout=10)
             if response.status_code == 200:
                 readme_content = response.text
-            else:
-                return None
         else:
             try:
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req, timeout=10) as r:
                     readme_content = r.read().decode('utf-8')
             except urllib.error.HTTPError:
-                return None
+                pass
+        
+        if not readme_content:
+            return None
         
         # Extract images using regex
         # Pattern 1: ![alt](url)
@@ -267,19 +297,25 @@ def find_image_in_readme(owner, repo_name, token):
             if alt_text.lower() in ['build', 'status', 'coverage', 'license', 'version', 'downloads']:
                 continue
             
-            # Ensure URL is absolute
+            # Skip single-line badges at the start (usually status badges)
+            if len(alt_text) < 20 and alt_text.isupper():
+                continue
+            
+            # Ensure URL is absolute or can be converted to absolute
             if img_url.startswith('http'):
                 print(f"  ✓ Found image in README: {img_url[:60]}...")
                 return img_url
             elif img_url.startswith('/'):
-                # Relative path from repo root
-                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main{img_url}"
-                print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
+                # Relative path from repo root - use default branch
+                default_branch = get_repo_default_branch(owner, repo_name, token)
+                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
+                print(f"  ✓ Found image in README (relative): {img_url_full[:60]}...")
                 return img_url_full
-            elif img_url.startswith('assets/') or img_url.startswith('images/') or img_url.startswith('docs/') or img_url.startswith('screenshots/'):
+            elif any(img_url.startswith(prefix) for prefix in ['assets/', 'images/', 'docs/', 'screenshots/', 'public/', 'src/']):
                 # Common relative paths
-                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main/{img_url}"
-                print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
+                default_branch = get_repo_default_branch(owner, repo_name, token)
+                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url}"
+                print(f"  ✓ Found image in README (relative): {img_url_full[:60]}...")
                 return img_url_full
         
         return None
