@@ -311,7 +311,12 @@ def find_image_in_readme(owner, repo_name, token):
                 print(f"      - Imagem {idx+1}: badge detectado, pulando")
                 continue
             
-            # Skip very small common badges (by checking alt text)
+            # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, not content images
+            if 'avatars.githubusercontent.com' in img_url:
+                print(f"      - Imagem {idx+1}: avatar do GitHub, pulando")
+                continue
+            
+            # Very small common badges (by checking alt text)
             if alt_text.lower() in ['build', 'status', 'coverage', 'license', 'version', 'downloads']:
                 print(f"      - Imagem {idx+1}: alt text '{alt_text}' é um badge, pulando")
                 continue
