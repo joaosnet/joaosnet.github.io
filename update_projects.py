@@ -295,9 +295,19 @@ def find_image_in_readme(owner, repo_name, token):
             return None
         
         # Extract images using regex
-        # Pattern 1: ![alt](url)
+        # Pattern 1: ![alt](url) - Markdown images
         markdown_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
         matches = re.findall(markdown_pattern, readme_content)
+        
+        # Pattern 2: <img src="url" ...> - HTML images
+        html_pattern = r'<img\s+[^>]*src=["\']([^"\']+)["\'][^>]*(?:alt=["\']([^"\']*)["\'])?[^>]*>'
+        html_matches = re.findall(html_pattern, readme_content)
+        # Convert HTML matches to same format as markdown (alt, url)
+        # For HTML, url comes first, alt comes second or might be empty
+        html_matches_converted = [(html_match[1] if len(html_match) > 1 else '', html_match[0]) for html_match in html_matches]
+        
+        # Combine both patterns
+        matches = matches + html_matches_converted
         
         if not matches:
             print(f"    ℹ Nenhuma imagem encontrada no README")
