@@ -12,6 +12,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
         rel="stylesheet">
+    <link rel="icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <style>
         :root {
             --primary: #3b82f6;
@@ -1276,8 +1279,8 @@
         /* GTranslate wrapper: force floating visible above FAB and overlays */
         .gtranslate_wrapper {
             position: fixed !important;
-            right: 20px !important;
-            top: 100px !important;
+            left: 20px !important;
+            bottom: 20px !important;
             z-index: 99999 !important;
         }
 
@@ -1360,8 +1363,8 @@
 
         @media (max-width: 768px) {
             .gtranslate_wrapper {
-                right: 16px !important;
-                top: 80px !important;
+                left: 16px !important;
+                bottom: 16px !important;
             }
 
             .gtranslate_wrapper .gt_switcher,
@@ -1939,18 +1942,20 @@
             applyTheme(currentTheme());
         });
     </script>
-    <!-- GTranslate Configuration - Optimized single load with Brazilian flag -->
+    <!-- GTranslate Configuration - Fixed positioning and styling -->
     <script>
         window.gtranslateSettings = {
             "default_language": "pt-BR",
             "detect_browser_language": true,
             "languages": ["pt-BR", "en", "es", "fr", "de", "it"],
             "wrapper_selector": ".gtranslate_wrapper",
-            "float_switcher_open_direction": "bottom"
+            "float_switcher_open_direction": "bottom",
+            "float_switcher_horizontal": "left",
+            "float_switcher_vertical": "bottom"
         };
     </script>
     <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
-    <!-- Optional fallback for compatibility -->
+    <!-- Fixed GTranslate wrapper positioned correctly -->
     <div class="gtranslate_wrapper"></div>
 </body>
 
