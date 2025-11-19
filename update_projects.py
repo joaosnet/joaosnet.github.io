@@ -31,11 +31,16 @@ import re
 import json
 
 def fetch_projects():
-    url = "https://api.github.com/users/joaosnet/repos"
-    headers = {'Accept': 'application/vnd.github.v3+json'}
+    # If we have a token, use the authenticated user endpoint to get private repos too
     token = os.environ.get('GITHUB_TOKEN')
     if token:
-        headers['Authorization'] = f'token {token}'
+        url = "https://api.github.com/user/repos?visibility=all&affiliation=owner,collaborator&sort=updated"
+        headers = {'Authorization': f'token {token}', 'Accept': 'application/vnd.github.v3+json'}
+    else:
+        # Fallback to public only if no token
+        url = "https://api.github.com/users/joaosnet/repos"
+        headers = {'Accept': 'application/vnd.github.v3+json'}
+
     try:
         if _HAS_REQUESTS:
             response = requests.get(url, headers=headers)
@@ -53,7 +58,7 @@ def fetch_projects():
         print(f"Error fetching repos: {e}")
         return []
 
-def generate_project_html(project):
+def generate_project_html(project, is_last=False):
     name = project['name']
     description = project['description']
     html_url = project['html_url']
@@ -75,12 +80,17 @@ def generate_project_html(project):
     if image:
         img_html = f'<img src="{image}" alt="{name} preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>'
     
+    # Line style
+    line_bg = "background:#d0d7de;"
+    if is_last:
+        line_bg = "background:linear-gradient(to bottom, #d0d7de 0%, transparent 100%);"
+
     html = f"""
-                    <div class="timeline-item" style="display:flex; gap:24px; margin-bottom:40px; position:relative;">
+                    <div class="timeline-item" style="display:flex; gap:24px; padding-bottom:40px; position:relative;">
                         <!-- Timeline dot -->
                         <div style="display:flex; flex-direction:column; align-items:center; min-width:40px;">
                             <div style="width:16px; height:16px; background:#0969da; border:4px solid #fff; border-radius:50%; position:relative; z-index:2;"></div>
-                            <div style="width:2px; height:80px; background:#d0d7de; margin-top:8px;"></div>
+                            <div style="width:2px; flex:1; {line_bg} margin-top:8px;"></div>
                         </div>
                         
                         <!-- Content -->
@@ -281,7 +291,7 @@ def main():
     top_projects = my_repos[:4]
     
     projects_html = ""
-    for project in top_projects:
+    for i, project in enumerate(top_projects):
         # find preview image (social preview only)
         img, source = find_repo_preview_image(project)
         if img:
@@ -293,7 +303,9 @@ def main():
             img = fallback_img
         # attach to project for template
         project['preview_image'] = img
-        projects_html += generate_project_html(project)
+        
+        is_last = (i == len(top_projects) - 1)
+        projects_html += generate_project_html(project, is_last)
     
     # Wrap projects in timeline container
     timeline_html = f"""
