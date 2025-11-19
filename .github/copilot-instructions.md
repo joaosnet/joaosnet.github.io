@@ -5,11 +5,22 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Architecture & Key Components
 - **Frontend**: Vanilla HTML5, CSS3 (SCSS), and JavaScript. No framework (React/Vue/etc.) is used for the runtime site.
+- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (5 specialized modules).
 - **Automation**: `update_projects.py` is the core automation engine. It fetches repository data from the GitHub API and injects HTML into `index.html`. Supports both public and private repositories (with authentication).
-- **Styling**: Uses CSS variables for theming (Light/Dark mode). Critical styles are inline in `index.html`. SCSS files are in `assets/sass/` for maintainability.
+- **Styling**: Uses CSS variables for theming (Light/Dark mode). Styles are now separated into `assets/css/styles.css` with SCSS source files in `assets/sass/` for maintainability.
 - **Assets**: Located in `assets/`:
-  - `assets/js/theme.js` - Theme toggling (light/dark), contact form submission with Formspree fallback, view counter, and FAB behavior
-  - `assets/css/` - Compiled CSS files (main.css, noscript.css, fontawesome-all.min.css)
+  - **CSS**: 
+    - `assets/css/styles.css` - Main stylesheet (modularized, ~1000 lines)
+    - `assets/css/main.css` - Compiled from SCSS (legacy)
+    - `assets/css/noscript.css` - No-JavaScript fallbacks
+    - `assets/css/fontawesome-all.min.css` - FontAwesome icons
+  - **JavaScript** (5 specialized modules):
+    - `assets/js/theme-manager.js` - Light/dark theme toggling (class ThemeManager)
+    - `assets/js/mobile-menu.js` - Mobile menu handling (class MobileMenuHandler)
+    - `assets/js/animations.js` - Scroll animations and observers (class AnimationsHandler)
+    - `assets/js/contact-form.js` - Form submission and FAB (class ContactFormHandler)
+    - `assets/js/utils.js` - Particles, floating shapes, and view counter (FloatingShapesHandler, ViewsCounter, initParticles)
+    - `assets/js/theme.js` - Legacy theme handling (kept for compatibility)
   - `assets/sass/` - SCSS source files (main.scss, noscript.scss, libs/ with _breakpoints.scss, _functions.scss, _mixins.scss, _vars.scss, _vendor.scss)
   - `assets/project-images/` - Downloaded images from private repositories
   - `assets/webfonts/` - FontAwesome webfonts
@@ -36,35 +47,113 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Code Conventions & Patterns
 - **Language**: The site content is in Portuguese (pt-br).
-- **HTML Injection**:
-  - When modifying `update_projects.py`, ensure the generated HTML matches the existing design patterns (alternating timeline layout).
-  - Always preserve the comment markers `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->`.
-  - Projects are rendered as a grid layout with 3 columns (content | dot | empty/empty | dot | content alternating).
-  - Card styling uses inline styles for consistency: background (#f6f8fa), border (#d0d7de), padding (20px), border-radius (8px).
-  - Date badges use time elements with `datetime` attribute for semantic HTML and accessibility.
+- **HTML Structure**:
+  - `index.html` is now lean (~434 lines) containing only semantic HTML structure.
+  - All styles are referenced from `assets/css/styles.css`.
+  - All JavaScript is loaded via 5 modular scripts in the correct order.
+  - The `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers must be preserved for `update_projects.py`.
+- **CSS Architecture**:
+  - **Main file**: `assets/css/styles.css` (~1000 lines, organized by sections):
+    - Variables & Theme Configuration
+    - Base Styles & Typography
+    - Header & Navigation
+    - Hero Section
+    - Buttons (primary, secondary, loading states)
+    - Floating Shapes & Animations
+    - Features Grid
+    - Specs Section (Projects timeline)
+    - CTA & Contact Section
+    - Footer
+    - Floating Action Button (FAB)
+    - Animations & Keyframes
+    - Responsive Design (mobile-first)
+  - Uses CSS variables for theming:
+    - Dark mode (default): `--primary: #3b82f6`, `--secondary: #8b5cf6`, `--accent: #06b6d4`, etc.
+    - Light mode: Override via `html[data-theme="light"]`
+  - No inline styles in HTML (except data attributes).
+- **JavaScript Modules** (5 specialized modules):
+  - **`theme-manager.js`** (Class: ThemeManager)
+    - Methods: `getCurrentTheme()`, `toggleTheme()`, `applyTheme(theme)`, `updateToggleIcon(theme)`
+    - Handles theme persistence via localStorage
+    - Initializes on `DOMContentLoaded`
+  - **`mobile-menu.js`** (Class: MobileMenuHandler)
+    - Methods: `toggleMenu()`, `closeMenu()`
+    - Manages `.menu-open` class on body
+    - Handles overlay clicks and nav link clicks
+    - Initializes on `DOMContentLoaded`
+  - **`animations.js`** (Class: AnimationsHandler)
+    - Methods: `setupScrollAnimations()`, `setupHeaderScrollEffect()`, `setupSmoothScrolling()`
+    - IntersectionObserver for `.hidden` and `.timeline-item-*` elements
+    - Smooth scroll for anchor links
+    - Header scroll state management
+    - Initializes on `DOMContentLoaded`
+  - **`contact-form.js`** (Class: ContactFormHandler)
+    - Methods: `handleSubmit()`, `openMailClient()`, `copyEmailToClipboard()`, `openGmail()`, `scrollToForm()`, `showToast()`
+    - Form submission to Formspree with fallback behavior
+    - Toast notifications with auto-hide
+    - FAB smooth scroll and focus
+    - Email utilities (copy, open in client, Gmail)
+    - Initializes on `DOMContentLoaded`
+  - **`utils.js`** (Multiple utilities)
+    - Class: FloatingShapesHandler - Mouse move tracking for floating shapes
+    - Class: ViewsCounter - localStorage-based view counter (yearly)
+    - Function: initParticles() - particles.js configuration
+    - All initialize on `DOMContentLoaded`
+- **HTML Injection** (via update_projects.py):
+  - The script looks for `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers. **Do not remove these.**
+  - Fetches up to 100 repositories with affiliation filter (owner, collaborator, organization_member).
+  - Selects top 4 projects (prioritizing organization repos up to 2, then owner repos).
+  - Extracts preview images from README files or uses social preview/avatar as fallback.
+  - For private repos with relative image paths, downloads images to `assets/project-images/`.
+  - Generates alternating left/right timeline layout (grid-based) with metadata (updated date, description).
+  - Output: Timeline-style HTML with 3-column grid (content | dot | empty or empty | dot | content).
 - **Contact Form**:
   - Uses Formspree (`https://formspree.io/f/mdoqyljj`) with POST method.
-  - Includes fallbacks: on fetch error, redirects to `mailto:` link; on network error, opens Gmail compose page.
+  - Includes fallbacks: on fetch error, opens mailto link or Gmail compose.
   - Form fields: `name`, `email`, `message` (all plaintext).
   - Success toast message: "Mensagem enviada com sucesso! Obrigado."
   - Form resets after successful submission; submit button shows temporary "Enviado! ✓" state.
 - **External Libraries**:
-  - `particles.js` for background effects (included via CDN in index.html).
+  - `particles.js` (v2.0.0) for background effects (loaded via CDN).
   - FontAwesome 6.4.0 for icons (via CDN).
   - Google Fonts: Outfit (body text, sans-serif) and Space Grotesk (headings, monospace).
-  - CountAPI.xyz for unique views counter (persisted per browser session via localStorage).
+  - View counter: 100% localStorage-based (no external API).
 - **JavaScript Patterns**:
-  - All event listeners are vanilla DOM API (no jQuery or frameworks).
-  - Toast notifications managed via `showToast()` helper with auto-hide after 3.5 seconds.
-  - FAB (Floating Action Button) smoothly scrolls to contact form and focuses message field.
+  - All modules use vanilla DOM API (no jQuery or frameworks).
+  - Classes are used for organization; auto-initialize on `DOMContentLoaded`.
+  - Toast notifications via `showToast()` helper with auto-hide after 3.5 seconds.
+  - FAB smoothly scrolls to contact form and focuses message field.
   - Theme persistence uses `localStorage.setItem('theme', theme)`.
+  - Load order matters: particles.js → utils.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js.
 
 ## Development Guidelines
-- **CSS**: Prefer using the defined CSS variables for colors to ensure dark/light mode compatibility. Main variables:
-  - Dark mode: `--primary: #3b82f6`, `--secondary: #8b5cf6`, `--dark: #020617`, `--light: #f8fafc`, `--accent: #06b6d4`
-  - Light mode: `--primary: #1d4ed8`, `--secondary: #9333ea`, `--dark: #f9fafb`, `--light: #111827`, `--accent: #0e7490`
-  - For cards and backgrounds: `--bg-card`, `--header-bg`, `--glass-bg`, `--input-bg`, `--border-light`
-- **JavaScript**: Keep it vanilla. Avoid adding heavy dependencies. Use fetch API for HTTP requests with appropriate error handling.
+- **CSS**: 
+  - All CSS is now centralized in `assets/css/styles.css`.
+  - Prefer using the defined CSS variables for colors to ensure dark/light mode compatibility.
+  - Main variables:
+    - Dark mode (default): `--primary: #3b82f6`, `--secondary: #8b5cf6`, `--dark: #020617`, `--light: #f8fafc`, `--accent: #06b6d4`
+    - Light mode: `--primary: #1d4ed8`, `--secondary: #7c3aed`, `--dark: #ffffff`, `--light: #0f172a`, `--accent: #0891b2`
+    - For cards and backgrounds: `--bg-card`, `--header-bg`, `--glass-bg`, `--input-bg`, `--border-light`
+  - Organize new styles by section (use existing sections as reference).
+  - Use media queries from breakpoints: mobile (480px), tablet (768px), desktop (1200px+).
+- **JavaScript**: 
+  - Keep it vanilla (no heavy frameworks).
+  - Use classes for organization, auto-initialize on `DOMContentLoaded`.
+  - Use fetch API for HTTP requests with appropriate error handling.
+  - Follow the pattern: Constructor → init() → other methods.
+  - Always handle errors gracefully with try-catch blocks.
+  - Use meaningful variable and method names.
+- **Adding New Features**:
+  - For new HTML elements: Add to `index.html` with semantic tags.
+  - For new styles: Add to `assets/css/styles.css` in appropriate section.
+  - For new functionality: Create new class in `assets/js/` and initialize on `DOMContentLoaded`.
+  - Load new scripts in `index.html` in correct order (after dependencies).
+- **Modifying Existing Modules**:
+  - **Theme**: Edit `assets/js/theme-manager.js` (logic) and `assets/css/styles.css` (colors in `:root` and `html[data-theme="light"]`).
+  - **Menu**: Edit `assets/js/mobile-menu.js` (logic) and search for `.menu-toggle`, `.menu-open`, `.overlay` in `assets/css/styles.css`.
+  - **Scroll**: Edit `assets/js/animations.js` (logic and intersection thresholds) and `.hidden`, `.show` classes in `assets/css/styles.css`.
+  - **Contact**: Edit `assets/js/contact-form.js` (form logic) and `.contact-form`, `.form-*` classes in `assets/css/styles.css`.
+  - **Utilities**: Edit `assets/js/utils.js` (particles config, shapes animation, counter logic).
 - **Python Script (`update_projects.py`)**:
   - Use `requests` library if available, maintain `urllib` fallback for compatibility.
   - Handle API errors gracefully with try-except blocks and informative print statements.
@@ -73,12 +162,20 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Exclude forks and repositories without descriptions from selection.
   - Output timeline HTML with 3-column grid layout for alternating left/right cards.
   - Update copyright year and "Última atualização" timestamp in footer on each run.
+  - Only modify content between `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers.
 - **Responsive Design**: 
-  - Use media queries from `_breakpoints.scss` for mobile/tablet/desktop layouts.
+  - Use media queries from `assets/css/styles.css` (breakpoints: 480px, 768px, 1200px).
   - Timeline collapses to single column on smaller screens (align items to center).
   - Font sizes scale appropriately for readability.
+  - Test on mobile (< 480px), tablet (480-768px), and desktop (> 768px).
 
 ## Key Files
-- `index.html`: Main entry point. Contains structure and critical CSS.
-- `update_projects.py`: Automation script for content updates.
-- `assets/js/theme.js`: Theme toggling and form logic.
+- `index.html`: Main entry point. Contains semantic HTML structure (~434 lines).
+- `assets/css/styles.css`: Main stylesheet with all CSS (~1000 lines, organized by sections).
+- `assets/js/theme-manager.js`: Theme toggling logic (light/dark mode).
+- `assets/js/mobile-menu.js`: Mobile menu toggle and overlay handling.
+- `assets/js/animations.js`: Scroll animations, intersection observers, smooth scrolling.
+- `assets/js/contact-form.js`: Form submission, email utilities, FAB, toast notifications.
+- `assets/js/utils.js`: Particles configuration, floating shapes, view counter.
+- `assets/js/theme.js`: Legacy theme handling (kept for compatibility).
+- `update_projects.py`: Automation script to fetch GitHub repos and update project timeline.
