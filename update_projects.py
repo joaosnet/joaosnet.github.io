@@ -97,6 +97,8 @@ def find_repo_preview_image(repo):
     headers = {'Accept': 'application/vnd.github.v3+json'}
     if token:
         headers['Authorization'] = f'token {token}'
+    else:
+        print('Warning: GITHUB_TOKEN not set; you may hit GitHub API rate limits. Consider setting it in GitHub Actions as env var GITHUB_TOKEN.')
 
     for p in possible_paths:
         url = f'https://api.github.com/repos/{owner}/{name}/contents/{p}?ref={branch}'
@@ -121,6 +123,22 @@ def find_repo_preview_image(repo):
             continue
         except Exception:
             continue
+    # As a fallback, try using GitHub's OpenGraph image for the repo (better than owner's avatar)
+    try:
+        opengraph_url = f'https://opengraph.githubassets.com/1/{owner}/{name}'
+        # Do a quick HEAD request to see if it exists
+        if _HAS_REQUESTS:
+            r = requests.head(opengraph_url)
+            if r.status_code == 200:
+                return opengraph_url
+        else:
+            req = urllib.request.Request(opengraph_url, method='HEAD')
+            with urllib.request.urlopen(req) as r:
+                if r.status == 200:
+                    return opengraph_url
+    except Exception:
+        pass
+
     return None
 
 def update_index_html(projects_html):
@@ -193,9 +211,9 @@ def main():
         # find preview image
         img = find_repo_preview_image(project)
         if not img:
-            # fallback to owner's avatar or local placeholder asset
-            fallback_img = project['owner'].get('avatar_url') or './assets/css/images/icon.png'
-            print(f"No preview image found for {project['name']}, using fallback: {fallback_img}")
+            # fallback to repo OpenGraph or local placeholder; do NOT default to owner's avatar
+            fallback_img = './assets/css/images/icon.png'
+            print(f"No preview image found for {project['name']}; using placeholder: {fallback_img}")
             img = fallback_img
         # attach to project for template
         project['preview_image'] = img
