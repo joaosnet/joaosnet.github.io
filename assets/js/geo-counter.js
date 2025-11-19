@@ -129,9 +129,116 @@ class GeoViewsCounter {
     }
 
     /**
-     * Faz request para ip-api.com para obter geolocalização
+     * Faz request para obter geolocalização (com fallback para múltiplos serviços)
      */
     async fetchGeoData() {
+        try {
+            // Tentar primeiro com ipapi.co (melhor CORS)
+            let data = await this.tryIpapiCo();
+            if (data) return data;
+            
+            // Fallback para ip-api.com
+            data = await this.tryIpApiCom();
+            if (data) return data;
+            
+            // Último fallback: apenas IP sem geolocalização
+            const ipData = await this.tryGetIpOnly();
+            if (ipData) return ipData;
+            
+            console.warn('[GeoViewsCounter] Nenhum serviço de geo funcionou');
+            return null;
+            
+        } catch (error) {
+            console.warn('[GeoViewsCounter] Erro ao fazer fetch de geo:', error);
+            return null;
+        }
+    }
+
+    /**
+     * Tenta usar ipapi.co (tem melhor suporte CORS)
+     */
+    async tryIpapiCo() {
+        try {
+            const response = await fetch('https://ipapi.co/json/', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (!response.ok) return null;
+            
+            const data = await response.json();
+            if (!data.ip) return null;
+            
+            return {
+                ip: data.ip,
+                country: data.country_name || 'Desconhecido',
+                city: data.city || 'Desconhecido',
+                isp: data.org || 'Desconhecido'
+            };
+        } catch (error) {
+            console.log('[GeoViewsCounter] ipapi.co indisponível');
+            return null;
+        }
+    }
+
+    /**
+     * Tenta usar ip-api.com com modo não-sync
+     */
+    async tryIpApiCom() {
+        try {
+            const response = await fetch(this.GEO_API_URL + '?fields=ip,country,city,isp', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (!response.ok) return null;
+            
+            const data = await response.json();
+            if (!data.ip || data.status === 'fail') return null;
+            
+            return {
+                ip: data.ip,
+                country: data.country || 'Desconhecido',
+                city: data.city || 'Desconhecido',
+                isp: data.isp || 'Desconhecido'
+            };
+        } catch (error) {
+            console.log('[GeoViewsCounter] ip-api.com indisponível');
+            return null;
+        }
+    }
+
+    /**
+     * Último fallback: apenas obter IP público
+     */
+    async tryGetIpOnly() {
+        try {
+            const response = await fetch('https://api.ipify.org?format=json', {
+                method: 'GET',
+                headers: { 'Accept': 'application/json' }
+            });
+            
+            if (!response.ok) return null;
+            
+            const data = await response.json();
+            if (!data.ip) return null;
+            
+            return {
+                ip: data.ip,
+                country: 'Desconhecido',
+                city: 'Desconhecido',
+                isp: 'Desconhecido'
+            };
+        } catch (error) {
+            console.log('[GeoViewsCounter] Nenhum serviço de IP disponível');
+            return null;
+        }
+    }
+
+    /**
+     * [DEPRECATED] Método antigo - mantido para compatibilidade
+     */
+    async fetchGeoDataOld() {
         try {
             const response = await fetch(this.GEO_API_URL + '?fields=ip,country,city,isp', {
                 method: 'GET',
