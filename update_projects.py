@@ -19,6 +19,11 @@ except Exception:
     import urllib.request
     import urllib.error
     _HAS_REQUESTS = False
+try:
+    from github import Github as PyGithub
+    _HAS_PYGITHUB = True
+except Exception:
+    _HAS_PYGITHUB = False
 import os
 from datetime import datetime
 import re
@@ -101,10 +106,28 @@ def find_repo_preview_image(repo):
         print('Warning: GITHUB_TOKEN not set; you may hit GitHub API rate limits. Consider setting it in GitHub Actions as env var GITHUB_TOKEN.')
 
     # First, if GitHub provides an explicit open_graph_image_url, use it (social preview)
-    og_url = repo.get('open_graph_image_url') or repo.get('open_graph_image') or repo.get('social_preview')
-    if og_url:
-        print(f"Using repo.open_graph_image_url for {name}: {og_url}")
-        return og_url, 'open_graph_image_url'
+    # Try PyGithub first using the repo from REST API if available
+    token = os.environ.get('GITHUB_TOKEN')
+    if _HAS_PYGITHUB and token:
+        try:
+            gh = PyGithub(token)
+            gh_repo = gh.get_repo(f"{owner}/{name}")
+            og_url = getattr(gh_repo, 'open_graph_image_url', None)
+            if og_url:
+                print(f"Using repo.open_graph_image_url (PyGithub) for {name}: {og_url}")
+                return og_url, 'open_graph_image_url (pygithub)'
+        except Exception as e:
+            print(f"PyGithub lookup failed for {owner}/{name}: {e}")
+            # fallback to rest of checks
+    else:
+        if not _HAS_PYGITHUB:
+            print('PyGithub not available; falling back to REST/requests for preview retrieval.')
+
+    # If the repo JSON already contains an open_graph_image_url, prefer it
+    og_json = repo.get('open_graph_image_url') or repo.get('open_graph_image') or repo.get('social_preview')
+    if og_json:
+        print(f"Using repo.open_graph_image_url from API JSON for {name}: {og_json}")
+        return og_json, 'open_graph_image_url (json)'
 
     for p in possible_paths:
         url = f'https://api.github.com/repos/{owner}/{name}/contents/{p}?ref={branch}'
