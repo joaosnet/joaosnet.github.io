@@ -100,6 +100,12 @@ def find_repo_preview_image(repo):
     else:
         print('Warning: GITHUB_TOKEN not set; you may hit GitHub API rate limits. Consider setting it in GitHub Actions as env var GITHUB_TOKEN.')
 
+    # First, if GitHub provides an explicit open_graph_image_url, use it (social preview)
+    og_url = repo.get('open_graph_image_url') or repo.get('open_graph_image') or repo.get('social_preview')
+    if og_url:
+        print(f"Using repo.open_graph_image_url for {name}: {og_url}")
+        return og_url, 'open_graph_image_url'
+
     for p in possible_paths:
         url = f'https://api.github.com/repos/{owner}/{name}/contents/{p}?ref={branch}'
         try:
@@ -109,7 +115,8 @@ def find_repo_preview_image(repo):
                     data = r.json()
                     download_url = data.get('download_url')
                     if download_url:
-                        return download_url
+                        print(f"Found preview file {p} for {name}: {download_url}")
+                        return download_url, 'content_file'
             else:
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req) as r:
@@ -117,29 +124,32 @@ def find_repo_preview_image(repo):
                     data = json.loads(r.read().decode('utf-8'))
                     download_url = data.get('download_url')
                     if download_url:
-                        return download_url
+                        print(f"Found preview file {p} for {name}: {download_url}")
+                        return download_url, 'content_file'
         except urllib.error.HTTPError:
             # file not found or other HTTP error
             continue
         except Exception:
             continue
-    # As a fallback, try using GitHub's OpenGraph image for the repo (better than owner's avatar)
+    # As a fallback, try using GitHub's OpenGraph image for the repo (constructed URL)
     try:
         opengraph_url = f'https://opengraph.githubassets.com/1/{owner}/{name}'
         # Do a quick HEAD request to see if it exists
         if _HAS_REQUESTS:
             r = requests.head(opengraph_url)
             if r.status_code == 200:
-                return opengraph_url
+                print(f"Using constructed opengraph image for {name}: {opengraph_url}")
+                return opengraph_url, 'opengraph_constructed'
         else:
             req = urllib.request.Request(opengraph_url, method='HEAD')
             with urllib.request.urlopen(req) as r:
-                if r.status == 200:
-                    return opengraph_url
+                    if r.status == 200:
+                        print(f"Using constructed opengraph image for {name}: {opengraph_url}")
+                        return opengraph_url, 'opengraph_constructed'
     except Exception:
         pass
 
-    return None
+    return None, None
 
 def update_index_html(projects_html):
     file_path = 'index.html'
@@ -242,9 +252,11 @@ def main():
     projects_html = ""
     for project in top_projects:
         # find preview image
-        img = find_repo_preview_image(project)
-        if not img:
-            # fallback to repo OpenGraph or local placeholder; do NOT default to owner's avatar
+        img, source = find_repo_preview_image(project)
+        if img:
+            print(f"Project {project['name']} preview image chosen: {img} (source={source})")
+        else:
+            # fallback to local placeholder; do NOT default to owner's avatar
             fallback_img = './assets/css/images/icon.png'
             print(f"No preview image found for {project['name']}; using placeholder: {fallback_img}")
             img = fallback_img
