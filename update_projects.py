@@ -73,7 +73,7 @@ def generate_project_html(project):
     # Custom styling for specific projects if needed, or generic style
     img_html = ''
     if image:
-        img_html = f'<div style="margin-bottom:12px;"><img src="{image}" alt="{name} preview" style="width:100%; border-radius:12px; display:block; object-fit:cover;"/></div>'
+        img_html = f'<div style="margin-bottom:12px; max-width:100%; aspect-ratio:1.91/1; overflow:hidden; border-radius:12px;"><img src="{image}" alt="{name} preview" style="width:100%; height:100%; object-fit:cover; display:block;"/></div>'
     date_html = f'<div style="margin-top:8px; color:#94a3b8; font-size:0.9rem; font-weight:600;"><time datetime="{updated_iso}">Atualizado: {updated_str}</time></div>' if updated_str else ''
     html = f"""
                     <div class="specs-item">
