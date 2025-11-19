@@ -38,9 +38,41 @@ def get_api_token():
     """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
     return os.environ.get('PRIVATE_REPOS_TOKEN') or os.environ.get('GITHUB_TOKEN')
 
+def fetch_org_repos(org_name, token=None):
+    """Fetch repositories from a specific organization.
+    Returns a list of public repositories from that organization.
+    """
+    repos = []
+    headers = {'Accept': 'application/vnd.github.v3+json'}
+    if token:
+        headers['Authorization'] = f'token {token}'
+    
+    url = f"https://api.github.com/orgs/{org_name}/repos?sort=updated&per_page=100&type=public"
+    
+    try:
+        if _HAS_REQUESTS:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                repos = response.json()
+                print(f"  - Fetched {len(repos)} repos from organization '{org_name}'")
+                return repos
+            else:
+                print(f"  ⚠ Error fetching {org_name}: {response.status_code}")
+        else:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=10) as r:
+                repos = json.loads(r.read().decode('utf-8'))
+                print(f"  - Fetched {len(repos)} repos from organization '{org_name}'")
+                return repos
+    except Exception as e:
+        print(f"  ⚠ Error fetching organization {org_name}: {e}")
+    
+    return []
+
 def fetch_projects():
     """Fetch repositories from GitHub API.
     Tries authenticated endpoint first (public + private + collaborator + org), then falls back to public only.
+    Also explicitly fetches repos from configured featured organizations.
     Returns a combined list of all accessible repositories.
     """
     token = get_api_token()
@@ -66,8 +98,6 @@ def fetch_projects():
                     if org_repos:
                         org_names = set(r.get('owner', {}).get('login') for r in org_repos)
                         print(f"    Organizations: {', '.join(org_names)}")
-                    
-                    return repos
                 else:
                     print(f"Authenticated endpoint returned {response.status_code}; falling back to public repos...")
             else:
@@ -83,36 +113,52 @@ def fetch_projects():
                     if org_repos:
                         org_names = set(r.get('owner', {}).get('login') for r in org_repos)
                         print(f"    Organizations: {', '.join(org_names)}")
-                    
-                    return repos
         except urllib.error.HTTPError as e:
             print(f"Authenticated endpoint error ({e.code}); falling back to public repos...")
         except Exception as e:
             print(f"Error fetching from authenticated endpoint: {e}; falling back to public repos...")
     
-    # Fallback to public endpoint
-    headers_public = {'Accept': 'application/vnd.github.v3+json'}
-    url_public = "https://api.github.com/users/joaosnet/repos?sort=updated&per_page=100"
-    try:
-        if _HAS_REQUESTS:
-            response = requests.get(url_public, headers=headers_public, timeout=10)
-            if response.status_code == 200:
-                repos = response.json()
-                print(f"Successfully fetched {len(repos)} public repos via public endpoint")
-                return repos
+    # Fallback to public endpoint if authenticated endpoint failed
+    if not repos:
+        headers_public = {'Accept': 'application/vnd.github.v3+json'}
+        url_public = "https://api.github.com/users/joaosnet/repos?sort=updated&per_page=100"
+        try:
+            if _HAS_REQUESTS:
+                response = requests.get(url_public, headers=headers_public, timeout=10)
+                if response.status_code == 200:
+                    repos = response.json()
+                    print(f"Successfully fetched {len(repos)} public repos via public endpoint")
+                else:
+                    print(f"Error fetching public repos: {response.status_code}")
             else:
-                print(f"Error fetching public repos: {response.status_code}")
-        else:
-            req = urllib.request.Request(url_public, headers=headers_public)
-            with urllib.request.urlopen(req, timeout=10) as r:
-                repos = json.loads(r.read().decode('utf-8'))
-                print(f"Successfully fetched {len(repos)} public repos via public endpoint")
-                return repos
-    except Exception as e:
-        print(f"Error fetching public repos: {e}")
+                req = urllib.request.Request(url_public, headers=headers_public)
+                with urllib.request.urlopen(req, timeout=10) as r:
+                    repos = json.loads(r.read().decode('utf-8'))
+                    print(f"Successfully fetched {len(repos)} public repos via public endpoint")
+        except Exception as e:
+            print(f"Error fetching public repos: {e}")
     
-    print("Could not fetch repos from any endpoint")
-    return []
+    # Fetch repos from configured featured organizations
+    print(f"\nFetching repositories from {len(FEATURED_ORGANIZATIONS)} featured organizations...")
+    featured_org_repos = []
+    for org_name in FEATURED_ORGANIZATIONS:
+        org_repos_list = fetch_org_repos(org_name, token)
+        featured_org_repos.extend(org_repos_list)
+    
+    # Merge repos: avoid duplicates by repo full_name
+    existing_names = {r.get('full_name') for r in repos}
+    for org_repo in featured_org_repos:
+        if org_repo.get('full_name') not in existing_names:
+            repos.append(org_repo)
+            existing_names.add(org_repo.get('full_name'))
+    
+    if featured_org_repos:
+        print(f"Added {len([r for r in featured_org_repos if r.get('full_name') in existing_names])} repos from featured organizations")
+    
+    if not repos:
+        print("Could not fetch repos from any endpoint")
+    
+    return repos
 
 def generate_project_html(project, is_last=False, position='left'):
     name = project['name']
@@ -231,7 +277,7 @@ def generate_project_html(project, is_last=False, position='left'):
 
 def find_repo_preview_image(repo):
     """Fetch social preview image URL using GitHub GraphQL API.
-    Prefers actual repo social previews over organization avatars.
+    Attempts to find actual repo social previews. If not available, uses org avatar as fallback.
     Returns tuple: (image_url, source_name) or (None, None) if not found.
     """
     try:
@@ -247,11 +293,13 @@ def find_repo_preview_image(repo):
             print(f"  ⚠ Nenhum token disponível; não será possível buscar preview para {name}")
             return None, None
         
-        # Use GraphQL API to get openGraphImageUrl
+        # Use GraphQL API to get openGraphImageUrl and check if it's from custom preview
         graphql_query = """
         query($owner: String!, $name: String!) {
           repository(owner: $owner, name: $name) {
             openGraphImageUrl
+            description
+            homepageUrl
             repositoryTopics(first: 1) {
               nodes {
                 topic {
@@ -290,13 +338,22 @@ def find_repo_preview_image(repo):
                     if repo_data:
                         og_url = repo_data.get('openGraphImageUrl')
                         if og_url:
-                            # Check if it's an avatar image (from org) - these are typically not good repo previews
-                            is_avatar = 'avatars.githubusercontent.com' in og_url and ('?s=' in og_url or '/u/' in og_url)
-                            if is_avatar:
-                                print(f"  ⚠ Found org avatar (not using): {og_url[:80]}...")
-                                return None, None
+                            # Check if it's a custom social preview (not just avatar)
+                            # Real previews come from: opengraph.githubassets.com or repository-images.githubusercontent.com
+                            is_custom_preview = ('opengraph.githubassets.com' in og_url or 
+                                               'repository-images.githubusercontent.com' in og_url)
+                            is_org_avatar = 'avatars.githubusercontent.com' in og_url and '?s=' in og_url
+                            
+                            if is_custom_preview:
+                                print(f"  ✓ Found custom social preview")
+                                return og_url, 'openGraphImageUrl'
+                            elif is_org_avatar:
+                                # Use org avatar as fallback (better than placeholder)
+                                print(f"  ✓ Using org avatar as preview")
+                                return og_url, 'org_avatar'
                             else:
-                                print(f"  ✓ Found real social preview")
+                                # Other types of images
+                                print(f"  ✓ Using social image: {og_url[:60]}...")
                                 return og_url, 'openGraphImageUrl'
                         else:
                             print(f"  ⚠ Sem social preview configurada")
@@ -320,12 +377,18 @@ def find_repo_preview_image(repo):
                         if repo_data:
                             og_url = repo_data.get('openGraphImageUrl')
                             if og_url:
-                                is_avatar = 'avatars.githubusercontent.com' in og_url and ('?s=' in og_url or '/u/' in og_url)
-                                if is_avatar:
-                                    print(f"  ⚠ Found org avatar (not using)")
-                                    return None, None
+                                is_custom_preview = ('opengraph.githubassets.com' in og_url or 
+                                                   'repository-images.githubusercontent.com' in og_url)
+                                is_org_avatar = 'avatars.githubusercontent.com' in og_url and '?s=' in og_url
+                                
+                                if is_custom_preview:
+                                    print(f"  ✓ Found custom social preview")
+                                    return og_url, 'openGraphImageUrl'
+                                elif is_org_avatar:
+                                    print(f"  ✓ Using org avatar as preview")
+                                    return og_url, 'org_avatar'
                                 else:
-                                    print(f"  ✓ Found real social preview")
+                                    print(f"  ✓ Using social image: {og_url[:60]}...")
                                     return og_url, 'openGraphImageUrl'
                             else:
                                 print(f"  ⚠ Sem social preview configurada")
@@ -337,6 +400,7 @@ def find_repo_preview_image(repo):
         print(f"  ⚠ Erro buscando preview: {e}")
     
     return None, None
+
 
 def update_index_html(projects_html):
     file_path = 'index.html'
@@ -489,22 +553,15 @@ def main():
         repo_owner = project.get('owner', {}).get('login', 'unknown')
         print(f"  [{i+1}] {project['name']} (owner: {repo_owner})")
         
-        # find preview image (social preview only)
+        # find preview image (social preview or org avatar as fallback)
         img, source = find_repo_preview_image(project)
-        if img:
-            # Reject avatar-like images (they are typically small org avatars)
-            is_org_avatar = 'avatars.githubusercontent.com' in img and '?s=' in img
-            if is_org_avatar:
-                print(f"      ⚠ Found org avatar (ignoring): {img}")
-                img = None
-            else:
-                print(f"      ✓ Using social preview: {img}")
         
-        if not img:
+        if img:
+            print(f"      ✓ Using image: {img[:70]}...")
+        else:
             # fallback to local placeholder
-            fallback_img = './assets/css/images/icon.png'
+            img = './assets/css/images/icon.png'
             print(f"      └─ Using placeholder")
-            img = fallback_img
         
         # attach to project for template
         project['preview_image'] = img
