@@ -31,43 +31,9 @@ import re
 import json
 
 
-# Configuration: Organizations to include in projects display
-FEATURED_ORGANIZATIONS = ['LAPSHub', 'UFPA-2025-2']
-
 def get_api_token():
     """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
     return os.environ.get('PRIVATE_REPOS_TOKEN') or os.environ.get('GITHUB_TOKEN')
-
-def fetch_org_repos(org_name, token=None):
-    """Fetch repositories from a specific organization.
-    Returns a list of public repositories from that organization.
-    """
-    repos = []
-    headers = {'Accept': 'application/vnd.github.v3+json'}
-    if token:
-        headers['Authorization'] = f'token {token}'
-    
-    url = f"https://api.github.com/orgs/{org_name}/repos?sort=updated&per_page=100&type=public"
-    
-    try:
-        if _HAS_REQUESTS:
-            response = requests.get(url, headers=headers, timeout=10)
-            if response.status_code == 200:
-                repos = response.json()
-                print(f"  - Fetched {len(repos)} repos from organization '{org_name}'")
-                return repos
-            else:
-                print(f"  ⚠ Error fetching {org_name}: {response.status_code}")
-        else:
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=10) as r:
-                repos = json.loads(r.read().decode('utf-8'))
-                print(f"  - Fetched {len(repos)} repos from organization '{org_name}'")
-                return repos
-    except Exception as e:
-        print(f"  ⚠ Error fetching organization {org_name}: {e}")
-    
-    return []
 
 def fetch_projects():
     """Fetch repositories from GitHub API.
@@ -137,23 +103,6 @@ def fetch_projects():
                     print(f"Successfully fetched {len(repos)} public repos via public endpoint")
         except Exception as e:
             print(f"Error fetching public repos: {e}")
-    
-    # Fetch repos from configured featured organizations
-    print(f"\nFetching repositories from {len(FEATURED_ORGANIZATIONS)} featured organizations...")
-    featured_org_repos = []
-    for org_name in FEATURED_ORGANIZATIONS:
-        org_repos_list = fetch_org_repos(org_name, token)
-        featured_org_repos.extend(org_repos_list)
-    
-    # Merge repos: avoid duplicates by repo full_name
-    existing_names = {r.get('full_name') for r in repos}
-    for org_repo in featured_org_repos:
-        if org_repo.get('full_name') not in existing_names:
-            repos.append(org_repo)
-            existing_names.add(org_repo.get('full_name'))
-    
-    if featured_org_repos:
-        print(f"Added {len([r for r in featured_org_repos if r.get('full_name') in existing_names])} repos from featured organizations")
     
     if not repos:
         print("Could not fetch repos from any endpoint")
@@ -273,6 +222,68 @@ def generate_project_html(project, is_last=False, position='left'):
                     </div>"""
     
     return html
+
+
+def find_image_in_readme(owner, repo_name, token):
+    """Extract image URL from README file.
+    Looks for markdown images: ![alt](url) or ![alt][ref] or HTML <img> tags.
+    Prioritizes images that are not badges/shields.
+    Returns the first suitable image URL found, or None.
+    """
+    try:
+        # Try to fetch README content
+        headers = {'Accept': 'application/vnd.github.v3.raw'}
+        if token:
+            headers['Authorization'] = f'token {token}'
+        
+        # GitHub API endpoint for README
+        url = f"https://api.github.com/repos/{owner}/{repo_name}/readme"
+        
+        if _HAS_REQUESTS:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                readme_content = response.text
+            else:
+                return None
+        else:
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as r:
+                    readme_content = r.read().decode('utf-8')
+            except urllib.error.HTTPError:
+                return None
+        
+        # Extract images using regex
+        # Pattern 1: ![alt](url)
+        markdown_pattern = r'!\[([^\]]*)\]\(([^)]+)\)'
+        matches = re.findall(markdown_pattern, readme_content)
+        
+        for alt_text, img_url in matches:
+            # Skip badges/shields (they typically have shields.io, badge, or similar in URL)
+            if any(skip in img_url.lower() for skip in ['shields.io', 'badge', 'github.com/[^/]+/[^/]+/workflows', 
+                                                          'codecov', 'travis', 'circleci', '.svg', 'status']):
+                continue
+            
+            # Ensure URL is absolute
+            if img_url.startswith('http'):
+                print(f"  ✓ Found image in README: {img_url[:60]}...")
+                return img_url
+            elif img_url.startswith('/'):
+                # Relative path from repo root
+                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main{img_url}"
+                print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
+                return img_url_full
+            elif img_url.startswith('assets/') or img_url.startswith('images/') or img_url.startswith('docs/'):
+                # Common relative paths
+                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/main/{img_url}"
+                print(f"  ✓ Found image in README (relative path): {img_url_full[:60]}...")
+                return img_url_full
+        
+        return None
+        
+    except Exception as e:
+        print(f"  ⚠ Erro buscando imagens no README: {e}")
+        return None
 
 
 def find_repo_preview_image(repo):
@@ -399,6 +410,17 @@ def find_repo_preview_image(repo):
     except Exception as e:
         print(f"  ⚠ Erro buscando preview: {e}")
     
+    # Fallback: try to find image in README
+    print(f"  → Buscando imagens no README...")
+    owner = repo.get('owner', {}).get('login')
+    name = repo.get('name')
+    token = get_api_token()
+    
+    if owner and name and token:
+        readme_image = find_image_in_readme(owner, name, token)
+        if readme_image:
+            return readme_image, 'readme_image'
+    
     return None, None
 
 
@@ -519,31 +541,25 @@ def main():
     
     # Separate by owner type to balance representation
     owner_repos = [r for r in my_repos if r.get('owner', {}).get('login') == 'joaosnet']
-    featured_org_repos = [r for r in my_repos if r.get('owner', {}).get('login') in FEATURED_ORGANIZATIONS]
-    other_org_repos = [r for r in my_repos if r.get('owner', {}).get('login') != 'joaosnet' and r.get('owner', {}).get('login') not in FEATURED_ORGANIZATIONS]
+    org_repos = [r for r in my_repos if r.get('owner', {}).get('login') != 'joaosnet']
     
     print(f"\n  Owner repos (filtered): {len(owner_repos)}")
-    print(f"  Featured org repos (filtered): {len(featured_org_repos)}")
-    if featured_org_repos:
-        org_names = set(r.get('owner', {}).get('login') for r in featured_org_repos)
+    print(f"  Organization repos (filtered): {len(org_repos)}")
+    if org_repos:
+        org_names = set(r.get('owner', {}).get('login') for r in org_repos)
         print(f"    Organizations: {', '.join(org_names)}")
-    print(f"  Other org repos (filtered): {len(other_org_repos)}")
     
-    # Select top 4: prioritize featured org repos, then owner repos, then others
-    # Strategy: include at least one featured org repo if available
+    # Select top 4: prioritize ANY organization repos first, then owner repos
+    # This way, any new organization you join will automatically appear at the top
     top_projects = []
     
-    # Add featured org repos first (up to 2)
-    if featured_org_repos:
-        top_projects.extend(featured_org_repos[:min(2, len(featured_org_repos))])
+    # Add organization repos first (up to 2)
+    if org_repos:
+        top_projects.extend(org_repos[:min(2, len(org_repos))])
     
     # Then add owner repos to fill up to 4
     if len(top_projects) < 4:
         top_projects.extend(owner_repos[:max(0, 4 - len(top_projects))])
-    
-    # Finally add other org repos if needed
-    if len(top_projects) < 4:
-        top_projects.extend(other_org_repos[:max(0, 4 - len(top_projects))])
     
     top_projects = top_projects[:4]
     
