@@ -847,6 +847,9 @@ def main():
     # Exclude forks. Include own repos even without desc, org only with desc
     my_repos = [repo for repo in repos if not repo["fork"] and (repo["description"] or repo.get('owner', {}).get('login') == 'joaosnet')]
 
+    # Exclude the portfolio repository itself
+    my_repos = [repo for repo in my_repos if repo["name"] != "joaosnet.github.io"]
+
     print(f"\nAfter filtering (no forks, with description): {len(my_repos)}")
 
     # Sort ALL repos by pushed_at descending (better for recent commits), fallback to updated_at
