@@ -14,13 +14,35 @@ class ThemeManager {
 
     init() {
         this.toggleBtn.addEventListener('click', () => this.toggleTheme());
-        this.applyTheme(this.getCurrentTheme());
+        const theme = this.getCurrentTheme();
+        this.applyTheme(theme);
+
+        // If the user hasn't explicitly chosen a theme, respond to system preference changes
+        const stored = localStorage.getItem(this.STORAGE_KEY);
+        if (!stored && window.matchMedia) {
+            try {
+                const mq = window.matchMedia('(prefers-color-scheme: dark)');
+                const handleChange = (e) => {
+                    const newTheme = e.matches ? 'dark' : 'light';
+                    this.applyTheme(newTheme);
+                };
+                if (mq.addEventListener) mq.addEventListener('change', handleChange);
+                else if (mq.addListener) mq.addListener(handleChange);
+            } catch (err) {
+                // ignore if matchMedia isn't available
+            }
+        }
     }
 
     getCurrentTheme() {
         const stored = localStorage.getItem(this.STORAGE_KEY);
         if (stored) return stored;
-        return this.htmlEl.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+        // If HTML already has a theme attribute, use it
+        const attr = this.htmlEl.getAttribute('data-theme');
+        if (attr === 'light' || attr === 'dark') return attr;
+        // Otherwise use system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+        return 'dark';
     }
 
     toggleTheme() {
