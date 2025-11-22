@@ -372,7 +372,7 @@ def get_repo_default_branch(owner, repo_name, token):
     return "main"  # Default fallback
 
 
-def find_image_in_readme(owner, repo_name, token):
+def find_image_in_readme(owner, repo_name, token, is_private=False):
     """Extract image URL from README file.
     Looks for markdown images: ![alt](url) or ![alt][ref] or HTML <img> tags.
     Prioritizes images that are not badges/shields.
@@ -500,13 +500,37 @@ def find_image_in_readme(owner, repo_name, token):
                 return img_url
             elif img_url.startswith("/"):
                 # Absolute path from repo root
-                default_branch = get_repo_default_branch(owner, repo_name, token)
-                img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
-                print("        ✓ Caminho absoluto, aceitando!")
-                print(
-                    f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
-                )
-                return img_url_full
+                if is_private:
+                    # Download locally for private repos
+                    img_path = img_url[1:]  # Remove leading /
+                    local_img_url = download_image_for_private_repo(
+                        owner, repo_name, img_path, token
+                    )
+                    if local_img_url:
+                        # Successfully downloaded and saved locally
+                        print("        ✓ Caminho absoluto baixado localmente!")
+                        print(
+                            f"  ✓ Imagem encontrada no README (salva localmente): {local_img_url[:60]}..."
+                        )
+                        return local_img_url
+                    else:
+                        # Fallback to raw.githubusercontent.com if download fails
+                        default_branch = get_repo_default_branch(owner, repo_name, token)
+                        img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
+                        print("        ✓ Caminho absoluto, fallback para raw!")
+                        print(
+                            f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
+                        )
+                        return img_url_full
+                else:
+                    # Public repo, use raw.githubusercontent.com
+                    default_branch = get_repo_default_branch(owner, repo_name, token)
+                    img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
+                    print("        ✓ Caminho absoluto, aceitando!")
+                    print(
+                        f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
+                    )
+                    return img_url_full
             elif not img_url.startswith("."):
                 # Relative path (without leading ./ or ../)
                 # For private repos, download the image locally
@@ -568,7 +592,7 @@ def find_repo_preview_image(repo):
         print(f"  ℹ Buscando imagem para {owner}/{name}...")
 
         # STEP 1: Try README first - prioritize real content images
-        readme_image = find_image_in_readme(owner, name, token)
+        readme_image = find_image_in_readme(owner, name, token, repo.get("private", False))
         if readme_image:
             print("  ✓ Usando imagem do README")
             return readme_image, "readme_image"
