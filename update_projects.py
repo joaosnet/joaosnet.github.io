@@ -844,25 +844,32 @@ def main():
         print(f"  ... and {len(repos) - 10} more")
 
     # Filter and sort
-    # Exclude forks and repos without description
-    my_repos = [repo for repo in repos if not repo["fork"] and repo["description"]]
+    # Exclude forks. Include own repos even without desc, org only with desc
+    my_repos = [repo for repo in repos if not repo["fork"] and (repo["description"] or repo.get('owner', {}).get('login') == 'joaosnet')]
 
     print(f"\nAfter filtering (no forks, with description): {len(my_repos)}")
 
-    # Sort ALL repos by updated_at descending (mixing own and org)
-    my_repos.sort(key=lambda x: x["updated_at"], reverse=True)
+    # Sort ALL repos by pushed_at descending (better for recent commits), fallback to updated_at
+    my_repos.sort(key=lambda x: x.get('pushed_at') or x["updated_at"], reverse=True)
+
+    # Debug: show top 10 with dates
+    print("\nTop 10 most recent repos (pushed_at):")
+    for i, proj in enumerate(my_repos[:10]):
+        owner = proj.get('owner', {}).get('login', 'unknown')
+        pushed = proj.get('pushed_at', 'N/A')[:10]
+        updated = proj['updated_at'][:10]
+        print(f"  {i+1}. {proj['name']} ({owner}) - pushed:{pushed} updated:{updated}")
 
     # Select absolute top 4 most recent projects
     top_projects = my_repos[:4]
 
-    print(f"\nProcessing {len(top_projects)} top projects...")
+    print("\nProcessing top 4 projects...")
     for i, proj in enumerate(top_projects):
         owner = proj.get("owner", {}).get("login", "unknown")
         print(f"  [{i + 1}] {proj['name']} (owner: {owner})")
     projects_html = ""
     for i, project in enumerate(top_projects):
-        repo_owner = project.get("owner", {}).get("login", "unknown")
-        print(f"  [{i + 1}] {project['name']} (owner: {repo_owner})")
+        project.get("owner", {}).get("login", "unknown")
 
         # find preview image (social preview or org avatar as fallback)
         img, source = find_repo_preview_image(project)
@@ -882,7 +889,14 @@ def main():
         is_last = i == len(top_projects) - 1
         projects_html += generate_project_html(project, is_last, position)
 
-    # Wrap projects in timeline container
+    # Wrap projects in timeline container + "Ver mais" button
+    button_html = '''
+                    <div style="text-align:center; margin:60px 0 40px 0;">
+                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" 
+                           style="display:inline-block; padding:14px 40px; background:var(--secondary); color:#fff; text-decoration:none; border-radius:12px; font-size:1.15rem; font-weight:600; font-family:\'Space Grotesk\', sans-serif; transition:all 0.3s ease; border:2px solid var(--secondary); box-shadow:0 4px 20px rgba(139,92,246,0.3);">
+                            Ver mais projetos <i class="fas fa-arrow-right" style="margin-left:8px;"></i>
+                        </a>
+                    </div>'''
     timeline_html = f"""
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
                 <div style="position:relative; padding:20px 0;">
@@ -893,7 +907,8 @@ def main():
                     <div style="position:relative; z-index:2;">
                         {projects_html}
                     </div>
-                </div>"""
+                </div>
+                {button_html}"""
 
     update_index_html(timeline_html)
     print(
