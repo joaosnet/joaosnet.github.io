@@ -33,6 +33,16 @@ import subprocess
 downloaded_images = set()
 
 
+def mask_repo_name(repo):
+    """Mask repository name if it's private to avoid leaking info in logs."""
+    if repo.get("private", False):
+        return "private repo"
+    else:
+        owner = repo.get("owner", {}).get("login", "unknown")
+        name = repo.get("name", "unknown")
+        return f"{owner}/{name}"
+
+
 def get_api_token():
     """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
     return os.environ.get("PRIVATE_REPOS_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -312,7 +322,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                     if response.status_code == 200:
                         with open(local_path, "wb") as f:
                             f.write(response.content)
-                        print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
                         return f"/{local_dir}/{local_filename}"
@@ -328,7 +338,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                     with urllib.request.urlopen(req, timeout=10) as r:
                         with open(local_path, "wb") as f:
                             f.write(r.read())
-                        print(f"      ✓ Imagem baixada localmente: {local_filename}")
+                        print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
                         return f"/{local_dir}/{local_filename}"
@@ -496,7 +506,10 @@ def find_image_in_readme(owner, repo_name, token, is_private=False):
             # Ensure URL is absolute or can be converted to absolute
             if img_url.startswith("http"):
                 print("        ✓ URL absoluta, aceitando!")
-                print(f"  ✓ Imagem encontrada no README: {img_url[:60]}...")
+                if is_private:
+                    print("  ✓ Imagem encontrada no README")
+                else:
+                    print(f"  ✓ Imagem encontrada no README: {img_url[:60]}...")
                 return img_url
             elif img_url.startswith("/"):
                 # Absolute path from repo root
@@ -509,27 +522,26 @@ def find_image_in_readme(owner, repo_name, token, is_private=False):
                     if local_img_url:
                         # Successfully downloaded and saved locally
                         print("        ✓ Caminho absoluto baixado localmente!")
-                        print(
-                            f"  ✓ Imagem encontrada no README (salva localmente): {local_img_url[:60]}..."
-                        )
+                        print("  ✓ Imagem encontrada no README (salva localmente)")
                         return local_img_url
                     else:
                         # Fallback to raw.githubusercontent.com if download fails
                         default_branch = get_repo_default_branch(owner, repo_name, token)
                         img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
                         print("        ✓ Caminho absoluto, fallback para raw!")
-                        print(
-                            f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
-                        )
+                        print("  ✓ Imagem encontrada no README (caminho absoluto)")
                         return img_url_full
                 else:
                     # Public repo, use raw.githubusercontent.com
                     default_branch = get_repo_default_branch(owner, repo_name, token)
                     img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}{img_url}"
                     print("        ✓ Caminho absoluto, aceitando!")
-                    print(
-                        f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
-                    )
+                    if is_private:
+                        print("  ✓ Imagem encontrada no README (caminho absoluto)")
+                    else:
+                        print(
+                            f"  ✓ Imagem encontrada no README (caminho absoluto): {img_url_full[:60]}..."
+                        )
                     return img_url_full
             elif not img_url.startswith("."):
                 # Relative path (without leading ./ or ../)
@@ -542,18 +554,14 @@ def find_image_in_readme(owner, repo_name, token, is_private=False):
                 if local_img_url:
                     # Successfully downloaded and saved locally
                     print("        ✓ Caminho relativo baixado localmente!")
-                    print(
-                        f"  ✓ Imagem encontrada no README (salva localmente): {local_img_url[:60]}..."
-                    )
+                    print("  ✓ Imagem encontrada no README (salva localmente)")
                     return local_img_url
                 else:
                     # Fallback to raw.githubusercontent.com if download fails
                     default_branch = get_repo_default_branch(owner, repo_name, token)
                     img_url_full = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_url_decoded}"
                     print("        ✓ Caminho relativo simples, aceitando!")
-                    print(
-                        f"  ✓ Imagem encontrada no README (caminho relativo): {img_url_full[:60]}..."
-                    )
+                    print("  ✓ Imagem encontrada no README (caminho relativo)")
                     return img_url_full
             else:
                 print("        → URL relativa complexa (../ ou ./), pulando")
@@ -589,7 +597,7 @@ def find_repo_preview_image(repo):
             print("  ⚠ Sem token disponível")
             return None, None
 
-        print(f"  ℹ Buscando imagem para {owner}/{name}...")
+        print(f"  ℹ Buscando imagem para {mask_repo_name(repo)}...")
 
         # STEP 1: Try README first - prioritize real content images
         readme_image = find_image_in_readme(owner, name, token, repo.get("private", False))
@@ -818,7 +826,7 @@ def commit_downloaded_images():
                 subprocess.run(
                     ["git", "add", img_path], check=True, capture_output=True
                 )
-                print(f"✓ Git tracked: {img_path}")
+                print("✓ Imagem privada adicionada ao git")
             except Exception as e:
                 print(f"⚠ Could not git add {img_path}: {e}")
 
@@ -862,7 +870,7 @@ def main():
         has_desc = "✓ desc" if repo.get("description") else "✗ no desc"
         is_fork = "fork" if repo.get("fork") else "own"
         print(
-            f"  - {repo.get('owner', {}).get('login')}/{repo['name']} ({is_fork}, {has_desc})"
+            f"  - {mask_repo_name(repo)} ({is_fork}, {has_desc})"
         )
     if len(repos) > 10:
         print(f"  ... and {len(repos) - 10} more")
@@ -882,18 +890,24 @@ def main():
     # Debug: show top 10 with dates
     print("\nTop 10 most recent repos (pushed_at):")
     for i, proj in enumerate(my_repos[:10]):
-        owner = proj.get('owner', {}).get('login', 'unknown')
         pushed = proj.get('pushed_at', 'N/A')[:10]
         updated = proj['updated_at'][:10]
-        print(f"  {i+1}. {proj['name']} ({owner}) - pushed:{pushed} updated:{updated}")
+        if proj.get("private", False):
+            print(f"  {i+1}. private repo - pushed:{pushed} updated:{updated}")
+        else:
+            owner = proj.get('owner', {}).get('login', 'unknown')
+            print(f"  {i+1}. {proj['name']} ({owner}) - pushed:{pushed} updated:{updated}")
 
     # Select absolute top 4 most recent projects
     top_projects = my_repos[:4]
 
     print("\nProcessing top 4 projects...")
     for i, proj in enumerate(top_projects):
-        owner = proj.get("owner", {}).get("login", "unknown")
-        print(f"  [{i + 1}] {proj['name']} (owner: {owner})")
+        if proj.get("private", False):
+            print(f"  [{i + 1}] private repo")
+        else:
+            owner = proj.get("owner", {}).get("login", "unknown")
+            print(f"  [{i + 1}] {proj['name']} (owner: {owner})")
     projects_html = ""
     for i, project in enumerate(top_projects):
         project.get("owner", {}).get("login", "unknown")
@@ -902,7 +916,10 @@ def main():
         img, source = find_repo_preview_image(project)
 
         if img:
-            print(f"      ✓ Using image: {img[:70]}...")
+            if project.get("private", False):
+                print("      ✓ Using image from private repo")
+            else:
+                print(f"      ✓ Using image: {img[:70]}...")
         else:
             # fallback to local placeholder
             img = "./assets/css/images/icon.png"
