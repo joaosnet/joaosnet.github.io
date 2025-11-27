@@ -129,160 +129,167 @@
                 <!-- PROJECTS_START -->
 
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
-                <div style="position:relative; padding:20px 0;">
+                <div class="timeline-container">
                     <!-- Central vertical line -->
-                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--primary) 0%, var(--border-light) 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
+                    <div class="timeline-line"></div>
                     
                     <!-- Timeline items container -->
-                    <div style="position:relative; z-index:2;">
+                    <div class="timeline-items">
                         
-                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item timeline-item-left">
                         <!-- Content Left -->
-                        <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px; text-align:right;">
+                        <div class="timeline-card timeline-card--left">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="2025-11-25T10:18:36+00:00" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">25/11/2025</time>
+                            <div class="timeline-card-date">
+                                <time datetime="2025-11-27T14:40:45+00:00">27/11/2025</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="/assets/project-images/joaosnet_SmartShower-ESP32_circuit_image.png" alt="SmartShower-ESP32 preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
+                            <div class="timeline-card-image-wrapper">
+                                <img src="https://opengraph.githubassets.com/c4aa7bfa22b612704a09bb584e32acddfac9ff16b7fcb3af65585f36cb2d44f8/LAPSHub/dmovel_web_app" alt="dmovel_web_app preview" class="timeline-card-image"/>
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
-                                <a href="https://github.com/joaosnet/SmartShower-ESP32" target="_blank" style="color:var(--primary); text-decoration:none; border-bottom:2px solid var(--primary);">
+                            <h3 class="timeline-card-heading">
+                                <a href="https://github.com/LAPSHub/dmovel_web_app" target="_blank" class="timeline-card-title">
+                                    dmovel_web_app
+                                </a>
+                            </h3>
+                            <p class="timeline-card-description">Repositorio para o aplicativo web do DMóvel</p>
+                            
+                            <!-- Button -->
+                            <div class="timeline-card-actions">
+                                <a href="https://github.com/LAPSHub/dmovel_web_app" target="_blank" class="timeline-card-btn">
+                                Ver no GitHub →
+                            </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Timeline Dot (CENTER) -->
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        
+                        <!-- Empty space on RIGHT -->
+                        <div class="timeline-empty"></div>
+                    </div>
+                    <div class="timeline-item timeline-item-right">
+                        <!-- Empty space on LEFT -->
+                        <div class="timeline-empty"></div>
+                        
+                        <!-- Timeline Dot (CENTER) -->
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
+                        </div>
+                        
+                        <!-- Content Right -->
+                        <div class="timeline-card timeline-card--right">
+                            <!-- Date badge -->
+                            <div class="timeline-card-date">
+                                <time datetime="2025-11-25T10:18:36+00:00">25/11/2025</time>
+                            </div>
+                            
+                            <!-- Image -->
+                            <div class="timeline-card-image-wrapper">
+                                <img src="/assets/project-images/joaosnet_SmartShower-ESP32_circuit_image.png" alt="SmartShower-ESP32 preview" class="timeline-card-image"/>
+                            </div>
+                            
+                            <!-- Project info -->
+                            <h3 class="timeline-card-heading">
+                                <a href="https://github.com/joaosnet/SmartShower-ESP32" target="_blank" class="timeline-card-title">
                                     SmartShower-ESP32
                                 </a>
                             </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">Projeto de Internet das Coisas (IoT) focado em economia de água e energia para automação de chuveiros.</p>
+                            <p class="timeline-card-description">Projeto de Internet das Coisas (IoT) focado em economia de água e energia para automação de chuveiros.</p>
                             
                             <!-- Button -->
-                            <a href="https://github.com/joaosnet/SmartShower-ESP32" target="_blank" style="display:inline-block; padding:8px 16px; background:var(--primary); color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid var(--primary);">
+                            <div class="timeline-card-actions">
+                                <a href="https://github.com/joaosnet/SmartShower-ESP32" target="_blank" class="timeline-card-btn">
                                 Ver no GitHub →
                             </a>
-                        </div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
-                        </div>
-                        
-                        <!-- Empty space on RIGHT -->
-                        <div></div>
-                    </div>
-                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
-                        <!-- Empty space on LEFT -->
-                        <div></div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
-                        </div>
-                        
-                        <!-- Content Right -->
-                        <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px; text-align:left;">
-                            <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="2025-11-22T03:06:46+00:00" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">22/11/2025</time>
                             </div>
-                            
-                            <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="/assets/project-images/joaosnet_crypto_gemini_2025-11-22_02-53-48_10ffaf7b_001.png" alt="crypto preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
-                            </div>
-                            
-                            <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
-                                <span style="color:var(--primary); border-bottom:2px solid var(--primary); cursor:default;">
-                                    crypto <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
-                                </span>
-                            </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">This project combines advanced machine learning concepts with practical applications in digital finance, offering relevant contributions to both the academic community and the financial market.</p>
-                            
-                            <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:var(--glass-bg); color:var(--text-gray); border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid var(--border-light); cursor:default;">
-                                Privado
-                            </span>
                         </div>
                     </div>
-                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item timeline-item-left">
                         <!-- Content Left -->
-                        <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px; text-align:right;">
+                        <div class="timeline-card timeline-card--left">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="2025-11-22T03:01:17+00:00" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">22/11/2025</time>
+                            <div class="timeline-card-date">
+                                <time datetime="2025-11-22T03:06:46+00:00">22/11/2025</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="/assets/project-images/joaosnet_geminiwebapi-mcp_gemini_2025-11-21_20-47-39_eff5e04a_001.png" alt="geminiwebapi-mcp preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
+                            <div class="timeline-card-image-wrapper">
+                                <img src="/assets/project-images/joaosnet_crypto_gemini_2025-11-22_02-53-48_10ffaf7b_001.png" alt="crypto preview" class="timeline-card-image"/>
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
-                                <span style="color:var(--primary); border-bottom:2px solid var(--primary); cursor:default;">
-                                    geminiwebapi-mcp <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
+                            <h3 class="timeline-card-heading">
+                                <span class="timeline-card-title timeline-card-title--private">
+                                    crypto <i class="fas fa-lock" title="Projeto Privado"></i>
                                 </span>
                             </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">Servidor MCP para geração de imagens e tradução de mangás usando Gemini 3.0 Pro. Minimalista. Modular. Eficiente.</p>
+                            <p class="timeline-card-description">This project combines advanced machine learning concepts with practical applications in digital finance, offering relevant contributions to both the academic community and the financial market.</p>
                             
                             <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:var(--glass-bg); color:var(--text-gray); border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid var(--border-light); cursor:default;">
+                            <div class="timeline-card-actions">
+                                <span class="timeline-card-btn timeline-card-btn--private">
                                 Privado
                             </span>
+                            </div>
                         </div>
                         
                         <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
                         
                         <!-- Empty space on RIGHT -->
-                        <div></div>
+                        <div class="timeline-empty"></div>
                     </div>
-                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item timeline-item-right">
                         <!-- Empty space on LEFT -->
-                        <div></div>
+                        <div class="timeline-empty"></div>
                         
                         <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
                         
                         <!-- Content Right -->
-                        <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px; text-align:left;">
+                        <div class="timeline-card timeline-card--right">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="2025-11-19T22:36:54+00:00" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">19/11/2025</time>
+                            <div class="timeline-card-date">
+                                <time datetime="2025-11-22T03:01:17+00:00">22/11/2025</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="margin-bottom:12px;">
-                                <img src="https://avatars.githubusercontent.com/u/32203897?v=4" alt="dmovel-fastapi preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>
+                            <div class="timeline-card-image-wrapper">
+                                <img src="/assets/project-images/joaosnet_geminiwebapi-mcp_gemini_2025-11-21_20-47-39_eff5e04a_001.png" alt="geminiwebapi-mcp preview" class="timeline-card-image"/>
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
-                                <span style="color:var(--primary); border-bottom:2px solid var(--primary); cursor:default;">
-                                    dmovel-fastapi <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
+                            <h3 class="timeline-card-heading">
+                                <span class="timeline-card-title timeline-card-title--private">
+                                    geminiwebapi-mcp <i class="fas fa-lock" title="Projeto Privado"></i>
                                 </span>
                             </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">Api do Aplicativo DMovel</p>
+                            <p class="timeline-card-description">Servidor MCP para geração de imagens e tradução de mangás usando Gemini 3.0 Pro. Minimalista. Modular. Eficiente.</p>
                             
                             <!-- Button -->
-                            <span style="display:inline-block; padding:8px 16px; background:var(--glass-bg); color:var(--text-gray); border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid var(--border-light); cursor:default;">
+                            <div class="timeline-card-actions">
+                                <span class="timeline-card-btn timeline-card-btn--private">
                                 Privado
                             </span>
+                            </div>
                         </div>
                     </div>
                     </div>
                 </div>
                 
-                    <div style="text-align:center; margin:60px 0 40px 0;">
-                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" 
-                           style="display:inline-block; padding:14px 40px; background:var(--secondary); color:#fff; text-decoration:none; border-radius:12px; font-size:1.15rem; font-weight:600; font-family:'Space Grotesk', sans-serif; transition:all 0.3s ease; border:2px solid var(--secondary); box-shadow:0 4px 20px rgba(139,92,246,0.3);">
-                            Ver mais projetos <i class="fas fa-arrow-right" style="margin-left:8px;"></i>
+                    <div class="timeline-more-btn-wrapper">
+                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" class="timeline-more-btn">
+                            Ver mais projetos <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                     <!-- PROJECTS_END -->
