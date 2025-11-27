@@ -181,96 +181,97 @@ def generate_project_html(project, is_last=False, position="left"):
         except Exception:
             updated_str = updated_at
 
-    # Timeline style HTML with image
+    # Timeline style HTML with image - using CSS classes instead of inline styles
     img_html = ""
     if image:
-        img_html = f'<img src="{image}" alt="{name} preview" style="width:100%; aspect-ratio:1.91/1; object-fit:cover; border-radius:8px; margin-bottom:16px;"/>'
+        img_html = f'<img src="{image}" alt="{name} preview" class="timeline-card-image"/>'
 
     # Private vs Public display logic
     if is_private:
-        title_html = f"""<span style="color:var(--primary); border-bottom:2px solid var(--primary); cursor:default;">
-                                    {name} <i class="fas fa-lock" style="font-size:0.7em; vertical-align: middle; margin-left:4px;" title="Projeto Privado"></i>
+        title_html = f"""<span class="timeline-card-title timeline-card-title--private">
+                                    {name} <i class="fas fa-lock" title="Projeto Privado"></i>
                                 </span>"""
-        button_html = """<span style="display:inline-block; padding:8px 16px; background:var(--glass-bg); color:var(--text-gray); border-radius:6px; font-size:0.9rem; font-weight:600; border:1px solid var(--border-light); cursor:default;">
+        button_html = """<span class="timeline-card-btn timeline-card-btn--private">
                                 Privado
                             </span>"""
     else:
-        title_html = f'''<a href="{html_url}" target="_blank" style="color:var(--primary); text-decoration:none; border-bottom:2px solid var(--primary);">
+        title_html = f'''<a href="{html_url}" target="_blank" class="timeline-card-title">
                                     {name}
                                 </a>'''
-        button_html = f'''<a href="{html_url}" target="_blank" style="display:inline-block; padding:8px 16px; background:var(--primary); color:#fff; text-decoration:none; border-radius:6px; font-size:0.9rem; font-weight:600; transition:background 0.2s; border:1px solid var(--primary);">
+        button_html = f'''<a href="{html_url}" target="_blank" class="timeline-card-btn">
                                 Ver no GitHub →
                             </a>'''
-
-    # Content card styles
-    card_style = "background:var(--bg-card); border:1px solid var(--border-light); border-radius:8px; padding:20px;"
 
     if position == "left":
         # Content on LEFT side, dot on CENTER
         html = f"""
-                    <div class="timeline-item-left" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item timeline-item-left">
                         <!-- Content Left -->
-                        <div style="{card_style} text-align:right;">
+                        <div class="timeline-card timeline-card--left">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">{updated_str}</time>
+                            <div class="timeline-card-date">
+                                <time datetime="{updated_iso}">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="margin-bottom:12px;">
+                            <div class="timeline-card-image-wrapper">
                                 {img_html}
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
+                            <h3 class="timeline-card-heading">
                                 {title_html}
                             </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">{description}</p>
+                            <p class="timeline-card-description">{description}</p>
                             
                             <!-- Button -->
-                            {button_html}
+                            <div class="timeline-card-actions">
+                                {button_html}
+                            </div>
                         </div>
                         
                         <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
                         
                         <!-- Empty space on RIGHT -->
-                        <div></div>
+                        <div class="timeline-empty"></div>
                     </div>"""
     else:
         # Content on RIGHT side, dot on CENTER
         html = f"""
-                    <div class="timeline-item-right" style="display:grid; grid-template-columns:1fr 60px 1fr; gap:24px; padding-bottom:40px; position:relative; align-items:flex-start;">
+                    <div class="timeline-item timeline-item-right">
                         <!-- Empty space on LEFT -->
-                        <div></div>
+                        <div class="timeline-empty"></div>
                         
                         <!-- Timeline Dot (CENTER) -->
-                        <div style="display:flex; flex-direction:column; align-items:center; min-width:60px;">
-                            <div style="width:16px; height:16px; background:var(--primary); border:4px solid var(--dark); border-radius:50%; position:relative; z-index:2;"></div>
+                        <div class="timeline-dot-wrapper">
+                            <div class="timeline-dot"></div>
                         </div>
                         
                         <!-- Content Right -->
-                        <div style="{card_style} text-align:left;">
+                        <div class="timeline-card timeline-card--right">
                             <!-- Date badge -->
-                            <div style="display:inline-block; background:var(--dark); padding:4px 12px; border-radius:16px; margin-bottom:8px; border:1px solid var(--border-light);">
-                                <time datetime="{updated_iso}" style="font-size:0.85rem; color:var(--text-gray); font-weight:600;">{updated_str}</time>
+                            <div class="timeline-card-date">
+                                <time datetime="{updated_iso}">{updated_str}</time>
                             </div>
                             
                             <!-- Image -->
-                            <div style="margin-bottom:12px;">
+                            <div class="timeline-card-image-wrapper">
                                 {img_html}
                             </div>
                             
                             <!-- Project info -->
-                            <h3 style="margin:0 0 8px 0; font-size:1.2rem; color:var(--primary); word-break:break-word;">
+                            <h3 class="timeline-card-heading">
                                 {title_html}
                             </h3>
-                            <p style="margin:0 0 12px 0; color:var(--text-gray); font-size:0.95rem; line-height:1.5;">{description}</p>
+                            <p class="timeline-card-description">{description}</p>
                             
                             <!-- Button -->
-                            {button_html}
+                            <div class="timeline-card-actions">
+                                {button_html}
+                            </div>
                         </div>
                     </div>"""
 
@@ -935,20 +936,19 @@ def main():
 
     # Wrap projects in timeline container + "Ver mais" button
     button_html = '''
-                    <div style="text-align:center; margin:60px 0 40px 0;">
-                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" 
-                           style="display:inline-block; padding:14px 40px; background:var(--secondary); color:#fff; text-decoration:none; border-radius:12px; font-size:1.15rem; font-weight:600; font-family:\'Space Grotesk\', sans-serif; transition:all 0.3s ease; border:2px solid var(--secondary); box-shadow:0 4px 20px rgba(139,92,246,0.3);">
-                            Ver mais projetos <i class="fas fa-arrow-right" style="margin-left:8px;"></i>
+                    <div class="timeline-more-btn-wrapper">
+                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" class="timeline-more-btn">
+                            Ver mais projetos <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>'''
     timeline_html = f"""
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
-                <div style="position:relative; padding:20px 0;">
+                <div class="timeline-container">
                     <!-- Central vertical line -->
-                    <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom, var(--primary) 0%, var(--border-light) 50%, transparent 100%); transform:translateX(-50%); z-index:1;"></div>
+                    <div class="timeline-line"></div>
                     
                     <!-- Timeline items container -->
-                    <div style="position:relative; z-index:2;">
+                    <div class="timeline-items">
                         {projects_html}
                     </div>
                 </div>
