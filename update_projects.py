@@ -329,7 +329,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
-                        return f"/{local_dir}/{local_filename}"
+                        return f"./{local_dir}/{local_filename}"
                     else:
                         print(
                             f"      ⚠ Falha ao baixar imagem: status {response.status_code}"
@@ -346,14 +346,14 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
-                        return f"/{local_dir}/{local_filename}"
+                        return f"./{local_dir}/{local_filename}"
             except Exception as e:
                 print(f"      ⚠ Erro ao baixar imagem: {str(e)[:50]}")
                 return None
         else:
             # Already exists locally - still track it for consistency
             downloaded_images.add(local_path)
-            return f"/{local_dir}/{local_filename}"
+            return f"./{local_dir}/{local_filename}"
     except Exception as e:
         print(f"      ⚠ Erro processando imagem privada: {str(e)[:50]}")
         return None
