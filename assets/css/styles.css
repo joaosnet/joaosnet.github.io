@@ -1557,13 +1557,14 @@ html[data-theme="dark"] footer {
     }
 
     .timeline-line {
-        left: 28px;
+        left: 20px;
         transform: none;
+        width: 3px;
     }
 
     .timeline-item {
         display: block;
-        padding-left: 56px;
+        padding-left: 48px;
         padding-bottom: 30px;
         position: relative;
     }
@@ -1580,13 +1581,10 @@ html[data-theme="dark"] footer {
 
     .timeline-dot-wrapper {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 56px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 24px;
+        left: 12px;
+        top: 24px;
+        width: auto;
+        min-width: auto;
     }
 
     .timeline-dot {
@@ -1610,20 +1608,17 @@ html[data-theme="dark"] footer {
     /* Timeline more item - single column on mobile */
     .timeline-more-item {
         display: block;
-        padding-left: 56px;
-        padding-top: 0;
+        padding-left: 48px;
+        padding-top: 10px;
         position: relative;
     }
 
     .timeline-more-dot-wrapper {
         position: absolute;
-        left: 0;
-        top: 0;
-        width: 56px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding-top: 0;
+        left: 10px;
+        top: 10px;
+        width: auto;
+        min-width: auto;
     }
 
     .timeline-more-content {
@@ -1862,16 +1857,17 @@ html[data-theme="dark"] footer {
     }
 
     .timeline-item {
-        padding-left: 46px;
+        padding-left: 40px;
     }
 
     .timeline-line {
-        left: 18px;
+        left: 15px;
+        width: 2px;
     }
 
     .timeline-dot-wrapper {
-        width: 46px;
-        padding-top: 20px;
+        left: 9px;
+        top: 20px;
     }
 
     .timeline-dot {
@@ -1890,12 +1886,12 @@ html[data-theme="dark"] footer {
 
     /* Timeline more item - 480px adjustments */
     .timeline-more-item {
-        padding-left: 46px;
+        padding-left: 40px;
     }
 
     .timeline-more-dot-wrapper {
-        width: 46px;
-        padding-top: 0;
+        left: 7px;
+        top: 6px;
     }
 
     .timeline-more-dot {
