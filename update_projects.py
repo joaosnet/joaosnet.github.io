@@ -284,18 +284,13 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
     Returns the relative path for the downloaded image.
 
     Note: Downloaded images are tracked in a set to be committed to git later.
+    Uses GitHub Contents API which supports authentication for private repos.
     """
     global downloaded_images  # Track which images were downloaded
 
     try:
         if not token:
             return None
-
-        # Get default branch
-        default_branch = get_repo_default_branch(owner, repo_name, token)
-
-        # Download the image from raw.githubusercontent.com
-        download_url = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_path}"
 
         # Create local directory for downloaded images
         local_dir = "assets/project-images"
@@ -314,15 +309,23 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
         # Download if not already exists
         if not os.path.exists(local_path):
             try:
+                # Use GitHub Contents API instead of raw.githubusercontent.com
+                # This API supports authentication for private repos
+                api_url = f"https://api.github.com/repos/{owner}/{repo_name}/contents/{img_path}"
+                headers = {
+                    "Authorization": f"token {token}",
+                    "Accept": "application/vnd.github.v3+json",
+                }
+
                 if _HAS_REQUESTS:
-                    response = requests.get(
-                        download_url,
-                        headers={"Authorization": f"token {token}"},
-                        timeout=10,
-                    )
+                    response = requests.get(api_url, headers=headers, timeout=10)
                     if response.status_code == 200:
+                        data = response.json()
+                        # GitHub Contents API returns content in base64
+                        import base64
+                        content = base64.b64decode(data["content"])
                         with open(local_path, "wb") as f:
-                            f.write(response.content)
+                            f.write(content)
                         print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
@@ -333,12 +336,13 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         )
                         return None
                 else:
-                    req = urllib.request.Request(
-                        download_url, headers={"Authorization": f"token {token}"}
-                    )
+                    import base64
+                    req = urllib.request.Request(api_url, headers=headers)
                     with urllib.request.urlopen(req, timeout=10) as r:
+                        data = json.loads(r.read().decode("utf-8"))
+                        content = base64.b64decode(data["content"])
                         with open(local_path, "wb") as f:
-                            f.write(r.read())
+                            f.write(content)
                         print("      ✓ Imagem de repositório privado baixada localmente")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
