@@ -934,13 +934,20 @@ def main():
         is_last = i == len(top_projects) - 1
         projects_html += generate_project_html(project, is_last, position)
 
-    # Wrap projects in timeline container + "Ver mais" button
+    # Wrap projects in timeline container + "Ver mais" button inside timeline for continuity
     button_html = '''
-                    <div class="timeline-more-btn-wrapper">
-                        <a href="https://github.com/joaosnet?tab=repositories" target="_blank" class="timeline-more-btn">
-                            Ver mais projetos <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>'''
+                        <!-- Ver mais - inside timeline for visual continuity -->
+                        <div class="timeline-more-item">
+                            <div class="timeline-empty"></div>
+                            <div class="timeline-more-dot-wrapper">
+                                <div class="timeline-more-dot"></div>
+                            </div>
+                            <div class="timeline-more-content">
+                                <a href="https://github.com/joaosnet?tab=repositories" target="_blank" class="timeline-more-btn">
+                                    Ver mais projetos <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>'''
     timeline_html = f"""
                 <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
                 <div class="timeline-container">
@@ -950,9 +957,9 @@ def main():
                     <!-- Timeline items container -->
                     <div class="timeline-items">
                         {projects_html}
+                        {button_html}
                     </div>
-                </div>
-                {button_html}"""
+                </div>"""
 
     update_index_html(timeline_html)
     print(
