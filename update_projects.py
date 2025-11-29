@@ -357,7 +357,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                     content = dl_response.content
                 
                 if len(content) == 0:
-                    print(f"      ⚠ Imagem vazia (0 bytes)")
+                    print("      ⚠ Imagem vazia (0 bytes)")
                     return None
                     
                 with open(local_path, "wb") as f:
@@ -394,7 +394,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                         content = dl_r.read()
                 
                 if len(content) == 0:
-                    print(f"      ⚠ Imagem vazia (0 bytes)")
+                    print("      ⚠ Imagem vazia (0 bytes)")
                     return None
                     
                 with open(local_path, "wb") as f:
