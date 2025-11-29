@@ -318,15 +318,16 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                 }
 
                 if _HAS_REQUESTS:
-                    response = requests.get(api_url, headers=headers, timeout=10)
+                    response = requests.get(api_url, headers=headers, timeout=30)
                     if response.status_code == 200:
                         data = response.json()
-                        # GitHub Contents API returns content in base64
+                        # GitHub Contents API returns content in base64 with newlines - must remove them
                         import base64
-                        content = base64.b64decode(data["content"])
+                        base64_content = data["content"].replace("\n", "")
+                        content = base64.b64decode(base64_content)
                         with open(local_path, "wb") as f:
                             f.write(content)
-                        print("      ✓ Imagem de repositório privado baixada localmente")
+                        print(f"      ✓ Imagem baixada ({len(content)} bytes)")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
                         return f"./{local_dir}/{local_filename}"
@@ -338,17 +339,19 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                 else:
                     import base64
                     req = urllib.request.Request(api_url, headers=headers)
-                    with urllib.request.urlopen(req, timeout=10) as r:
+                    with urllib.request.urlopen(req, timeout=30) as r:
                         data = json.loads(r.read().decode("utf-8"))
-                        content = base64.b64decode(data["content"])
+                        # GitHub Contents API returns content in base64 with newlines - must remove them
+                        base64_content = data["content"].replace("\n", "")
+                        content = base64.b64decode(base64_content)
                         with open(local_path, "wb") as f:
                             f.write(content)
-                        print("      ✓ Imagem de repositório privado baixada localmente")
+                        print(f"      ✓ Imagem baixada ({len(content)} bytes)")
                         # Track this file for git commit
                         downloaded_images.add(local_path)
                         return f"./{local_dir}/{local_filename}"
             except Exception as e:
-                print(f"      ⚠ Erro ao baixar imagem: {str(e)[:50]}")
+                print(f"      ⚠ Erro ao baixar imagem: {str(e)[:80]}")
                 return None
         else:
             # Already exists locally - still track it for consistency
