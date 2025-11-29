@@ -284,9 +284,10 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
     Returns the relative path for the downloaded image.
 
     Note: Downloaded images are tracked in a set to be committed to git later.
-    Uses GitHub Contents API which supports authentication for private repos.
+    Uses GitHub Contents API to get download_url, then downloads the raw file.
     """
     global downloaded_images  # Track which images were downloaded
+    import base64
 
     try:
         if not token:
@@ -306,57 +307,106 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
         local_filename = f"{safe_repo_name}_{safe_img_name}"
         local_path = os.path.join(local_dir, local_filename)
 
-        # Download if not already exists
-        if not os.path.exists(local_path):
-            try:
-                # Use GitHub Contents API instead of raw.githubusercontent.com
-                # This API supports authentication for private repos
-                api_url = f"https://api.github.com/repos/{owner}/{repo_name}/contents/{img_path}"
-                headers = {
-                    "Authorization": f"token {token}",
-                    "Accept": "application/vnd.github.v3+json",
-                }
-
-                if _HAS_REQUESTS:
-                    response = requests.get(api_url, headers=headers, timeout=30)
-                    if response.status_code == 200:
-                        data = response.json()
-                        # GitHub Contents API returns content in base64 with newlines - must remove them
-                        import base64
-                        base64_content = data["content"].replace("\n", "")
-                        content = base64.b64decode(base64_content)
-                        with open(local_path, "wb") as f:
-                            f.write(content)
-                        print(f"      ✓ Imagem baixada ({len(content)} bytes)")
-                        # Track this file for git commit
-                        downloaded_images.add(local_path)
-                        return f"./{local_dir}/{local_filename}"
-                    else:
-                        print(
-                            f"      ⚠ Falha ao baixar imagem: status {response.status_code}"
-                        )
-                        return None
-                else:
-                    import base64
-                    req = urllib.request.Request(api_url, headers=headers)
-                    with urllib.request.urlopen(req, timeout=30) as r:
-                        data = json.loads(r.read().decode("utf-8"))
-                        # GitHub Contents API returns content in base64 with newlines - must remove them
-                        base64_content = data["content"].replace("\n", "")
-                        content = base64.b64decode(base64_content)
-                        with open(local_path, "wb") as f:
-                            f.write(content)
-                        print(f"      ✓ Imagem baixada ({len(content)} bytes)")
-                        # Track this file for git commit
-                        downloaded_images.add(local_path)
-                        return f"./{local_dir}/{local_filename}"
-            except Exception as e:
-                print(f"      ⚠ Erro ao baixar imagem: {str(e)[:80]}")
-                return None
-        else:
-            # Already exists locally - still track it for consistency
+        # Check if file already exists and has content
+        if os.path.exists(local_path) and os.path.getsize(local_path) > 0:
+            # Already exists locally with content - still track it for consistency
             downloaded_images.add(local_path)
             return f"./{local_dir}/{local_filename}"
+
+        # Download the image
+        try:
+            # First, get file metadata from Contents API to get download_url
+            api_url = f"https://api.github.com/repos/{owner}/{repo_name}/contents/{img_path}"
+            headers = {
+                "Authorization": f"token {token}",
+                "Accept": "application/vnd.github.v3+json",
+            }
+
+            if _HAS_REQUESTS:
+                response = requests.get(api_url, headers=headers, timeout=30)
+                if response.status_code != 200:
+                    print(f"      ⚠ Falha ao obter metadados: status {response.status_code}")
+                    return None
+                
+                data = response.json()
+                
+                # Check file size - Contents API has 1MB limit for base64 content
+                file_size = data.get("size", 0)
+                
+                if file_size > 0 and file_size < 1024 * 1024 and data.get("content"):
+                    # Small file - use base64 content directly
+                    base64_content = data["content"].replace("\n", "").replace(" ", "")
+                    content = base64.b64decode(base64_content)
+                else:
+                    # Large file or no content - use download_url with auth
+                    download_url = data.get("download_url")
+                    if not download_url:
+                        # Try to construct raw URL with default branch
+                        default_branch = get_repo_default_branch(owner, repo_name, token)
+                        download_url = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_path}"
+                    
+                    # Download with authentication header for private repos
+                    download_headers = {
+                        "Authorization": f"token {token}",
+                        "Accept": "application/octet-stream",
+                    }
+                    dl_response = requests.get(download_url, headers=download_headers, timeout=60)
+                    if dl_response.status_code != 200:
+                        print(f"      ⚠ Falha ao baixar imagem: status {dl_response.status_code}")
+                        return None
+                    content = dl_response.content
+                
+                if len(content) == 0:
+                    print(f"      ⚠ Imagem vazia (0 bytes)")
+                    return None
+                    
+                with open(local_path, "wb") as f:
+                    f.write(content)
+                print(f"      ✓ Imagem baixada ({len(content)} bytes)")
+                downloaded_images.add(local_path)
+                return f"./{local_dir}/{local_filename}"
+                
+            else:
+                # urllib fallback
+                req = urllib.request.Request(api_url, headers=headers)
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    data = json.loads(r.read().decode("utf-8"))
+                
+                file_size = data.get("size", 0)
+                
+                if file_size > 0 and file_size < 1024 * 1024 and data.get("content"):
+                    # Small file - use base64 content directly
+                    base64_content = data["content"].replace("\n", "").replace(" ", "")
+                    content = base64.b64decode(base64_content)
+                else:
+                    # Large file - use download_url
+                    download_url = data.get("download_url")
+                    if not download_url:
+                        default_branch = get_repo_default_branch(owner, repo_name, token)
+                        download_url = f"https://raw.githubusercontent.com/{owner}/{repo_name}/{default_branch}/{img_path}"
+                    
+                    download_headers = {
+                        "Authorization": f"token {token}",
+                        "Accept": "application/octet-stream",
+                    }
+                    dl_req = urllib.request.Request(download_url, headers=download_headers)
+                    with urllib.request.urlopen(dl_req, timeout=60) as dl_r:
+                        content = dl_r.read()
+                
+                if len(content) == 0:
+                    print(f"      ⚠ Imagem vazia (0 bytes)")
+                    return None
+                    
+                with open(local_path, "wb") as f:
+                    f.write(content)
+                print(f"      ✓ Imagem baixada ({len(content)} bytes)")
+                downloaded_images.add(local_path)
+                return f"./{local_dir}/{local_filename}"
+                
+        except Exception as e:
+            print(f"      ⚠ Erro ao baixar imagem: {str(e)[:80]}")
+            return None
+            
     except Exception as e:
         print(f"      ⚠ Erro processando imagem privada: {str(e)[:50]}")
         return None
