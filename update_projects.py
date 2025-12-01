@@ -43,6 +43,49 @@ def mask_repo_name(repo):
         return f"{owner}/{name}"
 
 
+def check_user_contributed(owner, repo_name, token, username="joaosnet"):
+    """Check if the user has actually contributed to the repository.
+    Returns True if user has commits in the repo, False otherwise.
+    This helps filter out org repos where the user is just a member but never contributed.
+    """
+    try:
+        if not token:
+            return False
+        
+        # Check if user has any commits in the repo
+        url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&per_page=1"
+        headers = {
+            "Authorization": f"token {token}",
+            "Accept": "application/vnd.github.v3+json",
+        }
+        
+        if _HAS_REQUESTS:
+            response = requests.get(url, headers=headers, timeout=10)
+            if response.status_code == 200:
+                commits = response.json()
+                return len(commits) > 0
+            elif response.status_code == 409:
+                # Empty repository - no commits at all
+                return False
+            else:
+                # On error, be conservative and exclude
+                return False
+        else:
+            try:
+                req = urllib.request.Request(url, headers=headers)
+                with urllib.request.urlopen(req, timeout=10) as r:
+                    commits = json.loads(r.read().decode("utf-8"))
+                    return len(commits) > 0
+            except urllib.error.HTTPError as e:
+                if e.code == 409:
+                    return False
+                return False
+            except Exception:
+                return False
+    except Exception:
+        return False
+
+
 def get_api_token():
     """Return the best available token, preferring PRIVATE_REPOS_TOKEN."""
     return os.environ.get("PRIVATE_REPOS_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -939,6 +982,35 @@ def main():
 
     # Exclude the portfolio repository itself
     my_repos = [repo for repo in my_repos if repo["name"] != "joaosnet.github.io"]
+
+    # Filter out org repos where the user hasn't contributed
+    token = get_api_token()
+    username = "joaosnet"
+    print("\nFiltering org repos by contribution (checking commits)...")
+    filtered_repos = []
+    skipped_count = 0
+    for repo in my_repos:
+        owner = repo.get("owner", {}).get("login", "")
+        repo_name = repo.get("name", "")
+        
+        if owner == username:
+            # User owns this repo, always include
+            filtered_repos.append(repo)
+        else:
+            # Org repo - check if user has contributed
+            has_contributed = check_user_contributed(owner, repo_name, token, username)
+            if has_contributed:
+                filtered_repos.append(repo)
+                print(f"  ✓ {mask_repo_name(repo)} - has contributions")
+            else:
+                skipped_count += 1
+                if not repo.get("private", False):
+                    print(f"  ✗ {owner}/{repo_name} - no contributions, skipping")
+                else:
+                    print(f"  ✗ private repo ({owner}) - no contributions, skipping")
+    
+    my_repos = filtered_repos
+    print(f"\nAfter contribution filter: {len(my_repos)} repos (skipped {skipped_count} without contributions)")
 
     print(f"\nAfter filtering (no forks, with description): {len(my_repos)}")
 
