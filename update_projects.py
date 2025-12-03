@@ -24,13 +24,121 @@ except Exception:
     _HAS_REQUESTS = False
 import os
 from datetime import datetime
-from urllib.parse import unquote
+from urllib.parse import unquote, quote
 import re
 import json
 import subprocess
 
 # Global set to track downloaded images that need to be committed
 downloaded_images = set()
+
+
+def detect_language(text):
+    """Detect if text is likely in Portuguese or another language.
+    Returns 'pt' if Portuguese, 'en' if English, 'other' otherwise.
+    Uses simple heuristics based on common words.
+    """
+    if not text:
+        return 'unknown'
+    
+    text_lower = text.lower()
+    
+    # Common Portuguese words/patterns
+    pt_indicators = [
+        ' de ', ' do ', ' da ', ' dos ', ' das ', ' para ', ' com ', ' em ', ' no ', ' na ',
+        ' um ', ' uma ', ' o ', ' a ', ' os ', ' as ', ' que ', ' é ', ' são ', ' foi ',
+        ' para ', ' por ', ' este ', ' esta ', ' esse ', ' essa ', ' isso ', ' isto ',
+        ' aplicação', ' aplicativo', ' projeto', ' sistema', ' dados', ' arquivo',
+        ' usuário', ' configuração', ' informação', ' através', ' utiliza', ' permite',
+        'ção', 'ões', 'ão', 'ável', 'ível'
+    ]
+    
+    # Common English words/patterns
+    en_indicators = [
+        ' the ', ' a ', ' an ', ' is ', ' are ', ' was ', ' were ', ' for ', ' with ',
+        ' this ', ' that ', ' from ', ' have ', ' has ', ' been ', ' will ', ' would ',
+        ' can ', ' could ', ' should ', ' which ', ' what ', ' when ', ' where ',
+        ' application', ' project', ' system', ' data', ' file', ' user ', ' using ',
+        ' allows', ' provides', ' enables', ' based ', ' management', 'tion ', 'ing '
+    ]
+    
+    pt_score = sum(1 for indicator in pt_indicators if indicator in text_lower)
+    en_score = sum(1 for indicator in en_indicators if indicator in text_lower)
+    
+    if pt_score > en_score:
+        return 'pt'
+    elif en_score > pt_score:
+        return 'en'
+    else:
+        return 'other'
+
+
+def translate_to_portuguese(text, source_lang='en'):
+    """Translate text to Portuguese using free translation APIs.
+    Tries multiple free translation services with fallbacks.
+    Returns translated text or original if translation fails.
+    """
+    if not text or len(text.strip()) < 3:
+        return text
+    
+    # Skip if already in Portuguese
+    if detect_language(text) == 'pt':
+        return text
+    
+    print(f"    ℹ Traduzindo descrição de '{source_lang}' para português...")
+    
+    # Try MyMemory Translation API (free, no API key needed, 1000 chars/day limit)
+    try:
+        encoded_text = quote(text)
+        url = f"https://api.mymemory.translated.net/get?q={encoded_text}&langpair=en|pt-br"
+        
+        if _HAS_REQUESTS:
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get('responseStatus') == 200:
+                    translated = data.get('responseData', {}).get('translatedText', '')
+                    if translated and translated.lower() != text.lower():
+                        # Check if translation looks reasonable (not an error message)
+                        if not translated.startswith('MYMEMORY') and len(translated) > 5:
+                            print("    ✓ Tradução bem-sucedida via MyMemory")
+                            return translated
+        else:
+            req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+            with urllib.request.urlopen(req, timeout=10) as r:
+                data = json.loads(r.read().decode("utf-8"))
+                if data.get('responseStatus') == 200:
+                    translated = data.get('responseData', {}).get('translatedText', '')
+                    if translated and translated.lower() != text.lower():
+                        if not translated.startswith('MYMEMORY') and len(translated) > 5:
+                            print("    ✓ Tradução bem-sucedida via MyMemory")
+                            return translated
+    except Exception as e:
+        print(f"    ⚠ MyMemory falhou: {str(e)[:50]}")
+    
+    # Try LibreTranslate (if available) - fallback
+    try:
+        libre_url = "https://libretranslate.com/translate"
+        payload = {
+            "q": text,
+            "source": "en",
+            "target": "pt",
+            "format": "text"
+        }
+        
+        if _HAS_REQUESTS:
+            response = requests.post(libre_url, json=payload, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                translated = data.get('translatedText', '')
+                if translated and translated.lower() != text.lower():
+                    print("    ✓ Tradução bem-sucedida via LibreTranslate")
+                    return translated
+    except Exception:
+        pass  # LibreTranslate often has rate limits, silently fail
+    
+    print("    ⚠ Tradução falhou, mantendo original")
+    return text
 
 
 def mask_repo_name(repo):
@@ -45,43 +153,96 @@ def mask_repo_name(repo):
 
 def check_user_contributed(owner, repo_name, token, username="joaosnet"):
     """Check if the user has actually contributed to the repository.
-    Returns True if user has commits in the repo, False otherwise.
+    Returns True if user has commits in any branch of the repo, False otherwise.
     This helps filter out org repos where the user is just a member but never contributed.
+    
+    Strategy:
+    1. First check default branch for commits
+    2. If not found, check ALL branches for user's commits
     """
     try:
         if not token:
             return False
         
-        # Check if user has any commits in the repo
-        url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&per_page=1"
         headers = {
             "Authorization": f"token {token}",
             "Accept": "application/vnd.github.v3+json",
         }
         
+        # First, try default branch (faster)
+        url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&per_page=1"
+        
         if _HAS_REQUESTS:
             response = requests.get(url, headers=headers, timeout=10)
             if response.status_code == 200:
                 commits = response.json()
-                return len(commits) > 0
+                if len(commits) > 0:
+                    return True
             elif response.status_code == 409:
                 # Empty repository - no commits at all
                 return False
-            else:
-                # On error, be conservative and exclude
-                return False
+            
+            # If no commits in default branch, check ALL branches
+            branches_url = f"https://api.github.com/repos/{owner}/{repo_name}/branches?per_page=100"
+            branches_response = requests.get(branches_url, headers=headers, timeout=10)
+            
+            if branches_response.status_code == 200:
+                branches = branches_response.json()
+                for branch in branches:
+                    branch_name = branch.get("name", "")
+                    # Skip default branch (already checked)
+                    if not branch_name:
+                        continue
+                    
+                    # Check commits in this specific branch
+                    branch_commits_url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&sha={branch_name}&per_page=1"
+                    branch_response = requests.get(branch_commits_url, headers=headers, timeout=10)
+                    
+                    if branch_response.status_code == 200:
+                        branch_commits = branch_response.json()
+                        if len(branch_commits) > 0:
+                            print(f"    ✓ Found commits in branch '{branch_name}'")
+                            return True
+            
+            return False
         else:
             try:
                 req = urllib.request.Request(url, headers=headers)
                 with urllib.request.urlopen(req, timeout=10) as r:
                     commits = json.loads(r.read().decode("utf-8"))
-                    return len(commits) > 0
+                    if len(commits) > 0:
+                        return True
             except urllib.error.HTTPError as e:
                 if e.code == 409:
                     return False
-                return False
             except Exception:
-                return False
+                pass
+            
+            # Check all branches with urllib
+            try:
+                branches_url = f"https://api.github.com/repos/{owner}/{repo_name}/branches?per_page=100"
+                branches_req = urllib.request.Request(branches_url, headers=headers)
+                with urllib.request.urlopen(branches_req, timeout=10) as r:
+                    branches = json.loads(r.read().decode("utf-8"))
+                    for branch in branches:
+                        branch_name = branch.get("name", "")
+                        if not branch_name:
+                            continue
+                        
+                        branch_commits_url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&sha={branch_name}&per_page=1"
+                        branch_req = urllib.request.Request(branch_commits_url, headers=headers)
+                        try:
+                            with urllib.request.urlopen(branch_req, timeout=10) as br:
+                                branch_commits = json.loads(br.read().decode("utf-8"))
+                                if len(branch_commits) > 0:
+                                    print(f"    ✓ Found commits in branch '{branch_name}'")
+                                    return True
+                        except Exception:
+                            continue
+            except Exception:
+                pass
+            
+            return False
     except Exception:
         return False
 
@@ -207,7 +368,7 @@ def fetch_projects():
 
 def generate_project_html(project, is_last=False, position="left"):
     name = project["name"]
-    description = project["description"]
+    description = project.get("description_translated") or project["description"]
     html_url = project["html_url"]
     image = project.get("preview_image")
     updated_at = project.get("updated_at")
@@ -1057,6 +1218,16 @@ def main():
 
         # attach to project for template
         project["preview_image"] = img
+        
+        # Translate description if not in Portuguese
+        original_description = project.get("description", "")
+        if original_description:
+            lang = detect_language(original_description)
+            if lang != 'pt':
+                translated = translate_to_portuguese(original_description, lang)
+                project["description_translated"] = translated
+            else:
+                project["description_translated"] = original_description
 
         # Alternate between left and right (0:left, 1:right, 2:left, 3:right)
         position = "left" if i % 2 == 0 else "right"
