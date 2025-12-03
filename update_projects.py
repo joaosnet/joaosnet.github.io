@@ -159,6 +159,7 @@ def check_user_contributed(owner, repo_name, token, username="joaosnet"):
     Strategy:
     1. First check default branch for commits
     2. If not found, check ALL branches for user's commits
+    3. If still not found, check user's recent events for push events to this repo
     """
     try:
         if not token:
@@ -168,6 +169,8 @@ def check_user_contributed(owner, repo_name, token, username="joaosnet"):
             "Authorization": f"token {token}",
             "Accept": "application/vnd.github.v3+json",
         }
+        
+        full_repo_name = f"{owner}/{repo_name}"
         
         # First, try default branch (faster)
         url = f"https://api.github.com/repos/{owner}/{repo_name}/commits?author={username}&per_page=1"
@@ -190,7 +193,7 @@ def check_user_contributed(owner, repo_name, token, username="joaosnet"):
                 branches = branches_response.json()
                 for branch in branches:
                     branch_name = branch.get("name", "")
-                    # Skip default branch (already checked)
+                    # Skip empty branch names
                     if not branch_name:
                         continue
                     
@@ -203,6 +206,22 @@ def check_user_contributed(owner, repo_name, token, username="joaosnet"):
                         if len(branch_commits) > 0:
                             print(f"    ✓ Found commits in branch '{branch_name}'")
                             return True
+            
+            # FALLBACK: Check user's recent events for push events to this repo
+            # This catches recent contributions that might not be in standard commits API
+            events_url = f"https://api.github.com/users/{username}/events?per_page=100"
+            events_response = requests.get(events_url, headers=headers, timeout=10)
+            
+            if events_response.status_code == 200:
+                events = events_response.json()
+                for event in events:
+                    event_repo = event.get("repo", {}).get("name", "")
+                    event_type = event.get("type", "")
+                    
+                    # Check for push events or PR events to this repo
+                    if event_repo == full_repo_name and event_type in ["PushEvent", "PullRequestEvent", "CreateEvent"]:
+                        print(f"    ✓ Found {event_type} in recent events")
+                        return True
             
             return False
         else:
@@ -242,6 +261,22 @@ def check_user_contributed(owner, repo_name, token, username="joaosnet"):
             except Exception:
                 pass
             
+            # FALLBACK: Check user's recent events
+            try:
+                events_url = f"https://api.github.com/users/{username}/events?per_page=100"
+                events_req = urllib.request.Request(events_url, headers=headers)
+                with urllib.request.urlopen(events_req, timeout=10) as r:
+                    events = json.loads(r.read().decode("utf-8"))
+                    for event in events:
+                        event_repo = event.get("repo", {}).get("name", "")
+                        event_type = event.get("type", "")
+                        
+                        if event_repo == full_repo_name and event_type in ["PushEvent", "PullRequestEvent", "CreateEvent"]:
+                            print(f"    ✓ Found {event_type} in recent events")
+                            return True
+            except Exception:
+                pass
+            
             return False
     except Exception:
         return False
@@ -255,11 +290,12 @@ def get_api_token():
 def fetch_projects():
     """Fetch repositories from GitHub API.
     Tries authenticated endpoint first (public + private + collaborator + org), then falls back to public only.
-    Also explicitly fetches repos from configured featured organizations.
+    Also fetches repos from user's recent events to capture contributions to repos not in the main list.
     Returns a combined list of all accessible repositories.
     """
     token = get_api_token()
     repos = []
+    repos_seen = set()  # Track repo full names to avoid duplicates
 
     # Try authenticated endpoint first if token is available
     if token:
@@ -274,6 +310,8 @@ def fetch_projects():
                 response = requests.get(url_auth, headers=headers_auth, timeout=10)
                 if response.status_code == 200:
                     repos = response.json()
+                    for repo in repos:
+                        repos_seen.add(repo.get("full_name", ""))
                     print(
                         f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint"
                     )
@@ -304,6 +342,8 @@ def fetch_projects():
                 req = urllib.request.Request(url_auth, headers=headers_auth)
                 with urllib.request.urlopen(req, timeout=10) as r:
                     repos = json.loads(r.read().decode("utf-8"))
+                    for repo in repos:
+                        repos_seen.add(repo.get("full_name", ""))
                     print(
                         f"Successfully fetched {len(repos)} repos (owner + collaborator + org) via authenticated endpoint"
                     )
@@ -333,6 +373,77 @@ def fetch_projects():
             print(
                 f"Error fetching from authenticated endpoint: {e}; falling back to public repos..."
             )
+        
+        # ADDITIONAL: Fetch repos from user's recent events (catches contributions to repos not in main list)
+        if token:
+            try:
+                events_url = "https://api.github.com/users/joaosnet/events?per_page=100"
+                additional_repos = []
+                
+                if _HAS_REQUESTS:
+                    events_response = requests.get(events_url, headers=headers_auth, timeout=10)
+                    if events_response.status_code == 200:
+                        events = events_response.json()
+                        repos_from_events = set()
+                        
+                        for event in events:
+                            event_type = event.get("type", "")
+                            repo_info = event.get("repo", {})
+                            repo_full_name = repo_info.get("name", "")
+                            
+                            # Only consider push/PR/create events as real contributions
+                            if event_type in ["PushEvent", "PullRequestEvent", "CreateEvent"] and repo_full_name:
+                                if repo_full_name not in repos_seen:
+                                    repos_from_events.add(repo_full_name)
+                        
+                        # Fetch full repo info for repos found in events
+                        for repo_full_name in repos_from_events:
+                            try:
+                                repo_url = f"https://api.github.com/repos/{repo_full_name}"
+                                repo_response = requests.get(repo_url, headers=headers_auth, timeout=10)
+                                if repo_response.status_code == 200:
+                                    repo_data = repo_response.json()
+                                    additional_repos.append(repo_data)
+                                    repos_seen.add(repo_full_name)
+                                    print(f"  + Added from events: {repo_full_name}")
+                            except Exception:
+                                pass
+                else:
+                    try:
+                        events_req = urllib.request.Request(events_url, headers=headers_auth)
+                        with urllib.request.urlopen(events_req, timeout=10) as r:
+                            events = json.loads(r.read().decode("utf-8"))
+                            repos_from_events = set()
+                            
+                            for event in events:
+                                event_type = event.get("type", "")
+                                repo_info = event.get("repo", {})
+                                repo_full_name = repo_info.get("name", "")
+                                
+                                if event_type in ["PushEvent", "PullRequestEvent", "CreateEvent"] and repo_full_name:
+                                    if repo_full_name not in repos_seen:
+                                        repos_from_events.add(repo_full_name)
+                            
+                            for repo_full_name in repos_from_events:
+                                try:
+                                    repo_url = f"https://api.github.com/repos/{repo_full_name}"
+                                    repo_req = urllib.request.Request(repo_url, headers=headers_auth)
+                                    with urllib.request.urlopen(repo_req, timeout=10) as repo_r:
+                                        repo_data = json.loads(repo_r.read().decode("utf-8"))
+                                        additional_repos.append(repo_data)
+                                        repos_seen.add(repo_full_name)
+                                        print(f"  + Added from events: {repo_full_name}")
+                                except Exception:
+                                    pass
+                    except Exception:
+                        pass
+                
+                if additional_repos:
+                    print(f"  + Found {len(additional_repos)} additional repos from recent events")
+                    repos.extend(additional_repos)
+                    
+            except Exception as e:
+                print(f"  ⚠ Could not fetch events: {str(e)[:50]}")
 
     # Fallback to public endpoint if authenticated endpoint failed
     if not repos:
