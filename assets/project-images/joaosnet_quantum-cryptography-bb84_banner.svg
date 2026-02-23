@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 320" width="900" height="320">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#090c10"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    
+    <!-- Node Gradients -->
+    <radialGradient id="alice-fill" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4c1d95"/>
+      <stop offset="100%" stop-color="#2e1065"/>
+    </radialGradient>
+    <radialGradient id="bob-fill" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#1e3a8a"/>
+    </radialGradient>
+    <radialGradient id="eve-fill" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </radialGradient>
+    
+    <!-- Glow Filters -->
+    <filter id="glow-secure" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-hacked" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glow-noise" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="title-glow" x="-5%" y="-30%" width="110%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- BACKGROUND -->
+  <rect width="900" height="320" fill="url(#bg-grad)" rx="10"/>
+  <rect width="900" height="320" fill="none" stroke="#30363d" stroke-width="1.5" rx="10"/>
+
+  <!-- DECORATIVE GRID DOTS -->
+  <g fill="#21262d" opacity="0.6">
+    <circle cx="30" cy="30" r="1.5"/> <circle cx="870" cy="30" r="1.5"/>
+    <circle cx="30" cy="290" r="1.5"/> <circle cx="870" cy="290" r="1.5"/>
+    <circle cx="450" cy="30" r="1.5"/> <circle cx="450" cy="290" r="1.5"/>
+  </g>
+
+  <!-- HEADER -->
+  <text x="450" y="38" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="24" font-weight="bold" fill="#f0f6fc" letter-spacing="1"
+        filter="url(#title-glow)">BB84: ATAQUE PARCIAL EM HARDWARE NISQ</text>
+  <text x="450" y="58" text-anchor="middle"
+        font-family="'Courier New', Courier, monospace"
+        font-size="11" fill="#8b949e" letter-spacing="1.5">
+    Cross-Platform Validation: IBM Qiskit &amp; Google Cirq  ·  COBENGE 2026
+  </text>
+
+  <!-- QUANTUM CHANNEL (4 QUBITS) -->
+  <!-- Renders 4 subtle lines to represent the 4 qubits -->
+  <g stroke-width="1.5" opacity="0.4" stroke-dasharray="6,4">
+    <line x1="165" y1="125" x2="735" y2="125" stroke="#38bdf8"/> <!-- q0 -->
+    <line x1="165" y1="145" x2="735" y2="145" stroke="#38bdf8"/> <!-- q1 -->
+    <line x1="165" y1="165" x2="735" y2="165" stroke="#10b981"/> <!-- q2 -->
+    <line x1="165" y1="185" x2="735" y2="185" stroke="#10b981"/> <!-- q3 -->
+  </g>
+  <text x="210" y="128" font-family="'Courier New', Courier, monospace" font-size="9" fill="#38bdf8" opacity="0.6">q0</text>
+  <text x="210" y="148" font-family="'Courier New', Courier, monospace" font-size="9" fill="#38bdf8" opacity="0.6">q1</text>
+  <text x="210" y="168" font-family="'Courier New', Courier, monospace" font-size="9" fill="#10b981" opacity="0.6">q2</text>
+  <text x="210" y="188" font-family="'Courier New', Courier, monospace" font-size="9" fill="#10b981" opacity="0.6">q3</text>
+
+  <!-- NISQ NOISE (Thermal Decoherence) -->
+  <g fill="#f59e0b" filter="url(#glow-noise)">
+    <!-- Wavy/Random particles representing decoherence -->
+    <circle cx="280" cy="135" r="1.5"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="2s" repeatCount="indefinite"/></circle>
+    <circle cx="350" cy="175" r="1.5"><animate attributeName="opacity" values="0.1;0.8;0.1" dur="3s" repeatCount="indefinite"/></circle>
+    <circle cx="580" cy="155" r="2.0"><animate attributeName="opacity" values="0.2;1;0.2" dur="1.5s" repeatCount="indefinite"/></circle>
+    <circle cx="680" cy="130" r="1.5"><animate attributeName="opacity" values="0.1;0.9;0.1" dur="2.5s" repeatCount="indefinite"/></circle>
+    <circle cx="240" cy="180" r="1.0"><animate attributeName="opacity" values="0;0.7;0" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="620" cy="170" r="1.5"><animate attributeName="opacity" values="0;0.8;0" dur="1.8s" repeatCount="indefinite"/></circle>
+  </g>
+
+  <!-- EVE (PARTIAL ATTACKER) -->
+  <!-- Targetting only q0 and q1 -->
+  <path d="M 450 102 L 430 125 L 470 125 Z" fill="#ef4444" opacity="0.15"/>
+  <path d="M 450 102 L 420 145 L 480 145 Z" fill="#ef4444" opacity="0.10"/>
+  <line x1="450" y1="102" x2="450" y2="125" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.8"/>
+  <line x1="450" y1="102" x2="450" y2="145" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.4"/>
+  
+  <circle cx="450" cy="78" r="28" fill="none" stroke="#ef4444" stroke-width="1.5" opacity="0.2">
+    <animate attributeName="r" values="28;45" dur="2.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.5;0" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="450" cy="78" r="24" fill="url(#eve-fill)" stroke="#ef4444" stroke-width="2.5"/>
+  <ellipse cx="450" cy="75" rx="9" ry="4.5" fill="none" stroke="#fca5a5" stroke-width="1.5"/>
+  <circle cx="450" cy="75" r="3" fill="#fca5a5"/>
+  
+  <text x="450" y="90" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="12" font-weight="bold" fill="#fca5a5">EVE</text>
+  <text x="485" y="71" font-family="'Courier New', Courier, monospace" font-size="9" font-weight="bold" fill="#ef4444" opacity="0.9">⚡ ATAQUE PARCIAL</text>
+  <text x="485" y="83" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#f87171" opacity="0.7">Intercepta q0 e q1 (50%)</text>
+  <text x="485" y="94" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#f87171" opacity="0.5">Camuflagem em ruído NISQ</text>
+
+  <!-- ALICE -->
+  <circle cx="120" cy="155" r="50" fill="url(#alice-fill)" stroke="#8b5cf6" stroke-width="2.5"/>
+  <line x1="120" y1="139" x2="120" y2="125" stroke="#c4b5fd" stroke-width="2.5"/>
+  <path d="M 105 132 A 15 12 0 0 1 135 132" fill="none" stroke="#c4b5fd" stroke-width="2"/>
+  <circle cx="120" cy="139" r="3" fill="#ddd6fe"/>
+  <text x="120" y="165" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="bold" fill="#ddd6fe">ALICE</text>
+  <text x="120" y="180" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#a78bfa">Prepara 4 Qubits</text>
+  <text x="120" y="192" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#a78bfa">|1⟩, |+⟩, |1⟩, |+⟩</text>
+
+  <!-- BOB -->
+  <circle cx="780" cy="155" r="50" fill="url(#bob-fill)" stroke="#3b82f6" stroke-width="2.5"/>
+  <rect x="765" y="125" width="30" height="20" rx="4" fill="none" stroke="#93c5fd" stroke-width="2"/>
+  <circle cx="773" cy="135" r="3" fill="#93c5fd" opacity="0.8"/>
+  <circle cx="787" cy="135" r="3" fill="#93c5fd" opacity="0.8"/>
+  <text x="780" y="165" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="14" font-weight="bold" fill="#bfdbfe">BOB</text>
+  <text x="780" y="180" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#60a5fa">Mede colapso de onda</text>
+  <text x="780" y="192" text-anchor="middle" font-family="'Courier New', Courier, monospace" font-size="8.5" fill="#60a5fa">Bases: X, Z, X, Z</text>
+
+  <!-- ANIMATED PHOTONS -->
+  <!-- q0: Intercepted by Eve -->
+  <circle cx="165" cy="125" r="4.5" filter="url(#glow-hacked)">
+    <animateTransform attributeName="transform" type="translate" values="0 0; 285 0; 285 0; 570 0" keyTimes="0; 0.45; 0.55; 1" dur="3s" repeatCount="indefinite" begin="0s"/>
+    <animate attributeName="fill" values="#0ea5e9; #0ea5e9; #facc15; #ef4444" keyTimes="0; 0.45; 0.50; 0.55" dur="3s" repeatCount="indefinite" begin="0s"/>
+  </circle>
+  
+  <!-- q1: Intercepted by Eve (Offset phase) -->
+  <circle cx="165" cy="145" r="4.5" filter="url(#glow-hacked)">
+    <animateTransform attributeName="transform" type="translate" values="0 0; 285 0; 285 0; 570 0" keyTimes="0; 0.45; 0.55; 1" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+    <animate attributeName="fill" values="#0ea5e9; #0ea5e9; #facc15; #ef4444" keyTimes="0; 0.45; 0.50; 0.55" dur="3s" repeatCount="indefinite" begin="1.5s"/>
+  </circle>
+
+  <!-- q2: Secure / Untouched -->
+  <circle cx="165" cy="165" r="4.5" fill="#10b981" filter="url(#glow-secure)">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="570 0" dur="3s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+
+  <!-- q3: Secure / Untouched -->
+  <circle cx="165" cy="185" r="4.5" fill="#10b981" filter="url(#glow-secure)">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="570 0" dur="3s" repeatCount="indefinite" begin="2.0s"/>
+  </circle>
+
+
+  <!-- FOOTER & LEGENDS -->
+  <line x1="30" y1="260" x2="870" y2="260" stroke="#21262d" stroke-width="1.5"/>
+  
+  <circle cx="50" cy="285" r="5" fill="#10b981" filter="url(#glow-secure)"/>
+  <text x="65" y="289" font-family="'Courier New', Courier, monospace" font-size="10" fill="#8b949e">Qubits Seguros (q2, q3)</text>
+  
+  <circle cx="230" cy="285" r="5" fill="#ef4444" filter="url(#glow-hacked)"/>
+  <text x="245" y="289" font-family="'Courier New', Courier, monospace" font-size="10" fill="#8b949e">Qubits Interceptados (q0, q1)</text>
+  
+  <circle cx="445" cy="285" r="4" fill="#f59e0b" filter="url(#glow-noise)"/>
+  <text x="460" y="289" font-family="'Courier New', Courier, monospace" font-size="10" fill="#8b949e">Ruído NISQ (Decoerência ~5%)</text>
+  
+  <text x="870" y="282" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="10" font-weight="bold" fill="#f0f6fc">CONCLUSÃO FÍSICA:</text>
+  <text x="870" y="296" text-anchor="end" font-family="'Courier New', Courier, monospace" font-size="9" fill="#8b949e">Ataque camuflado no ruído gera ~7.2% QBER</text>
+</svg>
