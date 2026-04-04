@@ -66,14 +66,36 @@ class AnimationsHandler {
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
-                    const header = document.querySelector('header');
-                    const headerHeight = header ? header.offsetHeight : 0;
-                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                    // Check if we're in horizontal scroll mode
+                    const horizontalWrapper = document.querySelector('.horizontal-wrapper');
+                    
+                    if (horizontalWrapper && targetElement.closest('.horizontal-wrapper')) {
+                        // Horizontal scroll to section
+                        const scrollLeft = targetElement.offsetLeft;
+                        horizontalWrapper.scrollTo({
+                            left: scrollLeft,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        // Traditional vertical scroll
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
 
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Close mobile menu if open
+                    const body = document.body;
+                    if (body.classList.contains('menu-open')) {
+                        const mobileMenuHandler = window.mobileMenuHandler;
+                        if (mobileMenuHandler) {
+                            mobileMenuHandler.closeMenu();
+                        }
+                    }
                 }
             });
         });
