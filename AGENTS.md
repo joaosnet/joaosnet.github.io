@@ -5,7 +5,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Architecture & Key Components
 - **Frontend**: Vanilla HTML5, CSS3 (SCSS), and JavaScript. No framework (React/Vue/etc.) is used for the runtime site.
-- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (6 specialized modules).
+- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (6 specialized runtime modules, plus a legacy theme.js kept for compatibility).
 - **Automation**: `update_projects.py` is the core automation engine. It fetches repository data from the GitHub API and injects HTML into `index.html`. Supports both public and private repositories (with authentication).
 - **Styling**: Uses CSS variables for theming (Light/Dark mode). Styles are now separated into `assets/css/styles.css` with SCSS source files in `assets/sass/` for maintainability.
 - **Assets**: Located in `assets/`:
@@ -14,14 +14,14 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - `assets/css/main.css` - Compiled from SCSS (legacy)
     - `assets/css/noscript.css` - No-JavaScript fallbacks
     - `assets/css/fontawesome-all.min.css` - FontAwesome icons
-  - **JavaScript** (6 specialized modules):
+  - **JavaScript** (6 specialized modules + 1 legacy script):
     - `assets/js/theme-manager.js` - Light/dark theme toggling (class ThemeManager)
     - `assets/js/mobile-menu.js` - Mobile menu handling (class MobileMenuHandler)
     - `assets/js/animations.js` - Scroll animations and observers (class AnimationsHandler)
     - `assets/js/contact-form.js` - Form submission and FAB (class ContactFormHandler)
     - `assets/js/utils.js` - Particles, floating shapes, and view counter (FloatingShapesHandler, ViewsCounter, initParticles)
     - `assets/js/geo-counter.js` - Visitor tracking (class GeoViewsCounter) - collects IP, geolocation, timestamp, user-agent
-    - `assets/js/theme.js` - Legacy theme handling (kept for compatibility)
+    - `assets/js/theme.js` - Legacy theme handling (compatibility only; not loaded by index.html)
   - `assets/sass/` - SCSS source files (main.scss, noscript.scss, libs/ with _breakpoints.scss, _functions.scss, _mixins.scss, _vars.scss, _vendor.scss)
   - `assets/project-images/` - Downloaded images from private repositories
   - `assets/webfonts/` - FontAwesome webfonts
@@ -41,9 +41,9 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 - **Theme Management**:
   - Themes are controlled via the `data-theme` attribute on the `<html>` tag (`light` or `dark`).
-  - CSS variables (e.g., `--primary`, `--secondary`, `--bg-card`) are defined in the `<style>` block in `index.html`.
+  - CSS variables (e.g., `--primary`, `--secondary`, `--bg-card`) are defined in `assets/css/styles.css`; the inline `<style>` block in `index.html` is intentionally empty.
   - Theme state is persisted in `localStorage` as `theme`.
-  - Logic resides in `assets/js/theme.js` and toggles via a button with FontAwesome icons.
+  - Logic resides in `assets/js/theme-manager.js`; `assets/js/theme.js` remains as a legacy compatibility file and is not loaded by `index.html`.
   - Default theme is dark unless user has previously selected light mode.
 
 ## Code Conventions & Patterns
@@ -67,9 +67,9 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - **Display**: Counter in footer styled with gradient, icon 👁, number updated yearly per localStorage
   - **Related Files**: Assets/css/styles.css has `.views-counter` styling (gradient background, shadow, hover effect)
 - **HTML Structure**:
-  - `index.html` is now lean (~434 lines) containing only semantic HTML structure.
+  - `index.html` is lean and contains only semantic HTML structure.
   - All styles are referenced from `assets/css/styles.css`.
-  - All JavaScript is loaded via 6 modular scripts in the correct order.
+  - All JavaScript is loaded via 6 modular scripts in the correct order, followed by the third-party GTranslate widget.
   - The `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers must be preserved for `update_projects.py`.
 - **CSS Architecture**:
   - **Main file**: `assets/css/styles.css` (~1000 lines, organized by sections):
@@ -90,7 +90,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Dark mode (default): `--primary: #3b82f6`, `--secondary: #8b5cf6`, `--accent: #06b6d4`, etc.
     - Light mode: Override via `html[data-theme="light"]`
   - No inline styles in HTML (except data attributes).
-- **JavaScript Modules** (5 specialized modules):
+- **JavaScript Modules** (6 specialized runtime modules):
   - **`theme-manager.js`** (Class: ThemeManager)
     - Methods: `getCurrentTheme()`, `toggleTheme()`, `applyTheme(theme)`, `updateToggleIcon(theme)`
     - Handles theme persistence via localStorage
@@ -125,6 +125,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Stores in localStorage with 7-day retention
     - Rate limiting (1 hour per IP)
     - Initializes on `DOMContentLoaded`
+  - `assets/js/theme.js` is legacy only and should not be treated as part of the active runtime chain.
 - **HTML Injection** (via update_projects.py):
   - The script looks for `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers. **Do not remove these.**
   - Fetches up to 100 repositories with affiliation filter (owner, collaborator, organization_member).
@@ -143,6 +144,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - `particles.js` (v2.0.0) for background effects (loaded via CDN).
   - FontAwesome 6.4.0 for icons (via CDN).
   - Google Fonts: Outfit (body text, sans-serif) and Space Grotesk (headings, monospace).
+  - GTranslate floating widget for on-page language switching (loaded via CDN).
   - View counter: 100% localStorage-based (no external API).
 - **JavaScript Patterns**:
   - All modules use vanilla DOM API (no jQuery or frameworks).
@@ -150,7 +152,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Toast notifications via `showToast()` helper with auto-hide after 3.5 seconds.
   - FAB smoothly scrolls to contact form and focuses message field.
   - Theme persistence uses `localStorage.setItem('theme', theme)`.
-  - Load order matters: particles.js → utils.js → geo-counter.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js.
+  - Load order matters: particles.js → utils.js → geo-counter.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js → GTranslate widget.
 
 ## Development Guidelines
 - **CSS**: 
@@ -197,7 +199,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Test on mobile (< 480px), tablet (480-768px), and desktop (> 768px).
 
 ## Key Files
-- `index.html`: Main entry point. Contains semantic HTML structure (~434 lines).
+- `index.html`: Main entry point. Contains semantic HTML structure.
 - `assets/css/styles.css`: Main stylesheet with all CSS (~1000 lines, organized by sections).
 - `assets/js/theme-manager.js`: Theme toggling logic (light/dark mode).
 - `assets/js/mobile-menu.js`: Mobile menu toggle and overlay handling.
@@ -205,7 +207,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - `assets/js/contact-form.js`: Form submission, email utilities, FAB, toast notifications.
 - `assets/js/utils.js`: Particles configuration, floating shapes, view counter.
 - `assets/js/geo-counter.js`: Visitor tracking (IP, geolocation, timestamp, user-agent collection and Google Drive integration).
-- `assets/js/theme.js`: Legacy theme handling (kept for compatibility).
+- `assets/js/theme.js`: Legacy theme handling (compatibility only; not loaded by index.html).
 - `GOOGLE_APPS_SCRIPT_CODE.gs`: Google Apps Script backend code for receiving and storing visitor data in Google Sheets.
 - `SETUP_GOOGLE_DRIVE_TRACKING.md`: Detailed instructions for configuring Google Apps Script and visitor tracking.
 - `update_projects.py`: Automation script to fetch GitHub repos and update project timeline.
