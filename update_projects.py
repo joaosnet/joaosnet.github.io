@@ -28,10 +28,14 @@ from urllib.parse import unquote, quote
 import re
 import json
 import subprocess
-from dotenv import load_dotenv
 
-# Carregar variáveis de ambiente do arquivo .env
-load_dotenv()
+# Carregar variáveis de ambiente do arquivo .env (apenas localmente)
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass  # python-dotenv não disponível (ex: GitHub Actions)
 
 # Global set to track downloaded images that need to be committed
 downloaded_images = set()
