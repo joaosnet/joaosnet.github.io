@@ -183,8 +183,16 @@ class ThemeSelector {
         // Theme card clicks
         const themeCards = this.modal.querySelectorAll('.theme-card');
         themeCards.forEach(card => {
-            card.addEventListener('click', () => {
+            card.addEventListener('click', async () => {
                 const theme = card.dataset.theme;
+                
+                // Visual feedback
+                themeCards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                // Small delay for animation
+                await new Promise(resolve => setTimeout(resolve, 200));
+                
                 this.selectTheme(theme);
             });
         });
@@ -207,6 +215,17 @@ class ThemeSelector {
     }
 
     showModal() {
+        // Mark current theme as selected
+        const currentTheme = this.getCurrentTheme();
+        const themeCards = this.modal.querySelectorAll('.theme-card');
+        themeCards.forEach(card => {
+            if (card.dataset.theme === currentTheme) {
+                card.classList.add('selected');
+            } else {
+                card.classList.remove('selected');
+            }
+        });
+        
         this.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }

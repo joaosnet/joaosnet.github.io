@@ -33,8 +33,9 @@ class HorizontalScrollHandler {
         this.createScrollIndicator();
         this.createScrollHint();
         
-        // Setup scroll event listener
+        // Setup scroll event listeners
         this.setupScrollListener();
+        this.setupVerticalToHorizontalScroll();
         
         // Setup scroll dot clicks
         this.setupDotClicks();
@@ -46,6 +47,25 @@ class HorizontalScrollHandler {
         setTimeout(() => {
             this.showScrollHint();
         }, 2000);
+    }
+
+    setupVerticalToHorizontalScroll() {
+        // Convert vertical scroll (mouse wheel/trackpad) to horizontal scroll
+        this.wrapper.addEventListener('wheel', (e) => {
+            // Only convert if scrolling vertically
+            if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                e.preventDefault();
+                
+                // Scroll horizontally by the vertical delta amount
+                const scrollSpeed = 1.5; // Adjust speed factor
+                const scrollAmount = e.deltaY * scrollSpeed;
+                
+                this.wrapper.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'auto' // Use 'auto' for immediate response
+                });
+            }
+        }, { passive: false });
     }
 
     createScrollIndicator() {
