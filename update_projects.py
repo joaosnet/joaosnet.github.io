@@ -28,6 +28,10 @@ from urllib.parse import unquote, quote
 import re
 import json
 import subprocess
+from dotenv import load_dotenv
+
+# Carregar variáveis de ambiente do arquivo .env
+load_dotenv()
 
 # Global set to track downloaded images that need to be committed
 downloaded_images = set()
@@ -479,7 +483,7 @@ def fetch_projects():
 
 def generate_project_html(project, is_last=False, position="left"):
     name = project["name"]
-    description = project.get("description_translated") or project["description"]
+    description = project.get("description_translated") or project.get("description") or "Sem descrição disponível"
     html_url = project["html_url"]
     image = project.get("preview_image")
     updated_at = project.get("updated_at")
@@ -1332,13 +1336,16 @@ def main():
         
         # Translate description if not in Portuguese
         original_description = project.get("description", "")
-        if original_description:
+        if original_description and original_description.lower() != "none":
             lang = detect_language(original_description)
             if lang != 'pt':
                 translated = translate_to_portuguese(original_description, lang)
                 project["description_translated"] = translated
             else:
                 project["description_translated"] = original_description
+        else:
+            # Handle None or empty descriptions
+            project["description_translated"] = "Sem descrição disponível"
 
         # Alternate between left and right (0:left, 1:right, 2:left, 3:right)
         position = "left" if i % 2 == 0 else "right"

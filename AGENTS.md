@@ -7,9 +7,11 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - **Frontend**: Vanilla HTML5, CSS3 (SCSS), and JavaScript. No framework (React/Vue/etc.) is used for the runtime site.
 - **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (6 specialized runtime modules, plus a legacy theme.js kept for compatibility).
 - **Automation**: `update_projects.py` is the core automation engine. It fetches repository data from the GitHub API and injects HTML into `index.html`. Supports both public and private repositories (with authentication).
+- **Environment Variables**: Uses `.env` file with `python-dotenv` for managing sensitive configuration (GitHub tokens, API URLs). **NEVER commit `.env`** - it's in `.gitignore`. Use `.env.example` as template.
+- **Testing**: Full test suite with pytest (59 tests). Tests cover environment variables, site structure, and update_projects.py functionality. Run with `uv run pytest tests/ -v`.
 - **Styling**: Uses CSS variables for theming (Light/Dark mode). Styles are now separated into `assets/css/styles.css` with SCSS source files in `assets/sass/` for maintainability.
 - **Assets**: Located in `assets/`:
-  - **CSS**: 
+  - **CSS**:
     - `assets/css/styles.css` - Main stylesheet (modularized, ~1000 lines)
     - `assets/css/main.css` - Compiled from SCSS (legacy)
     - `assets/css/noscript.css` - No-JavaScript fallbacks
@@ -19,7 +21,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - `assets/js/mobile-menu.js` - Mobile menu handling (class MobileMenuHandler)
     - `assets/js/animations.js` - Scroll animations and observers (class AnimationsHandler)
     - `assets/js/contact-form.js` - Form submission and FAB (class ContactFormHandler)
-    - `assets/js/utils.js` - Particles, floating shapes, and view counter (FloatingShapesHandler, ViewsCounter, initParticles)
+    - `assets/js/utils.js` - Particles, floating shapes, and view counter (FloatingShapesHandler, initParticles). **ViewsCounter removed** - now handled by geo-counter.js to avoid duplication.
     - `assets/js/geo-counter.js` - Visitor tracking (class GeoViewsCounter) - collects IP, geolocation, timestamp, user-agent
     - `assets/js/theme.js` - Legacy theme handling (compatibility only; not loaded by index.html)
   - `assets/sass/` - SCSS source files (main.scss, noscript.scss, libs/ with _breakpoints.scss, _functions.scss, _mixins.scss, _vars.scss, _vendor.scss)
@@ -27,6 +29,22 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - `assets/webfonts/` - FontAwesome webfonts
 
 ## Critical Workflows
+- **Environment Variables Setup**:
+  - `.env` file contains all configuration (GitHub tokens, API URLs)
+  - `.env.example` provides template for new developers
+  - **NEVER commit `.env`** - excluded via `.gitignore`
+  - Run `uv run pytest tests/test_env_variables.py -v` to validate setup
+  - Required variables: `PRIVATE_REPOS_TOKEN`, `GOOGLE_APPS_SCRIPT_URL`, `FORMSPREE_ENDPOINT`
+  - Loaded via `python-dotenv` in `update_projects.py` using `load_dotenv()`
+
+- **Testing**:
+  - Full test suite: `uv run pytest tests/ -v` (59 tests)
+  - Environment validation: `uv run pytest tests/test_env_variables.py -v` (15 tests)
+  - Site structure: `uv run pytest tests/test_site_structure.py -v` (21 tests)
+  - Update script: `uv run pytest tests/test_update_projects.py -v` (23 tests)
+  - With coverage: `uv run pytest tests/ --cov=update_projects --cov-report=html`
+  - All tests must pass before committing changes
+
 - **Updating Projects**:
   - Run `python update_projects.py` to fetch repositories (both public and private) and update `index.html`.
   - **Requirements**: Set either `PRIVATE_REPOS_TOKEN` (preferred) or `GITHUB_TOKEN` environment variable to avoid API rate limits and access private repositories.
@@ -56,16 +74,16 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Stores in localStorage for last 7 days (~5-10MB max)
     - Rate limiting: 1 hour between sends per IP
     - Error handling: graceful fallbacks, never breaks site
-  - **Backend Component**: Google Apps Script Web App (code in `GOOGLE_APPS_SCRIPT_CODE.gs`)
+  - **Backend Component**: Google Apps Script Web App (code stored externally)
     - Function `doPost(e)`: receives visitor data JSON
     - Function `appendVisitToSheet(data)`: writes to "Visitas" aba with headers
     - Function `updateStatistics()`: calculates Top 10 countries/cities in "Estatísticas" aba
     - Automatic table creation on first run
   - **Setup**: User must: create Google Sheet "Portfolio Analytics", create Apps Script, deploy as Web App, paste URL into geo-counter.js
-    - Documentation: `SETUP_GOOGLE_DRIVE_TRACKING.md` (detailed), `QUICK_START.md` (5 min)
   - **Privacy**: Data completely private (never exposed publicly), LGPD compliant, only you access (secure with Google Drive permissions)
   - **Display**: Counter in footer styled with gradient, icon 👁, number updated yearly per localStorage
   - **Related Files**: Assets/css/styles.css has `.views-counter` styling (gradient background, shadow, hover effect)
+  - **Note**: `ViewsCounter` class removed from `utils.js` to avoid duplicate counting - now handled solely by `GeoViewsCounter`
 - **HTML Structure**:
   - `index.html` is lean and contains only semantic HTML structure.
   - All styles are referenced from `assets/css/styles.css`.
@@ -115,9 +133,9 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Initializes on `DOMContentLoaded`
   - **`utils.js`** (Multiple utilities)
     - Class: FloatingShapesHandler - Mouse move tracking for floating shapes
-    - Class: ViewsCounter - localStorage-based view counter (yearly)
     - Function: initParticles() - particles.js configuration
     - All initialize on `DOMContentLoaded`
+    - **Note**: ViewsCounter class removed to avoid duplicate counting with geo-counter.js
   - **`geo-counter.js`** (Class: GeoViewsCounter)
     - Methods: `collectAndSendGeoData()`, `fetchGeoData()`, `storeVisitData()`, `sendToGoogleAppsScript()`, `cleanOldData()`, `getStoredData()`, `getLocalStatistics()`
     - Collects IP, country, city, ISP, timestamp, user-agent
@@ -184,6 +202,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - **Utilities**: Edit `assets/js/utils.js` (particles config, shapes animation, counter logic).
   - **Visitor Tracking**: Edit `assets/js/geo-counter.js` (coleta de dados, envio para Google Apps Script) and `.views-counter` in `assets/css/styles.css`. Must configure Google Apps Script URL in `GeoViewsCounter.GOOGLE_APPS_SCRIPT_URL`.
 - **Python Script (`update_projects.py`)**:
+  - Uses `python-dotenv` to load environment variables from `.env` file
   - Use `requests` library if available, maintain `urllib` fallback for compatibility.
   - Handle API errors gracefully with try-except blocks and informative print statements.
   - Always track downloaded images globally via `downloaded_images` set for git commit.
@@ -192,6 +211,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Output timeline HTML with 3-column grid layout for alternating left/right cards.
   - Update copyright year and "Última atualização" timestamp in footer on each run.
   - Only modify content between `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers.
+  - **Testing**: All functions covered by pytest tests (23 tests in test_update_projects.py)
 - **Responsive Design**: 
   - Use media queries from `assets/css/styles.css` (breakpoints: 480px, 768px, 1200px).
   - Timeline collapses to single column on smaller screens (align items to center).
@@ -205,9 +225,24 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - `assets/js/mobile-menu.js`: Mobile menu toggle and overlay handling.
 - `assets/js/animations.js`: Scroll animations, intersection observers, smooth scrolling.
 - `assets/js/contact-form.js`: Form submission, email utilities, FAB, toast notifications.
-- `assets/js/utils.js`: Particles configuration, floating shapes, view counter.
+- `assets/js/utils.js`: Particles configuration, floating shapes. **ViewsCounter removed** - use geo-counter.js instead.
 - `assets/js/geo-counter.js`: Visitor tracking (IP, geolocation, timestamp, user-agent collection and Google Drive integration).
 - `assets/js/theme.js`: Legacy theme handling (compatibility only; not loaded by index.html).
-- `GOOGLE_APPS_SCRIPT_CODE.gs`: Google Apps Script backend code for receiving and storing visitor data in Google Sheets.
-- `SETUP_GOOGLE_DRIVE_TRACKING.md`: Detailed instructions for configuring Google Apps Script and visitor tracking.
-- `update_projects.py`: Automation script to fetch GitHub repos and update project timeline.
+- `update_projects.py`: Automation script to fetch GitHub repos and update project timeline. Uses python-dotenv for environment variables.
+- `.env`: Environment variables (GitHub tokens, API URLs). **NEVER COMMIT** - in .gitignore.
+- `.env.example`: Template for environment variables. Safe to commit.
+- `pyproject.toml`: Python project configuration with uv. Defines dependencies (requests, python-dotenv, pytest).
+- `uv.lock`: Lockfile for reproducible dependency versions.
+- `tests/`: Pytest test suite (59 tests total):
+  - `test_env_variables.py`: Environment variable validation (15 tests)
+  - `test_site_structure.py`: Site structure validation (21 tests)
+  - `test_update_projects.py`: Update script unit tests (23 tests)
+- `TESTES.md`: Complete testing guide (in Portuguese).
+- `AGENTS.md`: This file - project documentation for AI assistants.
+
+## Removed Files (No Longer Needed)
+- `GOOGLE_APPS_SCRIPT_CODE.gs`: Moved to external gist (was reference code only)
+- `validate_env.py`: Replaced by pytest tests (test_env_variables.py)
+- `validate_site.py`: Replaced by pytest tests (test_site_structure.py)
+- `run_tests.py`: Redundant - use `uv run pytest tests/ -v` directly
+- `README.md`: Was empty, documentation consolidated in TESTES.md and AGENTS.md

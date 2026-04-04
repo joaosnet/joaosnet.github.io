@@ -29,43 +29,6 @@ class FloatingShapesHandler {
 }
 
 /**
- * Views Counter - Tracks unique views per year
- */
-class ViewsCounter {
-    constructor() {
-        this.counterEl = document.getElementById('unique-views');
-        
-        if (this.counterEl) {
-            this.init();
-        }
-    }
-
-    init() {
-        const year = new Date().getFullYear();
-        const yearKey = `joaosnet_views_${year}`;
-        
-        let count = parseInt(localStorage.getItem(yearKey) || '0') + 1;
-        localStorage.setItem(yearKey, count.toString());
-        
-        this.counterEl.textContent = count.toLocaleString();
-
-        // Reset diário para contagem única por dia
-        const today = new Date().toDateString();
-        const lastVisitKey = 'joaosnet_last_visit';
-        
-        if (!localStorage.getItem(lastVisitKey)) {
-            localStorage.setItem(lastVisitKey, today);
-        } else if (localStorage.getItem(lastVisitKey) !== today) {
-            localStorage.setItem(lastVisitKey, today);
-            // Incrementa contador global anual
-            const globalKey = `joaosnet_global_${year}`;
-            let globalCount = parseInt(localStorage.getItem(globalKey) || '0') + 1;
-            localStorage.setItem(globalKey, globalCount.toString());
-        }
-    }
-}
-
-/**
  * Particles.js Configuration
  */
 function initParticles() {
@@ -93,6 +56,5 @@ function initParticles() {
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     new FloatingShapesHandler();
-    new ViewsCounter();
     initParticles();
 });

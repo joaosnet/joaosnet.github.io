@@ -79,14 +79,23 @@ class ContactFormHandler {
 
     handleFormError() {
         const formData = new FormData(this.form);
+        const name = formData.get('name') || 'Visitante';
+        const email = formData.get('email') || '';
         const message = formData.get('message');
-        
+
         if (message) {
+            // Show user-friendly message before redirect
+            this.showToast('Abrindo seu cliente de email...', 'info');
+
             // Try mailto as fallback
             const to = encodeURIComponent(this.EMAIL);
-            const subject = encodeURIComponent(this.SUBJECT);
-            const body = encodeURIComponent(message);
-            window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+            const subject = encodeURIComponent(`${this.SUBJECT} - ${name}`);
+            const body = encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`);
+
+            // Small delay to show toast before redirect
+            setTimeout(() => {
+                window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+            }, 800);
         } else {
             this.showToast('Por favor, preencha todos os campos.', 'error');
         }
@@ -144,11 +153,25 @@ class ContactFormHandler {
     showToast(message, type = 'success') {
         if (!this.toastEl) return;
 
+        // Set toast message
         this.toastEl.textContent = message;
         this.toastEl.style.display = 'block';
         this.toastEl.classList.remove('hide');
         this.toastEl.classList.add('show');
 
+        // Apply type-based styling
+        this.toastEl.style.background = 'var(--toast-bg)';
+        this.toastEl.style.color = 'var(--toast-color)';
+
+        if (type === 'error') {
+            this.toastEl.style.borderLeft = '4px solid #ef4444';
+        } else if (type === 'info') {
+            this.toastEl.style.borderLeft = '4px solid #3b82f6';
+        } else {
+            this.toastEl.style.borderLeft = '4px solid #10b981';
+        }
+
+        // Auto-hide after 3.5 seconds
         setTimeout(() => {
             this.toastEl.classList.remove('show');
             this.toastEl.classList.add('hide');
