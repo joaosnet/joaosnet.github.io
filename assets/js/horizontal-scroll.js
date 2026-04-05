@@ -16,6 +16,11 @@ class HorizontalScrollHandler {
     }
 
     init() {
+        // Disable on mobile devices where layout is vertical
+        if (window.innerWidth <= 768) {
+            return;
+        }
+
         if (!this.wrapper) {
             console.warn('Horizontal wrapper not found');
             return;
@@ -54,10 +59,16 @@ class HorizontalScrollHandler {
         this.wrapper.addEventListener('wheel', (e) => {
             // Only convert if scrolling vertically
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                
+                // Note: In the True Horizontal redesign, sections have overflow: hidden
+                // on desktop screens (min-width: 769px). Thus we universally convert
+                // vertical mouse wheels to horizontal wrapper movement.
+                // On mobile (max-width: 768px), horizontal-scroll initialization is skipped entirely.
+
                 e.preventDefault();
                 
                 // Scroll horizontally by the vertical delta amount
-                const scrollSpeed = 1.5; // Adjust speed factor
+                const scrollSpeed = 1.2; // Adjust speed factor
                 const scrollAmount = e.deltaY * scrollSpeed;
                 
                 this.wrapper.scrollBy({

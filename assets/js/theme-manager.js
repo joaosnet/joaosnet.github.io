@@ -54,6 +54,16 @@ class ThemeManager {
         this.htmlEl.setAttribute('data-theme', theme);
         localStorage.setItem(this.STORAGE_KEY, theme);
         this.updateToggleIcon(theme);
+        
+        // Handle integration with Theme Selector palette
+        if (theme === 'light') {
+            this.htmlEl.style.removeProperty('--dark');
+            this.htmlEl.style.removeProperty('--light');
+            this.htmlEl.style.removeProperty('--text-gray');
+        } else if (window.themeSelector) {
+            const currentPalette = window.themeSelector.getCurrentTheme();
+            window.themeSelector.applyTheme(currentPalette);
+        }
     }
 
     updateToggleIcon(theme) {

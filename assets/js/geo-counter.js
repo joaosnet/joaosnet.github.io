@@ -414,8 +414,9 @@ class GeoViewsCounter {
             try {
                 const response = await fetch(this.GOOGLE_APPS_SCRIPT_URL, {
                     method: 'POST',
+                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'text/plain;charset=utf-8'
                     },
                     body: payload,
                     keepalive: true,
@@ -424,17 +425,7 @@ class GeoViewsCounter {
                 
                 clearTimeout(timeoutId);
                 
-                if (response.ok) {
-                    try {
-                        const result = await response.json();
-                        console.log('[GeoViewsCounter] ✓ Enviado para Google Drive:', result);
-                    } catch (parseError) {
-                        // Resposta sem JSON é ok também
-                        console.log('[GeoViewsCounter] ✓ Enviado para Google Drive (sem resposta)');
-                    }
-                } else {
-                    console.warn('[GeoViewsCounter] Google Drive retornou:', response.status, response.statusText);
-                }
+                console.log('[GeoViewsCounter] Requisição enviada para Google Drive (com sucesso sob no-cors)');
             } catch (fetchError) {
                 clearTimeout(timeoutId);
                 

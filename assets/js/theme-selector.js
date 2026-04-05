@@ -253,9 +253,12 @@ class ThemeSelector {
         root.style.setProperty('--primary', theme.primary);
         root.style.setProperty('--secondary', theme.secondary);
         root.style.setProperty('--accent', theme.accent);
-        root.style.setProperty('--dark', theme.dark);
-        root.style.setProperty('--light', theme.light);
-        root.style.setProperty('--text-gray', theme.textGray);
+
+        if (root.getAttribute('data-theme') !== 'light') {
+            root.style.setProperty('--dark', theme.dark);
+            root.style.setProperty('--light', theme.light);
+            root.style.setProperty('--text-gray', theme.textGray);
+        }
 
         // Update theme toggle icon to match
         const themeToggle = document.querySelector('.theme-toggle');

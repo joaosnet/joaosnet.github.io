@@ -111,11 +111,30 @@ main {
     background: var(--secondary);
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
+/* Hide scrollbar for IE, Edge and Firefox and fix layout */
 @media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    main {
+        height: auto;
+        overflow-y: visible;
+        overflow-x: hidden;
+    }
     .horizontal-wrapper {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        flex-direction: column;
+        overflow-y: visible;
+        overflow-x: hidden;
+        scroll-snap-type: none;
+    }
+    .horizontal-wrapper > section {
+        flex: none;
+        width: 100%;
+        min-height: 100vh;
+        scroll-snap-align: none;
     }
 }
 
@@ -240,7 +259,7 @@ nav ul li a:hover::after {
 .theme-toggle {
     background: none;
     border: none;
-    color: var(--text-gray);
+    color: var(--light);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 8px;
@@ -813,9 +832,9 @@ nav ul li a:hover::after {
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
 }
 
-.timeline-empty {
-    /* Placeholder for empty grid column */
-}
+/* .timeline-empty {
+    Placeholder for empty grid column
+} */
 
 .timeline-more-btn-wrapper {
     text-align: center;
@@ -1083,7 +1102,7 @@ html[data-theme="dark"] footer {
 .theme-selector-btn {
     background: none;
     border: none;
-    color: var(--text-gray);
+    color: var(--light);
     font-size: 1.2rem;
     cursor: pointer;
     padding: 8px;
@@ -1136,7 +1155,7 @@ html[data-theme="dark"] footer {
 
 .theme-modal-content {
     position: relative;
-    background: linear-gradient(135deg, var(--bg-card), rgba(30, 41, 59, 0.9));
+    background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 32px;
     padding: 50px;
@@ -1149,6 +1168,11 @@ html[data-theme="dark"] footer {
         0 25px 50px -12px rgba(0, 0, 0, 0.5),
         0 0 100px rgba(59, 130, 246, 0.1);
     animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-theme="light"] .theme-modal-content {
+    background: #ffffff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 @keyframes slideUp {
@@ -2439,4 +2463,171 @@ html[data-theme="dark"] footer {
 
 .logo-short {
     display: none;
+}
+
+/* ============================================
+   DESKTOP HORIZONTAL EXPANSION (TRUE HORIZONTAL)
+   ============================================ */
+@media (min-width: 769px) {
+    .horizontal-wrapper > section {
+        flex: 0 0 auto !important;
+        min-width: 100vw !important;
+        width: max-content !important;
+        height: 100vh !important;
+        max-height: 100vh !important;
+        overflow: hidden !important; 
+        flex-direction: row !important;
+        justify-content: flex-start !important;
+    }
+    .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        width: max-content !important;
+        gap: 60px;
+        padding: 0 5vw !important;
+    }
+
+    /* Move scroll limits dots from right edge to bottom center */
+    .scroll-indicator {
+        top: auto !important;
+        bottom: 30px !important;
+        right: 50% !important;
+        transform: translateX(50%) !important;
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 15px !important;
+    }
+    .scroll-hint { display: none !important; }
+
+    /* Transform Habilidades into horizontal row */
+    .features-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 40px !important;
+        align-items: stretch !important;
+    }
+    .feature-card {
+        width: 350px !important;
+        height: 480px;
+    }
+
+    /* Transform Projects Timeline into horizontal track */
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: max-content;
+        position: relative;
+    }
+    .timeline-items {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center;
+        gap: 60px;
+        position: relative;
+        z-index: 2;
+    }
+    .timeline-line {
+        width: 100% !important;
+        height: 4px !important;
+        top: 50% !important;
+        left: 0 !important;
+        bottom: auto !important;
+        transform: translateY(-50%) !important;
+    }
+    .timeline-item {
+        width: 400px !important;
+        height: 650px !important; /* Fixed bounds for absolute inner centering */
+        padding: 0 !important; 
+        position: relative;
+    }
+    /* Neutralize alternating layout offsets */
+    .timeline-item-left, .timeline-item-right {
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .timeline-item-left { padding-right: 0 !important; }
+    .timeline-item-right { padding-left: 0 !important; }
+
+    .timeline-dot {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+    
+    .timeline-card {
+        margin: 0 !important;
+        transform: none !important;
+        position: absolute !important;
+        left: 0 !important;
+        width: 100% !important;
+    }
+    /* Lock alternating cards exactly to the 50% threshold without affecting flow */
+    .timeline-item-left .timeline-card { bottom: 55% !important; margin-top: 0 !important; }
+    .timeline-item-right .timeline-card { top: 55% !important; margin-top: 0 !important; }
+    .timeline-item-left .timeline-card::after, .timeline-item-right .timeline-card::after { display: none !important; }
+
+    /* Contact layout normalization */
+    .contact-container { 
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 60px !important;
+        align-items: center;
+        width: 1000px; /* Keep contact fixed width */
+    }
+
+    /* Hide items that push body down */
+    footer { display: none !important; }
+    .timeline-more-btn-wrapper { margin: 0 !important; }
+}
+
+/* ============================================
+   MOBILE LAYOUT OVERRIDES (CRITICAL FIXES)
+   ============================================ */
+@media (max-width: 768px) {
+    /* Override horizontal wrap behavior */
+    .horizontal-wrapper > section {
+        flex: none !important;
+        width: 100vw !important;
+        min-height: 100vh !important;
+        scroll-snap-align: none !important;
+    }
+    
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+    
+    main {
+        height: auto !important;
+        overflow-y: visible !important;
+        overflow-x: hidden !important;
+    }
+    
+    .horizontal-wrapper {
+        flex-direction: column !important;
+        overflow-y: visible !important;
+        overflow-x: hidden !important;
+        scroll-snap-type: none !important;
+    }
+
+    /* Override base hamburger display:none */
+    .menu-toggle {
+        display: flex !important;
+    }
+    
+    /* Ensure header content fits on very small devices */
+    .header-content {
+        flex-wrap: nowrap !important;
+        gap: 10px;
+    }
+    
+    .logo {
+        flex-shrink: 1; /* Allow logo to shrink if space is tight */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
