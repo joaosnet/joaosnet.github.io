@@ -2466,9 +2466,8 @@ html[data-theme="light"] .theme-modal-content {
 }
 
 /* ============================================
-   DESKTOP HORIZONTAL EXPANSION (TRUE HORIZONTAL)
+   UNIVERSAL HORIZONTAL EXPANSION (TRUE HORIZONTAL)
    ============================================ */
-@media (min-width: 769px) {
     .horizontal-wrapper > section {
         flex: 0 0 auto !important;
         min-width: 100vw !important;
@@ -2488,7 +2487,7 @@ html[data-theme="light"] .theme-modal-content {
         padding: 0 5vw !important;
     }
 
-    /* Move scroll limits dots from right edge to bottom center */
+    /* Universal Scroll limits indicator */
     .scroll-indicator {
         top: auto !important;
         bottom: 30px !important;
@@ -2497,6 +2496,7 @@ html[data-theme="light"] .theme-modal-content {
         display: flex !important;
         flex-direction: row !important;
         gap: 15px !important;
+        z-index: 1000 !important;
     }
     .scroll-hint { display: none !important; }
 
@@ -2509,7 +2509,7 @@ html[data-theme="light"] .theme-modal-content {
         align-items: stretch !important;
     }
     .feature-card {
-        width: 350px !important;
+        width: 320px !important;
         height: 480px;
     }
 
@@ -2581,53 +2581,44 @@ html[data-theme="light"] .theme-modal-content {
     /* Hide items that push body down */
     footer { display: none !important; }
     .timeline-more-btn-wrapper { margin: 0 !important; }
-}
 
 /* ============================================
    MOBILE LAYOUT OVERRIDES (CRITICAL FIXES)
    ============================================ */
 @media (max-width: 768px) {
-    /* Override horizontal wrap behavior */
+    /* Optimize Universal Horizontal Layout for very small screens */
     .horizontal-wrapper > section {
-        flex: none !important;
-        width: 100vw !important;
-        min-height: 100vh !important;
-        scroll-snap-align: none !important;
-    }
-    
-    body {
+        /* Keep it horizontal, but allow vertical scroll internally if contact form gets tall */
         overflow-y: auto !important;
-        overflow-x: hidden !important;
     }
-    
-    main {
-        height: auto !important;
-        overflow-y: visible !important;
-        overflow-x: hidden !important;
-    }
-    
-    .horizontal-wrapper {
-        flex-direction: column !important;
-        overflow-y: visible !important;
-        overflow-x: hidden !important;
-        scroll-snap-type: none !important;
+    .container {
+        padding: 0 8vw !important;
+        gap: 30px !important;
     }
 
-    /* Override base hamburger display:none */
-    .menu-toggle {
+    /* Adjust features and timelines for narrower viewports */
+    .feature-card { width: 80vw !important; height: auto !important; min-height: 400px; }
+    .timeline-item { width: 80vw !important; height: 80vh !important; }
+    .timeline-items { gap: 30px !important; }
+    
+    /* Ensure Contact form stacks vertically inside its horizontal slide */
+    .contact-container { 
         display: flex !important;
+        flex-direction: column !important;
+        width: 85vw !important; 
+        padding: 0 !important;
+        gap: 30px !important;
     }
-    
-    /* Ensure header content fits on very small devices */
-    .header-content {
-        flex-wrap: nowrap !important;
-        gap: 10px;
-    }
-    
-    .logo {
-        flex-shrink: 1; /* Allow logo to shrink if space is tight */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+
+    /* Hide redundant horizontal-scroll UI in mobile */
+    .scroll-indicator { display: none !important; }
+    .scroll-hint { display: none !important; }
+
+    /* Fix header height overlaps */
+    header { padding: 8px 0 !important; }
+    .logo { font-size: 1.1rem !important; }
+
+    /* Push FAB and translate up to not clash with mobile home buttons */
+    .fab-container { bottom: 20px !important; right: 15px !important; }
+    .gtranslate_wrapper { bottom: 20px !important; left: 15px !important; }
 }
