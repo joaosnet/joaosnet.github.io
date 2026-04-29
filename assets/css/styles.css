@@ -1567,6 +1567,11 @@ html[data-theme="light"] .theme-modal-content {
     border-color: var(--accent);
 }
 
+.scroll-dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
 @media (max-width: 768px) {
     .scroll-indicator {
         right: 15px;
@@ -1595,7 +1600,6 @@ html[data-theme="light"] .theme-modal-content {
     gap: 10px;
     color: var(--light);
     font-size: 0.9rem;
-    animation: scrollHintPulse 2s infinite;
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -1603,10 +1607,23 @@ html[data-theme="light"] .theme-modal-content {
 
 .scroll-hint.visible {
     opacity: 1;
+    animation: scrollHintPulse 2s infinite;
 }
 
-.scroll-hint i {
+.scroll-hint.visible i {
     animation: scrollHintArrow 1.5s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-dot,
+    .scroll-hint {
+        transition: none;
+    }
+
+    .scroll-hint.visible,
+    .scroll-hint.visible i {
+        animation: none;
+    }
 }
 
 @keyframes scrollHintPulse {
