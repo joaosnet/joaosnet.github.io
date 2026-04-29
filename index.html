@@ -8,6 +8,16 @@
     <title>João Silva Neto | Engenheiro da Computação</title>
     <meta name="description"
         content="Portfólio de João Silva Neto, Engenheiro da Computação com foco em software, APIs, automação, dados e infraestrutura.">
+    <script>
+        (function () {
+            if (!window.location.hash || !window.history || !window.history.replaceState) {
+                return;
+            }
+
+            window.__initialPortfolioHash = window.location.hash;
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        }());
+    </script>
     <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,7 +80,7 @@
             <div class="shape"></div>
         </div>
         <div class="container">
-            <div class="hero-content hidden">
+            <div class="hero-content">
                 <p class="hero-kicker">Portfólio profissional</p>
                 <h1>João Silva Neto, Engenheiro da Computação</h1>
                 <p>Projeto e desenvolvo sistemas web, APIs, automações e soluções de infraestrutura com olhar de

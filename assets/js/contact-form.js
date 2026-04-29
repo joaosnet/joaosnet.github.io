@@ -146,13 +146,21 @@ class ContactFormHandler {
         if (form) {
             const contactSection = document.getElementById('contact');
             const horizontalWrapper = document.querySelector('.horizontal-wrapper');
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             if (horizontalWrapper && contactSection && contactSection.closest('.horizontal-wrapper')) {
-                window.scrollTo({
-                    left: contactSection.offsetLeft,
-                    top: 0,
-                    behavior: 'smooth'
-                });
+                const sections = Array.from(horizontalWrapper.querySelectorAll('section'));
+                const sectionIndex = sections.indexOf(contactSection);
+
+                if (window.horizontalScroll && typeof window.horizontalScroll.scrollToSection === 'function' && sectionIndex >= 0) {
+                    window.horizontalScroll.scrollToSection(sectionIndex, { updateHash: true });
+                } else {
+                    window.scrollTo({
+                        left: contactSection.offsetLeft,
+                        top: 0,
+                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                    });
+                }
             } else {
                 const header = document.querySelector('header');
                 const headerHeight = header ? header.offsetHeight : 0;
@@ -160,14 +168,15 @@ class ContactFormHandler {
 
                 window.scrollTo({
                     top: targetPosition,
-                    behavior: 'smooth'
+                    behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
             }
 
             // Focus message field
             const messageField = document.getElementById('message');
             if (messageField) {
-                setTimeout(() => messageField.focus(), 500);
+                const focusDelay = prefersReducedMotion ? 0 : 500;
+                setTimeout(() => messageField.focus({ preventScroll: true }), focusDelay);
             }
         }
     }

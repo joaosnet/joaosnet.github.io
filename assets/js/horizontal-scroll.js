@@ -14,6 +14,7 @@ class HorizontalScrollHandler {
         this.currentSection = 0;
         this.lastSettledSection = 0;
         this.hasShownHint = false;
+        this.initialHash = window.__initialPortfolioHash || window.location.hash;
         this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         this.sectionObserver = null;
         this.scrollEndTimer = null;
@@ -29,6 +30,7 @@ class HorizontalScrollHandler {
             return;
         }
 
+        this.setupScrollRestoration();
         this.refreshSections();
         this.refreshNavLinks();
         
@@ -47,7 +49,7 @@ class HorizontalScrollHandler {
         this.setupKeyboardNavigation();
         this.setupResizeListener();
         this.setupDotClicks();
-        this.scrollToInitialHash();
+        this.restoreInitialPosition();
         
         this.updateActiveSection();
         this.lastSettledSection = this.currentSection;
@@ -63,6 +65,12 @@ class HorizontalScrollHandler {
 
     refreshNavLinks() {
         this.navLinks = Array.from(document.querySelectorAll('header nav a[href^="#"], footer a[href^="#"], .logo[href^="#"]'));
+    }
+
+    setupScrollRestoration() {
+        if ('scrollRestoration' in window.history) {
+            window.history.scrollRestoration = 'manual';
+        }
     }
 
     setupVerticalToHorizontalScroll() {
@@ -446,6 +454,7 @@ class HorizontalScrollHandler {
         const behavior = options.behavior || (this.prefersReducedMotion.matches ? 'auto' : 'smooth');
 
         this.setCurrentSection(index);
+        this.revealSection(section);
         
         window.scrollTo({
             left: section.offsetLeft,
@@ -471,8 +480,19 @@ class HorizontalScrollHandler {
             this.currentSection = safeIndex;
         }
 
+        this.revealSection(this.sections[this.currentSection]);
         this.updateDots();
         this.updateNavLinks();
+    }
+
+    revealSection(section) {
+        if (!section) {
+            return;
+        }
+
+        section.querySelectorAll('.hidden, .timeline-item-left, .timeline-item-right').forEach((element) => {
+            element.classList.add('show');
+        });
     }
 
     updateDots() {
@@ -511,7 +531,7 @@ class HorizontalScrollHandler {
     }
 
     scrollToInitialHash() {
-        const hash = window.location.hash;
+        const hash = this.initialHash || window.location.hash;
 
         if (!hash || hash === '#') {
             return;
@@ -535,10 +555,27 @@ class HorizontalScrollHandler {
         const sectionIndex = this.sections.indexOf(targetSection);
 
         if (sectionIndex >= 0) {
-            window.setTimeout(() => {
-                this.scrollToSection(sectionIndex, { behavior: 'auto' });
-            }, 0);
+            this.scrollToSection(sectionIndex, { behavior: 'auto', updateHash: true });
         }
+    }
+
+    restoreInitialPosition() {
+        const runWithRetries = (callback) => {
+            callback();
+            window.requestAnimationFrame(callback);
+            window.setTimeout(callback, 80);
+            window.setTimeout(callback, 300);
+            window.addEventListener('load', callback, { once: true });
+        };
+
+        if (this.initialHash || window.location.hash) {
+            runWithRetries(() => this.scrollToInitialHash());
+            return;
+        }
+
+        runWithRetries(() => {
+            this.scrollToSection(0, { behavior: 'auto' });
+        });
     }
 
     updateHash(sectionId) {

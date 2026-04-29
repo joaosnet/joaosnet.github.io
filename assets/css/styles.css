@@ -184,7 +184,7 @@ header {
     background-color: var(--header-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 20px 0;
+    padding: 14px 0;
     position: fixed;
     width: 100%;
     top: 0;
@@ -206,23 +206,23 @@ header.scrolled {
 }
 
 .logo {
-    font-size: 1.8rem;
+    font-size: 1.45rem;
     font-weight: 700;
     color: var(--light);
     display: flex;
     align-items: center;
     text-decoration: none;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    padding: 8px 15px;
+    padding: 7px 12px;
     border-radius: 12px;
     border: 1px solid var(--border-light);
     backdrop-filter: blur(10px);
 }
 
 .logo i {
-    margin-right: 10px;
+    margin-right: 8px;
     color: var(--accent);
-    font-size: 2.2rem;
+    font-size: 1.9rem;
 }
 
 nav ul {
@@ -231,11 +231,12 @@ nav ul {
 }
 
 header nav {
+    order: 2;
     margin-left: auto;
 }
 
 nav ul li {
-    margin-left: 30px;
+    margin-left: 24px;
 }
 
 nav ul li a {
@@ -284,7 +285,12 @@ nav ul li a:focus-visible {
     border-color: color-mix(in srgb, var(--accent) 55%, var(--border-light));
 }
 
+.logo {
+    order: 1;
+}
+
 .theme-toggle {
+    order: 4;
     background: none;
     border: none;
     color: var(--light);
@@ -293,7 +299,7 @@ nav ul li a:focus-visible {
     padding: 8px;
     border-radius: 8px;
     transition: all 0.3s;
-    margin-left: 20px;
+    margin-left: 8px;
 }
 
 .theme-toggle:hover {
@@ -305,7 +311,7 @@ nav ul li a:focus-visible {
    HERO SECTION
    ============================================ */
 .hero {
-    min-height: 100vh;
+    min-height: calc(100vh - 80px);
     height: auto;
     display: flex;
     align-items: center;
@@ -313,7 +319,7 @@ nav ul li a:focus-visible {
     text-align: center;
     position: relative;
     overflow: hidden;
-    padding: 100px 20px 40px;
+    padding: clamp(28px, 7vh, 72px) 20px 40px;
     background: transparent;
 }
 
@@ -353,12 +359,12 @@ nav ul li a:focus-visible {
     position: relative;
     z-index: 1;
     max-width: 800px;
-    padding: 40px;
+    padding: clamp(18px, 4vw, 34px);
 }
 
 .hero h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    font-size: clamp(2.4rem, 5vw, 3.7rem);
+    margin-bottom: 16px;
     line-height: 1.1;
     background: linear-gradient(to right, var(--light), var(--text-gray));
     -webkit-background-clip: text;
@@ -369,8 +375,8 @@ nav ul li a:focus-visible {
 }
 
 .hero p {
-    font-size: 1.3rem;
-    margin-bottom: 40px;
+    font-size: clamp(1rem, 1.7vw, 1.22rem);
+    margin-bottom: 28px;
     color: var(--text-gray);
     max-width: 600px;
     margin-left: auto;
@@ -391,14 +397,23 @@ nav ul li a:focus-visible {
 }
 
 @media (max-width: 768px) {
+    .hero {
+        min-height: calc(100vh - 72px);
+        align-items: flex-start;
+        padding-top: 38px;
+    }
+
     .hero-buttons {
         flex-direction: column;
         gap: 10px;
         width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
     }
 
     .hero-buttons .btn {
         width: 100%;
+        white-space: normal;
     }
 }
 
@@ -1269,6 +1284,7 @@ html[data-theme="dark"] footer {
    THEME SELECTOR MODAL
    ============================================ */
 .theme-selector-btn {
+    order: 3;
     background: none;
     border: none;
     color: var(--light);
@@ -2151,34 +2167,89 @@ html[data-theme="light"] .theme-modal-content {
 
 /* Tablet Portrait & Mobile Landscape (max-width: 768px) */
 @media (max-width: 768px) {
+    *,
+    *::before,
+    *::after {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    .hidden {
+        filter: none;
+    }
+
     .header-content {
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 40px 40px 32px;
+        gap: 10px;
+        justify-content: stretch;
         align-items: center;
     }
 
+    .logo {
+        min-width: 0;
+        width: fit-content;
+        justify-self: start;
+    }
+
+    .theme-toggle,
+    .theme-selector-btn {
+        margin-left: 0;
+        width: 40px;
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .theme-selector-btn {
+        order: 2;
+    }
+
+    .theme-toggle {
+        order: 3;
+        padding: 8px;
+    }
+
     .menu-toggle {
-        display: flex;
+        order: 4;
+        display: flex !important;
+        width: 32px;
+        height: 24px;
     }
 
     nav {
+        display: none;
+        order: 5;
         position: fixed;
         top: 0;
-        right: -100%;
+        right: 0;
         width: 85%;
         max-width: 350px;
         height: 100vh;
         background-color: rgba(2, 6, 23, 0.95);
         backdrop-filter: blur(20px);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(105%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 100;
+        margin-left: 0;
         padding-top: 100px;
         overflow-y: auto;
+        pointer-events: none;
     }
 
     .menu-open nav {
-        right: 0;
+        display: block;
+        transform: translateX(0);
+        pointer-events: auto;
+    }
+
+    body:not(.menu-open) nav {
+        display: none !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        transform: translateX(110%) !important;
     }
 
     nav ul {
@@ -2236,15 +2307,19 @@ html[data-theme="light"] .theme-modal-content {
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: clamp(2rem, 9vw, 2.5rem);
     }
 
     .hero p {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 22px;
     }
 
     .hero-content {
-        padding: 20px;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        padding: 10px 0 22px;
     }
 
     /* Hero buttons - stack vertically on mobile */
@@ -2419,11 +2494,11 @@ html[data-theme="light"] .theme-modal-content {
 /* Small tablets (600px) */
 @media (max-width: 600px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: clamp(1.8rem, 8vw, 2.15rem);
     }
 
     .hero p {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
     .cta h2 {
@@ -2502,6 +2577,7 @@ html[data-theme="light"] .theme-modal-content {
    HAMBURGER MENU
    ============================================ */
 .menu-toggle {
+    order: 5;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -2549,6 +2625,25 @@ html[data-theme="light"] .theme-modal-content {
 .gt_float_switcher {
     z-index: 1500 !important;
 }
+
+@media (max-width: 768px) {
+    .gt_float_switcher {
+        max-width: calc(100vw - 40px) !important;
+    }
+
+    .gt_float_switcher .gt_options {
+        display: none !important;
+        max-width: calc(100vw - 40px) !important;
+        max-height: 240px !important;
+        overflow-y: auto !important;
+        overscroll-behavior: contain;
+    }
+
+    .gt_float_switcher:hover .gt_options,
+    .gt_float_switcher:focus-within .gt_options {
+        display: block !important;
+    }
+}
 @media (max-width: 480px) {
     .logo {
         font-size: 1.1rem;
@@ -2586,11 +2681,11 @@ html[data-theme="light"] .theme-modal-content {
 
     /* Very small screens - further adjustments */
     .hero h1 {
-        font-size: 1.75rem;
+        font-size: clamp(1.58rem, 7.5vw, 1.9rem);
     }
 
     .hero p {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .cta h2 {
