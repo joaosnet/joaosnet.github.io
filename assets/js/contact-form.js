@@ -155,7 +155,9 @@ class ContactFormHandler {
                 if (window.horizontalScroll && typeof window.horizontalScroll.scrollToSection === 'function' && sectionIndex >= 0) {
                     window.horizontalScroll.scrollToSection(sectionIndex, { updateHash: true });
                 } else {
-                    window.scrollTo({
+                    const scroller = document.querySelector('main') || window;
+
+                    scroller.scrollTo({
                         left: contactSection.offsetLeft,
                         top: 0,
                         behavior: prefersReducedMotion ? 'auto' : 'smooth'

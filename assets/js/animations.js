@@ -115,7 +115,9 @@ class AnimationsHandler {
                 return;
             }
 
-            window.scrollTo({
+            const scroller = document.querySelector('main') || window;
+
+            scroller.scrollTo({
                 left: targetSection.offsetLeft,
                 top: 0,
                 behavior: this.getScrollBehavior()

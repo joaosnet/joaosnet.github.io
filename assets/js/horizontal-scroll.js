@@ -5,7 +5,7 @@
 
 class HorizontalScrollHandler {
     constructor() {
-        this.wrapper = document.documentElement; // Scrolling happens on the root element
+        this.wrapper = document.querySelector('main') || document.documentElement;
         this.scrollContainer = document.querySelector('.horizontal-wrapper');
         this.sections = [];
         this.navLinks = [];
@@ -91,7 +91,7 @@ class HorizontalScrollHandler {
         const intent = this.getWheelIntent(event);
 
         if (intent.axis === 'horizontal') {
-            if (event.shiftKey && this.canScrollHorizontally(intent.delta)) {
+            if (this.canScrollHorizontally(intent.delta)) {
                 event.preventDefault();
                 this.scrollHorizontally(intent.delta);
             }
@@ -100,21 +100,12 @@ class HorizontalScrollHandler {
             return;
         }
 
-        if (this.shouldLetScrollableElementHandleWheel(event, intent.delta)) {
-            return;
-        }
-
-        if (this.canCurrentSectionScrollVertically(intent.delta)) {
-            return;
-        }
-
-        if (!this.canScrollHorizontally(intent.delta)) {
-            return;
-        }
-
         event.preventDefault();
         this.hideScrollHint();
-        this.scrollHorizontally(intent.delta);
+
+        if (this.canScrollHorizontally(intent.delta)) {
+            this.scrollHorizontally(intent.delta);
+        }
     }
 
     getWheelIntent(event) {
@@ -174,16 +165,6 @@ class HorizontalScrollHandler {
         return true;
     }
 
-    shouldLetScrollableElementHandleWheel(event, deltaY) {
-        const scrollableParent = this.findScrollableParent(event.target, 'y');
-
-        if (!scrollableParent) {
-            return false;
-        }
-
-        return this.canElementScroll(scrollableParent, deltaY, 'y');
-    }
-
     findScrollableParent(target, axis) {
         let element = target instanceof Element ? target : target?.parentElement;
 
@@ -218,26 +199,6 @@ class HorizontalScrollHandler {
         return delta < 0 ? !atStart : !atEnd;
     }
 
-    canCurrentSectionScrollVertically(deltaY) {
-        const section = this.getCurrentSection();
-
-        if (!section) {
-            return false;
-        }
-
-        const bounds = this.getSectionVerticalBounds(section);
-
-        if (bounds.max <= bounds.min + this.scrollEdge) {
-            return false;
-        }
-
-        const scrollY = this.getScrollY();
-
-        return deltaY < 0
-            ? scrollY > bounds.min + this.scrollEdge
-            : scrollY < bounds.max - this.scrollEdge;
-    }
-
     canScrollHorizontally(deltaX) {
         const scrollX = this.getScrollX();
         const maxScrollX = this.getMaxScrollX();
@@ -250,19 +211,10 @@ class HorizontalScrollHandler {
     scrollHorizontally(deltaX) {
         const scrollSpeed = window.innerWidth <= 768 ? 0.85 : 1.1;
 
-        window.scrollBy({
+        this.wrapper.scrollBy({
             left: deltaX * scrollSpeed,
             behavior: 'auto'
         });
-    }
-
-    getSectionVerticalBounds(section) {
-        const sectionHeight = Math.max(section.scrollHeight, section.offsetHeight);
-        const maxScrollY = this.getMaxScrollY();
-        const min = 0;
-        const max = Math.max(min, Math.min(section.offsetTop + sectionHeight - window.innerHeight, maxScrollY));
-
-        return { min, max };
     }
 
     getCurrentSection() {
@@ -271,7 +223,7 @@ class HorizontalScrollHandler {
 
     getNearestSectionIndex() {
         const scrollLeft = this.getScrollX();
-        const viewportCenter = scrollLeft + (window.innerWidth / 2);
+        const viewportCenter = scrollLeft + (this.getViewportWidth() / 2);
         let nearestIndex = 0;
         let shortestDistance = Number.POSITIVE_INFINITY;
 
@@ -289,25 +241,30 @@ class HorizontalScrollHandler {
     }
 
     getScrollX() {
-        return window.scrollX || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
-    }
+        if (this.wrapper === document.documentElement) {
+            return window.scrollX || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
+        }
 
-    getScrollY() {
-        return window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        return this.wrapper.scrollLeft || 0;
     }
 
     getMaxScrollX() {
-        return Math.max(
-            0,
-            Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - window.innerWidth
-        );
+        if (this.wrapper === document.documentElement) {
+            return Math.max(
+                0,
+                Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - window.innerWidth
+            );
+        }
+
+        return Math.max(0, this.wrapper.scrollWidth - this.wrapper.clientWidth);
     }
 
-    getMaxScrollY() {
-        return Math.max(
-            0,
-            Math.max(document.documentElement.scrollHeight, document.body.scrollHeight) - window.innerHeight
-        );
+    getViewportWidth() {
+        if (this.wrapper === document.documentElement) {
+            return window.innerWidth;
+        }
+
+        return this.wrapper.clientWidth || window.innerWidth;
     }
 
     createScrollIndicator() {
@@ -357,7 +314,7 @@ class HorizontalScrollHandler {
     setupScrollListener() {
         let ticking = false;
         
-        window.addEventListener('scroll', () => {
+        this.wrapper.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     this.updateActiveSection();
@@ -374,12 +331,12 @@ class HorizontalScrollHandler {
             this.handleSettledScroll();
         };
 
-        if ('onscrollend' in document) {
-            document.addEventListener('scrollend', handleSettledScroll);
+        if ('onscrollend' in this.wrapper) {
+            this.wrapper.addEventListener('scrollend', handleSettledScroll);
             return;
         }
 
-        window.addEventListener('scroll', () => {
+        this.wrapper.addEventListener('scroll', () => {
             window.clearTimeout(this.scrollEndTimer);
             this.scrollEndTimer = window.setTimeout(handleSettledScroll, 140);
         }, { passive: true });
@@ -387,17 +344,9 @@ class HorizontalScrollHandler {
 
     handleSettledScroll() {
         const settledSection = this.getNearestSectionIndex();
-        const hasChangedSection = settledSection !== this.lastSettledSection;
 
         this.setCurrentSection(settledSection);
-
-        if (hasChangedSection) {
-            this.resetVerticalPositionForSection(settledSection);
-            this.lastSettledSection = settledSection;
-            return;
-        }
-
-        this.clampVerticalPositionForSection(settledSection);
+        this.lastSettledSection = settledSection;
     }
 
     setupSectionObserver() {
@@ -424,7 +373,7 @@ class HorizontalScrollHandler {
                 this.setCurrentSection(index);
             }
         }, {
-            root: null,
+            root: this.wrapper === document.documentElement ? null : this.wrapper,
             rootMargin: '0px -35% 0px -35%',
             threshold: [0.25, 0.5, 0.75]
         });
@@ -450,15 +399,14 @@ class HorizontalScrollHandler {
         }
 
         const section = this.sections[index];
-        const bounds = this.getSectionVerticalBounds(section);
         const behavior = options.behavior || (this.prefersReducedMotion.matches ? 'auto' : 'smooth');
 
         this.setCurrentSection(index);
         this.revealSection(section);
         
-        window.scrollTo({
+        this.wrapper.scrollTo({
             left: section.offsetLeft,
-            top: bounds.min,
+            top: 0,
             behavior
         });
 
@@ -588,47 +536,6 @@ class HorizontalScrollHandler {
         } catch (error) {
             // Ignore history errors in embedded browsers.
         }
-    }
-
-    resetVerticalPositionForSection(index) {
-        const section = this.sections[index];
-
-        if (!section) {
-            return;
-        }
-
-        const bounds = this.getSectionVerticalBounds(section);
-        this.scrollToVerticalPosition(bounds.min);
-    }
-
-    clampVerticalPositionForSection(index) {
-        const section = this.sections[index];
-
-        if (!section) {
-            return;
-        }
-
-        const bounds = this.getSectionVerticalBounds(section);
-        const scrollY = this.getScrollY();
-        const clampedY = Math.min(Math.max(scrollY, bounds.min), bounds.max);
-
-        if (Math.abs(clampedY - scrollY) > this.scrollEdge) {
-            this.scrollToVerticalPosition(clampedY);
-        }
-    }
-
-    scrollToVerticalPosition(top) {
-        const scrollY = this.getScrollY();
-
-        if (Math.abs(top - scrollY) <= this.scrollEdge) {
-            return;
-        }
-
-        window.scrollTo({
-            left: this.getScrollX(),
-            top,
-            behavior: 'auto'
-        });
     }
 
     showScrollHint() {
