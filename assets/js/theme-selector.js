@@ -118,16 +118,10 @@ class ThemeSelector {
         this.createModal();
         this.setupEventListeners();
         
-        // Check if first visit
-        const hasVisited = localStorage.getItem(this.FIRST_VISIT_KEY);
-        if (!hasVisited) {
-            this.showModal();
-        } else {
-            // Apply saved theme
-            const savedTheme = localStorage.getItem(this.STORAGE_KEY);
-            if (savedTheme && this.THEMES[savedTheme]) {
-                this.applyTheme(savedTheme);
-            }
+        // Apply saved palette quietly. The portfolio should open on the content, not on a modal.
+        const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+        if (savedTheme && this.THEMES[savedTheme]) {
+            this.applyTheme(savedTheme);
         }
     }
 
@@ -141,9 +135,9 @@ class ThemeSelector {
                     <i class="fas fa-times"></i>
                 </button>
                 <div class="theme-modal-header">
-                    <h2>Escolha seu Design System</h2>
-                    <p>Selecione a paleta de cores que mais combina com você! 
-                       <small>(Você pode mudar depois no botão de tema no header)</small>
+                    <h2>Personalizar cores</h2>
+                    <p>Selecione uma paleta para ajustar a aparência do portfólio.
+                       <small>Você pode voltar a esta opção pelo botão de paleta no cabeçalho.</small>
                     </p>
                 </div>
                 <div class="theme-grid">

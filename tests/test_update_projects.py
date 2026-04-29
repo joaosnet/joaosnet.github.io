@@ -21,6 +21,9 @@ from update_projects import (
     detect_language,
     translate_to_portuguese,
     generate_project_html,
+    generate_pages_links_html,
+    get_github_pages_url,
+    collect_public_pages_links,
     mask_repo_name,
 )
 
@@ -104,6 +107,26 @@ class TestGenerateProjectHTML:
         assert "timeline-item-left" in html
         assert "Ver no GitHub" in html
 
+    def test_generate_html_public_project_with_github_pages(self):
+        """Deve gerar link de GitHub Pages quando o projeto público tiver Pages"""
+        project = {
+            "name": "pages-project",
+            "description": "Projeto com página publicada",
+            "html_url": "https://github.com/joaosnet/pages-project",
+            "preview_image": None,
+            "updated_at": "2026-04-03T04:43:00Z",
+            "private": False,
+            "has_pages": True,
+            "homepage": "",
+            "owner": {"login": "joaosnet"},
+        }
+
+        html = generate_project_html(project, is_last=False, position="left")
+
+        assert "Ver página" in html
+        assert "https://joaosnet.github.io/pages-project/" in html
+        assert "timeline-card-btn--page" in html
+
     def test_generate_html_private_project(self):
         """Deve gerar HTML correto para projeto privado"""
         project = {
@@ -123,6 +146,7 @@ class TestGenerateProjectHTML:
         assert "Privado" in html
         assert "fa-lock" in html
         assert "Ver no GitHub" not in html
+        assert "Ver página" not in html
 
     def test_generate_html_none_description(self):
         """Deve lidar com descrição None"""
@@ -201,6 +225,96 @@ class TestMaskRepoName:
             "name": "public-repo",
         }
         assert mask_repo_name(repo) == "joaosnet/public-repo"
+
+
+class TestGitHubPagesLinks:
+    """Testes para links públicos de GitHub Pages"""
+
+    def test_get_github_pages_url_from_homepage(self):
+        project = {
+            "name": "cartilha_dash",
+            "private": False,
+            "homepage": "https://joaosnet.github.io/cartilha_dash/",
+            "has_pages": True,
+            "owner": {"login": "joaosnet"},
+        }
+
+        assert get_github_pages_url(project) == "https://joaosnet.github.io/cartilha_dash/"
+
+    def test_get_github_pages_url_derived_for_project_site(self):
+        project = {
+            "name": "demo",
+            "private": False,
+            "homepage": "",
+            "has_pages": True,
+            "owner": {"login": "joaosnet"},
+        }
+
+        assert get_github_pages_url(project) == "https://joaosnet.github.io/demo/"
+
+    def test_get_github_pages_url_derived_for_user_site(self):
+        project = {
+            "name": "joaosnet.github.io",
+            "private": False,
+            "homepage": "",
+            "has_pages": True,
+            "owner": {"login": "joaosnet"},
+        }
+
+        assert get_github_pages_url(project) == "https://joaosnet.github.io/"
+
+    def test_get_github_pages_url_ignores_private_repo(self):
+        project = {
+            "name": "private-pages",
+            "private": True,
+            "homepage": "https://joaosnet.github.io/private-pages/",
+            "has_pages": True,
+            "owner": {"login": "joaosnet"},
+        }
+
+        assert get_github_pages_url(project) is None
+
+    def test_collect_public_pages_links(self):
+        repos = [
+            {
+                "name": "joaosnet.github.io",
+                "private": False,
+                "homepage": "https://joaosnet.github.io/",
+                "has_pages": True,
+                "html_url": "https://github.com/joaosnet/joaosnet.github.io",
+                "description": "Portfolio",
+                "updated_at": "2026-04-01T00:00:00Z",
+                "owner": {"login": "joaosnet"},
+            },
+            {
+                "name": "private-pages",
+                "private": True,
+                "homepage": "https://joaosnet.github.io/private-pages/",
+                "has_pages": True,
+                "html_url": "https://github.com/joaosnet/private-pages",
+                "owner": {"login": "joaosnet"},
+            },
+        ]
+
+        pages = collect_public_pages_links(repos)
+
+        assert len(pages) == 1
+        assert pages[0]["url"] == "https://joaosnet.github.io/"
+
+    def test_generate_pages_links_html(self):
+        pages = [
+            {
+                "name": "cartilha_dash",
+                "url": "https://joaosnet.github.io/cartilha_dash/",
+                "description": "Cartilha pública",
+            }
+        ]
+
+        html = generate_pages_links_html(pages)
+
+        assert "Páginas publicadas" in html
+        assert "cartilha_dash" in html
+        assert "https://joaosnet.github.io/cartilha_dash/" in html
 
 
 class TestProjectValidation:

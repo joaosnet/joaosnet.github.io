@@ -129,6 +129,11 @@ class TestIndexHTMLStructure:
         """Deve ter contador de visitantes no footer"""
         assert 'id="unique-views"' in html_content, "Contador de visitantes não encontrado"
 
+    def test_has_cv_download_link(self, html_content):
+        """Deve ter link para download do currículo"""
+        assert 'href="docs/crv.pdf"' in html_content, "Link para currículo não encontrado"
+        assert "download" in html_content, "Download do currículo não configurado"
+
     def test_has_particles_container(self, html_content):
         """Deve ter container de partículas"""
         assert 'id="particles-js"' in html_content, "Container de partículas não encontrado"
@@ -238,3 +243,8 @@ class TestAssetDirectories:
         """Diretório de imagens gerais deve existir"""
         img_dir = Path(__file__).parent.parent / "assets" / "images"
         assert img_dir.exists(), "Diretório images não existe"
+
+    def test_cv_pdf_exists(self):
+        """Arquivo de currículo deve existir"""
+        cv_path = Path(__file__).parent.parent / "docs" / "crv.pdf"
+        assert cv_path.exists(), "Arquivo docs/crv.pdf não existe"

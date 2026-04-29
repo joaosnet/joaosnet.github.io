@@ -114,7 +114,7 @@ class ContactFormHandler {
 
     copyEmailToClipboard() {
         navigator.clipboard.writeText(this.EMAIL).then(() => {
-            this.showToast('Email copiado! 📋');
+            this.showToast('Email copiado.');
         }).catch(() => {
             this.showToast('Erro ao copiar email.', 'error');
         });
@@ -133,14 +133,28 @@ class ContactFormHandler {
     scrollToForm() {
         const form = document.getElementById('contact-form');
         if (form) {
-            const header = document.querySelector('header');
-            const headerHeight = header ? header.offsetHeight : 0;
-            const targetPosition = form.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+            const contactSection = document.getElementById('contact');
+            const horizontalWrapper = document.querySelector('.horizontal-wrapper');
 
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            if (horizontalWrapper && contactSection && contactSection.closest('.horizontal-wrapper')) {
+                horizontalWrapper.scrollTo({
+                    left: contactSection.offsetLeft,
+                    behavior: 'smooth'
+                });
+                contactSection.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            } else {
+                const header = document.querySelector('header');
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = form.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
 
             // Focus message field
             const messageField = document.getElementById('message');

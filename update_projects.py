@@ -24,7 +24,8 @@ except Exception:
     _HAS_REQUESTS = False
 import os
 from datetime import datetime
-from urllib.parse import unquote, quote
+from html import escape
+from urllib.parse import unquote, quote, urlparse
 import re
 import json
 import subprocess
@@ -485,6 +486,124 @@ def fetch_projects():
     return repos
 
 
+def normalize_url(url):
+    """Normalize user-facing URLs for project links."""
+    if not url:
+        return None
+
+    clean_url = str(url).strip()
+    if not clean_url:
+        return None
+
+    if not re.match(r"^https?://", clean_url, flags=re.I):
+        clean_url = f"https://{clean_url}"
+
+    return clean_url
+
+
+def get_github_pages_url(project):
+    """Return the public GitHub Pages URL for a repository when available.
+
+    GitHub exposes this through `has_pages` and sometimes through `homepage`.
+    If Pages is enabled but no homepage is set, derive the default GitHub Pages
+    URL using the standard GitHub Pages path.
+    """
+    if project.get("private", False):
+        return None
+
+    explicit_pages_url = normalize_url(
+        project.get("pages_url") or project.get("github_pages_url")
+    )
+    if explicit_pages_url:
+        return explicit_pages_url
+
+    homepage = normalize_url(project.get("homepage"))
+    homepage_host = urlparse(homepage).netloc.lower() if homepage else ""
+
+    if homepage and (project.get("has_pages") or homepage_host.endswith("github.io")):
+        return homepage
+
+    if not project.get("has_pages"):
+        return None
+
+    owner = project.get("owner", {}).get("login")
+    name = project.get("name")
+    if not owner or not name:
+        return None
+
+    owner_slug = str(owner).lower()
+    repo_name = str(name)
+    if repo_name.lower() == f"{owner_slug}.github.io":
+        return f"https://{owner_slug}.github.io/"
+
+    return f"https://{owner_slug}.github.io/{quote(repo_name, safe='')}/"
+
+
+def collect_public_pages_links(repos):
+    """Collect all public GitHub Pages links from the fetched repositories."""
+    pages = []
+    seen_urls = set()
+
+    for repo in repos:
+        pages_url = get_github_pages_url(repo)
+        if not pages_url:
+            continue
+
+        url_key = pages_url.rstrip("/").lower()
+        if url_key in seen_urls:
+            continue
+        seen_urls.add(url_key)
+
+        pages.append(
+            {
+                "name": repo.get("name", "GitHub Pages"),
+                "url": pages_url,
+                "repo_url": repo.get("html_url", ""),
+                "description": repo.get("description")
+                or "Página publicada via GitHub Pages.",
+                "updated_at": repo.get("pushed_at") or repo.get("updated_at") or "",
+            }
+        )
+
+    pages.sort(key=lambda item: item.get("updated_at", ""), reverse=True)
+    return pages
+
+
+def generate_pages_links_html(pages):
+    """Generate the public GitHub Pages showcase block."""
+    if not pages:
+        return ""
+
+    items_html = ""
+    for page in pages:
+        safe_name = escape(str(page.get("name") or "GitHub Pages"))
+        safe_url = escape(str(page.get("url")), quote=True)
+        safe_description = escape(
+            str(page.get("description") or "Página publicada via GitHub Pages.")
+        )
+        items_html += f"""
+                            <a href="{safe_url}" target="_blank" rel="noopener noreferrer" class="published-page-link">
+                                <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
+                                <span class="published-page-copy">
+                                    <strong>{safe_name}</strong>
+                                    <span>{safe_description}</span>
+                                    <small>{safe_url}</small>
+                                </span>
+                                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            </a>"""
+
+    return f"""
+                <div class="published-pages" aria-label="Páginas públicas publicadas no GitHub Pages">
+                    <div class="published-pages-heading">
+                        <h3>Páginas publicadas</h3>
+                        <p>Todos os links públicos do GitHub Pages associados aos meus repositórios ficam listados aqui.</p>
+                    </div>
+                    <div class="published-pages-list">
+                        {items_html}
+                    </div>
+                </div>"""
+
+
 def generate_project_html(project, is_last=False, position="left"):
     name = project["name"]
     description = project.get("description_translated") or project.get("description") or "Sem descrição disponível"
@@ -492,9 +611,12 @@ def generate_project_html(project, is_last=False, position="left"):
     image = project.get("preview_image")
     updated_at = project.get("updated_at")
     is_private = project.get("private", False)
+    safe_name = escape(str(name))
+    safe_description = escape(str(description))
+    safe_html_url = escape(str(html_url), quote=True)
 
     # format updated_at if present
-    updated_str = ""
+    updated_str = "Data indisponível"
     updated_iso = ""
     if updated_at:
         try:
@@ -502,28 +624,58 @@ def generate_project_html(project, is_last=False, position="left"):
             updated_str = dt.strftime("%d/%m/%Y")
             updated_iso = dt.isoformat()
         except Exception:
-            updated_str = updated_at
+            updated_str = escape(str(updated_at))
+
+    updated_attr = f' datetime="{updated_iso}"' if updated_iso else ""
 
     # Timeline style HTML with image - using CSS classes instead of inline styles
     img_html = ""
     if image:
-        img_html = f'<img src="{image}" alt="{name} preview" class="timeline-card-image"/>'
+        safe_image = escape(str(image), quote=True)
+        img_html = f'<img src="{safe_image}" alt="Prévia do projeto {safe_name}" class="timeline-card-image" loading="lazy"/>'
 
     # Private vs Public display logic
     if is_private:
         title_html = f"""<span class="timeline-card-title timeline-card-title--private">
-                                    {name} <i class="fas fa-lock" title="Projeto Privado"></i>
+                                    {safe_name}
                                 </span>"""
-        button_html = """<span class="timeline-card-btn timeline-card-btn--private">
-                                Privado
+        visibility_html = """<span class="timeline-card-visibility timeline-card-visibility--private" title="Repositório privado">
+                                    <i class="fas fa-lock" aria-hidden="true"></i> Privado
+                                </span>"""
+        access_note = "Repositório privado: o código fica restrito, mas este card mostra o contexto e a evolução do trabalho."
+        button_html = """<span class="timeline-card-btn timeline-card-btn--private" aria-label="Projeto privado sem link público">
+                                <i class="fas fa-lock" aria-hidden="true"></i> Acesso privado
                             </span>"""
     else:
-        title_html = f'''<a href="{html_url}" target="_blank" class="timeline-card-title">
-                                    {name}
-                                </a>'''
-        button_html = f'''<a href="{html_url}" target="_blank" class="timeline-card-btn">
-                                Ver no GitHub →
+        pages_url = get_github_pages_url(project)
+        pages_button_html = ""
+        if pages_url:
+            safe_pages_url = escape(str(pages_url), quote=True)
+            pages_button_html = f'''<a href="{safe_pages_url}" target="_blank" rel="noopener noreferrer" class="timeline-card-btn timeline-card-btn--page">
+                                <i class="fas fa-globe" aria-hidden="true"></i> Ver página
                             </a>'''
+
+        title_html = f'''<a href="{safe_html_url}" target="_blank" rel="noopener noreferrer" class="timeline-card-title">
+                                    {safe_name}
+                                </a>'''
+        visibility_html = """<span class="timeline-card-visibility timeline-card-visibility--public" title="Repositório público">
+                                    <i class="fas fa-unlock-alt" aria-hidden="true"></i> Público
+                                </span>"""
+        access_note = "Repositório público: você pode abrir o código e acompanhar a atividade diretamente no GitHub."
+        button_html = f'''<a href="{safe_html_url}" target="_blank" rel="noopener noreferrer" class="timeline-card-btn">
+                                <i class="fab fa-github" aria-hidden="true"></i> Ver no GitHub
+                            </a>
+                            {pages_button_html}'''
+
+    meta_html = f"""<div class="timeline-card-meta">
+                                <div class="timeline-card-date" title="Data da última atividade registrada pelo GitHub">
+                                    <span class="timeline-card-date-label">Atualizado no GitHub</span>
+                                    <time{updated_attr}>{updated_str}</time>
+                                </div>
+                                {visibility_html}
+                            </div>
+                            <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>"""
+    access_note_html = f'<p class="timeline-card-access-note">{access_note}</p>'
 
     if position == "left":
         # Content on LEFT side, dot on CENTER
@@ -531,10 +683,8 @@ def generate_project_html(project, is_last=False, position="left"):
                     <div class="timeline-item timeline-item-left">
                         <!-- Content Left -->
                         <div class="timeline-card timeline-card--left">
-                            <!-- Date badge -->
-                            <div class="timeline-card-date">
-                                <time datetime="{updated_iso}">{updated_str}</time>
-                            </div>
+                            <!-- Repository metadata -->
+                            {meta_html}
                             
                             <!-- Image -->
                             <div class="timeline-card-image-wrapper">
@@ -545,7 +695,8 @@ def generate_project_html(project, is_last=False, position="left"):
                             <h3 class="timeline-card-heading">
                                 {title_html}
                             </h3>
-                            <p class="timeline-card-description">{description}</p>
+                            <p class="timeline-card-description">{safe_description}</p>
+                            {access_note_html}
                             
                             <!-- Button -->
                             <div class="timeline-card-actions">
@@ -575,10 +726,8 @@ def generate_project_html(project, is_last=False, position="left"):
                         
                         <!-- Content Right -->
                         <div class="timeline-card timeline-card--right">
-                            <!-- Date badge -->
-                            <div class="timeline-card-date">
-                                <time datetime="{updated_iso}">{updated_str}</time>
-                            </div>
+                            <!-- Repository metadata -->
+                            {meta_html}
                             
                             <!-- Image -->
                             <div class="timeline-card-image-wrapper">
@@ -589,7 +738,8 @@ def generate_project_html(project, is_last=False, position="left"):
                             <h3 class="timeline-card-heading">
                                 {title_html}
                             </h3>
-                            <p class="timeline-card-description">{description}</p>
+                            <p class="timeline-card-description">{safe_description}</p>
+                            {access_note_html}
                             
                             <!-- Button -->
                             <div class="timeline-card-actions">
@@ -1260,7 +1410,12 @@ def main():
     # Exclude forks. Include own repos even without desc, org only with desc
     my_repos = [repo for repo in repos if not repo["fork"] and (repo["description"] or repo.get('owner', {}).get('login') == 'joaosnet')]
 
-    # Exclude the portfolio repository itself
+    public_pages = collect_public_pages_links(repos)
+    print(f"\nPublic GitHub Pages links found: {len(public_pages)}")
+    for page in public_pages:
+        print(f"  - {page['name']}: {page['url']}")
+
+    # Exclude the portfolio repository itself from the project timeline
     my_repos = [repo for repo in my_repos if repo["name"] != "joaosnet.github.io"]
 
     # Filter out org repos where the user hasn't contributed
@@ -1365,15 +1520,17 @@ def main():
                                 <div class="timeline-more-dot"></div>
                             </div>
                             <div class="timeline-more-content">
-                                <a href="https://github.com/joaosnet?tab=repositories" target="_blank" class="timeline-more-btn">
-                                    Ver mais projetos <i class="fas fa-arrow-right"></i>
+                                <a href="https://github.com/joaosnet?tab=repositories" target="_blank" rel="noopener noreferrer" class="timeline-more-btn">
+                                    Ver todos os repositórios <i class="fas fa-arrow-right" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>'''
+    pages_html = generate_pages_links_html(public_pages)
+
     timeline_html = f"""
-                <!-- Timeline Container - Alternating Vertical Layout with Central Line -->
-                <div class="timeline-container">
-                    <!-- Central vertical line -->
+                <!-- Timeline Container - Alternating Layout -->
+                <div class="timeline-container" aria-label="Linha do tempo de repositórios">
+                    <!-- Timeline line -->
                     <div class="timeline-line"></div>
                     
                     <!-- Timeline items container -->
@@ -1381,7 +1538,8 @@ def main():
                         {projects_html}
                         {button_html}
                     </div>
-                </div>"""
+                </div>
+                {pages_html}"""
 
     update_index_html(timeline_html)
     print(

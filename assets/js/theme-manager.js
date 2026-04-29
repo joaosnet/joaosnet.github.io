@@ -68,10 +68,12 @@ class ThemeManager {
 
     updateToggleIcon(theme) {
         const icon = theme === 'light' ? 'fa-moon' : 'fa-sun';
-        const title = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+        const title = theme === 'dark' ? 'Alternar para modo claro' : 'Alternar para modo escuro';
         
         this.toggleBtn.innerHTML = `<i class="fas ${icon}"></i>`;
         this.toggleBtn.title = title;
+        this.toggleBtn.setAttribute('aria-label', title);
+        this.toggleBtn.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     }
 }
 

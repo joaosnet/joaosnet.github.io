@@ -16,13 +16,20 @@ class AnimationsHandler {
         const header = document.querySelector('header');
         if (!header) return;
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+        const horizontalWrapper = document.querySelector('.horizontal-wrapper');
+        const updateHeaderState = () => {
+            const horizontalScroll = horizontalWrapper ? horizontalWrapper.scrollLeft : 0;
+            if (window.scrollY > 50 || horizontalScroll > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+        };
+
+        window.addEventListener('scroll', updateHeaderState);
+        if (horizontalWrapper) {
+            horizontalWrapper.addEventListener('scroll', updateHeaderState);
+        }
     }
 
     setupScrollAnimations() {
@@ -74,6 +81,10 @@ class AnimationsHandler {
                         const scrollLeft = targetElement.offsetLeft;
                         horizontalWrapper.scrollTo({
                             left: scrollLeft,
+                            behavior: 'smooth'
+                        });
+                        targetElement.scrollTo({
+                            top: 0,
                             behavior: 'smooth'
                         });
                     } else {

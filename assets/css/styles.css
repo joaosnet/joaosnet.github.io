@@ -814,6 +814,15 @@ nav ul li a:hover::after {
     box-shadow: none;
 }
 
+.timeline-card-btn--page {
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    border-color: transparent;
+}
+
+.timeline-card-btn--page:hover {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
 .timeline-dot-wrapper {
     display: flex;
     flex-direction: column;
@@ -904,6 +913,96 @@ nav ul li a:hover::after {
     grid-column: 1 / -1;
     text-align: center;
     padding-top: 20px;
+}
+
+.published-pages {
+    width: min(86vw, 420px);
+    padding: 24px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+}
+
+.published-pages-heading h3 {
+    color: var(--light);
+    font-size: 1.35rem;
+    margin-bottom: 8px;
+}
+
+.published-pages-heading p {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.published-pages-list {
+    display: grid;
+    gap: 10px;
+}
+
+.published-page-link {
+    display: grid;
+    grid-template-columns: 38px minmax(0, 1fr) 18px;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 10px;
+    background: var(--glass-bg);
+    color: var(--light);
+    text-decoration: none;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.published-page-link:hover,
+.published-page-link:focus-visible {
+    border-color: var(--accent);
+    background: rgba(6, 182, 212, 0.12);
+    transform: translateY(-2px);
+}
+
+.published-page-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(6, 182, 212, 0.14);
+    color: var(--accent);
+}
+
+.published-page-copy {
+    min-width: 0;
+}
+
+.published-page-copy strong,
+.published-page-copy span,
+.published-page-copy small {
+    display: block;
+}
+
+.published-page-copy strong {
+    color: var(--light);
+    line-height: 1.25;
+}
+
+.published-page-copy span {
+    color: var(--text-gray);
+    font-size: 0.86rem;
+    line-height: 1.35;
+    margin-top: 2px;
+}
+
+.published-page-copy small {
+    color: var(--accent);
+    font-size: 0.78rem;
+    margin-top: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 /* ============================================
@@ -2466,159 +2565,815 @@ html[data-theme="light"] .theme-modal-content {
 }
 
 /* ============================================
-   UNIVERSAL HORIZONTAL EXPANSION (TRUE HORIZONTAL)
+   RESPONSIVE HORIZONTAL UX REFINEMENTS
    ============================================ */
-    .horizontal-wrapper > section {
-        flex: 0 0 auto !important;
-        min-width: 100vw !important;
-        width: max-content !important;
-        height: 100vh !important;
-        max-height: 100vh !important;
-        overflow: hidden !important; 
-        flex-direction: row !important;
-        justify-content: flex-start !important;
-    }
-    .container {
-        display: flex;
-        align-items: center;
-        height: 100%;
-        width: max-content !important;
-        gap: 60px;
-        padding: 0 5vw !important;
-    }
+:root {
+    --app-header-height: 80px;
+}
 
-    /* Universal Scroll limits indicator */
-    .scroll-indicator {
-        top: auto !important;
-        bottom: 30px !important;
-        right: 50% !important;
-        transform: translateX(50%) !important;
-        display: flex !important;
-        flex-direction: row !important;
-        gap: 15px !important;
-        z-index: 1000 !important;
-    }
-    .scroll-hint { display: none !important; }
+body {
+    overflow: hidden;
+}
 
-    /* Transform Habilidades into horizontal row */
-    .features-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        gap: 40px !important;
-        align-items: stretch !important;
-    }
-    .feature-card {
-        width: 320px !important;
-        height: 480px;
-    }
+main {
+    height: calc(100dvh - var(--app-header-height)) !important;
+    margin-top: var(--app-header-height) !important;
+    overflow: hidden;
+}
 
-    /* Transform Projects Timeline into horizontal track */
-    .timeline-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: max-content;
-        position: relative;
-    }
-    .timeline-items {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center;
-        gap: 60px;
-        position: relative;
-        z-index: 2;
-    }
-    .timeline-line {
-        width: 100% !important;
-        height: 4px !important;
-        top: 50% !important;
-        left: 0 !important;
-        bottom: auto !important;
-        transform: translateY(-50%) !important;
-    }
-    .timeline-item {
-        width: 400px !important;
-        height: 650px !important; /* Fixed bounds for absolute inner centering */
-        padding: 0 !important; 
-        position: relative;
-    }
-    /* Neutralize alternating layout offsets */
-    .timeline-item-left, .timeline-item-right {
-        justify-content: center !important;
-        align-items: center !important;
-    }
-    .timeline-item-left { padding-right: 0 !important; }
-    .timeline-item-right { padding-left: 0 !important; }
+.horizontal-wrapper {
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    overscroll-behavior-x: contain;
+    scroll-padding-inline: 0;
+    touch-action: pan-x pan-y;
+}
 
-    .timeline-dot {
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
-    }
-    
-    .timeline-card {
-        margin: 0 !important;
-        transform: none !important;
-        position: absolute !important;
-        left: 0 !important;
-        width: 100% !important;
-    }
-    /* Lock alternating cards exactly to the 50% threshold without affecting flow */
-    .timeline-item-left .timeline-card { bottom: 55% !important; margin-top: 0 !important; }
-    .timeline-item-right .timeline-card { top: 55% !important; margin-top: 0 !important; }
-    .timeline-item-left .timeline-card::after, .timeline-item-right .timeline-card::after { display: none !important; }
+.horizontal-wrapper > section {
+    min-width: 100vw !important;
+    min-height: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scrollbar-gutter: stable;
+}
 
-    /* Contact layout normalization */
-    .contact-container { 
-        display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 60px !important;
-        align-items: center;
-        width: 1000px; /* Keep contact fixed width */
-    }
+.horizontal-wrapper .container {
+    min-height: 100%;
+}
 
-    /* Hide items that push body down */
-    footer { display: none !important; }
-    .timeline-more-btn-wrapper { margin: 0 !important; }
+.scroll-indicator {
+    align-items: center;
+}
+
+.scroll-dot {
+    appearance: none;
+    padding: 0;
+    line-height: 1;
+}
+
+.scroll-dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
 
 /* ============================================
-   MOBILE LAYOUT OVERRIDES (CRITICAL FIXES)
+   FRIENDLIER PROJECT TIMELINE
    ============================================ */
-@media (max-width: 768px) {
-    /* Optimize Universal Horizontal Layout for very small screens */
-    .horizontal-wrapper > section {
-        /* Keep it horizontal, but allow vertical scroll internally if contact form gets tall */
-        overflow-y: auto !important;
+.timeline-card--left,
+.timeline-card--right {
+    text-align: left !important;
+}
+
+.timeline-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.timeline-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+    margin-bottom: 2px;
+}
+
+.timeline-card-date {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 0;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--primary) 12%, var(--dark));
+}
+
+.timeline-card-date-label {
+    color: var(--text-gray);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.timeline-card-date time {
+    color: var(--light);
+    font-size: 0.9rem;
+}
+
+.timeline-card-visibility {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 42px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.timeline-card-visibility--public {
+    color: #86efac;
+    background: rgba(22, 163, 74, 0.12);
+    border-color: rgba(34, 197, 94, 0.35);
+}
+
+.timeline-card-visibility--private {
+    color: #facc15;
+    background: rgba(245, 158, 11, 0.12);
+    border-color: rgba(245, 158, 11, 0.35);
+}
+
+html[data-theme="light"] .timeline-card-visibility--public {
+    color: #166534;
+    background: rgba(34, 197, 94, 0.14);
+}
+
+html[data-theme="light"] .timeline-card-visibility--private {
+    color: #92400e;
+    background: rgba(245, 158, 11, 0.18);
+}
+
+.timeline-card-update-note,
+.timeline-card-access-note {
+    margin: 0;
+    color: var(--text-gray);
+    font-size: 0.86rem;
+    line-height: 1.45;
+}
+
+.timeline-card-access-note {
+    padding: 8px 10px;
+    border-left: 3px solid var(--accent);
+    background: var(--glass-bg);
+    border-radius: 8px;
+}
+
+.timeline-card-heading {
+    margin-bottom: 2px;
+}
+
+.timeline-card-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 0;
+}
+
+.timeline-card-title:hover {
+    border-color: transparent;
+}
+
+.timeline-card-description {
+    margin-bottom: 4px;
+}
+
+.timeline-card-actions {
+    margin-top: auto;
+}
+
+.timeline-card-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.timeline-card-image-wrapper {
+    margin-bottom: 0;
+}
+
+.timeline-card-image {
+    background: var(--glass-bg);
+}
+
+.timeline-more-item {
+    flex: 0 0 clamp(260px, 28vw, 340px);
+    min-height: 260px;
+}
+
+.timeline-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ============================================
+   PORTFOLIO EXPERIENCE FIXES
+   ============================================ */
+.header-content {
+    gap: 12px;
+}
+
+nav ul {
+    align-items: center;
+}
+
+.theme-toggle,
+.theme-selector-btn,
+.menu-toggle {
+    flex: 0 0 auto;
+}
+
+.menu-toggle {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    padding: 0;
+}
+
+.theme-toggle:focus-visible,
+.theme-selector-btn:focus-visible,
+.menu-toggle:focus-visible,
+.btn:focus-visible,
+.timeline-card-btn:focus-visible,
+.timeline-more-btn:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+.btn,
+.timeline-card-btn,
+.timeline-more-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    line-height: 1.2;
+}
+
+.hero .container,
+.cta .container,
+.footer-panel .container {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: min(100vw, 1100px) !important;
+    max-width: 1100px !important;
+    height: 100% !important;
+    gap: 24px !important;
+    padding: 0 clamp(20px, 5vw, 64px) !important;
+}
+
+.hero-content {
+    max-width: 880px;
+    padding: clamp(28px, 6vw, 56px);
+}
+
+.hero-kicker {
+    width: fit-content;
+    margin: 0 auto 16px;
+    padding: 7px 12px;
+    border: 1px solid var(--border-light);
+    border-radius: 999px;
+    background: var(--glass-bg);
+    color: var(--accent) !important;
+    font-size: 0.9rem !important;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.hero-buttons .btn-secondary {
+    margin-left: 0;
+}
+
+.contact-panel {
+    width: min(100vw, 760px) !important;
+    max-width: 760px !important;
+}
+
+.contact-copy {
+    max-width: 720px;
+    text-align: center;
+}
+
+.contact-copy p {
+    margin-bottom: 0;
+}
+
+.form-background-effects {
+    position: absolute;
+    inset: -15px;
+    overflow: hidden;
+    border-radius: 20px;
+    z-index: 0;
+}
+
+.form-floating-devicon {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    z-index: 1;
+    font-size: 1.5rem;
+    animation: float 8s infinite ease-in-out;
+}
+
+.contact-form {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+.contact-options,
+.contact-helper {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0 0 12px;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.contact-options-label {
+    color: var(--light);
+    font-weight: 700;
+}
+
+.contact-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.contact-actions .btn {
+    margin: 0;
+    width: 100%;
+}
+
+.contact-submit {
+    width: 100%;
+}
+
+#toast {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    z-index: 50;
+    max-width: calc(100% - 32px);
+    padding: 10px 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    transform: translateX(-50%);
+}
+
+.footer-panel {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 100vw !important;
+    min-width: 100vw !important;
+    background: var(--header-bg);
+}
+
+.footer-panel footer {
+    display: block !important;
+    width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+    background: transparent !important;
+    border-top: 0 !important;
+    padding: clamp(44px, 8vh, 80px) 0 clamp(72px, 10vh, 96px);
+}
+
+.footer-panel .container {
+    display: block !important;
+    width: min(1100px, 100vw) !important;
+    max-width: 1100px !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+
+.footer-panel .footer-grid {
+    align-items: start;
+    grid-template-columns: minmax(260px, 1.2fr) minmax(180px, 0.8fr) minmax(240px, 1fr);
+}
+
+.footer-cv {
+    margin-top: 22px;
+}
+
+.views-counter-icon {
+    color: var(--accent);
+}
+
+@media (max-width: 900px) {
+    .hero .container,
+    .cta .container,
+    .footer-panel .container {
+        width: min(100vw, 760px) !important;
+        padding: 0 7vw !important;
     }
-    .container {
-        padding: 0 8vw !important;
-        gap: 30px !important;
+
+    .hero-content {
+        padding: 24px 0;
     }
 
-    /* Adjust features and timelines for narrower viewports */
-    .feature-card { width: 80vw !important; height: auto !important; min-height: 400px; }
-    .timeline-item { width: 80vw !important; height: 80vh !important; }
-    .timeline-items { gap: 30px !important; }
-    
-    /* Ensure Contact form stacks vertically inside its horizontal slide */
-    .contact-container { 
-        display: flex !important;
-        flex-direction: column !important;
-        width: 85vw !important; 
-        padding: 0 !important;
-        gap: 30px !important;
+    .contact-form {
+        padding: 24px;
     }
 
-    /* Hide redundant horizontal-scroll UI in mobile */
-    .scroll-indicator { display: none !important; }
-    .scroll-hint { display: none !important; }
+    .footer-panel footer {
+        padding-top: 42px;
+        padding-bottom: 92px;
+    }
 
-    /* Fix header height overlaps */
-    header { padding: 8px 0 !important; }
-    .logo { font-size: 1.1rem !important; }
+    .footer-panel .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 32px;
+    }
+}
 
-    /* Push FAB and translate up to not clash with mobile home buttons */
-    .fab-container { bottom: 20px !important; right: 15px !important; }
-    .gtranslate_wrapper { bottom: 20px !important; left: 15px !important; }
+@media (max-width: 480px) {
+    .hero-buttons {
+        gap: 8px;
+    }
+
+    .hero-buttons .btn {
+        min-height: 46px;
+        padding: 12px 16px;
+        font-size: 0.98rem;
+    }
+
+    .contact-actions {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .contact-options,
+    .contact-helper {
+        font-size: 0.88rem;
+    }
+
+    .footer-panel footer {
+        padding-top: 34px;
+    }
+}
+
+/* ============================================
+   CONTENT CONTAINMENT & NO-CROP LAYOUT FIXES
+   ============================================ */
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+}
+
+main {
+    width: 100vw !important;
+    height: calc(100dvh - var(--app-header-height)) !important;
+    overflow: hidden !important;
+}
+
+.horizontal-wrapper {
+    width: 100vw !important;
+    height: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+}
+
+.horizontal-wrapper > section {
+    flex: 0 0 100vw !important;
+    width: 100vw !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scroll-snap-align: start !important;
+    scrollbar-gutter: stable both-edges;
+}
+
+.horizontal-wrapper > section > .container,
+.hero .container,
+.features .container,
+.specs .container,
+.cta .container,
+.footer-panel .container {
+    width: min(1180px, 100%) !important;
+    max-width: 1180px !important;
+    height: auto !important;
+    min-height: 100% !important;
+    margin-inline: auto !important;
+    padding: clamp(28px, 5vh, 56px) clamp(18px, 4vw, 48px) 88px !important;
+}
+
+.hero .container,
+.cta .container,
+.footer-panel .container {
+    justify-content: center !important;
+}
+
+.hero {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.features,
+.specs,
+.cta,
+.footer-panel {
+    min-height: 0 !important;
+    padding: 0 !important;
+}
+
+.features .container,
+.specs .container {
+    display: grid !important;
+    align-content: center !important;
+    gap: clamp(20px, 4vh, 34px) !important;
+}
+
+.hero-content {
+    width: min(880px, 100%) !important;
+    padding: clamp(20px, 4vw, 44px) 0 !important;
+}
+
+.hero h1 {
+    font-size: clamp(2.05rem, 6vw, 4rem) !important;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2.2vw, 1.24rem) !important;
+}
+
+.section-title {
+    margin-bottom: 0 !important;
+}
+
+.section-title h2,
+.cta h2 {
+    font-size: clamp(1.8rem, 4.6vw, 3rem) !important;
+}
+
+.features-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)) !important;
+    gap: clamp(16px, 2.4vw, 26px) !important;
+    width: 100% !important;
+}
+
+.feature-card {
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: clamp(20px, 3vw, 32px) !important;
+    border-radius: 14px !important;
+}
+
+.feature-card i {
+    margin-bottom: 16px !important;
+}
+
+.feature-card h3 {
+    font-size: clamp(1.1rem, 2vw, 1.35rem) !important;
+}
+
+.specs-flex {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+}
+
+.timeline-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 8px 0 18px !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+}
+
+.timeline-container::-webkit-scrollbar,
+.published-pages-list::-webkit-scrollbar {
+    height: 8px;
+}
+
+.timeline-container::-webkit-scrollbar-thumb,
+.published-pages-list::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 999px;
+}
+
+.timeline-items {
+    display: flex !important;
+    align-items: stretch !important;
+    gap: clamp(16px, 3vw, 26px) !important;
+    width: max-content !important;
+    min-width: 100% !important;
+    padding: 34px 4px 8px !important;
+}
+
+.timeline-line {
+    top: 28px !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: 3px !important;
+    transform: none !important;
+    background: linear-gradient(to right, var(--primary) 0%, var(--border-light) 70%, transparent 100%) !important;
+}
+
+.timeline-item,
+.timeline-more-item {
+    display: block !important;
+    flex: 0 0 clamp(288px, 32vw, 390px) !important;
+    width: clamp(288px, 32vw, 390px) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 30px 0 0 !important;
+    position: relative !important;
+    scroll-snap-align: start;
+}
+
+.timeline-empty {
+    display: none !important;
+}
+
+.timeline-dot-wrapper,
+.timeline-more-dot-wrapper {
+    position: absolute !important;
+    top: 20px !important;
+    left: 20px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    z-index: 3;
+}
+
+.timeline-dot,
+.timeline-more-dot {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+
+.timeline-card,
+.timeline-item-left .timeline-card,
+.timeline-item-right .timeline-card {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    transform: none !important;
+}
+
+.timeline-card:hover {
+    transform: translateY(-3px) !important;
+}
+
+.timeline-card-description,
+.timeline-card-update-note {
+    display: block !important;
+    overflow: visible !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+}
+
+.timeline-card-image {
+    max-height: none !important;
+    min-height: 120px;
+    object-fit: cover;
+}
+
+.timeline-card-actions {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+}
+
+.timeline-card-btn {
+    width: auto !important;
+    min-height: 42px;
+    white-space: normal;
+    text-align: center;
+}
+
+.timeline-more-content {
+    position: relative !important;
+    inset: auto !important;
+    padding-top: 0 !important;
+    text-align: left !important;
+}
+
+.timeline-more-btn {
+    width: 100% !important;
+    min-height: 100%;
+    padding: 20px !important;
+    white-space: normal;
+}
+
+.published-pages {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+.published-pages-list {
+    display: grid !important;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(280px, 1fr);
+    overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 4px;
+}
+
+.contact-panel {
+    width: min(760px, 100%) !important;
+}
+
+.contact-form {
+    max-width: min(600px, 100%) !important;
+    padding: clamp(20px, 4vw, 34px) !important;
+}
+
+.footer-panel footer {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+.footer-panel .container {
+    display: grid !important;
+    align-content: center !important;
+}
+
+@media (max-width: 900px) {
+    .horizontal-wrapper > section > .container,
+    .hero .container,
+    .features .container,
+    .specs .container,
+    .cta .container,
+    .footer-panel .container {
+        padding: 24px 18px 86px !important;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    .timeline-item,
+    .timeline-more-item {
+        flex-basis: min(82vw, 360px) !important;
+        width: min(82vw, 360px) !important;
+    }
+
+    .published-pages-list {
+        grid-auto-columns: minmax(min(82vw, 330px), 1fr);
+    }
+
+    .scroll-indicator {
+        bottom: 12px !important;
+    }
+
+    #fab-contact {
+        right: 14px;
+        bottom: 72px;
+    }
+}
+
+@media (max-width: 520px) {
+    .hero-buttons,
+    .contact-actions {
+        grid-template-columns: 1fr !important;
+    }
+
+    .hero-buttons {
+        display: grid !important;
+        width: 100%;
+    }
+
+    .timeline-item,
+    .timeline-more-item {
+        flex-basis: min(86vw, 330px) !important;
+        width: min(86vw, 330px) !important;
+    }
+
+    .timeline-card-meta {
+        display: grid !important;
+    }
+
+    .published-page-link {
+        grid-template-columns: 32px minmax(0, 1fr) !important;
+    }
+
+    .published-page-link > .fas {
+        display: none;
+    }
 }
