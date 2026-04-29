@@ -16,9 +16,8 @@ class AnimationsHandler {
         const header = document.querySelector('header');
         if (!header) return;
 
-        const horizontalWrapper = document.querySelector('.horizontal-wrapper');
         const updateHeaderState = () => {
-            const horizontalScroll = horizontalWrapper ? horizontalWrapper.scrollLeft : 0;
+            const horizontalScroll = window.scrollX || document.documentElement.scrollLeft;
             if (window.scrollY > 50 || horizontalScroll > 50) {
                 header.classList.add('scrolled');
             } else {
@@ -27,9 +26,6 @@ class AnimationsHandler {
         };
 
         window.addEventListener('scroll', updateHeaderState);
-        if (horizontalWrapper) {
-            horizontalWrapper.addEventListener('scroll', updateHeaderState);
-        }
     }
 
     setupScrollAnimations() {
@@ -115,5 +111,8 @@ class AnimationsHandler {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    new AnimationsHandler();
+});
+addEventListener('DOMContentLoaded', () => {
     new AnimationsHandler();
 });

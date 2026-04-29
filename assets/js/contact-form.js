@@ -137,11 +137,8 @@ class ContactFormHandler {
             const horizontalWrapper = document.querySelector('.horizontal-wrapper');
 
             if (horizontalWrapper && contactSection && contactSection.closest('.horizontal-wrapper')) {
-                horizontalWrapper.scrollTo({
+                window.scrollTo({
                     left: contactSection.offsetLeft,
-                    behavior: 'smooth'
-                });
-                contactSection.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });

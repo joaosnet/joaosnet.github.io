@@ -254,20 +254,6 @@ class ThemeSelector {
             root.style.setProperty('--text-gray', theme.textGray);
         }
 
-        // Update theme toggle icon to match
-        const themeToggle = document.querySelector('.theme-toggle');
-        if (themeToggle) {
-            const icon = themeToggle.querySelector('i');
-            if (icon) {
-                // Check if it's a light theme
-                const isLight = theme.light === '#fef2f2' || theme.light === '#f0fdf4' || 
-                               theme.light === '#fdf2f8' || theme.light === '#fffbeb' ||
-                               theme.light === '#f0fdfa' || theme.light === '#faf5ff' ||
-                               theme.light === '#eef2ff' || theme.light === '#ecfdf5';
-                icon.className = isLight ? 'fas fa-sun' : 'fas fa-moon';
-            }
-        }
-
         // Store current theme
         localStorage.setItem(this.STORAGE_KEY, themeKey);
     }

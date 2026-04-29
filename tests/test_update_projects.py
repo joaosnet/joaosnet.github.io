@@ -312,7 +312,7 @@ class TestGitHubPagesLinks:
 
         html = generate_pages_links_html(pages)
 
-        assert "Páginas publicadas" in html
+        assert "published-pages-list" in html
         assert "cartilha_dash" in html
         assert "https://joaosnet.github.io/cartilha_dash/" in html
 

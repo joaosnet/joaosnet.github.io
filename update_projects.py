@@ -554,6 +554,10 @@ def collect_public_pages_links(repos):
             continue
         seen_urls.add(url_key)
 
+        img, _ = find_repo_preview_image(repo)
+        if not img:
+            img = "./assets/css/images/icon.png"
+
         pages.append(
             {
                 "name": repo.get("name", "GitHub Pages"),
@@ -562,6 +566,7 @@ def collect_public_pages_links(repos):
                 "description": repo.get("description")
                 or "Página publicada via GitHub Pages.",
                 "updated_at": repo.get("pushed_at") or repo.get("updated_at") or "",
+                "preview_image": img,
             }
         )
 
@@ -577,31 +582,56 @@ def generate_pages_links_html(pages):
     items_html = ""
     for page in pages:
         safe_name = escape(str(page.get("name") or "GitHub Pages"))
-        safe_url = escape(str(page.get("url")), quote=True)
-        safe_description = escape(
-            str(page.get("description") or "Página publicada via GitHub Pages.")
-        )
+        
+        raw_url = str(page.get("url"))
+        safe_url = escape(raw_url, quote=True)
+        
+        # Create a visually shorter display URL (remove protocol and trailing slash)
+        display_url = raw_url.replace("https://", "").replace("http://", "").rstrip("/")
+        safe_display_url = escape(display_url)
+        
+        # Intelligently truncate description
+        raw_desc = str(page.get("description") or "Página publicada via GitHub Pages.").strip()
+        
+        # Remove URLs from description to avoid redundancy and verbosity
+        raw_desc = re.sub(r'https?://[^\s]+', '', raw_desc).strip()
+        
+        # Truncate to keep the card compact (approx 90-100 chars)
+        max_len = 95
+        if len(raw_desc) > max_len:
+            # Try to truncate at a word boundary
+            truncated = raw_desc[:max_len].rsplit(' ', 1)[0]
+            raw_desc = truncated + "..."
+            
+        # Ensure it's not empty after cleaning
+        if not raw_desc:
+            raw_desc = "Página publicada via GitHub Pages."
+            
+        safe_description = escape(raw_desc)
+        
+        # Add preview image HTML if available
+        image_html = ""
+        preview_image = page.get("preview_image")
+        if preview_image:
+            safe_image = escape(str(preview_image), quote=True)
+            image_html = f'<div class="published-page-image-wrapper"><img src="{safe_image}" alt="Prévia de {safe_name}" class="published-page-image" loading="lazy"/></div>'
+        
         items_html += f"""
                             <a href="{safe_url}" target="_blank" rel="noopener noreferrer" class="published-page-link">
+                                {image_html}
                                 <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
                                 <span class="published-page-copy">
                                     <strong>{safe_name}</strong>
                                     <span>{safe_description}</span>
-                                    <small>{safe_url}</small>
+                                    <small>{safe_display_url}</small>
                                 </span>
                                 <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
                             </a>"""
 
     return f"""
-                <div class="published-pages" aria-label="Páginas públicas publicadas no GitHub Pages">
-                    <div class="published-pages-heading">
-                        <h3>Páginas publicadas</h3>
-                        <p>Todos os links públicos do GitHub Pages associados aos meus repositórios ficam listados aqui.</p>
-                    </div>
                     <div class="published-pages-list">
                         {items_html}
-                    </div>
-                </div>"""
+                    </div>"""
 
 
 def generate_project_html(project, is_last=False, position="left"):
@@ -1217,11 +1247,12 @@ def find_repo_preview_image(repo):
         return None, None
 
 
-def update_index_html(projects_html):
+def update_index_html(projects_html, pages_html=""):
     file_path = "index.html"
     with open(file_path, "r", encoding="utf-8") as f:
         content = f.read()
 
+    # Update projects block
     start_marker = "<!-- PROJECTS_START -->"
     end_marker = "<!-- PROJECTS_END -->"
 
@@ -1229,21 +1260,39 @@ def update_index_html(projects_html):
     end_index = content.find(end_marker)
 
     if start_index == -1 or end_index == -1:
-        print("Markers not found in index.html")
-        return
-
-    if projects_html.strip():
-        content = (
-            content[: start_index + len(start_marker)]
-            + "\n"
-            + projects_html
-            + "\n                    "
-            + content[end_index:]
-        )
+        print("Projects markers not found in index.html")
     else:
-        print(
-            "No projects HTML to insert; skipping replacing the projects block but will update date elements."
-        )
+        if projects_html.strip():
+            content = (
+                content[: start_index + len(start_marker)]
+                + "\n"
+                + projects_html
+                + "\n                "
+                + content[end_index:]
+            )
+        else:
+            print("No projects HTML to insert; skipping replacing the projects block.")
+
+    # Update pages block
+    pages_start_marker = "<!-- PAGES_START -->"
+    pages_end_marker = "<!-- PAGES_END -->"
+    
+    pages_start_index = content.find(pages_start_marker)
+    pages_end_index = content.find(pages_end_marker)
+    
+    if pages_start_index == -1 or pages_end_index == -1:
+        print("Pages markers not found in index.html")
+    else:
+        if pages_html.strip():
+            content = (
+                content[: pages_start_index + len(pages_start_marker)]
+                + "\n"
+                + pages_html
+                + "\n                "
+                + content[pages_end_index:]
+            )
+        else:
+            print("No pages HTML to insert; skipping replacing the pages block.")
 
     with open(file_path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -1538,10 +1587,9 @@ def main():
                         {projects_html}
                         {button_html}
                     </div>
-                </div>
-                {pages_html}"""
+                </div>"""
 
-    update_index_html(timeline_html)
+    update_index_html(timeline_html, pages_html)
     print(
         f"\n✓ Successfully processed {len(top_projects)} projects and updated index.html."
     )

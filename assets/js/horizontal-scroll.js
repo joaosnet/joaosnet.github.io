@@ -5,7 +5,8 @@
 
 class HorizontalScrollHandler {
     constructor() {
-        this.wrapper = document.querySelector('.horizontal-wrapper');
+        this.wrapper = document.documentElement; // Now scrolling happens on the root element
+        this.scrollContainer = document.querySelector('.horizontal-wrapper');
         this.sections = [];
         this.scrollIndicator = null;
         this.scrollHint = null;
@@ -17,13 +18,13 @@ class HorizontalScrollHandler {
     }
 
     init() {
-        if (!this.wrapper) {
+        if (!this.scrollContainer) {
             console.warn('Horizontal wrapper not found');
             return;
         }
 
         // Get all sections within the horizontal wrapper
-        this.sections = Array.from(this.wrapper.querySelectorAll('section'));
+        this.sections = Array.from(this.scrollContainer.querySelectorAll('section'));
         
         if (this.sections.length === 0) {
             console.warn('No sections found in horizontal wrapper');
@@ -53,27 +54,46 @@ class HorizontalScrollHandler {
     }
 
     setupVerticalToHorizontalScroll() {
-        // Convert vertical scroll (mouse wheel/trackpad) to horizontal scroll
-        this.wrapper.addEventListener('wheel', (e) => {
+        // Convert vertical scroll (mouse wheel/trackpad) to horizontal scroll ONLY if not scrolling a vertical list
+        window.addEventListener('wheel', (e) => {
             if (this.scrollNestedHorizontalArea(e)) {
                 return;
             }
 
             if (this.shouldLetSectionScrollVertically(e)) {
-                return;
+                return; // Let the native vertical scroll happen
             }
 
-            // Only convert if scrolling vertically
+            // Convert vertical wheel to horizontal document scroll
             if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-                e.preventDefault();
+                // If the body/html has vertical scroll AND we are not at the top/bottom, 
+                // we might want to let it scroll vertically instead of forcing horizontal?
+                // Wait, if we want to read a long section, we must allow vertical scroll!
+                // Actually, if we are in a long section, we SHOULD let the window scroll vertically!
+                // So if deltaY > 0 (down) and we are not at the bottom of the document, let it scroll!
+                // BUT we want horizontal navigation...
+                // A better approach for 2D scrolling: 
+                // Only convert to horizontal if the current section doesn't need vertical scrolling,
+                // OR if the user holds Shift. But browser does Shift+Wheel natively for horizontal.
+                // Let's remove the forced vertical-to-horizontal conversion so we don't break vertical reading,
+                // OR we only convert if the document cannot scroll vertically anymore.
                 
-                // Scroll horizontally by the vertical delta amount
+                const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+                const isScrollableVertically = maxScrollY > 10;
+                
+                if (isScrollableVertically) {
+                    // Let the native vertical scroll happen if the page is tall
+                    return;
+                }
+
+                // If the page is not vertically tall, we can convert vertical wheel to horizontal
+                e.preventDefault();
                 const scrollSpeed = window.innerWidth <= 768 ? 0.85 : 1.1;
                 const scrollAmount = e.deltaY * scrollSpeed;
                 
-                this.wrapper.scrollBy({
+                window.scrollBy({
                     left: scrollAmount,
-                    behavior: 'auto' // Use 'auto' for immediate response
+                    behavior: 'auto'
                 });
             }
         }, { passive: false });
@@ -82,7 +102,7 @@ class HorizontalScrollHandler {
     scrollNestedHorizontalArea(event) {
         const nestedScroller = event.target.closest('.timeline-container, .published-pages-list');
 
-        if (!nestedScroller || !this.wrapper.contains(nestedScroller)) {
+        if (!nestedScroller) {
             return false;
         }
 
@@ -111,13 +131,15 @@ class HorizontalScrollHandler {
     }
 
     shouldLetSectionScrollVertically(event) {
-        const section = event.target.closest('.horizontal-wrapper > section');
-
-        if (!section) {
+        // Since sections now grow by content and we scroll the document,
+        // we check if the element itself has internal overflow (e.g. a textarea).
+        const scrollableParent = event.target.closest('.footer-panel footer, textarea');
+        
+        if (!scrollableParent) {
             return false;
         }
 
-        const hasVerticalOverflow = section.scrollHeight > section.clientHeight + 2;
+        const hasVerticalOverflow = scrollableParent.scrollHeight > scrollableParent.clientHeight + 2;
 
         if (!hasVerticalOverflow) {
             return false;
@@ -125,8 +147,8 @@ class HorizontalScrollHandler {
 
         const scrollingUp = event.deltaY < 0;
         const scrollingDown = event.deltaY > 0;
-        const atTop = section.scrollTop <= 0;
-        const atBottom = section.scrollTop + section.clientHeight >= section.scrollHeight - 2;
+        const atTop = scrollableParent.scrollTop <= 0;
+        const atBottom = scrollableParent.scrollTop + scrollableParent.clientHeight >= scrollableParent.scrollHeight - 2;
 
         return (scrollingUp && !atTop) || (scrollingDown && !atBottom);
     }
@@ -136,7 +158,6 @@ class HorizontalScrollHandler {
         this.scrollIndicator.className = 'scroll-indicator';
         this.scrollIndicator.setAttribute('aria-label', 'Navegação entre seções');
         
-        // Create a dot for each section
         this.sections.forEach((section, index) => {
             const dot = document.createElement('button');
             dot.className = 'scroll-dot';
@@ -153,7 +174,7 @@ class HorizontalScrollHandler {
     createScrollHint() {
         this.scrollHint = document.createElement('div');
         this.scrollHint.className = 'scroll-hint';
-        this.scrollHint.innerHTML = '<span>Role ou arraste para explorar</span><i class="fas fa-arrow-right"></i>';
+        this.scrollHint.innerHTML = '<span>Role para os lados ou use os pontos para explorar</span><i class="fas fa-arrow-right"></i>';
         document.body.appendChild(this.scrollHint);
     }
 
@@ -169,10 +190,9 @@ class HorizontalScrollHandler {
     }
 
     setupScrollListener() {
-        // Throttled scroll listener
         let ticking = false;
         
-        this.wrapper.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
                     this.updateActiveSection();
@@ -199,18 +219,18 @@ class HorizontalScrollHandler {
             const section = this.sections[index];
             const scrollLeft = section.offsetLeft;
             
-            this.wrapper.scrollTo({
+            window.scrollTo({
                 left: scrollLeft,
+                top: 0, // Reset vertical scroll when navigating between sections
                 behavior: this.prefersReducedMotion.matches ? 'auto' : 'smooth'
             });
         }
     }
 
     updateActiveSection() {
-        const scrollLeft = this.wrapper.scrollLeft;
-        const viewportCenter = scrollLeft + (this.wrapper.clientWidth / 2);
+        const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+        const viewportCenter = scrollLeft + (window.innerWidth / 2);
         
-        // Calculate current section by the closest visible section center.
         let newIndex = 0;
         let shortestDistance = Number.POSITIVE_INFINITY;
 
@@ -228,7 +248,6 @@ class HorizontalScrollHandler {
             this.currentSection = newIndex;
         }
         
-        // Update active dot
         const dots = this.scrollIndicator.querySelectorAll('.scroll-dot');
         dots.forEach((dot, index) => {
             dot.setAttribute('aria-current', index === this.currentSection ? 'true' : 'false');
@@ -245,7 +264,6 @@ class HorizontalScrollHandler {
             this.scrollHint.classList.add('visible');
             this.hasShownHint = true;
             
-            // Auto-hide after 5 seconds
             setTimeout(() => {
                 this.hideScrollHint();
             }, 5000);
@@ -262,11 +280,14 @@ class HorizontalScrollHandler {
             }
 
             if (event.key === 'ArrowRight' || event.key === 'PageDown') {
+                // If it's PageDown, let the native vertical scroll happen if applicable
+                if (event.key === 'PageDown') return; 
                 event.preventDefault();
                 this.next();
             }
 
             if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+                if (event.key === 'PageUp') return;
                 event.preventDefault();
                 this.previous();
             }
@@ -279,7 +300,7 @@ class HorizontalScrollHandler {
         window.addEventListener('resize', () => {
             window.clearTimeout(resizeTimer);
             resizeTimer = window.setTimeout(() => {
-                this.sections = Array.from(this.wrapper.querySelectorAll('section'));
+                this.sections = Array.from(this.scrollContainer.querySelectorAll('section'));
                 this.scrollToSection(this.currentSection);
                 this.updateActiveSection();
             }, 150);
@@ -292,14 +313,12 @@ class HorizontalScrollHandler {
         }
     }
 
-    // Navigate to next section
     next() {
         if (this.currentSection < this.sections.length - 1) {
             this.scrollToSection(this.currentSection + 1);
         }
     }
 
-    // Navigate to previous section
     previous() {
         if (this.currentSection > 0) {
             this.scrollToSection(this.currentSection - 1);
@@ -307,7 +326,6 @@ class HorizontalScrollHandler {
     }
 }
 
-// Auto-initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     window.horizontalScroll = new HorizontalScrollHandler();
 });
