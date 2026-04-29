@@ -111,6 +111,7 @@ class ThemeSelector {
         this.STORAGE_KEY = 'selectedTheme';
         this.FIRST_VISIT_KEY = 'hasVisitedBefore';
         this.modal = null;
+        this.previouslyFocusedElement = null;
         this.init();
     }
 
@@ -128,15 +129,16 @@ class ThemeSelector {
     createModal() {
         this.modal = document.createElement('div');
         this.modal.className = 'theme-selector-modal';
+        this.modal.setAttribute('aria-hidden', 'true');
         this.modal.innerHTML = `
             <div class="theme-modal-overlay"></div>
-            <div class="theme-modal-content">
+            <div class="theme-modal-content" role="dialog" aria-modal="true" aria-labelledby="theme-modal-title" aria-describedby="theme-modal-description">
                 <button class="theme-modal-close" aria-label="Fechar">
-                    <i class="fas fa-times"></i>
+                    <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
                 <div class="theme-modal-header">
-                    <h2>Personalizar cores</h2>
-                    <p>Selecione uma paleta para ajustar a aparência do portfólio.
+                    <h2 id="theme-modal-title">Personalizar cores</h2>
+                    <p id="theme-modal-description">Selecione uma paleta para ajustar a aparência do portfólio.
                        <small>Você pode voltar a esta opção pelo botão de paleta no cabeçalho.</small>
                     </p>
                 </div>
@@ -150,10 +152,10 @@ class ThemeSelector {
 
     createThemeCard(key, theme) {
         return `
-            <div class="theme-card" data-theme="${key}">
+            <button type="button" class="theme-card" data-theme="${key}" aria-label="Aplicar paleta ${theme.name}" aria-pressed="false">
                 <div class="theme-preview">
                     <div class="theme-preview-circle" style="background: linear-gradient(135deg, ${theme.primary}, ${theme.secondary});"></div>
-                    <span class="theme-icon">${theme.icon}</span>
+                    <span class="theme-icon" aria-hidden="true">${theme.icon}</span>
                 </div>
                 <h3>${theme.name}</h3>
                 <div class="theme-colors">
@@ -161,7 +163,7 @@ class ThemeSelector {
                     <span class="color-dot" style="background: ${theme.secondary};"></span>
                     <span class="color-dot" style="background: ${theme.accent};"></span>
                 </div>
-            </div>
+            </button>
         `;
     }
 
@@ -191,6 +193,17 @@ class ThemeSelector {
             });
         });
 
+        this.modal.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                this.closeModal();
+                return;
+            }
+
+            if (event.key === 'Tab') {
+                this.keepFocusInsideModal(event);
+            }
+        });
+
         // Add theme selector button to header (next to theme toggle)
         this.addThemeSelectorButton();
     }
@@ -200,33 +213,49 @@ class ThemeSelector {
         if (header) {
             const btn = document.createElement('button');
             btn.className = 'theme-selector-btn';
+            btn.type = 'button';
             btn.setAttribute('aria-label', 'Selecionar tema');
             btn.setAttribute('title', 'Selecionar tema');
-            btn.innerHTML = '<i class="fas fa-palette"></i>';
+            btn.innerHTML = '<i class="fas fa-palette" aria-hidden="true"></i>';
             btn.addEventListener('click', () => this.showModal());
             header.insertBefore(btn, document.querySelector('.theme-toggle'));
         }
     }
 
     showModal() {
+        this.previouslyFocusedElement = document.activeElement instanceof HTMLElement
+            ? document.activeElement
+            : null;
+
         // Mark current theme as selected
         const currentTheme = this.getCurrentTheme();
         const themeCards = this.modal.querySelectorAll('.theme-card');
         themeCards.forEach(card => {
-            if (card.dataset.theme === currentTheme) {
-                card.classList.add('selected');
-            } else {
-                card.classList.remove('selected');
-            }
+            const isSelected = card.dataset.theme === currentTheme;
+            card.classList.toggle('selected', isSelected);
+            card.setAttribute('aria-pressed', String(isSelected));
         });
         
         this.modal.classList.add('active');
+        this.modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('theme-modal-open');
         document.body.style.overflow = 'hidden';
+
+        const selectedCard = this.modal.querySelector('.theme-card.selected');
+        const closeBtn = this.modal.querySelector('.theme-modal-close');
+        window.setTimeout(() => (selectedCard || closeBtn)?.focus(), 50);
     }
 
     closeModal() {
         this.modal.classList.remove('active');
+        this.modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('theme-modal-open');
         document.body.style.overflow = '';
+
+        if (this.previouslyFocusedElement) {
+            this.previouslyFocusedElement.focus();
+        }
+
         // Mark as visited
         localStorage.setItem(this.FIRST_VISIT_KEY, 'true');
     }
@@ -235,6 +264,7 @@ class ThemeSelector {
         if (this.THEMES[themeKey]) {
             this.applyTheme(themeKey);
             localStorage.setItem(this.STORAGE_KEY, themeKey);
+            this.updateSelectedThemeCard(themeKey);
             this.closeModal();
         }
     }
@@ -260,6 +290,38 @@ class ThemeSelector {
 
     getCurrentTheme() {
         return localStorage.getItem(this.STORAGE_KEY) || 'cyber-blue';
+    }
+
+    updateSelectedThemeCard(themeKey) {
+        this.modal.querySelectorAll('.theme-card').forEach((card) => {
+            const isSelected = card.dataset.theme === themeKey;
+            card.classList.toggle('selected', isSelected);
+            card.setAttribute('aria-pressed', String(isSelected));
+        });
+    }
+
+    keepFocusInsideModal(event) {
+        const focusableElements = Array.from(this.modal.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        )).filter((element) => !element.disabled && element.offsetParent !== null);
+
+        if (!focusableElements.length) {
+            return;
+        }
+
+        const first = focusableElements[0];
+        const last = focusableElements[focusableElements.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+            return;
+        }
+
+        if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
     }
 }
 

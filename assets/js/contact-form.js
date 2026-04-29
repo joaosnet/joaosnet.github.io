@@ -51,8 +51,11 @@ class ContactFormHandler {
         e.preventDefault();
 
         const submitBtn = this.form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
+        submitBtn.setAttribute('aria-busy', 'true');
 
         try {
             const response = await fetch(this.form.action, {
@@ -66,6 +69,7 @@ class ContactFormHandler {
             if (response.ok) {
                 this.form.reset();
                 this.showToast('Mensagem enviada com sucesso! Obrigado.');
+                this.flashSubmitSuccess(submitBtn, originalText);
             } else {
                 this.handleFormError();
             }
@@ -74,6 +78,7 @@ class ContactFormHandler {
         } finally {
             submitBtn.classList.remove('loading');
             submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
         }
     }
 
@@ -112,12 +117,18 @@ class ContactFormHandler {
         window.location.href = `mailto:${this.EMAIL}?subject=${subject}&body=${body}`;
     }
 
-    copyEmailToClipboard() {
-        navigator.clipboard.writeText(this.EMAIL).then(() => {
+    async copyEmailToClipboard() {
+        try {
+            if (navigator.clipboard && window.isSecureContext) {
+                await navigator.clipboard.writeText(this.EMAIL);
+            } else if (!this.fallbackCopyEmail()) {
+                throw new Error('Clipboard fallback failed');
+            }
+
             this.showToast('Email copiado.');
-        }).catch(() => {
+        } catch (error) {
             this.showToast('Erro ao copiar email.', 'error');
-        });
+        }
     }
 
     openGmail() {
@@ -190,6 +201,40 @@ class ContactFormHandler {
                 this.toastEl.style.display = 'none';
             }, 300);
         }, 3500);
+    }
+
+    fallbackCopyEmail() {
+        const textarea = document.createElement('textarea');
+        textarea.value = this.EMAIL;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-999px';
+        textarea.style.left = '-999px';
+
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        let copied = false;
+
+        try {
+            copied = document.execCommand('copy');
+        } catch (error) {
+            copied = false;
+        }
+
+        document.body.removeChild(textarea);
+        return copied;
+    }
+
+    flashSubmitSuccess(submitBtn, originalText) {
+        submitBtn.textContent = 'Enviado!';
+        submitBtn.classList.add('sent');
+
+        window.setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('sent');
+        }, 2500);
     }
 }
 

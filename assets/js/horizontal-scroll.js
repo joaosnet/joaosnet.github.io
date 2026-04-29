@@ -8,6 +8,7 @@ class HorizontalScrollHandler {
         this.wrapper = document.documentElement; // Scrolling happens on the root element
         this.scrollContainer = document.querySelector('.horizontal-wrapper');
         this.sections = [];
+        this.navLinks = [];
         this.scrollIndicator = null;
         this.scrollHint = null;
         this.currentSection = 0;
@@ -29,6 +30,7 @@ class HorizontalScrollHandler {
         }
 
         this.refreshSections();
+        this.refreshNavLinks();
         
         if (this.sections.length === 0) {
             console.warn('No sections found in horizontal wrapper');
@@ -45,6 +47,7 @@ class HorizontalScrollHandler {
         this.setupKeyboardNavigation();
         this.setupResizeListener();
         this.setupDotClicks();
+        this.scrollToInitialHash();
         
         this.updateActiveSection();
         this.lastSettledSection = this.currentSection;
@@ -56,6 +59,10 @@ class HorizontalScrollHandler {
 
     refreshSections() {
         this.sections = Array.from(this.scrollContainer.querySelectorAll('section'));
+    }
+
+    refreshNavLinks() {
+        this.navLinks = Array.from(document.querySelectorAll('header nav a[href^="#"], footer a[href^="#"], .logo[href^="#"]'));
     }
 
     setupVerticalToHorizontalScroll() {
@@ -323,7 +330,8 @@ class HorizontalScrollHandler {
     createScrollHint() {
         this.scrollHint = document.createElement('div');
         this.scrollHint.className = 'scroll-hint';
-        this.scrollHint.innerHTML = '<span>Role para os lados ou use os pontos para explorar</span><i class="fas fa-arrow-right"></i>';
+        this.scrollHint.setAttribute('aria-hidden', 'true');
+        this.scrollHint.innerHTML = '<span>Role para os lados ou use os pontos para explorar</span><i class="fas fa-arrow-right" aria-hidden="true"></i>';
         document.body.appendChild(this.scrollHint);
     }
 
@@ -423,7 +431,7 @@ class HorizontalScrollHandler {
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
                 const index = parseInt(dot.dataset.index, 10);
-                this.scrollToSection(index);
+                this.scrollToSection(index, { updateHash: true });
             });
         });
     }
@@ -436,6 +444,8 @@ class HorizontalScrollHandler {
         const section = this.sections[index];
         const bounds = this.getSectionVerticalBounds(section);
         const behavior = options.behavior || (this.prefersReducedMotion.matches ? 'auto' : 'smooth');
+
+        this.setCurrentSection(index);
         
         window.scrollTo({
             left: section.offsetLeft,
@@ -444,6 +454,10 @@ class HorizontalScrollHandler {
         });
 
         this.lastSettledSection = index;
+
+        if (options.updateHash && section.id) {
+            this.updateHash(section.id);
+        }
     }
 
     updateActiveSection() {
@@ -458,6 +472,7 @@ class HorizontalScrollHandler {
         }
 
         this.updateDots();
+        this.updateNavLinks();
     }
 
     updateDots() {
@@ -472,6 +487,70 @@ class HorizontalScrollHandler {
             dot.setAttribute('aria-current', isActive ? 'true' : 'false');
             dot.classList.toggle('active', isActive);
         });
+    }
+
+    updateNavLinks() {
+        if (!this.navLinks.length) {
+            return;
+        }
+
+        const activeSection = this.sections[this.currentSection];
+        const activeHash = activeSection?.id ? `#${activeSection.id}` : '';
+
+        this.navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === activeHash;
+
+            link.classList.toggle('active', isActive);
+
+            if (isActive) {
+                link.setAttribute('aria-current', 'page');
+            } else {
+                link.removeAttribute('aria-current');
+            }
+        });
+    }
+
+    scrollToInitialHash() {
+        const hash = window.location.hash;
+
+        if (!hash || hash === '#') {
+            return;
+        }
+
+        let target = null;
+
+        try {
+            target = document.querySelector(hash);
+        } catch (error) {
+            return;
+        }
+
+        if (!target || !target.closest('.horizontal-wrapper')) {
+            return;
+        }
+
+        const targetSection = target.matches('section')
+            ? target
+            : target.closest('.horizontal-wrapper > section');
+        const sectionIndex = this.sections.indexOf(targetSection);
+
+        if (sectionIndex >= 0) {
+            window.setTimeout(() => {
+                this.scrollToSection(sectionIndex, { behavior: 'auto' });
+            }, 0);
+        }
+    }
+
+    updateHash(sectionId) {
+        if (!window.history || !window.history.replaceState) {
+            return;
+        }
+
+        try {
+            window.history.replaceState(null, '', `#${sectionId}`);
+        } catch (error) {
+            // Ignore history errors in embedded browsers.
+        }
     }
 
     resetVerticalPositionForSection(index) {
@@ -544,6 +623,16 @@ class HorizontalScrollHandler {
                 event.preventDefault();
                 this.previous();
             }
+
+            if (event.key === 'Home') {
+                event.preventDefault();
+                this.scrollToSection(0);
+            }
+
+            if (event.key === 'End') {
+                event.preventDefault();
+                this.scrollToSection(this.sections.length - 1);
+            }
         });
     }
 
@@ -552,6 +641,7 @@ class HorizontalScrollHandler {
             window.clearTimeout(this.resizeTimer);
             this.resizeTimer = window.setTimeout(() => {
                 this.refreshSections();
+                this.refreshNavLinks();
                 this.setupSectionObserver();
                 this.setCurrentSection(Math.min(this.currentSection, this.sections.length - 1));
                 this.scrollToSection(this.currentSection, { behavior: 'auto' });

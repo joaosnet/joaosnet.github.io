@@ -26,14 +26,15 @@
 </head>
 
 <body>
+    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
+                <a class="logo" href="#home" aria-label="Voltar ao início">
                     <i class="fas fa-code"></i>
                     <span class="logo-full">João Silva Neto</span>
                     <span class="logo-short">João</span>
-                </div>
+                </a>
                 <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema">
                     <i class="fas fa-sun"></i>
                 </button>
@@ -42,10 +43,11 @@
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </button>
-                <nav>
+                <nav aria-label="Navegação principal">
                     <ul>
                         <li><a href="#skills">Habilidades</a></li>
                         <li><a href="#projects">Projetos</a></li>
+                        <li><a href="#published">Páginas</a></li>
                         <li><a href="docs/crv.pdf" target="_blank" rel="noopener noreferrer">CV</a></li>
                         <li><a href="#contact">Fale Comigo</a></li>
                     </ul>
@@ -56,9 +58,9 @@
 
     <div class="overlay"></div>
 
-    <main>
+    <main id="main-content" tabindex="-1">
     <div class="horizontal-wrapper">
-    <section class="hero">
+    <section id="home" class="hero">
         <div id="particles-js"></div>
         <div class="floating-shapes">
             <div class="shape"></div>
@@ -461,9 +463,10 @@
                                 <label for="message" class="sr-only">Mensagem</label>
                                 <i class="fas fa-comment-alt form-icon" aria-hidden="true"></i>
                                 <textarea id="message" name="message" class="form-control"
-                                    placeholder="Como posso contribuir?" required></textarea>
+                                    placeholder="Como posso contribuir?" aria-describedby="contact-helper"
+                                    required></textarea>
                             </div>
-                            <p class="contact-helper">
+                            <p class="contact-helper" id="contact-helper">
                                 <i class="fas fa-lightbulb" aria-hidden="true" title="Dica"></i>
                                 <span>Conte brevemente o contexto, objetivo e prazo. Se preferir, use os ícones acima
                                     para abrir seu cliente de email.</span>

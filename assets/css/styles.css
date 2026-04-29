@@ -77,6 +77,36 @@ html {
     scroll-behavior: smooth;
 }
 
+.skip-link {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 3000;
+    padding: 10px 16px;
+    border-radius: 10px;
+    background: var(--light);
+    color: var(--dark);
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-150%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+main:focus,
+.horizontal-wrapper > section:focus {
+    outline: none;
+}
+
+main:focus-visible,
+.horizontal-wrapper > section:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: -6px;
+}
+
 /* Main content area with horizontal scroll */
 main {
     position: relative;
@@ -181,6 +211,7 @@ header.scrolled {
     color: var(--light);
     display: flex;
     align-items: center;
+    text-decoration: none;
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
     padding: 8px 15px;
     border-radius: 12px;
@@ -197,6 +228,10 @@ header.scrolled {
 nav ul {
     display: flex;
     list-style: none;
+}
+
+header nav {
+    margin-left: auto;
 }
 
 nav ul li {
@@ -227,8 +262,26 @@ nav ul li a:hover {
     color: var(--light);
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li a.active::after,
+nav ul li a[aria-current="page"]::after {
     width: 100%;
+}
+
+nav ul li a.active,
+nav ul li a[aria-current="page"] {
+    color: var(--light);
+}
+
+.logo:focus-visible,
+nav ul li a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 6px;
+    border-radius: 8px;
+}
+
+.logo[aria-current="page"] {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--border-light));
 }
 
 .theme-toggle {
@@ -727,6 +780,7 @@ nav ul li a:hover::after {
     text-decoration: none;
     border-bottom: 2px solid var(--primary);
     transition: all 0.3s ease;
+    overflow-wrap: anywhere;
 }
 
 .timeline-card-title:hover {
@@ -941,6 +995,11 @@ nav ul li a:hover::after {
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
 }
 
+.published-page-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
 .published-page-image-wrapper {
     width: 100%;
     height: 160px;
@@ -977,6 +1036,7 @@ nav ul li a:hover::after {
     font-size: 1.15rem;
     line-height: 1.3;
     margin-bottom: 6px;
+    overflow-wrap: anywhere;
 }
 
 .published-page-copy span {
@@ -1358,6 +1418,9 @@ html[data-theme="light"] .theme-modal-content {
 }
 
 .theme-card {
+    appearance: none;
+    color: var(--light);
+    font: inherit;
     background: var(--glass-bg);
     border: 2px solid var(--border-light);
     border-radius: 20px;
@@ -1387,6 +1450,12 @@ html[data-theme="light"] .theme-modal-content {
     box-shadow: 
         0 20px 40px rgba(0, 0, 0, 0.4),
         0 0 30px var(--primary);
+}
+
+.theme-card:focus-visible,
+.theme-modal-close:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .theme-card:hover::before {
@@ -1870,6 +1939,10 @@ html[data-theme="light"] .theme-modal-content {
     animation: spin 0.6s linear infinite;
 }
 
+.btn.sent {
+    background: linear-gradient(135deg, #10b981, var(--accent));
+}
+
 .btn i {
     transition: transform 0.3s ease;
     display: inline-block;
@@ -2138,6 +2211,14 @@ html[data-theme="light"] .theme-modal-content {
 
     .menu-open nav ul li:nth-child(3) {
         transition-delay: 0.3s;
+    }
+
+    .menu-open nav ul li:nth-child(4) {
+        transition-delay: 0.4s;
+    }
+
+    .menu-open nav ul li:nth-child(5) {
+        transition-delay: 0.5s;
     }
 
     nav ul li a {
@@ -2991,6 +3072,25 @@ nav ul {
 
     .footer-panel footer {
         padding-top: 34px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .hidden,
+    .timeline-item-left,
+    .timeline-item-right {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
     }
 }
 
