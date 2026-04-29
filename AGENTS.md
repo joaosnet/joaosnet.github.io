@@ -5,7 +5,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 
 ## Architecture & Key Components
 - **Frontend**: Vanilla HTML5, CSS3 (SCSS), and JavaScript. No framework (React/Vue/etc.) is used for the runtime site.
-- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (6 specialized runtime modules, plus a legacy theme.js kept for compatibility).
+- **Structure**: Modular architecture with separated concerns - HTML (structure), CSS (presentation), and JavaScript (8 specialized runtime modules, plus a legacy theme.js kept for compatibility).
 - **Automation**: `update_projects.py` is the core automation engine. It fetches repository data from the GitHub API and injects HTML into `index.html`. Supports both public and private repositories (with authentication).
 - **Environment Variables**: Uses `.env` file with `python-dotenv` for managing sensitive configuration (GitHub tokens, API URLs). **NEVER commit `.env`** - it's in `.gitignore`. Use `.env.example` as template.
 - **Testing**: Full test suite with pytest (59 tests). Tests cover environment variables, site structure, and update_projects.py functionality. Run with `uv run pytest tests/ -v`.
@@ -16,8 +16,10 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - `assets/css/main.css` - Compiled from SCSS (legacy)
     - `assets/css/noscript.css` - No-JavaScript fallbacks
     - `assets/css/fontawesome-all.min.css` - FontAwesome icons
-  - **JavaScript** (6 specialized modules + 1 legacy script):
+  - **JavaScript** (8 specialized runtime modules + 1 legacy script):
     - `assets/js/theme-manager.js` - Light/dark theme toggling (class ThemeManager)
+    - `assets/js/theme-selector.js` - Palette modal for header theme presets and accent selection
+    - `assets/js/horizontal-scroll.js` - Horizontal shell controller. Reads sections inside `.horizontal-wrapper`, renders the navigation dots and scroll hint, and keeps wheel/trackpad input aligned with the active section. Never remove, disable, or replace it with a vertical fallback.
     - `assets/js/mobile-menu.js` - Mobile menu handling (class MobileMenuHandler)
     - `assets/js/animations.js` - Scroll animations and observers (class AnimationsHandler)
     - `assets/js/contact-form.js` - Form submission and FAB (class ContactFormHandler)
@@ -84,10 +86,13 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - **Display**: Counter in footer styled with gradient, icon 👁, number updated yearly per localStorage
   - **Related Files**: Assets/css/styles.css has `.views-counter` styling (gradient background, shadow, hover effect)
   - **Note**: `ViewsCounter` class removed from `utils.js` to avoid duplicate counting - now handled solely by `GeoViewsCounter`
+- **Horizontal Shell**:
+  - `assets/js/horizontal-scroll.js` is the controller for the horizontal layout. It treats `document.documentElement` as the scroller, watches the sections inside `.horizontal-wrapper`, creates the dot navigation and hint overlay, and maps wheel/trackpad movement so the page keeps moving horizontally when that is the correct interaction.
+  - Nunca remover, desativar ou substituir esse script por um fallback vertical. O site depende desse contrato para manter a navegação horizontal em desktop e mobile.
 - **HTML Structure**:
   - `index.html` is lean and contains only semantic HTML structure.
   - All styles are referenced from `assets/css/styles.css`.
-  - All JavaScript is loaded via 6 modular scripts in the correct order, followed by the third-party GTranslate widget.
+  - All JavaScript is loaded via the active runtime order in `index.html`, followed by the third-party GTranslate widget.
   - The `<!-- PROJECTS_START -->` and `<!-- PROJECTS_END -->` markers must be preserved for `update_projects.py`.
 - **CSS Architecture**:
   - **Main file**: `assets/css/styles.css` (~1000 lines, organized by sections):
@@ -108,10 +113,17 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
     - Dark mode (default): `--primary: #3b82f6`, `--secondary: #8b5cf6`, `--accent: #06b6d4`, etc.
     - Light mode: Override via `html[data-theme="light"]`
   - No inline styles in HTML (except data attributes).
-- **JavaScript Modules** (6 specialized runtime modules):
+- **JavaScript Modules** (8 specialized runtime modules):
   - **`theme-manager.js`** (Class: ThemeManager)
     - Methods: `getCurrentTheme()`, `toggleTheme()`, `applyTheme(theme)`, `updateToggleIcon(theme)`
     - Handles theme persistence via localStorage
+    - Initializes on `DOMContentLoaded`
+  - **`theme-selector.js`** (Class: ThemeSelector)
+    - Opens the header palette modal, applies accent presets, and keeps the shell theme controls consistent with the current theme state.
+    - Initializes on `DOMContentLoaded`
+  - **`horizontal-scroll.js`** (Class: HorizontalScrollHandler)
+    - Reads sections inside `.horizontal-wrapper`, builds the dot navigation and scroll hint, tracks the active section, and maps wheel/trackpad input to the horizontal shell when appropriate.
+    - Never remove, disable, or replace it with a vertical fallback.
     - Initializes on `DOMContentLoaded`
   - **`mobile-menu.js`** (Class: MobileMenuHandler)
     - Methods: `toggleMenu()`, `closeMenu()`
@@ -170,7 +182,7 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
   - Toast notifications via `showToast()` helper with auto-hide after 3.5 seconds.
   - FAB smoothly scrolls to contact form and focuses message field.
   - Theme persistence uses `localStorage.setItem('theme', theme)`.
-  - Load order matters: particles.js → utils.js → geo-counter.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js → GTranslate widget.
+  - Load order matters: particles.js → utils.js → geo-counter.js → theme-selector.js → horizontal-scroll.js → theme-manager.js → mobile-menu.js → animations.js → contact-form.js → GTranslate widget.
 
 ## Development Guidelines
 - **CSS**: 
@@ -222,6 +234,8 @@ This is a personal portfolio website hosted on GitHub Pages. It uses a static HT
 - `index.html`: Main entry point. Contains semantic HTML structure.
 - `assets/css/styles.css`: Main stylesheet with all CSS (~1000 lines, organized by sections).
 - `assets/js/theme-manager.js`: Theme toggling logic (light/dark mode).
+- `assets/js/theme-selector.js`: Theme palette modal used in the header.
+- `assets/js/horizontal-scroll.js`: Horizontal shell controller and section navigation dots.
 - `assets/js/mobile-menu.js`: Mobile menu toggle and overlay handling.
 - `assets/js/animations.js`: Scroll animations, intersection observers, smooth scrolling.
 - `assets/js/contact-form.js`: Form submission, email utilities, FAB, toast notifications.
