@@ -19,6 +19,8 @@ class HorizontalScrollHandler {
         this.sectionObserver = null;
         this.scrollEndTimer = null;
         this.resizeTimer = null;
+        this.wheelSnapTimer = null;
+        this.wheelTarget = null;
         this.scrollEdge = 2;
         
         this.init();
@@ -74,7 +76,8 @@ class HorizontalScrollHandler {
     }
 
     setupVerticalToHorizontalScroll() {
-        window.addEventListener('wheel', (event) => {
+        this.wheelTarget = this.wrapper === document.documentElement ? window : this.wrapper;
+        this.wheelTarget.addEventListener('wheel', (event) => {
             this.handleWheel(event);
         }, { passive: false });
     }
@@ -84,28 +87,28 @@ class HorizontalScrollHandler {
             return;
         }
 
+        const intent = this.getWheelIntent(event);
+
+        if (intent.axis === 'vertical') {
+            const verticalScroller = this.findScrollableParent(event.target, 'y');
+
+            if (verticalScroller && this.canElementScroll(verticalScroller, intent.delta, 'y')) {
+                return;
+            }
+        }
+
         if (this.scrollNestedHorizontalArea(event)) {
             return;
         }
 
-        const intent = this.getWheelIntent(event);
-
-        if (intent.axis === 'horizontal') {
-            if (this.canScrollHorizontally(intent.delta)) {
-                event.preventDefault();
-                this.scrollHorizontally(intent.delta);
-            }
-
+        if (!this.canScrollHorizontally(intent.delta)) {
             this.hideScrollHint();
             return;
         }
 
         event.preventDefault();
         this.hideScrollHint();
-
-        if (this.canScrollHorizontally(intent.delta)) {
-            this.scrollHorizontally(intent.delta);
-        }
+        this.scrollHorizontally(intent.delta);
     }
 
     getWheelIntent(event) {
@@ -211,10 +214,23 @@ class HorizontalScrollHandler {
     scrollHorizontally(deltaX) {
         const scrollSpeed = window.innerWidth <= 768 ? 0.85 : 1.1;
 
+        this.pauseScrollSnap();
         this.wrapper.scrollBy({
             left: deltaX * scrollSpeed,
             behavior: 'auto'
         });
+    }
+
+    pauseScrollSnap() {
+        if (!this.wrapper.classList) {
+            return;
+        }
+
+        this.wrapper.classList.add('is-wheel-scrolling');
+        window.clearTimeout(this.wheelSnapTimer);
+        this.wheelSnapTimer = window.setTimeout(() => {
+            this.wrapper.classList.remove('is-wheel-scrolling');
+        }, 180);
     }
 
     getCurrentSection() {
