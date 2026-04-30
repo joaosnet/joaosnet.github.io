@@ -3207,6 +3207,8 @@ nav ul {
 :root {
     --header-height: 80px;
     --shell-height: calc(100dvh - var(--header-height));
+    --section-pad-x: clamp(20px, 5vw, 56px);
+    --section-pad-y: clamp(16px, 3.5vh, 30px);
 }
 
 html,
@@ -3233,7 +3235,7 @@ main {
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
@@ -3251,7 +3253,7 @@ main {
     width: 100vw;
     height: 100%;
     min-height: 0 !important;
-    overflow: hidden;
+    overflow: visible;
     padding: 0 !important;
 }
 
@@ -3261,13 +3263,24 @@ main {
     justify-content: center;
     height: 100%;
     max-height: 100%;
-    overflow: hidden;
-    padding: clamp(16px, 3.5vh, 30px) clamp(20px, 5vw, 56px) !important;
+    overflow: visible;
+    padding: var(--section-pad-y) var(--section-pad-x) !important;
 }
 
 .section-title {
+    align-self: flex-start;
     flex: 0 0 auto;
+    width: calc(100vw - var(--section-pad-x) - var(--section-pad-x));
+    max-width: calc(100vw - var(--section-pad-x) - var(--section-pad-x));
     margin-bottom: clamp(14px, 3vh, 24px);
+}
+
+#skills .section-title,
+#projects .section-title,
+#published .section-title {
+    position: sticky;
+    left: var(--section-pad-x);
+    z-index: 5;
 }
 
 .section-title h2 {
@@ -3627,6 +3640,8 @@ textarea.form-control {
         --header-height: 72px;
         --mobile-edge: 16px;
         --mobile-panel: calc(100vw - (var(--mobile-edge) * 2));
+        --section-pad-x: var(--mobile-edge);
+        --section-pad-y: 14px;
     }
 
     header {
