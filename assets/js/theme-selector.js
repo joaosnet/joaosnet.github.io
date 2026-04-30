@@ -7,7 +7,7 @@ class ThemeSelector {
     constructor() {
         this.THEMES = {
             'cyber-blue': {
-                name: 'Cyber Blue',
+                name: 'Azul Cyber',
                 icon: '💎',
                 primary: '#3b82f6',
                 secondary: '#8b5cf6',
@@ -17,7 +17,7 @@ class ThemeSelector {
                 textGray: '#94a3b8'
             },
             'sunset-orange': {
-                name: 'Sunset Orange',
+                name: 'Pôr do Sol',
                 icon: '🌅',
                 primary: '#f97316',
                 secondary: '#ef4444',
@@ -27,7 +27,7 @@ class ThemeSelector {
                 textGray: '#a8a29e'
             },
             'forest-green': {
-                name: 'Forest Green',
+                name: 'Verde Floresta',
                 icon: '🌲',
                 primary: '#10b981',
                 secondary: '#059669',
@@ -37,7 +37,7 @@ class ThemeSelector {
                 textGray: '#6b7280'
             },
             'neon-pink': {
-                name: 'Neon Pink',
+                name: 'Rosa Neon',
                 icon: '💖',
                 primary: '#ec4899',
                 secondary: '#f43f5e',
@@ -47,7 +47,7 @@ class ThemeSelector {
                 textGray: '#9ca3af'
             },
             'golden-amber': {
-                name: 'Golden Amber',
+                name: 'Âmbar Dourado',
                 icon: '✨',
                 primary: '#eab308',
                 secondary: '#f59e0b',
@@ -57,7 +57,7 @@ class ThemeSelector {
                 textGray: '#78716c'
             },
             'ocean-teal': {
-                name: 'Ocean Teal',
+                name: 'Azul Oceano',
                 icon: '🌊',
                 primary: '#14b8a6',
                 secondary: '#0d9488',
@@ -67,7 +67,7 @@ class ThemeSelector {
                 textGray: '#64748b'
             },
             'royal-purple': {
-                name: 'Royal Purple',
+                name: 'Roxo Real',
                 icon: '👑',
                 primary: '#8b5cf6',
                 secondary: '#7c3aed',
@@ -77,7 +77,7 @@ class ThemeSelector {
                 textGray: '#8b8b9e'
             },
             'crimson-red': {
-                name: 'Crimson Red',
+                name: 'Vermelho Intenso',
                 icon: '🔥',
                 primary: '#ef4444',
                 secondary: '#dc2626',
@@ -87,7 +87,7 @@ class ThemeSelector {
                 textGray: '#991b1b'
             },
             'midnight-blue': {
-                name: 'Midnight Blue',
+                name: 'Azul Meia-noite',
                 icon: '🌙',
                 primary: '#6366f1',
                 secondary: '#4f46e5',
@@ -97,7 +97,7 @@ class ThemeSelector {
                 textGray: '#6366f1'
             },
             'emerald-dream': {
-                name: 'Emerald Dream',
+                name: 'Verde Esmeralda',
                 icon: '💚',
                 primary: '#34d399',
                 secondary: '#10b981',
@@ -112,6 +112,7 @@ class ThemeSelector {
         this.FIRST_VISIT_KEY = 'hasVisitedBefore';
         this.modal = null;
         this.previouslyFocusedElement = null;
+        this.openedFromFirstVisit = false;
         this.init();
     }
 
@@ -119,11 +120,14 @@ class ThemeSelector {
         this.createModal();
         this.setupEventListeners();
         
-        // Apply saved palette quietly. The portfolio should open on the content, not on a modal.
+        // Apply saved palette quietly, then invite first-time visitors to choose one.
         const savedTheme = localStorage.getItem(this.STORAGE_KEY);
         if (savedTheme && this.THEMES[savedTheme]) {
             this.applyTheme(savedTheme);
+            localStorage.setItem(this.FIRST_VISIT_KEY, 'true');
         }
+
+        this.promptFirstVisitPalette();
     }
 
     createModal() {
@@ -137,9 +141,9 @@ class ThemeSelector {
                     <i class="fas fa-times" aria-hidden="true"></i>
                 </button>
                 <div class="theme-modal-header">
-                    <h2 id="theme-modal-title">Personalizar cores</h2>
-                    <p id="theme-modal-description">Selecione uma paleta para ajustar a aparência do portfólio.
-                       <small>Você pode voltar a esta opção pelo botão de paleta no cabeçalho.</small>
+                    <h2 id="theme-modal-title">Escolha sua paleta</h2>
+                    <p id="theme-modal-description">Selecione uma combinação de cores para personalizar o portfólio.
+                       <small>Você pode mudar isso depois pelo menu.</small>
                     </p>
                 </div>
                 <div class="theme-grid">
@@ -206,11 +210,12 @@ class ThemeSelector {
 
         // Add theme selector button to header (next to theme toggle)
         this.addThemeSelectorButton();
+        this.addThemeSelectorMenuButton();
     }
 
     addThemeSelectorButton() {
         const header = document.querySelector('header .header-content');
-        if (header) {
+        if (header && !header.querySelector('.theme-selector-btn')) {
             const btn = document.createElement('button');
             btn.className = 'theme-selector-btn';
             btn.type = 'button';
@@ -222,10 +227,48 @@ class ThemeSelector {
         }
     }
 
-    showModal() {
+    addThemeSelectorMenuButton() {
+        const navList = document.querySelector('header nav ul');
+
+        if (!navList || navList.querySelector('.theme-selector-menu-item')) {
+            return;
+        }
+
+        const item = document.createElement('li');
+        item.className = 'theme-selector-menu-item';
+        item.innerHTML = `
+            <button type="button" class="theme-selector-menu-btn">
+                <i class="fas fa-palette" aria-hidden="true"></i>
+                <span>Paleta de cores</span>
+            </button>
+        `;
+
+        item.querySelector('button').addEventListener('click', () => {
+            window.mobileMenuHandler?.closeMenu();
+            this.showModal();
+        });
+
+        navList.appendChild(item);
+    }
+
+    promptFirstVisitPalette() {
+        const hasVisitedBefore = localStorage.getItem(this.FIRST_VISIT_KEY) === 'true';
+        const hasSelectedTheme = Boolean(localStorage.getItem(this.STORAGE_KEY));
+
+        if (hasVisitedBefore || hasSelectedTheme) {
+            return;
+        }
+
+        window.setTimeout(() => {
+            this.showModal({ firstVisit: true });
+        }, 700);
+    }
+
+    showModal(options = {}) {
         this.previouslyFocusedElement = document.activeElement instanceof HTMLElement
             ? document.activeElement
             : null;
+        this.openedFromFirstVisit = Boolean(options.firstVisit);
 
         // Mark current theme as selected
         const currentTheme = this.getCurrentTheme();
@@ -237,6 +280,7 @@ class ThemeSelector {
         });
         
         this.modal.classList.add('active');
+        this.modal.classList.toggle('theme-selector-modal--first-visit', this.openedFromFirstVisit);
         this.modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('theme-modal-open');
         document.body.style.overflow = 'hidden';
@@ -248,9 +292,11 @@ class ThemeSelector {
 
     closeModal() {
         this.modal.classList.remove('active');
+        this.modal.classList.remove('theme-selector-modal--first-visit');
         this.modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('theme-modal-open');
         document.body.style.overflow = '';
+        this.openedFromFirstVisit = false;
 
         if (this.previouslyFocusedElement) {
             this.previouslyFocusedElement.focus();

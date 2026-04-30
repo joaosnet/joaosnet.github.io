@@ -37,6 +37,7 @@ class GeoViewsCounter {
         
         // API endpoint para geolocalização
         this.GEO_API_URL = 'https://ip-api.com/json/';
+        this.DEBUG = false;
         
         // Salvar instância no singleton
         GeoViewsCounter.instance = this;
@@ -44,6 +45,19 @@ class GeoViewsCounter {
         if (this.counterEl) {
             this.init();
         }
+    }
+
+    /**
+     * Registra mensagens internas apenas quando o debug local estiver ativo.
+     */
+    debug(...args) {
+        if (this.DEBUG) {
+            console.debug(...args);
+        }
+    }
+
+    shouldSkipNetworkCollection() {
+        return window.location.protocol === 'file:' || window.location.origin === 'null';
     }
 
     /**
@@ -58,7 +72,7 @@ class GeoViewsCounter {
             
             // Se já foi inicializado hoje, não fazer novamente
             if (lastInit === today) {
-                console.log('[GeoViewsCounter] Já inicializado hoje - pulando');
+                this.debug('[GeoViewsCounter] Já inicializado hoje - pulando');
                 return;
             }
             
@@ -67,6 +81,11 @@ class GeoViewsCounter {
             
             // Atualizar contador de visitas únicas
             this.updateViewCounter();
+
+            if (this.shouldSkipNetworkCollection()) {
+                this.cleanOldData();
+                return;
+            }
             
             // Coletar dados de geolocalização (async, não bloqueia)
             this.collectAndSendGeoData();
@@ -96,7 +115,7 @@ class GeoViewsCounter {
                 this.counterEl.textContent = count.toLocaleString('pt-BR');
             }
             
-            console.log(`[GeoViewsCounter] Visitas em ${year}: ${count}`);
+            this.debug(`[GeoViewsCounter] Visitas em ${year}: ${count}`);
             
         } catch (error) {
             console.warn('[GeoViewsCounter] Erro ao atualizar contador:', error);
@@ -113,7 +132,7 @@ class GeoViewsCounter {
             const now = Date.now();
             
             if (lastSend && (now - parseInt(lastSend)) < this.SEND_THROTTLE_MS) {
-                console.log('[GeoViewsCounter] Throttled - já enviado recentemente');
+                this.debug('[GeoViewsCounter] Throttled - já enviado recentemente');
                 return;
             }
             
@@ -146,7 +165,7 @@ class GeoViewsCounter {
             // Atualizar timestamp de último envio
             localStorage.setItem(this.LAST_SEND_KEY, now.toString());
             
-            console.log('[GeoViewsCounter] Dados coletados e armazenados:', visitData);
+            this.debug('[GeoViewsCounter] Dados coletados e armazenados:', visitData);
             
         } catch (error) {
             console.warn('[GeoViewsCounter] Erro ao coletar dados de geo:', error);
@@ -162,33 +181,33 @@ class GeoViewsCounter {
      */
     async fetchGeoData() {
         try {
-            console.log('[GeoViewsCounter] Iniciando coleta de geolocalização...');
+            this.debug('[GeoViewsCounter] Iniciando coleta de geolocalização...');
             
             // Tentar primeiro com ipapi.co (melhor CORS para client-side)
             let data = await this.tryIpapiCo();
             if (data) {
-                console.log('[GeoViewsCounter] ✓ ipapi.co funcionou');
+                this.debug('[GeoViewsCounter] ✓ ipapi.co funcionou');
                 return data;
             }
             
             // Fallback para country.is (simples, apenas país, excelente CORS)
             data = await this.tryCountryIs();
             if (data) {
-                console.log('[GeoViewsCounter] ✓ country.is funcionou');
+                this.debug('[GeoViewsCounter] ✓ country.is funcionou');
                 return data;
             }
             
             // Fallback para ip-api.com (pode ter problemas CORS em navegador)
             data = await this.tryIpApiCom();
             if (data) {
-                console.log('[GeoViewsCounter] ✓ ip-api.com funcionou');
+                this.debug('[GeoViewsCounter] ✓ ip-api.com funcionou');
                 return data;
             }
             
             // Último fallback: apenas IP sem geolocalização
             const ipData = await this.tryGetIpOnly();
             if (ipData) {
-                console.log('[GeoViewsCounter] ✓ ipify.org (apenas IP) funcionou');
+                this.debug('[GeoViewsCounter] ✓ ipify.org (apenas IP) funcionou');
                 return ipData;
             }
             
@@ -214,7 +233,7 @@ class GeoViewsCounter {
             });
             
             if (!response.ok) {
-                console.log(`[GeoViewsCounter] ipapi.co HTTP ${response.status}`);
+                this.debug(`[GeoViewsCounter] ipapi.co HTTP ${response.status}`);
                 return null;
             }
             
@@ -222,12 +241,12 @@ class GeoViewsCounter {
             
             // Validar resposta
             if (data.error) {
-                console.log('[GeoViewsCounter] ipapi.co erro:', data.reason);
+                this.debug('[GeoViewsCounter] ipapi.co erro:', data.reason);
                 return null;
             }
             
             if (!data.ip) {
-                console.log('[GeoViewsCounter] ipapi.co sem IP na resposta');
+                this.debug('[GeoViewsCounter] ipapi.co sem IP na resposta');
                 return null;
             }
             
@@ -238,7 +257,7 @@ class GeoViewsCounter {
                 isp: data.org || 'Desconhecido'
             };
         } catch (error) {
-            console.log('[GeoViewsCounter] ipapi.co erro:', error.message);
+            this.debug('[GeoViewsCounter] ipapi.co erro:', error.message);
             return null;
         }
     }
@@ -257,7 +276,7 @@ class GeoViewsCounter {
             });
             
             if (!response.ok) {
-                console.log(`[GeoViewsCounter] country.is HTTP ${response.status}`);
+                this.debug(`[GeoViewsCounter] country.is HTTP ${response.status}`);
                 return null;
             }
             
@@ -265,7 +284,7 @@ class GeoViewsCounter {
             
             // Validar resposta
             if (!data.country) {
-                console.log('[GeoViewsCounter] country.is sem país na resposta');
+                this.debug('[GeoViewsCounter] country.is sem país na resposta');
                 return null;
             }
             
@@ -291,7 +310,7 @@ class GeoViewsCounter {
                 isp: 'Desconhecido'
             };
         } catch (error) {
-            console.log('[GeoViewsCounter] country.is erro:', error.message);
+            this.debug('[GeoViewsCounter] country.is erro:', error.message);
             return null;
         }
     }
@@ -308,7 +327,7 @@ class GeoViewsCounter {
             });
             
             if (!response.ok) {
-                console.log(`[GeoViewsCounter] ip-api.com HTTP ${response.status}`);
+                this.debug(`[GeoViewsCounter] ip-api.com HTTP ${response.status}`);
                 return null;
             }
             
@@ -316,7 +335,7 @@ class GeoViewsCounter {
             
             // Validar resposta
             if (!data.ip || data.status === 'fail') {
-                console.log('[GeoViewsCounter] ip-api.com resposta fail:', data);
+                this.debug('[GeoViewsCounter] ip-api.com resposta fail:', data);
                 return null;
             }
             
@@ -327,7 +346,7 @@ class GeoViewsCounter {
                 isp: data.isp || 'Desconhecido'
             };
         } catch (error) {
-            console.log('[GeoViewsCounter] ip-api.com erro:', error.message);
+            this.debug('[GeoViewsCounter] ip-api.com erro:', error.message);
             return null;
         }
     }
@@ -344,14 +363,14 @@ class GeoViewsCounter {
             });
             
             if (!response.ok) {
-                console.log(`[GeoViewsCounter] ipify HTTP ${response.status}`);
+                this.debug(`[GeoViewsCounter] ipify HTTP ${response.status}`);
                 return null;
             }
             
             const data = await response.json();
             
             if (!data.ip) {
-                console.log('[GeoViewsCounter] ipify sem IP na resposta');
+                this.debug('[GeoViewsCounter] ipify sem IP na resposta');
                 return null;
             }
             
@@ -362,7 +381,7 @@ class GeoViewsCounter {
                 isp: 'Desconhecido'
             };
         } catch (error) {
-            console.log('[GeoViewsCounter] ipify erro:', error.message);
+            this.debug('[GeoViewsCounter] ipify erro:', error.message);
             return null;
         }
     }
@@ -401,7 +420,7 @@ class GeoViewsCounter {
         try {
             // Se URL não está configurada ou é inválida, pular
             if (!this.GOOGLE_APPS_SCRIPT_URL || !this.GOOGLE_APPS_SCRIPT_URL.includes('script.google.com')) {
-                console.log('[GeoViewsCounter] Google Apps Script URL não configurada - dados armazenados localmente');
+                this.debug('[GeoViewsCounter] Google Apps Script URL não configurada - dados armazenados localmente');
                 return;
             }
             
@@ -425,7 +444,7 @@ class GeoViewsCounter {
                 
                 clearTimeout(timeoutId);
                 
-                console.log('[GeoViewsCounter] Requisição enviada para Google Drive (com sucesso sob no-cors)');
+                this.debug('[GeoViewsCounter] Requisição enviada para Google Drive (com sucesso sob no-cors)');
             } catch (fetchError) {
                 clearTimeout(timeoutId);
                 
@@ -462,7 +481,7 @@ class GeoViewsCounter {
             // Salvar dados limpos
             localStorage.setItem(this.GEO_DATA_KEY, JSON.stringify(visits));
             
-            console.log(`[GeoViewsCounter] Dados limpos - mantendo últimas ${visits.length} visitas`);
+            this.debug(`[GeoViewsCounter] Dados limpos - mantendo últimas ${visits.length} visitas`);
             
         } catch (error) {
             console.warn('[GeoViewsCounter] Erro ao limpar dados antigos:', error);
