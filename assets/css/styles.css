@@ -3313,6 +3313,11 @@ main.is-wheel-scrolling {
     min-width: 100vw;
 }
 
+#skills,
+#projects {
+    margin-right: calc(var(--section-pad-x) * -2);
+}
+
 #skills > .container,
 #projects > .container,
 #published > .container,
