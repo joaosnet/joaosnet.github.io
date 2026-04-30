@@ -3258,7 +3258,7 @@ main.is-wheel-scrolling {
     width: 100vw;
     height: 100%;
     min-height: 0 !important;
-    overflow: visible;
+    overflow: hidden;
     padding: 0 !important;
 }
 
