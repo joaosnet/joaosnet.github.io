@@ -134,6 +134,16 @@ class TestIndexHTMLStructure:
         assert 'href="docs/crv.pdf"' in html_content, "Link para currículo não encontrado"
         assert "download" in html_content, "Download do currículo não configurado"
 
+    def test_has_telegram_contact_link(self, html_content):
+        """Deve ter botão para contato no Telegram"""
+        assert 'https://t.me/joaosilvaneto' in html_content, "Link do Telegram não encontrado"
+        assert 'Conversar no Telegram' in html_content, "Texto do botão do Telegram não encontrado"
+
+    def test_has_lattes_link(self, html_content):
+        """Deve ter link para o Lattes"""
+        assert 'https://lattes.cnpq.br/1140714924160415' in html_content, "Link do Lattes não encontrado"
+        assert 'Lattes' in html_content, "Texto do Lattes não encontrado"
+
     def test_has_particles_container(self, html_content):
         """Deve ter container de partículas"""
         assert 'id="particles-js"' in html_content, "Container de partículas não encontrado"

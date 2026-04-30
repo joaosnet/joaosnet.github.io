@@ -1149,6 +1149,18 @@ nav ul li a:focus-visible {
     transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+.contact-telegram-cta {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.contact-telegram-cta .btn {
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+}
+
 .form-group {
     margin-bottom: 25px;
     position: relative;
