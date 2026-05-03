@@ -609,24 +609,23 @@ def generate_pages_links_html(pages):
             
         safe_description = escape(raw_desc)
         
-        # Add preview image HTML if available
-        image_html = ""
-        preview_image = page.get("preview_image")
-        if preview_image:
-            safe_image = escape(str(preview_image), quote=True)
-            image_html = f'<div class="published-page-image-wrapper"><img src="{safe_image}" alt="Prévia de {safe_name}" class="published-page-image" loading="lazy"/></div>'
+        preview_html = f"""<div class="published-page-frame-wrapper">
+                                    <iframe src="{safe_url}" title="Prévia do site {safe_name}" class="published-page-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+                                </div>"""
         
         items_html += f"""
-                            <a href="{safe_url}" target="_blank" rel="noopener noreferrer" class="published-page-link">
-                                {image_html}
+                            <article class="published-page-link">
+                                {preview_html}
                                 <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
                                 <span class="published-page-copy">
                                     <strong>{safe_name}</strong>
                                     <span>{safe_description}</span>
                                     <small>{safe_display_url}</small>
                                 </span>
-                                <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
-                            </a>"""
+                                <a href="{safe_url}" target="_blank" rel="noopener noreferrer" class="published-page-open">
+                                    Abrir site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                </a>
+                            </article>"""
 
     return f"""
                     <div class="published-pages-list">

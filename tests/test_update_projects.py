@@ -318,6 +318,10 @@ class TestGitHubPagesLinks:
         assert "published-pages-list" in html
         assert "cartilha_dash" in html
         assert "https://joaosnet.github.io/cartilha_dash/" in html
+        assert "published-page-frame" in html
+        assert "<iframe" in html
+        assert "published-page-image" not in html
+        assert "Abrir site" in html
 
 
 class TestProjectValidation:
