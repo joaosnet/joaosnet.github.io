@@ -4823,6 +4823,25 @@ body {
     max-height: none !important;
 }
 
+#projects .timeline-card {
+    gap: 10px;
+}
+
+#projects .timeline-card-meta,
+#projects .timeline-card-actions {
+    flex-shrink: 0;
+}
+
+#projects .timeline-card-image-wrapper {
+    margin-bottom: 6px;
+}
+
+#projects .timeline-card-description,
+#projects .timeline-card-access-note,
+#projects .timeline-card-update-note {
+    max-width: 100%;
+}
+
 @media (max-width: 768px) {
     main {
         scroll-snap-type: none !important;
@@ -4858,13 +4877,78 @@ body {
     .timeline-item,
     .timeline-item-left,
     .timeline-item-right {
-        flex-basis: min(88vw, 380px);
+        flex-basis: min(92vw, 460px);
     }
 
     .timeline-card,
     .timeline-more-item {
         max-height: none !important;
         min-height: 0 !important;
+    }
+
+    #projects .timeline-items {
+        align-items: flex-start;
+    }
+
+    #projects .timeline-card {
+        padding: 12px;
+        gap: 7px;
+    }
+
+    #projects .timeline-card-meta {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    #projects .timeline-card-date,
+    #projects .timeline-card-visibility {
+        min-height: 30px;
+        padding: 5px 7px;
+        font-size: 0.75rem;
+    }
+
+    #projects .timeline-card-date-label,
+    #projects .timeline-card-update-note {
+        display: none;
+    }
+
+    #projects .timeline-card-image-wrapper {
+        margin: 2px 0 4px;
+    }
+
+    #projects .timeline-card-image {
+        max-height: 82px;
+        aspect-ratio: 2.6 / 1;
+    }
+
+    #projects .timeline-card-heading {
+        margin-bottom: 5px;
+        font-size: 0.98rem;
+        line-height: 1.2;
+    }
+
+    #projects .timeline-card-description {
+        margin-bottom: 7px;
+        font-size: 0.78rem;
+        line-height: 1.32;
+    }
+
+    #projects .timeline-card-access-note {
+        margin-bottom: 0;
+        font-size: 0.7rem;
+        line-height: 1.28;
+    }
+
+    #projects .timeline-card-actions {
+        margin-top: 7px;
+    }
+
+    #projects .timeline-card-btn {
+        min-height: 32px;
+        padding: 7px 10px;
+        font-size: 0.78rem;
     }
 
     #resume,
@@ -4958,6 +5042,31 @@ body {
         font-size: 0.78rem;
         line-height: 1.35;
         text-align: left;
+    }
+}
+
+@media (max-width: 420px) {
+    #projects .timeline-item,
+    #projects .timeline-item-left,
+    #projects .timeline-item-right {
+        flex-basis: calc(100vw - 20px);
+    }
+
+    #projects .timeline-card {
+        padding: 10px;
+    }
+
+    #projects .timeline-card-image {
+        max-height: 68px;
+    }
+
+    #projects .timeline-card-description {
+        font-size: 0.74rem;
+        line-height: 1.28;
+    }
+
+    #projects .timeline-card-access-note {
+        font-size: 0.68rem;
     }
 }
 
