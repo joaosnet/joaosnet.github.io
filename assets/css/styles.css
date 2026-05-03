@@ -4349,6 +4349,23 @@ body {
     overflow: visible;
 }
 
+.features-grid,
+.published-pages-list {
+    width: 100% !important;
+    max-width: calc(100vw - (var(--section-pad-x) * 2));
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 12px;
+    scroll-snap-type: x proximity;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+}
+
+.features-grid > *,
+.published-pages-list > * {
+    scroll-snap-align: start;
+}
+
 .timeline-container {
     width: 100%;
     max-width: calc(100vw - (var(--section-pad-x) * 2));
