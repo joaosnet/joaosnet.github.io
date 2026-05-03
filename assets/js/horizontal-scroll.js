@@ -22,6 +22,7 @@ class HorizontalScrollHandler {
         this.wheelSnapTimer = null;
         this.wheelTarget = null;
         this.scrollEdge = 2;
+        this.touchState = null;
         
         this.init();
     }
@@ -48,6 +49,7 @@ class HorizontalScrollHandler {
         this.setupScrollEndListener();
         this.setupSectionObserver();
         this.setupVerticalToHorizontalScroll();
+        this.setupTouchNavigation();
         this.setupKeyboardNavigation();
         this.setupResizeListener();
         this.setupDotClicks();
@@ -219,6 +221,104 @@ class HorizontalScrollHandler {
             left: deltaX * scrollSpeed,
             behavior: 'auto'
         });
+    }
+
+    setupTouchNavigation() {
+        if (!('ontouchstart' in window) && !navigator.maxTouchPoints) {
+            return;
+        }
+
+        this.wrapper.addEventListener('touchstart', (event) => {
+            if (event.touches.length !== 1 || this.shouldIgnoreTouchTarget(event.target)) {
+                this.touchState = null;
+                return;
+            }
+
+            const touch = event.touches[0];
+            this.touchState = {
+                startX: touch.clientX,
+                startY: touch.clientY,
+                startScrollX: this.getScrollX(),
+                dragging: false
+            };
+        }, { passive: true });
+
+        this.wrapper.addEventListener('touchmove', (event) => {
+            if (!this.touchState || event.touches.length !== 1) {
+                return;
+            }
+
+            const touch = event.touches[0];
+            const deltaX = touch.clientX - this.touchState.startX;
+            const deltaY = touch.clientY - this.touchState.startY;
+            const absX = Math.abs(deltaX);
+            const absY = Math.abs(deltaY);
+
+            if (!this.touchState.dragging) {
+                if (absX < 8 && absY < 8) {
+                    return;
+                }
+
+                if (absY > absX * 1.2) {
+                    this.touchState = null;
+                    return;
+                }
+
+                this.touchState.dragging = true;
+                this.wrapper.classList.add('is-touch-scrolling');
+                this.hideScrollHint();
+            }
+
+            if (!this.touchState.dragging) {
+                return;
+            }
+
+            event.preventDefault();
+            this.setScrollX(this.touchState.startScrollX - deltaX);
+            this.updateActiveSection();
+        }, { passive: false });
+
+        const finishTouch = () => {
+            if (!this.touchState) {
+                return;
+            }
+
+            const wasDragging = this.touchState.dragging;
+            this.touchState = null;
+            this.wrapper.classList.remove('is-touch-scrolling');
+
+            if (wasDragging) {
+                window.setTimeout(() => this.handleSettledScroll(), 80);
+            }
+        };
+
+        this.wrapper.addEventListener('touchend', finishTouch, { passive: true });
+        this.wrapper.addEventListener('touchcancel', finishTouch, { passive: true });
+    }
+
+    shouldIgnoreTouchTarget(target) {
+        const element = target instanceof Element ? target : target?.parentElement;
+
+        if (!element) {
+            return false;
+        }
+
+        return Boolean(
+            document.body.classList.contains('menu-open')
+            || element.closest('input, textarea, select, [contenteditable="true"]')
+            || element.closest('.scroll-indicator, .menu-toggle, .theme-toggle, .theme-selector-btn, .theme-selector-modal')
+        );
+    }
+
+    setScrollX(left) {
+        const safeLeft = Math.max(0, Math.min(left, this.getMaxScrollX()));
+
+        if (this.wrapper === document.documentElement) {
+            window.scrollTo({ left: safeLeft, top: 0, behavior: 'auto' });
+            return;
+        }
+
+        this.wrapper.scrollLeft = safeLeft;
     }
 
     pauseScrollSnap() {

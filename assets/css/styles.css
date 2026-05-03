@@ -3251,9 +3251,15 @@ main {
     overscroll-behavior-x: contain;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
+    touch-action: pan-x;
 }
 
 main.is-wheel-scrolling {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+}
+
+main.is-touch-scrolling {
     scroll-behavior: auto;
     scroll-snap-type: none;
 }
