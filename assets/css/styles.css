@@ -4693,4 +4693,121 @@ body {
     }
 }
 
+/* ============================================
+   SINGLE HORIZONTAL SCROLL CORRECTION
+   ============================================ */
+.horizontal-wrapper > section {
+    overflow: hidden !important;
+    scrollbar-gutter: auto !important;
+}
+
+#skills,
+#projects,
+#published {
+    width: max-content !important;
+    min-width: 100vw !important;
+    max-width: none !important;
+    margin-right: 0 !important;
+}
+
+#skills > .container,
+#projects > .container,
+#published > .container {
+    width: max-content !important;
+    min-width: 100vw !important;
+    max-width: none !important;
+}
+
+#projects .specs-flex {
+    width: max-content;
+    max-width: none;
+}
+
+.features-grid,
+.timeline-container,
+.published-pages-list {
+    width: max-content !important;
+    max-width: none !important;
+    overflow: visible !important;
+    padding-bottom: 0;
+    scroll-snap-type: none !important;
+    overscroll-behavior-x: auto;
+    scrollbar-width: auto;
+}
+
+.features-grid > *,
+.timeline-item,
+.timeline-more-item,
+.published-pages-list > * {
+    scroll-snap-align: none !important;
+}
+
+.timeline-container::-webkit-scrollbar,
+.timeline-card-body::-webkit-scrollbar {
+    display: none;
+}
+
+.timeline-card,
+.timeline-card--left,
+.timeline-card--right {
+    max-height: none !important;
+    min-height: 0 !important;
+    overflow: visible;
+}
+
+.timeline-card-body {
+    overflow: visible !important;
+    padding-right: 0;
+    scrollbar-width: auto;
+}
+
+.timeline-item,
+.timeline-item-left,
+.timeline-item-right {
+    flex-basis: clamp(360px, 34vw, 480px);
+}
+
+.timeline-more-item {
+    min-height: 0 !important;
+    max-height: none !important;
+}
+
+@media (max-width: 768px) {
+    #skills,
+    #projects,
+    #published {
+        width: max-content !important;
+        min-width: 100vw !important;
+        max-width: none !important;
+    }
+
+    #skills > .container,
+    #projects > .container,
+    #published > .container {
+        width: max-content !important;
+        min-width: 100vw !important;
+        max-width: none !important;
+    }
+
+    .features-grid,
+    .timeline-container,
+    .published-pages-list {
+        width: max-content !important;
+        max-width: none !important;
+        overflow: visible !important;
+    }
+
+    .timeline-item,
+    .timeline-item-left,
+    .timeline-item-right {
+        flex-basis: min(88vw, 380px);
+    }
+
+    .timeline-card,
+    .timeline-more-item {
+        max-height: none !important;
+        min-height: 0 !important;
+    }
+}
+
 
