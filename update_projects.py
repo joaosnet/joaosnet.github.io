@@ -658,7 +658,7 @@ def generate_project_html(project, is_last=False, position="left"):
 
     updated_attr = f' datetime="{updated_iso}"' if updated_iso else ""
 
-    # Timeline style HTML with image - using CSS classes instead of inline styles
+    # Timeline card HTML with image - using CSS classes instead of inline styles
     img_html = ""
     if image:
         safe_image = escape(str(image), quote=True)
@@ -707,76 +707,29 @@ def generate_project_html(project, is_last=False, position="left"):
                             <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>"""
     access_note_html = f'<p class="timeline-card-access-note">{access_note}</p>'
 
-    if position == "left":
-        # Content on LEFT side, dot on CENTER
-        html = f"""
-                    <div class="timeline-item timeline-item-left">
-                        <!-- Content Left -->
-                        <div class="timeline-card timeline-card--left">
-                            <!-- Repository metadata -->
+    html = f"""
+                    <article class="timeline-item">
+                        <span class="timeline-dot" aria-hidden="true"></span>
+                        <div class="timeline-card">
                             {meta_html}
-                            
-                            <!-- Image -->
+
                             <div class="timeline-card-image-wrapper">
                                 {img_html}
                             </div>
-                            
-                            <!-- Project info -->
-                            <h3 class="timeline-card-heading">
-                                {title_html}
-                            </h3>
-                            <p class="timeline-card-description">{safe_description}</p>
-                            {access_note_html}
-                            
-                            <!-- Button -->
+
+                            <div class="timeline-card-body">
+                                <h3 class="timeline-card-heading">
+                                    {title_html}
+                                </h3>
+                                <p class="timeline-card-description">{safe_description}</p>
+                                {access_note_html}
+                            </div>
+
                             <div class="timeline-card-actions">
                                 {button_html}
                             </div>
                         </div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div class="timeline-dot-wrapper">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        
-                        <!-- Empty space on RIGHT -->
-                        <div class="timeline-empty"></div>
-                    </div>"""
-    else:
-        # Content on RIGHT side, dot on CENTER
-        html = f"""
-                    <div class="timeline-item timeline-item-right">
-                        <!-- Empty space on LEFT -->
-                        <div class="timeline-empty"></div>
-                        
-                        <!-- Timeline Dot (CENTER) -->
-                        <div class="timeline-dot-wrapper">
-                            <div class="timeline-dot"></div>
-                        </div>
-                        
-                        <!-- Content Right -->
-                        <div class="timeline-card timeline-card--right">
-                            <!-- Repository metadata -->
-                            {meta_html}
-                            
-                            <!-- Image -->
-                            <div class="timeline-card-image-wrapper">
-                                {img_html}
-                            </div>
-                            
-                            <!-- Project info -->
-                            <h3 class="timeline-card-heading">
-                                {title_html}
-                            </h3>
-                            <p class="timeline-card-description">{safe_description}</p>
-                            {access_note_html}
-                            
-                            <!-- Button -->
-                            <div class="timeline-card-actions">
-                                {button_html}
-                            </div>
-                        </div>
-                    </div>"""
+                    </article>"""
 
     return html
 
@@ -1555,19 +1508,15 @@ def main():
             # Handle None or empty descriptions
             project["description_translated"] = "Sem descrição disponível"
 
-        # Alternate between left and right (0:left, 1:right, 2:left, 3:right)
+        # Keep the legacy position argument for callers; CSS now renders a horizontal timeline.
         position = "left" if i % 2 == 0 else "right"
         is_last = i == len(top_projects) - 1
         projects_html += generate_project_html(project, is_last, position)
 
-    # Wrap projects in timeline container + "Ver mais" button inside timeline for continuity
+    # Wrap projects in a horizontal timeline container + "Ver mais" card for continuity
     button_html = '''
-                        <!-- Ver mais - inside timeline for visual continuity -->
                         <div class="timeline-more-item">
-                            <div class="timeline-empty"></div>
-                            <div class="timeline-more-dot-wrapper">
-                                <div class="timeline-more-dot"></div>
-                            </div>
+                            <span class="timeline-more-dot" aria-hidden="true"></span>
                             <div class="timeline-more-content">
                                 <a href="https://github.com/joaosnet?tab=repositories" target="_blank" rel="noopener noreferrer" class="timeline-more-btn">
                                     Ver todos os repositórios <i class="fas fa-arrow-right" aria-hidden="true"></i>
@@ -1577,12 +1526,7 @@ def main():
     pages_html = generate_pages_links_html(public_pages)
 
     timeline_html = f"""
-                <!-- Timeline Container - Alternating Layout -->
                 <div class="timeline-container" aria-label="Linha do tempo de repositórios">
-                    <!-- Timeline line -->
-                    <div class="timeline-line"></div>
-                    
-                    <!-- Timeline items container -->
                     <div class="timeline-items">
                         {projects_html}
                         {button_html}

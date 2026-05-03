@@ -104,7 +104,9 @@ class TestGenerateProjectHTML:
         assert "Um projeto de teste" in html
         assert "https://github.com/joaosnet/test-project" in html
         assert "https://example.com/image.png" in html
-        assert "timeline-item-left" in html
+        assert 'class="timeline-item"' in html
+        assert "timeline-card-body" in html
+        assert "timeline-dot" in html
         assert "Ver no GitHub" in html
 
     def test_generate_html_public_project_with_github_pages(self):
@@ -142,7 +144,7 @@ class TestGenerateProjectHTML:
 
         assert "private-project" in html
         assert "Projeto privado de teste" in html
-        assert "timeline-item-right" in html
+        assert 'class="timeline-item"' in html
         assert "Privado" in html
         assert "fa-lock" in html
         assert "Ver no GitHub" not in html
@@ -193,8 +195,8 @@ class TestGenerateProjectHTML:
         assert "Descrição traduzida para português" in html
         assert "Original description in English" not in html
 
-    def test_generate_html_right_position(self):
-        """Deve gerar HTML com posição à direita"""
+    def test_generate_html_position_argument_is_visual_noop(self):
+        """Deve manter assinatura legada sem voltar ao layout alternado"""
         project = {
             "name": "right-project",
             "description": "Projeto à direita",
@@ -205,8 +207,9 @@ class TestGenerateProjectHTML:
         }
 
         html = generate_project_html(project, is_last=False, position="right")
-        assert "timeline-item-right" in html
-        assert "timeline-card--right" in html
+        assert 'class="timeline-item"' in html
+        assert "timeline-item-right" not in html
+        assert "timeline-card--right" not in html
 
 
 class TestMaskRepoName:

@@ -191,6 +191,21 @@ class TestJavaScriptFiles:
         close_braces = content.count("}")
         assert open_braces == close_braces, f"Chaves desbalanceadas em geo-counter.js: {open_braces} {{ vs {close_braces} }}"
 
+    def test_geo_counter_does_not_call_public_ip_apis(self, js_dir):
+        """geo-counter.js não deve chamar APIs públicas de IP/geo no navegador"""
+        geo_path = js_dir / "geo-counter.js"
+        content = geo_path.read_text(encoding="utf-8")
+
+        blocked_urls = [
+            "ipapi.co",
+            "api.country.is",
+            "ip-api.com",
+            "api.ipify.org",
+        ]
+
+        for url in blocked_urls:
+            assert url not in content, f"API pública de IP/geo ainda presente: {url}"
+
     def test_no_syntax_errors_in_contact_form(self, js_dir):
         """contact-form.js não deve ter erros de sintaxe (verificação básica)"""
         form_path = js_dir / "contact-form.js"
