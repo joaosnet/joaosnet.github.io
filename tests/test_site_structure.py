@@ -82,6 +82,7 @@ class TestIndexHTMLStructure:
             "geo-counter.js",
             "theme-manager.js",
             "mobile-menu.js",
+            "project-details.js",
             "animations.js",
             "contact-form.js",
         ]
@@ -164,6 +165,7 @@ class TestJavaScriptFiles:
             "geo-counter.js",
             "theme-manager.js",
             "mobile-menu.js",
+            "project-details.js",
             "animations.js",
             "contact-form.js",
         ]
@@ -214,6 +216,15 @@ class TestJavaScriptFiles:
         open_braces = content.count("{")
         close_braces = content.count("}")
         assert open_braces == close_braces, f"Chaves desbalanceadas em contact-form.js: {open_braces} {{ vs {close_braces} }}"
+
+    def test_no_syntax_errors_in_project_details(self, js_dir):
+        """project-details.js não deve ter erros de sintaxe (verificação básica)"""
+        details_path = js_dir / "project-details.js"
+        content = details_path.read_text(encoding="utf-8")
+
+        open_braces = content.count("{")
+        close_braces = content.count("}")
+        assert open_braces == close_braces, f"Chaves desbalanceadas em project-details.js: {open_braces} {{ vs {close_braces} }}"
 
 
 class TestCSSFiles:

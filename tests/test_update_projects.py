@@ -108,6 +108,8 @@ class TestGenerateProjectHTML:
         assert "timeline-card-body" in html
         assert "timeline-dot" in html
         assert "Ver no GitHub" in html
+        assert "Ver detalhes" in html
+        assert "timeline-card-details" in html
 
     def test_generate_html_public_project_with_github_pages(self):
         """Deve gerar link de GitHub Pages quando o projeto público tiver Pages"""
@@ -147,6 +149,8 @@ class TestGenerateProjectHTML:
         assert 'class="timeline-item"' in html
         assert "Privado" in html
         assert "fa-lock" in html
+        assert "Ver detalhes" in html
+        assert "timeline-card-details" in html
         assert "Ver no GitHub" not in html
         assert "Ver página" not in html
 

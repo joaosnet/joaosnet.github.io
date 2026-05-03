@@ -705,6 +705,9 @@ def generate_project_html(project, is_last=False, position="left"):
                             </div>
                             <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>"""
     access_note_html = f'<p class="timeline-card-access-note">{access_note}</p>'
+    details_button_html = """<button type="button" class="timeline-card-btn timeline-card-details" aria-haspopup="dialog">
+                                <i class="fas fa-info-circle" aria-hidden="true"></i> Ver detalhes
+                            </button>"""
 
     html = f"""
                     <article class="timeline-item">
@@ -726,6 +729,7 @@ def generate_project_html(project, is_last=False, position="left"):
 
                             <div class="timeline-card-actions">
                                 {button_html}
+                                {details_button_html}
                             </div>
                         </div>
                     </article>"""
