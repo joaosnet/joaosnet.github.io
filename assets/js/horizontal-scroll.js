@@ -76,7 +76,7 @@ class HorizontalScrollHandler {
     }
 
     setupVerticalToHorizontalScroll() {
-        this.wheelTarget = this.wrapper === document.documentElement ? window : this.wrapper;
+        this.wheelTarget = window;
         this.wheelTarget.addEventListener('wheel', (event) => {
             this.handleWheel(event);
         }, { passive: false });

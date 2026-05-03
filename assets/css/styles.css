@@ -68,12 +68,11 @@ body {
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.6;
-    overflow: auto;
-    overscroll-behavior-x: none;
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 
 html {
-    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
 }
 
@@ -3370,13 +3369,9 @@ main.is-wheel-scrolling {
 #projects,
 #published,
 #resume {
-    width: max-content;
+    width: 100vw;
     min-width: 100vw;
-}
-
-#skills,
-#projects {
-    margin-right: calc(var(--section-pad-x) * -2);
+    max-width: 100vw;
 }
 
 #skills > .container,
@@ -3384,9 +3379,9 @@ main.is-wheel-scrolling {
 #published > .container,
 #resume > .container,
 .footer-panel .container {
-    width: max-content !important;
-    min-width: 100vw !important;
-    max-width: none !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
 }
 
 .features-grid {
@@ -3548,8 +3543,9 @@ main.is-wheel-scrolling {
 }
 
 #contact {
-    width: max-content;
+    width: 100vw;
     min-width: 100vw;
+    max-width: 100vw;
 }
 
 #contact .contact-panel {
@@ -3671,14 +3667,14 @@ textarea.form-control {
     }
 
     #contact {
-        width: max-content;
+        width: 100vw;
     }
 
     #contact .contact-panel {
         grid-template-columns: 260px minmax(330px, 360px);
-        width: max-content !important;
+        width: 100vw !important;
         min-width: 100vw !important;
-        max-width: none !important;
+        max-width: 100vw !important;
     }
 
     .contact-copy h2 {
@@ -4366,10 +4362,8 @@ body {
     width: 100vw !important;
     min-width: 100vw !important;
     max-width: 100vw !important;
-    overflow-x: hidden;
-    overflow-y: auto;
+    overflow: hidden;
     overscroll-behavior: contain;
-    scrollbar-gutter: stable both-edges;
 }
 
 #skills,
@@ -4744,331 +4738,10 @@ body {
     }
 }
 
-/* ============================================
-   SINGLE HORIZONTAL SCROLL CORRECTION
-   ============================================ */
-.horizontal-wrapper > section {
-    overflow: hidden !important;
-    scrollbar-gutter: auto !important;
-}
-
-#skills,
-#projects,
-#published {
-    width: max-content !important;
-    min-width: 100vw !important;
-    max-width: none !important;
-    margin-right: 0 !important;
-}
-
-#skills > .container,
-#projects > .container,
-#published > .container {
-    width: max-content !important;
-    min-width: 100vw !important;
-    max-width: none !important;
-}
-
-#projects .specs-flex {
-    width: max-content;
-    max-width: none;
-}
-
-.features-grid,
-.timeline-container,
-.published-pages-list {
-    width: max-content !important;
-    max-width: none !important;
-    overflow: visible !important;
-    padding-bottom: 0;
-    scroll-snap-type: none !important;
-    overscroll-behavior-x: auto;
-    scrollbar-width: auto;
-}
-
-.features-grid > *,
-.timeline-item,
-.timeline-more-item,
-.published-pages-list > * {
-    scroll-snap-align: none !important;
-}
-
-.timeline-container::-webkit-scrollbar,
-.timeline-card-body::-webkit-scrollbar {
-    display: none;
-}
-
-.timeline-card,
-.timeline-card--left,
-.timeline-card--right {
-    max-height: none !important;
-    min-height: 0 !important;
-    overflow: visible;
-}
-
-.timeline-card-body {
-    overflow: visible !important;
-    padding-right: 0;
-    scrollbar-width: auto;
-}
-
-.timeline-item,
-.timeline-item-left,
-.timeline-item-right {
-    flex-basis: clamp(360px, 34vw, 480px);
-}
-
-.timeline-more-item {
-    min-height: 0 !important;
-    max-height: none !important;
-}
-
-#projects .timeline-card {
-    gap: 10px;
-}
-
-#projects .timeline-card-meta,
-#projects .timeline-card-actions {
-    flex-shrink: 0;
-}
-
-#projects .timeline-card-image-wrapper {
-    margin-bottom: 6px;
-}
-
-#projects .timeline-card-description,
-#projects .timeline-card-access-note,
-#projects .timeline-card-update-note {
-    max-width: 100%;
-}
-
-@media (max-width: 768px) {
-    main {
-        scroll-snap-type: none !important;
-        scroll-behavior: auto;
-        touch-action: pan-x;
-        overscroll-behavior-x: auto;
-    }
-
-    #skills,
-    #projects,
-    #published {
-        width: max-content !important;
-        min-width: 100vw !important;
-        max-width: none !important;
-    }
-
-    #skills > .container,
-    #projects > .container,
-    #published > .container {
-        width: max-content !important;
-        min-width: 100vw !important;
-        max-width: none !important;
-    }
-
-    .features-grid,
-    .timeline-container,
-    .published-pages-list {
-        width: max-content !important;
-        max-width: none !important;
-        overflow: visible !important;
-    }
-
-    .timeline-item,
-    .timeline-item-left,
-    .timeline-item-right {
-        flex-basis: min(92vw, 460px);
-    }
-
-    .timeline-card,
-    .timeline-more-item {
-        max-height: none !important;
-        min-height: 0 !important;
-    }
-
-    #projects .timeline-items {
-        align-items: flex-start;
-    }
-
-    #projects .timeline-card {
-        padding: 12px;
-        gap: 7px;
-    }
-
-    #projects .timeline-card-meta {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: stretch;
-        gap: 6px;
-    }
-
-    #projects .timeline-card-date,
-    #projects .timeline-card-visibility {
-        min-height: 30px;
-        padding: 5px 7px;
-        font-size: 0.75rem;
-    }
-
-    #projects .timeline-card-date-label,
-    #projects .timeline-card-update-note {
-        display: none;
-    }
-
-    #projects .timeline-card-image-wrapper {
-        margin: 2px 0 4px;
-    }
-
-    #projects .timeline-card-image {
-        max-height: 82px;
-        aspect-ratio: 2.6 / 1;
-    }
-
-    #projects .timeline-card-heading {
-        margin-bottom: 5px;
-        font-size: 0.98rem;
-        line-height: 1.2;
-    }
-
-    #projects .timeline-card-description {
-        margin-bottom: 7px;
-        font-size: 0.78rem;
-        line-height: 1.32;
-    }
-
-    #projects .timeline-card-access-note {
-        margin-bottom: 0;
-        font-size: 0.7rem;
-        line-height: 1.28;
-    }
-
-    #projects .timeline-card-actions {
-        margin-top: 7px;
-    }
-
-    #projects .timeline-card-btn {
-        min-height: 32px;
-        padding: 7px 10px;
-        font-size: 0.78rem;
-    }
-
-    #resume,
-    #resume > .container,
-    .footer-panel .container {
-        width: 100vw !important;
-        min-width: 100vw !important;
-        max-width: 100vw !important;
-    }
-
-    .footer-panel,
-    .footer-panel footer {
-        height: 100% !important;
-        min-height: 0 !important;
-        overflow: hidden;
-    }
-
-    .footer-panel footer {
-        align-items: stretch;
-        padding: 14px var(--mobile-edge) calc(58px + env(safe-area-inset-bottom)) !important;
-    }
-
-    .footer-panel .container {
-        display: flex !important;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 !important;
-    }
-
-    .footer-panel .footer-grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        gap: 12px;
-        width: 100%;
-        margin-bottom: 10px;
-        text-align: left;
-    }
-
-    .footer-column {
-        width: auto;
-        min-width: 0;
-    }
-
-    .footer-column:first-child {
-        grid-column: 1 / -1;
-    }
-
-    .footer-column h3 {
-        margin-bottom: 6px;
-        font-size: 1rem;
-    }
-
-    .footer-column p,
-    .footer-column ul li a,
-    .views-counter {
-        font-size: 0.82rem;
-        line-height: 1.35;
-    }
-
-    .footer-column p {
-        display: -webkit-box;
-        overflow: hidden;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        margin-bottom: 8px;
-    }
-
-    .footer-column ul li {
-        margin-bottom: 5px;
-    }
-
-    .footer-cv {
-        width: auto;
-        min-height: 36px;
-        margin: 0 !important;
-        padding: 8px 12px;
-        font-size: 0.84rem;
-    }
-
-    .views-counter {
-        min-height: 0;
-        margin-top: 8px;
-        padding: 8px 10px;
-    }
-
-    .views-counter span {
-        font-size: 1rem;
-    }
-
-    .footer-panel .copyright {
-        font-size: 0.78rem;
-        line-height: 1.35;
-        text-align: left;
-    }
-}
-
-@media (max-width: 420px) {
-    #projects .timeline-item,
-    #projects .timeline-item-left,
-    #projects .timeline-item-right {
-        flex-basis: calc(100vw - 20px);
-    }
-
-    #projects .timeline-card {
-        padding: 10px;
-    }
-
-    #projects .timeline-card-image {
-        max-height: 68px;
-    }
-
-    #projects .timeline-card-description {
-        font-size: 0.74rem;
-        line-height: 1.28;
-    }
-
-    #projects .timeline-card-access-note {
-        font-size: 0.68rem;
-    }
-}
+/* SINGLE HORIZONTAL SCROLL CORRECTION – removed.
+   Sections must be exactly 100vw; inner areas scroll independently.
+   The rules from the HORIZONTAL-ONLY EXPERIENCE + UX FIXES sections
+   already handle containment correctly. */
 
 /* ============================================
    PROJECT DETAILS MODAL
