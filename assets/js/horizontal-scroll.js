@@ -27,6 +27,7 @@ class HorizontalScrollHandler {
         this.touchLastX = 0;
         this.touchDragging = false;
         this.touchAxisLocked = null;
+        this.touchIdentifier = null;
         
         this.init();
     }
@@ -87,11 +88,17 @@ class HorizontalScrollHandler {
 
         root.addEventListener('touchstart', (event) => {
             if (!event.touches || event.touches.length !== 1) {
+                // Multi-touch detected: cancel any active drag
+                this.touchDragging = false;
+                this.touchAxisLocked = null;
+                this.touchIdentifier = null;
                 return;
             }
 
-            this.touchStartX = event.touches[0].clientX;
-            this.touchStartY = event.touches[0].clientY;
+            const touch = event.touches[0];
+            this.touchIdentifier = touch.identifier;
+            this.touchStartX = touch.clientX;
+            this.touchStartY = touch.clientY;
             this.touchLastX = this.touchStartX;
             this.touchDragging = true;
             this.touchAxisLocked = null;
@@ -104,20 +111,34 @@ class HorizontalScrollHandler {
         root.addEventListener('touchend', () => {
             this.touchDragging = false;
             this.touchAxisLocked = null;
+            this.touchIdentifier = null;
         }, { passive: true });
 
         root.addEventListener('touchcancel', () => {
             this.touchDragging = false;
             this.touchAxisLocked = null;
+            this.touchIdentifier = null;
         }, { passive: true });
     }
 
     handleTouchMove(event) {
-        if (!this.touchDragging || !event.touches || event.touches.length !== 1) {
+        if (!this.touchDragging || !event.touches) {
+            return;
+        }
+
+        if (event.touches.length !== 1) {
+            // Multi-touch during move: cancel the drag
+            this.touchDragging = false;
+            this.touchAxisLocked = null;
+            this.touchIdentifier = null;
             return;
         }
 
         const touch = event.touches[0];
+        if (!touch || touch.identifier !== this.touchIdentifier) {
+            return;
+        }
+
         const moveX = touch.clientX - this.touchStartX;
         const moveY = touch.clientY - this.touchStartY;
 
