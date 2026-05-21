@@ -22,6 +22,12 @@ class HorizontalScrollHandler {
         this.wheelSnapTimer = null;
         this.wheelTarget = null;
         this.scrollEdge = 2;
+        this.touchStartX = 0;
+        this.touchStartY = 0;
+        this.touchLastX = 0;
+        this.touchDragging = false;
+        this.touchAxisLocked = null;
+        this.touchIdentifier = null;
         
         this.init();
     }
@@ -48,6 +54,7 @@ class HorizontalScrollHandler {
         this.setupScrollEndListener();
         this.setupSectionObserver();
         this.setupVerticalToHorizontalScroll();
+        this.setupTouchHorizontalScroll();
         this.setupKeyboardNavigation();
         this.setupResizeListener();
         this.setupDotClicks();
@@ -75,6 +82,95 @@ class HorizontalScrollHandler {
         }
     }
 
+
+    setupTouchHorizontalScroll() {
+        const root = this.wrapper === document.documentElement ? document : this.wrapper;
+
+        root.addEventListener('touchstart', (event) => {
+            if (!event.touches || event.touches.length !== 1) {
+                // Multi-touch detected: cancel any active drag
+                this.touchDragging = false;
+                this.touchAxisLocked = null;
+                this.touchIdentifier = null;
+                return;
+            }
+
+            const touch = event.touches[0];
+            this.touchIdentifier = touch.identifier;
+            this.touchStartX = touch.clientX;
+            this.touchStartY = touch.clientY;
+            this.touchLastX = this.touchStartX;
+            this.touchDragging = true;
+            this.touchAxisLocked = null;
+        }, { passive: true });
+
+        root.addEventListener('touchmove', (event) => {
+            this.handleTouchMove(event);
+        }, { passive: false });
+
+        root.addEventListener('touchend', () => {
+            this.touchDragging = false;
+            this.touchAxisLocked = null;
+            this.touchIdentifier = null;
+        }, { passive: true });
+
+        root.addEventListener('touchcancel', () => {
+            this.touchDragging = false;
+            this.touchAxisLocked = null;
+            this.touchIdentifier = null;
+        }, { passive: true });
+    }
+
+    handleTouchMove(event) {
+        if (!this.touchDragging || !event.touches) {
+            return;
+        }
+
+        if (event.touches.length !== 1) {
+            // Multi-touch during move: cancel the drag
+            this.touchDragging = false;
+            this.touchAxisLocked = null;
+            this.touchIdentifier = null;
+            return;
+        }
+
+        const touch = event.touches[0];
+        if (!touch || touch.identifier !== this.touchIdentifier) {
+            return;
+        }
+
+        const moveX = touch.clientX - this.touchStartX;
+        const moveY = touch.clientY - this.touchStartY;
+
+        if (!this.touchAxisLocked) {
+            if (Math.abs(moveX) < 6 && Math.abs(moveY) < 6) {
+                return;
+            }
+
+            this.touchAxisLocked = Math.abs(moveX) >= Math.abs(moveY) ? 'x' : 'y';
+        }
+
+        if (this.touchAxisLocked !== 'x') {
+            return;
+        }
+
+        if (this.scrollNestedHorizontalArea(event)) {
+            this.touchLastX = touch.clientX;
+            return;
+        }
+
+        const deltaX = this.touchLastX - touch.clientX;
+        this.touchLastX = touch.clientX;
+
+        if (!this.canScrollHorizontally(deltaX)) {
+            return;
+        }
+
+        event.preventDefault();
+        this.hideScrollHint();
+        this.pauseScrollSnap();
+        this.wrapper.scrollBy({ left: deltaX, behavior: 'auto' });
+    }
     setupVerticalToHorizontalScroll() {
         this.wheelTarget = window;
         this.wheelTarget.addEventListener('wheel', (event) => {
