@@ -1,0 +1,147 @@
+{
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\update_projects.py": {
+    "mtime": 1777771765.0939796,
+    "ast_hash": "b605bed3d68394866c7d54c39f78e19f",
+    "semantic_hash": "b605bed3d68394866c7d54c39f78e19f"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\animations.js": {
+    "mtime": 1777503815.5849483,
+    "ast_hash": "b46c6010d4663ca5662e2d7fc2441dc1",
+    "semantic_hash": "b46c6010d4663ca5662e2d7fc2441dc1"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\contact-form.js": {
+    "mtime": 1777551812.7144494,
+    "ast_hash": "086e6b21b56ebcac63af03e102b8c0c4",
+    "semantic_hash": "086e6b21b56ebcac63af03e102b8c0c4"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\geo-counter.js": {
+    "mtime": 1777769747.7394657,
+    "ast_hash": "94c736e991f8d0cbe59cbb9c6a0afbdb",
+    "semantic_hash": "94c736e991f8d0cbe59cbb9c6a0afbdb"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\horizontal-scroll.js": {
+    "mtime": 1777773287.2102897,
+    "ast_hash": "cbb05e35a07152ffcc01e1d76792d717",
+    "semantic_hash": "cbb05e35a07152ffcc01e1d76792d717"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\mobile-menu.js": {
+    "mtime": 1777496020.3507788,
+    "ast_hash": "3bf508d1d68709e2730faaa3c41b0c7e",
+    "semantic_hash": "3bf508d1d68709e2730faaa3c41b0c7e"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\project-details.js": {
+    "mtime": 1777771932.3567827,
+    "ast_hash": "8ffee4b69e558486e9fb5685ad55fb00",
+    "semantic_hash": "8ffee4b69e558486e9fb5685ad55fb00"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\theme-manager.js": {
+    "mtime": 1777475570.307951,
+    "ast_hash": "0156891d0a65b934dc2ab86403529bfc",
+    "semantic_hash": "0156891d0a65b934dc2ab86403529bfc"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\theme-selector.js": {
+    "mtime": 1777508551.4928553,
+    "ast_hash": "1d78dc8c5e4ee943799f9d79a66b01a9",
+    "semantic_hash": "1d78dc8c5e4ee943799f9d79a66b01a9"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\theme.js": {
+    "mtime": 1763576682.393534,
+    "ast_hash": "2661e89df880f7682e0a4f9ba30be40c",
+    "semantic_hash": "2661e89df880f7682e0a4f9ba30be40c"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\utils.js": {
+    "mtime": 1775335994.9627864,
+    "ast_hash": "814656427b21e00d05bddce016855f5b",
+    "semantic_hash": "814656427b21e00d05bddce016855f5b"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_env_variables.py": {
+    "mtime": 1775336745.0312905,
+    "ast_hash": "ca8313cc85d32bdd08e83f30e0aa4d03",
+    "semantic_hash": "ca8313cc85d32bdd08e83f30e0aa4d03"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_site_structure.py": {
+    "mtime": 1777771882.6956184,
+    "ast_hash": "c065dce0bc4444e8e0f17eb37e848f24",
+    "semantic_hash": "c065dce0bc4444e8e0f17eb37e848f24"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_update_projects.py": {
+    "mtime": 1777771889.9955075,
+    "ast_hash": "1870d95e50f1dc3cabd324ca62eaea5d",
+    "semantic_hash": "1870d95e50f1dc3cabd324ca62eaea5d"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\__init__.py": {
+    "mtime": 1775336280.693446,
+    "ast_hash": "8d771d95e254e5e632c1dcfdef3bd38a",
+    "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\index.html": {
+    "mtime": 1777772163.686679,
+    "ast_hash": "51c577d50cb3e620894c25034b8f32bb",
+    "semantic_hash": "51c577d50cb3e620894c25034b8f32bb"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.codex\\AGENTS.md": {
+    "mtime": 1777489740.0142791,
+    "ast_hash": "6ae4f68cfb0f422f5668ab40ae69a8d8",
+    "semantic_hash": "6ae4f68cfb0f422f5668ab40ae69a8d8"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.github\\workflows\\update_projects.yml": {
+    "mtime": 1775338629.3114934,
+    "ast_hash": "0c07c121a8f65077068b3cd6f0748c62",
+    "semantic_hash": "0c07c121a8f65077068b3cd6f0748c62"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\TESTES.md": {
+    "mtime": 1775337119.06542,
+    "ast_hash": "853ff08b6ac24ff5fecddc6b2f6fd2fd",
+    "semantic_hash": "853ff08b6ac24ff5fecddc6b2f6fd2fd"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\crv.pdf": {
+    "mtime": 1768865553.464214,
+    "ast_hash": "914e7c55ca94bb304276db88643d5006",
+    "semantic_hash": "914e7c55ca94bb304276db88643d5006"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\bg.jpg": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "f107cd54b8d304e1ad88c470c9ab2cdb",
+    "semantic_hash": "f107cd54b8d304e1ad88c470c9ab2cdb"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\favicon.png": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "4fd9c378d7326da0479d592b35a4b09a",
+    "semantic_hash": "4fd9c378d7326da0479d592b35a4b09a"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\overlay-pattern.png": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "b79220d57669fb07c51d13830dcb5bd6",
+    "semantic_hash": "b79220d57669fb07c51d13830dcb5bd6"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\overlay.svg": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "8a09a2d95fc099323903cd88dce48aa6",
+    "semantic_hash": "8a09a2d95fc099323903cd88dce48aa6"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\ie\\footer.png": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "7cd8d405a89bfc84bf19d879dc215154",
+    "semantic_hash": "7cd8d405a89bfc84bf19d879dc215154"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\ie\\footer.svg": {
+    "mtime": 1744071941.9909048,
+    "ast_hash": "3ccba1f501e12ed7a5bdef14e8f86790",
+    "semantic_hash": "3ccba1f501e12ed7a5bdef14e8f86790"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\webfonts\\fa-brands-400.svg": {
+    "mtime": 1744071942.0041244,
+    "ast_hash": "0c12ff655da379ab518f8afe0b3ffe15",
+    "semantic_hash": "0c12ff655da379ab518f8afe0b3ffe15"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\webfonts\\fa-regular-400.svg": {
+    "mtime": 1744071942.0041244,
+    "ast_hash": "7b18e1bf54898a45b78a1a36806a4bc8",
+    "semantic_hash": "7b18e1bf54898a45b78a1a36806a4bc8"
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\webfonts\\fa-solid-900.svg": {
+    "mtime": 1744071942.0041244,
+    "ast_hash": "b45a634efe8a9e0a3938a86c5e216417",
+    "semantic_hash": "b45a634efe8a9e0a3938a86c5e216417"
+  }
+}
