@@ -119,15 +119,10 @@ class ContactFormHandler {
 
     async copyEmailToClipboard() {
         try {
-            if (navigator.clipboard && window.isSecureContext) {
-                await navigator.clipboard.writeText(this.EMAIL);
-            } else if (!this.fallbackCopyEmail()) {
-                throw new Error('Clipboard fallback failed');
-            }
-
+            await navigator.clipboard.writeText(this.EMAIL);
             this.showToast('Email copiado.');
         } catch (error) {
-            this.showToast('Erro ao copiar email.', 'error');
+            this.showToast('Não foi possível copiar. Email: ' + this.EMAIL, 'info');
         }
     }
 
@@ -214,29 +209,6 @@ class ContactFormHandler {
         }, 3500);
     }
 
-    fallbackCopyEmail() {
-        const textarea = document.createElement('textarea');
-        textarea.value = this.EMAIL;
-        textarea.setAttribute('readonly', '');
-        textarea.style.position = 'fixed';
-        textarea.style.top = '-999px';
-        textarea.style.left = '-999px';
-
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-
-        let copied = false;
-
-        try {
-            copied = document.execCommand('copy');
-        } catch (error) {
-            copied = false;
-        }
-
-        document.body.removeChild(textarea);
-        return copied;
-    }
 
     flashSubmitSuccess(submitBtn, originalText) {
         submitBtn.textContent = 'Enviado!';

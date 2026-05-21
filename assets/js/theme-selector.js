@@ -113,6 +113,7 @@ class ThemeSelector {
         this.modal = null;
         this.previouslyFocusedElement = null;
         this.openedFromFirstVisit = false;
+        this.selectorButton = null;
         this.init();
     }
 
@@ -223,6 +224,8 @@ class ThemeSelector {
             btn.setAttribute('title', 'Selecionar tema');
             btn.innerHTML = '<i class="fas fa-palette" aria-hidden="true"></i>';
             btn.addEventListener('click', () => this.showModal());
+            this.selectorButton = btn;
+            this.updateSelectorButtonLabel();
             header.insertBefore(btn, document.querySelector('.theme-toggle'));
         }
     }
@@ -332,6 +335,7 @@ class ThemeSelector {
 
         // Store current theme
         localStorage.setItem(this.STORAGE_KEY, themeKey);
+        this.updateSelectorButtonLabel(themeKey);
     }
 
     getCurrentTheme() {
@@ -344,6 +348,17 @@ class ThemeSelector {
             card.classList.toggle('selected', isSelected);
             card.setAttribute('aria-pressed', String(isSelected));
         });
+    }
+
+    updateSelectorButtonLabel(themeKey = this.getCurrentTheme()) {
+        if (!this.selectorButton) {
+            return;
+        }
+
+        const theme = this.THEMES[themeKey] || this.THEMES['cyber-blue'];
+        const label = `Selecionar paleta. Atual: ${theme.name}`;
+        this.selectorButton.setAttribute('aria-label', label);
+        this.selectorButton.setAttribute('title', label);
     }
 
     keepFocusInsideModal(event) {

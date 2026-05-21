@@ -112,6 +112,63 @@ class ProjectDetailsModal {
         this.titleEl.textContent = title;
         this.bodyEl.replaceChildren();
 
+        // Show extra data from data attributes
+        const language = card.dataset.language;
+        const languageColor = card.dataset.languageColor;
+        const stars = card.dataset.stars;
+        const forks = card.dataset.forks;
+        const topics = card.dataset.topics;
+
+        if (language || stars || forks) {
+            const statsEl = document.createElement('div');
+            statsEl.className = 'project-detail-stats';
+
+            if (language) {
+                const langEl = document.createElement('span');
+                langEl.className = 'timeline-card-language';
+                const dotEl = document.createElement('span');
+                dotEl.className = 'timeline-card-language-dot';
+                dotEl.style.background = languageColor || '#8b8b8b';
+                langEl.append(dotEl, document.createTextNode(language));
+                statsEl.appendChild(langEl);
+            }
+
+            if (stars && stars !== '0') {
+                const starsEl = document.createElement('span');
+                starsEl.className = 'timeline-card-language';
+                starsEl.innerHTML = `<i class="fas fa-star" style="color:#fbbf24;font-size:0.7em"></i> ${stars}`;
+                statsEl.appendChild(starsEl);
+            }
+
+            if (forks && forks !== '0') {
+                const forksEl = document.createElement('span');
+                forksEl.className = 'timeline-card-language';
+                forksEl.innerHTML = `<i class="fas fa-code-branch" style="color:var(--accent);font-size:0.7em"></i> ${forks}`;
+                statsEl.appendChild(forksEl);
+            }
+
+            this.bodyEl.appendChild(statsEl);
+        }
+
+        if (topics) {
+            const topicsEl = document.createElement('div');
+            topicsEl.className = 'project-detail-topics';
+            topics.split(',').forEach((topic) => {
+                if (!topic.trim()) {
+                    return;
+                }
+
+                const tag = document.createElement('span');
+                tag.className = 'timeline-card-topic';
+                tag.textContent = topic.trim();
+                topicsEl.appendChild(tag);
+            });
+
+            if (topicsEl.children.length) {
+                this.bodyEl.appendChild(topicsEl);
+            }
+        }
+
         if (meta) {
             this.bodyEl.appendChild(meta);
         }

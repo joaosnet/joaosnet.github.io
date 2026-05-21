@@ -78,6 +78,7 @@ class GeoViewsCounter {
 
             if (this.counterEl) {
                 this.counterEl.textContent = count.toLocaleString('pt-BR');
+                this.counterEl.title = 'Contagem local deste navegador neste ano';
             }
 
             this.debug(`[GeoViewsCounter] Visitas em ${year}: ${count}`);

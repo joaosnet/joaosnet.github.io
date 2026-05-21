@@ -392,6 +392,7 @@ class HorizontalScrollHandler {
             dot.type = 'button';
             dot.setAttribute('data-index', index);
             dot.setAttribute('title', label);
+            dot.setAttribute('data-label', label);
             dot.setAttribute('aria-label', label);
 
             if (section.id) {

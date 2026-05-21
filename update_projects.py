@@ -41,6 +41,27 @@ except ImportError:
 # Global set to track downloaded images that need to be committed
 downloaded_images = set()
 
+DEFAULT_PREVIEW_IMAGE = "./assets/images/favicon.png"
+
+GITHUB_LANGUAGE_COLORS = {
+    "Python": "#3572A5",
+    "JavaScript": "#f1e05a",
+    "TypeScript": "#3178c6",
+    "HTML": "#e34c26",
+    "CSS": "#563d7c",
+    "Jupyter Notebook": "#DA5B0B",
+    "Shell": "#89e051",
+    "Dockerfile": "#384d54",
+    "Java": "#b07219",
+    "C": "#555555",
+    "C++": "#f34b7d",
+    "C#": "#178600",
+    "Go": "#00ADD8",
+    "Rust": "#dea584",
+    "PHP": "#4F5D95",
+    "Ruby": "#701516",
+}
+
 
 def detect_language(text):
     """Detect if text is likely in Portuguese or another language.
@@ -545,6 +566,11 @@ def collect_public_pages_links(repos):
     seen_urls = set()
 
     for repo in repos:
+        owner_slug = str(repo.get("owner", {}).get("login", "")).lower()
+        repo_name = str(repo.get("name", ""))
+        if owner_slug and repo_name.lower() == f"{owner_slug}.github.io":
+            continue
+
         pages_url = get_github_pages_url(repo)
         if not pages_url:
             continue
@@ -556,7 +582,7 @@ def collect_public_pages_links(repos):
 
         img, _ = find_repo_preview_image(repo)
         if not img:
-            img = "./assets/css/images/icon.png"
+            img = DEFAULT_PREVIEW_IMAGE
 
         pages.append(
             {
@@ -609,8 +635,9 @@ def generate_pages_links_html(pages):
             
         safe_description = escape(raw_desc)
         
-        preview_html = f"""<div class="published-page-frame-wrapper">
-                                    <iframe src="{safe_url}" title="Prévia do site {safe_name}" class="published-page-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+        safe_preview_image = escape(str(page.get("preview_image") or DEFAULT_PREVIEW_IMAGE), quote=True)
+        preview_html = f"""<div class="published-page-image-wrapper">
+                                    <img src="{safe_preview_image}" alt="Prévia visual de {safe_name}" class="published-page-image" loading="lazy">
                                 </div>"""
         
         items_html += f"""
@@ -643,6 +670,19 @@ def generate_project_html(project, is_last=False, position="left"):
     safe_name = escape(str(name))
     safe_description = escape(str(description))
     safe_html_url = escape(str(html_url), quote=True)
+    language = project.get("language", "")
+    language_color = GITHUB_LANGUAGE_COLORS.get(language, "#8b8b8b") if language else ""
+    stars = project.get("stargazers_count", 0)
+    forks = project.get("forks_count", 0)
+    topics = ",".join(project.get("topics", []))
+    language_badge_html = ""
+    if language:
+        safe_language = escape(str(language))
+        safe_language_color = escape(str(language_color), quote=True)
+        language_badge_html = f"""<span class="timeline-card-language">
+                                    <span class="timeline-card-language-dot" style="background: {safe_language_color};"></span>
+                                    {safe_language}
+                                </span>"""
 
     # format updated_at if present
     updated_str = "Data indisponível"
@@ -712,7 +752,7 @@ def generate_project_html(project, is_last=False, position="left"):
     html = f"""
                     <article class="timeline-item">
                         <span class="timeline-dot" aria-hidden="true"></span>
-                        <div class="timeline-card">
+                        <div class="timeline-card" data-language="{escape(str(language), quote=True)}" data-language-color="{escape(str(language_color), quote=True)}" data-stars="{stars}" data-forks="{forks}" data-topics="{escape(topics, quote=True)}">
                             {meta_html}
 
                             <div class="timeline-card-image-wrapper">
@@ -723,6 +763,7 @@ def generate_project_html(project, is_last=False, position="left"):
                                 <h3 class="timeline-card-heading">
                                     {title_html}
                                 </h3>
+                                {language_badge_html}
                                 <p class="timeline-card-description">{safe_description}</p>
                                 {access_note_html}
                             </div>
@@ -1298,7 +1339,7 @@ def update_index_html(projects_html, pages_html=""):
 
 
 def sanitize_existing_project_images(
-    file_path="index.html", placeholder="./assets/css/images/icon.png"
+    file_path="index.html", placeholder=DEFAULT_PREVIEW_IMAGE
 ):
     """Replace owner avatar image URLs with a local placeholder inside the projects block.
     Returns count of replacements.
@@ -1492,7 +1533,7 @@ def main():
                 print(f"      ✓ Using image: {img[:70]}...")
         else:
             # fallback to local placeholder
-            img = "./assets/css/images/icon.png"
+            img = DEFAULT_PREVIEW_IMAGE
             print("      └─ Using placeholder")
 
         # attach to project for template

@@ -301,12 +301,22 @@ class TestGitHubPagesLinks:
                 "html_url": "https://github.com/joaosnet/private-pages",
                 "owner": {"login": "joaosnet"},
             },
+            {
+                "name": "demo",
+                "private": False,
+                "homepage": "",
+                "has_pages": True,
+                "html_url": "https://github.com/joaosnet/demo",
+                "description": "Demo page",
+                "updated_at": "2026-04-02T00:00:00Z",
+                "owner": {"login": "joaosnet"},
+            },
         ]
 
         pages = collect_public_pages_links(repos)
 
         assert len(pages) == 1
-        assert pages[0]["url"] == "https://joaosnet.github.io/"
+        assert pages[0]["url"] == "https://joaosnet.github.io/demo/"
 
     def test_generate_pages_links_html(self):
         pages = [
@@ -314,6 +324,7 @@ class TestGitHubPagesLinks:
                 "name": "cartilha_dash",
                 "url": "https://joaosnet.github.io/cartilha_dash/",
                 "description": "Cartilha pública",
+                "preview_image": "./assets/images/favicon.png",
             }
         ]
 
@@ -322,9 +333,8 @@ class TestGitHubPagesLinks:
         assert "published-pages-list" in html
         assert "cartilha_dash" in html
         assert "https://joaosnet.github.io/cartilha_dash/" in html
-        assert "published-page-frame" in html
-        assert "<iframe" in html
-        assert "published-page-image" not in html
+        assert "published-page-image" in html
+        assert "<iframe" not in html
         assert "Abrir site" in html
 
 

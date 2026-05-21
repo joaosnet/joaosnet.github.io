@@ -1,0 +1,19 @@
+{
+  "name": "Joao Silva Neto | Portfólio",
+  "short_name": "Joao Silva Neto",
+  "description": "Portfólio profissional de João Silva Neto.",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "assets/images/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
