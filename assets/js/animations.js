@@ -1,6 +1,9 @@
 /**
  * Animations Handler - Scroll animations and observers
  */
+/**
+ * Animations Handler - Scroll animations and observers
+ */
 class AnimationsHandler {
     constructor() {
         this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -11,6 +14,7 @@ class AnimationsHandler {
         this.setupScrollAnimations();
         this.setupHeaderScrollEffect();
         this.setupSmoothScrolling();
+        this.setup3DTilt();
     }
 
     setupHeaderScrollEffect() {
@@ -40,30 +44,57 @@ class AnimationsHandler {
             return;
         }
 
-        // Observer for hidden elements
+        // Observer for hidden elements with staggered delay
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+            let delay = 0;
+            // Sort intersecting entries horizontally and vertically to stagger animations nicely
+            const visibleEntries = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => {
+                    const rectA = a.target.getBoundingClientRect();
+                    const rectB = b.target.getBoundingClientRect();
+                    return (rectA.left - rectB.left) || (rectA.top - rectB.top);
+                });
+
+            visibleEntries.forEach((entry) => {
+                const el = entry.target;
+                if (!el.classList.contains('show')) {
+                    setTimeout(() => {
+                        el.classList.add('show');
+                    }, delay);
+                    delay += 100; // Increment delay for stagger effect
                 }
             });
         }, {
-            threshold: 0.15,
-            rootMargin: '0px 0px -50px 0px'
+            threshold: 0.1,
+            rootMargin: '0px 100px -30px 100px' // Expanded horizontal margin for horizontal scrolling
         });
 
         hiddenElements.forEach((el) => observer.observe(el));
 
         // Observer for timeline items
         const timelineObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+            let delay = 0;
+            const visibleEntries = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => {
+                    const rectA = a.target.getBoundingClientRect();
+                    const rectB = b.target.getBoundingClientRect();
+                    return (rectA.left - rectB.left) || (rectA.top - rectB.top);
+                });
+
+            visibleEntries.forEach((entry) => {
+                const el = entry.target;
+                if (!el.classList.contains('show')) {
+                    setTimeout(() => {
+                        el.classList.add('show');
+                    }, delay);
+                    delay += 120;
                 }
             });
         }, {
-            threshold: 0.2,
-            rootMargin: '0px'
+            threshold: 0.1,
+            rootMargin: '0px 100px 0px 100px'
         });
 
         timelineItems.forEach((item) => timelineObserver.observe(item));
@@ -180,6 +211,58 @@ class AnimationsHandler {
         if (mobileMenuHandler) {
             mobileMenuHandler.closeMenu();
         }
+    }
+
+    setup3DTilt() {
+        // Disabilitar se o usuário prefere movimento reduzido ou em dispositivos com toque
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (this.prefersReducedMotion.matches || isTouchDevice) {
+            return;
+        }
+
+        const cards = document.querySelectorAll('.feature-card, .timeline-card');
+        
+        cards.forEach(card => {
+            // Adicionar a classe tilt-card do CSS para prepará-lo
+            card.classList.add('tilt-card');
+            
+            // Criar o elemento de glare reflexivo dinamicamente se não existir
+            let glare = card.querySelector('.tilt-glare');
+            if (!glare) {
+                glare = document.createElement('div');
+                glare.className = 'tilt-glare';
+                card.appendChild(glare);
+            }
+            
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left; // posição X
+                const y = e.clientY - rect.top;  // posição Y
+                
+                // Posição normalizada de -1 a 1 em relação ao centro
+                const percentX = (x / rect.width) * 2 - 1;
+                const percentY = (y / rect.height) * 2 - 1;
+                
+                // Graus de rotação máxima
+                const maxRotation = 10; // inclinação suave
+                const rotateX = (-percentY * maxRotation).toFixed(2);
+                const rotateY = (percentX * maxRotation).toFixed(2);
+                
+                // Aplicar transform tridimensional e perspectiva
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+                
+                // Mover a luz de glare radial
+                const glareX = (x / rect.width) * 100;
+                const glareY = (y / rect.height) * 100;
+                glare.style.background = `radial-gradient(circle at ${glareX}% ${glareY}%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 65%)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+                // Glare voltando ao padrão
+                glare.style.background = `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%)`;
+            });
+        });
     }
 }
 

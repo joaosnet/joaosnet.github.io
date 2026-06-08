@@ -36,7 +36,7 @@
       "source_file": "update_projects.py",
       "source_location": "L174",
       "id": "joaosnet_github_io_update_projects_mask_repo_name",
-      "community": 28,
+      "community": 12,
       "norm_label": "mask_repo_name()"
     },
     {
@@ -144,7 +144,7 @@
       "source_file": "update_projects.py",
       "source_location": "L1135",
       "id": "joaosnet_github_io_update_projects_find_repo_preview_image",
-      "community": 28,
+      "community": 12,
       "norm_label": "find_repo_preview_image()"
     },
     {
@@ -162,7 +162,7 @@
       "source_file": "update_projects.py",
       "source_location": "L1341",
       "id": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
-      "community": 31,
+      "community": 22,
       "norm_label": "sanitize_existing_project_images()"
     },
     {
@@ -216,7 +216,7 @@
       "source_file": "update_projects.py",
       "source_location": "L175",
       "id": "joaosnet_github_io_update_projects_rationale_175",
-      "community": 28,
+      "community": 12,
       "norm_label": "mask repository name if it's private to avoid leaking info in logs."
     },
     {
@@ -315,7 +315,7 @@
       "source_file": "update_projects.py",
       "source_location": "L1136",
       "id": "joaosnet_github_io_update_projects_rationale_1136",
-      "community": 28,
+      "community": 12,
       "norm_label": "find the best preview image for a repository.      strategy (in order):     1"
     },
     {
@@ -324,7 +324,7 @@
       "source_file": "update_projects.py",
       "source_location": "L1344",
       "id": "joaosnet_github_io_update_projects_rationale_1344",
-      "community": 31,
+      "community": 22,
       "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo"
     },
     {
@@ -385,7 +385,7 @@
       "label": "AnimationsHandler",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L4",
+      "source_location": "L7",
       "id": "js_animations_animationshandler",
       "community": 9,
       "norm_label": "animationshandler"
@@ -394,7 +394,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L5",
+      "source_location": "L8",
       "id": "js_animations_animationshandler_constructor",
       "community": 9,
       "norm_label": ".constructor()"
@@ -403,7 +403,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L10",
+      "source_location": "L13",
       "id": "js_animations_animationshandler_init",
       "community": 9,
       "norm_label": ".init()"
@@ -412,7 +412,7 @@
       "label": ".setupHeaderScrollEffect()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L16",
+      "source_location": "L20",
       "id": "js_animations_animationshandler_setupheaderscrolleffect",
       "community": 9,
       "norm_label": ".setupheaderscrolleffect()"
@@ -421,7 +421,7 @@
       "label": ".setupScrollAnimations()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L33",
+      "source_location": "L37",
       "id": "js_animations_animationshandler_setupscrollanimations",
       "community": 9,
       "norm_label": ".setupscrollanimations()"
@@ -430,7 +430,7 @@
       "label": ".setupSmoothScrolling()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L72",
+      "source_location": "L103",
       "id": "js_animations_animationshandler_setupsmoothscrolling",
       "community": 9,
       "norm_label": ".setupsmoothscrolling()"
@@ -439,7 +439,7 @@
       "label": ".getTargetElement()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L91",
+      "source_location": "L122",
       "id": "js_animations_animationshandler_gettargetelement",
       "community": 9,
       "norm_label": ".gettargetelement()"
@@ -448,7 +448,7 @@
       "label": ".scrollToTarget()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L103",
+      "source_location": "L134",
       "id": "js_animations_animationshandler_scrolltotarget",
       "community": 9,
       "norm_label": ".scrolltotarget()"
@@ -457,7 +457,7 @@
       "label": ".getScrollBehavior()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L138",
+      "source_location": "L169",
       "id": "js_animations_animationshandler_getscrollbehavior",
       "community": 9,
       "norm_label": ".getscrollbehavior()"
@@ -466,7 +466,7 @@
       "label": ".updateUrlHash()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L142",
+      "source_location": "L173",
       "id": "js_animations_animationshandler_updateurlhash",
       "community": 9,
       "norm_label": ".updateurlhash()"
@@ -475,7 +475,7 @@
       "label": ".focusTarget()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L154",
+      "source_location": "L185",
       "id": "js_animations_animationshandler_focustarget",
       "community": 9,
       "norm_label": ".focustarget()"
@@ -484,10 +484,19 @@
       "label": ".closeMobileMenu()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L174",
+      "source_location": "L205",
       "id": "js_animations_animationshandler_closemobilemenu",
       "community": 9,
       "norm_label": ".closemobilemenu()"
+    },
+    {
+      "label": ".setup3DTilt()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L216",
+      "id": "js_animations_animationshandler_setup3dtilt",
+      "community": 9,
+      "norm_label": ".setup3dtilt()"
     },
     {
       "label": "contact-form.js",
@@ -763,7 +772,7 @@
       "label": ".refreshSections()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L71",
+      "source_location": "L73",
       "id": "js_horizontal_scroll_horizontalscrollhandler_refreshsections",
       "community": 1,
       "norm_label": ".refreshsections()"
@@ -772,7 +781,7 @@
       "label": ".refreshNavLinks()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L75",
+      "source_location": "L77",
       "id": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks",
       "community": 1,
       "norm_label": ".refreshnavlinks()"
@@ -781,7 +790,7 @@
       "label": ".setupScrollRestoration()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L79",
+      "source_location": "L81",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration",
       "community": 1,
       "norm_label": ".setupscrollrestoration()"
@@ -790,7 +799,7 @@
       "label": ".setupTouchHorizontalScroll()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L86",
+      "source_location": "L88",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll",
       "community": 1,
       "norm_label": ".setuptouchhorizontalscroll()"
@@ -799,7 +808,7 @@
       "label": ".handleTouchMove()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L124",
+      "source_location": "L126",
       "id": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
       "community": 1,
       "norm_label": ".handletouchmove()"
@@ -808,7 +817,7 @@
       "label": ".setupVerticalToHorizontalScroll()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L174",
+      "source_location": "L176",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll",
       "community": 1,
       "norm_label": ".setupverticaltohorizontalscroll()"
@@ -817,7 +826,7 @@
       "label": ".handleWheel()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L181",
+      "source_location": "L183",
       "id": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
       "community": 1,
       "norm_label": ".handlewheel()"
@@ -826,7 +835,7 @@
       "label": ".getWheelIntent()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L210",
+      "source_location": "L212",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent",
       "community": 1,
       "norm_label": ".getwheelintent()"
@@ -835,7 +844,7 @@
       "label": ".normalizeWheelDelta()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L225",
+      "source_location": "L227",
       "id": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta",
       "community": 1,
       "norm_label": ".normalizewheeldelta()"
@@ -844,7 +853,7 @@
       "label": ".scrollNestedHorizontalArea()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L237",
+      "source_location": "L239",
       "id": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
       "community": 1,
       "norm_label": ".scrollnestedhorizontalarea()"
@@ -853,7 +862,7 @@
       "label": ".findScrollableParent()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L267",
+      "source_location": "L243",
       "id": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent",
       "community": 1,
       "norm_label": ".findscrollableparent()"
@@ -862,7 +871,7 @@
       "label": ".hasScrollableOverflow()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L281",
+      "source_location": "L257",
       "id": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow",
       "community": 1,
       "norm_label": ".hasscrollableoverflow()"
@@ -871,7 +880,7 @@
       "label": ".canElementScroll()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L291",
+      "source_location": "L267",
       "id": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll",
       "community": 1,
       "norm_label": ".canelementscroll()"
@@ -880,7 +889,7 @@
       "label": ".canScrollHorizontally()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L301",
+      "source_location": "L277",
       "id": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
       "community": 1,
       "norm_label": ".canscrollhorizontally()"
@@ -889,7 +898,7 @@
       "label": ".scrollHorizontally()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L310",
+      "source_location": "L286",
       "id": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally",
       "community": 1,
       "norm_label": ".scrollhorizontally()"
@@ -898,7 +907,7 @@
       "label": ".pauseScrollSnap()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L320",
+      "source_location": "L296",
       "id": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap",
       "community": 1,
       "norm_label": ".pausescrollsnap()"
@@ -907,7 +916,7 @@
       "label": ".getCurrentSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L332",
+      "source_location": "L308",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getcurrentsection",
       "community": 1,
       "norm_label": ".getcurrentsection()"
@@ -916,7 +925,7 @@
       "label": ".getNearestSectionIndex()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L336",
+      "source_location": "L312",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
       "community": 1,
       "norm_label": ".getnearestsectionindex()"
@@ -925,7 +934,7 @@
       "label": ".getScrollX()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L355",
+      "source_location": "L331",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getscrollx",
       "community": 1,
       "norm_label": ".getscrollx()"
@@ -934,7 +943,7 @@
       "label": ".getMaxScrollX()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L363",
+      "source_location": "L339",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx",
       "community": 1,
       "norm_label": ".getmaxscrollx()"
@@ -943,7 +952,7 @@
       "label": ".getViewportWidth()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L374",
+      "source_location": "L350",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth",
       "community": 1,
       "norm_label": ".getviewportwidth()"
@@ -952,7 +961,7 @@
       "label": ".createScrollIndicator()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L382",
+      "source_location": "L358",
       "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator",
       "community": 1,
       "norm_label": ".createscrollindicator()"
@@ -961,7 +970,7 @@
       "label": ".createScrollHint()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L408",
+      "source_location": "L384",
       "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint",
       "community": 1,
       "norm_label": ".createscrollhint()"
@@ -970,7 +979,7 @@
       "label": ".getSectionLabel()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L416",
+      "source_location": "L392",
       "id": "js_horizontal_scroll_horizontalscrollhandler_getsectionlabel",
       "community": 1,
       "norm_label": ".getsectionlabel()"
@@ -979,7 +988,7 @@
       "label": ".setupScrollListener()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L427",
+      "source_location": "L403",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener",
       "community": 1,
       "norm_label": ".setupscrolllistener()"
@@ -988,7 +997,7 @@
       "label": ".setupScrollEndListener()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L442",
+      "source_location": "L418",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener",
       "community": 1,
       "norm_label": ".setupscrollendlistener()"
@@ -997,7 +1006,7 @@
       "label": ".handleSettledScroll()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L458",
+      "source_location": "L434",
       "id": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
       "community": 1,
       "norm_label": ".handlesettledscroll()"
@@ -1006,7 +1015,7 @@
       "label": ".setupSectionObserver()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L465",
+      "source_location": "L441",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver",
       "community": 1,
       "norm_label": ".setupsectionobserver()"
@@ -1015,7 +1024,7 @@
       "label": ".setupDotClicks()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L499",
+      "source_location": "L475",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks",
       "community": 1,
       "norm_label": ".setupdotclicks()"
@@ -1024,7 +1033,7 @@
       "label": ".scrollToSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L509",
+      "source_location": "L485",
       "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
       "community": 1,
       "norm_label": ".scrolltosection()"
@@ -1033,16 +1042,25 @@
       "label": ".updateActiveSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L533",
+      "source_location": "L509",
       "id": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
       "community": 1,
       "norm_label": ".updateactivesection()"
     },
     {
+      "label": ".updateProgressBar()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L514",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
+      "community": 1,
+      "norm_label": ".updateprogressbar()"
+    },
+    {
       "label": ".setCurrentSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L537",
+      "source_location": "L526",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
       "community": 1,
       "norm_label": ".setcurrentsection()"
@@ -1051,7 +1069,7 @@
       "label": ".revealSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L549",
+      "source_location": "L538",
       "id": "js_horizontal_scroll_horizontalscrollhandler_revealsection",
       "community": 1,
       "norm_label": ".revealsection()"
@@ -1060,7 +1078,7 @@
       "label": ".updateDots()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L559",
+      "source_location": "L548",
       "id": "js_horizontal_scroll_horizontalscrollhandler_updatedots",
       "community": 1,
       "norm_label": ".updatedots()"
@@ -1069,7 +1087,7 @@
       "label": ".updateNavLinks()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L573",
+      "source_location": "L562",
       "id": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks",
       "community": 1,
       "norm_label": ".updatenavlinks()"
@@ -1078,7 +1096,7 @@
       "label": ".scrollToInitialHash()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L594",
+      "source_location": "L583",
       "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash",
       "community": 1,
       "norm_label": ".scrolltoinitialhash()"
@@ -1087,7 +1105,7 @@
       "label": ".restoreInitialPosition()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L623",
+      "source_location": "L612",
       "id": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition",
       "community": 1,
       "norm_label": ".restoreinitialposition()"
@@ -1096,7 +1114,7 @@
       "label": ".updateHash()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L642",
+      "source_location": "L631",
       "id": "js_horizontal_scroll_horizontalscrollhandler_updatehash",
       "community": 1,
       "norm_label": ".updatehash()"
@@ -1105,7 +1123,7 @@
       "label": ".showScrollHint()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L654",
+      "source_location": "L643",
       "id": "js_horizontal_scroll_horizontalscrollhandler_showscrollhint",
       "community": 1,
       "norm_label": ".showscrollhint()"
@@ -1114,7 +1132,7 @@
       "label": ".setupKeyboardNavigation()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L665",
+      "source_location": "L654",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation",
       "community": 1,
       "norm_label": ".setupkeyboardnavigation()"
@@ -1123,7 +1141,7 @@
       "label": ".setupResizeListener()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L696",
+      "source_location": "L685",
       "id": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener",
       "community": 1,
       "norm_label": ".setupresizelistener()"
@@ -1132,7 +1150,7 @@
       "label": ".hideScrollHint()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L710",
+      "source_location": "L699",
       "id": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint",
       "community": 1,
       "norm_label": ".hidescrollhint()"
@@ -1141,7 +1159,7 @@
       "label": ".next()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L716",
+      "source_location": "L705",
       "id": "js_horizontal_scroll_horizontalscrollhandler_next",
       "community": 1,
       "norm_label": ".next()"
@@ -1150,7 +1168,7 @@
       "label": ".previous()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L722",
+      "source_location": "L711",
       "id": "js_horizontal_scroll_horizontalscrollhandler_previous",
       "community": 1,
       "norm_label": ".previous()"
@@ -1719,7 +1737,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L17",
       "id": "tests_test_env_variables_testenvfile",
-      "community": 22,
+      "community": 2,
       "norm_label": "testenvfile"
     },
     {
@@ -1728,7 +1746,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L20",
       "id": "tests_test_env_variables_testenvfile_test_env_file_exists",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_file_exists()"
     },
     {
@@ -1737,7 +1755,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L25",
       "id": "tests_test_env_variables_testenvfile_test_env_example_file_exists",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_example_file_exists()"
     },
     {
@@ -1746,7 +1764,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L30",
       "id": "tests_test_env_variables_testenvfile_test_env_is_in_gitignore",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_is_in_gitignore()"
     },
     {
@@ -1755,7 +1773,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L40",
       "id": "tests_test_env_variables_testenvfile_test_env_not_empty",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_not_empty()"
     },
     {
@@ -1764,7 +1782,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L54",
       "id": "tests_test_env_variables_testenvfile_test_env_example_has_required_variables",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_example_has_required_variables()"
     },
     {
@@ -1773,7 +1791,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L72",
       "id": "tests_test_env_variables_testenvfile_test_env_file_has_required_token",
-      "community": 22,
+      "community": 2,
       "norm_label": ".test_env_file_has_required_token()"
     },
     {
@@ -1899,7 +1917,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L18",
       "id": "tests_test_env_variables_rationale_18",
-      "community": 22,
+      "community": 2,
       "norm_label": "testes para arquivo .env"
     },
     {
@@ -1908,7 +1926,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L21",
       "id": "tests_test_env_variables_rationale_21",
-      "community": 22,
+      "community": 2,
       "norm_label": "arquivo .env deve existir"
     },
     {
@@ -1917,7 +1935,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L26",
       "id": "tests_test_env_variables_rationale_26",
-      "community": 22,
+      "community": 2,
       "norm_label": "arquivo .env.example deve existir"
     },
     {
@@ -1926,7 +1944,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L31",
       "id": "tests_test_env_variables_rationale_31",
-      "community": 22,
+      "community": 2,
       "norm_label": ".env deve estar no .gitignore"
     },
     {
@@ -1935,7 +1953,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L41",
       "id": "tests_test_env_variables_rationale_41",
-      "community": 22,
+      "community": 2,
       "norm_label": "arquivo .env nao deve estar vazio (deve ter variaveis)"
     },
     {
@@ -1944,7 +1962,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L55",
       "id": "tests_test_env_variables_rationale_55",
-      "community": 22,
+      "community": 2,
       "norm_label": ".env.example deve ter todas as variaveis necessarias"
     },
     {
@@ -1953,7 +1971,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L73",
       "id": "tests_test_env_variables_rationale_73",
-      "community": 22,
+      "community": 2,
       "norm_label": "arquivo .env deve ter pelo menos private_repos_token configurado"
     },
     {
@@ -2403,7 +2421,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L265",
       "id": "tests_test_site_structure_testassetdirectories",
-      "community": 12,
+      "community": 3,
       "norm_label": "testassetdirectories"
     },
     {
@@ -2412,7 +2430,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L268",
       "id": "tests_test_site_structure_testassetdirectories_test_project_images_dir_exists",
-      "community": 12,
+      "community": 3,
       "norm_label": ".test_project_images_dir_exists()"
     },
     {
@@ -2421,7 +2439,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L273",
       "id": "tests_test_site_structure_testassetdirectories_test_webfonts_dir_exists",
-      "community": 12,
+      "community": 3,
       "norm_label": ".test_webfonts_dir_exists()"
     },
     {
@@ -2430,7 +2448,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L278",
       "id": "tests_test_site_structure_testassetdirectories_test_images_dir_exists",
-      "community": 12,
+      "community": 3,
       "norm_label": ".test_images_dir_exists()"
     },
     {
@@ -2439,7 +2457,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L283",
       "id": "tests_test_site_structure_testassetdirectories_test_cv_pdf_exists",
-      "community": 12,
+      "community": 3,
       "norm_label": ".test_cv_pdf_exists()"
     },
     {
@@ -2709,7 +2727,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L266",
       "id": "tests_test_site_structure_rationale_266",
-      "community": 12,
+      "community": 3,
       "norm_label": "testes para validar diretorios de assets"
     },
     {
@@ -2718,7 +2736,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L269",
       "id": "tests_test_site_structure_rationale_269",
-      "community": 12,
+      "community": 3,
       "norm_label": "diretorio de imagens de projetos deve existir"
     },
     {
@@ -2727,7 +2745,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L274",
       "id": "tests_test_site_structure_rationale_274",
-      "community": 12,
+      "community": 3,
       "norm_label": "diretorio de webfonts deve existir"
     },
     {
@@ -2736,7 +2754,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L279",
       "id": "tests_test_site_structure_rationale_279",
-      "community": 12,
+      "community": 3,
       "norm_label": "diretorio de imagens gerais deve existir"
     },
     {
@@ -2745,7 +2763,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L284",
       "id": "tests_test_site_structure_rationale_284",
-      "community": 12,
+      "community": 3,
       "norm_label": "arquivo de curriculo deve existir"
     },
     {
@@ -3788,7 +3806,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L154",
-      "community": 28,
+      "community": 12,
       "norm_label": "mask repository name if it's private to avoid leaking info in logs.",
       "id": "joaosnet_github_io_update_projects_rationale_154"
     },
@@ -3887,7 +3905,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L1095",
-      "community": 28,
+      "community": 12,
       "norm_label": "find the best preview image for a repository.      strategy (in order):     1",
       "id": "joaosnet_github_io_update_projects_rationale_1095"
     },
@@ -3896,7 +3914,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L1303",
-      "community": 31,
+      "community": 22,
       "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo",
       "id": "joaosnet_github_io_update_projects_rationale_1303"
     },
@@ -4311,9 +4329,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1042",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1042",
-      "target": "update_projects_py",
-      "confidence_score": 1.0
+      "target": "update_projects_py"
     },
     {
       "relation": "rationale_for",
@@ -4383,9 +4401,9 @@
       "source_file": "update_projects.py",
       "source_location": "L67",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_67",
-      "target": "joaosnet_github_io_update_projects_detect_language",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_detect_language"
     },
     {
       "relation": "calls",
@@ -4480,9 +4498,9 @@
       "source_file": "update_projects.py",
       "source_location": "L107",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_107",
-      "target": "joaosnet_github_io_update_projects_translate_to_portuguese",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_translate_to_portuguese"
     },
     {
       "relation": "calls",
@@ -4555,9 +4573,9 @@
       "source_file": "update_projects.py",
       "source_location": "L175",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_175",
-      "target": "joaosnet_github_io_update_projects_mask_repo_name",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_mask_repo_name"
     },
     {
       "relation": "calls",
@@ -4608,9 +4626,9 @@
       "source_file": "update_projects.py",
       "source_location": "L185",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_185",
-      "target": "joaosnet_github_io_update_projects_check_user_contributed",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_check_user_contributed"
     },
     {
       "relation": "rationale_for",
@@ -4661,9 +4679,9 @@
       "source_file": "update_projects.py",
       "source_location": "L316",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_316",
-      "target": "joaosnet_github_io_update_projects_get_api_token",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_get_api_token"
     },
     {
       "relation": "calls",
@@ -4703,9 +4721,9 @@
       "source_file": "update_projects.py",
       "source_location": "L321",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_321",
-      "target": "joaosnet_github_io_update_projects_fetch_projects",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_fetch_projects"
     },
     {
       "relation": "rationale_for",
@@ -4734,9 +4752,9 @@
       "source_file": "update_projects.py",
       "source_location": "L511",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_511",
-      "target": "joaosnet_github_io_update_projects_normalize_url",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_normalize_url"
     },
     {
       "relation": "rationale_for",
@@ -4776,9 +4794,9 @@
       "source_file": "update_projects.py",
       "source_location": "L526",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_526",
-      "target": "joaosnet_github_io_update_projects_get_github_pages_url",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_get_github_pages_url"
     },
     {
       "relation": "calls",
@@ -4862,9 +4880,9 @@
       "source_file": "update_projects.py",
       "source_location": "L564",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_564",
-      "target": "joaosnet_github_io_update_projects_collect_public_pages_links",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_collect_public_pages_links"
     },
     {
       "relation": "calls",
@@ -4904,9 +4922,9 @@
       "source_file": "update_projects.py",
       "source_location": "L604",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_604",
-      "target": "joaosnet_github_io_update_projects_generate_pages_links_html",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_generate_pages_links_html"
     },
     {
       "relation": "calls",
@@ -5111,9 +5129,9 @@
       "source_file": "update_projects.py",
       "source_location": "L782",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_782",
-      "target": "joaosnet_github_io_update_projects_download_image_for_private_repo",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_download_image_for_private_repo"
     },
     {
       "relation": "rationale_for",
@@ -5142,9 +5160,9 @@
       "source_file": "update_projects.py",
       "source_location": "L916",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_916",
-      "target": "joaosnet_github_io_update_projects_get_repo_default_branch",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_get_repo_default_branch"
     },
     {
       "relation": "rationale_for",
@@ -5173,9 +5191,9 @@
       "source_file": "update_projects.py",
       "source_location": "L944",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_944",
-      "target": "joaosnet_github_io_update_projects_find_image_in_readme",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_find_image_in_readme"
     },
     {
       "relation": "rationale_for",
@@ -5204,9 +5222,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1136",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1136",
-      "target": "joaosnet_github_io_update_projects_find_repo_preview_image",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_find_repo_preview_image"
     },
     {
       "relation": "rationale_for",
@@ -5246,9 +5264,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1344",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1344",
-      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images"
     },
     {
       "relation": "rationale_for",
@@ -5277,9 +5295,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1391",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1391",
-      "target": "joaosnet_github_io_update_projects_commit_downloaded_images",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_commit_downloaded_images"
     },
     {
       "relation": "rationale_for",
@@ -5297,9 +5315,9 @@
       "source_file": ".codex/hooks.json",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_hooks_json",
-      "target": "codex_hooks_hooks",
-      "confidence_score": 1.0
+      "target": "codex_hooks_hooks"
     },
     {
       "relation": "contains",
@@ -5307,9 +5325,9 @@
       "source_file": ".codex/hooks.json",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_hooks_hooks",
-      "target": "codex_hooks_hooks_pretooluse",
-      "confidence_score": 1.0
+      "target": "codex_hooks_hooks_pretooluse"
     },
     {
       "relation": "contains",
@@ -5432,6 +5450,16 @@
       "target": "js_animations_animationshandler_closemobilemenu"
     },
     {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L216",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_animations_animationshandler",
+      "target": "js_animations_animationshandler_setup3dtilt"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -5474,6 +5502,17 @@
       "confidence_score": 1.0,
       "source": "js_animations_animationshandler_init",
       "target": "js_animations_animationshandler_setupsmoothscrolling"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_animations_animationshandler_init",
+      "target": "js_animations_animationshandler_setup3dtilt"
     },
     {
       "relation": "calls",
@@ -6044,9 +6083,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L86",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
     },
     {
       "relation": "method",
@@ -6054,9 +6093,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove"
     },
     {
       "relation": "method",
@@ -6322,6 +6361,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L543",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L440",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6565,9 +6614,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
     },
     {
       "relation": "calls",
@@ -6629,11 +6678,22 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L157",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
     },
     {
       "relation": "calls",
@@ -6642,9 +6702,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L165",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
     },
     {
       "relation": "calls",
@@ -6653,9 +6713,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
     },
     {
       "relation": "calls",
@@ -6664,9 +6724,9 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L171",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap",
-      "confidence_score": 1.0
+      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
     },
     {
       "relation": "calls",
@@ -6871,6 +6931,28 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L545",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L546",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L364",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6953,6 +7035,17 @@
       "confidence_score": 1.0,
       "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
       "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L540",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
     },
     {
       "relation": "calls",
@@ -7601,9 +7694,9 @@
       "source_file": "assets/js/theme-selector.js",
       "source_location": "L353",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_theme_selector_themeselector",
-      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel",
-      "confidence_score": 1.0
+      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel"
     },
     {
       "relation": "method",
@@ -7699,9 +7792,9 @@
       "source_file": "assets/js/theme-selector.js",
       "source_location": "L228",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_theme_selector_themeselector_addthemeselectorbutton",
-      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel",
-      "confidence_score": 1.0
+      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel"
     },
     {
       "relation": "calls",
@@ -7754,9 +7847,9 @@
       "source_file": "assets/js/theme-selector.js",
       "source_location": "L338",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_theme_selector_themeselector_applytheme",
-      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel",
-      "confidence_score": 1.0
+      "target": "js_theme_selector_themeselector_updateselectorbuttonlabel"
     },
     {
       "relation": "contains",
@@ -9596,9 +9689,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L342",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_342",
-      "target": "tests_test_update_projects_testprojectvalidation",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testprojectvalidation"
     },
     {
       "relation": "rationale_for",
@@ -9616,9 +9709,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L345",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_345",
-      "target": "tests_test_update_projects_testprojectvalidation_test_project_with_all_fields",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testprojectvalidation_test_project_with_all_fields"
     },
     {
       "relation": "rationale_for",
@@ -9636,9 +9729,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L362",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_362",
-      "target": "tests_test_update_projects_testprojectvalidation_test_project_with_minimal_fields",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testprojectvalidation_test_project_with_minimal_fields"
     },
     {
       "relation": "rationale_for",
@@ -9656,9 +9749,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L376",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_376",
-      "target": "tests_test_update_projects_testprojectvalidation_test_project_date_format",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testprojectvalidation_test_project_date_format"
     },
     {
       "relation": "rationale_for",
@@ -9706,9 +9799,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L392",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_392",
-      "target": "tests_test_update_projects_testedgecases",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testedgecases"
     },
     {
       "relation": "rationale_for",
@@ -9726,9 +9819,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L395",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_395",
-      "target": "tests_test_update_projects_testedgecases_test_special_characters_in_description",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testedgecases_test_special_characters_in_description"
     },
     {
       "relation": "rationale_for",
@@ -9746,9 +9839,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L410",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_410",
-      "target": "tests_test_update_projects_testedgecases_test_very_long_description",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testedgecases_test_very_long_description"
     },
     {
       "relation": "rationale_for",
@@ -9766,9 +9859,9 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L425",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_test_update_projects_rationale_425",
-      "target": "tests_test_update_projects_testedgecases_test_project_with_none_image",
-      "confidence_score": 1.0
+      "target": "tests_test_update_projects_testedgecases_test_project_with_none_image"
     },
     {
       "relation": "rationale_for",
@@ -9786,9 +9879,9 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_md",
-      "target": "joaosnet_github_io_agents_graphify",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_agents_graphify"
     },
     {
       "relation": "references",
@@ -9826,9 +9919,9 @@
       "source_file": ".agents/rules/graphify.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_rules_graphify_md",
-      "target": "rules_graphify_graphify",
-      "confidence_score": 1.0
+      "target": "rules_graphify_graphify"
     },
     {
       "relation": "contains",
@@ -9836,9 +9929,9 @@
       "source_file": ".agents/workflows/graphify.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "agents_workflows_graphify_md",
-      "target": "workflows_graphify_workflow_graphify",
-      "confidence_score": 1.0
+      "target": "workflows_graphify_workflow_graphify"
     },
     {
       "relation": "contains",
@@ -9846,9 +9939,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_md",
-      "target": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "confidence_score": 1.0
+      "target": "codex_agents_github_copilot_instructions_for_joaosnet_github_io"
     },
     {
       "relation": "contains",
@@ -9856,9 +9949,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_project_overview",
-      "confidence_score": 1.0
+      "target": "codex_agents_project_overview"
     },
     {
       "relation": "contains",
@@ -9866,9 +9959,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_architecture_key_components",
-      "confidence_score": 1.0
+      "target": "codex_agents_architecture_key_components"
     },
     {
       "relation": "contains",
@@ -9876,9 +9969,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_critical_workflows",
-      "confidence_score": 1.0
+      "target": "codex_agents_critical_workflows"
     },
     {
       "relation": "contains",
@@ -9886,9 +9979,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L69",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_code_conventions_patterns",
-      "confidence_score": 1.0
+      "target": "codex_agents_code_conventions_patterns"
     },
     {
       "relation": "contains",
@@ -9896,9 +9989,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L187",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_development_guidelines",
-      "confidence_score": 1.0
+      "target": "codex_agents_development_guidelines"
     },
     {
       "relation": "contains",
@@ -9906,9 +9999,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L233",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_key_files",
-      "confidence_score": 1.0
+      "target": "codex_agents_key_files"
     },
     {
       "relation": "contains",
@@ -9916,9 +10009,9 @@
       "source_file": ".codex/AGENTS.md",
       "source_location": "L257",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
-      "target": "codex_agents_removed_files_no_longer_needed",
-      "confidence_score": 1.0
+      "target": "codex_agents_removed_files_no_longer_needed"
     },
     {
       "relation": "contains",
@@ -9926,9 +10019,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_md",
-      "target": "tests_testes_testes_locais_portfolio_website",
-      "confidence_score": 1.0
+      "target": "tests_testes_testes_locais_portfolio_website"
     },
     {
       "relation": "contains",
@@ -9936,9 +10029,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_quick_start",
-      "confidence_score": 1.0
+      "target": "tests_testes_quick_start"
     },
     {
       "relation": "contains",
@@ -9946,9 +10039,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_testes_dispon\u00edveis",
-      "confidence_score": 1.0
+      "target": "tests_testes_testes_dispon\u00edveis"
     },
     {
       "relation": "contains",
@@ -9956,9 +10049,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L68",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_resumo_de_comandos",
-      "confidence_score": 1.0
+      "target": "tests_testes_resumo_de_comandos"
     },
     {
       "relation": "contains",
@@ -9966,9 +10059,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L80",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_resultado_esperado",
-      "confidence_score": 1.0
+      "target": "tests_testes_resultado_esperado"
     },
     {
       "relation": "contains",
@@ -9976,9 +10069,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L88",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_configurando_vari\u00e1veis_de_ambiente",
-      "confidence_score": 1.0
+      "target": "tests_testes_configurando_vari\u00e1veis_de_ambiente"
     },
     {
       "relation": "contains",
@@ -9986,9 +10079,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L116",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_depend\u00eancias",
-      "confidence_score": 1.0
+      "target": "tests_testes_depend\u00eancias"
     },
     {
       "relation": "contains",
@@ -9996,9 +10089,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L130",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_adicionando_novos_testes",
-      "confidence_score": 1.0
+      "target": "tests_testes_adicionando_novos_testes"
     },
     {
       "relation": "contains",
@@ -10006,9 +10099,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L154",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_debugando_testes_falhando",
-      "confidence_score": 1.0
+      "target": "tests_testes_debugando_testes_falhando"
     },
     {
       "relation": "contains",
@@ -10016,9 +10109,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L169",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_locais_portfolio_website",
-      "target": "tests_testes_documenta\u00e7\u00e3o_adicional",
-      "confidence_score": 1.0
+      "target": "tests_testes_documenta\u00e7\u00e3o_adicional"
     },
     {
       "relation": "contains",
@@ -10026,9 +10119,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_quick_start",
-      "target": "tests_testes_executar_todos_os_testes",
-      "confidence_score": 1.0
+      "target": "tests_testes_executar_todos_os_testes"
     },
     {
       "relation": "contains",
@@ -10036,9 +10129,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_executar_todos_os_testes",
-      "target": "tests_testes_codeblock_1",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_1"
     },
     {
       "relation": "contains",
@@ -10046,9 +10139,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_dispon\u00edveis",
-      "target": "tests_testes_1_testes_unit\u00e1rios_tests_test_update_projects_py",
-      "confidence_score": 1.0
+      "target": "tests_testes_1_testes_unit\u00e1rios_tests_test_update_projects_py"
     },
     {
       "relation": "contains",
@@ -10056,9 +10149,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L32",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_dispon\u00edveis",
-      "target": "tests_testes_2_testes_de_estrutura_tests_test_site_structure_py",
-      "confidence_score": 1.0
+      "target": "tests_testes_2_testes_de_estrutura_tests_test_site_structure_py"
     },
     {
       "relation": "contains",
@@ -10066,9 +10159,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L51",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_testes_dispon\u00edveis",
-      "target": "tests_testes_3_testes_de_vari\u00e1veis_de_ambiente_tests_test_env_variables_py",
-      "confidence_score": 1.0
+      "target": "tests_testes_3_testes_de_vari\u00e1veis_de_ambiente_tests_test_env_variables_py"
     },
     {
       "relation": "contains",
@@ -10076,9 +10169,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_1_testes_unit\u00e1rios_tests_test_update_projects_py",
-      "target": "tests_testes_codeblock_2",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_2"
     },
     {
       "relation": "contains",
@@ -10086,9 +10179,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L47",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_2_testes_de_estrutura_tests_test_site_structure_py",
-      "target": "tests_testes_codeblock_3",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_3"
     },
     {
       "relation": "contains",
@@ -10096,9 +10189,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_3_testes_de_vari\u00e1veis_de_ambiente_tests_test_env_variables_py",
-      "target": "tests_testes_codeblock_4",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_4"
     },
     {
       "relation": "contains",
@@ -10106,9 +10199,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L84",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_resultado_esperado",
-      "target": "tests_testes_codeblock_5",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_5"
     },
     {
       "relation": "contains",
@@ -10116,9 +10209,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L90",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_configurando_vari\u00e1veis_de_ambiente",
-      "target": "tests_testes_primeiro_uso",
-      "confidence_score": 1.0
+      "target": "tests_testes_primeiro_uso"
     },
     {
       "relation": "contains",
@@ -10126,9 +10219,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L109",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_configurando_vari\u00e1veis_de_ambiente",
-      "target": "tests_testes_importante_seguran\u00e7a",
-      "confidence_score": 1.0
+      "target": "tests_testes_importante_seguran\u00e7a"
     },
     {
       "relation": "contains",
@@ -10136,9 +10229,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L93",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_primeiro_uso",
-      "target": "tests_testes_codeblock_6",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_6"
     },
     {
       "relation": "contains",
@@ -10146,9 +10239,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L98",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_primeiro_uso",
-      "target": "tests_testes_codeblock_7",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_7"
     },
     {
       "relation": "contains",
@@ -10156,9 +10249,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_primeiro_uso",
-      "target": "tests_testes_codeblock_8",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_8"
     },
     {
       "relation": "contains",
@@ -10166,9 +10259,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L120",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_depend\u00eancias",
-      "target": "tests_testes_codeblock_9",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_9"
     },
     {
       "relation": "contains",
@@ -10176,9 +10269,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L141",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_adicionando_novos_testes",
-      "target": "tests_testes_codeblock_10",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_10"
     },
     {
       "relation": "contains",
@@ -10186,9 +10279,9 @@
       "source_file": "tests/TESTES.md",
       "source_location": "L158",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tests_testes_debugando_testes_falhando",
-      "target": "tests_testes_codeblock_11",
-      "confidence_score": 1.0
+      "target": "tests_testes_codeblock_11"
     },
     {
       "relation": "references",
@@ -10222,5 +10315,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "035eebe60dcf0391238de78d55acf93fb952279c"
+  "built_at_commit": "3fcbb50de1420ca8e00187528105031573af1dfc"
 }

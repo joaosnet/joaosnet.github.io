@@ -38,6 +38,7 @@ class HorizontalScrollHandler {
             return;
         }
 
+        this.progressBar = document.getElementById('scroll-progress');
         this.setupScrollRestoration();
         this.refreshSections();
         this.refreshNavLinks();
@@ -61,6 +62,7 @@ class HorizontalScrollHandler {
         this.restoreInitialPosition();
         
         this.updateActiveSection();
+        this.updateProgressBar();
         this.lastSettledSection = this.currentSection;
         
         setTimeout(() => {
@@ -235,33 +237,7 @@ class HorizontalScrollHandler {
     }
 
     scrollNestedHorizontalArea(event) {
-        const eventTarget = event.target instanceof Element ? event.target : null;
-        const nestedScroller = eventTarget?.closest('.timeline-container, .published-pages-list');
-
-        if (!nestedScroller) {
-            return false;
-        }
-
-        const hasHorizontalOverflow = nestedScroller.scrollWidth > nestedScroller.clientWidth + this.scrollEdge;
-        if (!hasHorizontalOverflow) {
-            return false;
-        }
-
-        const deltaX = this.normalizeWheelDelta(event.deltaX, event.deltaMode);
-        const deltaY = this.normalizeWheelDelta(event.deltaY, event.deltaMode);
-        const delta = Math.abs(deltaX) > Math.abs(deltaY) ? deltaX : deltaY;
-
-        if (!this.canElementScroll(nestedScroller, delta, 'x')) {
-            return false;
-        }
-
-        event.preventDefault();
-        nestedScroller.scrollBy({
-            left: delta,
-            behavior: 'auto'
-        });
-
-        return true;
+        return false;
     }
 
     findScrollableParent(target, axis) {
@@ -532,6 +508,19 @@ class HorizontalScrollHandler {
 
     updateActiveSection() {
         this.setCurrentSection(this.getNearestSectionIndex());
+        this.updateProgressBar();
+    }
+
+    updateProgressBar() {
+        if (!this.progressBar) return;
+        const scrollX = this.getScrollX();
+        const maxScrollX = this.getMaxScrollX();
+        if (maxScrollX <= 0) {
+            this.progressBar.style.transform = 'scaleX(0)';
+            return;
+        }
+        const percentage = Math.max(0, Math.min(1, scrollX / maxScrollX));
+        this.progressBar.style.transform = `scaleX(${percentage})`;
     }
 
     setCurrentSection(index) {
