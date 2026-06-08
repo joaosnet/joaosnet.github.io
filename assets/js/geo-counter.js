@@ -110,6 +110,17 @@ class GeoViewsCounter {
     }
 
     createVisitData() {
+        const referrer = document.referrer || '';
+        const { host: referrerHost, category: referrerSource } = this.classifyReferrer(referrer);
+        const params = new URLSearchParams(window.location.search);
+
+        let timezone = '';
+        try {
+            timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        } catch (e) {
+            timezone = '';
+        }
+
         return {
             timestamp: new Date().toISOString(),
             ip: 'Não coletado',
@@ -118,9 +129,59 @@ class GeoViewsCounter {
             isp: 'Não coletado',
             path: window.location.pathname,
             url: window.location.href,
-            referrer: document.referrer || '',
+            referrer: referrer,
+            referrerHost: referrerHost,
+            referrerSource: referrerSource,
+            utmSource: params.get('utm_source') || '',
+            utmMedium: params.get('utm_medium') || '',
+            utmCampaign: params.get('utm_campaign') || '',
+            language: navigator.language || '',
+            device: this.detectDevice(),
+            timezone: timezone,
             source: 'client-minimal'
         };
+    }
+
+    classifyReferrer(referrer) {
+        if (!referrer) {
+            return { host: '', category: 'direct' };
+        }
+        let host = '';
+        try {
+            host = new URL(referrer).hostname.replace(/^www\./, '');
+        } catch (e) {
+            return { host: '', category: 'other' };
+        }
+
+        if (host === window.location.hostname) {
+            return { host, category: 'internal' };
+        }
+
+        const map = [
+            { category: 'search', hosts: ['google.', 'bing.', 'duckduckgo.', 'yahoo.', 'ecosia.', 'yandex.', 'baidu.'] },
+            { category: 'social', hosts: ['linkedin.', 'lnkd.in', 't.co', 'twitter.', 'x.com', 'facebook.', 'instagram.', 'reddit.', 'youtube.'] },
+            { category: 'messaging', hosts: ['t.me', 'telegram.', 'whatsapp.', 'web.whatsapp.'] },
+            { category: 'dev', hosts: ['github.', 'gitlab.', 'stackoverflow.', 'dev.to', 'lattes.cnpq.'] }
+        ];
+
+        for (const entry of map) {
+            if (entry.hosts.some((h) => host.includes(h))) {
+                return { host, category: entry.category };
+            }
+        }
+        return { host, category: 'other' };
+    }
+
+    detectDevice() {
+        const width = window.innerWidth || document.documentElement.clientWidth || 0;
+        const ua = navigator.userAgent || '';
+        if (/Mobi|Android|iPhone|iPod/i.test(ua) || width < 768) {
+            return 'mobile';
+        }
+        if (/iPad|Tablet/i.test(ua) || width < 1024) {
+            return 'tablet';
+        }
+        return 'desktop';
     }
 
     storeVisitData(visitData) {
