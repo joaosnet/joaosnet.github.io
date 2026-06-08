@@ -33,6 +33,14 @@
     --form-devicon-color: rgba(255, 255, 255, 0.08);
     --cta-bg: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
     --specs-bg: rgba(2, 6, 23, 0.3);
+
+    /* Z-index scale — keep top-layer stacking coherent (toast always above modals) */
+    --z-header: 1000;
+    --z-scroll-progress: 1001;
+    --z-fab: 2000;
+    --z-modal: 2600;
+    --z-toast: 3200;
+    --z-skip-link: 3500;
 }
 
 html[data-theme="light"] {
@@ -87,7 +95,7 @@ html {
     position: fixed;
     top: 12px;
     left: 12px;
-    z-index: 3000;
+    z-index: var(--z-skip-link);
     padding: 10px 16px;
     border-radius: 10px;
     background: var(--light);
@@ -194,7 +202,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000;
+    z-index: var(--z-header);
     border-bottom: 1px solid var(--border-light);
     transition: all 0.3s ease;
     left: 0;
@@ -1310,6 +1318,25 @@ nav ul li a:focus-visible {
     color: var(--text-gray);
 }
 
+/* Validation feedback — applies only after the user has interacted with the field */
+.form-control:user-invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
+}
+
+.form-control:user-valid {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.form-group:has(.form-control:user-invalid) .form-icon {
+    color: #ef4444;
+}
+
+.form-group:has(.form-control:user-valid) .form-icon {
+    color: #10b981;
+}
+
 textarea.form-control {
     min-height: 150px;
     resize: vertical;
@@ -1446,7 +1473,7 @@ html[data-theme="dark"] footer {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10000;
+    z-index: var(--z-modal);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1784,15 +1811,17 @@ html[data-theme="light"] .theme-modal-content {
     position: absolute;
     top: 50%;
     right: calc(100% + 10px);
-    max-width: 180px;
+    width: max-content;
+    max-width: 220px;
     padding: 6px 9px;
     border: 1px solid var(--border-light);
     border-radius: 8px;
     background: var(--header-bg);
     color: var(--light);
     font-size: 0.78rem;
-    line-height: 1.2;
-    white-space: nowrap;
+    line-height: 1.25;
+    white-space: normal;
+    text-align: center;
     opacity: 0;
     pointer-events: none;
     transform: translate(6px, -50%);
@@ -1922,7 +1951,7 @@ html[data-theme="light"] .theme-modal-content {
     justify-content: center;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     cursor: pointer;
-    z-index: 2000;
+    z-index: var(--z-fab);
     animation: fabPulse 2.4s ease 5s 3;
 }
 
@@ -3290,7 +3319,7 @@ nav ul {
     position: fixed;
     left: 50%;
     bottom: calc(24px + env(safe-area-inset-bottom));
-    z-index: 2500;
+    z-index: var(--z-toast);
     max-width: min(420px, calc(100vw - 32px));
     padding: 10px 18px;
     border-radius: 12px;
@@ -3445,7 +3474,9 @@ main {
     overscroll-behavior-x: contain;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
-    touch-action: pan-x;
+    /* pan-y is needed so the per-panel vertical scrollers (escape valve at end of file)
+       work on touch; main itself can't scroll vertically (overflow-y:hidden), so paging is unaffected. */
+    touch-action: pan-x pan-y;
 }
 
 main.is-wheel-scrolling {
@@ -4175,11 +4206,12 @@ textarea.form-control {
         display: flex !important;
         flex-direction: column;
         align-items: stretch !important;
-        justify-content: center !important;
+        justify-content: flex-start !important;
         width: 100vw !important;
         min-width: 100vw !important;
         max-width: 100vw !important;
-        height: 100%;
+        height: auto;
+        min-height: 100%;
         gap: 12px !important;
         padding: 14px var(--mobile-edge) 72px !important;
     }
@@ -4929,7 +4961,7 @@ body {
 .project-detail-modal {
     position: fixed;
     inset: 0;
-    z-index: 2600;
+    z-index: var(--z-modal);
     display: none;
     align-items: center;
     justify-content: center;
@@ -5074,7 +5106,7 @@ body {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.1s ease-out;
-    z-index: 1001;
+    z-index: var(--z-scroll-progress);
 }
 
 /* 2. 3D Tilt Card & Glare Reflex Effect */
@@ -5123,7 +5155,7 @@ body {
 .project-detail-modal {
     position: fixed;
     inset: 0;
-    z-index: 2600;
+    z-index: var(--z-modal);
     display: none;
     align-items: center;
     justify-content: center;
@@ -5251,68 +5283,6 @@ body {
     .project-detail-actions .timeline-card-btn {
         width: 100%;
     }
-}
-
-/* ==========================================================================
-   RENOVATION OVERRIDES & PREMIUM EFFECTS (SCROLL BAR, 3D TILT, MOBILE ROLAGEM)
-   ========================================================================== */
-
-/* 1. Scroll Progress Bar Styles */
-.scroll-progress-bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(to right, var(--primary), var(--accent), var(--secondary));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.1s ease-out;
-    z-index: 1001;
-}
-
-/* 2. 3D Tilt Card & Glare Reflex Effect */
-.tilt-card {
-    position: relative;
-    transform-style: preserve-3d;
-    will-change: transform;
-    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
-}
-
-.tilt-glare {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 60%);
-    pointer-events: none;
-    z-index: 5;
-    opacity: 0;
-    will-change: opacity, background;
-    transition: opacity 0.25s ease-out;
-    border-radius: inherit;
-}
-
-.tilt-card:hover .tilt-glare {
-    opacity: 1;
-}
-
-/* Ensure children are flat unless they need 3D translate */
-.tilt-card > * {
-    transform: translateZ(0px);
-}
-
-/* 3. Entrance Animations (.animate-on-scroll) */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.animate-on-scroll.show {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 /* Staggered delay helpers */
@@ -5434,4 +5404,59 @@ body {
         width: min(82vw, 310px) !important;
         min-width: min(82vw, 310px) !important;
     }
+}
+
+/* ==========================================================================
+   FIX — Vertical "escape valve" for tall section content on short viewports.
+   Fixed-height panels (height:100% of the shell) with overflow:hidden used to
+   crop content (hero CTA, contact SEND button, footer copyright/CV) with no way
+   to scroll to it. Scoped to #home, #contact and the #resume footer — the only
+   panels WITHOUT a sticky section-title or a max-content horizontal carousel, so
+   adding a vertical scroll context here cannot break the sticky titles or the
+   main-level horizontal scroll-snap of #skills / #projects / #published.
+   (main keeps touch-action: pan-x pan-y so these scrollers work on touch.)
+   ========================================================================== */
+#home > .container,
+#contact > .container {
+    justify-content: safe center; /* centered when it fits; top-anchored & reachable when it overflows */
+    min-height: 0;
+    overflow: hidden auto;        /* clip X (no h-scrollbar), scroll Y only when content overflows */
+    overscroll-behavior: contain; /* vertical overscroll must not chain into the horizontal nav/page */
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+/* #resume DOM is section#resume.footer-panel > footer > .container, so the
+   <footer> (not a .container child) is the height-bearing / clipping node. */
+.footer-panel footer {
+    align-items: safe center;
+    height: 100%;
+    max-height: 100%;
+    overflow: hidden auto;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+    scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom));
+}
+
+/* Quiet, thin scrollbar for the new vertical scrollers (matches the carousel bars). */
+#home > .container,
+#contact > .container,
+.footer-panel footer {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--primary) 45%, var(--border-light)) transparent;
+}
+
+#home > .container::-webkit-scrollbar,
+#contact > .container::-webkit-scrollbar,
+.footer-panel footer::-webkit-scrollbar {
+    width: 8px;
+}
+
+#home > .container::-webkit-scrollbar-thumb,
+#contact > .container::-webkit-scrollbar-thumb,
+.footer-panel footer::-webkit-scrollbar-thumb {
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary) 45%, var(--border-light));
 }

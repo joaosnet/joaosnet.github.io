@@ -636,8 +636,9 @@ def generate_pages_links_html(pages):
         safe_description = escape(raw_desc)
         
         safe_preview_image = escape(str(page.get("preview_image") or DEFAULT_PREVIEW_IMAGE), quote=True)
+        onerror_attr = f"this.onerror=null;this.src='{DEFAULT_PREVIEW_IMAGE}'"
         preview_html = f"""<div class="published-page-image-wrapper">
-                                    <img src="{safe_preview_image}" alt="Prévia visual de {safe_name}" class="published-page-image" loading="lazy">
+                                    <img src="{safe_preview_image}" alt="Prévia visual de {safe_name}" class="published-page-image" loading="lazy" onerror="{onerror_attr}">
                                 </div>"""
         
         items_html += f"""
@@ -701,7 +702,8 @@ def generate_project_html(project, is_last=False, position="left"):
     img_html = ""
     if image:
         safe_image = escape(str(image), quote=True)
-        img_html = f'<img src="{safe_image}" alt="Prévia do projeto {safe_name}" class="timeline-card-image" loading="lazy"/>'
+        onerror_attr = f"this.onerror=null;this.src='{DEFAULT_PREVIEW_IMAGE}'"
+        img_html = f'<img src="{safe_image}" alt="Prévia do projeto {safe_name}" class="timeline-card-image" loading="lazy" onerror="{onerror_attr}"/>'
 
     # Private vs Public display logic
     if is_private:
@@ -778,6 +780,61 @@ def generate_project_html(project, is_last=False, position="left"):
     return html
 
 
+def optimize_image(local_path, max_width=1280, quality=80):
+    """Resize (cap width) and convert an image to WebP to drastically cut file size.
+
+    Returns the path to the optimized file (``.webp`` extension). On any failure —
+    including Pillow not being installed — it returns ``local_path`` unchanged so the
+    pipeline keeps working. Animated GIFs are left untouched to preserve animation.
+    """
+    try:
+        from PIL import Image
+    except ImportError:
+        return local_path
+
+    try:
+        webp_path = os.path.splitext(local_path)[0] + ".webp"
+        with Image.open(local_path) as im:
+            # Keep animated images as-is (converting a single frame would drop animation)
+            if getattr(im, "is_animated", False):
+                return local_path
+
+            # Preserve transparency when present, otherwise flatten to RGB
+            if im.mode in ("RGBA", "LA") or (im.mode == "P" and "transparency" in im.info):
+                im = im.convert("RGBA")
+            elif im.mode != "RGB":
+                im = im.convert("RGB")
+
+            if im.width > max_width:
+                ratio = max_width / float(im.width)
+                im = im.resize((max_width, round(im.height * ratio)), Image.LANCZOS)
+
+            im.save(webp_path, "WEBP", quality=quality, method=6)
+
+        # Remove the original file if we created a new .webp alongside it
+        if webp_path != local_path and os.path.exists(local_path):
+            os.remove(local_path)
+
+        try:
+            before = "?"
+            after = os.path.getsize(webp_path)
+            print(f"      ✓ Imagem otimizada → WebP ({after} bytes)")
+        except OSError:
+            pass
+
+        return webp_path
+    except Exception as e:
+        print(f"      ⚠ Não foi possível otimizar a imagem: {str(e)[:80]}")
+        return local_path
+
+
+def _finalize_downloaded_image(local_path, local_dir, local_filename):
+    """Optimize a freshly-written image and return its public ./path, tracking it for commit."""
+    optimized = optimize_image(local_path)
+    downloaded_images.add(optimized)
+    return f"./{local_dir}/{os.path.basename(optimized)}"
+
+
 def download_image_for_private_repo(owner, repo_name, img_path, token):
     """
     For private repos, download the image and save it locally in the portfolio.
@@ -807,11 +864,16 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
         local_filename = f"{safe_repo_name}_{safe_img_name}"
         local_path = os.path.join(local_dir, local_filename)
 
+        # Reuse a previously optimized .webp version if it already exists (avoids re-downloading)
+        optimized_existing = os.path.splitext(local_path)[0] + ".webp"
+        if os.path.exists(optimized_existing) and os.path.getsize(optimized_existing) > 0:
+            downloaded_images.add(optimized_existing)
+            return f"./{local_dir}/{os.path.basename(optimized_existing)}"
+
         # Check if file already exists and has content
         if os.path.exists(local_path) and os.path.getsize(local_path) > 0:
-            # Already exists locally with content - still track it for consistency
-            downloaded_images.add(local_path)
-            return f"./{local_dir}/{local_filename}"
+            # Already exists locally - optimize it now and reuse going forward
+            return _finalize_downloaded_image(local_path, local_dir, local_filename)
 
         # Download the image
         try:
@@ -863,8 +925,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                 with open(local_path, "wb") as f:
                     f.write(content)
                 print(f"      ✓ Imagem baixada ({len(content)} bytes)")
-                downloaded_images.add(local_path)
-                return f"./{local_dir}/{local_filename}"
+                return _finalize_downloaded_image(local_path, local_dir, local_filename)
                 
             else:
                 # urllib fallback
@@ -900,8 +961,7 @@ def download_image_for_private_repo(owner, repo_name, img_path, token):
                 with open(local_path, "wb") as f:
                     f.write(content)
                 print(f"      ✓ Imagem baixada ({len(content)} bytes)")
-                downloaded_images.add(local_path)
-                return f"./{local_dir}/{local_filename}"
+                return _finalize_downloaded_image(local_path, local_dir, local_filename)
                 
         except Exception as e:
             print(f"      ⚠ Erro ao baixar imagem: {str(e)[:80]}")
@@ -1336,6 +1396,30 @@ def update_index_html(projects_html, pages_html=""):
         print("Copyright year updated.")
     except Exception as e:
         print(f"Error updating copyright year: {e}")
+
+    # Keep sitemap.xml lastmod in sync with the latest content update
+    update_sitemap()
+
+
+def update_sitemap(sitemap_path="sitemap.xml"):
+    """Update the <lastmod> date in sitemap.xml to today's date (YYYY-MM-DD)."""
+    try:
+        if not os.path.exists(sitemap_path):
+            return
+        with open(sitemap_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        today = datetime.now().strftime("%Y-%m-%d")
+        new_content = re.sub(
+            r"<lastmod>.*?</lastmod>",
+            f"<lastmod>{today}</lastmod>",
+            content,
+        )
+        if new_content != content:
+            with open(sitemap_path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            print(f"sitemap.xml lastmod updated to {today}.")
+    except Exception as e:
+        print(f"Error updating sitemap.xml: {e}")
 
 
 def sanitize_existing_project_images(
