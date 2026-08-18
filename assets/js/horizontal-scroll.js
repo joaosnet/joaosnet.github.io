@@ -784,21 +784,20 @@ class HorizontalScrollHandler {
 
     getAllSnapTargets() {
         const targets = [];
+        const mainRect = this.wrapper.getBoundingClientRect();
+        const currentScroll = this.getScrollX();
 
-        this.sections.forEach((section) => {
-            const cards = Array.from(section.querySelectorAll('.feature-card, .timeline-item, .published-page-link'));
-            if (cards.length > 0) {
-                const title = section.querySelector('.section-title');
-                if (title) {
-                    targets.push({ element: title, offsetLeft: title.offsetLeft, section });
-                } else {
-                    targets.push({ element: section, offsetLeft: section.offsetLeft, section });
-                }
-                cards.forEach((card) => {
-                    targets.push({ element: card, offsetLeft: card.offsetLeft, section });
-                });
-            } else {
-                targets.push({ element: section, offsetLeft: section.offsetLeft, section });
+        const candidateElements = Array.from(
+            this.wrapper.querySelectorAll('.horizontal-wrapper > section, .section-title, .feature-card, .timeline-item, .published-page-link')
+        );
+
+        candidateElements.forEach((element) => {
+            const rect = element.getBoundingClientRect();
+            const absoluteLeft = Math.round(rect.left - mainRect.left + currentScroll);
+            const section = element.matches('section') ? element : element.closest('.horizontal-wrapper > section');
+
+            if (absoluteLeft >= 0 && !targets.some((t) => Math.abs(t.offsetLeft - absoluteLeft) < 20)) {
+                targets.push({ element, offsetLeft: absoluteLeft, section });
             }
         });
 
