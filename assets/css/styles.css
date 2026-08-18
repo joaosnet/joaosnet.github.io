@@ -1927,10 +1927,17 @@ html[data-theme="light"] .horizontal-scroll-pill {
 
 @media (max-width: 768px) {
     .horizontal-scroll-pill {
-        bottom: 84px;
-        right: 14px;
-        font-size: 0.78rem;
-        padding: 8px 14px;
+        bottom: 74px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) translateY(15px);
+        font-size: 0.8rem;
+        padding: 8px 16px;
+        white-space: nowrap;
+    }
+
+    .horizontal-scroll-pill.visible {
+        transform: translateX(-50%) translateY(0);
     }
 }
 

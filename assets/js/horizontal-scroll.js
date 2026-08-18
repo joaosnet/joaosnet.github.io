@@ -752,6 +752,7 @@ class HorizontalScrollHandler {
     }
 
     hideScrollHint() {
+        if (this.isAutoPeeking) return;
         if (this.scrollHint) {
             this.scrollHint.classList.remove('visible');
         }
@@ -765,6 +766,7 @@ class HorizontalScrollHandler {
         window.setTimeout(() => {
             if (this.getScrollX() > 30) return; // User already interacted
 
+            this.isAutoPeeking = true;
             const peekDistance = window.innerWidth <= 768 ? 95 : 140;
             this.wrapper.scrollTo({
                 left: peekDistance,
@@ -778,6 +780,10 @@ class HorizontalScrollHandler {
                         behavior: 'smooth'
                     });
                 }
+                window.setTimeout(() => {
+                    this.isAutoPeeking = false;
+                    this.showScrollHint();
+                }, 400);
             }, 650);
         }, 1100);
     }
