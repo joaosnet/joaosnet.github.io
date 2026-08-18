@@ -66,8 +66,8 @@ class AnimationsHandler {
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 100px -30px 100px' // Expanded horizontal margin for horizontal scrolling
+            threshold: 0.05,
+            rootMargin: '50px 200px 50px 200px' // Expanded horizontal margin for horizontal scrolling
         });
 
         hiddenElements.forEach((el) => observer.observe(el));
@@ -93,8 +93,8 @@ class AnimationsHandler {
                 }
             });
         }, {
-            threshold: 0.1,
-            rootMargin: '0px 100px 0px 100px'
+            threshold: 0.05,
+            rootMargin: '50px 200px 50px 200px'
         });
 
         timelineItems.forEach((item) => timelineObserver.observe(item));

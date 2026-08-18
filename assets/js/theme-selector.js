@@ -121,14 +121,12 @@ class ThemeSelector {
         this.createModal();
         this.setupEventListeners();
         
-        // Apply saved palette quietly, then invite first-time visitors to choose one.
+        // Apply saved palette quietly
         const savedTheme = localStorage.getItem(this.STORAGE_KEY);
         if (savedTheme && this.THEMES[savedTheme]) {
             this.applyTheme(savedTheme);
             localStorage.setItem(this.FIRST_VISIT_KEY, 'true');
         }
-
-        this.promptFirstVisitPalette();
     }
 
     createModal() {
