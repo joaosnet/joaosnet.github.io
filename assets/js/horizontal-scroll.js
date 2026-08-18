@@ -67,9 +67,6 @@ class HorizontalScrollHandler {
         this.lastSettledSection = this.currentSection;
         
         this.setupAutoHorizontalPeek();
-        setTimeout(() => {
-            this.showScrollHint();
-        }, 800);
     }
 
     refreshSections() {
@@ -659,13 +656,14 @@ class HorizontalScrollHandler {
     }
 
     showScrollHint() {
-        if (!this.hasShownHint && this.scrollHint) {
+        if (this.scrollHint) {
             this.scrollHint.classList.add('visible');
             this.hasShownHint = true;
             
-            setTimeout(() => {
+            window.clearTimeout(this.scrollHintTimer);
+            this.scrollHintTimer = window.setTimeout(() => {
                 this.hideScrollHint();
-            }, 5000);
+            }, 6000);
         }
     }
 
