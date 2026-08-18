@@ -57,6 +57,7 @@ class HorizontalScrollHandler {
         this.setupVerticalToHorizontalScroll();
         this.setupTouchHorizontalScroll();
         this.setupKeyboardNavigation();
+        this.setupNavClickListeners();
         this.setupResizeListener();
         this.setupDotClicks();
         this.restoreInitialPosition();
@@ -598,6 +599,43 @@ class HorizontalScrollHandler {
                 event.preventDefault();
                 this.scrollToSection(this.sections.length - 1);
             }
+        });
+    }
+
+    setupNavClickListeners() {
+        document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href^="#"]');
+            if (!anchor) return;
+            const hash = anchor.getAttribute('href');
+            if (!hash || hash === '#') return;
+
+            let targetSection = null;
+            try {
+                targetSection = document.querySelector(hash);
+            } catch (err) {
+                return;
+            }
+
+            if (!targetSection) return;
+
+            const sectionElement = targetSection.matches('section')
+                ? targetSection
+                : targetSection.closest('.horizontal-wrapper > section');
+
+            if (!sectionElement) return;
+
+            const sectionIndex = this.sections.indexOf(sectionElement);
+            if (sectionIndex >= 0) {
+                event.preventDefault();
+                this.scrollToSection(sectionIndex, { updateHash: true });
+                if (window.mobileMenuHandler) {
+                    window.mobileMenuHandler.closeMenu();
+                }
+            }
+        });
+
+        window.addEventListener('hashchange', () => {
+            this.scrollToInitialHash();
         });
     }
 

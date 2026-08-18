@@ -162,7 +162,7 @@ main {
     width: 100vw;
     min-height: calc(100vh - 80px);
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
     position: relative;
     overflow-x: hidden;
 }
@@ -3469,18 +3469,14 @@ main {
     margin-top: var(--header-height);
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-behavior: smooth;
     scroll-snap-type: x proximity;
     overscroll-behavior-x: contain;
     overscroll-behavior-y: none;
     -webkit-overflow-scrolling: touch;
-    /* pan-y is needed so the per-panel vertical scrollers (escape valve at end of file)
-       work on touch; main itself can't scroll vertically (overflow-y:hidden), so paging is unaffected. */
     touch-action: pan-x pan-y;
 }
 
 main.is-wheel-scrolling {
-    scroll-behavior: auto;
     scroll-snap-type: none;
 }
 
@@ -5297,7 +5293,16 @@ body {
 
 /* 4. Unified Horizontal Scroll Layout (Desktop & Mobile) */
 
+#particles-js,
+.floating-shapes,
+.floating-shapes div {
+    pointer-events: none !important;
+}
+
+/* 4. Unified Horizontal Scroll Layout (Desktop & Mobile) */
+
 /* Make the section wrappers fit the width of their children dynamically */
+.horizontal-wrapper > section#skills,
 .horizontal-wrapper > section#projects,
 .horizontal-wrapper > section#published {
     width: max-content !important;
@@ -5306,6 +5311,7 @@ body {
 }
 
 /* Make the containers layout horizontally with gap */
+#skills > .container,
 #projects > .container,
 #published > .container {
     width: max-content !important;
@@ -5321,6 +5327,7 @@ body {
 }
 
 /* Keep the section title locked to viewport width and avoid stretching */
+#skills .section-title,
 #projects .section-title,
 #published .section-title {
     width: calc(100vw - (var(--section-pad-x) * 2)) !important;
@@ -5339,9 +5346,10 @@ body {
     margin: 0 !important;
 }
 
-/* Disable internal scrolling of timeline and pages lists */
+/* Disable internal scrolling of timeline, pages, and features lists so main horizontal scroll handles everything */
 .timeline-container,
-.published-pages-list {
+.published-pages-list,
+.features-grid {
     overflow-x: visible !important;
     overflow-y: visible !important;
     width: auto !important;
@@ -5352,7 +5360,8 @@ body {
 }
 
 .timeline-container::-webkit-scrollbar,
-.published-pages-list::-webkit-scrollbar {
+.published-pages-list::-webkit-scrollbar,
+.features-grid::-webkit-scrollbar {
     display: none !important;
 }
 
@@ -5377,6 +5386,13 @@ body {
     padding: 0 !important;
 }
 
+.feature-card {
+    display: block !important;
+    width: clamp(260px, 24vw, 320px) !important;
+    min-width: clamp(260px, 24vw, 320px) !important;
+    margin: 0 !important;
+}
+
 .timeline-card {
     height: auto !important; /* Expand vertically to content */
     margin: 0 !important;
@@ -5390,8 +5406,10 @@ body {
 }
 
 /* Enable CSS Snap-Scrolling directly on the cards and titles inside main scroll */
+#skills .section-title,
 #projects .section-title,
 #published .section-title,
+.feature-card,
 .timeline-item,
 .published-page-link {
     scroll-snap-align: start !important;
@@ -5400,11 +5418,8 @@ body {
 
 /* On mobile, apply touch-friendly sizing */
 @media (max-width: 768px) {
-    .timeline-item {
-        width: min(82vw, 310px) !important;
-        min-width: min(82vw, 310px) !important;
-    }
-
+    .feature-card,
+    .timeline-item,
     .published-page-link {
         width: min(82vw, 310px) !important;
         min-width: min(82vw, 310px) !important;
@@ -5425,7 +5440,7 @@ body {
     min-height: 0;
     overflow: hidden auto;        /* clip X (no h-scrollbar), scroll Y only when content overflows */
     overscroll-behavior: contain; /* vertical overscroll must not chain into the horizontal nav/page */
-    touch-action: pan-y;
+    touch-action: pan-x pan-y;    /* allow both horizontal swipe and vertical scroll */
     -webkit-overflow-scrolling: touch;
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
@@ -5438,7 +5453,7 @@ body {
     max-height: 100%;
     overflow: hidden auto;
     overscroll-behavior: contain;
-    touch-action: pan-y;
+    touch-action: pan-x pan-y;    /* allow both horizontal swipe and vertical scroll */
     -webkit-overflow-scrolling: touch;
     scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom));
 }
