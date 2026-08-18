@@ -3519,6 +3519,7 @@ main.is-wheel-scrolling {
 }
 
 #skills .section-title,
+#education .section-title,
 #projects .section-title,
 #published .section-title {
     position: sticky;
@@ -3544,6 +3545,7 @@ main.is-wheel-scrolling {
 }
 
 #skills,
+#education,
 #projects,
 #published,
 #resume {
@@ -3553,6 +3555,7 @@ main.is-wheel-scrolling {
 }
 
 #skills > .container,
+#education > .container,
 #projects > .container,
 #published > .container,
 #resume > .container,
@@ -4559,6 +4562,7 @@ body {
 }
 
 #skills,
+#education,
 #projects,
 #published,
 #contact,
@@ -4570,6 +4574,7 @@ body {
 }
 
 #skills > .container,
+#education > .container,
 #projects > .container,
 #published > .container,
 #resume > .container,
@@ -5390,7 +5395,7 @@ body {
 .timeline-item,
 .published-page-link {
     scroll-snap-align: start !important;
-    scroll-snap-stop: always !important;
+    scroll-snap-stop: normal !important;
 }
 
 /* On mobile, apply touch-friendly sizing */
@@ -5410,13 +5415,11 @@ body {
    FIX — Vertical "escape valve" for tall section content on short viewports.
    Fixed-height panels (height:100% of the shell) with overflow:hidden used to
    crop content (hero CTA, contact SEND button, footer copyright/CV) with no way
-   to scroll to it. Scoped to #home, #contact and the #resume footer — the only
-   panels WITHOUT a sticky section-title or a max-content horizontal carousel, so
-   adding a vertical scroll context here cannot break the sticky titles or the
-   main-level horizontal scroll-snap of #skills / #projects / #published.
+   to scroll to it. Scoped to #home, #education, #contact and the #resume footer.
    (main keeps touch-action: pan-x pan-y so these scrollers work on touch.)
    ========================================================================== */
 #home > .container,
+#education > .container,
 #contact > .container {
     justify-content: safe center; /* centered when it fits; top-anchored & reachable when it overflows */
     min-height: 0;
@@ -5455,8 +5458,148 @@ body {
 }
 
 #home > .container::-webkit-scrollbar-thumb,
+#education > .container::-webkit-scrollbar-thumb,
 #contact > .container::-webkit-scrollbar-thumb,
 .footer-panel footer::-webkit-scrollbar-thumb {
     border-radius: 999px;
     background: color-mix(in srgb, var(--primary) 45%, var(--border-light));
+}
+
+#education > .container {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--primary) 45%, var(--border-light)) transparent;
+}
+
+#education > .container::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* ============================================
+   EDUCATION & ACADEMIC HIGHLIGHTS
+   ============================================ */
+.education-grid {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.education-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    padding: clamp(22px, 3.5vw, 36px);
+    box-shadow: var(--shadow-premium);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.education-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    border-radius: 20px 20px 0 0;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.education-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.education-title-wrap i {
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.education-title-wrap h3 {
+    margin: 0;
+    font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+    color: var(--light);
+    font-weight: 600;
+}
+
+.education-badge {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #ffffff !important;
+    padding: 5px 14px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+.education-highlight {
+    color: var(--text-gray);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.education-highlight strong {
+    color: var(--light);
+}
+
+.education-tcc {
+    background: color-mix(in srgb, var(--secondary) 8%, var(--glass-bg));
+    border: 1px solid color-mix(in srgb, var(--secondary) 25%, var(--border-light));
+    border-left: 4px solid var(--secondary);
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.tcc-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.tcc-header i {
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+
+.tcc-header h4 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: var(--light);
+    font-weight: 600;
+}
+
+.tcc-quote {
+    margin: 0 0 10px 0;
+    font-style: italic;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--light);
+    opacity: 0.95;
+}
+
+.tcc-desc {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--text-gray);
+    line-height: 1.45;
 }
