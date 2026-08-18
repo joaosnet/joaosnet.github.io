@@ -66,9 +66,10 @@ class HorizontalScrollHandler {
         this.updateProgressBar();
         this.lastSettledSection = this.currentSection;
         
+        this.setupAutoHorizontalPeek();
         setTimeout(() => {
             this.showScrollHint();
-        }, 2000);
+        }, 800);
     }
 
     refreshSections() {
@@ -171,7 +172,7 @@ class HorizontalScrollHandler {
                 } else if (totalDeltaX > swipeDistanceThreshold || velocityX > velocityThreshold) {
                     this.previous();
                 } else {
-                    this.scrollToSection(this.getNearestSectionIndex());
+                    this.scrollToNearestSnapTarget();
                 }
             }
 
@@ -390,10 +391,19 @@ class HorizontalScrollHandler {
     }
 
     createScrollHint() {
-        this.scrollHint = document.createElement('div');
-        this.scrollHint.className = 'scroll-hint';
-        this.scrollHint.setAttribute('aria-hidden', 'true');
-        this.scrollHint.innerHTML = '<span>Role para os lados ou use os pontos para explorar</span><i class="fas fa-arrow-right" aria-hidden="true"></i>';
+        this.scrollHint = document.createElement('button');
+        this.scrollHint.type = 'button';
+        this.scrollHint.className = 'horizontal-scroll-pill';
+        this.scrollHint.setAttribute('aria-label', 'Deslize horizontalmente para navegar');
+        this.scrollHint.innerHTML = `
+            <span class="pill-icon"><i class="fas fa-hand-pointer" aria-hidden="true"></i></span>
+            <span class="pill-text">Deslize para o lado</span>
+            <span class="pill-arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        `;
+        this.scrollHint.addEventListener('click', () => {
+            this.next();
+            this.hideScrollHint();
+        });
         document.body.appendChild(this.scrollHint);
     }
 
@@ -747,16 +757,121 @@ class HorizontalScrollHandler {
         }
     }
 
+    setupAutoHorizontalPeek() {
+        if (this.initialHash || window.location.hash) {
+            return;
+        }
+
+        window.setTimeout(() => {
+            if (this.getScrollX() > 30) return; // User already interacted
+
+            const peekDistance = window.innerWidth <= 768 ? 95 : 140;
+            this.wrapper.scrollTo({
+                left: peekDistance,
+                behavior: 'smooth'
+            });
+
+            window.setTimeout(() => {
+                if (this.getScrollX() <= peekDistance + 10) {
+                    this.wrapper.scrollTo({
+                        left: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 650);
+        }, 1100);
+    }
+
+    getAllSnapTargets() {
+        const targets = [];
+
+        this.sections.forEach((section) => {
+            const cards = Array.from(section.querySelectorAll('.feature-card, .timeline-item, .published-page-link'));
+            if (cards.length > 0) {
+                const title = section.querySelector('.section-title');
+                if (title) {
+                    targets.push({ element: title, offsetLeft: title.offsetLeft, section });
+                } else {
+                    targets.push({ element: section, offsetLeft: section.offsetLeft, section });
+                }
+                cards.forEach((card) => {
+                    targets.push({ element: card, offsetLeft: card.offsetLeft, section });
+                });
+            } else {
+                targets.push({ element: section, offsetLeft: section.offsetLeft, section });
+            }
+        });
+
+        return targets.sort((a, b) => a.offsetLeft - b.offsetLeft);
+    }
+
     next() {
-        if (this.currentSection < this.sections.length - 1) {
+        const snapTargets = this.getAllSnapTargets();
+        const currentScroll = this.getScrollX();
+        const tolerance = 25;
+
+        const nextTarget = snapTargets.find((target) => target.offsetLeft > currentScroll + tolerance);
+
+        if (nextTarget) {
+            this.smoothScrollTo(nextTarget.offsetLeft);
+            const secIndex = this.sections.indexOf(nextTarget.section);
+            if (secIndex >= 0) {
+                this.setCurrentSection(secIndex);
+            }
+        } else if (this.currentSection < this.sections.length - 1) {
             this.scrollToSection(this.currentSection + 1);
         }
     }
 
     previous() {
-        if (this.currentSection > 0) {
-            this.scrollToSection(this.currentSection - 1);
+        const snapTargets = this.getAllSnapTargets();
+        const currentScroll = this.getScrollX();
+        const tolerance = 25;
+
+        const prevTargets = snapTargets.filter((target) => target.offsetLeft < currentScroll - tolerance);
+        const prevTarget = prevTargets[prevTargets.length - 1];
+
+        if (prevTarget) {
+            this.smoothScrollTo(prevTarget.offsetLeft);
+            const secIndex = this.sections.indexOf(prevTarget.section);
+            if (secIndex >= 0) {
+                this.setCurrentSection(secIndex);
+            }
+        } else {
+            this.smoothScrollTo(0);
+            this.setCurrentSection(0);
         }
+    }
+
+    scrollToNearestSnapTarget() {
+        const snapTargets = this.getAllSnapTargets();
+        const currentScroll = this.getScrollX();
+        let closest = snapTargets[0];
+        let minDiff = Infinity;
+
+        snapTargets.forEach((target) => {
+            const diff = Math.abs(target.offsetLeft - currentScroll);
+            if (diff < minDiff) {
+                minDiff = diff;
+                closest = target;
+            }
+        });
+
+        if (closest) {
+            this.smoothScrollTo(closest.offsetLeft);
+            const secIndex = this.sections.indexOf(closest.section);
+            if (secIndex >= 0) {
+                this.setCurrentSection(secIndex);
+            }
+        }
+    }
+
+    smoothScrollTo(leftPosition) {
+        this.wrapper.scrollTo({
+            left: Math.max(0, leftPosition),
+            top: 0,
+            behavior: this.prefersReducedMotion.matches ? 'auto' : 'smooth'
+        });
     }
 }
 
