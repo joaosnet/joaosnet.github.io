@@ -87,7 +87,6 @@ class HorizontalScrollHandler {
 
 
     setupTouchHorizontalScroll() {
-        const target = window;
         let startX = 0;
         let startY = 0;
         let lastX = 0;
@@ -96,7 +95,7 @@ class HorizontalScrollHandler {
         let isTouching = false;
         let isHorizontalGesture = null;
 
-        target.addEventListener('touchstart', (e) => {
+        document.addEventListener('touchstart', (e) => {
             if (!e.touches || e.touches.length !== 1) {
                 isTouching = false;
                 isHorizontalGesture = null;
@@ -115,24 +114,23 @@ class HorizontalScrollHandler {
             this.hideScrollHint();
         }, { passive: true });
 
-        target.addEventListener('touchmove', (e) => {
+        document.addEventListener('touchmove', (e) => {
             if (!isTouching || !e.touches || e.touches.length !== 1) return;
 
             const touch = e.touches[0];
             const deltaX = touch.clientX - startX;
             const deltaY = touch.clientY - startY;
 
-            // Determine gesture direction once a minimal movement threshold is reached
             if (isHorizontalGesture === null) {
                 const absX = Math.abs(deltaX);
                 const absY = Math.abs(deltaY);
 
-                if (absX < 8 && absY < 8) {
+                if (absX < 6 && absY < 6) {
                     return;
                 }
 
-                // If horizontal movement is dominant or diagonal, claim horizontal navigation
-                isHorizontalGesture = absX >= absY * 0.7;
+                // Treat as horizontal if X movement >= Y * 0.6
+                isHorizontalGesture = absX >= absY * 0.6;
             }
 
             if (isHorizontalGesture) {
@@ -144,22 +142,29 @@ class HorizontalScrollHandler {
                 lastX = touch.clientX;
                 lastY = touch.clientY;
 
-                // 1:1 direct responsive finger dragging
                 this.wrapper.scrollLeft -= currentDiff;
             }
         }, { passive: false });
 
-        const handleTouchEnd = () => {
+        const handleTouchEnd = (e) => {
             if (!isTouching) return;
             isTouching = false;
 
-            if (isHorizontalGesture) {
-                const totalDeltaX = lastX - startX;
-                const duration = Math.max(Date.now() - startTime, 1);
-                const velocityX = totalDeltaX / duration; // px/ms
+            if (e && e.changedTouches && e.changedTouches.length > 0) {
+                lastX = e.changedTouches[0].clientX;
+                lastY = e.changedTouches[0].clientY;
+            }
 
-                const swipeDistanceThreshold = 40;
-                const velocityThreshold = 0.25; // flick detection
+            const totalDeltaX = lastX - startX;
+            const totalDeltaY = lastY - startY;
+            const duration = Math.max(Date.now() - startTime, 1);
+            const velocityX = totalDeltaX / duration;
+
+            const isSignificantHorizontal = Math.abs(totalDeltaX) >= Math.abs(totalDeltaY) * 0.6;
+
+            if (isHorizontalGesture || isSignificantHorizontal) {
+                const swipeDistanceThreshold = 35;
+                const velocityThreshold = 0.2; // px/ms flick
 
                 if (totalDeltaX < -swipeDistanceThreshold || velocityX < -velocityThreshold) {
                     this.next();
@@ -173,8 +178,8 @@ class HorizontalScrollHandler {
             isHorizontalGesture = null;
         };
 
-        target.addEventListener('touchend', handleTouchEnd, { passive: true });
-        target.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+        document.addEventListener('touchend', handleTouchEnd, { passive: true });
+        document.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     }
     setupVerticalToHorizontalScroll() {
         this.wheelTarget = window;
