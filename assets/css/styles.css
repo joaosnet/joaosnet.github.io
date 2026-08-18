@@ -5438,10 +5438,8 @@ body {
 #contact > .container {
     justify-content: safe center; /* centered when it fits; top-anchored & reachable when it overflows */
     min-height: 0;
-    overflow: hidden auto;        /* clip X (no h-scrollbar), scroll Y only when content overflows */
-    overscroll-behavior: contain; /* vertical overscroll must not chain into the horizontal nav/page */
+    overflow: visible;            /* prevent nested touch trapping */
     touch-action: pan-x pan-y;    /* allow both horizontal swipe and vertical scroll */
-    -webkit-overflow-scrolling: touch;
     scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom));
 }
 
@@ -5451,10 +5449,8 @@ body {
     align-items: safe center;
     height: 100%;
     max-height: 100%;
-    overflow: hidden auto;
-    overscroll-behavior: contain;
+    overflow: visible;
     touch-action: pan-x pan-y;    /* allow both horizontal swipe and vertical scroll */
-    -webkit-overflow-scrolling: touch;
     scroll-padding-bottom: calc(88px + env(safe-area-inset-bottom));
 }
 

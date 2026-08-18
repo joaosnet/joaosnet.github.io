@@ -87,11 +87,94 @@ class HorizontalScrollHandler {
 
 
     setupTouchHorizontalScroll() {
-        const root = this.wrapper === document.documentElement ? document : this.wrapper;
+        const target = window;
+        let startX = 0;
+        let startY = 0;
+        let lastX = 0;
+        let lastY = 0;
+        let startTime = 0;
+        let isTouching = false;
+        let isHorizontalGesture = null;
 
-        root.addEventListener('touchstart', () => {
+        target.addEventListener('touchstart', (e) => {
+            if (!e.touches || e.touches.length !== 1) {
+                isTouching = false;
+                isHorizontalGesture = null;
+                return;
+            }
+
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            lastX = startX;
+            lastY = startY;
+            startTime = Date.now();
+            isTouching = true;
+            isHorizontalGesture = null;
+
             this.hideScrollHint();
         }, { passive: true });
+
+        target.addEventListener('touchmove', (e) => {
+            if (!isTouching || !e.touches || e.touches.length !== 1) return;
+
+            const touch = e.touches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+
+            // Determine gesture direction once a minimal movement threshold is reached
+            if (isHorizontalGesture === null) {
+                const absX = Math.abs(deltaX);
+                const absY = Math.abs(deltaY);
+
+                if (absX < 8 && absY < 8) {
+                    return;
+                }
+
+                // If horizontal movement is dominant or diagonal, claim horizontal navigation
+                isHorizontalGesture = absX >= absY * 0.7;
+            }
+
+            if (isHorizontalGesture) {
+                if (e.cancelable) {
+                    e.preventDefault();
+                }
+
+                const currentDiff = touch.clientX - lastX;
+                lastX = touch.clientX;
+                lastY = touch.clientY;
+
+                // 1:1 direct responsive finger dragging
+                this.wrapper.scrollLeft -= currentDiff;
+            }
+        }, { passive: false });
+
+        const handleTouchEnd = () => {
+            if (!isTouching) return;
+            isTouching = false;
+
+            if (isHorizontalGesture) {
+                const totalDeltaX = lastX - startX;
+                const duration = Math.max(Date.now() - startTime, 1);
+                const velocityX = totalDeltaX / duration; // px/ms
+
+                const swipeDistanceThreshold = 40;
+                const velocityThreshold = 0.25; // flick detection
+
+                if (totalDeltaX < -swipeDistanceThreshold || velocityX < -velocityThreshold) {
+                    this.next();
+                } else if (totalDeltaX > swipeDistanceThreshold || velocityX > velocityThreshold) {
+                    this.previous();
+                } else {
+                    this.scrollToSection(this.getNearestSectionIndex());
+                }
+            }
+
+            isHorizontalGesture = null;
+        };
+
+        target.addEventListener('touchend', handleTouchEnd, { passive: true });
+        target.addEventListener('touchcancel', handleTouchEnd, { passive: true });
     }
     setupVerticalToHorizontalScroll() {
         this.wheelTarget = window;
