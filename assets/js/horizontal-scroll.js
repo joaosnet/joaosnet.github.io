@@ -656,14 +656,16 @@ class HorizontalScrollHandler {
     }
 
     showScrollHint() {
-        if (this.scrollHint) {
+        if (this.scrollHint && this.getScrollX() <= 40) {
             this.scrollHint.classList.add('visible');
             this.hasShownHint = true;
-            
-            window.clearTimeout(this.scrollHintTimer);
-            this.scrollHintTimer = window.setTimeout(() => {
-                this.hideScrollHint();
-            }, 6000);
+        }
+    }
+
+    hideScrollHint(force = false) {
+        if (this.isAutoPeeking && !force) return;
+        if (this.scrollHint && (force || this.getScrollX() > 40)) {
+            this.scrollHint.classList.remove('visible');
         }
     }
 
@@ -749,17 +751,13 @@ class HorizontalScrollHandler {
         }, { passive: true });
     }
 
-    hideScrollHint() {
-        if (this.isAutoPeeking) return;
-        if (this.scrollHint) {
-            this.scrollHint.classList.remove('visible');
-        }
-    }
-
     setupAutoHorizontalPeek() {
         if (this.initialHash || window.location.hash) {
             return;
         }
+
+        // Show hint right away
+        this.showScrollHint();
 
         window.setTimeout(() => {
             if (this.getScrollX() > 30) return; // User already interacted
@@ -781,9 +779,9 @@ class HorizontalScrollHandler {
                 window.setTimeout(() => {
                     this.isAutoPeeking = false;
                     this.showScrollHint();
-                }, 400);
+                }, 500);
             }, 650);
-        }, 1100);
+        }, 1200);
     }
 
     getAllSnapTargets() {
