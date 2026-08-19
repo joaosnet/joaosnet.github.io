@@ -646,7 +646,7 @@
       "label": ".showToast()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L251",
+      "source_location": "L243",
       "id": "js_contact_form_contactformhandler_showtoast",
       "community": 10,
       "norm_label": ".showtoast()"
@@ -655,7 +655,7 @@
       "label": ".flashSubmitSuccess()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L283",
+      "source_location": "L275",
       "id": "js_contact_form_contactformhandler_flashsubmitsuccess",
       "community": 10,
       "norm_label": ".flashsubmitsuccess()"
@@ -5881,9 +5881,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1417",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1417",
-      "target": "joaosnet_github_io_update_projects_update_sitemap",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_update_sitemap"
     },
     {
       "relation": "rationale_for",
@@ -5912,9 +5912,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1440",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1440",
-      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images"
     },
     {
       "relation": "rationale_for",
@@ -5963,9 +5963,9 @@
       "source_file": "update_projects.py",
       "source_location": "L1487",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1487",
-      "target": "joaosnet_github_io_update_projects_commit_downloaded_images",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_update_projects_commit_downloaded_images"
     },
     {
       "relation": "rationale_for",
@@ -6278,9 +6278,9 @@
       "source_file": "assets/js/contact-form.js",
       "source_location": "L53",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler",
-      "target": "js_contact_form_contactformhandler_validateform",
-      "confidence_score": 1.0
+      "target": "js_contact_form_contactformhandler_validateform"
     },
     {
       "relation": "method",
@@ -6390,9 +6390,9 @@
       "source_file": "assets/js/contact-form.js",
       "source_location": "L63",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler_validateform",
-      "target": "js_contact_form_contactformhandler_showtoast",
-      "confidence_score": 1.0
+      "target": "js_contact_form_contactformhandler_showtoast"
     },
     {
       "relation": "calls",
@@ -6401,9 +6401,9 @@
       "source_file": "assets/js/contact-form.js",
       "source_location": "L87",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler_handlesubmit",
-      "target": "js_contact_form_contactformhandler_validateform",
-      "confidence_score": 1.0
+      "target": "js_contact_form_contactformhandler_validateform"
     },
     {
       "relation": "calls",
@@ -6456,9 +6456,9 @@
       "source_file": "assets/js/contact-form.js",
       "source_location": "L170",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler_openmailclient",
-      "target": "js_contact_form_contactformhandler_showtoast",
-      "confidence_score": 1.0
+      "target": "js_contact_form_contactformhandler_showtoast"
     },
     {
       "relation": "calls",
@@ -6489,9 +6489,9 @@
       "source_file": "assets/js/contact-form.js",
       "source_location": "L219",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler_opengmail",
-      "target": "js_contact_form_contactformhandler_showtoast",
-      "confidence_score": 1.0
+      "target": "js_contact_form_contactformhandler_showtoast"
     },
     {
       "relation": "contains",
@@ -11628,5 +11628,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "c3557efab552a97625aa56c741bd910f9605c808"
+  "built_at_commit": "1e847edc3cf2527e0e8361cf4df3f10771c9b117"
 }
