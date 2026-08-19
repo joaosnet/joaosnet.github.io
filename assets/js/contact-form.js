@@ -237,14 +237,6 @@ class ContactFormHandler {
                     behavior: prefersReducedMotion ? 'auto' : 'smooth'
                 });
             }
-
-            const firstInput = document.getElementById('name') || document.getElementById('message');
-            if (firstInput) {
-                const focusDelay = prefersReducedMotion ? 50 : 450;
-                setTimeout(() => {
-                    firstInput.focus({ preventScroll: true });
-                }, focusDelay);
-            }
         }
     }
 
