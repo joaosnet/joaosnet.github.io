@@ -81,7 +81,6 @@ html[data-theme="light"] {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 html {
@@ -93,6 +92,7 @@ html {
 }
 
 body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--dark);
     color: var(--light);
     line-height: 1.65;
@@ -101,6 +101,10 @@ body {
     overflow-y: auto;
     position: relative;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
 }
 
 /* Skip link de Acessibilidade */
@@ -194,21 +198,23 @@ header.scrolled {
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    gap: 16px;
+    gap: 14px;
 }
 
 .logo {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     font-weight: 700;
     color: var(--light);
-    padding: 8px 14px;
+    padding: 6px 12px;
     border-radius: 12px;
     border: 1px solid var(--border-light);
     background: var(--glass-bg);
     transition: border-color 0.25s ease, transform 0.25s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .logo:hover {
@@ -218,61 +224,44 @@ header.scrolled {
 
 .logo i {
     color: var(--accent);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 .logo-short {
     display: none;
 }
 
-/* Controles de Cabeçalho */
-.header-controls {
+/* Menu de Navegação Desktop */
+header nav {
     display: flex;
     align-items: center;
-    gap: 10px;
+    margin-left: auto;
+    margin-right: 8px;
 }
 
-.theme-toggle,
-.theme-selector-btn {
-    width: 44px;
-    height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    border: 1px solid var(--border-light);
-    background: var(--glass-bg);
-    color: var(--light);
-    font-size: 1.15rem;
-    transition: all 0.25s ease;
-}
-
-.theme-toggle:hover,
-.theme-selector-btn:hover,
-.theme-toggle:focus-visible,
-.theme-selector-btn:focus-visible {
-    border-color: var(--accent);
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    color: var(--accent);
-    transform: translateY(-2px);
-    outline: none;
-}
-
-/* Menu de Navegação Desktop */
 header nav ul {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 6px;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-flex;
+    align-items: center;
 }
 
 header nav ul li a {
-    padding: 8px 16px;
-    font-size: 0.95rem;
+    display: inline-block;
+    padding: 6px 10px;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--text-gray);
-    border-radius: 10px;
+    border-radius: 8px;
     transition: color 0.2s ease, background-color 0.2s ease;
+    white-space: nowrap;
 }
 
 header nav ul li a:hover,
@@ -289,24 +278,67 @@ header nav ul li a[aria-current="page"] {
     border-bottom: 2px solid var(--accent);
 }
 
+/* Ocultar item 'Paleta de cores' no nav desktop */
+.theme-selector-menu-item {
+    display: none;
+}
+
+/* Controles de Ação do Header */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.theme-toggle,
+.theme-selector-btn {
+    width: 38px;
+    height: 38px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    border: 1px solid var(--border-light);
+    background: var(--glass-bg);
+    color: var(--light);
+    font-size: 1.05rem;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover,
+.theme-selector-btn:hover,
+.theme-toggle:focus-visible,
+.theme-selector-btn:focus-visible {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent);
+    transform: translateY(-2px);
+    outline: none;
+}
+
 /* Botão Hambúrguer Mobile */
 .menu-toggle {
     display: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
     border: 1px solid var(--border-light);
     background: var(--glass-bg);
     color: var(--light);
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 5px;
-    padding: 10px;
+    gap: 4px;
+    padding: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
 }
 
 .menu-toggle span {
-    width: 22px;
+    width: 20px;
     height: 2px;
     background-color: var(--light);
     border-radius: 2px;
@@ -314,7 +346,7 @@ header nav ul li a[aria-current="page"] {
 }
 
 body.menu-open .menu-toggle span:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(6px) rotate(45deg);
 }
 
 body.menu-open .menu-toggle span:nth-child(2) {
@@ -322,7 +354,7 @@ body.menu-open .menu-toggle span:nth-child(2) {
 }
 
 body.menu-open .menu-toggle span:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-6px) rotate(-45deg);
 }
 
 /* Barra de Progresso no Topo */
@@ -1640,6 +1672,10 @@ textarea.form-control {
    15. RESPONSIVIDADE & MOBILE BREAKPOINTS
    ============================================ */
 @media (max-width: 992px) {
+    :root {
+        --header-height: 68px;
+    }
+
     .contact-panel {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -1648,15 +1684,17 @@ textarea.form-control {
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --header-height: 68px;
-    }
 
     .menu-toggle {
         display: flex;
+    }
+
+    .theme-selector-btn {
+        display: none;
+    }
+
+    .theme-selector-menu-item {
+        display: block;
     }
 
     header nav {
@@ -1670,19 +1708,29 @@ textarea.form-control {
         padding: 90px 24px 32px;
         box-shadow: -20px 0 60px rgba(0, 0, 0, 0.7);
         transform: translateX(100%);
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        visibility: hidden;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
         z-index: calc(var(--z-header) - 1);
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
     }
 
     body.menu-open header nav {
         transform: translateX(0);
+        visibility: visible;
     }
 
     header nav ul {
         flex-direction: column;
         align-items: stretch;
         gap: 10px;
+        width: 100%;
+    }
+
+    header nav ul li {
+        width: 100%;
     }
 
     header nav ul li a,
@@ -1691,7 +1739,7 @@ textarea.form-control {
         align-items: center;
         gap: 12px;
         padding: 12px 18px;
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         background: var(--glass-bg);
         border: 1px solid var(--border-light);
         border-radius: 12px;

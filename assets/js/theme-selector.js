@@ -213,8 +213,9 @@ class ThemeSelector {
     }
 
     addThemeSelectorButton() {
-        const header = document.querySelector('header .header-content');
-        if (header && !header.querySelector('.theme-selector-btn')) {
+        const toggleBtn = document.getElementById('theme-toggle');
+        const container = toggleBtn ? toggleBtn.parentElement : document.querySelector('header .header-actions') || document.querySelector('header .header-content');
+        if (container && !document.querySelector('.theme-selector-btn')) {
             const btn = document.createElement('button');
             btn.className = 'theme-selector-btn';
             btn.type = 'button';
@@ -224,7 +225,11 @@ class ThemeSelector {
             btn.addEventListener('click', () => this.showModal());
             this.selectorButton = btn;
             this.updateSelectorButtonLabel();
-            header.insertBefore(btn, document.querySelector('.theme-toggle'));
+            if (toggleBtn) {
+                container.insertBefore(btn, toggleBtn);
+            } else {
+                container.appendChild(btn);
+            }
         }
     }
 

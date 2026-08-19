@@ -45,7 +45,7 @@
       "source_file": "update_projects.py",
       "source_location": "L184",
       "id": "joaosnet_github_io_update_projects_check_user_contributed",
-      "community": 24,
+      "community": 27,
       "norm_label": "check_user_contributed()"
     },
     {
@@ -90,7 +90,7 @@
       "source_file": "update_projects.py",
       "source_location": "L563",
       "id": "joaosnet_github_io_update_projects_collect_public_pages_links",
-      "community": 29,
+      "community": 0,
       "norm_label": "collect_public_pages_links()"
     },
     {
@@ -106,16 +106,34 @@
       "label": "generate_project_html()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L663",
+      "source_location": "L664",
       "id": "joaosnet_github_io_update_projects_generate_project_html",
       "community": 4,
       "norm_label": "generate_project_html()"
     },
     {
+      "label": "optimize_image()",
+      "file_type": "code",
+      "source_file": "update_projects.py",
+      "source_location": "L783",
+      "id": "joaosnet_github_io_update_projects_optimize_image",
+      "community": 24,
+      "norm_label": "optimize_image()"
+    },
+    {
+      "label": "_finalize_downloaded_image()",
+      "file_type": "code",
+      "source_file": "update_projects.py",
+      "source_location": "L831",
+      "id": "joaosnet_github_io_update_projects_finalize_downloaded_image",
+      "community": 24,
+      "norm_label": "_finalize_downloaded_image()"
+    },
+    {
       "label": "download_image_for_private_repo()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L781",
+      "source_location": "L838",
       "id": "joaosnet_github_io_update_projects_download_image_for_private_repo",
       "community": 26,
       "norm_label": "download_image_for_private_repo()"
@@ -124,7 +142,7 @@
       "label": "get_repo_default_branch()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L915",
+      "source_location": "L975",
       "id": "joaosnet_github_io_update_projects_get_repo_default_branch",
       "community": 26,
       "norm_label": "get_repo_default_branch()"
@@ -133,7 +151,7 @@
       "label": "find_image_in_readme()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L943",
+      "source_location": "L1003",
       "id": "joaosnet_github_io_update_projects_find_image_in_readme",
       "community": 26,
       "norm_label": "find_image_in_readme()"
@@ -142,7 +160,7 @@
       "label": "find_repo_preview_image()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1135",
+      "source_location": "L1195",
       "id": "joaosnet_github_io_update_projects_find_repo_preview_image",
       "community": 12,
       "norm_label": "find_repo_preview_image()"
@@ -151,16 +169,25 @@
       "label": "update_index_html()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1247",
+      "source_location": "L1307",
       "id": "joaosnet_github_io_update_projects_update_index_html",
-      "community": 25,
+      "community": 24,
       "norm_label": "update_index_html()"
+    },
+    {
+      "label": "update_sitemap()",
+      "file_type": "code",
+      "source_file": "update_projects.py",
+      "source_location": "L1404",
+      "id": "joaosnet_github_io_update_projects_update_sitemap",
+      "community": 24,
+      "norm_label": "update_sitemap()"
     },
     {
       "label": "sanitize_existing_project_images()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1341",
+      "source_location": "L1425",
       "id": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
       "community": 22,
       "norm_label": "sanitize_existing_project_images()"
@@ -169,18 +196,18 @@
       "label": "commit_downloaded_images()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1390",
+      "source_location": "L1474",
       "id": "joaosnet_github_io_update_projects_commit_downloaded_images",
-      "community": 25,
+      "community": 34,
       "norm_label": "commit_downloaded_images()"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1433",
+      "source_location": "L1517",
       "id": "joaosnet_github_io_update_projects_main",
-      "community": 25,
+      "community": 27,
       "norm_label": "main()"
     },
     {
@@ -225,7 +252,7 @@
       "source_file": "update_projects.py",
       "source_location": "L185",
       "id": "joaosnet_github_io_update_projects_rationale_185",
-      "community": 24,
+      "community": 27,
       "norm_label": "check if the user has actually contributed to the repository.     returns true"
     },
     {
@@ -270,7 +297,7 @@
       "source_file": "update_projects.py",
       "source_location": "L564",
       "id": "joaosnet_github_io_update_projects_rationale_564",
-      "community": 29,
+      "community": 0,
       "norm_label": "collect all public github pages links from the fetched repositories."
     },
     {
@@ -283,11 +310,29 @@
       "norm_label": "generate the public github pages showcase block."
     },
     {
+      "label": "Resize (cap width) and convert an image to WebP to drastically cut file size.",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L784",
+      "id": "joaosnet_github_io_update_projects_rationale_784",
+      "community": 24,
+      "norm_label": "resize (cap width) and convert an image to webp to drastically cut file size."
+    },
+    {
+      "label": "Optimize a freshly-written image and return its public ./path, tracking it for c",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L832",
+      "id": "joaosnet_github_io_update_projects_rationale_832",
+      "community": 24,
+      "norm_label": "optimize a freshly-written image and return its public ./path, tracking it for c"
+    },
+    {
       "label": "For private repos, download the image and save it locally in the portfolio.",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L782",
-      "id": "joaosnet_github_io_update_projects_rationale_782",
+      "source_location": "L839",
+      "id": "joaosnet_github_io_update_projects_rationale_839",
       "community": 26,
       "norm_label": "for private repos, download the image and save it locally in the portfolio."
     },
@@ -295,8 +340,8 @@
       "label": "Get the default branch of a repository using GitHub API.",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L916",
-      "id": "joaosnet_github_io_update_projects_rationale_916",
+      "source_location": "L976",
+      "id": "joaosnet_github_io_update_projects_rationale_976",
       "community": 26,
       "norm_label": "get the default branch of a repository using github api."
     },
@@ -304,8 +349,8 @@
       "label": "Extract image URL from README file.     Looks for markdown images: ![alt](url)",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L944",
-      "id": "joaosnet_github_io_update_projects_rationale_944",
+      "source_location": "L1004",
+      "id": "joaosnet_github_io_update_projects_rationale_1004",
       "community": 26,
       "norm_label": "extract image url from readme file.     looks for markdown images: ![alt](url)"
     },
@@ -313,17 +358,26 @@
       "label": "Find the best preview image for a repository.      Strategy (in order):     1",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1136",
-      "id": "joaosnet_github_io_update_projects_rationale_1136",
+      "source_location": "L1196",
+      "id": "joaosnet_github_io_update_projects_rationale_1196",
       "community": 12,
       "norm_label": "find the best preview image for a repository.      strategy (in order):     1"
+    },
+    {
+      "label": "Update the <lastmod> date in sitemap.xml to today's date (YYYY-MM-DD).",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1405",
+      "id": "joaosnet_github_io_update_projects_rationale_1405",
+      "community": 24,
+      "norm_label": "update the <lastmod> date in sitemap.xml to today's date (yyyy-mm-dd)."
     },
     {
       "label": "Replace owner avatar image URLs with a local placeholder inside the projects blo",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1344",
-      "id": "joaosnet_github_io_update_projects_rationale_1344",
+      "source_location": "L1428",
+      "id": "joaosnet_github_io_update_projects_rationale_1428",
       "community": 22,
       "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo"
     },
@@ -331,19 +385,73 @@
       "label": "Commit downloaded images to git.",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1391",
-      "id": "joaosnet_github_io_update_projects_rationale_1391",
-      "community": 25,
+      "source_location": "L1475",
+      "id": "joaosnet_github_io_update_projects_rationale_1475",
+      "community": 34,
       "norm_label": "commit downloaded images to git."
     },
     {
       "label": "# IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1042",
-      "id": "joaosnet_github_io_update_projects_rationale_1042",
+      "source_location": "L1102",
+      "id": "joaosnet_github_io_update_projects_rationale_1102",
       "community": 24,
       "norm_label": "# important: skip avatars.githubusercontent.com - these are user/org avatars, no"
+    },
+    {
+      "label": "launch.json",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L1",
+      "id": "claude_launch_json",
+      "community": 35,
+      "norm_label": "launch.json"
+    },
+    {
+      "label": "version",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "id": "claude_launch_version",
+      "community": 35,
+      "norm_label": "version"
+    },
+    {
+      "label": "configurations",
+      "file_type": "code",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "id": "claude_launch_configurations",
+      "community": 35,
+      "norm_label": "configurations"
+    },
+    {
+      "label": "settings.local.json",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L1",
+      "id": "claude_settings_local_json",
+      "community": 36,
+      "norm_label": "settings.local.json"
+    },
+    {
+      "label": "permissions",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "id": "claude_settings_local_permissions",
+      "community": 36,
+      "norm_label": "permissions"
+    },
+    {
+      "label": "allow",
+      "file_type": "code",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "id": "claude_settings_local_permissions_allow",
+      "community": 36,
+      "norm_label": "allow"
     },
     {
       "label": "hooks.json",
@@ -385,7 +493,7 @@
       "label": "AnimationsHandler",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L7",
+      "source_location": "L5",
       "id": "js_animations_animationshandler",
       "community": 9,
       "norm_label": "animationshandler"
@@ -394,7 +502,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L8",
+      "source_location": "L6",
       "id": "js_animations_animationshandler_constructor",
       "community": 9,
       "norm_label": ".constructor()"
@@ -403,7 +511,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L13",
+      "source_location": "L11",
       "id": "js_animations_animationshandler_init",
       "community": 9,
       "norm_label": ".init()"
@@ -412,7 +520,7 @@
       "label": ".setupHeaderScrollEffect()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L20",
+      "source_location": "L17",
       "id": "js_animations_animationshandler_setupheaderscrolleffect",
       "community": 9,
       "norm_label": ".setupheaderscrolleffect()"
@@ -421,79 +529,16 @@
       "label": ".setupScrollAnimations()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L37",
+      "source_location": "L34",
       "id": "js_animations_animationshandler_setupscrollanimations",
       "community": 9,
       "norm_label": ".setupscrollanimations()"
     },
     {
-      "label": ".setupSmoothScrolling()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L103",
-      "id": "js_animations_animationshandler_setupsmoothscrolling",
-      "community": 9,
-      "norm_label": ".setupsmoothscrolling()"
-    },
-    {
-      "label": ".getTargetElement()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L122",
-      "id": "js_animations_animationshandler_gettargetelement",
-      "community": 9,
-      "norm_label": ".gettargetelement()"
-    },
-    {
-      "label": ".scrollToTarget()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L134",
-      "id": "js_animations_animationshandler_scrolltotarget",
-      "community": 9,
-      "norm_label": ".scrolltotarget()"
-    },
-    {
-      "label": ".getScrollBehavior()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L169",
-      "id": "js_animations_animationshandler_getscrollbehavior",
-      "community": 9,
-      "norm_label": ".getscrollbehavior()"
-    },
-    {
-      "label": ".updateUrlHash()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L173",
-      "id": "js_animations_animationshandler_updateurlhash",
-      "community": 9,
-      "norm_label": ".updateurlhash()"
-    },
-    {
-      "label": ".focusTarget()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L185",
-      "id": "js_animations_animationshandler_focustarget",
-      "community": 9,
-      "norm_label": ".focustarget()"
-    },
-    {
-      "label": ".closeMobileMenu()",
-      "file_type": "code",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L205",
-      "id": "js_animations_animationshandler_closemobilemenu",
-      "community": 9,
-      "norm_label": ".closemobilemenu()"
-    },
-    {
       "label": ".setup3DTilt()",
       "file_type": "code",
       "source_file": "assets/js/animations.js",
-      "source_location": "L216",
+      "source_location": "L57",
       "id": "js_animations_animationshandler_setup3dtilt",
       "community": 9,
       "norm_label": ".setup3dtilt()"
@@ -592,7 +637,7 @@
       "label": ".showToast()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L181",
+      "source_location": "L166",
       "id": "js_contact_form_contactformhandler_showtoast",
       "community": 10,
       "norm_label": ".showtoast()"
@@ -601,7 +646,7 @@
       "label": ".flashSubmitSuccess()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L213",
+      "source_location": "L198",
       "id": "js_contact_form_contactformhandler_flashsubmitsuccess",
       "community": 10,
       "norm_label": ".flashsubmitsuccess()"
@@ -688,10 +733,28 @@
       "norm_label": ".createvisitdata()"
     },
     {
+      "label": ".classifyReferrer()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L145",
+      "id": "js_geo_counter_geoviewscounter_classifyreferrer",
+      "community": 8,
+      "norm_label": ".classifyreferrer()"
+    },
+    {
+      "label": ".detectDevice()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L175",
+      "id": "js_geo_counter_geoviewscounter_detectdevice",
+      "community": 8,
+      "norm_label": ".detectdevice()"
+    },
+    {
       "label": ".storeVisitData()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L126",
+      "source_location": "L187",
       "id": "js_geo_counter_geoviewscounter_storevisitdata",
       "community": 8,
       "norm_label": ".storevisitdata()"
@@ -700,7 +763,7 @@
       "label": ".sendToGoogleAppsScript()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L144",
+      "source_location": "L205",
       "id": "js_geo_counter_geoviewscounter_sendtogoogleappsscript",
       "community": 8,
       "norm_label": ".sendtogoogleappsscript()"
@@ -709,7 +772,7 @@
       "label": ".cleanOldData()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L183",
+      "source_location": "L244",
       "id": "js_geo_counter_geoviewscounter_cleanolddata",
       "community": 8,
       "norm_label": ".cleanolddata()"
@@ -718,7 +781,7 @@
       "label": ".getStoredData()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L204",
+      "source_location": "L265",
       "id": "js_geo_counter_geoviewscounter_getstoreddata",
       "community": 8,
       "norm_label": ".getstoreddata()"
@@ -727,7 +790,7 @@
       "label": ".getLocalStatistics()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L209",
+      "source_location": "L270",
       "id": "js_geo_counter_geoviewscounter_getlocalstatistics",
       "community": 8,
       "norm_label": ".getlocalstatistics()"
@@ -738,440 +801,188 @@
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L1",
       "id": "assets_js_horizontal_scroll_js",
-      "community": 1,
+      "community": 28,
       "norm_label": "horizontal-scroll.js"
     },
     {
-      "label": "HorizontalScrollHandler",
+      "label": "ScrollNavigationHandler",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L6",
-      "id": "js_horizontal_scroll_horizontalscrollhandler",
-      "community": 1,
-      "norm_label": "horizontalscrollhandler"
+      "id": "js_horizontal_scroll_scrollnavigationhandler",
+      "community": 28,
+      "norm_label": "scrollnavigationhandler"
     },
     {
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
       "source_location": "L7",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_constructor",
-      "community": 1,
+      "id": "js_horizontal_scroll_scrollnavigationhandler_constructor",
+      "community": 28,
       "norm_label": ".constructor()"
     },
     {
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L35",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "community": 1,
+      "source_location": "L20",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "community": 28,
       "norm_label": ".init()"
     },
     {
       "label": ".refreshSections()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L73",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_refreshsections",
-      "community": 1,
+      "source_location": "L39",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_refreshsections",
+      "community": 28,
       "norm_label": ".refreshsections()"
     },
     {
       "label": ".refreshNavLinks()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L77",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks",
-      "community": 1,
+      "source_location": "L46",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_refreshnavlinks",
+      "community": 28,
       "norm_label": ".refreshnavlinks()"
     },
     {
-      "label": ".setupScrollRestoration()",
+      "label": ".getHeaderHeight()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L81",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration",
-      "community": 1,
-      "norm_label": ".setupscrollrestoration()"
-    },
-    {
-      "label": ".setupTouchHorizontalScroll()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L88",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll",
-      "community": 1,
-      "norm_label": ".setuptouchhorizontalscroll()"
-    },
-    {
-      "label": ".handleTouchMove()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L126",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "community": 1,
-      "norm_label": ".handletouchmove()"
-    },
-    {
-      "label": ".setupVerticalToHorizontalScroll()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L176",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll",
-      "community": 1,
-      "norm_label": ".setupverticaltohorizontalscroll()"
-    },
-    {
-      "label": ".handleWheel()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L183",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "community": 1,
-      "norm_label": ".handlewheel()"
-    },
-    {
-      "label": ".getWheelIntent()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L212",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent",
-      "community": 1,
-      "norm_label": ".getwheelintent()"
-    },
-    {
-      "label": ".normalizeWheelDelta()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L227",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta",
-      "community": 1,
-      "norm_label": ".normalizewheeldelta()"
-    },
-    {
-      "label": ".scrollNestedHorizontalArea()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L239",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
-      "community": 1,
-      "norm_label": ".scrollnestedhorizontalarea()"
-    },
-    {
-      "label": ".findScrollableParent()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L243",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent",
-      "community": 1,
-      "norm_label": ".findscrollableparent()"
-    },
-    {
-      "label": ".hasScrollableOverflow()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L257",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow",
-      "community": 1,
-      "norm_label": ".hasscrollableoverflow()"
-    },
-    {
-      "label": ".canElementScroll()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L267",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll",
-      "community": 1,
-      "norm_label": ".canelementscroll()"
-    },
-    {
-      "label": ".canScrollHorizontally()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L277",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
-      "community": 1,
-      "norm_label": ".canscrollhorizontally()"
-    },
-    {
-      "label": ".scrollHorizontally()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L286",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally",
-      "community": 1,
-      "norm_label": ".scrollhorizontally()"
-    },
-    {
-      "label": ".pauseScrollSnap()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L296",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap",
-      "community": 1,
-      "norm_label": ".pausescrollsnap()"
-    },
-    {
-      "label": ".getCurrentSection()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L308",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getcurrentsection",
-      "community": 1,
-      "norm_label": ".getcurrentsection()"
-    },
-    {
-      "label": ".getNearestSectionIndex()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L312",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
-      "community": 1,
-      "norm_label": ".getnearestsectionindex()"
-    },
-    {
-      "label": ".getScrollX()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L331",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getscrollx",
-      "community": 1,
-      "norm_label": ".getscrollx()"
-    },
-    {
-      "label": ".getMaxScrollX()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L339",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx",
-      "community": 1,
-      "norm_label": ".getmaxscrollx()"
-    },
-    {
-      "label": ".getViewportWidth()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L350",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth",
-      "community": 1,
-      "norm_label": ".getviewportwidth()"
-    },
-    {
-      "label": ".createScrollIndicator()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L358",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator",
-      "community": 1,
-      "norm_label": ".createscrollindicator()"
-    },
-    {
-      "label": ".createScrollHint()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L384",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint",
-      "community": 1,
-      "norm_label": ".createscrollhint()"
-    },
-    {
-      "label": ".getSectionLabel()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L392",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_getsectionlabel",
-      "community": 1,
-      "norm_label": ".getsectionlabel()"
+      "source_location": "L50",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_getheaderheight",
+      "community": 28,
+      "norm_label": ".getheaderheight()"
     },
     {
       "label": ".setupScrollListener()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L403",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener",
-      "community": 1,
+      "source_location": "L54",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setupscrolllistener",
+      "community": 28,
       "norm_label": ".setupscrolllistener()"
-    },
-    {
-      "label": ".setupScrollEndListener()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L418",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener",
-      "community": 1,
-      "norm_label": ".setupscrollendlistener()"
-    },
-    {
-      "label": ".handleSettledScroll()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L434",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
-      "community": 1,
-      "norm_label": ".handlesettledscroll()"
-    },
-    {
-      "label": ".setupSectionObserver()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L441",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver",
-      "community": 1,
-      "norm_label": ".setupsectionobserver()"
-    },
-    {
-      "label": ".setupDotClicks()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L475",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks",
-      "community": 1,
-      "norm_label": ".setupdotclicks()"
-    },
-    {
-      "label": ".scrollToSection()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L485",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
-      "community": 1,
-      "norm_label": ".scrolltosection()"
-    },
-    {
-      "label": ".updateActiveSection()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L509",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
-      "community": 1,
-      "norm_label": ".updateactivesection()"
     },
     {
       "label": ".updateProgressBar()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L514",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
-      "community": 1,
+      "source_location": "L72",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_updateprogressbar",
+      "community": 28,
       "norm_label": ".updateprogressbar()"
     },
     {
-      "label": ".setCurrentSection()",
+      "label": ".updateBackToTopVisibility()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L526",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
-      "community": 1,
-      "norm_label": ".setcurrentsection()"
+      "source_location": "L86",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_updatebacktotopvisibility",
+      "community": 28,
+      "norm_label": ".updatebacktotopvisibility()"
     },
     {
-      "label": ".revealSection()",
+      "label": ".setupBackToTop()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L538",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_revealsection",
-      "community": 1,
-      "norm_label": ".revealsection()"
+      "source_location": "L96",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setupbacktotop",
+      "community": 28,
+      "norm_label": ".setupbacktotop()"
     },
     {
-      "label": ".updateDots()",
+      "label": ".setupSectionObserver()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L548",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_updatedots",
-      "community": 1,
-      "norm_label": ".updatedots()"
+      "source_location": "L113",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setupsectionobserver",
+      "community": 28,
+      "norm_label": ".setupsectionobserver()"
     },
     {
-      "label": ".updateNavLinks()",
+      "label": ".updateActiveSectionByScroll()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L562",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks",
-      "community": 1,
-      "norm_label": ".updatenavlinks()"
+      "source_location": "L139",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_updateactivesectionbyscroll",
+      "community": 28,
+      "norm_label": ".updateactivesectionbyscroll()"
     },
     {
-      "label": ".scrollToInitialHash()",
+      "label": ".updateActiveSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L583",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash",
-      "community": 1,
-      "norm_label": ".scrolltoinitialhash()"
+      "source_location": "L154",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_updateactivesection",
+      "community": 28,
+      "norm_label": ".updateactivesection()"
     },
     {
-      "label": ".restoreInitialPosition()",
+      "label": ".setActiveSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L612",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition",
-      "community": 1,
-      "norm_label": ".restoreinitialposition()"
+      "source_location": "L158",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setactivesection",
+      "community": 28,
+      "norm_label": ".setactivesection()"
     },
     {
-      "label": ".updateHash()",
+      "label": ".scrollToSection()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L631",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_updatehash",
-      "community": 1,
-      "norm_label": ".updatehash()"
-    },
-    {
-      "label": ".showScrollHint()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L643",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_showscrollhint",
-      "community": 1,
-      "norm_label": ".showscrollhint()"
-    },
-    {
-      "label": ".setupKeyboardNavigation()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L654",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation",
-      "community": 1,
-      "norm_label": ".setupkeyboardnavigation()"
-    },
-    {
-      "label": ".setupResizeListener()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L685",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener",
-      "community": 1,
-      "norm_label": ".setupresizelistener()"
-    },
-    {
-      "label": ".hideScrollHint()",
-      "file_type": "code",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L699",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint",
-      "community": 1,
-      "norm_label": ".hidescrollhint()"
+      "source_location": "L183",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection",
+      "community": 28,
+      "norm_label": ".scrolltosection()"
     },
     {
       "label": ".next()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L705",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_next",
-      "community": 1,
+      "source_location": "L219",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_next",
+      "community": 28,
       "norm_label": ".next()"
     },
     {
       "label": ".previous()",
       "file_type": "code",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L711",
-      "id": "js_horizontal_scroll_horizontalscrollhandler_previous",
-      "community": 1,
+      "source_location": "L225",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_previous",
+      "community": 28,
       "norm_label": ".previous()"
+    },
+    {
+      "label": ".setupAnchorClicks()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L231",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setupanchorclicks",
+      "community": 28,
+      "norm_label": ".setupanchorclicks()"
+    },
+    {
+      "label": ".setupKeyboardNavigation()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L257",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_setupkeyboardnavigation",
+      "community": 28,
+      "norm_label": ".setupkeyboardnavigation()"
+    },
+    {
+      "label": ".handleInitialHash()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L273",
+      "id": "js_horizontal_scroll_scrollnavigationhandler_handleinitialhash",
+      "community": 28,
+      "norm_label": ".handleinitialhash()"
     },
     {
       "label": "mobile-menu.js",
@@ -1474,7 +1285,7 @@
       "label": ".createModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L134",
+      "source_location": "L132",
       "id": "js_theme_selector_themeselector_createmodal",
       "community": 7,
       "norm_label": ".createmodal()"
@@ -1483,7 +1294,7 @@
       "label": ".createThemeCard()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L158",
+      "source_location": "L156",
       "id": "js_theme_selector_themeselector_createthemecard",
       "community": 7,
       "norm_label": ".createthemecard()"
@@ -1492,7 +1303,7 @@
       "label": ".setupEventListeners()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L175",
+      "source_location": "L173",
       "id": "js_theme_selector_themeselector_setupeventlisteners",
       "community": 7,
       "norm_label": ".setupeventlisteners()"
@@ -1501,7 +1312,7 @@
       "label": ".addThemeSelectorButton()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L217",
+      "source_location": "L215",
       "id": "js_theme_selector_themeselector_addthemeselectorbutton",
       "community": 7,
       "norm_label": ".addthemeselectorbutton()"
@@ -1510,7 +1321,7 @@
       "label": ".addThemeSelectorMenuButton()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L233",
+      "source_location": "L236",
       "id": "js_theme_selector_themeselector_addthemeselectormenubutton",
       "community": 7,
       "norm_label": ".addthemeselectormenubutton()"
@@ -1519,7 +1330,7 @@
       "label": ".promptFirstVisitPalette()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L257",
+      "source_location": "L260",
       "id": "js_theme_selector_themeselector_promptfirstvisitpalette",
       "community": 7,
       "norm_label": ".promptfirstvisitpalette()"
@@ -1528,7 +1339,7 @@
       "label": ".showModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L270",
+      "source_location": "L273",
       "id": "js_theme_selector_themeselector_showmodal",
       "community": 7,
       "norm_label": ".showmodal()"
@@ -1537,7 +1348,7 @@
       "label": ".closeModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L296",
+      "source_location": "L299",
       "id": "js_theme_selector_themeselector_closemodal",
       "community": 7,
       "norm_label": ".closemodal()"
@@ -1546,7 +1357,7 @@
       "label": ".selectTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L312",
+      "source_location": "L315",
       "id": "js_theme_selector_themeselector_selecttheme",
       "community": 7,
       "norm_label": ".selecttheme()"
@@ -1555,7 +1366,7 @@
       "label": ".applyTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L321",
+      "source_location": "L324",
       "id": "js_theme_selector_themeselector_applytheme",
       "community": 7,
       "norm_label": ".applytheme()"
@@ -1564,7 +1375,7 @@
       "label": ".getCurrentTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L341",
+      "source_location": "L348",
       "id": "js_theme_selector_themeselector_getcurrenttheme",
       "community": 7,
       "norm_label": ".getcurrenttheme()"
@@ -1573,7 +1384,7 @@
       "label": ".updateSelectedThemeCard()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L345",
+      "source_location": "L352",
       "id": "js_theme_selector_themeselector_updateselectedthemecard",
       "community": 7,
       "norm_label": ".updateselectedthemecard()"
@@ -1582,7 +1393,7 @@
       "label": ".updateSelectorButtonLabel()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L353",
+      "source_location": "L360",
       "id": "js_theme_selector_themeselector_updateselectorbuttonlabel",
       "community": 7,
       "norm_label": ".updateselectorbuttonlabel()"
@@ -1591,7 +1402,7 @@
       "label": ".keepFocusInsideModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L364",
+      "source_location": "L371",
       "id": "js_theme_selector_themeselector_keepfocusinsidemodal",
       "community": 7,
       "norm_label": ".keepfocusinsidemodal()"
@@ -3024,7 +2835,7 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L284",
       "id": "tests_test_update_projects_testgithubpageslinks_test_collect_public_pages_links",
-      "community": 29,
+      "community": 0,
       "norm_label": ".test_collect_public_pages_links()"
     },
     {
@@ -3433,6 +3244,51 @@
       "norm_label": "graphify"
     },
     {
+      "label": "mcp_quality_validation.md",
+      "file_type": "document",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L1",
+      "id": "agents_rules_mcp_quality_validation_md",
+      "community": 29,
+      "norm_label": "mcp_quality_validation.md"
+    },
+    {
+      "label": "Diretriz Universal: Planejamento, Valida\u00e7\u00e3o Cr\u00edtica via MCP e Padr\u00e3o AAA",
+      "file_type": "document",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L1",
+      "id": "rules_mcp_quality_validation_diretriz_universal_planejamento_valida\u00e7\u00e3o_cr\u00edtica_via_mcp_e_padr\u00e3o_aaa",
+      "community": 29,
+      "norm_label": "diretriz universal: planejamento, validacao critica via mcp e padrao aaa"
+    },
+    {
+      "label": "1. Planejamento com Ferramentas MCP (MCP-Driven Planning)",
+      "file_type": "document",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L5",
+      "id": "rules_mcp_quality_validation_1_planejamento_com_ferramentas_mcp_mcp_driven_planning",
+      "community": 29,
+      "norm_label": "1. planejamento com ferramentas mcp (mcp-driven planning)"
+    },
+    {
+      "label": "2. Valida\u00e7\u00e3o Cr\u00edtica Obrigat\u00f3ria em Execu\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L9",
+      "id": "rules_mcp_quality_validation_2_valida\u00e7\u00e3o_cr\u00edtica_obrigat\u00f3ria_em_execu\u00e7\u00e3o",
+      "community": 29,
+      "norm_label": "2. validacao critica obrigatoria em execucao"
+    },
+    {
+      "label": "3. Padr\u00e3o de Qualidade AAA",
+      "file_type": "document",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L18",
+      "id": "rules_mcp_quality_validation_3_padr\u00e3o_de_qualidade_aaa",
+      "community": 29,
+      "norm_label": "3. padrao de qualidade aaa"
+    },
+    {
       "label": "graphify.md",
       "file_type": "document",
       "source_file": ".agents/workflows/graphify.md",
@@ -3530,6 +3386,51 @@
       "id": "codex_agents_removed_files_no_longer_needed",
       "community": 23,
       "norm_label": "removed files (no longer needed)"
+    },
+    {
+      "label": "analytics-apps-script.md",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L1",
+      "id": "docs_analytics_apps_script_md",
+      "community": 31,
+      "norm_label": "analytics-apps-script.md"
+    },
+    {
+      "label": "Analytics pr\u00f3prio (cookieless) \u2014 registro no Google Sheets",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L1",
+      "id": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "community": 31,
+      "norm_label": "analytics proprio (cookieless) \u2014 registro no google sheets"
+    },
+    {
+      "label": "Como registrar esses campos na planilha",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L21",
+      "id": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha",
+      "community": 31,
+      "norm_label": "como registrar esses campos na planilha"
+    },
+    {
+      "label": "code:javascript (function doPost(e) {)",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L27",
+      "id": "docs_analytics_apps_script_codeblock_1",
+      "community": 31,
+      "norm_label": "code:javascript (function dopost(e) {)"
+    },
+    {
+      "label": "Dicas para usar nas campanhas",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L64",
+      "id": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas",
+      "community": 31,
+      "norm_label": "dicas para usar nas campanhas"
     },
     {
       "label": "TESTES.md",
@@ -3784,6 +3685,564 @@
       "norm_label": "\ud83d\udcda documentacao adicional"
     },
     {
+      "label": "For private repos, download the image and save it locally in the portfolio.",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L782",
+      "community": 26,
+      "norm_label": "for private repos, download the image and save it locally in the portfolio.",
+      "id": "joaosnet_github_io_update_projects_rationale_782"
+    },
+    {
+      "label": "Get the default branch of a repository using GitHub API.",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L916",
+      "community": 26,
+      "norm_label": "get the default branch of a repository using github api.",
+      "id": "joaosnet_github_io_update_projects_rationale_916"
+    },
+    {
+      "label": "Extract image URL from README file.     Looks for markdown images: ![alt](url)",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L944",
+      "community": 26,
+      "norm_label": "extract image url from readme file.     looks for markdown images: ![alt](url)",
+      "id": "joaosnet_github_io_update_projects_rationale_944"
+    },
+    {
+      "label": "Find the best preview image for a repository.      Strategy (in order):     1",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1136",
+      "community": 12,
+      "norm_label": "find the best preview image for a repository.      strategy (in order):     1",
+      "id": "joaosnet_github_io_update_projects_rationale_1136"
+    },
+    {
+      "label": "Replace owner avatar image URLs with a local placeholder inside the projects blo",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1344",
+      "community": 22,
+      "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo",
+      "id": "joaosnet_github_io_update_projects_rationale_1344"
+    },
+    {
+      "label": "Commit downloaded images to git.",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1391",
+      "community": 34,
+      "norm_label": "commit downloaded images to git.",
+      "id": "joaosnet_github_io_update_projects_rationale_1391"
+    },
+    {
+      "label": "# IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1042",
+      "community": 24,
+      "norm_label": "# important: skip avatars.githubusercontent.com - these are user/org avatars, no",
+      "id": "joaosnet_github_io_update_projects_rationale_1042"
+    },
+    {
+      "label": ".setupSmoothScrolling()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L103",
+      "community": 9,
+      "norm_label": ".setupsmoothscrolling()",
+      "id": "js_animations_animationshandler_setupsmoothscrolling"
+    },
+    {
+      "label": ".getTargetElement()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L122",
+      "community": 9,
+      "norm_label": ".gettargetelement()",
+      "id": "js_animations_animationshandler_gettargetelement"
+    },
+    {
+      "label": ".scrollToTarget()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L134",
+      "community": 9,
+      "norm_label": ".scrolltotarget()",
+      "id": "js_animations_animationshandler_scrolltotarget"
+    },
+    {
+      "label": ".getScrollBehavior()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L169",
+      "community": 9,
+      "norm_label": ".getscrollbehavior()",
+      "id": "js_animations_animationshandler_getscrollbehavior"
+    },
+    {
+      "label": ".updateUrlHash()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L173",
+      "community": 9,
+      "norm_label": ".updateurlhash()",
+      "id": "js_animations_animationshandler_updateurlhash"
+    },
+    {
+      "label": ".focusTarget()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L185",
+      "community": 9,
+      "norm_label": ".focustarget()",
+      "id": "js_animations_animationshandler_focustarget"
+    },
+    {
+      "label": ".closeMobileMenu()",
+      "file_type": "code",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L205",
+      "community": 9,
+      "norm_label": ".closemobilemenu()",
+      "id": "js_animations_animationshandler_closemobilemenu"
+    },
+    {
+      "label": "HorizontalScrollHandler",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L6",
+      "community": 1,
+      "norm_label": "horizontalscrollhandler",
+      "id": "js_horizontal_scroll_horizontalscrollhandler"
+    },
+    {
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L7",
+      "community": 1,
+      "norm_label": ".constructor()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_constructor"
+    },
+    {
+      "label": ".init()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L35",
+      "community": 1,
+      "norm_label": ".init()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_init"
+    },
+    {
+      "label": ".refreshSections()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L73",
+      "community": 1,
+      "norm_label": ".refreshsections()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_refreshsections"
+    },
+    {
+      "label": ".refreshNavLinks()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L77",
+      "community": 1,
+      "norm_label": ".refreshnavlinks()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks"
+    },
+    {
+      "label": ".setupScrollRestoration()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L81",
+      "community": 1,
+      "norm_label": ".setupscrollrestoration()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration"
+    },
+    {
+      "label": ".setupTouchHorizontalScroll()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L88",
+      "community": 1,
+      "norm_label": ".setuptouchhorizontalscroll()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
+    },
+    {
+      "label": ".handleTouchMove()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L126",
+      "community": 1,
+      "norm_label": ".handletouchmove()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove"
+    },
+    {
+      "label": ".setupVerticalToHorizontalScroll()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L176",
+      "community": 1,
+      "norm_label": ".setupverticaltohorizontalscroll()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll"
+    },
+    {
+      "label": ".handleWheel()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L183",
+      "community": 1,
+      "norm_label": ".handlewheel()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_handlewheel"
+    },
+    {
+      "label": ".getWheelIntent()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L212",
+      "community": 1,
+      "norm_label": ".getwheelintent()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent"
+    },
+    {
+      "label": ".normalizeWheelDelta()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L227",
+      "community": 1,
+      "norm_label": ".normalizewheeldelta()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
+    },
+    {
+      "label": ".scrollNestedHorizontalArea()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L239",
+      "community": 1,
+      "norm_label": ".scrollnestedhorizontalarea()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
+    },
+    {
+      "label": ".findScrollableParent()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L243",
+      "community": 1,
+      "norm_label": ".findscrollableparent()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent"
+    },
+    {
+      "label": ".hasScrollableOverflow()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L257",
+      "community": 1,
+      "norm_label": ".hasscrollableoverflow()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow"
+    },
+    {
+      "label": ".canElementScroll()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L267",
+      "community": 1,
+      "norm_label": ".canelementscroll()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
+    },
+    {
+      "label": ".canScrollHorizontally()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L277",
+      "community": 1,
+      "norm_label": ".canscrollhorizontally()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
+    },
+    {
+      "label": ".scrollHorizontally()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L286",
+      "community": 1,
+      "norm_label": ".scrollhorizontally()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally"
+    },
+    {
+      "label": ".pauseScrollSnap()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L296",
+      "community": 1,
+      "norm_label": ".pausescrollsnap()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
+    },
+    {
+      "label": ".getCurrentSection()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L308",
+      "community": 1,
+      "norm_label": ".getcurrentsection()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getcurrentsection"
+    },
+    {
+      "label": ".getNearestSectionIndex()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L312",
+      "community": 1,
+      "norm_label": ".getnearestsectionindex()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
+    },
+    {
+      "label": ".getScrollX()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L331",
+      "community": 1,
+      "norm_label": ".getscrollx()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "label": ".getMaxScrollX()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L339",
+      "community": 1,
+      "norm_label": ".getmaxscrollx()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
+    },
+    {
+      "label": ".getViewportWidth()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L350",
+      "community": 1,
+      "norm_label": ".getviewportwidth()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth"
+    },
+    {
+      "label": ".createScrollIndicator()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L358",
+      "community": 1,
+      "norm_label": ".createscrollindicator()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator"
+    },
+    {
+      "label": ".createScrollHint()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L384",
+      "community": 1,
+      "norm_label": ".createscrollhint()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint"
+    },
+    {
+      "label": ".getSectionLabel()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L392",
+      "community": 1,
+      "norm_label": ".getsectionlabel()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_getsectionlabel"
+    },
+    {
+      "label": ".setupScrollListener()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L403",
+      "community": 1,
+      "norm_label": ".setupscrolllistener()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener"
+    },
+    {
+      "label": ".setupScrollEndListener()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L418",
+      "community": 1,
+      "norm_label": ".setupscrollendlistener()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener"
+    },
+    {
+      "label": ".handleSettledScroll()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L434",
+      "community": 1,
+      "norm_label": ".handlesettledscroll()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll"
+    },
+    {
+      "label": ".setupSectionObserver()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L441",
+      "community": 1,
+      "norm_label": ".setupsectionobserver()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver"
+    },
+    {
+      "label": ".setupDotClicks()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L475",
+      "community": 1,
+      "norm_label": ".setupdotclicks()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks"
+    },
+    {
+      "label": ".scrollToSection()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L485",
+      "community": 1,
+      "norm_label": ".scrolltosection()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
+    },
+    {
+      "label": ".updateActiveSection()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L509",
+      "community": 1,
+      "norm_label": ".updateactivesection()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection"
+    },
+    {
+      "label": ".updateProgressBar()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L514",
+      "community": 1,
+      "norm_label": ".updateprogressbar()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "label": ".setCurrentSection()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L526",
+      "community": 1,
+      "norm_label": ".setcurrentsection()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "label": ".revealSection()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L538",
+      "community": 1,
+      "norm_label": ".revealsection()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
+    },
+    {
+      "label": ".updateDots()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L548",
+      "community": 1,
+      "norm_label": ".updatedots()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updatedots"
+    },
+    {
+      "label": ".updateNavLinks()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L562",
+      "community": 1,
+      "norm_label": ".updatenavlinks()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks"
+    },
+    {
+      "label": ".scrollToInitialHash()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L583",
+      "community": 1,
+      "norm_label": ".scrolltoinitialhash()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash"
+    },
+    {
+      "label": ".restoreInitialPosition()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L612",
+      "community": 1,
+      "norm_label": ".restoreinitialposition()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition"
+    },
+    {
+      "label": ".updateHash()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L631",
+      "community": 1,
+      "norm_label": ".updatehash()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_updatehash"
+    },
+    {
+      "label": ".showScrollHint()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L643",
+      "community": 1,
+      "norm_label": ".showscrollhint()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_showscrollhint"
+    },
+    {
+      "label": ".setupKeyboardNavigation()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L654",
+      "community": 1,
+      "norm_label": ".setupkeyboardnavigation()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation"
+    },
+    {
+      "label": ".setupResizeListener()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L685",
+      "community": 1,
+      "norm_label": ".setupresizelistener()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener"
+    },
+    {
+      "label": ".hideScrollHint()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L699",
+      "community": 1,
+      "norm_label": ".hidescrollhint()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
+    },
+    {
+      "label": ".next()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L705",
+      "community": 1,
+      "norm_label": ".next()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_next"
+    },
+    {
+      "label": ".previous()",
+      "file_type": "code",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L711",
+      "community": 1,
+      "norm_label": ".previous()",
+      "id": "js_horizontal_scroll_horizontalscrollhandler_previous"
+    },
+    {
       "label": "Detect if text is likely in Portuguese or another language.     Returns 'pt' if",
       "file_type": "rationale",
       "source_file": "update_projects.py",
@@ -3815,7 +4274,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L164",
-      "community": 24,
+      "community": 27,
       "norm_label": "check if the user has actually contributed to the repository.     returns true",
       "id": "joaosnet_github_io_update_projects_rationale_164"
     },
@@ -3860,7 +4319,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L543",
-      "community": 29,
+      "community": 0,
       "norm_label": "collect all public github pages links from the fetched repositories.",
       "id": "joaosnet_github_io_update_projects_rationale_543"
     },
@@ -3923,7 +4382,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L1350",
-      "community": 25,
+      "community": 34,
       "norm_label": "commit downloaded images to git.",
       "id": "joaosnet_github_io_update_projects_rationale_1350"
     },
@@ -4237,6 +4696,26 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L783",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "update_projects_py",
+      "target": "joaosnet_github_io_update_projects_optimize_image"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L831",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "update_projects_py",
+      "target": "joaosnet_github_io_update_projects_finalize_downloaded_image"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L740",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4287,6 +4766,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L1404",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "update_projects_py",
+      "target": "joaosnet_github_io_update_projects_update_sitemap"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L1300",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4321,6 +4810,16 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1",
+      "target": "update_projects_py"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1102",
       "target": "update_projects_py"
     },
     {
@@ -5106,6 +5605,48 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L833",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_finalize_downloaded_image",
+      "target": "joaosnet_github_io_update_projects_optimize_image"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L784",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_784",
+      "target": "joaosnet_github_io_update_projects_optimize_image"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L876",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_download_image_for_private_repo",
+      "target": "joaosnet_github_io_update_projects_finalize_downloaded_image"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L832",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_832",
+      "target": "joaosnet_github_io_update_projects_finalize_downloaded_image"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L804",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5121,6 +5662,16 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_find_image_in_readme",
+      "target": "joaosnet_github_io_update_projects_download_image_for_private_repo"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L839",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_839",
       "target": "joaosnet_github_io_update_projects_download_image_for_private_repo"
     },
     {
@@ -5158,6 +5709,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L976",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_976",
+      "target": "joaosnet_github_io_update_projects_get_repo_default_branch"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L916",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5183,6 +5744,16 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_find_repo_preview_image",
+      "target": "joaosnet_github_io_update_projects_find_image_in_readme"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1004",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1004",
       "target": "joaosnet_github_io_update_projects_find_image_in_readme"
     },
     {
@@ -5220,6 +5791,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L1196",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1196",
+      "target": "joaosnet_github_io_update_projects_find_repo_preview_image"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L1136",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5241,11 +5822,32 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L1401",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_update_index_html",
+      "target": "joaosnet_github_io_update_projects_update_sitemap"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L1399",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_main",
       "target": "joaosnet_github_io_update_projects_update_index_html"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1405",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1405",
+      "target": "joaosnet_github_io_update_projects_update_sitemap"
     },
     {
       "relation": "calls",
@@ -5256,6 +5858,16 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_main",
+      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1428",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1428",
       "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images"
     },
     {
@@ -5293,6 +5905,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L1475",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1475",
+      "target": "joaosnet_github_io_update_projects_commit_downloaded_images"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L1391",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5308,6 +5930,46 @@
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_rationale_1350",
       "target": "joaosnet_github_io_update_projects_commit_downloaded_images"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_launch_json",
+      "target": "claude_launch_version"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/launch.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_launch_json",
+      "target": "claude_launch_configurations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_settings_local_json",
+      "target": "claude_settings_local_permissions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.local.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_settings_local_permissions",
+      "target": "claude_settings_local_permissions_allow"
     },
     {
       "relation": "contains",
@@ -5383,6 +6045,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/animations.js",
+      "source_location": "L216",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_animations_animationshandler",
+      "target": "js_animations_animationshandler_setup3dtilt"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/animations.js",
       "source_location": "L72",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5450,16 +6122,6 @@
       "target": "js_animations_animationshandler_closemobilemenu"
     },
     {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/animations.js",
-      "source_location": "L216",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_animations_animationshandler",
-      "target": "js_animations_animationshandler_setup3dtilt"
-    },
-    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -5497,17 +6159,6 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/animations.js",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_animations_animationshandler_init",
-      "target": "js_animations_animationshandler_setupsmoothscrolling"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/animations.js",
       "source_location": "L17",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5519,11 +6170,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/animations.js",
-      "source_location": "L123",
+      "source_location": "L13",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_animations_animationshandler_scrolltotarget",
-      "target": "js_animations_animationshandler_getscrollbehavior"
+      "source": "js_animations_animationshandler_init",
+      "target": "js_animations_animationshandler_setupsmoothscrolling"
     },
     {
       "relation": "contains",
@@ -5806,6 +6457,26 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
+      "source_location": "L145",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_classifyreferrer"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L175",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_detectdevice"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
       "source_location": "L125",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6000,6 +6671,28 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_classifyreferrer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_detectdevice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
       "source_location": "L139",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6025,6 +6718,16 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "assets_js_horizontal_scroll_js",
+      "target": "js_horizontal_scroll_scrollnavigationhandler"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L6",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "assets_js_horizontal_scroll_js",
       "target": "js_horizontal_scroll_horizontalscrollhandler"
     },
     {
@@ -6034,38 +6737,58 @@
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_constructor"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_constructor"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L29",
+      "source_location": "L20",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_init"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_init"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L64",
+      "source_location": "L39",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshsections"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_refreshsections"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L68",
+      "source_location": "L46",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_refreshnavlinks"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_getheaderheight"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupscrolllistener"
     },
     {
       "relation": "method",
@@ -6074,8 +6797,8 @@
       "source_location": "L72",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateprogressbar"
     },
     {
       "relation": "method",
@@ -6084,429 +6807,217 @@
       "source_location": "L86",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updatebacktotopvisibility"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L124",
+      "source_location": "L96",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupbacktotop"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L78",
+      "source_location": "L113",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupsectionobserver"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L85",
+      "source_location": "L139",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_handlewheel"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateactivesectionbyscroll"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L114",
+      "source_location": "L154",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateactivesection"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L129",
+      "source_location": "L158",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setactivesection"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L141",
+      "source_location": "L183",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L171",
+      "source_location": "L219",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_next"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L185",
+      "source_location": "L225",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_previous"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L195",
+      "source_location": "L231",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupanchorclicks"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L205",
+      "source_location": "L257",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupkeyboardnavigation"
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L214",
+      "source_location": "L273",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L224",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L236",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getcurrentsection"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L240",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L259",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L267",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L278",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L286",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L311",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L319",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getsectionlabel"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L330",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L345",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L361",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L368",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L402",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L412",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L436",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L543",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L440",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L452",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L462",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatedots"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L476",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L497",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L526",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L545",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatehash"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L557",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_showscrollhint"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L568",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L599",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L613",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L619",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_next"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L625",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_previous"
+      "source": "js_horizontal_scroll_scrollnavigationhandler",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_handleinitialhash"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L26",
+      "source_location": "L17",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_constructor",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_init"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_constructor",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_init"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_refreshsections"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_refreshnavlinks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupscrolllistener"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupsectionobserver"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupanchorclicks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupbacktotop"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setupkeyboardnavigation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_handleinitialhash"
     },
     {
       "relation": "calls",
@@ -6516,8 +7027,8 @@
       "source_location": "L35",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateactivesection"
     },
     {
       "relation": "calls",
@@ -6527,558 +7038,96 @@
       "source_location": "L36",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshsections"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_init",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateprogressbar"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L37",
+      "source_location": "L132",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_setupsectionobserver",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_getheaderheight"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L44",
+      "source_location": "L140",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_updateactivesectionbyscroll",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_getheaderheight"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L45",
+      "source_location": "L197",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_getheaderheight"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L47",
+      "source_location": "L151",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_updateactivesectionbyscroll",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setactivesection"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L48",
+      "source_location": "L155",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_updateactivesection",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_updateactivesectionbyscroll"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L49",
+      "source_location": "L211",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_setactivesection"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L50",
+      "source_location": "L221",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_next",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L57",
+      "source_location": "L227",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L51",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L52",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L53",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L54",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L56",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L65",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L157",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L165",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L170",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L171",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L90",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L93",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L95",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L100",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L104",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L105",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L111",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L115",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L154",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L158",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L175",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L206",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L207",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L217",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L241",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L242",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L362",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L437",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L545",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L546",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L364",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L420",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L421",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L432",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatehash"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L522",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L621",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_next",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L627",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_previous",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L437",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L540",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L447",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L448",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatedots"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/horizontal-scroll.js",
-      "source_location": "L449",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
-      "target": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks"
+      "source": "js_horizontal_scroll_scrollnavigationhandler_previous",
+      "target": "js_horizontal_scroll_scrollnavigationhandler_scrolltosection"
     },
     {
       "relation": "contains",
@@ -9926,6 +9975,46 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "agents_rules_mcp_quality_validation_md",
+      "target": "rules_mcp_quality_validation_diretriz_universal_planejamento_valida\u00e7\u00e3o_cr\u00edtica_via_mcp_e_padr\u00e3o_aaa"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rules_mcp_quality_validation_diretriz_universal_planejamento_valida\u00e7\u00e3o_cr\u00edtica_via_mcp_e_padr\u00e3o_aaa",
+      "target": "rules_mcp_quality_validation_1_planejamento_com_ferramentas_mcp_mcp_driven_planning"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rules_mcp_quality_validation_diretriz_universal_planejamento_valida\u00e7\u00e3o_cr\u00edtica_via_mcp_e_padr\u00e3o_aaa",
+      "target": "rules_mcp_quality_validation_2_valida\u00e7\u00e3o_cr\u00edtica_obrigat\u00f3ria_em_execu\u00e7\u00e3o"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/mcp_quality_validation.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "rules_mcp_quality_validation_diretriz_universal_planejamento_valida\u00e7\u00e3o_cr\u00edtica_via_mcp_e_padr\u00e3o_aaa",
+      "target": "rules_mcp_quality_validation_3_padr\u00e3o_de_qualidade_aaa"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": ".agents/workflows/graphify.md",
       "source_location": "L6",
       "weight": 1.0,
@@ -10012,6 +10101,46 @@
       "confidence_score": 1.0,
       "source": "codex_agents_github_copilot_instructions_for_joaosnet_github_io",
       "target": "codex_agents_removed_files_no_longer_needed"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_md",
+      "target": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "target": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "target": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha",
+      "target": "docs_analytics_apps_script_codeblock_1"
     },
     {
       "relation": "contains",
@@ -10284,6 +10413,1070 @@
       "target": "tests_testes_codeblock_11"
     },
     {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/animations.js",
+      "source_location": "L123",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_animations_animationshandler_scrolltotarget",
+      "target": "js_animations_animationshandler_getscrollbehavior"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_constructor"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_init"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshsections"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L124",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_handlewheel"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L185",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L195",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L205",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L214",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L224",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L236",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getcurrentsection"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L240",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L259",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L267",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L278",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L286",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L311",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L319",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getsectionlabel"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L330",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L345",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L361",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L368",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L402",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L412",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L436",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L543",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L440",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L452",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L462",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatedots"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L476",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L497",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L526",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L545",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatehash"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L557",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_showscrollhint"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L568",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L599",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L613",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L619",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_next"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L625",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_previous"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_constructor",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_init"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollrestoration"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshsections"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_refreshnavlinks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollindicator"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_createscrollhint"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrolllistener"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L48",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupscrollendlistener"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L49",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupsectionobserver"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupverticaltohorizontalscroll"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setuptouchhorizontalscroll"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupkeyboardnavigation"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupresizelistener"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setupdotclicks"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_restoreinitialposition"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L65",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_init",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L165",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L170",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L171",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handletouchmove",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L95",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L100",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L104",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L105",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hidescrollhint"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlewheel",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L115",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_getwheelintent",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L154",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_normalizewheeldelta"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollnestedhorizontalarea",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_canelementscroll"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L175",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_findscrollableparent",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_hasscrollableoverflow"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L206",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L207",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_canscrollhorizontally",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L217",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrollhorizontally",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_pausescrollsnap"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L241",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L242",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getviewportwidth"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L362",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L437",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getnearestsectionindex"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L545",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L546",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_getmaxscrollx"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L364",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_handlesettledscroll",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L420",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L421",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L432",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatehash"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L522",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_scrolltoinitialhash",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L621",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_next",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L627",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_previous",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_scrolltosection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L437",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L540",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_updateactivesection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updateprogressbar"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L447",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_revealsection"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L448",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatedots"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/horizontal-scroll.js",
+      "source_location": "L449",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_horizontal_scroll_horizontalscrollhandler_setcurrentsection",
+      "target": "js_horizontal_scroll_horizontalscrollhandler_updatenavlinks"
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -10315,5 +11508,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "3fcbb50de1420ca8e00187528105031573af1dfc"
+  "built_at_commit": "118be9e07e8596c0fb9e2ae473c6739d0a835632"
 }

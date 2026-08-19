@@ -651,7 +651,7 @@ def generate_pages_links_html(pages):
                                     <small>{safe_display_url}</small>
                                 </span>
                                 <a href="{safe_url}" target="_blank" rel="noopener noreferrer" class="published-page-open">
-                                    Abrir site <i class="fas fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                                    Abrir site <i class="fas fa-external-link-alt" aria-hidden="true"></i>
                                 </a>
                             </article>"""
 
