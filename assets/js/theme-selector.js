@@ -329,6 +329,10 @@ class ThemeSelector {
             root.style.setProperty('--dark', theme.dark);
             root.style.setProperty('--light', theme.light);
             root.style.setProperty('--text-gray', theme.textGray);
+        } else {
+            root.style.removeProperty('--dark');
+            root.style.removeProperty('--light');
+            root.style.removeProperty('--text-gray');
         }
 
         // Store current theme

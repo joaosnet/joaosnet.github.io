@@ -57,9 +57,9 @@ class ThemeManager {
         
         // Handle integration with Theme Selector palette
         if (theme === 'light') {
-            this.htmlEl.style.removeProperty('--dark');
-            this.htmlEl.style.removeProperty('--light');
-            this.htmlEl.style.removeProperty('--text-gray');
+            ['--dark', '--light', '--text-gray', '--primary', '--secondary', '--accent', '--bg-card', '--bg-card-hover', '--border-light', '--header-bg', '--glass-bg'].forEach(prop => {
+                this.htmlEl.style.removeProperty(prop);
+            });
         } else if (window.themeSelector) {
             const currentPalette = window.themeSelector.getCurrentTheme();
             window.themeSelector.applyTheme(currentPalette);

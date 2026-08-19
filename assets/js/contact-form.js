@@ -139,29 +139,14 @@ class ContactFormHandler {
     scrollToForm() {
         const form = document.getElementById('contact-form');
         if (form) {
-            const contactSection = document.getElementById('contact');
-            const horizontalWrapper = document.querySelector('.horizontal-wrapper');
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            if (horizontalWrapper && contactSection && contactSection.closest('.horizontal-wrapper')) {
-                const sections = Array.from(horizontalWrapper.querySelectorAll('section'));
-                const sectionIndex = sections.indexOf(contactSection);
-
-                if (window.horizontalScroll && typeof window.horizontalScroll.scrollToSection === 'function' && sectionIndex >= 0) {
-                    window.horizontalScroll.scrollToSection(sectionIndex, { updateHash: true });
-                } else {
-                    const scroller = document.querySelector('main') || window;
-
-                    scroller.scrollTo({
-                        left: contactSection.offsetLeft,
-                        top: 0,
-                        behavior: prefersReducedMotion ? 'auto' : 'smooth'
-                    });
-                }
+            if (window.horizontalScroll && typeof window.horizontalScroll.scrollToSection === 'function') {
+                window.horizontalScroll.scrollToSection('#contact', { updateHash: true });
             } else {
                 const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 0;
-                const targetPosition = form.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                const headerHeight = header ? header.offsetHeight : 76;
+                const targetPosition = Math.max(0, form.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20);
 
                 window.scrollTo({
                     top: targetPosition,

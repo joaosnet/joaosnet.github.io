@@ -1,428 +1,67 @@
 /**
- * Horizontal Scroll Manager
- * Handles horizontal scrolling, navigation dots, and scroll indicators
+ * Navigation & Vertical Scroll Manager
+ * Handles smooth scrolling, active section tracking, progress bar, and floating controls
  */
 
-class HorizontalScrollHandler {
+class ScrollNavigationHandler {
     constructor() {
-        this.wrapper = document.querySelector('main') || document.documentElement;
-        this.scrollContainer = document.querySelector('.horizontal-wrapper');
         this.sections = [];
         this.navLinks = [];
-        this.scrollIndicator = null;
-        this.scrollHint = null;
-        this.currentSection = 0;
-        this.lastSettledSection = 0;
-        this.hasShownHint = false;
-        this.initialHash = window.__initialPortfolioHash || window.location.hash;
+        this.progressBar = document.getElementById('scroll-progress');
+        this.backToTopBtn = document.getElementById('back-to-top');
+        this.header = document.querySelector('header');
+        this.currentSectionIndex = 0;
         this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-        this.sectionObserver = null;
-        this.scrollEndTimer = null;
-        this.resizeTimer = null;
-        this.wheelSnapTimer = null;
-        this.wheelTarget = null;
-        this.scrollEdge = 2;
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.touchLastX = 0;
-        this.touchDragging = false;
-        this.touchAxisLocked = null;
-        this.touchIdentifier = null;
-        
+        this.isNavigating = false;
+
         this.init();
     }
 
     init() {
-        if (!this.scrollContainer) {
-            console.warn('Horizontal wrapper not found');
+        this.refreshSections();
+        this.refreshNavLinks();
+
+        if (this.sections.length === 0) {
             return;
         }
 
-        this.progressBar = document.getElementById('scroll-progress');
-        this.setupScrollRestoration();
-        this.refreshSections();
-        this.refreshNavLinks();
-        
-        if (this.sections.length === 0) {
-            console.warn('No sections found in horizontal wrapper');
-            return;
-        }
-        
-        this.createScrollIndicator();
-        this.createScrollHint();
-        
         this.setupScrollListener();
-        this.setupScrollEndListener();
         this.setupSectionObserver();
-        this.setupVerticalToHorizontalScroll();
-        this.setupTouchHorizontalScroll();
+        this.setupAnchorClicks();
+        this.setupBackToTop();
         this.setupKeyboardNavigation();
-        this.setupNavClickListeners();
-        this.setupResizeListener();
-        this.setupDotClicks();
-        this.restoreInitialPosition();
-        
+        this.handleInitialHash();
+
         this.updateActiveSection();
         this.updateProgressBar();
-        this.lastSettledSection = this.currentSection;
-        
-        this.setupAutoHorizontalPeek();
     }
 
     refreshSections() {
-        this.sections = Array.from(this.scrollContainer.querySelectorAll('section'));
+        this.sections = Array.from(document.querySelectorAll('main > section'));
+        if (this.sections.length === 0) {
+            this.sections = Array.from(document.querySelectorAll('section'));
+        }
     }
 
     refreshNavLinks() {
         this.navLinks = Array.from(document.querySelectorAll('header nav a[href^="#"], footer a[href^="#"], .logo[href^="#"]'));
     }
 
-    setupScrollRestoration() {
-        if ('scrollRestoration' in window.history) {
-            window.history.scrollRestoration = 'manual';
-        }
-    }
-
-
-    setupTouchHorizontalScroll() {
-        let startX = 0;
-        let startY = 0;
-        let lastX = 0;
-        let lastY = 0;
-        let startTime = 0;
-        let isTouching = false;
-        let isHorizontalGesture = null;
-
-        document.addEventListener('touchstart', (e) => {
-            if (!e.touches || e.touches.length !== 1) {
-                isTouching = false;
-                isHorizontalGesture = null;
-                return;
-            }
-
-            const touch = e.touches[0];
-            startX = touch.clientX;
-            startY = touch.clientY;
-            lastX = startX;
-            lastY = startY;
-            startTime = Date.now();
-            isTouching = true;
-            isHorizontalGesture = null;
-
-            this.hideScrollHint();
-        }, { passive: true });
-
-        document.addEventListener('touchmove', (e) => {
-            if (!isTouching || !e.touches || e.touches.length !== 1) return;
-
-            const touch = e.touches[0];
-            const deltaX = touch.clientX - startX;
-            const deltaY = touch.clientY - startY;
-
-            if (isHorizontalGesture === null) {
-                const absX = Math.abs(deltaX);
-                const absY = Math.abs(deltaY);
-
-                if (absX < 6 && absY < 6) {
-                    return;
-                }
-
-                // Treat as horizontal if X movement >= Y * 0.6
-                isHorizontalGesture = absX >= absY * 0.6;
-            }
-
-            if (isHorizontalGesture) {
-                if (e.cancelable) {
-                    e.preventDefault();
-                }
-
-                const currentDiff = touch.clientX - lastX;
-                lastX = touch.clientX;
-                lastY = touch.clientY;
-
-                this.wrapper.scrollLeft -= currentDiff;
-            }
-        }, { passive: false });
-
-        const handleTouchEnd = (e) => {
-            if (!isTouching) return;
-            isTouching = false;
-
-            if (e && e.changedTouches && e.changedTouches.length > 0) {
-                lastX = e.changedTouches[0].clientX;
-                lastY = e.changedTouches[0].clientY;
-            }
-
-            const totalDeltaX = lastX - startX;
-            const totalDeltaY = lastY - startY;
-            const duration = Math.max(Date.now() - startTime, 1);
-            const velocityX = totalDeltaX / duration;
-
-            const isSignificantHorizontal = Math.abs(totalDeltaX) >= Math.abs(totalDeltaY) * 0.6;
-
-            if (isHorizontalGesture || isSignificantHorizontal) {
-                const swipeDistanceThreshold = 35;
-                const velocityThreshold = 0.2; // px/ms flick
-
-                if (totalDeltaX < -swipeDistanceThreshold || velocityX < -velocityThreshold) {
-                    this.next();
-                } else if (totalDeltaX > swipeDistanceThreshold || velocityX > velocityThreshold) {
-                    this.previous();
-                } else {
-                    this.scrollToNearestSnapTarget();
-                }
-            }
-
-            isHorizontalGesture = null;
-        };
-
-        document.addEventListener('touchend', handleTouchEnd, { passive: true });
-        document.addEventListener('touchcancel', handleTouchEnd, { passive: true });
-    }
-    setupVerticalToHorizontalScroll() {
-        this.wheelTarget = window;
-        this.wheelTarget.addEventListener('wheel', (event) => {
-            this.handleWheel(event);
-        }, { passive: false });
-    }
-
-    handleWheel(event) {
-        if (event.ctrlKey || event.defaultPrevented || this.sections.length === 0) {
-            return;
-        }
-
-        const intent = this.getWheelIntent(event);
-
-        if (intent.axis === 'vertical') {
-            const verticalScroller = this.findScrollableParent(event.target, 'y');
-
-            if (verticalScroller && this.canElementScroll(verticalScroller, intent.delta, 'y')) {
-                return;
-            }
-        }
-
-        if (this.scrollNestedHorizontalArea(event)) {
-            return;
-        }
-
-        if (!this.canScrollHorizontally(intent.delta)) {
-            this.hideScrollHint();
-            return;
-        }
-
-        event.preventDefault();
-        this.hideScrollHint();
-        this.scrollHorizontally(intent.delta);
-    }
-
-    getWheelIntent(event) {
-        const deltaX = this.normalizeWheelDelta(event.deltaX, event.deltaMode);
-        const deltaY = this.normalizeWheelDelta(event.deltaY, event.deltaMode);
-
-        if (event.shiftKey && Math.abs(deltaY) > this.scrollEdge) {
-            return { axis: 'horizontal', delta: deltaY };
-        }
-
-        if (Math.abs(deltaX) > Math.abs(deltaY)) {
-            return { axis: 'horizontal', delta: deltaX };
-        }
-
-        return { axis: 'vertical', delta: deltaY };
-    }
-
-    normalizeWheelDelta(delta, deltaMode) {
-        if (deltaMode === WheelEvent.DOM_DELTA_LINE) {
-            return delta * 16;
-        }
-
-        if (deltaMode === WheelEvent.DOM_DELTA_PAGE) {
-            return delta * window.innerHeight;
-        }
-
-        return delta;
-    }
-
-    scrollNestedHorizontalArea(event) {
-        return false;
-    }
-
-    findScrollableParent(target, axis) {
-        let element = target instanceof Element ? target : target?.parentElement;
-
-        while (element && element !== document.body && element !== document.documentElement) {
-            if (this.hasScrollableOverflow(element, axis)) {
-                return element;
-            }
-
-            element = element.parentElement;
-        }
-
-        return null;
-    }
-
-    hasScrollableOverflow(element, axis) {
-        const style = window.getComputedStyle(element);
-        const overflow = axis === 'y' ? style.overflowY : style.overflowX;
-        const scrollSize = axis === 'y' ? element.scrollHeight : element.scrollWidth;
-        const clientSize = axis === 'y' ? element.clientHeight : element.clientWidth;
-        const canOverflow = /(auto|scroll|overlay)/.test(overflow) || element.tagName === 'TEXTAREA';
-
-        return canOverflow && scrollSize > clientSize + this.scrollEdge;
-    }
-
-    canElementScroll(element, delta, axis) {
-        const scrollPosition = axis === 'y' ? element.scrollTop : element.scrollLeft;
-        const scrollSize = axis === 'y' ? element.scrollHeight : element.scrollWidth;
-        const clientSize = axis === 'y' ? element.clientHeight : element.clientWidth;
-        const atStart = scrollPosition <= this.scrollEdge;
-        const atEnd = scrollPosition + clientSize >= scrollSize - this.scrollEdge;
-
-        return delta < 0 ? !atStart : !atEnd;
-    }
-
-    canScrollHorizontally(deltaX) {
-        const scrollX = this.getScrollX();
-        const maxScrollX = this.getMaxScrollX();
-
-        return deltaX < 0
-            ? scrollX > this.scrollEdge
-            : scrollX < maxScrollX - this.scrollEdge;
-    }
-
-    scrollHorizontally(deltaX) {
-        const scrollSpeed = window.innerWidth <= 768 ? 0.85 : 1.1;
-
-        this.pauseScrollSnap();
-        this.wrapper.scrollBy({
-            left: deltaX * scrollSpeed,
-            behavior: 'auto'
-        });
-    }
-
-    pauseScrollSnap() {
-        if (!this.wrapper.classList) {
-            return;
-        }
-
-        this.wrapper.classList.add('is-wheel-scrolling');
-        window.clearTimeout(this.wheelSnapTimer);
-        this.wheelSnapTimer = window.setTimeout(() => {
-            this.wrapper.classList.remove('is-wheel-scrolling');
-        }, 180);
-    }
-
-    getCurrentSection() {
-        return this.sections[this.currentSection] || null;
-    }
-
-    getNearestSectionIndex() {
-        const scrollLeft = this.getScrollX();
-        const viewportCenter = scrollLeft + (this.getViewportWidth() / 2);
-        let nearestIndex = 0;
-        let shortestDistance = Number.POSITIVE_INFINITY;
-
-        this.sections.forEach((section, index) => {
-            const sectionCenter = section.offsetLeft + (section.offsetWidth / 2);
-            const distance = Math.abs(sectionCenter - viewportCenter);
-
-            if (distance < shortestDistance) {
-                shortestDistance = distance;
-                nearestIndex = index;
-            }
-        });
-
-        return nearestIndex;
-    }
-
-    getScrollX() {
-        if (this.wrapper === document.documentElement) {
-            return window.scrollX || document.documentElement.scrollLeft || document.body.scrollLeft || 0;
-        }
-
-        return this.wrapper.scrollLeft || 0;
-    }
-
-    getMaxScrollX() {
-        if (this.wrapper === document.documentElement) {
-            return Math.max(
-                0,
-                Math.max(document.documentElement.scrollWidth, document.body.scrollWidth) - window.innerWidth
-            );
-        }
-
-        return Math.max(0, this.wrapper.scrollWidth - this.wrapper.clientWidth);
-    }
-
-    getViewportWidth() {
-        if (this.wrapper === document.documentElement) {
-            return window.innerWidth;
-        }
-
-        return this.wrapper.clientWidth || window.innerWidth;
-    }
-
-    createScrollIndicator() {
-        this.scrollIndicator = document.createElement('nav');
-        this.scrollIndicator.className = 'scroll-indicator';
-        this.scrollIndicator.setAttribute('aria-label', 'Navegação entre seções');
-        
-        this.sections.forEach((section, index) => {
-            const dot = document.createElement('button');
-            const label = this.getSectionLabel(section, index);
-
-            dot.className = 'scroll-dot';
-            dot.type = 'button';
-            dot.setAttribute('data-index', index);
-            dot.setAttribute('title', label);
-            dot.setAttribute('data-label', label);
-            dot.setAttribute('aria-label', label);
-
-            if (section.id) {
-                dot.setAttribute('aria-controls', section.id);
-            }
-
-            this.scrollIndicator.appendChild(dot);
-        });
-        
-        document.body.appendChild(this.scrollIndicator);
-    }
-
-    createScrollHint() {
-        this.scrollHint = document.createElement('button');
-        this.scrollHint.type = 'button';
-        this.scrollHint.className = 'horizontal-scroll-pill';
-        this.scrollHint.setAttribute('aria-label', 'Deslize horizontalmente para navegar');
-        this.scrollHint.innerHTML = `
-            <span class="pill-icon"><i class="fas fa-hand-pointer" aria-hidden="true"></i></span>
-            <span class="pill-text">Deslize para o lado</span>
-            <span class="pill-arrow"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
-        `;
-        this.scrollHint.addEventListener('click', () => {
-            this.next();
-            this.hideScrollHint();
-        });
-        document.body.appendChild(this.scrollHint);
-    }
-
-    getSectionLabel(section, index) {
-        const heading = section.querySelector('h1, h2');
-        const fallbackLabels = ['Início', 'Habilidades', 'Projetos', 'Páginas publicadas', 'Contato', 'Currículo'];
-
-        if (heading && heading.textContent.trim()) {
-            return heading.textContent.trim();
-        }
-
-        return fallbackLabels[index] || `Seção ${index + 1}`;
+    getHeaderHeight() {
+        return this.header ? this.header.offsetHeight : 76;
     }
 
     setupScrollListener() {
         let ticking = false;
-        
-        this.wrapper.addEventListener('scroll', () => {
+
+        window.addEventListener('scroll', () => {
             if (!ticking) {
                 window.requestAnimationFrame(() => {
-                    this.updateActiveSection();
-                    this.hideScrollHint();
+                    this.updateProgressBar();
+                    this.updateBackToTopVisibility();
+                    if (!this.isNavigating) {
+                        this.updateActiveSectionByScroll();
+                    }
                     ticking = false;
                 });
                 ticking = true;
@@ -430,452 +69,220 @@ class HorizontalScrollHandler {
         }, { passive: true });
     }
 
-    setupScrollEndListener() {
-        const handleSettledScroll = () => {
-            this.handleSettledScroll();
-        };
-
-        if ('onscrollend' in this.wrapper) {
-            this.wrapper.addEventListener('scrollend', handleSettledScroll);
-            return;
-        }
-
-        this.wrapper.addEventListener('scroll', () => {
-            window.clearTimeout(this.scrollEndTimer);
-            this.scrollEndTimer = window.setTimeout(handleSettledScroll, 140);
-        }, { passive: true });
-    }
-
-    handleSettledScroll() {
-        const settledSection = this.getNearestSectionIndex();
-
-        this.setCurrentSection(settledSection);
-        this.lastSettledSection = settledSection;
-    }
-
-    setupSectionObserver() {
-        if (!('IntersectionObserver' in window)) {
-            return;
-        }
-
-        if (this.sectionObserver) {
-            this.sectionObserver.disconnect();
-        }
-
-        this.sectionObserver = new IntersectionObserver((entries) => {
-            const visibleSection = entries
-                .filter((entry) => entry.isIntersecting)
-                .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
-            if (!visibleSection) {
-                return;
-            }
-
-            const index = this.sections.indexOf(visibleSection.target);
-
-            if (index >= 0) {
-                this.setCurrentSection(index);
-            }
-        }, {
-            root: this.wrapper === document.documentElement ? null : this.wrapper,
-            rootMargin: '0px -35% 0px -35%',
-            threshold: [0.25, 0.5, 0.75]
-        });
-
-        this.sections.forEach((section) => {
-            this.sectionObserver.observe(section);
-        });
-    }
-
-    setupDotClicks() {
-        const dots = this.scrollIndicator.querySelectorAll('.scroll-dot');
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const index = parseInt(dot.dataset.index, 10);
-                this.scrollToSection(index, { updateHash: true });
-            });
-        });
-    }
-
-    scrollToSection(index, options = {}) {
-        if (index < 0 || index >= this.sections.length) {
-            return;
-        }
-
-        const section = this.sections[index];
-        const behavior = options.behavior || (this.prefersReducedMotion.matches ? 'auto' : 'smooth');
-
-        this.setCurrentSection(index);
-        this.revealSection(section);
-        
-        this.wrapper.scrollTo({
-            left: section.offsetLeft,
-            top: 0,
-            behavior
-        });
-
-        this.lastSettledSection = index;
-
-        if (options.updateHash && section.id) {
-            this.updateHash(section.id);
-        }
-    }
-
-    updateActiveSection() {
-        this.setCurrentSection(this.getNearestSectionIndex());
-        this.updateProgressBar();
-    }
-
     updateProgressBar() {
         if (!this.progressBar) return;
-        const scrollX = this.getScrollX();
-        const maxScrollX = this.getMaxScrollX();
-        if (maxScrollX <= 0) {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+        
+        if (maxScrollY <= 0) {
             this.progressBar.style.transform = 'scaleX(0)';
             return;
         }
-        const percentage = Math.max(0, Math.min(1, scrollX / maxScrollX));
+
+        const percentage = Math.max(0, Math.min(1, scrollY / maxScrollY));
         this.progressBar.style.transform = `scaleX(${percentage})`;
     }
 
-    setCurrentSection(index) {
-        const safeIndex = Math.max(0, Math.min(index, this.sections.length - 1));
-
-        if (safeIndex !== this.currentSection) {
-            this.currentSection = safeIndex;
+    updateBackToTopVisibility() {
+        if (!this.backToTopBtn) return;
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        if (scrollY > 400) {
+            this.backToTopBtn.classList.add('visible');
+        } else {
+            this.backToTopBtn.classList.remove('visible');
         }
-
-        this.revealSection(this.sections[this.currentSection]);
-        this.updateDots();
-        this.updateNavLinks();
     }
 
-    revealSection(section) {
-        if (!section) {
-            return;
-        }
+    setupBackToTop() {
+        if (!this.backToTopBtn) return;
 
-        section.querySelectorAll('.hidden, .timeline-item-left, .timeline-item-right').forEach((element) => {
-            element.classList.add('show');
+        this.backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: this.prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
+
+            if (window.history && window.history.replaceState) {
+                try {
+                    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+                } catch (e) {}
+            }
         });
     }
 
-    updateDots() {
-        if (!this.scrollIndicator) {
-            return;
-        }
+    setupSectionObserver() {
+        if (!('IntersectionObserver' in window)) return;
 
-        const dots = this.scrollIndicator.querySelectorAll('.scroll-dot');
-        dots.forEach((dot, index) => {
-            const isActive = index === this.currentSection;
+        const observer = new IntersectionObserver((entries) => {
+            if (this.isNavigating) return;
 
-            dot.setAttribute('aria-current', isActive ? 'true' : 'false');
-            dot.classList.toggle('active', isActive);
+            const intersecting = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+            if (intersecting.length > 0) {
+                const target = intersecting[0].target;
+                const index = this.sections.indexOf(target);
+                if (index >= 0) {
+                    this.setActiveSection(index, false);
+                }
+            }
+        }, {
+            root: null,
+            rootMargin: `-${this.getHeaderHeight()}px 0px -40% 0px`,
+            threshold: [0.1, 0.3, 0.6]
         });
+
+        this.sections.forEach(section => observer.observe(section));
     }
 
-    updateNavLinks() {
-        if (!this.navLinks.length) {
-            return;
+    updateActiveSectionByScroll() {
+        const scrollPosition = (window.scrollY || document.documentElement.scrollTop) + this.getHeaderHeight() + 60;
+        let activeIndex = 0;
+
+        for (let i = 0; i < this.sections.length; i++) {
+            const section = this.sections[i];
+            const sectionTop = section.offsetTop;
+            if (scrollPosition >= sectionTop) {
+                activeIndex = i;
+            }
         }
 
-        const activeSection = this.sections[this.currentSection];
-        const activeHash = activeSection?.id ? `#${activeSection.id}` : '';
+        this.setActiveSection(activeIndex, false);
+    }
 
-        this.navLinks.forEach((link) => {
-            const isActive = link.getAttribute('href') === activeHash;
+    updateActiveSection() {
+        this.updateActiveSectionByScroll();
+    }
 
-            link.classList.toggle('active', isActive);
+    setActiveSection(index, updateHistory = false) {
+        if (index < 0 || index >= this.sections.length) return;
+        this.currentSectionIndex = index;
+        const currentSection = this.sections[index];
+        const sectionId = currentSection ? currentSection.id : '';
 
-            if (isActive) {
+        // Update nav links
+        const targetHash = sectionId ? `#${sectionId}` : '';
+        this.navLinks.forEach(link => {
+            const isMatch = link.getAttribute('href') === targetHash;
+            link.classList.toggle('active', isMatch);
+            if (isMatch) {
                 link.setAttribute('aria-current', 'page');
             } else {
                 link.removeAttribute('aria-current');
             }
         });
-    }
 
-    scrollToInitialHash() {
-        const hash = this.initialHash || window.location.hash;
-
-        if (!hash || hash === '#') {
-            return;
-        }
-
-        let target = null;
-
-        try {
-            target = document.querySelector(hash);
-        } catch (error) {
-            return;
-        }
-
-        if (!target || !target.closest('.horizontal-wrapper')) {
-            return;
-        }
-
-        const targetSection = target.matches('section')
-            ? target
-            : target.closest('.horizontal-wrapper > section');
-        const sectionIndex = this.sections.indexOf(targetSection);
-
-        if (sectionIndex >= 0) {
-            this.scrollToSection(sectionIndex, { behavior: 'auto', updateHash: true });
-        }
-    }
-
-    restoreInitialPosition() {
-        const runWithRetries = (callback) => {
-            callback();
-            window.requestAnimationFrame(callback);
-            window.setTimeout(callback, 80);
-            window.setTimeout(callback, 300);
-            window.addEventListener('load', callback, { once: true });
-        };
-
-        if (this.initialHash || window.location.hash) {
-            runWithRetries(() => this.scrollToInitialHash());
-            return;
-        }
-
-        runWithRetries(() => {
-            this.scrollToSection(0, { behavior: 'auto' });
-        });
-    }
-
-    updateHash(sectionId) {
-        if (!window.history || !window.history.replaceState) {
-            return;
-        }
-
-        try {
-            window.history.replaceState(null, '', `#${sectionId}`);
-        } catch (error) {
-            // Ignore history errors in embedded browsers.
-        }
-    }
-
-    showScrollHint() {
-        if (this.scrollHint && this.getScrollX() <= 40) {
-            this.scrollHint.classList.add('visible');
-            this.hasShownHint = true;
-        }
-    }
-
-    hideScrollHint(force = false) {
-        if (this.isAutoPeeking && !force) return;
-        if (this.scrollHint && (force || this.getScrollX() > 40)) {
-            this.scrollHint.classList.remove('visible');
-        }
-    }
-
-    setupKeyboardNavigation() {
-        document.addEventListener('keydown', (event) => {
-            const activeElement = document.activeElement;
-            const isTyping = activeElement && ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeElement.tagName);
-
-            if (isTyping || event.altKey || event.ctrlKey || event.metaKey) {
-                return;
-            }
-
-            if (event.key === 'ArrowRight') {
-                event.preventDefault();
-                this.next();
-            }
-
-            if (event.key === 'ArrowLeft') {
-                event.preventDefault();
-                this.previous();
-            }
-
-            if (event.key === 'Home') {
-                event.preventDefault();
-                this.scrollToSection(0);
-            }
-
-            if (event.key === 'End') {
-                event.preventDefault();
-                this.scrollToSection(this.sections.length - 1);
-            }
-        });
-    }
-
-    setupNavClickListeners() {
-        document.addEventListener('click', (event) => {
-            const anchor = event.target.closest('a[href^="#"]');
-            if (!anchor) return;
-            const hash = anchor.getAttribute('href');
-            if (!hash || hash === '#') return;
-
-            let targetSection = null;
+        if (updateHistory && sectionId && window.history && window.history.replaceState) {
             try {
-                targetSection = document.querySelector(hash);
-            } catch (err) {
-                return;
-            }
-
-            if (!targetSection) return;
-
-            const sectionElement = targetSection.matches('section')
-                ? targetSection
-                : targetSection.closest('.horizontal-wrapper > section');
-
-            if (!sectionElement) return;
-
-            const sectionIndex = this.sections.indexOf(sectionElement);
-            if (sectionIndex >= 0) {
-                event.preventDefault();
-                this.scrollToSection(sectionIndex, { updateHash: true });
-                if (window.mobileMenuHandler) {
-                    window.mobileMenuHandler.closeMenu();
-                }
-            }
-        });
-
-        window.addEventListener('hashchange', () => {
-            this.scrollToInitialHash();
-        });
+                window.history.replaceState(null, '', `#${sectionId}`);
+            } catch (e) {}
+        }
     }
 
-    setupResizeListener() {
-        window.addEventListener('resize', () => {
-            window.clearTimeout(this.resizeTimer);
-            this.resizeTimer = window.setTimeout(() => {
-                this.refreshSections();
-                this.refreshNavLinks();
-                this.setupSectionObserver();
-                this.setCurrentSection(Math.min(this.currentSection, this.sections.length - 1));
-                this.scrollToSection(this.currentSection, { behavior: 'auto' });
-                this.updateActiveSection();
-            }, 150);
-        }, { passive: true });
-    }
+    scrollToSection(indexOrId, options = {}) {
+        let targetElement = null;
 
-    setupAutoHorizontalPeek() {
-        if (this.initialHash || window.location.hash) {
-            return;
+        if (typeof indexOrId === 'number') {
+            targetElement = this.sections[indexOrId] || null;
+        } else if (typeof indexOrId === 'string') {
+            const cleanId = indexOrId.startsWith('#') ? indexOrId : `#${indexOrId}`;
+            try {
+                targetElement = document.querySelector(cleanId);
+            } catch (e) {}
         }
 
-        // Show hint right away
-        this.showScrollHint();
+        if (!targetElement) return;
+
+        const headerHeight = this.getHeaderHeight();
+        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+        const offsetPosition = Math.max(0, elementPosition - headerHeight + 1);
+
+        this.isNavigating = true;
+        const behavior = options.behavior || (this.prefersReducedMotion.matches ? 'auto' : 'smooth');
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior
+        });
+
+        const targetIndex = this.sections.indexOf(targetElement);
+        if (targetIndex >= 0) {
+            this.setActiveSection(targetIndex, options.updateHash !== false);
+        }
 
         window.setTimeout(() => {
-            if (this.getScrollX() > 30) return; // User already interacted
-
-            this.isAutoPeeking = true;
-            const peekDistance = window.innerWidth <= 768 ? 95 : 140;
-            this.wrapper.scrollTo({
-                left: peekDistance,
-                behavior: 'smooth'
-            });
-
-            window.setTimeout(() => {
-                if (this.getScrollX() <= peekDistance + 10) {
-                    this.wrapper.scrollTo({
-                        left: 0,
-                        behavior: 'smooth'
-                    });
-                }
-                window.setTimeout(() => {
-                    this.isAutoPeeking = false;
-                    this.showScrollHint();
-                }, 500);
-            }, 650);
-        }, 1200);
-    }
-
-    getAllSnapTargets() {
-        const targets = [];
-        const mainRect = this.wrapper.getBoundingClientRect();
-        const currentScroll = this.getScrollX();
-
-        const candidateElements = Array.from(
-            this.wrapper.querySelectorAll('.horizontal-wrapper > section, .section-title, .feature-card, .timeline-item, .published-page-link')
-        );
-
-        candidateElements.forEach((element) => {
-            const rect = element.getBoundingClientRect();
-            const absoluteLeft = Math.round(rect.left - mainRect.left + currentScroll);
-            const section = element.matches('section') ? element : element.closest('.horizontal-wrapper > section');
-
-            if (absoluteLeft >= 0 && !targets.some((t) => Math.abs(t.offsetLeft - absoluteLeft) < 20)) {
-                targets.push({ element, offsetLeft: absoluteLeft, section });
-            }
-        });
-
-        return targets.sort((a, b) => a.offsetLeft - b.offsetLeft);
+            this.isNavigating = false;
+        }, 600);
     }
 
     next() {
-        const snapTargets = this.getAllSnapTargets();
-        const currentScroll = this.getScrollX();
-        const tolerance = 25;
-
-        const nextTarget = snapTargets.find((target) => target.offsetLeft > currentScroll + tolerance);
-
-        if (nextTarget) {
-            this.smoothScrollTo(nextTarget.offsetLeft);
-            const secIndex = this.sections.indexOf(nextTarget.section);
-            if (secIndex >= 0) {
-                this.setCurrentSection(secIndex);
-            }
-        } else if (this.currentSection < this.sections.length - 1) {
-            this.scrollToSection(this.currentSection + 1);
+        if (this.currentSectionIndex < this.sections.length - 1) {
+            this.scrollToSection(this.currentSectionIndex + 1);
         }
     }
 
     previous() {
-        const snapTargets = this.getAllSnapTargets();
-        const currentScroll = this.getScrollX();
-        const tolerance = 25;
-
-        const prevTargets = snapTargets.filter((target) => target.offsetLeft < currentScroll - tolerance);
-        const prevTarget = prevTargets[prevTargets.length - 1];
-
-        if (prevTarget) {
-            this.smoothScrollTo(prevTarget.offsetLeft);
-            const secIndex = this.sections.indexOf(prevTarget.section);
-            if (secIndex >= 0) {
-                this.setCurrentSection(secIndex);
-            }
-        } else {
-            this.smoothScrollTo(0);
-            this.setCurrentSection(0);
+        if (this.currentSectionIndex > 0) {
+            this.scrollToSection(this.currentSectionIndex - 1);
         }
     }
 
-    scrollToNearestSnapTarget() {
-        const snapTargets = this.getAllSnapTargets();
-        const currentScroll = this.getScrollX();
-        let closest = snapTargets[0];
-        let minDiff = Infinity;
+    setupAnchorClicks() {
+        document.addEventListener('click', (event) => {
+            const anchor = event.target.closest('a[href^="#"]');
+            if (!anchor) return;
 
-        snapTargets.forEach((target) => {
-            const diff = Math.abs(target.offsetLeft - currentScroll);
-            if (diff < minDiff) {
-                minDiff = diff;
-                closest = target;
+            const href = anchor.getAttribute('href');
+            if (!href || href === '#') return;
+
+            let targetElement = null;
+            try {
+                targetElement = document.querySelector(href);
+            } catch (e) {
+                return;
+            }
+
+            if (!targetElement) return;
+
+            event.preventDefault();
+            this.scrollToSection(href, { updateHash: true });
+
+            if (window.mobileMenuHandler) {
+                window.mobileMenuHandler.closeMenu();
             }
         });
-
-        if (closest) {
-            this.smoothScrollTo(closest.offsetLeft);
-            const secIndex = this.sections.indexOf(closest.section);
-            if (secIndex >= 0) {
-                this.setCurrentSection(secIndex);
-            }
-        }
     }
 
-    smoothScrollTo(leftPosition) {
-        this.wrapper.scrollTo({
-            left: Math.max(0, leftPosition),
-            top: 0,
-            behavior: this.prefersReducedMotion.matches ? 'auto' : 'smooth'
+    setupKeyboardNavigation() {
+        document.addEventListener('keydown', (event) => {
+            const activeEl = document.activeElement;
+            const isTyping = activeEl && ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeEl.tagName);
+            if (isTyping || event.altKey || event.ctrlKey || event.metaKey) return;
+
+            if (event.key === 'Home') {
+                event.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (event.key === 'End') {
+                event.preventDefault();
+                window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'smooth' });
+            }
         });
+    }
+
+    handleInitialHash() {
+        const hash = window.__initialPortfolioHash || window.location.hash;
+        if (!hash || hash === '#') return;
+
+        window.setTimeout(() => {
+            this.scrollToSection(hash, { behavior: 'auto', updateHash: false });
+        }, 100);
     }
 }
 
+// Backwards compatibility for external references
+window.HorizontalScrollHandler = ScrollNavigationHandler;
+
 document.addEventListener('DOMContentLoaded', () => {
-    window.horizontalScroll = new HorizontalScrollHandler();
+    window.horizontalScroll = new ScrollNavigationHandler();
 });

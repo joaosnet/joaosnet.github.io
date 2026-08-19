@@ -123,7 +123,6 @@
     <div class="overlay"></div>
 
     <main id="main-content" tabindex="-1">
-    <div class="horizontal-wrapper">
     <section id="home" class="hero">
         <div id="particles-js"></div>
         <div class="floating-shapes">
@@ -602,24 +601,26 @@
                 </div>
             </footer>
         </section>
-    </div>
     </main>
 
-    <!-- Floating Contact Button -->
-    <button id="fab-contact" aria-label="Entrar em contato" title="Entrar em contato">
-        <i class="fas fa-envelope"></i>
+    <!-- Floating Action Buttons -->
+    <button id="back-to-top" class="floating-btn" aria-label="Voltar ao início" title="Voltar ao início">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+    <button id="fab-contact" class="floating-btn" aria-label="Entrar em contato" title="Entrar em contato">
+        <i class="fas fa-envelope" aria-hidden="true"></i>
     </button>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-    <script src="assets/js/utils.js?v=3.4" defer></script>
-    <script src="assets/js/geo-counter.js?v=3.4" defer></script>
-    <script src="assets/js/theme-selector.js?v=3.4" defer></script>
-    <script src="assets/js/horizontal-scroll.js?v=3.4" defer></script>
-    <script src="assets/js/project-details.js?v=3.4" defer></script>
-    <script src="assets/js/theme-manager.js?v=3.4" defer></script>
-    <script src="assets/js/mobile-menu.js?v=3.4" defer></script>
-    <script src="assets/js/animations.js?v=3.4" defer></script>
-    <script src="assets/js/contact-form.js?v=3.4" defer></script>
+    <script src="assets/js/utils.js?v=3.5" defer></script>
+    <script src="assets/js/geo-counter.js?v=3.5" defer></script>
+    <script src="assets/js/theme-selector.js?v=3.5" defer></script>
+    <script src="assets/js/horizontal-scroll.js?v=3.5" defer></script>
+    <script src="assets/js/project-details.js?v=3.5" defer></script>
+    <script src="assets/js/theme-manager.js?v=3.5" defer></script>
+    <script src="assets/js/mobile-menu.js?v=3.5" defer></script>
+    <script src="assets/js/animations.js?v=3.5" defer></script>
+    <script src="assets/js/contact-form.js?v=3.5" defer></script>
     <!-- GTranslate - Automatic translation and language picker -->
     <div class="gtranslate_wrapper" aria-label="Selecionar idioma"></div>
     <script>
@@ -628,6 +629,9 @@
             detect_browser_language: true,
             native_language_names: true,
             languages: ["pt", "en", "es", "fr", "de"],
+            alt_flags: {
+                "pt": "brazil"
+            },
             wrapper_selector: ".gtranslate_wrapper",
             switcher_horizontal_position: "left",
             switcher_vertical_position: "bottom",
