@@ -1,5 +1,5 @@
 /**
- * Contact Form Handler - Manages form submission and toast notifications
+ * Contact Form Handler - Manages form submission, quick actions, copy feedback, and toast notifications
  */
 class ContactFormHandler {
     constructor() {
@@ -11,16 +11,19 @@ class ContactFormHandler {
         this.fabContact = document.getElementById('fab-contact');
 
         this.EMAIL = 'joao.silva.neto@itec.ufpa.br';
-        this.SUBJECT = 'Contato pelo site';
+        this.SUBJECT = 'Contato pelo portfólio';
+        this.toastTimeout = null;
 
-        if (this.form) {
+        if (this.form || this.copyEmailBtn || this.sendMailBtn) {
             this.init();
         }
     }
 
     init() {
-        this.form.addEventListener('submit', (e) => this.handleSubmit(e));
-        
+        if (this.form) {
+            this.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        }
+
         if (this.sendMailBtn) {
             this.sendMailBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -47,15 +50,53 @@ class ContactFormHandler {
         }
     }
 
+    validateForm() {
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!name) {
+            this.showToast('Por favor, informe seu nome.', 'error');
+            if (nameInput) nameInput.focus();
+            return false;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || !emailRegex.test(email)) {
+            this.showToast('Por favor, informe um e-mail válido.', 'error');
+            if (emailInput) emailInput.focus();
+            return false;
+        }
+
+        if (!message || message.length < 3) {
+            this.showToast('Por favor, escreva uma mensagem breve.', 'error');
+            if (messageInput) messageInput.focus();
+            return false;
+        }
+
+        return true;
+    }
+
     async handleSubmit(e) {
         e.preventDefault();
 
-        const submitBtn = this.form.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
+        if (!this.validateForm()) {
+            return;
+        }
 
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-        submitBtn.setAttribute('aria-busy', 'true');
+        const submitBtn = this.form.querySelector('button[type="submit"]');
+        const originalHtml = submitBtn ? submitBtn.innerHTML : 'Enviar mensagem';
+
+        if (submitBtn) {
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            submitBtn.setAttribute('aria-busy', 'true');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> <span>Enviando...</span>';
+        }
 
         try {
             const response = await fetch(this.form.action, {
@@ -68,85 +109,128 @@ class ContactFormHandler {
 
             if (response.ok) {
                 this.form.reset();
-                this.showToast('Mensagem enviada com sucesso! Obrigado.');
-                this.flashSubmitSuccess(submitBtn, originalText);
+                this.showToast('Mensagem enviada com sucesso! Responderei em breve.', 'success');
+                if (submitBtn) {
+                    this.flashSubmitSuccess(submitBtn, originalHtml);
+                }
             } else {
-                this.handleFormError();
+                this.handleFormError(submitBtn, originalHtml);
             }
         } catch (error) {
-            this.handleFormError();
+            this.handleFormError(submitBtn, originalHtml);
         } finally {
-            submitBtn.classList.remove('loading');
-            submitBtn.disabled = false;
-            submitBtn.removeAttribute('aria-busy');
+            if (submitBtn && !submitBtn.classList.contains('sent')) {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                submitBtn.removeAttribute('aria-busy');
+                submitBtn.innerHTML = originalHtml;
+            }
         }
     }
 
-    handleFormError() {
-        const formData = new FormData(this.form);
-        const name = formData.get('name') || 'Visitante';
-        const email = formData.get('email') || '';
-        const message = formData.get('message');
+    handleFormError(submitBtn, originalHtml) {
+        const name = (document.getElementById('name')?.value || 'Visitante').trim();
+        const email = (document.getElementById('email')?.value || '').trim();
+        const message = (document.getElementById('message')?.value || '').trim();
 
         if (message) {
-            // Show user-friendly message before redirect
-            this.showToast('Abrindo seu cliente de email...', 'info');
+            this.showToast('Redirecionando para seu app de email...', 'info');
 
-            // Try mailto as fallback
             const to = encodeURIComponent(this.EMAIL);
             const subject = encodeURIComponent(`${this.SUBJECT} - ${name}`);
-            const body = encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\nMensagem:\n${message}`);
+            const body = encodeURIComponent(`Olá João,\n\n${message}\n\n--\nNome: ${name}\nEmail: ${email}`);
 
-            // Small delay to show toast before redirect
             setTimeout(() => {
                 window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-            }, 800);
+            }, 700);
         } else {
-            this.showToast('Por favor, preencha todos os campos.', 'error');
+            this.showToast('Não foi possível enviar pelo formulário. Tente abrir o e-mail diretamente.', 'error');
+        }
+
+        if (submitBtn) {
+            submitBtn.classList.remove('loading');
+            submitBtn.disabled = false;
+            submitBtn.removeAttribute('aria-busy');
+            submitBtn.innerHTML = originalHtml;
         }
     }
 
     openMailClient() {
-        const name = document.getElementById('name').value || 'Visitante';
-        const email = document.getElementById('email').value || '';
-        const message = document.getElementById('message').value || '';
+        const name = (document.getElementById('name')?.value || '').trim();
+        const email = (document.getElementById('email')?.value || '').trim();
+        const message = (document.getElementById('message')?.value || '').trim();
 
-        const subject = encodeURIComponent(`${this.SUBJECT} - ${name}`);
-        const body = encodeURIComponent(`Nome: ${name}\nEmail: ${email}\n\n${message}`);
-        
+        const subject = encodeURIComponent(name ? `${this.SUBJECT} - ${name}` : this.SUBJECT);
+        let bodyContent = message;
+        if (name || email) {
+            bodyContent = `${message}\n\n--\nNome: ${name || 'Não informado'}\nEmail: ${email || 'Não informado'}`;
+        }
+        const body = encodeURIComponent(bodyContent);
+
+        this.showToast('Abrindo aplicativo de e-mail...', 'info');
         window.location.href = `mailto:${this.EMAIL}?subject=${subject}&body=${body}`;
     }
 
     async copyEmailToClipboard() {
+        const btnTextEl = this.copyEmailBtn ? this.copyEmailBtn.querySelector('.contact-action-text') : null;
+        const originalText = btnTextEl ? btnTextEl.textContent : 'Copiar e-mail';
+
         try {
-            await navigator.clipboard.writeText(this.EMAIL);
-            this.showToast('Email copiado.');
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(this.EMAIL);
+            } else {
+                // Fallback for older webviews
+                const textArea = document.createElement('textarea');
+                textArea.value = this.EMAIL;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+
+            if (this.copyEmailBtn) {
+                this.copyEmailBtn.classList.add('copied');
+                if (btnTextEl) btnTextEl.textContent = 'Copiado!';
+            }
+
+            this.showToast('E-mail copiado para a área de transferência!', 'success');
+
+            setTimeout(() => {
+                if (this.copyEmailBtn) {
+                    this.copyEmailBtn.classList.remove('copied');
+                    if (btnTextEl) btnTextEl.textContent = originalText;
+                }
+            }, 2500);
         } catch (error) {
-            this.showToast('Não foi possível copiar. Email: ' + this.EMAIL, 'info');
+            this.showToast('E-mail: ' + this.EMAIL, 'info');
         }
     }
 
     openGmail() {
-        const message = document.getElementById('message').value || '';
-        const name = document.getElementById('name').value || '';
-        
-        const subject = encodeURIComponent(this.SUBJECT);
-        const body = encodeURIComponent(`${message}\n\n--\n${name}`);
-        
-        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${this.EMAIL}&su=${subject}&body=${body}`, '_blank');
+        const name = (document.getElementById('name')?.value || '').trim();
+        const message = (document.getElementById('message')?.value || '').trim();
+
+        const subject = encodeURIComponent(name ? `${this.SUBJECT} - ${name}` : this.SUBJECT);
+        const body = encodeURIComponent(message ? `${message}\n\n--\n${name}` : '');
+
+        this.showToast('Abrindo Gmail Web...', 'info');
+        window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${this.EMAIL}&su=${subject}&body=${body}`, '_blank', 'noopener,noreferrer');
     }
 
     scrollToForm() {
-        const form = document.getElementById('contact-form');
-        if (form) {
+        const target = document.getElementById('contact');
+        if (target) {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
             if (window.horizontalScroll && typeof window.horizontalScroll.scrollToSection === 'function') {
                 window.horizontalScroll.scrollToSection('#contact', { updateHash: true });
             } else {
                 const header = document.querySelector('header');
-                const headerHeight = header ? header.offsetHeight : 76;
-                const targetPosition = Math.max(0, form.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20);
+                const headerHeight = header ? header.offsetHeight : 68;
+                const targetPosition = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 16);
 
                 window.scrollTo({
                     top: targetPosition,
@@ -154,11 +238,12 @@ class ContactFormHandler {
                 });
             }
 
-            // Focus message field
-            const messageField = document.getElementById('message');
-            if (messageField) {
-                const focusDelay = prefersReducedMotion ? 0 : 500;
-                setTimeout(() => messageField.focus({ preventScroll: true }), focusDelay);
+            const firstInput = document.getElementById('name') || document.getElementById('message');
+            if (firstInput) {
+                const focusDelay = prefersReducedMotion ? 50 : 450;
+                setTimeout(() => {
+                    firstInput.focus({ preventScroll: true });
+                }, focusDelay);
             }
         }
     }
@@ -166,13 +251,15 @@ class ContactFormHandler {
     showToast(message, type = 'success') {
         if (!this.toastEl) return;
 
-        // Set toast message
+        if (this.toastTimeout) {
+            clearTimeout(this.toastTimeout);
+        }
+
         this.toastEl.textContent = message;
         this.toastEl.style.display = 'block';
         this.toastEl.classList.remove('hide');
         this.toastEl.classList.add('show');
 
-        // Apply type-based styling
         this.toastEl.style.background = 'var(--toast-bg)';
         this.toastEl.style.color = 'var(--toast-color)';
 
@@ -184,8 +271,7 @@ class ContactFormHandler {
             this.toastEl.style.borderLeft = '4px solid #10b981';
         }
 
-        // Auto-hide after 3.5 seconds
-        setTimeout(() => {
+        this.toastTimeout = setTimeout(() => {
             this.toastEl.classList.remove('show');
             this.toastEl.classList.add('hide');
             setTimeout(() => {
@@ -194,19 +280,21 @@ class ContactFormHandler {
         }, 3500);
     }
 
-
-    flashSubmitSuccess(submitBtn, originalText) {
-        submitBtn.textContent = 'Enviado!';
+    flashSubmitSuccess(submitBtn, originalHtml) {
+        submitBtn.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i> <span>Enviado com sucesso!</span>';
+        submitBtn.classList.remove('loading');
         submitBtn.classList.add('sent');
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('aria-busy');
 
-        window.setTimeout(() => {
-            submitBtn.textContent = originalText;
+        setTimeout(() => {
+            submitBtn.innerHTML = originalHtml;
             submitBtn.classList.remove('sent');
-        }, 2500);
+        }, 3000);
     }
 }
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    new ContactFormHandler();
+    window.contactFormHandler = new ContactFormHandler();
 });

@@ -169,7 +169,7 @@
       "label": "update_index_html()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1307",
+      "source_location": "L1319",
       "id": "joaosnet_github_io_update_projects_update_index_html",
       "community": 24,
       "norm_label": "update_index_html()"
@@ -178,7 +178,7 @@
       "label": "update_sitemap()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1404",
+      "source_location": "L1416",
       "id": "joaosnet_github_io_update_projects_update_sitemap",
       "community": 24,
       "norm_label": "update_sitemap()"
@@ -187,7 +187,7 @@
       "label": "sanitize_existing_project_images()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1425",
+      "source_location": "L1437",
       "id": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
       "community": 22,
       "norm_label": "sanitize_existing_project_images()"
@@ -196,7 +196,7 @@
       "label": "commit_downloaded_images()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1474",
+      "source_location": "L1486",
       "id": "joaosnet_github_io_update_projects_commit_downloaded_images",
       "community": 34,
       "norm_label": "commit_downloaded_images()"
@@ -205,7 +205,7 @@
       "label": "main()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L1517",
+      "source_location": "L1529",
       "id": "joaosnet_github_io_update_projects_main",
       "community": 27,
       "norm_label": "main()"
@@ -367,8 +367,8 @@
       "label": "Update the <lastmod> date in sitemap.xml to today's date (YYYY-MM-DD).",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1405",
-      "id": "joaosnet_github_io_update_projects_rationale_1405",
+      "source_location": "L1417",
+      "id": "joaosnet_github_io_update_projects_rationale_1417",
       "community": 24,
       "norm_label": "update the <lastmod> date in sitemap.xml to today's date (yyyy-mm-dd)."
     },
@@ -376,8 +376,8 @@
       "label": "Replace owner avatar image URLs with a local placeholder inside the projects blo",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1428",
-      "id": "joaosnet_github_io_update_projects_rationale_1428",
+      "source_location": "L1440",
+      "id": "joaosnet_github_io_update_projects_rationale_1440",
       "community": 22,
       "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo"
     },
@@ -385,8 +385,8 @@
       "label": "Commit downloaded images to git.",
       "file_type": "rationale",
       "source_file": "update_projects.py",
-      "source_location": "L1475",
-      "id": "joaosnet_github_io_update_projects_rationale_1475",
+      "source_location": "L1487",
+      "id": "joaosnet_github_io_update_projects_rationale_1487",
       "community": 34,
       "norm_label": "commit downloaded images to git."
     },
@@ -574,16 +574,25 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L21",
+      "source_location": "L22",
       "id": "js_contact_form_contactformhandler_init",
       "community": 10,
       "norm_label": ".init()"
     },
     {
+      "label": ".validateForm()",
+      "file_type": "code",
+      "source_file": "assets/js/contact-form.js",
+      "source_location": "L53",
+      "id": "js_contact_form_contactformhandler_validateform",
+      "community": 10,
+      "norm_label": ".validateform()"
+    },
+    {
       "label": ".handleSubmit()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L50",
+      "source_location": "L84",
       "id": "js_contact_form_contactformhandler_handlesubmit",
       "community": 10,
       "norm_label": ".handlesubmit()"
@@ -592,7 +601,7 @@
       "label": ".handleFormError()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L85",
+      "source_location": "L131",
       "id": "js_contact_form_contactformhandler_handleformerror",
       "community": 10,
       "norm_label": ".handleformerror()"
@@ -601,7 +610,7 @@
       "label": ".openMailClient()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L109",
+      "source_location": "L158",
       "id": "js_contact_form_contactformhandler_openmailclient",
       "community": 10,
       "norm_label": ".openmailclient()"
@@ -610,7 +619,7 @@
       "label": ".copyEmailToClipboard()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L120",
+      "source_location": "L174",
       "id": "js_contact_form_contactformhandler_copyemailtoclipboard",
       "community": 10,
       "norm_label": ".copyemailtoclipboard()"
@@ -619,7 +628,7 @@
       "label": ".openGmail()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L129",
+      "source_location": "L212",
       "id": "js_contact_form_contactformhandler_opengmail",
       "community": 10,
       "norm_label": ".opengmail()"
@@ -628,7 +637,7 @@
       "label": ".scrollToForm()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L139",
+      "source_location": "L223",
       "id": "js_contact_form_contactformhandler_scrolltoform",
       "community": 10,
       "norm_label": ".scrolltoform()"
@@ -637,7 +646,7 @@
       "label": ".showToast()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L166",
+      "source_location": "L251",
       "id": "js_contact_form_contactformhandler_showtoast",
       "community": 10,
       "norm_label": ".showtoast()"
@@ -646,7 +655,7 @@
       "label": ".flashSubmitSuccess()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L198",
+      "source_location": "L283",
       "id": "js_contact_form_contactformhandler_flashsubmitsuccess",
       "community": 10,
       "norm_label": ".flashsubmitsuccess()"
@@ -1548,7 +1557,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L17",
       "id": "tests_test_env_variables_testenvfile",
-      "community": 2,
+      "community": 37,
       "norm_label": "testenvfile"
     },
     {
@@ -1557,7 +1566,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L20",
       "id": "tests_test_env_variables_testenvfile_test_env_file_exists",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_file_exists()"
     },
     {
@@ -1566,7 +1575,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L25",
       "id": "tests_test_env_variables_testenvfile_test_env_example_file_exists",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_example_file_exists()"
     },
     {
@@ -1575,7 +1584,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L30",
       "id": "tests_test_env_variables_testenvfile_test_env_is_in_gitignore",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_is_in_gitignore()"
     },
     {
@@ -1584,7 +1593,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L40",
       "id": "tests_test_env_variables_testenvfile_test_env_not_empty",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_not_empty()"
     },
     {
@@ -1593,7 +1602,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L54",
       "id": "tests_test_env_variables_testenvfile_test_env_example_has_required_variables",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_example_has_required_variables()"
     },
     {
@@ -1602,7 +1611,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L72",
       "id": "tests_test_env_variables_testenvfile_test_env_file_has_required_token",
-      "community": 2,
+      "community": 37,
       "norm_label": ".test_env_file_has_required_token()"
     },
     {
@@ -1728,7 +1737,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L18",
       "id": "tests_test_env_variables_rationale_18",
-      "community": 2,
+      "community": 37,
       "norm_label": "testes para arquivo .env"
     },
     {
@@ -1737,7 +1746,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L21",
       "id": "tests_test_env_variables_rationale_21",
-      "community": 2,
+      "community": 37,
       "norm_label": "arquivo .env deve existir"
     },
     {
@@ -1746,7 +1755,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L26",
       "id": "tests_test_env_variables_rationale_26",
-      "community": 2,
+      "community": 37,
       "norm_label": "arquivo .env.example deve existir"
     },
     {
@@ -1755,7 +1764,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L31",
       "id": "tests_test_env_variables_rationale_31",
-      "community": 2,
+      "community": 37,
       "norm_label": ".env deve estar no .gitignore"
     },
     {
@@ -1764,7 +1773,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L41",
       "id": "tests_test_env_variables_rationale_41",
-      "community": 2,
+      "community": 37,
       "norm_label": "arquivo .env nao deve estar vazio (deve ter variaveis)"
     },
     {
@@ -1773,7 +1782,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L55",
       "id": "tests_test_env_variables_rationale_55",
-      "community": 2,
+      "community": 37,
       "norm_label": ".env.example deve ter todas as variaveis necessarias"
     },
     {
@@ -1782,7 +1791,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L73",
       "id": "tests_test_env_variables_rationale_73",
-      "community": 2,
+      "community": 37,
       "norm_label": "arquivo .env deve ter pelo menos private_repos_token configurado"
     },
     {
@@ -2115,7 +2124,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L153",
       "id": "tests_test_site_structure_testjavascriptfiles",
-      "community": 3,
+      "community": 38,
       "norm_label": "testjavascriptfiles"
     },
     {
@@ -2133,7 +2142,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L161",
       "id": "tests_test_site_structure_testjavascriptfiles_test_all_js_files_exist",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_all_js_files_exist()"
     },
     {
@@ -2142,7 +2151,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L177",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_utils",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_no_syntax_errors_in_utils()"
     },
     {
@@ -2151,7 +2160,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L187",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_geo_counter",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_no_syntax_errors_in_geo_counter()"
     },
     {
@@ -2160,7 +2169,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L196",
       "id": "tests_test_site_structure_testjavascriptfiles_test_geo_counter_does_not_call_public_ip_apis",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_geo_counter_does_not_call_public_ip_apis()"
     },
     {
@@ -2169,7 +2178,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L211",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_contact_form",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_no_syntax_errors_in_contact_form()"
     },
     {
@@ -2178,7 +2187,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L220",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_project_details",
-      "community": 3,
+      "community": 38,
       "norm_label": ".test_no_syntax_errors_in_project_details()"
     },
     {
@@ -2439,7 +2448,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L154",
       "id": "tests_test_site_structure_rationale_154",
-      "community": 3,
+      "community": 38,
       "norm_label": "testes para validar arquivos javascript"
     },
     {
@@ -2448,7 +2457,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L162",
       "id": "tests_test_site_structure_rationale_162",
-      "community": 3,
+      "community": 38,
       "norm_label": "todos os arquivos js obrigatorios devem existir"
     },
     {
@@ -2457,7 +2466,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L178",
       "id": "tests_test_site_structure_rationale_178",
-      "community": 3,
+      "community": 38,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2466,7 +2475,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L188",
       "id": "tests_test_site_structure_rationale_188",
-      "community": 3,
+      "community": 38,
       "norm_label": "geo-counter.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2475,7 +2484,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L197",
       "id": "tests_test_site_structure_rationale_197",
-      "community": 3,
+      "community": 38,
       "norm_label": "geo-counter.js nao deve chamar apis publicas de ip/geo no navegador"
     },
     {
@@ -2484,7 +2493,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L212",
       "id": "tests_test_site_structure_rationale_212",
-      "community": 3,
+      "community": 38,
       "norm_label": "contact-form.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2493,7 +2502,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L221",
       "id": "tests_test_site_structure_rationale_221",
-      "community": 3,
+      "community": 38,
       "norm_label": "project-details.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -3683,6 +3692,33 @@
       "id": "tests_testes_documenta\u00e7\u00e3o_adicional",
       "community": 21,
       "norm_label": "\ud83d\udcda documentacao adicional"
+    },
+    {
+      "label": "Update the <lastmod> date in sitemap.xml to today's date (YYYY-MM-DD).",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1405",
+      "community": 24,
+      "norm_label": "update the <lastmod> date in sitemap.xml to today's date (yyyy-mm-dd).",
+      "id": "joaosnet_github_io_update_projects_rationale_1405"
+    },
+    {
+      "label": "Replace owner avatar image URLs with a local placeholder inside the projects blo",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1428",
+      "community": 22,
+      "norm_label": "replace owner avatar image urls with a local placeholder inside the projects blo",
+      "id": "joaosnet_github_io_update_projects_rationale_1428"
+    },
+    {
+      "label": "Commit downloaded images to git.",
+      "file_type": "rationale",
+      "source_file": "update_projects.py",
+      "source_location": "L1475",
+      "community": 34,
+      "norm_label": "commit downloaded images to git.",
+      "id": "joaosnet_github_io_update_projects_rationale_1475"
     },
     {
       "label": "For private repos, download the image and save it locally in the portfolio.",
@@ -5049,17 +5085,6 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
-      "source_location": "L1117",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "joaosnet_github_io_update_projects_find_repo_preview_image",
-      "target": "joaosnet_github_io_update_projects_mask_repo_name"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "update_projects.py",
       "source_location": "L1409",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5096,6 +5121,17 @@
       "source_location": "L234",
       "weight": 1.0,
       "source": "tests_test_update_projects_testmaskreponame_test_mask_public_repo",
+      "target": "joaosnet_github_io_update_projects_mask_repo_name"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_update_projects_find_repo_preview_image",
       "target": "joaosnet_github_io_update_projects_mask_repo_name"
     },
     {
@@ -5843,6 +5879,16 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "update_projects.py",
+      "source_location": "L1417",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1417",
+      "target": "joaosnet_github_io_update_projects_update_sitemap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
       "source_location": "L1405",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -5859,6 +5905,16 @@
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_main",
       "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1440",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1440",
+      "target": "joaosnet_github_io_update_projects_sanitize_existing_project_images",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -5900,6 +5956,16 @@
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_main",
       "target": "joaosnet_github_io_update_projects_commit_downloaded_images"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L1487",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_update_projects_rationale_1487",
+      "target": "joaosnet_github_io_update_projects_commit_downloaded_images",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
@@ -6210,6 +6276,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/contact-form.js",
+      "source_location": "L53",
+      "weight": 1.0,
+      "source": "js_contact_form_contactformhandler",
+      "target": "js_contact_form_contactformhandler_validateform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/contact-form.js",
       "source_location": "L50",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6312,6 +6388,28 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/contact-form.js",
+      "source_location": "L63",
+      "weight": 1.0,
+      "source": "js_contact_form_contactformhandler_validateform",
+      "target": "js_contact_form_contactformhandler_showtoast",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/contact-form.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "js_contact_form_contactformhandler_handlesubmit",
+      "target": "js_contact_form_contactformhandler_validateform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/contact-form.js",
       "source_location": "L71",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6356,6 +6454,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/contact-form.js",
+      "source_location": "L170",
+      "weight": 1.0,
+      "source": "js_contact_form_contactformhandler_openmailclient",
+      "target": "js_contact_form_contactformhandler_showtoast",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/contact-form.js",
       "source_location": "L128",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6372,6 +6481,17 @@
       "confidence_score": 1.0,
       "source": "js_contact_form_contactformhandler_copyemailtoclipboard",
       "target": "js_contact_form_contactformhandler_fallbackcopyemail"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/contact-form.js",
+      "source_location": "L219",
+      "weight": 1.0,
+      "source": "js_contact_form_contactformhandler_opengmail",
+      "target": "js_contact_form_contactformhandler_showtoast",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -11508,5 +11628,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "118be9e07e8596c0fb9e2ae473c6739d0a835632"
+  "built_at_commit": "c3557efab552a97625aa56c741bd910f9605c808"
 }

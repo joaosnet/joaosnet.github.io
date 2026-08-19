@@ -1,7 +1,7 @@
 {
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\update_projects.py": {
-    "mtime": 1787152139.2560103,
-    "ast_hash": "f89cf28ac8a8c9671fb88ebfb33d4973",
+    "mtime": 1787155629.1806717,
+    "ast_hash": "9f41dcce1083d2dacd22f4e34ff147df",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\animations.js": {
@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\contact-form.js": {
-    "mtime": 1787150846.7579844,
-    "ast_hash": "f5b929bab660054645efea9509256985",
+    "mtime": 1787155782.8880217,
+    "ast_hash": "9fd6b80b50382565470c0e6dda420214",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\js\\geo-counter.js": {
@@ -75,8 +75,8 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\index.html": {
-    "mtime": 1787153310.4977722,
-    "ast_hash": "7a5291be4774cebf2ebe5b47f1b68c19",
+    "mtime": 1787155954.3400698,
+    "ast_hash": "9964c7cc9548bbf81d01fcc62b3e63bc",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.codex\\AGENTS.md": {
@@ -265,13 +265,18 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\project-images\\LAPSHub_dmovel_web_app_banner.webp": {
-    "mtime": 1780950805.4201722,
-    "ast_hash": "248fb5cbba94e3e924953a715025ad6c",
+    "mtime": 1787155494.8381753,
+    "ast_hash": "6a68d80a6ca96370a115ee126365f1d5",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\project-images\\LAPSHub_flutter-learn-together_banner.webp": {
     "mtime": 1780950805.421178,
     "ast_hash": "109c5c2aa0a85911651fa35311177daf",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\project-images\\LAPSHub_dmovel_web_app_banner.png": {
+    "mtime": 1787155494.8724341,
+    "ast_hash": "619d18de3f815969fb64653c6748cb85",
     "semantic_hash": ""
   }
 }

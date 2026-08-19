@@ -1215,7 +1215,19 @@ def find_repo_preview_image(repo):
             print("  ⚠ Sem token disponível")
             return None, None
 
-        print(f"  ℹ Buscando imagem para {mask_repo_name(repo)}...")
+        # STEP 0: Check if local project image/banner already exists in assets/project-images/
+        for ext in (".webp", ".png", ".jpg", ".gif", ".svg"):
+            for candidate in [
+                f"assets/project-images/{owner}_{name}_banner{ext}",
+                f"assets/project-images/{owner}_{name}_screenshot{ext}",
+                f"assets/project-images/{owner}_{name}{ext}",
+                f"assets/project-images/{name}_banner{ext}",
+                f"assets/project-images/{name}_screenshot{ext}",
+                f"assets/project-images/{name}{ext}",
+            ]:
+                if os.path.exists(candidate):
+                    print(f"  ✓ Usando imagem local existente: {candidate}")
+                    return f"./{candidate}", "local_project_image"
 
         # STEP 1: Try README first - prioritize real content images
         readme_image = find_image_in_readme(owner, name, token, repo.get("private", False))

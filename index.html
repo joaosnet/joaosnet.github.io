@@ -78,7 +78,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3.4">
+    <link rel="stylesheet" href="assets/css/styles.css?v=3.6">
     <style>
         /* Keep empty - all styles are in assets/css/styles.css */
     </style>
@@ -429,7 +429,7 @@
                         
                             <article class="published-page-link">
                                 <div class="published-page-image-wrapper">
-                                    <img src="https://opengraph.githubassets.com/0c65500f52389c5e182cf20e00a064e553fa56ea32686d378f2f65608579b602/LAPSHub/dmovel_web_app" alt="Prévia visual de dmovel_web_app" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
+                                    <img src="./assets/project-images/LAPSHub_dmovel_web_app_banner.webp" alt="Prévia visual de dmovel_web_app" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
                                 </div>
                                 <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
                                 <span class="published-page-copy">
@@ -480,85 +480,113 @@
             <div class="contact-copy">
                 <h2>Procurando um estagiário com visão de engenharia?</h2>
                 <p>Estou disponível para novas oportunidades. Seja para uma vaga de estágio ou projeto de desenvolvimento, entre em contato e vamos conversar sobre como posso agregar valor ao seu time.</p>
+                
+                <div class="contact-channels-quick">
+                    <a href="https://t.me/joaosilvaneto" target="_blank" rel="noopener noreferrer" class="contact-channel-pill contact-channel-telegram">
+                        <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+                        <span>Telegram Direto</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/joaonativi/" target="_blank" rel="noopener noreferrer" class="contact-channel-pill contact-channel-linkedin">
+                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="docs/crv.pdf" download="curriculo-joao-silva-neto.pdf" class="contact-channel-pill contact-channel-cv">
+                        <i class="fas fa-file-download" aria-hidden="true"></i>
+                        <span>Baixar CV</span>
+                    </a>
+                </div>
             </div>
 
-                <div class="form-container">
-                    <div class="form-background-effects" aria-hidden="true">
-                        <div class="shape shape-1"></div>
-                        <div class="shape shape-2"></div>
-                        <div class="shape shape-3"></div>
-                        <div class="shape shape-4"></div>
-                    </div>
+            <div class="form-container">
+                <div class="form-background-effects" aria-hidden="true">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <div class="shape shape-3"></div>
+                    <div class="shape shape-4"></div>
+                </div>
 
-                    <div class="form-floating-devicon" aria-hidden="true">
-                        <i class="fas fa-microchip"></i>
-                    </div>
-
+                <div class="contact-quick-hub">
                     <div class="contact-telegram-cta">
                         <a href="https://t.me/joaosilvaneto" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-secondary">
-                            <i class="fab fa-telegram-plane" aria-hidden="true"></i> Conversar no Telegram
+                            class="btn btn-secondary contact-telegram-btn">
+                            <i class="fab fa-telegram-plane" aria-hidden="true"></i>
+                            <span>Conversar no Telegram</span>
+                            <span class="badge-online" aria-label="Resposta rápida">Online</span>
                         </a>
                     </div>
 
-                    <div class="contact-form">
-                        <form action="https://formspree.io/f/mdoqyljj" method="POST" id="contact-form">
-                            <p class="contact-options">
-                                <i class="fas fa-info-circle" title="Opções de contato" aria-hidden="true"></i>
-                                <span class="contact-options-label">Opções:</span>
-                                <span>Use os ícones abaixo para abrir seu app de email, copiar o email ou abrir no
-                                    Gmail.</span>
-                            </p>
-                            <div class="contact-actions">
-                                <button type="button" id="send-mail-btn" class="btn btn-primary icon-button icon-only"
-                                    aria-label="Enviar via email" title="Enviar via email">
-                                    <i class="fas fa-envelope" aria-hidden="true"></i>
-                                    <span class="sr-only">Enviar pelo email</span>
-                                </button>
-                                <button type="button" id="copy-email-btn"
-                                    class="btn btn-secondary icon-button icon-only" aria-label="Copiar email"
-                                    title="Copiar email">
-                                    <i class="fas fa-copy" aria-hidden="true"></i>
-                                    <span class="sr-only">Copiar email</span>
-                                </button>
-                                <button type="button" id="open-gmail-btn"
-                                    class="btn btn-secondary icon-button icon-only" aria-label="Abrir Gmail"
-                                    title="Abrir Gmail">
-                                    <i class="fab fa-google" aria-hidden="true"></i>
-                                    <span class="sr-only">Abrir no Gmail</span>
-                                </button>
-                            </div>
-                            <div class="form-group">
-                                <label for="name" class="sr-only">Nome</label>
-                                <i class="fas fa-user form-icon" aria-hidden="true"></i>
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome"
-                                    autocomplete="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <i class="fas fa-envelope form-icon" aria-hidden="true"></i>
-                                <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="Seu melhor email" autocomplete="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message" class="sr-only">Mensagem</label>
-                                <i class="fas fa-comment-alt form-icon" aria-hidden="true"></i>
-                                <textarea id="message" name="message" class="form-control"
-                                    placeholder="Como posso contribuir?" aria-describedby="contact-helper"
-                                    required></textarea>
-                            </div>
-                            <p class="contact-helper" id="contact-helper">
-                                <i class="fas fa-lightbulb" aria-hidden="true" title="Dica"></i>
-                                <span>Conte brevemente o contexto, objetivo e prazo. Se preferir, use os ícones acima
-                                    para abrir seu cliente de email.</span>
-                            </p>
-                            <button type="submit" class="btn btn-primary contact-submit">Enviar mensagem</button>
-                        </form>
-                        <div id="toast" aria-live="polite" role="status"></div>
+                    <div class="contact-email-card">
+                        <div class="contact-email-header">
+                            <span class="contact-email-label"><i class="fas fa-envelope-open-text" aria-hidden="true"></i> E-mail direto:</span>
+                            <span class="contact-email-val" id="email-text-display">joao.silva.neto@itec.ufpa.br</span>
+                        </div>
+                        <div class="contact-actions">
+                            <button type="button" id="copy-email-btn"
+                                class="btn btn-secondary contact-action-btn" aria-label="Copiar email"
+                                title="Copiar email">
+                                <i class="fas fa-copy" aria-hidden="true"></i>
+                                <span class="contact-action-text">Copiar e-mail</span>
+                            </button>
+                            <button type="button" id="send-mail-btn" class="btn btn-secondary contact-action-btn"
+                                aria-label="Enviar via email" title="Enviar via email">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                                <span class="contact-action-text">Abrir no app</span>
+                            </button>
+                            <button type="button" id="open-gmail-btn"
+                                class="btn btn-secondary contact-action-btn" aria-label="Abrir Gmail"
+                                title="Abrir Gmail">
+                                <i class="fab fa-google" aria-hidden="true"></i>
+                                <span class="contact-action-text">Gmail Web</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
+
+                <div class="contact-divider" aria-hidden="true">
+                    <span>ou preencha o formulário</span>
+                </div>
+
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/mdoqyljj" method="POST" id="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="form-label">Seu Nome</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user form-icon" aria-hidden="true"></i>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Maria Souza"
+                                    autocomplete="name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Seu E-mail</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope form-icon" aria-hidden="true"></i>
+                                <input type="email" id="email" name="email" class="form-control"
+                                    placeholder="Ex: maria@empresa.com" autocomplete="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Mensagem</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-comment-alt form-icon textarea-icon" aria-hidden="true"></i>
+                                <textarea id="message" name="message" class="form-control"
+                                    placeholder="Conte brevemente o contexto, oportunidade ou projeto..." aria-describedby="contact-helper"
+                                    rows="4" required></textarea>
+                            </div>
+                        </div>
+                        <p class="contact-helper" id="contact-helper">
+                            <i class="fas fa-shield-alt" aria-hidden="true" title="Privacidade"></i>
+                            <span>Seus dados são enviados diretamente e com segurança. Respondo em menos de 24h.</span>
+                        </p>
+                        <button type="submit" class="btn btn-primary contact-submit">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            <span>Enviar mensagem</span>
+                        </button>
+                    </form>
+                    <div id="toast" aria-live="polite" role="status"></div>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <section id="resume" class="footer-panel" aria-label="Currículo e links profissionais">
             <footer>
@@ -622,7 +650,7 @@
     <script src="assets/js/theme-manager.js?v=3.5" defer></script>
     <script src="assets/js/mobile-menu.js?v=3.5" defer></script>
     <script src="assets/js/animations.js?v=3.5" defer></script>
-    <script src="assets/js/contact-form.js?v=3.5" defer></script>
+    <script src="assets/js/contact-form.js?v=3.6" defer></script>
     <!-- GTranslate - Automatic translation and language picker -->
     <div class="gtranslate_wrapper" aria-label="Selecionar idioma"></div>
     <script>
