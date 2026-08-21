@@ -182,56 +182,116 @@ function recordEvent(ss, d) {
   ]);
 }
 
-function setSmartFormula(cell, formulaPt, formulaEn) {
-  try {
-    cell.setFormulaLocal(formulaPt);
-  } catch (e) {
-    try {
-      cell.setFormula(formulaEn);
-    } catch (err) {}
-  }
-}
-
 function setupDashboard(ss, force) {
   var dash = ss.getSheetByName('Dashboard');
-  
-  // Se não existir, cria; se force=true ou estiver vazio, recria o layout
   if (!dash) {
     dash = ss.insertSheet('Dashboard', 0);
-  } else if (!force && dash.getLastRow() > 2) {
-    return; // Já preenchido
   }
+
+  var visitsSheet = ss.getSheetByName('Visitas');
+  var eventsSheet = ss.getSheetByName('Eventos');
+
+  // Obter dados brutos de visitas
+  var visitsData = [];
+  if (visitsSheet && visitsSheet.getLastRow() > 1) {
+    visitsData = visitsSheet.getRange(2, 1, visitsSheet.getLastRow() - 1, visitsSheet.getLastColumn()).getValues();
+  }
+
+  // Obter dados brutos de eventos
+  var eventsData = [];
+  if (eventsSheet && eventsSheet.getLastRow() > 1) {
+    eventsData = eventsSheet.getRange(2, 1, eventsSheet.getLastRow() - 1, eventsSheet.getLastColumn()).getValues();
+  }
+
+  // 1. Contadores calculados diretamente pelo script (100% imune a erros de fórmula e idioma)
+  var totalVisitas = visitsData.length;
+  
+  var cvDownloads = 0;
+  var contatos = 0;
+  var telegramClicks = 0;
+  var linkedinClicks = 0;
+  var conquistas = 0;
+
+  eventsData.forEach(function(row) {
+    var ev = String(row[1] || '').toLowerCase();
+    if (ev.indexOf('download_cv') !== -1) cvDownloads++;
+    else if (ev.indexOf('submit_contact') !== -1) contatos++;
+    else if (ev.indexOf('click_telegram') !== -1) telegramClicks++;
+    else if (ev.indexOf('click_linkedin') !== -1) linkedinClicks++;
+    else if (ev.indexOf('achievement_footer_reached') !== -1) conquistas++;
+  });
+
+  var desktopCount = 0;
+  var mobileCount = 0;
+  var tabletCount = 0;
+
+  var socialCount = 0;
+  var devCount = 0;
+  var directCount = 0;
+  var searchCount = 0;
+  var messagingCount = 0;
+
+  var chromeCount = 0;
+  var safariCount = 0;
+  var edgeCount = 0;
+  var firefoxCount = 0;
+  var outrosNavCount = 0;
+
+  visitsData.forEach(function(row) {
+    // Dispositivo (Coluna C -> index 2)
+    var dev = String(row[2] || '');
+    if (dev === 'Desktop') desktopCount++;
+    else if (dev === 'Mobile') mobileCount++;
+    else if (dev === 'Tablet') tabletCount++;
+
+    // Canal de Tráfego (Coluna K -> index 10)
+    var channel = String(row[10] || '').toLowerCase();
+    if (channel === 'social') socialCount++;
+    else if (channel === 'dev') devCount++;
+    else if (channel === 'direct') directCount++;
+    else if (channel === 'search') searchCount++;
+    else if (channel === 'messaging') messagingCount++;
+
+    // Navegador (Coluna E -> index 4)
+    var nav = String(row[4] || '');
+    if (nav === 'Chrome') chromeCount++;
+    else if (nav === 'Safari') safariCount++;
+    else if (nav === 'Edge') edgeCount++;
+    else if (nav === 'Firefox') firefoxCount++;
+    else if (nav) outrosNavCount++;
+  });
 
   dash.clear();
   dash.setTabColor('#38bdf8');
 
-  // Cabeçalho Principal
-  dash.getRange('A1:F1').merge().setValue('📊 DASHBOARD DE TELEMETRIA & CONVERSÕES — JOÃO SILVA NETO')
-    .setFontSize(13).setFontWeight('bold').setBackground('#0f172a').setFontColor('#38bdf8').setHorizontalAlignment('center');
+  // Cabeçalho Principal com timestamp da última atualização
+  var dataAtualizacao = Utilities.formatDate(new Date(), 'America/Belem', 'dd/MM/yyyy HH:mm:ss');
+  dash.getRange('A1:F1').merge().setValue('📊 DASHBOARD DE TELEMETRIA & CONVERSÕES — JOÃO SILVA NETO (Atualizado: ' + dataAtualizacao + ')')
+    .setFontSize(12).setFontWeight('bold').setBackground('#0f172a').setFontColor('#38bdf8').setHorizontalAlignment('center');
 
   // 1. CARDS KPI (Linha 3 e 4)
   dash.getRange('A3').setValue('👥 Total de Visitas');
-  setSmartFormula(dash.getRange('A4'), '=SEERRO(CONT.VALORES(Visitas!A2:A); 0)', '=IFERROR(COUNTA(Visitas!A2:A), 0)');
+  dash.getRange('A4').setValue(totalVisitas);
   dash.getRange('A3:A4').setFontWeight('bold').setBackground('#e2e8f0').setHorizontalAlignment('center');
 
   dash.getRange('B3').setValue('📄 Downloads de CV');
-  setSmartFormula(dash.getRange('B4'), '=SEERRO(CONT.SE(Eventos!B2:B; "download_cv"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "download_cv"), 0)');
+  dash.getRange('B4').setValue(cvDownloads);
   dash.getRange('B3:B4').setFontWeight('bold').setBackground('#e0f2fe').setFontColor('#0284c7').setHorizontalAlignment('center');
 
   dash.getRange('C3').setValue('✉️ Contatos Enviados');
-  setSmartFormula(dash.getRange('C4'), '=SEERRO(CONT.SE(Eventos!B2:B; "submit_contact"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "submit_contact"), 0)');
+  dash.getRange('C4').setValue(contatos);
   dash.getRange('C3:C4').setFontWeight('bold').setBackground('#fae8ff').setFontColor('#a21caf').setHorizontalAlignment('center');
 
   dash.getRange('D3').setValue('💬 Cliques Telegram');
-  setSmartFormula(dash.getRange('D4'), '=SEERRO(CONT.SE(Eventos!B2:B; "click_telegram"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "click_telegram"), 0)');
+  dash.getRange('D4').setValue(telegramClicks);
   dash.getRange('D3:D4').setFontWeight('bold').setBackground('#f0fdf4').setFontColor('#15803d').setHorizontalAlignment('center');
 
   dash.getRange('E3').setValue('💼 Cliques LinkedIn');
-  setSmartFormula(dash.getRange('E4'), '=SEERRO(CONT.SE(Eventos!B2:B; "click_linkedin"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "click_linkedin"), 0)');
+  dash.getRange('E4').setValue(linkedinClicks);
   dash.getRange('E3:E4').setFontWeight('bold').setBackground('#fef3c7').setFontColor('#b45309').setHorizontalAlignment('center');
 
   dash.getRange('F3').setValue('🏆 Conquistas Fim Página');
-  setSmartFormula(dash.getRange('F4'), '=SEERRO(CONT.SE(Eventos!B2:B; "achievement_footer_reached"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "achievement_footer_reached"), 0)');
+  dash.getRange('F4').setValue(conquistas);
   dash.getRange('F3:F4').setFontWeight('bold').setBackground('#ffedd5').setFontColor('#c2410c').setHorizontalAlignment('center');
 
   dash.getRange('A4:F4').setFontSize(16);
@@ -241,37 +301,37 @@ function setupDashboard(ss, force) {
   // Tabela: Dispositivos
   dash.getRange('A6:B6').merge().setValue('📱 Dispositivos').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('A7').setValue('Desktop');
-  setSmartFormula(dash.getRange('B7'), '=SEERRO(CONT.SE(Visitas!C2:C; "Desktop"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Desktop"), 0)');
+  dash.getRange('B7').setValue(desktopCount);
   dash.getRange('A8').setValue('Mobile');
-  setSmartFormula(dash.getRange('B8'), '=SEERRO(CONT.SE(Visitas!C2:C; "Mobile"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Mobile"), 0)');
+  dash.getRange('B8').setValue(mobileCount);
   dash.getRange('A9').setValue('Tablet');
-  setSmartFormula(dash.getRange('B9'), '=SEERRO(CONT.SE(Visitas!C2:C; "Tablet"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Tablet"), 0)');
+  dash.getRange('B9').setValue(tabletCount);
 
   // Tabela: Canais de Origem
   dash.getRange('C6:D6').merge().setValue('🌐 Canais de Tráfego').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('C7').setValue('social (LinkedIn/X)');
-  setSmartFormula(dash.getRange('D7'), '=SEERRO(CONT.SE(Visitas!K2:K; "social"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "social"), 0)');
+  dash.getRange('D7').setValue(socialCount);
   dash.getRange('C8').setValue('dev (GitHub/Lattes)');
-  setSmartFormula(dash.getRange('D8'), '=SEERRO(CONT.SE(Visitas!K2:K; "dev"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "dev"), 0)');
+  dash.getRange('D8').setValue(devCount);
   dash.getRange('C9').setValue('direct (Acesso Direto)');
-  setSmartFormula(dash.getRange('D9'), '=SEERRO(CONT.SE(Visitas!K2:K; "direct"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "direct"), 0)');
+  dash.getRange('D9').setValue(directCount);
   dash.getRange('C10').setValue('search (Google/Bing)');
-  setSmartFormula(dash.getRange('D10'), '=SEERRO(CONT.SE(Visitas!K2:K; "search"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "search"), 0)');
+  dash.getRange('D10').setValue(searchCount);
   dash.getRange('C11').setValue('messaging (Telegram)');
-  setSmartFormula(dash.getRange('D11'), '=SEERRO(CONT.SE(Visitas!K2:K; "messaging"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "messaging"), 0)');
+  dash.getRange('D11').setValue(messagingCount);
 
   // Tabela: Navegadores Mais Usados
   dash.getRange('E6:F6').merge().setValue('🧭 Navegadores').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('E7').setValue('Chrome');
-  setSmartFormula(dash.getRange('F7'), '=SEERRO(CONT.SE(Visitas!E2:E; "Chrome"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Chrome"), 0)');
+  dash.getRange('F7').setValue(chromeCount);
   dash.getRange('E8').setValue('Safari');
-  setSmartFormula(dash.getRange('F8'), '=SEERRO(CONT.SE(Visitas!E2:E; "Safari"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Safari"), 0)');
+  dash.getRange('F8').setValue(safariCount);
   dash.getRange('E9').setValue('Edge');
-  setSmartFormula(dash.getRange('F9'), '=SEERRO(CONT.SE(Visitas!E2:E; "Edge"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Edge"), 0)');
+  dash.getRange('F9').setValue(edgeCount);
   dash.getRange('E10').setValue('Firefox');
-  setSmartFormula(dash.getRange('F10'), '=SEERRO(CONT.SE(Visitas!E2:E; "Firefox"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Firefox"), 0)');
+  dash.getRange('F10').setValue(firefoxCount);
   dash.getRange('E11').setValue('Opera / Outros');
-  setSmartFormula(dash.getRange('F11'), '=SEERRO(CONT.SE(Visitas!E2:E; "Opera") + CONT.SE(Visitas!E2:E; "Outro"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Opera") + COUNTIF(Visitas!E2:E, "Outro"), 0)');
+  dash.getRange('F11').setValue(outrosNavCount);
 
   // Bordas e alinhamentos
   dash.getRange('A6:F11').setBorder(true, true, true, true, true, true, '#cbd5e1', SpreadsheetApp.BorderStyle.SOLID);
