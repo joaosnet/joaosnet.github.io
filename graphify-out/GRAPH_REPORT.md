@@ -1,16 +1,16 @@
 # Graph Report - joaosnet.github.io  (2026-08-21)
 
 ## Corpus Check
-- 25 files · ~368,408 words
+- 26 files · ~370,198 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 561 nodes · 765 edges · 38 communities (19 shown, 19 thin omitted)
+- 564 nodes · 767 edges · 40 communities (20 shown, 20 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e2080603`
+- Built from commit: `3f959e90`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -52,6 +52,8 @@
 - [[_COMMUNITY_Community 35|Community 35]]
 - [[_COMMUNITY_Community 36|Community 36]]
 - [[_COMMUNITY_Community 37|Community 37]]
+- [[_COMMUNITY_Community 38|Community 38]]
+- [[_COMMUNITY_Community 39|Community 39]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `HorizontalScrollHandler` - 48 edges
@@ -69,7 +71,7 @@
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (38 total, 19 thin omitted)
+## Communities (40 total, 20 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.16
@@ -80,8 +82,8 @@ Cohesion: 0.05
 Nodes (24): Testes para validação de variáveis de ambiente Verifica: - Existência do arquivo, Carregar .env não deve falhar, os.environ deve ser acessível, Testes para .gitignore, .gitignore deve existir, .env deve estar listado no .gitignore, .env.example NÃO deve estar no .gitignore (é público), Testes de segurança para variáveis de ambiente (+16 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.05
-Nodes (25): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Parser HTML simples para extrair informações, Testes para validar arquivos CSS, styles.css deve existir, styles.css deve ter variáveis de tema, Testes para validar arquivos CSS (+17 more)
+Cohesion: 0.08
+Nodes (14): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Parser HTML simples para extrair informações, Testes para validar arquivos CSS, styles.css deve existir, styles.css deve ter variáveis de tema, Testes para validar arquivos CSS (+6 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.06
@@ -143,25 +145,29 @@ Nodes (5): commit_downloaded_images(), Commit downloaded images to git., Commit 
 Cohesion: 0.09
 Nodes (15): Testes para validar arquivos JavaScript, Deve ter container e canvas do Easter Egg Matrix, Testes para validar arquivos JavaScript, Todos os arquivos JS obrigatórios devem existir, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica), utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve chamar APIs públicas de IP/geo no navegador (+7 more)
 
+### Community 38 - "Community 38"
+Cohesion: 0.13
+Nodes (11): Testes para validar diretórios de assets, Diretório de imagens de projetos deve existir, Diretório de webfonts deve existir, Diretório de imagens gerais deve existir, Testes para validar diretórios de assets, Diretório de imagens de projetos deve existir, Arquivo de currículo deve existir, Diretório de webfonts deve existir (+3 more)
+
 ## Knowledge Gaps
 - **36 isolated node(s):** `version`, `configurations`, `allow`, `PreToolUse`, `toggleBtn` (+31 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `get_api_token()` connect `Community 27` to `Community 24`, `Community 2`, `Community 12`?**
-  _High betweenness centrality (0.042) - this node is a cross-community bridge._
+  _High betweenness centrality (0.041) - this node is a cross-community bridge._
 - **Why does `generate_project_html()` connect `Community 4` to `Community 24`, `Community 0`, `Community 27`?**
-  _High betweenness centrality (0.038) - this node is a cross-community bridge._
-- **What connects `update_projects.py Automação para gerar as entradas de projetos no index.html`, `Detect if text is likely in Portuguese or another language.     Returns 'pt' if`, `Translate text to Portuguese using free translation APIs.     Tries multiple fr` to the rest of the system?**
-  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **What connects `Script para gerar imagem Open Graph (og-cover.jpg) de 1200x630 px em alta resolu`, `update_projects.py Automação para gerar as entradas de projetos no index.html`, `Detect if text is likely in Portuguese or another language.     Returns 'pt' if` to the rest of the system?**
+  _195 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08333333333333333 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.06097560975609756 - nodes in this community are weakly interconnected._

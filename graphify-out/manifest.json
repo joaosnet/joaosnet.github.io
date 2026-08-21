@@ -75,8 +75,8 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\index.html": {
-    "mtime": 1787353891.9758096,
-    "ast_hash": "f6cb260fdc47f9e7294d4c8e7385f86e",
+    "mtime": 1787356442.2906816,
+    "ast_hash": "11468cc47399203beae3639990b69768",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.codex\\AGENTS.md": {
@@ -210,8 +210,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\og-cover.jpg": {
-    "mtime": 1780950805.416666,
-    "ast_hash": "91378ec0480360582ba72293cce59ed7",
+    "mtime": 1787356427.4908218,
+    "ast_hash": "5589c740f7087ed14a945cb94a7dbd62",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\project-images\\joaosnet_aethersense-private-archive_logo_inicial.webp": {
@@ -282,6 +282,11 @@
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\Curriculo_Joao_Silva_Neto_TI_ICJ.pdf": {
     "mtime": 1787164559.8240342,
     "ast_hash": "17da4a58a1a45e4a33c941f49ec35534",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\generate_og_cover.py": {
+    "mtime": 1787356417.9327006,
+    "ast_hash": "4488ba85d48a97860587793f479ead4a",
     "semantic_hash": ""
   }
 }
