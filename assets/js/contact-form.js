@@ -108,6 +108,12 @@ class ContactFormHandler {
             });
 
             if (response.ok) {
+                if (window.trackPortfolioEvent) {
+                    window.trackPortfolioEvent('submit_contact', {
+                        hasName: Boolean(document.getElementById('name')?.value),
+                        hasEmail: Boolean(document.getElementById('email')?.value)
+                    });
+                }
                 this.form.reset();
                 this.showToast('Mensagem enviada com sucesso! Responderei em breve.', 'success');
                 if (submitBtn) {

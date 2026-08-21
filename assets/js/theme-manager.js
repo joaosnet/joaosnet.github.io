@@ -40,8 +40,7 @@ class ThemeManager {
         // If HTML already has a theme attribute, use it
         const attr = this.htmlEl.getAttribute('data-theme');
         if (attr === 'light' || attr === 'dark') return attr;
-        // Otherwise use system preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) return 'light';
+        // Default to dark (AMOLED Pure Black)
         return 'dark';
     }
 
@@ -55,14 +54,19 @@ class ThemeManager {
         localStorage.setItem(this.STORAGE_KEY, theme);
         this.updateToggleIcon(theme);
         
-        // Handle integration with Theme Selector palette
-        if (theme === 'light') {
-            ['--dark', '--light', '--text-gray', '--primary', '--secondary', '--accent', '--bg-card', '--bg-card-hover', '--border-light', '--header-bg', '--glass-bg'].forEach(prop => {
-                this.htmlEl.style.removeProperty(prop);
-            });
-        } else if (window.themeSelector) {
+        // Re-apply the selected palette gracefully in the active mode
+        if (window.themeSelector) {
             const currentPalette = window.themeSelector.getCurrentTheme();
             window.themeSelector.applyTheme(currentPalette);
+        }
+
+        try {
+            window.dispatchEvent(new CustomEvent('themeModeChanged', { detail: { theme } }));
+            if (typeof window.trackPortfolioEvent === 'function') {
+                window.trackPortfolioEvent('toggle_mode', { mode: theme });
+            }
+        } catch (e) {
+            // ignore
         }
     }
 

@@ -1,6 +1,7 @@
 /**
+/**
  * Theme Selector Module
- * Handles design system selection with 10 color palettes
+ * Handles design system selection with 14 color palettes
  */
 
 class ThemeSelector {
@@ -14,7 +15,81 @@ class ThemeSelector {
                 accent: '#06b6d4',
                 dark: '#020617',
                 light: '#f8fafc',
-                textGray: '#94a3b8'
+                textGray: '#94a3b8',
+                accentTextLight: '#0284c7',
+                primaryTextLight: '#1d4ed8'
+            },
+            'dracula': {
+                name: 'Dracula',
+                icon: '🧛',
+                primary: '#bd93f9',
+                secondary: '#ff79c6',
+                accent: '#8be9fd',
+                dark: '#282a36',
+                light: '#f8f8f2',
+                textGray: '#bfbfbf',
+                accentTextLight: '#0891b2',
+                primaryTextLight: '#7c3aed'
+            },
+            'tokyo-night': {
+                name: 'Tokyo Night',
+                icon: '🗼',
+                primary: '#7aa2f7',
+                secondary: '#bb9af7',
+                accent: '#7dcfff',
+                dark: '#1a1b26',
+                light: '#c0caf5',
+                textGray: '#9aa5ce',
+                accentTextLight: '#0284c7',
+                primaryTextLight: '#2563eb'
+            },
+            'nord': {
+                name: 'Nord Arctic',
+                icon: '❄️',
+                primary: '#88c0d0',
+                secondary: '#81a1c1',
+                accent: '#5e81ac',
+                dark: '#2e3440',
+                light: '#eceff4',
+                textGray: '#d8dee9',
+                accentTextLight: '#2b6cb0',
+                primaryTextLight: '#0284c7'
+            },
+            'catppuccin-mocha': {
+                name: 'Catppuccin Mocha',
+                icon: '🐱',
+                primary: '#cba6f7',
+                secondary: '#f38ba8',
+                accent: '#89dceb',
+                dark: '#1e1e2e',
+                light: '#cdd6f4',
+                textGray: '#a6adc8',
+                accentTextLight: '#0284c7',
+                primaryTextLight: '#7c3aed'
+            },
+            'amoled-black': {
+                name: 'AMOLED Pure Black',
+                icon: '🖤',
+                primary: '#38bdf8',
+                secondary: '#818cf8',
+                accent: '#f43f5e',
+                dark: '#000000',
+                light: '#f8fafc',
+                textGray: '#a1a1aa',
+                accentTextLight: '#e11d48',
+                primaryTextLight: '#0284c7'
+            },
+            'synthwave': {
+                name: 'Synthwave 80s',
+                icon: '🌆',
+                primary: '#ff007f',
+                secondary: '#00f0ff',
+                accent: '#ffb800',
+                dark: '#1a102f',
+                light: '#fdf4ff',
+                textGray: '#d8b4e2',
+                accentTextLight: '#b45309',
+                primaryTextLight: '#c026d3'
             },
             'sunset-orange': {
                 name: 'Pôr do Sol',
@@ -24,7 +99,9 @@ class ThemeSelector {
                 accent: '#f59e0b',
                 dark: '#1c1917',
                 light: '#fef2f2',
-                textGray: '#a8a29e'
+                textGray: '#a8a29e',
+                accentTextLight: '#b45309',
+                primaryTextLight: '#c2410c'
             },
             'forest-green': {
                 name: 'Verde Floresta',
@@ -34,7 +111,9 @@ class ThemeSelector {
                 accent: '#84cc16',
                 dark: '#022c22',
                 light: '#f0fdf4',
-                textGray: '#6b7280'
+                textGray: '#6b7280',
+                accentTextLight: '#4d7c0f',
+                primaryTextLight: '#047857'
             },
             'neon-pink': {
                 name: 'Rosa Neon',
@@ -44,7 +123,9 @@ class ThemeSelector {
                 accent: '#d946ef',
                 dark: '#1a0b2e',
                 light: '#fdf2f8',
-                textGray: '#9ca3af'
+                textGray: '#9ca3af',
+                accentTextLight: '#a21caf',
+                primaryTextLight: '#be185d'
             },
             'golden-amber': {
                 name: 'Âmbar Dourado',
@@ -54,7 +135,9 @@ class ThemeSelector {
                 accent: '#fb923c',
                 dark: '#1c1917',
                 light: '#fffbeb',
-                textGray: '#78716c'
+                textGray: '#78716c',
+                accentTextLight: '#c2410c',
+                primaryTextLight: '#a16207'
             },
             'ocean-teal': {
                 name: 'Azul Oceano',
@@ -64,7 +147,9 @@ class ThemeSelector {
                 accent: '#06b6d4',
                 dark: '#042f2e',
                 light: '#f0fdfa',
-                textGray: '#64748b'
+                textGray: '#64748b',
+                accentTextLight: '#0e7490',
+                primaryTextLight: '#0f766e'
             },
             'royal-purple': {
                 name: 'Roxo Real',
@@ -74,7 +159,9 @@ class ThemeSelector {
                 accent: '#a78bfa',
                 dark: '#0f0a1e',
                 light: '#faf5ff',
-                textGray: '#8b8b9e'
+                textGray: '#8b8b9e',
+                accentTextLight: '#6d28d9',
+                primaryTextLight: '#6d28d9'
             },
             'crimson-red': {
                 name: 'Vermelho Intenso',
@@ -84,36 +171,20 @@ class ThemeSelector {
                 accent: '#f87171',
                 dark: '#1a0505',
                 light: '#fef2f2',
-                textGray: '#991b1b'
-            },
-            'midnight-blue': {
-                name: 'Azul Meia-noite',
-                icon: '🌙',
-                primary: '#6366f1',
-                secondary: '#4f46e5',
-                accent: '#818cf8',
-                dark: '#0a0e1a',
-                light: '#eef2ff',
-                textGray: '#6366f1'
-            },
-            'emerald-dream': {
-                name: 'Verde Esmeralda',
-                icon: '💚',
-                primary: '#34d399',
-                secondary: '#10b981',
-                accent: '#6ee7b7',
-                dark: '#064e3b',
-                light: '#ecfdf5',
-                textGray: '#059669'
+                textGray: '#991b1b',
+                accentTextLight: '#b91c1c',
+                primaryTextLight: '#b91c1c'
             }
         };
 
         this.STORAGE_KEY = 'selectedTheme';
         this.FIRST_VISIT_KEY = 'hasVisitedBefore';
+        this.HINT_DISMISSED_KEY = 'themeHintDismissed';
         this.modal = null;
         this.previouslyFocusedElement = null;
         this.openedFromFirstVisit = false;
         this.selectorButton = null;
+        this.hintElement = null;
         this.init();
     }
 
@@ -121,12 +192,10 @@ class ThemeSelector {
         this.createModal();
         this.setupEventListeners();
         
-        // Apply saved palette quietly
-        const savedTheme = localStorage.getItem(this.STORAGE_KEY);
-        if (savedTheme && this.THEMES[savedTheme]) {
-            this.applyTheme(savedTheme);
-            localStorage.setItem(this.FIRST_VISIT_KEY, 'true');
-        }
+        // Apply saved palette quietly or default to amoled-black
+        const savedTheme = this.getCurrentTheme();
+        this.applyTheme(savedTheme);
+        localStorage.setItem(this.FIRST_VISIT_KEY, 'true');
     }
 
     createModal() {
@@ -142,7 +211,7 @@ class ThemeSelector {
                 <div class="theme-modal-header">
                     <h2 id="theme-modal-title">Escolha sua paleta</h2>
                     <p id="theme-modal-description">Selecione uma combinação de cores para personalizar o portfólio.
-                       <small>Você pode mudar isso depois pelo menu.</small>
+                       <small>Você pode mudar isso depois pelo menu ou botão de paleta.</small>
                     </p>
                 </div>
                 <div class="theme-grid">
@@ -154,30 +223,28 @@ class ThemeSelector {
     }
 
     createThemeCard(key, theme) {
+        const isSelected = key === this.getCurrentTheme();
         return `
-            <button type="button" class="theme-card" data-theme="${key}" aria-label="Aplicar paleta ${theme.name}" aria-pressed="false">
-                <div class="theme-preview">
-                    <div class="theme-preview-circle" style="background: linear-gradient(135deg, ${theme.primary}, ${theme.secondary});"></div>
-                    <span class="theme-icon" aria-hidden="true">${theme.icon}</span>
-                </div>
+            <button type="button" class="theme-card ${isSelected ? 'selected' : ''}" 
+                    data-theme="${key}"
+                    role="option"
+                    aria-pressed="${isSelected}"
+                    aria-label="Paleta ${theme.name}">
+                <div class="theme-preview-circle" style="background: linear-gradient(135deg, ${theme.primary}, ${theme.secondary});"></div>
                 <h3>${theme.name}</h3>
                 <div class="theme-colors">
-                    <span class="color-dot" style="background: ${theme.primary};"></span>
-                    <span class="color-dot" style="background: ${theme.secondary};"></span>
-                    <span class="color-dot" style="background: ${theme.accent};"></span>
+                    <span class="color-dot" style="background: ${theme.primary};" title="Primária"></span>
+                    <span class="color-dot" style="background: ${theme.secondary};" title="Secundária"></span>
+                    <span class="color-dot" style="background: ${theme.accent};" title="Destaque"></span>
                 </div>
             </button>
         `;
     }
 
     setupEventListeners() {
-        // Close button
-        const closeBtn = this.modal.querySelector('.theme-modal-close');
-        closeBtn.addEventListener('click', () => this.closeModal());
-
-        // Overlay click
-        const overlay = this.modal.querySelector('.theme-modal-overlay');
-        overlay.addEventListener('click', () => this.closeModal());
+        // Modal overlay and close button
+        this.modal.querySelector('.theme-modal-overlay').addEventListener('click', () => this.closeModal());
+        this.modal.querySelector('.theme-modal-close').addEventListener('click', () => this.closeModal());
 
         // Theme card clicks
         const themeCards = this.modal.querySelectorAll('.theme-card');
@@ -216,20 +283,65 @@ class ThemeSelector {
         const toggleBtn = document.getElementById('theme-toggle');
         const container = toggleBtn ? toggleBtn.parentElement : document.querySelector('header .header-actions') || document.querySelector('header .header-content');
         if (container && !document.querySelector('.theme-selector-btn')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'theme-selector-wrapper';
+
             const btn = document.createElement('button');
             btn.className = 'theme-selector-btn';
             btn.type = 'button';
             btn.setAttribute('aria-label', 'Selecionar tema');
             btn.setAttribute('title', 'Selecionar tema');
             btn.innerHTML = '<i class="fas fa-palette" aria-hidden="true"></i>';
-            btn.addEventListener('click', () => this.showModal());
+            btn.addEventListener('click', () => {
+                this.dismissHint();
+                this.showModal();
+            });
             this.selectorButton = btn;
             this.updateSelectorButtonLabel();
-            if (toggleBtn) {
-                container.insertBefore(btn, toggleBtn);
-            } else {
-                container.appendChild(btn);
+
+            wrapper.appendChild(btn);
+
+            // Add visual hint for new users if not dismissed
+            const isDismissed = localStorage.getItem(this.HINT_DISMISSED_KEY) === 'true';
+            if (!isDismissed) {
+                const hint = document.createElement('div');
+                hint.className = 'theme-hint-tooltip';
+                hint.id = 'theme-hint-tooltip';
+                hint.setAttribute('role', 'tooltip');
+                hint.innerHTML = `
+                    <span class="hint-pulse-dot"></span>
+                    <span class="hint-label">Personalize as cores</span>
+                    <button type="button" class="hint-close-btn" aria-label="Fechar dica de cores">&times;</button>
+                `;
+                hint.addEventListener('click', (e) => {
+                    if (e.target.closest('.hint-close-btn')) {
+                        e.stopPropagation();
+                        this.dismissHint();
+                    } else {
+                        this.dismissHint();
+                        this.showModal();
+                    }
+                });
+                wrapper.appendChild(hint);
+                this.hintElement = hint;
             }
+
+            if (toggleBtn) {
+                container.insertBefore(wrapper, toggleBtn);
+            } else {
+                container.appendChild(wrapper);
+            }
+        }
+    }
+
+    dismissHint() {
+        localStorage.setItem(this.HINT_DISMISSED_KEY, 'true');
+        if (this.hintElement) {
+            this.hintElement.classList.add('fade-out');
+            setTimeout(() => {
+                this.hintElement?.remove();
+                this.hintElement = null;
+            }, 300);
         }
     }
 
@@ -251,6 +363,7 @@ class ThemeSelector {
 
         item.querySelector('button').addEventListener('click', () => {
             window.mobileMenuHandler?.closeMenu();
+            this.dismissHint();
             this.showModal();
         });
 
@@ -271,6 +384,7 @@ class ThemeSelector {
     }
 
     showModal(options = {}) {
+        this.dismissHint();
         this.previouslyFocusedElement = document.activeElement instanceof HTMLElement
             ? document.activeElement
             : null;
@@ -322,31 +436,49 @@ class ThemeSelector {
     }
 
     applyTheme(themeKey) {
-        const theme = this.THEMES[themeKey];
+        const theme = this.THEMES[themeKey] || this.THEMES['cyber-blue'];
         if (!theme) return;
 
         const root = document.documentElement;
+        const isLight = root.getAttribute('data-theme') === 'light';
+
         root.style.setProperty('--primary', theme.primary);
         root.style.setProperty('--secondary', theme.secondary);
         root.style.setProperty('--accent', theme.accent);
 
-        if (root.getAttribute('data-theme') !== 'light') {
+        if (!isLight) {
             root.style.setProperty('--dark', theme.dark);
             root.style.setProperty('--light', theme.light);
             root.style.setProperty('--text-gray', theme.textGray);
+            root.style.setProperty('--primary-text', theme.primary);
+            root.style.setProperty('--accent-text', theme.accent);
         } else {
             root.style.removeProperty('--dark');
             root.style.removeProperty('--light');
             root.style.removeProperty('--text-gray');
+            root.style.setProperty('--primary-text', theme.primaryTextLight || theme.primary);
+            root.style.setProperty('--accent-text', theme.accentTextLight || theme.accent);
         }
 
         // Store current theme
         localStorage.setItem(this.STORAGE_KEY, themeKey);
         this.updateSelectorButtonLabel(themeKey);
+
+        // Dispatch custom event for reactive elements (like particles.js)
+        try {
+            window.dispatchEvent(new CustomEvent('themePaletteChanged', {
+                detail: { themeKey, theme, isLight }
+            }));
+            if (typeof window.trackPortfolioEvent === 'function') {
+                window.trackPortfolioEvent('change_palette', { palette: themeKey });
+            }
+        } catch (e) {
+            // ignore
+        }
     }
 
     getCurrentTheme() {
-        return localStorage.getItem(this.STORAGE_KEY) || 'cyber-blue';
+        return localStorage.getItem(this.STORAGE_KEY) || 'amoled-black';
     }
 
     updateSelectedThemeCard(themeKey) {
@@ -362,7 +494,7 @@ class ThemeSelector {
             return;
         }
 
-        const theme = this.THEMES[themeKey] || this.THEMES['cyber-blue'];
+        const theme = this.THEMES[themeKey] || this.THEMES['amoled-black'];
         const label = `Selecionar paleta. Atual: ${theme.name}`;
         this.selectorButton.setAttribute('aria-label', label);
         this.selectorButton.setAttribute('title', label);

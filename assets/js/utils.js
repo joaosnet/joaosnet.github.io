@@ -29,29 +29,47 @@ class FloatingShapesHandler {
 }
 
 /**
- * Particles.js Configuration
+ * Particles.js Configuration & Dynamic Theme Reactivity
  */
 function initParticles() {
-    if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
-            'particles': {
-                'number': { 'value': 60, 'density': { 'enable': true, 'value_area': 800 } },
-                'color': { 'value': '#ffffff' },
-                'shape': { 'type': 'circle', 'stroke': { 'width': 0, 'color': '#000000' }, 'polygon': { 'nb_sides': 5 } },
-                'opacity': { 'value': 0.1, 'random': true, 'anim': { 'enable': true, 'speed': 1, 'opacity_min': 0.05, 'sync': false } },
-                'size': { 'value': 3, 'random': true, 'anim': { 'enable': true, 'speed': 2, 'size_min': 0.1, 'sync': false } },
-                'line_linked': { 'enable': true, 'distance': 150, 'color': '#ffffff', 'opacity': 0.05, 'width': 1 },
-                'move': { 'enable': true, 'speed': 1, 'direction': 'none', 'random': false, 'straight': false, 'out_mode': 'out', 'bounce': false, 'attract': { 'enable': false, 'rotateX': 600, 'rotateY': 1200 } }
-            },
-            'interactivity': {
-                'detect_on': 'canvas',
-                'events': { 'onhover': { 'enable': true, 'mode': 'repulse' }, 'onclick': { 'enable': true, 'mode': 'push' }, 'resize': true },
-                'modes': { 'grab': { 'distance': 400, 'line_linked': { 'opacity': 1 } }, 'bubble': { 'distance': 400, 'size': 40, 'duration': 2, 'opacity': 8, 'speed': 3 }, 'repulse': { 'distance': 100, 'duration': 0.4 }, 'push': { 'particles_nb': 4 }, 'remove': { 'particles_nb': 2 } }
-            },
-            'retina_detect': true
-        });
+    if (typeof particlesJS === 'undefined' || !document.getElementById('particles-js')) {
+        return;
     }
+
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const computedPrimary = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+    const particleColor = isLight ? (computedPrimary || '#1d4ed8') : '#ffffff';
+    const lineColor = isLight ? (computedPrimary || '#1d4ed8') : '#ffffff';
+    const particleOpacity = isLight ? 0.22 : 0.12;
+    const lineOpacity = isLight ? 0.12 : 0.06;
+
+    particlesJS('particles-js', {
+        'particles': {
+            'number': { 'value': 50, 'density': { 'enable': true, 'value_area': 800 } },
+            'color': { 'value': particleColor },
+            'shape': { 'type': 'circle', 'stroke': { 'width': 0, 'color': '#000000' } },
+            'opacity': { 'value': particleOpacity, 'random': true, 'anim': { 'enable': true, 'speed': 1, 'opacity_min': 0.05, 'sync': false } },
+            'size': { 'value': 3, 'random': true, 'anim': { 'enable': true, 'speed': 2, 'size_min': 0.1, 'sync': false } },
+            'line_linked': { 'enable': true, 'distance': 150, 'color': lineColor, 'opacity': lineOpacity, 'width': 1 },
+            'move': { 'enable': true, 'speed': 1, 'direction': 'none', 'random': false, 'straight': false, 'out_mode': 'out', 'bounce': false }
+        },
+        'interactivity': {
+            'detect_on': 'canvas',
+            'events': { 'onhover': { 'enable': true, 'mode': 'repulse' }, 'onclick': { 'enable': true, 'mode': 'push' }, 'resize': true },
+            'modes': { 'repulse': { 'distance': 100, 'duration': 0.4 }, 'push': { 'particles_nb': 3 } }
+        },
+        'retina_detect': true
+    });
 }
+
+// Re-initialize particles when theme or palette changes
+window.addEventListener('themePaletteChanged', () => {
+    initParticles();
+});
+
+window.addEventListener('themeModeChanged', () => {
+    initParticles();
+});
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {

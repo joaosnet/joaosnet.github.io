@@ -57,14 +57,42 @@
         }());
     </script>
     <script>
-        /* Apply the saved light/dark theme before first paint to avoid a flash (FOUC). */
+        /* Apply saved light/dark mode and color palette before first paint to avoid FOUC */
         (function () {
             try {
-                var t = localStorage.getItem('theme');
-                if (t !== 'light' && t !== 'dark') {
-                    t = (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) ? 'light' : 'dark';
+                var t = localStorage.getItem('theme') || 'dark';
+                var root = document.documentElement;
+                root.setAttribute('data-theme', t);
+
+                var p = localStorage.getItem('selectedTheme') || 'amoled-black';
+                var palettes = {
+                    'cyber-blue': { primary: '#3b82f6', secondary: '#8b5cf6', accent: '#06b6d4', dark: '#020617', light: '#f8fafc', textGray: '#94a3b8' },
+                    'dracula': { primary: '#bd93f9', secondary: '#ff79c6', accent: '#8be9fd', dark: '#282a36', light: '#f8f8f2', textGray: '#bfbfbf' },
+                    'tokyo-night': { primary: '#7aa2f7', secondary: '#bb9af7', accent: '#7dcfff', dark: '#1a1b26', light: '#c0caf5', textGray: '#9aa5ce' },
+                    'nord': { primary: '#88c0d0', secondary: '#81a1c1', accent: '#5e81ac', dark: '#2e3440', light: '#eceff4', textGray: '#d8dee9' },
+                    'catppuccin-mocha': { primary: '#cba6f7', secondary: '#f38ba8', accent: '#89dceb', dark: '#1e1e2e', light: '#cdd6f4', textGray: '#a6adc8' },
+                    'amoled-black': { primary: '#38bdf8', secondary: '#818cf8', accent: '#f43f5e', dark: '#000000', light: '#f8fafc', textGray: '#a1a1aa' },
+                    'synthwave': { primary: '#ff007f', secondary: '#00f0ff', accent: '#ffb800', dark: '#1a102f', light: '#fdf4ff', textGray: '#d8b4e2' },
+                    'sunset-orange': { primary: '#f97316', secondary: '#ef4444', accent: '#f59e0b', dark: '#1c1917', light: '#fef2f2', textGray: '#a8a29e' },
+                    'forest-green': { primary: '#10b981', secondary: '#059669', accent: '#84cc16', dark: '#022c22', light: '#f0fdf4', textGray: '#6b7280' },
+                    'neon-pink': { primary: '#ec4899', secondary: '#f43f5e', accent: '#d946ef', dark: '#1a0b2e', light: '#fdf2f8', textGray: '#9ca3af' },
+                    'golden-amber': { primary: '#eab308', secondary: '#f59e0b', accent: '#fb923c', dark: '#1c1917', light: '#fffbeb', textGray: '#78716c' },
+                    'ocean-teal': { primary: '#14b8a6', secondary: '#0d9488', accent: '#06b6d4', dark: '#042f2e', light: '#f0fdfa', textGray: '#64748b' },
+                    'royal-purple': { primary: '#8b5cf6', secondary: '#7c3aed', accent: '#a78bfa', dark: '#0f0a1e', light: '#faf5ff', textGray: '#8b8b9e' },
+                    'crimson-red': { primary: '#ef4444', secondary: '#dc2626', accent: '#f87171', dark: '#1a0505', light: '#fef2f2', textGray: '#991b1b' }
+                };
+
+                if (palettes[p]) {
+                    var pal = palettes[p];
+                    root.style.setProperty('--primary', pal.primary);
+                    root.style.setProperty('--secondary', pal.secondary);
+                    root.style.setProperty('--accent', pal.accent);
+                    if (t !== 'light') {
+                        root.style.setProperty('--dark', pal.dark);
+                        root.style.setProperty('--light', pal.light);
+                        root.style.setProperty('--text-gray', pal.textGray);
+                    }
                 }
-                document.documentElement.setAttribute('data-theme', t);
             } catch (e) { /* localStorage unavailable */ }
         }());
     </script>
@@ -78,7 +106,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
     <link rel="apple-touch-icon" href="assets/images/favicon.png">
     <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="assets/css/styles.css?v=3.7">
+    <link rel="stylesheet" href="assets/css/styles.css?v=4.0">
     <style>
         /* Keep empty - all styles are in assets/css/styles.css */
     </style>
@@ -622,8 +650,57 @@
                             <li><a href="https://lattes.cnpq.br/1140714924160415" target="_blank"
                                 rel="noopener noreferrer">Lattes</a></li>
                             </ul>
-                            <div class="views-counter"><i class="fas fa-eye views-counter-icon" aria-hidden="true"></i>
-                                Visitas locais: <span id="unique-views">-</span></div>
+                        </div>
+                    </div>
+                    <div class="footer-achievement-banner" id="footer-achievement" data-track-event="achievement_footer_reached">
+                        <canvas id="achievement-confetti-canvas" class="achievement-confetti-canvas" aria-hidden="true"></canvas>
+                        
+                        <div class="achievement-card minimal-card" id="achievement-card-root">
+                            <!-- Barra Minimizada (Visível quando recolhido) -->
+                            <div class="achievement-collapsed-bar" id="achievement-collapsed-bar">
+                                <div class="collapsed-info">
+                                    <span class="collapsed-icon">🏆</span>
+                                    <span class="collapsed-title">Explorador do Portfólio</span>
+                                    <span class="collapsed-separator">•</span>
+                                    <span class="collapsed-text">Visitante nº <strong class="collapsed-counter" id="collapsed-views">-</strong> em 2026</span>
+                                </div>
+                                <button type="button" class="btn-achievement-toggle" id="btn-achievement-expand" aria-expanded="false" aria-label="Expandir conquista">
+                                    <span>Expandir</span>
+                                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
+
+                            <!-- Conteúdo Expandido (Visível por padrão) -->
+                            <div class="achievement-expanded-content" id="achievement-expanded-content">
+                                <div class="achievement-top-row">
+                                    <span class="achievement-badge-pill">
+                                        <i class="fas fa-check-circle" aria-hidden="true"></i> Jornada Concluída
+                                    </span>
+                                    <button type="button" class="btn-achievement-toggle" id="btn-achievement-collapse" aria-expanded="true" aria-label="Minimizar conquista">
+                                        <span>Minimizar</span>
+                                        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+
+                                <div class="achievement-main-body">
+                                    <div class="achievement-icon-wrapper">
+                                        <span class="achievement-trophy-icon">🏆</span>
+                                    </div>
+                                    <div class="achievement-text-content">
+                                        <h4 class="achievement-title">Explorador do Portfólio</h4>
+                                        <p class="achievement-subtitle">Parabéns por explorar todo o conteúdo até o final da página!</p>
+                                        <p class="achievement-counter-line">
+                                            <i class="fas fa-medal" aria-hidden="true"></i>
+                                            Você é o visitante nº <strong id="unique-views" class="achievement-highlight-num">-</strong> a concluir esta navegação em 2026.
+                                        </p>
+                                    </div>
+                                    <div class="achievement-action-wrapper">
+                                        <button type="button" class="btn-celebrate-minimal" id="btn-celebrate" aria-label="Comemorar conquista com confetes">
+                                            <span>🎉 Comemorar</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="copyright">
@@ -644,15 +721,15 @@
     </button>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-    <script src="assets/js/utils.js?v=3.5" defer></script>
-    <script src="assets/js/geo-counter.js?v=3.5" defer></script>
-    <script src="assets/js/theme-selector.js?v=3.5" defer></script>
-    <script src="assets/js/horizontal-scroll.js?v=3.5" defer></script>
-    <script src="assets/js/project-details.js?v=3.5" defer></script>
-    <script src="assets/js/theme-manager.js?v=3.5" defer></script>
-    <script src="assets/js/mobile-menu.js?v=3.5" defer></script>
-    <script src="assets/js/animations.js?v=3.5" defer></script>
-    <script src="assets/js/contact-form.js?v=3.7" defer></script>
+    <script src="assets/js/utils.js?v=4.0" defer></script>
+    <script src="assets/js/geo-counter.js?v=4.0" defer></script>
+    <script src="assets/js/theme-selector.js?v=4.0" defer></script>
+    <script src="assets/js/horizontal-scroll.js?v=4.0" defer></script>
+    <script src="assets/js/project-details.js?v=4.0" defer></script>
+    <script src="assets/js/theme-manager.js?v=4.0" defer></script>
+    <script src="assets/js/mobile-menu.js?v=4.0" defer></script>
+    <script src="assets/js/animations.js?v=4.0" defer></script>
+    <script src="assets/js/contact-form.js?v=4.0" defer></script>
     <!-- GTranslate - Automatic translation and language picker -->
     <div class="gtranslate_wrapper" aria-label="Selecionar idioma"></div>
     <script>

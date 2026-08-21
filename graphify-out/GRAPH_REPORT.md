@@ -1,16 +1,16 @@
-# Graph Report - joaosnet.github.io  (2026-08-19)
+# Graph Report - joaosnet.github.io  (2026-08-21)
 
 ## Corpus Check
-- 25 files · ~364,339 words
+- 25 files · ~366,793 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 509 nodes · 681 edges · 39 communities (20 shown, 19 thin omitted)
+- 527 nodes · 719 edges · 37 communities (18 shown, 19 thin omitted)
 - Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1e847edc`
+- Built from commit: `a292056e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -51,16 +51,14 @@
 - [[_COMMUNITY_Community 34|Community 34]]
 - [[_COMMUNITY_Community 35|Community 35]]
 - [[_COMMUNITY_Community 36|Community 36]]
-- [[_COMMUNITY_Community 37|Community 37]]
-- [[_COMMUNITY_Community 38|Community 38]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `HorizontalScrollHandler` - 48 edges
-2. `ScrollNavigationHandler` - 20 edges
-3. `ThemeSelector` - 17 edges
-4. `generate_project_html()` - 16 edges
-5. `TestIndexHTMLStructure` - 16 edges
-6. `GeoViewsCounter` - 15 edges
+2. `GeoViewsCounter` - 26 edges
+3. `ScrollNavigationHandler` - 20 edges
+4. `ThemeSelector` - 18 edges
+5. `generate_project_html()` - 16 edges
+6. `TestIndexHTMLStructure` - 16 edges
 7. `main()` - 14 edges
 8. `AnimationsHandler` - 13 edges
 9. `ContactFormHandler` - 13 edges
@@ -70,19 +68,19 @@
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (39 total, 19 thin omitted)
+## Communities (37 total, 19 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.16
 Nodes (11): collect_public_pages_links(), get_github_pages_url(), normalize_url(), Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Collect all public GitHub Pages links from the fetched repositories. (+3 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.08
-Nodes (16): Testes para validação de variáveis de ambiente Verifica: - Existência do arquivo, Carregar .env não deve falhar, os.environ deve ser acessível, Testes para .gitignore, .gitignore deve existir, .env deve estar listado no .gitignore, .env.example NÃO deve estar no .gitignore (é público), Testes de segurança para variáveis de ambiente (+8 more)
+Cohesion: 0.05
+Nodes (24): Testes para validação de variáveis de ambiente Verifica: - Existência do arquivo, Carregar .env não deve falhar, os.environ deve ser acessível, Testes para .gitignore, .gitignore deve existir, .env deve estar listado no .gitignore, .env.example NÃO deve estar no .gitignore (é público), Testes de segurança para variáveis de ambiente (+16 more)
 
 ### Community 3 - "Community 3"
-Cohesion: 0.07
-Nodes (16): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Parser HTML simples para extrair informações, Testes para validar arquivos CSS, styles.css deve existir, styles.css deve ter variáveis de tema, styles.css deve ter override para tema claro (+8 more)
+Cohesion: 0.05
+Nodes (24): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Testes para validar arquivos JavaScript, Parser HTML simples para extrair informações, Todos os arquivos JS obrigatórios devem existir, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica) (+16 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.06
@@ -133,23 +131,15 @@ Cohesion: 0.40
 Nodes (4): 1. Planejamento com Ferramentas MCP (MCP-Driven Planning), 2. Validação Crítica Obrigatória em Execução, 3. Padrão de Qualidade AAA, Diretriz Universal: Planejamento, Validação Crítica via MCP e Padrão AAA
 
 ### Community 31 - "Community 31"
-Cohesion: 0.40
-Nodes (4): Analytics próprio (cookieless) — registro no Google Sheets, code:javascript (function doPost(e) {), Como registrar esses campos na planilha, Dicas para usar nas campanhas
+Cohesion: 0.20
+Nodes (10): 1. Campos Coletados, 2. Código Pronto para o Google Apps Script, 3. Como Implantar no Google Sheets, Aba `Eventos` (Conversões & Interações), Aba `Visitas` (Acessos à Página), Analytics Próprio (Cookieless) — Registro & Dashboard no Google Sheets, Analytics próprio (cookieless) — registro no Google Sheets, code:javascript (/**) (+2 more)
 
 ### Community 34 - "Community 34"
 Cohesion: 0.40
 Nodes (5): commit_downloaded_images(), Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git.
 
-### Community 37 - "Community 37"
-Cohesion: 0.14
-Nodes (8): Testes para arquivo .env, Arquivo .env deve existir, Arquivo .env.example deve existir, .env deve estar no .gitignore, Arquivo .env não deve estar vazio (deve ter variáveis), .env.example deve ter todas as variáveis necessárias, Arquivo .env deve ter pelo menos PRIVATE_REPOS_TOKEN configurado, TestEnvFile
-
-### Community 38 - "Community 38"
-Cohesion: 0.14
-Nodes (8): Testes para validar arquivos JavaScript, Todos os arquivos JS obrigatórios devem existir, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve chamar APIs públicas de IP/geo no navegador, contact-form.js não deve ter erros de sintaxe (verificação básica), project-details.js não deve ter erros de sintaxe (verificação básica), TestJavaScriptFiles
-
 ## Knowledge Gaps
-- **34 isolated node(s):** `version`, `configurations`, `allow`, `PreToolUse`, `toggleBtn` (+29 more)
+- **36 isolated node(s):** `version`, `configurations`, `allow`, `PreToolUse`, `toggleBtn` (+31 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -157,16 +147,16 @@ Nodes (8): Testes para validar arquivos JavaScript, Todos os arquivos JS obrigat
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `get_api_token()` connect `Community 27` to `Community 24`, `Community 2`, `Community 12`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+  _High betweenness centrality (0.047) - this node is a cross-community bridge._
 - **Why does `generate_project_html()` connect `Community 4` to `Community 24`, `Community 0`, `Community 27`?**
-  _High betweenness centrality (0.046) - this node is a cross-community bridge._
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
 - **Are the 13 inferred relationships involving `generate_project_html()` (e.g. with `.test_generate_html_public_project()` and `.test_generate_html_public_project_with_github_pages()`) actually correct?**
   _`generate_project_html()` has 13 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `update_projects.py Automação para gerar as entradas de projetos no index.html`, `Detect if text is likely in Portuguese or another language.     Returns 'pt' if`, `Translate text to Portuguese using free translation APIs.     Tries multiple fr` to the rest of the system?**
-  _175 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _177 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.07692307692307693 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.045454545454545456 - nodes in this community are weakly interconnected._

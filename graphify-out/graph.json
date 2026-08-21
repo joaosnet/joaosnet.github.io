@@ -601,7 +601,7 @@
       "label": ".handleFormError()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L131",
+      "source_location": "L137",
       "id": "js_contact_form_contactformhandler_handleformerror",
       "community": 10,
       "norm_label": ".handleformerror()"
@@ -610,7 +610,7 @@
       "label": ".openMailClient()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L158",
+      "source_location": "L164",
       "id": "js_contact_form_contactformhandler_openmailclient",
       "community": 10,
       "norm_label": ".openmailclient()"
@@ -619,7 +619,7 @@
       "label": ".copyEmailToClipboard()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L174",
+      "source_location": "L180",
       "id": "js_contact_form_contactformhandler_copyemailtoclipboard",
       "community": 10,
       "norm_label": ".copyemailtoclipboard()"
@@ -628,7 +628,7 @@
       "label": ".openGmail()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L212",
+      "source_location": "L218",
       "id": "js_contact_form_contactformhandler_opengmail",
       "community": 10,
       "norm_label": ".opengmail()"
@@ -637,7 +637,7 @@
       "label": ".scrollToForm()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L223",
+      "source_location": "L229",
       "id": "js_contact_form_contactformhandler_scrolltoform",
       "community": 10,
       "norm_label": ".scrolltoform()"
@@ -646,7 +646,7 @@
       "label": ".showToast()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L243",
+      "source_location": "L249",
       "id": "js_contact_form_contactformhandler_showtoast",
       "community": 10,
       "norm_label": ".showtoast()"
@@ -655,7 +655,7 @@
       "label": ".flashSubmitSuccess()",
       "file_type": "code",
       "source_file": "assets/js/contact-form.js",
-      "source_location": "L275",
+      "source_location": "L281",
       "id": "js_contact_form_contactformhandler_flashsubmitsuccess",
       "community": 10,
       "norm_label": ".flashsubmitsuccess()"
@@ -673,7 +673,7 @@
       "label": "GeoViewsCounter",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L11",
+      "source_location": "L12",
       "id": "js_geo_counter_geoviewscounter",
       "community": 8,
       "norm_label": "geoviewscounter"
@@ -682,7 +682,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L14",
+      "source_location": "L15",
       "id": "js_geo_counter_geoviewscounter_constructor",
       "community": 8,
       "norm_label": ".constructor()"
@@ -709,7 +709,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L47",
+      "source_location": "L52",
       "id": "js_geo_counter_geoviewscounter_init",
       "community": 8,
       "norm_label": ".init()"
@@ -718,52 +718,151 @@
       "label": ".updateViewCounter()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L71",
+      "source_location": "L75",
       "id": "js_geo_counter_geoviewscounter_updateviewcounter",
       "community": 8,
       "norm_label": ".updateviewcounter()"
     },
     {
-      "label": ".collectAndSendVisitData()",
+      "label": ".initAchievementCollapse()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L90",
-      "id": "js_geo_counter_geoviewscounter_collectandsendvisitdata",
+      "source_location": "L94",
+      "id": "js_geo_counter_geoviewscounter_initachievementcollapse",
       "community": 8,
-      "norm_label": ".collectandsendvisitdata()"
+      "norm_label": ".initachievementcollapse()"
     },
     {
-      "label": ".createVisitData()",
+      "label": ".setAchievementCollapsed()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L112",
-      "id": "js_geo_counter_geoviewscounter_createvisitdata",
+      "source_location": "L127",
+      "id": "js_geo_counter_geoviewscounter_setachievementcollapsed",
       "community": 8,
-      "norm_label": ".createvisitdata()"
+      "norm_label": ".setachievementcollapsed()"
     },
     {
-      "label": ".classifyReferrer()",
+      "label": ".launchConfetti()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L145",
-      "id": "js_geo_counter_geoviewscounter_classifyreferrer",
+      "source_location": "L141",
+      "id": "js_geo_counter_geoviewscounter_launchconfetti",
       "community": 8,
-      "norm_label": ".classifyreferrer()"
+      "norm_label": ".launchconfetti()"
+    },
+    {
+      "label": ".animateCountUp()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L206",
+      "id": "js_geo_counter_geoviewscounter_animatecountup",
+      "community": 8,
+      "norm_label": ".animatecountup()"
+    },
+    {
+      "label": ".setupAchievementObserver()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L239",
+      "id": "js_geo_counter_geoviewscounter_setupachievementobserver",
+      "community": 8,
+      "norm_label": ".setupachievementobserver()"
+    },
+    {
+      "label": ".detectOS()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L268",
+      "id": "js_geo_counter_geoviewscounter_detectos",
+      "community": 8,
+      "norm_label": ".detectos()"
+    },
+    {
+      "label": ".detectBrowser()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L281",
+      "id": "js_geo_counter_geoviewscounter_detectbrowser",
+      "community": 8,
+      "norm_label": ".detectbrowser()"
     },
     {
       "label": ".detectDevice()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L175",
+      "source_location": "L292",
       "id": "js_geo_counter_geoviewscounter_detectdevice",
       "community": 8,
       "norm_label": ".detectdevice()"
     },
     {
+      "label": ".extractLocationInfo()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L304",
+      "id": "js_geo_counter_geoviewscounter_extractlocationinfo",
+      "community": 8,
+      "norm_label": ".extractlocationinfo()"
+    },
+    {
+      "label": ".extractScreenInfo()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L326",
+      "id": "js_geo_counter_geoviewscounter_extractscreeninfo",
+      "community": 8,
+      "norm_label": ".extractscreeninfo()"
+    },
+    {
+      "label": ".classifyReferrer()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L337",
+      "id": "js_geo_counter_geoviewscounter_classifyreferrer",
+      "community": 8,
+      "norm_label": ".classifyreferrer()"
+    },
+    {
+      "label": ".createVisitData()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L367",
+      "id": "js_geo_counter_geoviewscounter_createvisitdata",
+      "community": 8,
+      "norm_label": ".createvisitdata()"
+    },
+    {
+      "label": ".collectAndSendVisitData()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L399",
+      "id": "js_geo_counter_geoviewscounter_collectandsendvisitdata",
+      "community": 8,
+      "norm_label": ".collectandsendvisitdata()"
+    },
+    {
+      "label": ".trackEvent()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L417",
+      "id": "js_geo_counter_geoviewscounter_trackevent",
+      "community": 8,
+      "norm_label": ".trackevent()"
+    },
+    {
+      "label": ".setupEventListeners()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L445",
+      "id": "js_geo_counter_geoviewscounter_setupeventlisteners",
+      "community": 8,
+      "norm_label": ".setupeventlisteners()"
+    },
+    {
       "label": ".storeVisitData()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L187",
+      "source_location": "L470",
       "id": "js_geo_counter_geoviewscounter_storevisitdata",
       "community": 8,
       "norm_label": ".storevisitdata()"
@@ -772,7 +871,7 @@
       "label": ".sendToGoogleAppsScript()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L205",
+      "source_location": "L486",
       "id": "js_geo_counter_geoviewscounter_sendtogoogleappsscript",
       "community": 8,
       "norm_label": ".sendtogoogleappsscript()"
@@ -781,28 +880,10 @@
       "label": ".cleanOldData()",
       "file_type": "code",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L244",
+      "source_location": "L507",
       "id": "js_geo_counter_geoviewscounter_cleanolddata",
       "community": 8,
       "norm_label": ".cleanolddata()"
-    },
-    {
-      "label": ".getStoredData()",
-      "file_type": "code",
-      "source_file": "assets/js/geo-counter.js",
-      "source_location": "L265",
-      "id": "js_geo_counter_geoviewscounter_getstoreddata",
-      "community": 8,
-      "norm_label": ".getstoreddata()"
-    },
-    {
-      "label": ".getLocalStatistics()",
-      "file_type": "code",
-      "source_file": "assets/js/geo-counter.js",
-      "source_location": "L270",
-      "id": "js_geo_counter_geoviewscounter_getlocalstatistics",
-      "community": 8,
-      "norm_label": ".getlocalstatistics()"
     },
     {
       "label": "horizontal-scroll.js",
@@ -1231,7 +1312,7 @@
       "label": ".toggleTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-manager.js",
-      "source_location": "L48",
+      "source_location": "L47",
       "id": "js_theme_manager_thememanager_toggletheme",
       "community": 15,
       "norm_label": ".toggletheme()"
@@ -1240,7 +1321,7 @@
       "label": ".applyTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-manager.js",
-      "source_location": "L53",
+      "source_location": "L52",
       "id": "js_theme_manager_thememanager_applytheme",
       "community": 15,
       "norm_label": ".applytheme()"
@@ -1249,7 +1330,7 @@
       "label": ".updateToggleIcon()",
       "file_type": "code",
       "source_file": "assets/js/theme-manager.js",
-      "source_location": "L69",
+      "source_location": "L73",
       "id": "js_theme_manager_thememanager_updatetoggleicon",
       "community": 15,
       "norm_label": ".updatetoggleicon()"
@@ -1267,7 +1348,7 @@
       "label": "ThemeSelector",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L6",
+      "source_location": "L7",
       "id": "js_theme_selector_themeselector",
       "community": 7,
       "norm_label": "themeselector"
@@ -1276,7 +1357,7 @@
       "label": ".constructor()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L7",
+      "source_location": "L8",
       "id": "js_theme_selector_themeselector_constructor",
       "community": 7,
       "norm_label": ".constructor()"
@@ -1285,7 +1366,7 @@
       "label": ".init()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L120",
+      "source_location": "L191",
       "id": "js_theme_selector_themeselector_init",
       "community": 7,
       "norm_label": ".init()"
@@ -1294,7 +1375,7 @@
       "label": ".createModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L132",
+      "source_location": "L201",
       "id": "js_theme_selector_themeselector_createmodal",
       "community": 7,
       "norm_label": ".createmodal()"
@@ -1303,7 +1384,7 @@
       "label": ".createThemeCard()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L156",
+      "source_location": "L225",
       "id": "js_theme_selector_themeselector_createthemecard",
       "community": 7,
       "norm_label": ".createthemecard()"
@@ -1312,7 +1393,7 @@
       "label": ".setupEventListeners()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L173",
+      "source_location": "L244",
       "id": "js_theme_selector_themeselector_setupeventlisteners",
       "community": 7,
       "norm_label": ".setupeventlisteners()"
@@ -1321,16 +1402,25 @@
       "label": ".addThemeSelectorButton()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L215",
+      "source_location": "L282",
       "id": "js_theme_selector_themeselector_addthemeselectorbutton",
       "community": 7,
       "norm_label": ".addthemeselectorbutton()"
     },
     {
+      "label": ".dismissHint()",
+      "file_type": "code",
+      "source_file": "assets/js/theme-selector.js",
+      "source_location": "L337",
+      "id": "js_theme_selector_themeselector_dismisshint",
+      "community": 7,
+      "norm_label": ".dismisshint()"
+    },
+    {
       "label": ".addThemeSelectorMenuButton()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L236",
+      "source_location": "L348",
       "id": "js_theme_selector_themeselector_addthemeselectormenubutton",
       "community": 7,
       "norm_label": ".addthemeselectormenubutton()"
@@ -1339,7 +1429,7 @@
       "label": ".promptFirstVisitPalette()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L260",
+      "source_location": "L373",
       "id": "js_theme_selector_themeselector_promptfirstvisitpalette",
       "community": 7,
       "norm_label": ".promptfirstvisitpalette()"
@@ -1348,7 +1438,7 @@
       "label": ".showModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L273",
+      "source_location": "L386",
       "id": "js_theme_selector_themeselector_showmodal",
       "community": 7,
       "norm_label": ".showmodal()"
@@ -1357,7 +1447,7 @@
       "label": ".closeModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L299",
+      "source_location": "L413",
       "id": "js_theme_selector_themeselector_closemodal",
       "community": 7,
       "norm_label": ".closemodal()"
@@ -1366,7 +1456,7 @@
       "label": ".selectTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L315",
+      "source_location": "L429",
       "id": "js_theme_selector_themeselector_selecttheme",
       "community": 7,
       "norm_label": ".selecttheme()"
@@ -1375,7 +1465,7 @@
       "label": ".applyTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L324",
+      "source_location": "L438",
       "id": "js_theme_selector_themeselector_applytheme",
       "community": 7,
       "norm_label": ".applytheme()"
@@ -1384,7 +1474,7 @@
       "label": ".getCurrentTheme()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L348",
+      "source_location": "L480",
       "id": "js_theme_selector_themeselector_getcurrenttheme",
       "community": 7,
       "norm_label": ".getcurrenttheme()"
@@ -1393,7 +1483,7 @@
       "label": ".updateSelectedThemeCard()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L352",
+      "source_location": "L484",
       "id": "js_theme_selector_themeselector_updateselectedthemecard",
       "community": 7,
       "norm_label": ".updateselectedthemecard()"
@@ -1402,7 +1492,7 @@
       "label": ".updateSelectorButtonLabel()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L360",
+      "source_location": "L492",
       "id": "js_theme_selector_themeselector_updateselectorbuttonlabel",
       "community": 7,
       "norm_label": ".updateselectorbuttonlabel()"
@@ -1411,7 +1501,7 @@
       "label": ".keepFocusInsideModal()",
       "file_type": "code",
       "source_file": "assets/js/theme-selector.js",
-      "source_location": "L371",
+      "source_location": "L503",
       "id": "js_theme_selector_themeselector_keepfocusinsidemodal",
       "community": 7,
       "norm_label": ".keepfocusinsidemodal()"
@@ -1557,7 +1647,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L17",
       "id": "tests_test_env_variables_testenvfile",
-      "community": 37,
+      "community": 2,
       "norm_label": "testenvfile"
     },
     {
@@ -1566,7 +1656,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L20",
       "id": "tests_test_env_variables_testenvfile_test_env_file_exists",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_file_exists()"
     },
     {
@@ -1575,7 +1665,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L25",
       "id": "tests_test_env_variables_testenvfile_test_env_example_file_exists",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_example_file_exists()"
     },
     {
@@ -1584,7 +1674,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L30",
       "id": "tests_test_env_variables_testenvfile_test_env_is_in_gitignore",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_is_in_gitignore()"
     },
     {
@@ -1593,7 +1683,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L40",
       "id": "tests_test_env_variables_testenvfile_test_env_not_empty",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_not_empty()"
     },
     {
@@ -1602,7 +1692,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L54",
       "id": "tests_test_env_variables_testenvfile_test_env_example_has_required_variables",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_example_has_required_variables()"
     },
     {
@@ -1611,7 +1701,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L72",
       "id": "tests_test_env_variables_testenvfile_test_env_file_has_required_token",
-      "community": 37,
+      "community": 2,
       "norm_label": ".test_env_file_has_required_token()"
     },
     {
@@ -1737,7 +1827,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L18",
       "id": "tests_test_env_variables_rationale_18",
-      "community": 37,
+      "community": 2,
       "norm_label": "testes para arquivo .env"
     },
     {
@@ -1746,7 +1836,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L21",
       "id": "tests_test_env_variables_rationale_21",
-      "community": 37,
+      "community": 2,
       "norm_label": "arquivo .env deve existir"
     },
     {
@@ -1755,7 +1845,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L26",
       "id": "tests_test_env_variables_rationale_26",
-      "community": 37,
+      "community": 2,
       "norm_label": "arquivo .env.example deve existir"
     },
     {
@@ -1764,7 +1854,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L31",
       "id": "tests_test_env_variables_rationale_31",
-      "community": 37,
+      "community": 2,
       "norm_label": ".env deve estar no .gitignore"
     },
     {
@@ -1773,7 +1863,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L41",
       "id": "tests_test_env_variables_rationale_41",
-      "community": 37,
+      "community": 2,
       "norm_label": "arquivo .env nao deve estar vazio (deve ter variaveis)"
     },
     {
@@ -1782,7 +1872,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L55",
       "id": "tests_test_env_variables_rationale_55",
-      "community": 37,
+      "community": 2,
       "norm_label": ".env.example deve ter todas as variaveis necessarias"
     },
     {
@@ -1791,7 +1881,7 @@
       "source_file": "tests/test_env_variables.py",
       "source_location": "L73",
       "id": "tests_test_env_variables_rationale_73",
-      "community": 37,
+      "community": 2,
       "norm_label": "arquivo .env deve ter pelo menos private_repos_token configurado"
     },
     {
@@ -2124,7 +2214,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L153",
       "id": "tests_test_site_structure_testjavascriptfiles",
-      "community": 38,
+      "community": 3,
       "norm_label": "testjavascriptfiles"
     },
     {
@@ -2142,7 +2232,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L161",
       "id": "tests_test_site_structure_testjavascriptfiles_test_all_js_files_exist",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_all_js_files_exist()"
     },
     {
@@ -2151,7 +2241,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L177",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_utils",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_no_syntax_errors_in_utils()"
     },
     {
@@ -2160,7 +2250,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L187",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_geo_counter",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_no_syntax_errors_in_geo_counter()"
     },
     {
@@ -2169,7 +2259,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L196",
       "id": "tests_test_site_structure_testjavascriptfiles_test_geo_counter_does_not_call_public_ip_apis",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_geo_counter_does_not_call_public_ip_apis()"
     },
     {
@@ -2178,7 +2268,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L211",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_contact_form",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_no_syntax_errors_in_contact_form()"
     },
     {
@@ -2187,7 +2277,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L220",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_project_details",
-      "community": 38,
+      "community": 3,
       "norm_label": ".test_no_syntax_errors_in_project_details()"
     },
     {
@@ -2448,7 +2538,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L154",
       "id": "tests_test_site_structure_rationale_154",
-      "community": 38,
+      "community": 3,
       "norm_label": "testes para validar arquivos javascript"
     },
     {
@@ -2457,7 +2547,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L162",
       "id": "tests_test_site_structure_rationale_162",
-      "community": 38,
+      "community": 3,
       "norm_label": "todos os arquivos js obrigatorios devem existir"
     },
     {
@@ -2466,7 +2556,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L178",
       "id": "tests_test_site_structure_rationale_178",
-      "community": 38,
+      "community": 3,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2475,7 +2565,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L188",
       "id": "tests_test_site_structure_rationale_188",
-      "community": 38,
+      "community": 3,
       "norm_label": "geo-counter.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2484,7 +2574,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L197",
       "id": "tests_test_site_structure_rationale_197",
-      "community": 38,
+      "community": 3,
       "norm_label": "geo-counter.js nao deve chamar apis publicas de ip/geo no navegador"
     },
     {
@@ -2493,7 +2583,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L212",
       "id": "tests_test_site_structure_rationale_212",
-      "community": 38,
+      "community": 3,
       "norm_label": "contact-form.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -2502,7 +2592,7 @@
       "source_file": "tests/test_site_structure.py",
       "source_location": "L221",
       "id": "tests_test_site_structure_rationale_221",
-      "community": 38,
+      "community": 3,
       "norm_label": "project-details.js nao deve ter erros de sintaxe (verificacao basica)"
     },
     {
@@ -3406,40 +3496,67 @@
       "norm_label": "analytics-apps-script.md"
     },
     {
-      "label": "Analytics pr\u00f3prio (cookieless) \u2014 registro no Google Sheets",
+      "label": "Analytics Pr\u00f3prio (Cookieless) \u2014 Registro & Dashboard no Google Sheets",
       "file_type": "document",
       "source_file": "docs/analytics-apps-script.md",
       "source_location": "L1",
-      "id": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "id": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_dashboard_no_google_sheets",
       "community": 31,
-      "norm_label": "analytics proprio (cookieless) \u2014 registro no google sheets"
+      "norm_label": "analytics proprio (cookieless) \u2014 registro & dashboard no google sheets"
     },
     {
-      "label": "Como registrar esses campos na planilha",
+      "label": "1. Campos Coletados",
       "file_type": "document",
       "source_file": "docs/analytics-apps-script.md",
-      "source_location": "L21",
-      "id": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha",
+      "source_location": "L7",
+      "id": "docs_analytics_apps_script_1_campos_coletados",
       "community": 31,
-      "norm_label": "como registrar esses campos na planilha"
+      "norm_label": "1. campos coletados"
     },
     {
-      "label": "code:javascript (function doPost(e) {)",
+      "label": "Aba `Visitas` (Acessos \u00e0 P\u00e1gina)",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L9",
+      "id": "docs_analytics_apps_script_aba_visitas_acessos_\u00e0_p\u00e1gina",
+      "community": 31,
+      "norm_label": "aba `visitas` (acessos a pagina)"
+    },
+    {
+      "label": "Aba `Eventos` (Convers\u00f5es & Intera\u00e7\u00f5es)",
       "file_type": "document",
       "source_file": "docs/analytics-apps-script.md",
       "source_location": "L27",
-      "id": "docs_analytics_apps_script_codeblock_1",
+      "id": "docs_analytics_apps_script_aba_eventos_convers\u00f5es_intera\u00e7\u00f5es",
       "community": 31,
-      "norm_label": "code:javascript (function dopost(e) {)"
+      "norm_label": "aba `eventos` (conversoes & interacoes)"
     },
     {
-      "label": "Dicas para usar nas campanhas",
+      "label": "2. C\u00f3digo Pronto para o Google Apps Script",
       "file_type": "document",
       "source_file": "docs/analytics-apps-script.md",
-      "source_location": "L64",
-      "id": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas",
+      "source_location": "L39",
+      "id": "docs_analytics_apps_script_2_c\u00f3digo_pronto_para_o_google_apps_script",
       "community": 31,
-      "norm_label": "dicas para usar nas campanhas"
+      "norm_label": "2. codigo pronto para o google apps script"
+    },
+    {
+      "label": "code:javascript (/**)",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L43",
+      "id": "docs_analytics_apps_script_codeblock_1",
+      "community": 31,
+      "norm_label": "code:javascript (/**)"
+    },
+    {
+      "label": "3. Como Implantar no Google Sheets",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L230",
+      "id": "docs_analytics_apps_script_3_como_implantar_no_google_sheets",
+      "community": 31,
+      "norm_label": "3. como implantar no google sheets"
     },
     {
       "label": "TESTES.md",
@@ -3692,6 +3809,51 @@
       "id": "tests_testes_documenta\u00e7\u00e3o_adicional",
       "community": 21,
       "norm_label": "\ud83d\udcda documentacao adicional"
+    },
+    {
+      "label": ".getStoredData()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L265",
+      "community": 8,
+      "norm_label": ".getstoreddata()",
+      "id": "js_geo_counter_geoviewscounter_getstoreddata"
+    },
+    {
+      "label": ".getLocalStatistics()",
+      "file_type": "code",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L270",
+      "community": 8,
+      "norm_label": ".getlocalstatistics()",
+      "id": "js_geo_counter_geoviewscounter_getlocalstatistics"
+    },
+    {
+      "label": "Analytics pr\u00f3prio (cookieless) \u2014 registro no Google Sheets",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L1",
+      "community": 31,
+      "norm_label": "analytics proprio (cookieless) \u2014 registro no google sheets",
+      "id": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets"
+    },
+    {
+      "label": "Como registrar esses campos na planilha",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L21",
+      "community": 31,
+      "norm_label": "como registrar esses campos na planilha",
+      "id": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha"
+    },
+    {
+      "label": "Dicas para usar nas campanhas",
+      "file_type": "document",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L64",
+      "community": 31,
+      "norm_label": "dicas para usar nas campanhas",
+      "id": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas"
     },
     {
       "label": "Update the <lastmod> date in sitemap.xml to today's date (YYYY-MM-DD).",
@@ -6557,21 +6719,101 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L89",
+      "source_location": "L94",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter",
-      "target": "js_geo_counter_geoviewscounter_collectandsendvisitdata"
+      "target": "js_geo_counter_geoviewscounter_initachievementcollapse",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L111",
+      "source_location": "L127",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_setachievementcollapsed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L141",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_launchconfetti",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L206",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_animatecountup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L239",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_setupachievementobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L268",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_detectos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L281",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_detectbrowser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L175",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter",
-      "target": "js_geo_counter_geoviewscounter_createvisitdata"
+      "target": "js_geo_counter_geoviewscounter_detectdevice"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L304",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_extractlocationinfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L326",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_extractscreeninfo",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -6587,11 +6829,41 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L175",
+      "source_location": "L111",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter",
-      "target": "js_geo_counter_geoviewscounter_detectdevice"
+      "target": "js_geo_counter_geoviewscounter_createvisitdata"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_collectandsendvisitdata"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L417",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_trackevent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L445",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter",
+      "target": "js_geo_counter_geoviewscounter_setupeventlisteners",
+      "confidence_score": 1.0
     },
     {
       "relation": "method",
@@ -6653,6 +6925,28 @@
       "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter_constructor",
       "target": "js_geo_counter_geoviewscounter_init"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L34",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_constructor",
+      "target": "js_geo_counter_geoviewscounter_setupeventlisteners",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L439",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_debug",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -6725,6 +7019,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
+      "source_location": "L418",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_shouldskipnetworkcollection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
       "source_location": "L59",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -6752,6 +7057,160 @@
       "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter_init",
       "target": "js_geo_counter_geoviewscounter_cleanolddata"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L87",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_updateviewcounter",
+      "target": "js_geo_counter_geoviewscounter_initachievementcollapse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L88",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_updateviewcounter",
+      "target": "js_geo_counter_geoviewscounter_setupachievementobserver",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L99",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_initachievementcollapse",
+      "target": "js_geo_counter_geoviewscounter_setachievementcollapsed",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L264",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_setupachievementobserver",
+      "target": "js_geo_counter_geoviewscounter_animatecountup",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L388",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_detectos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L430",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_detectos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L389",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_detectbrowser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L431",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_detectbrowser",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L139",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_detectdevice"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L429",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_detectdevice",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L371",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_extractlocationinfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L423",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_extractlocationinfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L372",
+      "weight": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_extractscreeninfo",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L114",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter_createvisitdata",
+      "target": "js_geo_counter_geoviewscounter_classifyreferrer"
     },
     {
       "relation": "calls",
@@ -6791,22 +7250,11 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/geo-counter.js",
-      "source_location": "L114",
+      "source_location": "L438",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_geo_counter_geoviewscounter_createvisitdata",
-      "target": "js_geo_counter_geoviewscounter_classifyreferrer"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/geo-counter.js",
-      "source_location": "L139",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_geo_counter_geoviewscounter_createvisitdata",
-      "target": "js_geo_counter_geoviewscounter_detectdevice"
+      "source": "js_geo_counter_geoviewscounter_trackevent",
+      "target": "js_geo_counter_geoviewscounter_sendtogoogleappsscript",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -6818,17 +7266,6 @@
       "confidence_score": 1.0,
       "source": "js_geo_counter_geoviewscounter_storevisitdata",
       "target": "js_geo_counter_geoviewscounter_cleanolddata"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "assets/js/geo-counter.js",
-      "source_location": "L209",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "js_geo_counter_geoviewscounter_getlocalstatistics",
-      "target": "js_geo_counter_geoviewscounter_getstoreddata"
     },
     {
       "relation": "contains",
@@ -7781,6 +8218,16 @@
       "relation": "method",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/theme-selector.js",
+      "source_location": "L337",
+      "weight": 1.0,
+      "source": "js_theme_selector_themeselector",
+      "target": "js_theme_selector_themeselector_dismisshint",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/theme-selector.js",
       "source_location": "L230",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7915,6 +8362,17 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/theme-selector.js",
+      "source_location": "L196",
+      "weight": 1.0,
+      "source": "js_theme_selector_themeselector_init",
+      "target": "js_theme_selector_themeselector_getcurrenttheme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/theme-selector.js",
       "source_location": "L126",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -7931,6 +8389,17 @@
       "confidence_score": 1.0,
       "source": "js_theme_selector_themeselector_init",
       "target": "js_theme_selector_themeselector_promptfirstvisitpalette"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/theme-selector.js",
+      "source_location": "L226",
+      "weight": 1.0,
+      "source": "js_theme_selector_themeselector_createthemecard",
+      "target": "js_theme_selector_themeselector_getcurrenttheme",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -7964,6 +8433,17 @@
       "confidence_score": 1.0,
       "source": "js_theme_selector_themeselector_addthemeselectorbutton",
       "target": "js_theme_selector_themeselector_updateselectorbuttonlabel"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/theme-selector.js",
+      "source_location": "L387",
+      "weight": 1.0,
+      "source": "js_theme_selector_themeselector_showmodal",
+      "target": "js_theme_selector_themeselector_dismisshint",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -10228,6 +10708,16 @@
       "source_file": "docs/analytics-apps-script.md",
       "source_location": "L1",
       "weight": 1.0,
+      "source": "docs_analytics_apps_script_md",
+      "target": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_dashboard_no_google_sheets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L1",
+      "weight": 1.0,
       "confidence_score": 1.0,
       "source": "docs_analytics_apps_script_md",
       "target": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets"
@@ -10236,21 +10726,61 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/analytics-apps-script.md",
-      "source_location": "L21",
+      "source_location": "L7",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
-      "target": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha"
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_dashboard_no_google_sheets",
+      "target": "docs_analytics_apps_script_1_campos_coletados",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/analytics-apps-script.md",
-      "source_location": "L64",
+      "source_location": "L39",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
-      "target": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas"
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_dashboard_no_google_sheets",
+      "target": "docs_analytics_apps_script_2_c\u00f3digo_pronto_para_o_google_apps_script",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L230",
+      "weight": 1.0,
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_dashboard_no_google_sheets",
+      "target": "docs_analytics_apps_script_3_como_implantar_no_google_sheets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "docs_analytics_apps_script_1_campos_coletados",
+      "target": "docs_analytics_apps_script_aba_visitas_acessos_\u00e0_p\u00e1gina",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "docs_analytics_apps_script_1_campos_coletados",
+      "target": "docs_analytics_apps_script_aba_eventos_convers\u00f5es_intera\u00e7\u00f5es",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L43",
+      "weight": 1.0,
+      "source": "docs_analytics_apps_script_2_c\u00f3digo_pronto_para_o_google_apps_script",
+      "target": "docs_analytics_apps_script_codeblock_1",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -10531,6 +11061,37 @@
       "confidence_score": 1.0,
       "source": "tests_testes_debugando_testes_falhando",
       "target": "tests_testes_codeblock_11"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/geo-counter.js",
+      "source_location": "L209",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "js_geo_counter_geoviewscounter_getlocalstatistics",
+      "target": "js_geo_counter_geoviewscounter_getstoreddata"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "target": "docs_analytics_apps_script_como_registrar_esses_campos_na_planilha"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/analytics-apps-script.md",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "docs_analytics_apps_script_analytics_pr\u00f3prio_cookieless_registro_no_google_sheets",
+      "target": "docs_analytics_apps_script_dicas_para_usar_nas_campanhas"
     },
     {
       "relation": "calls",
@@ -11628,5 +12189,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1e847edc3cf2527e0e8361cf4df3f10771c9b117"
+  "built_at_commit": "a292056e86ef59ea4f841229d8d6de13a3d7a3c7"
 }
