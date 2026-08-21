@@ -182,6 +182,16 @@ function recordEvent(ss, d) {
   ]);
 }
 
+function setSmartFormula(cell, formulaPt, formulaEn) {
+  try {
+    cell.setFormulaLocal(formulaPt);
+  } catch (e) {
+    try {
+      cell.setFormula(formulaEn);
+    } catch (err) {}
+  }
+}
+
 function setupDashboard(ss, force) {
   var dash = ss.getSheetByName('Dashboard');
   
@@ -201,27 +211,27 @@ function setupDashboard(ss, force) {
 
   // 1. CARDS KPI (Linha 3 e 4)
   dash.getRange('A3').setValue('👥 Total de Visitas');
-  dash.getRange('A4').setFormula('=IFERROR(COUNTA(Visitas!A2:A), 0)');
+  setSmartFormula(dash.getRange('A4'), '=SEERRO(CONT.VALORES(Visitas!A2:A); 0)', '=IFERROR(COUNTA(Visitas!A2:A), 0)');
   dash.getRange('A3:A4').setFontWeight('bold').setBackground('#e2e8f0').setHorizontalAlignment('center');
 
   dash.getRange('B3').setValue('📄 Downloads de CV');
-  dash.getRange('B4').setFormula('=IFERROR(COUNTIF(Eventos!B2:B, "download_cv"), 0)');
+  setSmartFormula(dash.getRange('B4'), '=SEERRO(CONT.SE(Eventos!B2:B; "download_cv"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "download_cv"), 0)');
   dash.getRange('B3:B4').setFontWeight('bold').setBackground('#e0f2fe').setFontColor('#0284c7').setHorizontalAlignment('center');
 
   dash.getRange('C3').setValue('✉️ Contatos Enviados');
-  dash.getRange('C4').setFormula('=IFERROR(COUNTIF(Eventos!B2:B, "submit_contact"), 0)');
+  setSmartFormula(dash.getRange('C4'), '=SEERRO(CONT.SE(Eventos!B2:B; "submit_contact"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "submit_contact"), 0)');
   dash.getRange('C3:C4').setFontWeight('bold').setBackground('#fae8ff').setFontColor('#a21caf').setHorizontalAlignment('center');
 
   dash.getRange('D3').setValue('💬 Cliques Telegram');
-  dash.getRange('D4').setFormula('=IFERROR(COUNTIF(Eventos!B2:B, "click_telegram"), 0)');
+  setSmartFormula(dash.getRange('D4'), '=SEERRO(CONT.SE(Eventos!B2:B; "click_telegram"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "click_telegram"), 0)');
   dash.getRange('D3:D4').setFontWeight('bold').setBackground('#f0fdf4').setFontColor('#15803d').setHorizontalAlignment('center');
 
   dash.getRange('E3').setValue('💼 Cliques LinkedIn');
-  dash.getRange('E4').setFormula('=IFERROR(COUNTIF(Eventos!B2:B, "click_linkedin"), 0)');
+  setSmartFormula(dash.getRange('E4'), '=SEERRO(CONT.SE(Eventos!B2:B; "click_linkedin"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "click_linkedin"), 0)');
   dash.getRange('E3:E4').setFontWeight('bold').setBackground('#fef3c7').setFontColor('#b45309').setHorizontalAlignment('center');
 
   dash.getRange('F3').setValue('🏆 Conquistas Fim Página');
-  dash.getRange('F4').setFormula('=IFERROR(COUNTIF(Eventos!B2:B, "achievement_footer_reached"), 0)');
+  setSmartFormula(dash.getRange('F4'), '=SEERRO(CONT.SE(Eventos!B2:B; "achievement_footer_reached"); 0)', '=IFERROR(COUNTIF(Eventos!B2:B, "achievement_footer_reached"), 0)');
   dash.getRange('F3:F4').setFontWeight('bold').setBackground('#ffedd5').setFontColor('#c2410c').setHorizontalAlignment('center');
 
   dash.getRange('A4:F4').setFontSize(16);
@@ -231,37 +241,37 @@ function setupDashboard(ss, force) {
   // Tabela: Dispositivos
   dash.getRange('A6:B6').merge().setValue('📱 Dispositivos').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('A7').setValue('Desktop');
-  dash.getRange('B7').setFormula('=IFERROR(COUNTIF(Visitas!C2:C, "Desktop"), 0)');
+  setSmartFormula(dash.getRange('B7'), '=SEERRO(CONT.SE(Visitas!C2:C; "Desktop"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Desktop"), 0)');
   dash.getRange('A8').setValue('Mobile');
-  dash.getRange('B8').setFormula('=IFERROR(COUNTIF(Visitas!C2:C, "Mobile"), 0)');
+  setSmartFormula(dash.getRange('B8'), '=SEERRO(CONT.SE(Visitas!C2:C; "Mobile"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Mobile"), 0)');
   dash.getRange('A9').setValue('Tablet');
-  dash.getRange('B9').setFormula('=IFERROR(COUNTIF(Visitas!C2:C, "Tablet"), 0)');
+  setSmartFormula(dash.getRange('B9'), '=SEERRO(CONT.SE(Visitas!C2:C; "Tablet"); 0)', '=IFERROR(COUNTIF(Visitas!C2:C, "Tablet"), 0)');
 
   // Tabela: Canais de Origem
   dash.getRange('C6:D6').merge().setValue('🌐 Canais de Tráfego').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('C7').setValue('social (LinkedIn/X)');
-  dash.getRange('D7').setFormula('=IFERROR(COUNTIF(Visitas!K2:K, "social"), 0)');
+  setSmartFormula(dash.getRange('D7'), '=SEERRO(CONT.SE(Visitas!K2:K; "social"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "social"), 0)');
   dash.getRange('C8').setValue('dev (GitHub/Lattes)');
-  dash.getRange('D8').setFormula('=IFERROR(COUNTIF(Visitas!K2:K, "dev"), 0)');
+  setSmartFormula(dash.getRange('D8'), '=SEERRO(CONT.SE(Visitas!K2:K; "dev"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "dev"), 0)');
   dash.getRange('C9').setValue('direct (Acesso Direto)');
-  dash.getRange('D9').setFormula('=IFERROR(COUNTIF(Visitas!K2:K, "direct"), 0)');
+  setSmartFormula(dash.getRange('D9'), '=SEERRO(CONT.SE(Visitas!K2:K; "direct"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "direct"), 0)');
   dash.getRange('C10').setValue('search (Google/Bing)');
-  dash.getRange('D10').setFormula('=IFERROR(COUNTIF(Visitas!K2:K, "search"), 0)');
+  setSmartFormula(dash.getRange('D10'), '=SEERRO(CONT.SE(Visitas!K2:K; "search"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "search"), 0)');
   dash.getRange('C11').setValue('messaging (Telegram)');
-  dash.getRange('D11').setFormula('=IFERROR(COUNTIF(Visitas!K2:K, "messaging"), 0)');
+  setSmartFormula(dash.getRange('D11'), '=SEERRO(CONT.SE(Visitas!K2:K; "messaging"); 0)', '=IFERROR(COUNTIF(Visitas!K2:K, "messaging"), 0)');
 
   // Tabela: Navegadores Mais Usados
   dash.getRange('E6:F6').merge().setValue('🧭 Navegadores').setFontWeight('bold').setBackground('#1e293b').setFontColor('#ffffff');
   dash.getRange('E7').setValue('Chrome');
-  dash.getRange('F7').setFormula('=IFERROR(COUNTIF(Visitas!E2:E, "Chrome"), 0)');
+  setSmartFormula(dash.getRange('F7'), '=SEERRO(CONT.SE(Visitas!E2:E; "Chrome"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Chrome"), 0)');
   dash.getRange('E8').setValue('Safari');
-  dash.getRange('F8').setFormula('=IFERROR(COUNTIF(Visitas!E2:E, "Safari"), 0)');
+  setSmartFormula(dash.getRange('F8'), '=SEERRO(CONT.SE(Visitas!E2:E; "Safari"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Safari"), 0)');
   dash.getRange('E9').setValue('Edge');
-  dash.getRange('F9').setFormula('=IFERROR(COUNTIF(Visitas!E2:E, "Edge"), 0)');
+  setSmartFormula(dash.getRange('F9'), '=SEERRO(CONT.SE(Visitas!E2:E; "Edge"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Edge"), 0)');
   dash.getRange('E10').setValue('Firefox');
-  dash.getRange('F10').setFormula('=IFERROR(COUNTIF(Visitas!E2:E, "Firefox"), 0)');
+  setSmartFormula(dash.getRange('F10'), '=SEERRO(CONT.SE(Visitas!E2:E; "Firefox"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Firefox"), 0)');
   dash.getRange('E11').setValue('Opera / Outros');
-  dash.getRange('F11').setFormula('=IFERROR(COUNTIF(Visitas!E2:E, "Opera") + COUNTIF(Visitas!E2:E, "Outro"), 0)');
+  setSmartFormula(dash.getRange('F11'), '=SEERRO(CONT.SE(Visitas!E2:E; "Opera") + CONT.SE(Visitas!E2:E; "Outro"); 0)', '=IFERROR(COUNTIF(Visitas!E2:E, "Opera") + COUNTIF(Visitas!E2:E, "Outro"), 0)');
 
   // Bordas e alinhamentos
   dash.getRange('A6:F11').setBorder(true, true, true, true, true, true, '#cbd5e1', SpreadsheetApp.BorderStyle.SOLID);
