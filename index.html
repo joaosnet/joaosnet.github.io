@@ -178,6 +178,10 @@
                 </div>
             </div>
         </div>
+        <a href="#skills" class="hero-scroll-indicator" aria-label="Rolar para a próxima seção" title="Explorar conteúdo">
+            <div class="mouse-icon" aria-hidden="true"><span class="mouse-wheel"></span></div>
+            <div class="mouse-arrows" aria-hidden="true"><i class="fas fa-chevron-down"></i></div>
+        </a>
     </section>
 
     <section id="skills" class="features">
@@ -713,12 +717,34 @@
     </main>
 
     <!-- Floating Action Buttons -->
+    <button id="scroll-down" class="floating-btn" aria-label="Rolar para a próxima seção" title="Próxima seção">
+        <i class="fas fa-arrow-down" aria-hidden="true"></i>
+    </button>
     <button id="back-to-top" class="floating-btn" aria-label="Voltar ao início" title="Voltar ao início">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
     <button id="fab-contact" class="floating-btn" aria-label="Entrar em contato" title="Entrar em contato">
         <i class="fas fa-envelope" aria-hidden="true"></i>
     </button>
+
+    <!-- Matrix Hacker Easter Egg Overlay -->
+    <div id="matrix-easter-egg" class="matrix-easter-egg-overlay" aria-hidden="true">
+        <canvas id="matrix-canvas"></canvas>
+        <div class="matrix-hud-card">
+            <div class="matrix-hud-header">
+                <span class="matrix-dot red"></span>
+                <span class="matrix-dot yellow"></span>
+                <span class="matrix-dot green"></span>
+                <span class="matrix-hud-title"><i class="fas fa-terminal" aria-hidden="true"></i> TERMINAL // ACCESS_GRANTED</span>
+                <button type="button" class="matrix-close-btn" id="matrix-close-btn" aria-label="Fechar terminal">&times;</button>
+            </div>
+            <div class="matrix-hud-body">
+                <p class="matrix-cmd">> OVERRIDE_GRAVITY: ENABLED</p>
+                <p class="matrix-msg">⚡ <strong>ACESSO ROOT:</strong> Você já está no nível mais alto do sistema!</p>
+                <p class="matrix-sub">João Silva Neto // Engenharia &amp; Software v2026</p>
+            </div>
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
     <script src="assets/js/utils.js?v=4.0" defer></script>

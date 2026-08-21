@@ -1,16 +1,16 @@
 # Graph Report - joaosnet.github.io  (2026-08-21)
 
 ## Corpus Check
-- 25 files · ~366,793 words
+- 25 files · ~368,408 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 527 nodes · 719 edges · 37 communities (18 shown, 19 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.8)
+- 561 nodes · 765 edges · 38 communities (19 shown, 19 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 33 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a292056e`
+- Built from commit: `e2080603`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -51,14 +51,15 @@
 - [[_COMMUNITY_Community 34|Community 34]]
 - [[_COMMUNITY_Community 35|Community 35]]
 - [[_COMMUNITY_Community 36|Community 36]]
+- [[_COMMUNITY_Community 37|Community 37]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `HorizontalScrollHandler` - 48 edges
 2. `GeoViewsCounter` - 26 edges
-3. `ScrollNavigationHandler` - 20 edges
-4. `ThemeSelector` - 18 edges
-5. `generate_project_html()` - 16 edges
-6. `TestIndexHTMLStructure` - 16 edges
+3. `ScrollNavigationHandler` - 23 edges
+4. `TestIndexHTMLStructure` - 19 edges
+5. `ThemeSelector` - 18 edges
+6. `generate_project_html()` - 16 edges
 7. `main()` - 14 edges
 8. `AnimationsHandler` - 13 edges
 9. `ContactFormHandler` - 13 edges
@@ -68,7 +69,7 @@
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (37 total, 19 thin omitted)
+## Communities (38 total, 19 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.16
@@ -80,15 +81,15 @@ Nodes (24): Testes para validação de variáveis de ambiente Verifica: - Exist�
 
 ### Community 3 - "Community 3"
 Cohesion: 0.05
-Nodes (24): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Testes para validar arquivos JavaScript, Parser HTML simples para extrair informações, Todos os arquivos JS obrigatórios devem existir, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica) (+16 more)
+Nodes (25): HTMLParser, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Parser HTML simples para extrair informações, Testes para validar arquivos CSS, styles.css deve existir, styles.css deve ter variáveis de tema, Testes para validar arquivos CSS (+17 more)
 
 ### Community 4 - "Community 4"
 Cohesion: 0.06
 Nodes (28): generate_project_html(), Deve gerar link de GitHub Pages quando o projeto público tiver Pages, Deve gerar HTML correto para projeto privado, Deve lidar com descrição None, Deve lidar com descrição vazia, Deve usar descrição traduzida se disponível, Deve manter assinatura legada sem voltar ao layout alternado, Testes de validação de estrutura de projetos (+20 more)
 
 ### Community 5 - "Community 5"
-Cohesion: 0.07
-Nodes (16): Deve ter meta viewport para responsividade, Deve ter meta charset, Deve ter formulário de contato, Deve ter botão de troca de tema, Deve ter botão flutuante de contato, Deve ter contador de visitantes no footer, Deve ter link para download do currículo, Deve ter botão para contato no Telegram (+8 more)
+Cohesion: 0.06
+Nodes (18): Deve ter meta viewport para responsividade, Deve ter meta charset, Deve ter formulário de contato, Deve ter botão de troca de tema, Deve ter botão flutuante de contato, Deve ter contador de visitantes no footer, Deve ter link para download do currículo, Deve ter botão para contato no Telegram (+10 more)
 
 ### Community 6 - "Community 6"
 Cohesion: 0.07
@@ -138,6 +139,10 @@ Nodes (10): 1. Campos Coletados, 2. Código Pronto para o Google Apps Script, 3.
 Cohesion: 0.40
 Nodes (5): commit_downloaded_images(), Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git.
 
+### Community 37 - "Community 37"
+Cohesion: 0.09
+Nodes (15): Testes para validar arquivos JavaScript, Deve ter container e canvas do Easter Egg Matrix, Testes para validar arquivos JavaScript, Todos os arquivos JS obrigatórios devem existir, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica), utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve chamar APIs públicas de IP/geo no navegador (+7 more)
+
 ## Knowledge Gaps
 - **36 isolated node(s):** `version`, `configurations`, `allow`, `PreToolUse`, `toggleBtn` (+31 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -147,16 +152,16 @@ Nodes (5): commit_downloaded_images(), Commit downloaded images to git., Commit 
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `get_api_token()` connect `Community 27` to `Community 24`, `Community 2`, `Community 12`?**
-  _High betweenness centrality (0.047) - this node is a cross-community bridge._
+  _High betweenness centrality (0.042) - this node is a cross-community bridge._
 - **Why does `generate_project_html()` connect `Community 4` to `Community 24`, `Community 0`, `Community 27`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Are the 13 inferred relationships involving `generate_project_html()` (e.g. with `.test_generate_html_public_project()` and `.test_generate_html_public_project_with_github_pages()`) actually correct?**
-  _`generate_project_html()` has 13 INFERRED edges - model-reasoned connections that need verification._
+  _High betweenness centrality (0.038) - this node is a cross-community bridge._
 - **What connects `update_projects.py Automação para gerar as entradas de projetos no index.html`, `Detect if text is likely in Portuguese or another language.     Returns 'pt' if`, `Translate text to Portuguese using free translation APIs.     Tries multiple fr` to the rest of the system?**
-  _177 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _194 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.05 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
-  _Cohesion score 0.045454545454545456 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+- **Should `Community 4` be split into smaller, more focused modules?**
+  _Cohesion score 0.06097560975609756 - nodes in this community are weakly interconnected._

@@ -9,6 +9,8 @@ class ScrollNavigationHandler {
         this.navLinks = [];
         this.progressBar = document.getElementById('scroll-progress');
         this.backToTopBtn = document.getElementById('back-to-top');
+        this.scrollDownBtn = document.getElementById('scroll-down');
+        this.heroScrollIndicator = document.querySelector('.hero-scroll-indicator');
         this.header = document.querySelector('header');
         this.currentSectionIndex = 0;
         this.prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -29,11 +31,13 @@ class ScrollNavigationHandler {
         this.setupSectionObserver();
         this.setupAnchorClicks();
         this.setupBackToTop();
+        this.setupScrollDown();
         this.setupKeyboardNavigation();
         this.handleInitialHash();
 
         this.updateActiveSection();
         this.updateProgressBar();
+        this.updateScrollDownVisibility();
     }
 
     refreshSections() {
@@ -59,6 +63,7 @@ class ScrollNavigationHandler {
                 window.requestAnimationFrame(() => {
                     this.updateProgressBar();
                     this.updateBackToTopVisibility();
+                    this.updateScrollDownVisibility();
                     if (!this.isNavigating) {
                         this.updateActiveSectionByScroll();
                     }
@@ -90,6 +95,60 @@ class ScrollNavigationHandler {
             this.backToTopBtn.classList.add('visible');
         } else {
             this.backToTopBtn.classList.remove('visible');
+        }
+    }
+
+    updateScrollDownVisibility() {
+        if (!this.scrollDownBtn) return;
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        const maxScrollY = document.documentElement.scrollHeight - window.innerHeight - 120;
+        
+        if (scrollY >= maxScrollY) {
+            this.scrollDownBtn.classList.add('hidden-scroll-down');
+        } else {
+            this.scrollDownBtn.classList.remove('hidden-scroll-down');
+        }
+    }
+
+    setupScrollDown() {
+        if (this.scrollDownBtn) {
+            this.scrollDownBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.scrollToNextSection();
+            });
+        }
+
+        if (this.heroScrollIndicator) {
+            this.heroScrollIndicator.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector('#skills') || (this.sections[1] || null);
+                if (target) {
+                    this.scrollToSection(target, { updateHash: true });
+                } else {
+                    this.scrollToNextSection();
+                }
+            });
+        }
+    }
+
+    scrollToNextSection() {
+        const threshold = this.getHeaderHeight() + 25;
+        let targetIndex = -1;
+        for (let i = 0; i < this.sections.length; i++) {
+            const sec = this.sections[i];
+            const rect = sec.getBoundingClientRect();
+            if (rect.top > threshold) {
+                targetIndex = i;
+                break;
+            }
+        }
+
+        if (targetIndex === -1 && this.currentSectionIndex < this.sections.length - 1) {
+            targetIndex = this.currentSectionIndex + 1;
+        }
+
+        if (targetIndex >= 0 && targetIndex < this.sections.length) {
+            this.scrollToSection(targetIndex, { updateHash: true });
         }
     }
 

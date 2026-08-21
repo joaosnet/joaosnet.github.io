@@ -149,6 +149,20 @@ class TestIndexHTMLStructure:
         """Deve ter container de partículas"""
         assert 'id="particles-js"' in html_content, "Container de partículas não encontrado"
 
+    def test_has_scroll_down_button(self, html_content):
+        """Deve ter botão flutuante de rolar para baixo"""
+        assert 'id="scroll-down"' in html_content, "Botão #scroll-down não encontrado"
+
+    def test_has_hero_scroll_indicator(self, html_content):
+        """Deve ter indicador de rolagem no Hero"""
+        assert 'class="hero-scroll-indicator"' in html_content, "Indicador .hero-scroll-indicator não encontrado"
+        assert 'href="#skills"' in html_content, "Link do indicador para #skills não encontrado"
+
+    def test_has_matrix_easter_egg(self, html_content):
+        """Deve ter container e canvas do Easter Egg Matrix"""
+        assert 'id="matrix-easter-egg"' in html_content, "Container #matrix-easter-egg não encontrado"
+        assert 'id="matrix-canvas"' in html_content, "Canvas #matrix-canvas não encontrado"
+
 
 class TestJavaScriptFiles:
     """Testes para validar arquivos JavaScript"""

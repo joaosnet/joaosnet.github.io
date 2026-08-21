@@ -557,7 +557,7 @@ section:last-of-type {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: clamp(48px, 8vh, 96px) 0;
+    padding: clamp(48px, 6vh, 80px) 0 clamp(80px, 11vh, 130px) 0;
     border-bottom: 1px solid var(--border-light);
     background: radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--primary) 12%, transparent) 0%, transparent 70%);
 }
@@ -2066,6 +2066,248 @@ textarea.form-control {
     color: var(--accent);
 }
 
+#scroll-down {
+    bottom: calc(148px + env(safe-area-inset-bottom));
+    background: var(--bg-card);
+    color: var(--light);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#scroll-down.hidden-scroll-down {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(15px);
+}
+
+#scroll-down:hover {
+    transform: translateY(3px);
+    border-color: var(--primary);
+    color: var(--primary);
+    box-shadow: 0 0 16px var(--primary);
+}
+
+/* ==========================================================================
+   Hero Scroll Down Indicator
+   ========================================================================== */
+.hero-scroll-indicator {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: var(--text-gray);
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.hero-scroll-indicator:hover {
+    color: var(--primary);
+    transform: translateX(-50%) translateY(3px);
+}
+
+.hero-scroll-indicator .mouse-icon {
+    width: 24px;
+    height: 38px;
+    border: 2px solid var(--text-gray);
+    border-radius: 14px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-scroll-indicator:hover .mouse-icon {
+    border-color: var(--primary);
+    box-shadow: 0 0 14px var(--primary);
+}
+
+.hero-scroll-indicator .mouse-wheel {
+    width: 4px;
+    height: 7px;
+    background: var(--primary);
+    border-radius: 2px;
+    position: absolute;
+    top: 6px;
+    animation: mouseWheelScroll 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+.hero-scroll-indicator .mouse-arrows {
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    animation: mouseArrowBounce 1.8s ease-in-out infinite;
+    transition: color 0.3s ease;
+}
+
+.hero-scroll-indicator:hover .mouse-arrows {
+    color: var(--primary);
+}
+
+@keyframes mouseWheelScroll {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(12px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+}
+
+@keyframes mouseArrowBounce {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(4px);
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   Matrix Hacker Easter Egg Overlay
+   ========================================================================== */
+.matrix-easter-egg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: calc(30px + env(safe-area-inset-top));
+    overflow: hidden;
+}
+
+.matrix-easter-egg-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+#matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(2, 6, 23, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.matrix-hud-card {
+    position: relative;
+    z-index: 2;
+    background: rgba(10, 15, 30, 0.95);
+    border: 1px solid #10b981;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4), 0 20px 40px rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 520px;
+    padding: 0;
+    overflow: hidden;
+    transform: translateY(-30px) scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    font-family: 'Space Grotesk', 'Courier New', monospace;
+}
+
+.matrix-easter-egg-overlay.active .matrix-hud-card {
+    transform: translateY(0) scale(1);
+}
+
+.matrix-hud-header {
+    background: rgba(16, 185, 129, 0.15);
+    border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.matrix-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.matrix-dot.red { background: #ef4444; }
+.matrix-dot.yellow { background: #f59e0b; }
+.matrix-dot.green { background: #10b981; }
+
+.matrix-hud-title {
+    color: #10b981;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    flex: 1;
+    margin-left: 6px;
+}
+
+.matrix-close-btn {
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.3rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 4px;
+    transition: color 0.2s ease;
+}
+
+.matrix-close-btn:hover {
+    color: #ffffff;
+}
+
+.matrix-hud-body {
+    padding: 16px 20px;
+    color: #e2e8f0;
+}
+
+.matrix-cmd {
+    font-size: 0.85rem;
+    color: #38bdf8;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.matrix-msg {
+    font-size: 1.05rem;
+    color: #10b981;
+    margin-bottom: 6px;
+    line-height: 1.4;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+}
+
+.matrix-sub {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
 /* GTranslate Widget Estilizado */
 .gtranslate_wrapper {
     position: fixed;
@@ -2517,7 +2759,15 @@ textarea.form-control {
     }
 
     #back-to-top {
-        bottom: calc(72px + env(safe-area-inset-bottom));
+        bottom: calc(70px + env(safe-area-inset-bottom));
+    }
+
+    #scroll-down {
+        bottom: calc(124px + env(safe-area-inset-bottom));
+    }
+
+    .hero-scroll-indicator {
+        bottom: 14px;
     }
 
     .form-container {
