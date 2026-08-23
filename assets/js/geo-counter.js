@@ -27,6 +27,8 @@ class GeoViewsCounter {
         this.YEARLY_VIEWS_KEY = 'joaosnet_views_';
         this.SEND_THROTTLE_MS = 60 * 60 * 1000;
         this.DEBUG = false;
+        this.isUnlocked = false;
+        this.targetCount = 1;
 
         GeoViewsCounter.instance = this;
 
@@ -51,43 +53,73 @@ class GeoViewsCounter {
 
     async init() {
         try {
+            const year = new Date().getFullYear();
+            const yearKey = this.YEARLY_VIEWS_KEY + year;
             const initKey = this.STORAGE_KEY_PREFIX + 'initialized_today';
             const today = new Date().toDateString();
             const lastInit = localStorage.getItem(initKey);
 
+            // Carrega valor previamente armazenado em cache local
+            let cachedCount = parseInt(localStorage.getItem(yearKey) || '0', 10);
+
             if (lastInit !== today) {
                 localStorage.setItem(initKey, today);
-                this.updateViewCounter();
+                cachedCount += 1;
+                localStorage.setItem(yearKey, cachedCount.toString());
 
                 if (!this.shouldSkipNetworkCollection()) {
                     this.collectAndSendVisitData();
                 }
 
                 this.cleanOldData();
-            } else {
-                this.updateViewCounter(false);
             }
+
+            this.targetCount = cachedCount > 0 ? cachedCount : 1;
+            this.initAchievementCollapse();
+            this.setupAchievementObserver();
+
+            // Busca assincronamente a contagem global consolidada da planilha (Google Apps Script)
+            this.syncGlobalViews(yearKey);
         } catch (error) {
             // Silencioso para não poluir o console
         }
     }
 
-    updateViewCounter(increment = true) {
+    async fetchGlobalCount() {
+        if (!this.GOOGLE_APPS_SCRIPT_URL || !this.GOOGLE_APPS_SCRIPT_URL.includes('script.google.com')) {
+            return null;
+        }
+
         try {
-            const year = new Date().getFullYear();
-            const yearKey = this.YEARLY_VIEWS_KEY + year;
-            let count = parseInt(localStorage.getItem(yearKey) || '0', 10);
-
-            if (increment) {
-                count += 1;
-                localStorage.setItem(yearKey, count.toString());
+            const response = await fetch(this.GOOGLE_APPS_SCRIPT_URL, {
+                method: 'GET',
+                cache: 'no-store'
+            });
+            if (!response.ok) return null;
+            const data = await response.json();
+            if (data && data.metricas && typeof data.metricas.totalVisitasRegistradas === 'number') {
+                return data.metricas.totalVisitasRegistradas;
             }
+        } catch (e) {
+            this.debug('[GeoViewsCounter] Falha ao obter contagem remota:', e);
+        }
+        return null;
+    }
 
-            this.targetCount = count > 0 ? count : 1;
-            this.initAchievementCollapse();
-            this.setupAchievementObserver();
+    async syncGlobalViews(yearKey) {
+        try {
+            const globalCount = await this.fetchGlobalCount();
+            if (typeof globalCount === 'number' && globalCount > 0) {
+                const prevCount = this.targetCount;
+                this.targetCount = Math.max(this.targetCount, globalCount);
+                localStorage.setItem(yearKey, this.targetCount.toString());
+
+                if (this.isUnlocked && this.targetCount !== prevCount) {
+                    this.animateCountUp(this.targetCount, prevCount, 600);
+                }
+            }
         } catch (error) {
-            // ignore
+            this.debug('[GeoViewsCounter] Erro ao sincronizar contagem global:', error);
         }
     }
 
@@ -203,12 +235,10 @@ class GeoViewsCounter {
         render();
     }
 
-    animateCountUp(target) {
+    animateCountUp(target, start = 0, duration = 1200) {
         const collapsedCounter = document.getElementById('collapsed-views');
         if (!this.counterEl && !collapsedCounter) return;
 
-        const duration = 1200;
-        const start = 0;
         const startTime = performance.now();
 
         const setVal = (val) => {
@@ -249,8 +279,9 @@ class GeoViewsCounter {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
+                        this.isUnlocked = true;
                         achievementCard.classList.add('achievement-unlocked');
-                        this.animateCountUp(this.targetCount || 1);
+                        this.animateCountUp(this.targetCount || 1, 0, 1200);
                         this.launchConfetti();
                         this.trackEvent('achievement_footer_reached', { count: this.targetCount });
                         observer.disconnect();
@@ -260,8 +291,9 @@ class GeoViewsCounter {
 
             observer.observe(achievementCard);
         } else {
+            this.isUnlocked = true;
             achievementCard.classList.add('achievement-unlocked');
-            this.animateCountUp(this.targetCount || 1);
+            this.animateCountUp(this.targetCount || 1, 0, 1200);
         }
     }
 

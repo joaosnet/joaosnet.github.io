@@ -207,6 +207,15 @@ class TestJavaScriptFiles:
         close_braces = content.count("}")
         assert open_braces == close_braces, f"Chaves desbalanceadas em geo-counter.js: {open_braces} {{ vs {close_braces} }}"
 
+    def test_geo_counter_has_global_sync_methods(self, js_dir):
+        """geo-counter.js deve ter métodos de sincronização global com Apps Script"""
+        geo_path = js_dir / "geo-counter.js"
+        content = geo_path.read_text(encoding="utf-8")
+
+        assert "fetchGlobalCount" in content, "Método fetchGlobalCount ausente em geo-counter.js"
+        assert "syncGlobalViews" in content, "Método syncGlobalViews ausente em geo-counter.js"
+        assert "GOOGLE_APPS_SCRIPT_URL" in content, "GOOGLE_APPS_SCRIPT_URL ausente em geo-counter.js"
+
     def test_geo_counter_does_not_call_public_ip_apis(self, js_dir):
         """geo-counter.js não deve chamar APIs públicas de IP/geo no navegador"""
         geo_path = js_dir / "geo-counter.js"

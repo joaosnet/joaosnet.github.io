@@ -153,39 +153,13 @@ function initFab() {
     });
 }
 
-/* Unique views counter using CountAPI and localStorage to ensure unique-in-browser hits */
+/* Unique views counter now handled by geo-counter.js */
 function initUniqueViews() {
-    const el = document.getElementById('unique-views');
-    if (!el) return;
-    const NS = 'joaosnet-github-io';
-    const KEY = 'unique-views';
-    const flagKey = `visited_${NS}_${KEY}`;
-    
-    // Check if already counted in this browser session
-    if (localStorage.getItem(flagKey)) {
-        el.textContent = 'Nunca 🤫';
-        return;
-    }
-    
-    const countUrl = `https://api.countapi.xyz/get/${NS}/${KEY}`;
-    const hitUrl = `https://api.countapi.xyz/hit/${NS}/${KEY}`;
-    
-    fetch(countUrl)
-        .then(res => res.json())
-        .then(data => {
-            el.textContent = data.value === 0 ? 'Nunca 🤫' : data.value.toLocaleString();
-            // Count unique visit
-            localStorage.setItem(flagKey, 'true');
-            fetch(hitUrl);
-        })
-        .catch(() => {
-            el.textContent = 'Nunca 🤫';
-        });
+    // Handled by GeoViewsCounter in geo-counter.js
 }
 
 /* Initialize features after load */
 document.addEventListener('DOMContentLoaded', () => {
     initContact();
-    initUniqueViews();
     initFab();
 });
