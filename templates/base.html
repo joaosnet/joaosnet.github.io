@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="{{ 'pt-BR' if lang == 'pt' else 'en' }}" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="{{ csp }}">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="dark light">
+  <title>{% block title %}{{ site.name }} | {{ profile.title }}{% endblock %}</title>
+  <meta name="description" content="{{ project[lang].summary if project else profile.description }}">
+  <meta name="author" content="{{ site.name }}">
+  {% if path.endswith('404.html') %}<meta name="robots" content="noindex, follow">{% endif %}
+  <link rel="canonical" href="{{ site.url }}{{ path }}">
+  <link rel="alternate" hreflang="{{ 'pt-BR' if lang == 'en' else 'en' }}" href="{{ site.url }}{{ alternate }}">
+  <link rel="alternate" hreflang="{{ 'pt-BR' if lang == 'pt' else 'en' }}" href="{{ site.url }}{{ path }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ path if lang == 'pt' else alternate }}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{ 'pt_BR' if lang == 'pt' else 'en_US' }}">
+  <meta property="og:title" content="{{ (project.name + ' · ') if project else '' }}{{ site.name }}">
+  <meta property="og:description" content="{{ project[lang].summary if project else profile.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ path }}">
+  <meta property="og:image" content="{{ site.url }}/assets/images/og-excellence.png">
+  <meta property="og:image:alt" content="João Silva Neto · Software, systems & experiments">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.png" type="image/png">
+  <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
+  <script src="/assets/js/boot.js"></script>
+  <script type="application/ld+json">{{ schema|safe }}</script>
+  <script src="/assets/js/portfolio.js" defer></script>
+  <script src="/assets/js/analytics.js" defer></script>
+</head>
+<body data-page="{{ path }}" data-lang="{{ lang }}">
+  <a class="skip-link" href="#main-content">{{ t.skip }}</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Silva Neto<span class="brand-dot">.</span></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-track="menu" hidden>{{ t.menu }} <span aria-hidden="true">☰</span></button>
+      <nav id="main-nav" aria-label="{{ t.menu }}">
+        <a href="{{ base }}#projects" data-track="nav-projects">{{ t.nav_projects }}</a>
+        <a href="{{ base }}#published" data-track="nav-lab">{{ t.nav_lab }}<span class="nav-dot" aria-hidden="true"></span></a>
+        <a href="{{ base }}#education" data-track="nav-about">{{ t.nav_about }}</a>
+        <a href="{{ base }}#contact" data-track="nav-contact">{{ t.nav_contact }}</a>
+      </nav>
+      <div class="header-tools">
+        <a class="language-switch" href="{{ alternate }}" hreflang="{{ 'en' if lang == 'pt' else 'pt-BR' }}" lang="{{ 'en' if lang == 'pt' else 'pt-BR' }}" aria-label="{{ 'Read in English' if lang == 'pt' else 'Ler em português' }}" data-track="language">{{ 'EN' if lang == 'pt' else 'PT' }} <span aria-hidden="true">↗</span></a>
+        <button class="theme-toggle" type="button" aria-label="{{ t.theme }}" title="{{ t.theme }}" data-track="theme" hidden><span aria-hidden="true">◐</span></button>
+        <a class="header-contact" href="{{ base }}#contact" data-track="header-contact">{{ t.contact }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </header>
+  <main id="main-content" tabindex="-1">{% block content %}{% endblock %}</main>
+  <footer class="site-footer" data-section="footer">
+    <div class="container footer-top"><a class="brand" href="{{ base }}"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>João Silva Neto.</a><p>{{ t.footer }}</p><a class="back-top" href="#main-content" aria-label="{{ t.home }}" data-track="back-top">↑</a></div>
+    <div class="container footer-bottom"><span>© 2026 João Silva Neto · {{ profile.location }}</span><div><a href="{{ base }}privacy/" data-track="privacy">{{ t.privacy }}</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">{{ t.metrics }}</button><a href="{{ site.github }}" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
+  </footer>
+  <aside class="metrics-notice" aria-label="{{ t.metrics }}" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">{{ t.metrics_preview }}</span><button class="text-button metrics-toggle" type="button">{{ t.disable }}</button><a href="{{ base }}privacy/">{{ t.privacy }}</a><button class="notice-close" type="button" aria-label="{{ t.close_notice }}">×</button></aside>
+  <div class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

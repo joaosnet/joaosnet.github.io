@@ -1,0 +1,8 @@
+{% macro visual(p, t) %}
+<div class="project-visual visual-{{ p.visual }}" aria-hidden="true">
+  <span class="visual-index">{{ p.number }} / {{ p.name }}</span>
+  {% if p.visual == 'signal' %}<div class="signal-orbits"><span></span><span></span><span></span><div class="signal-core">a<span>~</span></div></div><span class="visual-caption">Wi-Fi CSI → ESP32 → Rust</span>
+  {% elif p.visual == 'mobile' %}<div class="device-window"><div class="device-top"><span></span><span></span><span></span></div><div class="device-content"><span class="device-logo">D<span>m</span></span><div class="device-lines"><i></i><i></i><i></i></div><div class="device-grid"><i></i><i></i><i></i></div></div></div><span class="visual-caption">WEB + MOBILE / LAPSHub</span>
+  {% else %}<div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>{% endif %}
+</div>
+{% endmacro %}

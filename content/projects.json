@@ -1,0 +1,188 @@
+[
+  {
+    "id": "aethersense",
+    "name": "AetherSense",
+    "repo": "joaosnet/aethersense",
+    "visibility": "public",
+    "category": "systems",
+    "number": "01",
+    "tags": ["Rust", "ESP32", "React", "Python", "ONNX"],
+    "skills": ["backend", "devices", "data"],
+    "demo": "",
+    "visual": "signal",
+    "pt": {
+      "eyebrow": "IoT · Pesquisa aplicada",
+      "title": "O invisível também tem sinal.",
+      "summary": "Uma plataforma experimental que conecta sinais Wi-Fi, processamento e uma interface web para explorar sensoriamento sem câmeras.",
+      "status": "Protótipo de pesquisa · TCC",
+      "role": "Projeto de TCC em Engenharia de Computação. O escopo técnico abaixo é verificável no repositório público; autoria específica de mudanças pode ser consultada no histórico de contribuições.",
+      "problem": "Investigar como variações do Channel State Information (CSI) de redes Wi-Fi podem ser adquiridas, processadas e visualizadas em um sistema experimental.",
+      "decisions": [
+        [
+          "Do dispositivo à interface",
+          "Firmware ESP32 para aquisição, backend Rust para ingestão e processamento, e React/TypeScript para visualização."
+        ],
+        [
+          "Aprendizado de máquina separado",
+          "Um pipeline Python treina e avalia modelos, exportando artefatos ONNX para inferência."
+        ],
+        [
+          "Exploração reproduzível",
+          "Docker Compose e um modo de reprodução permitem explorar o dashboard sem gravar firmware."
+        ]
+      ],
+      "limitations": "Protótipo experimental. Resultados dependem do ambiente, da topologia e da calibração. Não é um dispositivo médico nem uma solução validada para diagnóstico ou decisões de segurança.",
+      "evidence": "O README público documenta componentes, execução, testes e limites. Capturas locais, credenciais e dados residenciais não fazem parte deste estudo de caso.",
+      "takeaway": "Um exercício de engenharia que atravessa hardware, sistemas, dados e produto."
+    },
+    "en": {
+      "eyebrow": "IoT · Applied research",
+      "title": "Even the invisible has a signal.",
+      "summary": "An experimental platform connecting Wi-Fi signals, processing and a web interface to explore camera-free sensing.",
+      "status": "Research prototype · Thesis",
+      "role": "Computer Engineering undergraduate thesis project. The technical scope below is documented in the public repository; individual changes can be traced through its contribution history.",
+      "problem": "Investigate how variations in Wi-Fi Channel State Information (CSI) can be acquired, processed and visualized in an experimental system.",
+      "decisions": [
+        [
+          "From device to interface",
+          "ESP32 firmware for acquisition, a Rust backend for ingestion and processing, and React/TypeScript for visualization."
+        ],
+        [
+          "A separate machine learning pipeline",
+          "Python tools train and evaluate models, exporting ONNX artifacts for inference."
+        ],
+        [
+          "Reproducible exploration",
+          "Docker Compose and a replay mode make the dashboard explorable without flashing hardware."
+        ]
+      ],
+      "limitations": "An experimental prototype. Results depend on the environment, topology and calibration. It is not a medical device or a validated diagnostic or safety system.",
+      "evidence": "The public README documents components, setup, tests and limitations. Local captures, credentials and residential data are excluded from this case study.",
+      "takeaway": "An engineering exercise spanning hardware, systems, data and product."
+    }
+  },
+  {
+    "id": "dmovel",
+    "name": "DMóvel",
+    "repo": "LAPSHub/dmovel_web_app",
+    "visibility": "public",
+    "category": "interfaces",
+    "number": "02",
+    "tags": ["Flutter", "Dart", "Web", "Android"],
+    "skills": ["interfaces"],
+    "demo": "https://lapshub.github.io/dmovel_web_app/",
+    "visual": "mobile",
+    "pt": {
+      "eyebrow": "Produto · Multiplataforma",
+      "title": "Um projeto, diferentes telas.",
+      "summary": "Aplicação do ecossistema DMóvel com acesso pela web e distribuições móveis, desenvolvida no contexto acadêmico do LAPSHub.",
+      "status": "Projeto acadêmico em equipe",
+      "role": "Projeto acadêmico associado ao LAPSHub, citado no meu currículo. Este estudo descreve o produto público da equipe, sem atribuir a mim a autoria exclusiva de seus componentes.",
+      "problem": "Disponibilizar o sistema DMóvel em diferentes plataformas e oferecer um caminho direto para acessar a aplicação e suas versões.",
+      "decisions": [
+        [
+          "Acesso pelo navegador",
+          "A versão web oferece uma entrada direta, sem exigir a instalação de um aplicativo."
+        ],
+        [
+          "Distribuições por plataforma",
+          "O repositório publica versões móveis e orienta os diferentes caminhos de instalação."
+        ],
+        [
+          "Versões rastreáveis",
+          "Releases e código público permitem consultar a evolução do projeto e suas contribuições."
+        ]
+      ],
+      "limitations": "A demonstração externa pode depender de serviços, permissões ou condições de rede. Sua disponibilidade é independente deste portfólio.",
+      "evidence": "Demonstração web, instruções de uso, releases e histórico de contribuições estão disponíveis no repositório público do LAPSHub.",
+      "takeaway": "Aprendizado em contexto de equipe, com atenção à entrega e ao acesso do usuário."
+    },
+    "en": {
+      "eyebrow": "Product · Cross-platform",
+      "title": "One project, different screens.",
+      "summary": "An application in the DMóvel ecosystem with web access and mobile distributions, developed in the academic context of LAPSHub.",
+      "status": "Academic team project",
+      "role": "An academic project associated with LAPSHub and referenced in my résumé. This case study describes the team's public product without claiming sole authorship of its components.",
+      "problem": "Make DMóvel available across platforms and provide a direct path to the application and its releases.",
+      "decisions": [
+        [
+          "Browser access",
+          "The web version provides a direct entry point without requiring an application install."
+        ],
+        [
+          "Platform-specific distributions",
+          "The repository publishes mobile versions and documents their installation paths."
+        ],
+        [
+          "Traceable releases",
+          "Public releases and source code make the project's evolution and contributions inspectable."
+        ]
+      ],
+      "limitations": "The external demo may depend on services, permissions or network conditions. Its availability is independent of this portfolio.",
+      "evidence": "A web demo, usage instructions, releases and contribution history are available in LAPSHub's public repository.",
+      "takeaway": "Learning in a team context, with attention to delivery and user access."
+    }
+  },
+  {
+    "id": "evolutionary-lab",
+    "name": "Evolutionary Lab",
+    "repo": "joaosnet/evolutionary-optimization-viz-ag-pso",
+    "visibility": "public",
+    "category": "data",
+    "number": "03",
+    "tags": ["JavaScript", "Plotly", "AG", "PSO", "ED"],
+    "skills": ["data", "interfaces"],
+    "demo": "https://joaosnet.github.io/evolutionary-optimization-viz-ag-pso/",
+    "visual": "optimization",
+    "pt": {
+      "eyebrow": "Algoritmos · Visualização",
+      "title": "Algoritmos que você pode observar.",
+      "summary": "Um laboratório no navegador para comparar algoritmos genéticos, enxames de partículas e evolução diferencial em funções de teste.",
+      "status": "Demonstração interativa pública",
+      "role": "Projeto publicado no meu GitHub. Código e histórico abertos permitem examinar a implementação; os recursos descritos abaixo estão documentados no README.",
+      "problem": "Tornar a busca por soluções de otimização mais compreensível, permitindo observar populações e comparar sua convergência.",
+      "decisions": [
+        [
+          "Tudo no navegador",
+          "JavaScript executa os algoritmos sem um backend, facilitando o acesso e a experimentação."
+        ],
+        [
+          "Comparação visual",
+          "Plotly apresenta superfícies 3D, populações e curvas de convergência para AG, PSO e ED."
+        ],
+        [
+          "Parâmetros exploráveis",
+          "Controles permitem ajustar hiperparâmetros e experimentar funções, com interface em português e inglês."
+        ]
+      ],
+      "limitations": "É uma ferramenta de exploração. O resultado depende da função, dos parâmetros e da aleatoriedade; uma execução isolada não estabelece superioridade de um algoritmo.",
+      "evidence": "A demonstração e o código público permitem reproduzir experimentos. O README documenta os operadores de cada algoritmo e as opções da interface.",
+      "takeaway": "Conectar fundamentos matemáticos a uma interface que convida a experimentar."
+    },
+    "en": {
+      "eyebrow": "Algorithms · Visualization",
+      "title": "Algorithms you can actually watch.",
+      "summary": "A browser-based lab comparing genetic algorithms, particle swarm optimization and differential evolution on benchmark functions.",
+      "status": "Public interactive demo",
+      "role": "A project published on my GitHub. Open source and contribution history make the implementation inspectable; the features below are documented in its README.",
+      "problem": "Make optimization searches easier to understand by observing populations and comparing their convergence.",
+      "decisions": [
+        [
+          "Entirely in the browser",
+          "JavaScript runs the algorithms without a backend, making experimentation easier to access."
+        ],
+        [
+          "Visual comparison",
+          "Plotly displays 3D surfaces, populations and convergence curves for GA, PSO and DE."
+        ],
+        [
+          "Explorable parameters",
+          "Controls let visitors adjust hyperparameters and experiment with functions in Portuguese or English."
+        ]
+      ],
+      "limitations": "An exploration tool. Results depend on the function, parameters and randomness; a single run does not establish that one algorithm is better.",
+      "evidence": "The demo and public code allow experiments to be reproduced. The README documents algorithm operators and interface options.",
+      "takeaway": "Connecting mathematical foundations to an interface that invites experimentation."
+    }
+  }
+]
