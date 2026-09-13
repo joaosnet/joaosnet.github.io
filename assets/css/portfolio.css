@@ -29,7 +29,7 @@
   --muted: #506078;
   --subtle: #53657e;
   --line: #d3deeb;
-  --cyan: hsl(calc(var(--theme-hue) * 1deg), 88%, 28%);
+  --cyan: hsl(calc(var(--theme-hue) * 1deg), 90%, 25%);
   --violet: hsl(calc((var(--theme-hue) + 68) * 1deg), 47%, 49%);
   --mint: hsl(calc((var(--theme-hue) - 37) * 1deg), 70%, 26%);
   --header: rgba(247, 249, 252, 0.96);
@@ -529,9 +529,7 @@ p {
   border-radius: 8px;
   font-size: 0.88rem;
   font-weight: 500;
-  transition:
-    transform 0.18s,
-    background 0.18s;
+  transition: transform 0.18s ease;
   line-height: 1.5;
 }
 .button:hover {

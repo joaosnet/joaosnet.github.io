@@ -45,8 +45,10 @@ for (const lang of ["pt", "en"]) {
     ]) {
       await page.goto(route);
       for (const theme of ["dark", "light"]) {
-        if ((await page.locator("html").getAttribute("data-theme")) !== theme)
+        if ((await page.locator("html").getAttribute("data-theme")) !== theme) {
           await page.locator(".theme-toggle").click();
+          await page.waitForTimeout(200);
+        }
         const result = await new AxeBuilder({ page })
           .withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"])
           .analyze();
