@@ -1665,7 +1665,7 @@
       "source_file": "content/ui.json",
       "source_location": "L1",
       "id": "content_ui_json",
-      "community": 41,
+      "community": 40,
       "norm_label": "ui.json"
     },
     {
@@ -4084,91 +4084,199 @@
       "label": "Jo\u00e3o Silva Neto \u00b7 Portfolio",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L1",
+      "source_location": "L3",
       "id": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
       "community": 70,
       "norm_label": "joao silva neto \u00b7 portfolio"
     },
     {
-      "label": "Pr\u00e9via local",
+      "label": "Vis\u00e3o Geral",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L5",
-      "id": "joaosnet_github_io_readme_pr\u00e9via_local",
+      "source_location": "L23",
+      "id": "joaosnet_github_io_readme_vis\u00e3o_geral",
       "community": 70,
-      "norm_label": "previa local"
+      "norm_label": "visao geral"
     },
     {
-      "label": "code:powershell (uv sync --frozen --extra dev)",
+      "label": "Destaques de Engenharia & Padr\u00e3o AAA",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L7",
+      "source_location": "L31",
+      "id": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "community": 70,
+      "norm_label": "destaques de engenharia & padrao aaa"
+    },
+    {
+      "label": "code:block1 (\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L33",
       "id": "joaosnet_github_io_readme_codeblock_1",
       "community": 70,
-      "norm_label": "code:powershell (uv sync --frozen --extra dev)"
+      "norm_label": "code:block1 (\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500)"
     },
     {
-      "label": "Editar conte\u00fado",
+      "label": "1. Acessibilidade e Design System AAA",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L16",
-      "id": "joaosnet_github_io_readme_editar_conte\u00fado",
+      "source_location": "L52",
+      "id": "joaosnet_github_io_readme_1_acessibilidade_e_design_system_aaa",
       "community": 70,
-      "norm_label": "editar conteudo"
+      "norm_label": "1. acessibilidade e design system aaa"
     },
     {
-      "label": "Atualizar projetos",
+      "label": "2. Internacionaliza\u00e7\u00e3o H\u00edbrida (I18n)",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": "L26",
-      "id": "joaosnet_github_io_readme_atualizar_projetos",
+      "source_location": "L57",
+      "id": "joaosnet_github_io_readme_2_internacionaliza\u00e7\u00e3o_h\u00edbrida_i18n",
       "community": 70,
-      "norm_label": "atualizar projetos"
+      "norm_label": "2. internacionalizacao hibrida (i18n)"
     },
     {
-      "label": "code:powershell (uv run python update_projects.py public)",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L28",
-      "id": "joaosnet_github_io_readme_codeblock_2",
-      "community": 70,
-      "norm_label": "code:powershell (uv run python update_projects.py public)"
-    },
-    {
-      "label": "Qualidade",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L37",
-      "id": "joaosnet_github_io_readme_qualidade",
-      "community": 70,
-      "norm_label": "qualidade"
-    },
-    {
-      "label": "code:powershell (uv run ruff check build_site.py update_projects.py scripts/b)",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L39",
-      "id": "joaosnet_github_io_readme_codeblock_3",
-      "community": 70,
-      "norm_label": "code:powershell (uv run ruff check build_site.py update_projects.py scripts/b)"
-    },
-    {
-      "label": "M\u00e9tricas e servi\u00e7os externos",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "L54",
-      "id": "joaosnet_github_io_readme_m\u00e9tricas_e_servi\u00e7os_externos",
-      "community": 70,
-      "norm_label": "metricas e servicos externos"
-    },
-    {
-      "label": "Publica\u00e7\u00e3o e retorno de vers\u00e3o",
+      "label": "3. Coleta de M\u00e9tricas Privacy-First",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "L62",
-      "id": "joaosnet_github_io_readme_publica\u00e7\u00e3o_e_retorno_de_vers\u00e3o",
+      "id": "joaosnet_github_io_readme_3_coleta_de_m\u00e9tricas_privacy_first",
       "community": 70,
-      "norm_label": "publicacao e retorno de versao"
+      "norm_label": "3. coleta de metricas privacy-first"
+    },
+    {
+      "label": "4. Gera\u00e7\u00e3o Program\u00e1tica de Curr\u00edculos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L67",
+      "id": "joaosnet_github_io_readme_4_gera\u00e7\u00e3o_program\u00e1tica_de_curr\u00edculos",
+      "community": 70,
+      "norm_label": "4. geracao programatica de curriculos"
+    },
+    {
+      "label": "Estrutura do Reposit\u00f3rio",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L72",
+      "id": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio",
+      "community": 70,
+      "norm_label": "estrutura do repositorio"
+    },
+    {
+      "label": "code:text (.)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "id": "joaosnet_github_io_readme_codeblock_2",
+      "community": 70,
+      "norm_label": "code:text (.)"
+    },
+    {
+      "label": "Come\u00e7ando (Desenvolvimento Local)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "id": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
+      "community": 70,
+      "norm_label": "comecando (desenvolvimento local)"
+    },
+    {
+      "label": "Pr\u00e9-requisitos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L105",
+      "id": "joaosnet_github_io_readme_pr\u00e9_requisitos",
+      "community": 70,
+      "norm_label": "pre-requisitos"
+    },
+    {
+      "label": "1. Clonagem e Instala\u00e7\u00e3o",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L110",
+      "id": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o",
+      "community": 70,
+      "norm_label": "1. clonagem e instalacao"
+    },
+    {
+      "label": "code:powershell (# Clonar o reposit\u00f3rio)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L112",
+      "id": "joaosnet_github_io_readme_codeblock_3",
+      "community": 70,
+      "norm_label": "code:powershell (# clonar o repositorio)"
+    },
+    {
+      "label": "2. Compila\u00e7\u00e3o e Pr\u00e9via Local",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L122",
+      "id": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local",
+      "community": 70,
+      "norm_label": "2. compilacao e previa local"
+    },
+    {
+      "label": "code:powershell (# Compilar todas as p\u00e1ginas est\u00e1ticas, sitemap e curr\u00edculos )",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L124",
+      "id": "joaosnet_github_io_readme_codeblock_4",
+      "community": 70,
+      "norm_label": "code:powershell (# compilar todas as paginas estaticas, sitemap e curriculos )"
+    },
+    {
+      "label": "Atualiza\u00e7\u00e3o de Projetos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L138",
+      "id": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos",
+      "community": 70,
+      "norm_label": "atualizacao de projetos"
+    },
+    {
+      "label": "code:powershell (# Consultar reposit\u00f3rios p\u00fablicos e regenerar content/projec)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L142",
+      "id": "joaosnet_github_io_readme_codeblock_5",
+      "community": 70,
+      "norm_label": "code:powershell (# consultar repositorios publicos e regenerar content/projec)"
+    },
+    {
+      "label": "Garantia de Qualidade & Crit\u00e9rios \"The Bar\"",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L155",
+      "id": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar",
+      "community": 70,
+      "norm_label": "garantia de qualidade & criterios \"the bar\""
+    },
+    {
+      "label": "code:powershell (uv run python build_site.py)",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L172",
+      "id": "joaosnet_github_io_readme_codeblock_6",
+      "community": 70,
+      "norm_label": "code:powershell (uv run python build_site.py)"
+    },
+    {
+      "label": "Documenta\u00e7\u00e3o Detalhada",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L185",
+      "id": "joaosnet_github_io_readme_documenta\u00e7\u00e3o_detalhada",
+      "community": 70,
+      "norm_label": "documentacao detalhada"
+    },
+    {
+      "label": "Contato & Redes",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L194",
+      "id": "joaosnet_github_io_readme_contato_redes",
+      "community": 70,
+      "norm_label": "contato & redes"
     },
     {
       "label": "analytics-apps-script.md",
@@ -4405,6 +4513,60 @@
       "norm_label": "code:powershell (uv run ruff check build_site.py update_projects.py scripts t)"
     },
     {
+      "label": "Pr\u00e9via local",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "community": 70,
+      "norm_label": "previa local",
+      "id": "joaosnet_github_io_readme_pr\u00e9via_local"
+    },
+    {
+      "label": "Editar conte\u00fado",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L16",
+      "community": 70,
+      "norm_label": "editar conteudo",
+      "id": "joaosnet_github_io_readme_editar_conte\u00fado"
+    },
+    {
+      "label": "Atualizar projetos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L26",
+      "community": 70,
+      "norm_label": "atualizar projetos",
+      "id": "joaosnet_github_io_readme_atualizar_projetos"
+    },
+    {
+      "label": "Qualidade",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L37",
+      "community": 70,
+      "norm_label": "qualidade",
+      "id": "joaosnet_github_io_readme_qualidade"
+    },
+    {
+      "label": "M\u00e9tricas e servi\u00e7os externos",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L54",
+      "community": 70,
+      "norm_label": "metricas e servicos externos",
+      "id": "joaosnet_github_io_readme_m\u00e9tricas_e_servi\u00e7os_externos"
+    },
+    {
+      "label": "Publica\u00e7\u00e3o e retorno de vers\u00e3o",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L62",
+      "community": 70,
+      "norm_label": "publicacao e retorno de versao",
+      "id": "joaosnet_github_io_readme_publica\u00e7\u00e3o_e_retorno_de_vers\u00e3o"
+    },
+    {
       "label": "isSessionCounted",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
@@ -4418,7 +4580,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L1",
-      "community": 30,
+      "community": 59,
       "norm_label": "critic_report_output.json",
       "id": "critic_report_output_json"
     },
@@ -4427,7 +4589,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L2",
-      "community": 30,
+      "community": 52,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_theme"
     },
@@ -4436,7 +4598,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L3",
-      "community": 30,
+      "community": 52,
       "norm_label": "dark",
       "id": "joaosnet_github_io_critic_report_output_theme_dark"
     },
@@ -4445,7 +4607,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L4",
-      "community": 30,
+      "community": 52,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_dark_theme"
     },
@@ -4454,7 +4616,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L5",
-      "community": 30,
+      "community": 52,
       "norm_label": "bgcolor",
       "id": "joaosnet_github_io_critic_report_output_dark_bgcolor"
     },
@@ -4463,7 +4625,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L7",
-      "community": 30,
+      "community": 52,
       "norm_label": "light",
       "id": "joaosnet_github_io_critic_report_output_theme_light"
     },
@@ -4472,7 +4634,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L8",
-      "community": 30,
+      "community": 52,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_light_theme"
     },
@@ -4481,7 +4643,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L9",
-      "community": 30,
+      "community": 52,
       "norm_label": "bgcolor",
       "id": "joaosnet_github_io_critic_report_output_light_bgcolor"
     },
@@ -4490,7 +4652,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L11",
-      "community": 30,
+      "community": 52,
       "norm_label": "dynamic",
       "id": "joaosnet_github_io_critic_report_output_theme_dynamic"
     },
@@ -4499,7 +4661,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L12",
-      "community": 30,
+      "community": 52,
       "norm_label": "beforetheme",
       "id": "joaosnet_github_io_critic_report_output_dynamic_beforetheme"
     },
@@ -4508,7 +4670,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L13",
-      "community": 30,
+      "community": 52,
       "norm_label": "aftertheme",
       "id": "joaosnet_github_io_critic_report_output_dynamic_aftertheme"
     },
@@ -4517,7 +4679,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L16",
-      "community": 54,
+      "community": 59,
       "norm_label": "images",
       "id": "joaosnet_github_io_critic_report_output_images"
     },
@@ -4526,7 +4688,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L17",
-      "community": 54,
+      "community": 59,
       "norm_label": "projects",
       "id": "joaosnet_github_io_critic_report_output_images_projects"
     },
@@ -5273,7 +5435,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L108",
-      "community": 30,
+      "community": 57,
       "norm_label": "i18n",
       "id": "joaosnet_github_io_critic_report_output_i18n"
     },
@@ -5282,7 +5444,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L109",
-      "community": 30,
+      "community": 57,
       "norm_label": "consoleerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_consoleerrors"
     },
@@ -5291,7 +5453,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L110",
-      "community": 30,
+      "community": 57,
       "norm_label": "pageerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_pageerrors"
     },
@@ -5300,7 +5462,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L111",
-      "community": 30,
+      "community": 57,
       "norm_label": "networkerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_networkerrors"
     },
@@ -5309,7 +5471,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L117",
-      "community": 30,
+      "community": 57,
       "norm_label": "statustextes",
       "id": "joaosnet_github_io_critic_report_output_i18n_statustextes"
     },
@@ -5318,7 +5480,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L118",
-      "community": 30,
+      "community": 57,
       "norm_label": "statustextfr",
       "id": "joaosnet_github_io_critic_report_output_i18n_statustextfr"
     },
@@ -5327,7 +5489,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L119",
-      "community": 30,
+      "community": 57,
       "norm_label": "nativeroutes",
       "id": "joaosnet_github_io_critic_report_output_i18n_nativeroutes"
     },
@@ -5336,7 +5498,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L120",
-      "community": 30,
+      "community": 57,
       "norm_label": "ptlang",
       "id": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang"
     },
@@ -5345,7 +5507,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L121",
-      "community": 30,
+      "community": 57,
       "norm_label": "enlang",
       "id": "joaosnet_github_io_critic_report_output_nativeroutes_enlang"
     },
@@ -5480,7 +5642,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L141",
-      "community": 30,
+      "community": 59,
       "norm_label": "counter",
       "id": "joaosnet_github_io_critic_report_output_counter"
     },
@@ -5489,7 +5651,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L142",
-      "community": 30,
+      "community": 59,
       "norm_label": "badgevisible",
       "id": "joaosnet_github_io_critic_report_output_counter_badgevisible"
     },
@@ -5498,7 +5660,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L143",
-      "community": 30,
+      "community": 59,
       "norm_label": "badgetext",
       "id": "joaosnet_github_io_critic_report_output_counter_badgetext"
     },
@@ -5507,7 +5669,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L144",
-      "community": 30,
+      "community": 59,
       "norm_label": "counttext",
       "id": "joaosnet_github_io_critic_report_output_counter_counttext"
     },
@@ -5516,7 +5678,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L145",
-      "community": 30,
+      "community": 59,
       "norm_label": "networkrequests",
       "id": "joaosnet_github_io_critic_report_output_counter_networkrequests"
     },
@@ -5525,7 +5687,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L152",
-      "community": 30,
+      "community": 55,
       "norm_label": "seo",
       "id": "joaosnet_github_io_critic_report_output_seo"
     },
@@ -5534,7 +5696,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L153",
-      "community": 30,
+      "community": 55,
       "norm_label": "sitemapmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_sitemapmatches"
     },
@@ -5543,7 +5705,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L154",
-      "community": 30,
+      "community": 55,
       "norm_label": "robotsmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_robotsmatches"
     },
@@ -5552,7 +5714,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L155",
-      "community": 30,
+      "community": 55,
       "norm_label": "indexmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_indexmatches"
     },
@@ -5561,7 +5723,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L156",
-      "community": 30,
+      "community": 55,
       "norm_label": "sitemapurlscount",
       "id": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount"
     },
@@ -5570,7 +5732,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L157",
-      "community": 30,
+      "community": 55,
       "norm_label": "hashreflangpt",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangpt"
     },
@@ -5579,7 +5741,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L158",
-      "community": 30,
+      "community": 55,
       "norm_label": "hashreflangen",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangen"
     },
@@ -5588,7 +5750,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L159",
-      "community": 30,
+      "community": 55,
       "norm_label": "hashreflangxdefault",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault"
     },
@@ -5597,7 +5759,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L160",
-      "community": 30,
+      "community": 55,
       "norm_label": "robotsdisallows",
       "id": "joaosnet_github_io_critic_report_output_seo_robotsdisallows"
     },
@@ -5606,7 +5768,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L161",
-      "community": 30,
+      "community": 55,
       "norm_label": "robotssitemap",
       "id": "joaosnet_github_io_critic_report_output_seo_robotssitemap"
     },
@@ -7730,7 +7892,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L15",
-      "community": 55,
+      "community": 58,
       "norm_label": "simplehtmlparser",
       "id": "tests_test_site_structure_simplehtmlparser"
     },
@@ -7739,7 +7901,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L18",
-      "community": 55,
+      "community": 58,
       "norm_label": ".__init__()",
       "id": "tests_test_site_structure_simplehtmlparser_init"
     },
@@ -7748,7 +7910,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L27",
-      "community": 55,
+      "community": 58,
       "norm_label": ".handle_starttag()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_starttag"
     },
@@ -7757,7 +7919,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L37",
-      "community": 55,
+      "community": 58,
       "norm_label": ".handle_data()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_data"
     },
@@ -7766,7 +7928,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L41",
-      "community": 55,
+      "community": 58,
       "norm_label": ".handle_comment()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_comment"
     },
@@ -7793,7 +7955,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L59",
-      "community": 55,
+      "community": 58,
       "norm_label": "parser()",
       "id": "tests_test_site_structure_parser"
     },
@@ -7820,7 +7982,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L75",
-      "community": 5,
+      "community": 71,
       "norm_label": ".test_has_required_scripts()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_required_scripts"
     },
@@ -7829,7 +7991,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L95",
-      "community": 5,
+      "community": 72,
       "norm_label": ".test_has_css_stylesheet()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_css_stylesheet"
     },
@@ -7838,7 +8000,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L102",
-      "community": 5,
+      "community": 62,
       "norm_label": ".test_has_meta_viewport()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_meta_viewport"
     },
@@ -7856,7 +8018,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L116",
-      "community": 5,
+      "community": 63,
       "norm_label": ".test_has_contact_form()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_contact_form"
     },
@@ -7865,7 +8027,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L121",
-      "community": 5,
+      "community": 65,
       "norm_label": ".test_has_theme_toggle()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_theme_toggle"
     },
@@ -7883,7 +8045,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L129",
-      "community": 5,
+      "community": 67,
       "norm_label": ".test_has_footer_views_counter()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_footer_views_counter"
     },
@@ -7901,7 +8063,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L138",
-      "community": 5,
+      "community": 68,
       "norm_label": ".test_has_telegram_contact_link()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_telegram_contact_link"
     },
@@ -7928,7 +8090,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L152",
-      "community": 5,
+      "community": 69,
       "norm_label": ".test_has_scroll_down_button()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_scroll_down_button"
     },
@@ -7946,7 +8108,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L161",
-      "community": 5,
+      "community": 60,
       "norm_label": ".test_has_matrix_easter_egg()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_matrix_easter_egg"
     },
@@ -7973,7 +8135,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L175",
-      "community": 5,
+      "community": 60,
       "norm_label": ".test_all_js_files_exist()",
       "id": "tests_test_site_structure_testjavascriptfiles_test_all_js_files_exist"
     },
@@ -7982,7 +8144,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L191",
-      "community": 37,
+      "community": 61,
       "norm_label": ".test_no_syntax_errors_in_utils()",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_utils"
     },
@@ -8036,7 +8198,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L253",
-      "community": 52,
+      "community": 58,
       "norm_label": "testcssfiles",
       "id": "tests_test_site_structure_testcssfiles"
     },
@@ -8054,7 +8216,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L261",
-      "community": 52,
+      "community": 58,
       "norm_label": ".test_styles_css_exists()",
       "id": "tests_test_site_structure_testcssfiles_test_styles_css_exists"
     },
@@ -8072,7 +8234,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L281",
-      "community": 52,
+      "community": 58,
       "norm_label": ".test_styles_has_light_theme_override()",
       "id": "tests_test_site_structure_testcssfiles_test_styles_has_light_theme_override"
     },
@@ -8135,7 +8297,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L16",
-      "community": 55,
+      "community": 58,
       "norm_label": "parser html simples para extrair informacoes",
       "id": "tests_test_site_structure_rationale_16"
     },
@@ -8180,7 +8342,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L76",
-      "community": 5,
+      "community": 71,
       "norm_label": "deve ter todos os scripts necessarios",
       "id": "tests_test_site_structure_rationale_76"
     },
@@ -8189,7 +8351,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L96",
-      "community": 5,
+      "community": 72,
       "norm_label": "deve ter folha de estilos",
       "id": "tests_test_site_structure_rationale_96"
     },
@@ -8198,7 +8360,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L103",
-      "community": 5,
+      "community": 62,
       "norm_label": "deve ter meta viewport para responsividade",
       "id": "tests_test_site_structure_rationale_103"
     },
@@ -8216,7 +8378,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L117",
-      "community": 5,
+      "community": 63,
       "norm_label": "deve ter formulario de contato",
       "id": "tests_test_site_structure_rationale_117"
     },
@@ -8225,7 +8387,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L122",
-      "community": 5,
+      "community": 65,
       "norm_label": "deve ter botao de troca de tema",
       "id": "tests_test_site_structure_rationale_122"
     },
@@ -8243,7 +8405,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L130",
-      "community": 5,
+      "community": 67,
       "norm_label": "deve ter contador de visitantes no footer",
       "id": "tests_test_site_structure_rationale_130"
     },
@@ -8261,7 +8423,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L139",
-      "community": 5,
+      "community": 68,
       "norm_label": "deve ter botao para contato no telegram",
       "id": "tests_test_site_structure_rationale_139"
     },
@@ -8288,7 +8450,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L153",
-      "community": 5,
+      "community": 69,
       "norm_label": "deve ter botao flutuante de rolar para baixo",
       "id": "tests_test_site_structure_rationale_153"
     },
@@ -8306,7 +8468,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L162",
-      "community": 5,
+      "community": 60,
       "norm_label": "deve ter container e canvas do easter egg matrix",
       "id": "tests_test_site_structure_rationale_162"
     },
@@ -8324,7 +8486,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L176",
-      "community": 5,
+      "community": 60,
       "norm_label": "todos os arquivos js obrigatorios devem existir",
       "id": "tests_test_site_structure_rationale_176"
     },
@@ -8333,7 +8495,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L192",
-      "community": 37,
+      "community": 61,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)",
       "id": "tests_test_site_structure_rationale_192"
     },
@@ -8387,7 +8549,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L254",
-      "community": 52,
+      "community": 58,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_254"
     },
@@ -8396,7 +8558,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L262",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_262"
     },
@@ -8414,7 +8576,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L282",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_282"
     },
@@ -9395,7 +9557,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L245",
-      "community": 52,
+      "community": 58,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_245"
     },
@@ -9404,7 +9566,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L253",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_253"
     },
@@ -9422,7 +9584,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L273",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_273"
     },
@@ -9485,7 +9647,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L178",
-      "community": 37,
+      "community": 61,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)",
       "id": "tests_test_site_structure_rationale_178"
     },
@@ -9530,7 +9692,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L231",
-      "community": 52,
+      "community": 58,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_231"
     },
@@ -9539,7 +9701,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L239",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_239"
     },
@@ -9548,7 +9710,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L259",
-      "community": 52,
+      "community": 58,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_259"
     },
@@ -12399,9 +12561,9 @@
       "source_file": "assets/js/portfolio.js",
       "source_location": "L484",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "assets_js_portfolio_js",
-      "target": "js_portfolio_rawsaved",
-      "confidence_score": 1.0
+      "target": "js_portfolio_rawsaved"
     },
     {
       "relation": "contains",
@@ -15986,6 +16148,86 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_vis\u00e3o_geral",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L103",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L138",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L185",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_documenta\u00e7\u00e3o_detalhada",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L194",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
+      "target": "joaosnet_github_io_readme_contato_redes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
       "source_location": "L5",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -16046,11 +16288,71 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "target": "joaosnet_github_io_readme_codeblock_1",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L52",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "target": "joaosnet_github_io_readme_1_acessibilidade_e_design_system_aaa",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "target": "joaosnet_github_io_readme_2_internacionaliza\u00e7\u00e3o_h\u00edbrida_i18n",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L62",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "target": "joaosnet_github_io_readme_3_coleta_de_m\u00e9tricas_privacy_first",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
+      "target": "joaosnet_github_io_readme_4_gera\u00e7\u00e3o_program\u00e1tica_de_curr\u00edculos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
       "source_location": "L7",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_pr\u00e9via_local",
       "target": "joaosnet_github_io_readme_codeblock_1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L74",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio",
+      "target": "joaosnet_github_io_readme_codeblock_2",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -16066,11 +16368,81 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "README.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
+      "target": "joaosnet_github_io_readme_pr\u00e9_requisitos",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L110",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
+      "target": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L122",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
+      "target": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L112",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o",
+      "target": "joaosnet_github_io_readme_codeblock_3",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
       "source_location": "L39",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_qualidade",
       "target": "joaosnet_github_io_readme_codeblock_3"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local",
+      "target": "joaosnet_github_io_readme_codeblock_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L142",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos",
+      "target": "joaosnet_github_io_readme_codeblock_5",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L172",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar",
+      "target": "joaosnet_github_io_readme_codeblock_6",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -24938,5 +25310,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "511cb65d9f906f5a308fdd7009b20c0e15105703"
+  "built_at_commit": "1e36285cea79b7450e4946e6537053ea9f5b375b"
 }
