@@ -478,30 +478,67 @@
     const currentYear = new Date().getFullYear();
     const countKey = `joaosnet_views_${currentYear}`;
     const sessionKey = `joaosnet_session_counted_${currentYear}`;
-    let targetCount = 1420;
+    let targetCount = 1;
 
     try {
-      const savedCount = parseInt(localStorage.getItem(countKey) || "0", 10);
-      if (savedCount > 0) targetCount = Math.max(targetCount, savedCount);
-      const isSessionCounted = sessionStorage.getItem(sessionKey);
-      if (!isSessionCounted) {
-        targetCount += 1;
-        localStorage.setItem(countKey, String(targetCount));
-        sessionStorage.setItem(sessionKey, "true");
+      const rawSaved = localStorage.getItem(countKey);
+      const savedCount = parseInt(rawSaved || "0", 10);
+      // Discard legacy/artificial baseline (>= 1000) from earlier development
+      if (savedCount > 0 && savedCount < 1000) {
+        targetCount = savedCount;
+      } else if (savedCount >= 1000) {
+        localStorage.removeItem(countKey);
       }
     } catch {
       /* Storage is optional */
     }
 
-    visitorCountEl.textContent = "1";
+    visitorCountEl.textContent = targetCount.toLocaleString(
+      document.body.dataset.lang === "pt" ? "pt-BR" : "en-US",
+    );
     visitorBadge.hidden = false;
 
     const syncRemoteViews = async () => {
       try {
         const scriptUrl =
           "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec";
+
+        // Record new visit via POST if not already counted in this session
+        try {
+          const isSessionCounted = sessionStorage.getItem(sessionKey);
+          const host = window.location.hostname || "";
+          const isLocal =
+            window.location.protocol === "file:" ||
+            host === "localhost" ||
+            host === "127.0.0.1";
+          if (!isSessionCounted && !isLocal) {
+            sessionStorage.setItem(sessionKey, "true");
+            const visitData = {
+              type: "visit",
+              timestamp: new Date().toISOString(),
+              path: window.location.pathname + window.location.hash,
+              url: window.location.href,
+              referrer: document.referrer || "",
+              language: navigator.language || "",
+              device: /Mobi|Android/i.test(navigator.userAgent)
+                ? "Mobile"
+                : "Desktop",
+              source: "portfolio-client",
+            };
+            fetch(scriptUrl, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(visitData),
+              keepalive: true,
+            }).catch(() => {});
+          }
+        } catch {
+          /* Session storage optional */
+        }
+
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 2500);
+        const timeout = setTimeout(() => controller.abort(), 3500);
         const res = await fetch(scriptUrl, {
           signal: controller.signal,
           cache: "no-store",
@@ -510,13 +547,17 @@
         if (res.ok) {
           const data = await res.json();
           const remoteCount = data?.metricas?.totalVisitasRegistradas;
-          if (typeof remoteCount === "number" && remoteCount > targetCount) {
+          if (typeof remoteCount === "number" && remoteCount > 0) {
             targetCount = remoteCount;
             try {
               localStorage.setItem(countKey, String(targetCount));
             } catch {
               /* Storage is optional */
             }
+            const isPt = document.body.dataset.lang === "pt";
+            visitorCountEl.textContent = targetCount.toLocaleString(
+              isPt ? "pt-BR" : "en-US",
+            );
           }
         }
       } catch {

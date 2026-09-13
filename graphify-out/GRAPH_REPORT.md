@@ -1,16 +1,16 @@
 # Graph Report - joaosnet.github.io  (2026-09-13)
 
 ## Corpus Check
-- 33 files · ~200,239 words
+- 33 files · ~200,379 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1169 nodes · 1408 edges · 71 communities (53 shown, 18 thin omitted)
+- 1170 nodes · 1409 edges · 71 communities (53 shown, 18 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `dfcbc54e`
+- Built from commit: `511cb65d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -97,8 +97,8 @@
   update_projects.py → build_site.py
 - `main()` --calls--> `read_json()`  [INFERRED]
   update_projects.py → build_site.py
-- `test_unsafe_links_are_rejected()` --calls--> `safe_url()`  [INFERRED]
-  tests/test_update_projects.py → build_site.py
+- `approve_export()` --calls--> `load_projects()`  [INFERRED]
+  update_projects.py → build_site.py
 - `build()` --calls--> `generate_cvs()`  [INFERRED]
   build_site.py → scripts/build_cv.py
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
@@ -128,7 +128,7 @@ Nodes (20): Deve ter meta viewport para responsividade, Deve ter meta charset, D
 
 ### Community 6 - "Community 6"
 Cohesion: 0.07
-Nodes (28): detect_language(), Translate text to Portuguese using free translation APIs.     Tries multiple fr, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Translate text to Portuguese using free translation APIs.     Tries multiple fr, translate_to_portuguese(), client(), Testes para o script update_projects.py Testa funcionalidades críticas como: - D (+20 more)
+Nodes (27): detect_language(), Translate text to Portuguese using free translation APIs.     Tries multiple fr, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Translate text to Portuguese using free translation APIs.     Tries multiple fr, translate_to_portuguese(), client(), Testes para o script update_projects.py Testa funcionalidades críticas como: - D (+19 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.25
@@ -147,8 +147,8 @@ Cohesion: 0.18
 Nodes (8): load(), native(), option, picker, save(), status, supported, translate()
 
 ### Community 24 - "Community 24"
-Cohesion: 0.16
-Nodes (15): check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials., # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+7 more)
+Cohesion: 0.15
+Nodes (16): approve_export(), check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials., # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+8 more)
 
 ### Community 25 - "Community 25"
 Cohesion: 0.20
@@ -220,7 +220,7 @@ Nodes (15): complete, computedAspectRatio, computedHeight, computedWidth, cssCla
 
 ### Community 49 - "Community 49"
 Cohesion: 0.04
-Nodes (37): button, canvas, carouselCategories, context, controller, copy, currentYear, error (+29 more)
+Nodes (38): button, canvas, carouselCategories, context, controller, copy, currentYear, error (+30 more)
 
 ### Community 50 - "Community 50"
 Cohesion: 0.13
@@ -268,7 +268,7 @@ Nodes (10): Atualizar projetos, code:powershell (uv sync --frozen --extra dev), 
 
 ### Community 74 - "Community 74"
 Cohesion: 0.31
-Nodes (8): build(), load_projects(), Build only explicitly approved public assets. Never reads .env or calls the netw, read_json(), safe_url(), approve_export(), generate_cvs(), Generate concise, selectable bilingual PDFs using only documented profile facts.
+Nodes (8): build(), load_projects(), Build only explicitly approved public assets. Never reads .env or calls the netw, read_json(), safe_url(), generate_cvs(), Generate concise, selectable bilingual PDFs using only documented profile facts., test_unsafe_links_are_rejected()
 
 ### Community 75 - "Community 75"
 Cohesion: 0.20
@@ -291,7 +291,7 @@ Cohesion: 0.40
 Nodes (4): navLang, preference, saved, savedHue
 
 ## Knowledge Gaps
-- **487 isolated node(s):** `name`, `private`, `version`, `test`, `test:browser` (+482 more)
+- **488 isolated node(s):** `name`, `private`, `version`, `test`, `test:browser` (+483 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -301,9 +301,9 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `pt` connect `Community 40` to `Community 41`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `projects` connect `Community 54` to `Community 46`, `Community 47`, `Community 48`, `Community 50`, `Community 51`?**
-  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+  _High betweenness centrality (0.011) - this node is a cross-community bridge._
 - **What connects `Build only explicitly approved public assets. Never reads .env or calls the netw`, `name`, `private` to the rest of the system?**
-  _661 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _662 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

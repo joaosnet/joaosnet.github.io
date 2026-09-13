@@ -225,7 +225,7 @@
       "source_file": "update_projects.py",
       "source_location": "L74",
       "id": "joaosnet_github_io_update_projects_approve_export",
-      "community": 74,
+      "community": 24,
       "norm_label": "approve_export()"
     },
     {
@@ -1165,28 +1165,28 @@
       "norm_label": "currentyear"
     },
     {
-      "label": "savedCount",
+      "label": "rawSaved",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
       "source_location": "L484",
+      "id": "js_portfolio_rawsaved",
+      "community": 49,
+      "norm_label": "rawsaved"
+    },
+    {
+      "label": "savedCount",
+      "file_type": "code",
+      "source_file": "assets/js/portfolio.js",
+      "source_location": "L485",
       "id": "js_portfolio_savedcount",
       "community": 49,
       "norm_label": "savedcount"
     },
     {
-      "label": "isSessionCounted",
-      "file_type": "code",
-      "source_file": "assets/js/portfolio.js",
-      "source_location": "L486",
-      "id": "js_portfolio_issessioncounted",
-      "community": 49,
-      "norm_label": "issessioncounted"
-    },
-    {
       "label": "syncRemoteViews()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L499",
+      "source_location": "L501",
       "id": "js_portfolio_syncremoteviews",
       "community": 49,
       "norm_label": "syncremoteviews()"
@@ -1195,7 +1195,7 @@
       "label": "animateCountUp()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L528",
+      "source_location": "L569",
       "id": "js_portfolio_animatecountup",
       "community": 49,
       "norm_label": "animatecountup()"
@@ -1204,7 +1204,7 @@
       "label": "observer",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L552",
+      "source_location": "L593",
       "id": "js_portfolio_observer",
       "community": 49,
       "norm_label": "observer"
@@ -3996,7 +3996,7 @@
       "source_file": "tests/test_update_projects.py",
       "source_location": "L76",
       "id": "tests_test_update_projects_test_unsafe_links_are_rejected",
-      "community": 6,
+      "community": 74,
       "norm_label": "test_unsafe_links_are_rejected()"
     },
     {
@@ -4403,6 +4403,15 @@
       "id": "tests_testes_codeblock_1",
       "community": 21,
       "norm_label": "code:powershell (uv run ruff check build_site.py update_projects.py scripts t)"
+    },
+    {
+      "label": "isSessionCounted",
+      "file_type": "code",
+      "source_file": "assets/js/portfolio.js",
+      "source_location": "L486",
+      "community": 49,
+      "norm_label": "issessioncounted",
+      "id": "js_portfolio_issessioncounted"
     },
     {
       "label": "critic_report_output.json",
@@ -12388,21 +12397,21 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L457",
+      "source_location": "L484",
       "weight": 1.0,
-      "confidence_score": 1.0,
       "source": "assets_js_portfolio_js",
-      "target": "js_portfolio_savedcount"
+      "target": "js_portfolio_rawsaved",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L459",
+      "source_location": "L457",
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "assets_js_portfolio_js",
-      "target": "js_portfolio_issessioncounted"
+      "target": "js_portfolio_savedcount"
     },
     {
       "relation": "contains",
@@ -12433,6 +12442,16 @@
       "confidence_score": 1.0,
       "source": "assets_js_portfolio_js",
       "target": "js_portfolio_observer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/portfolio.js",
+      "source_location": "L459",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "assets_js_portfolio_js",
+      "target": "js_portfolio_issessioncounted"
     },
     {
       "relation": "calls",
@@ -24919,5 +24938,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "dfcbc54e0a23ae0d8e51c65a91dd4ed123e09be8"
+  "built_at_commit": "511cb65d9f906f5a308fdd7009b20c0e15105703"
 }
