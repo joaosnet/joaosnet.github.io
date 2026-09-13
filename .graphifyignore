@@ -1,0 +1,16 @@
+# Local configuration, unreviewed content and generated QA must never enter the graph.
+.claude/
+.codex/
+.agents/
+.private-preview/
+.env
+.env.*
+artifacts/
+dist/
+.build-staging/
+node_modules/
+.venv/
+test-results/
+playwright-report/
+package-lock.json
+uv.lock

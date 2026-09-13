@@ -1,798 +1,256 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark light">
-    <title>João Silva Neto | Engenheiro da Computação</title>
-    <meta name="description"
-        content="Portfólio de João Silva Neto, Engenheiro da Computação com foco em software, APIs, automação, dados e infraestrutura.">
-    <meta name="author" content="João Silva Neto">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://joaosnet.github.io/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="pt_BR">
-    <meta property="og:site_name" content="João Silva Neto | Portfólio">
-    <meta property="og:url" content="https://joaosnet.github.io/">
-    <meta property="og:title" content="João Silva Neto | Engenheiro da Computação">
-    <meta property="og:description"
-        content="Portfólio de João Silva Neto, Engenheiro da Computação com foco em software, APIs, automação, dados e infraestrutura.">
-    <meta property="og:image" content="https://joaosnet.github.io/assets/images/og-cover.jpg">
-    <meta property="og:image:secure_url" content="https://joaosnet.github.io/assets/images/og-cover.jpg">
-    <meta property="og:image:type" content="image/jpeg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="João Silva Neto — Engenheiro da Computação">
-    <link rel="image_src" href="https://joaosnet.github.io/assets/images/og-cover.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="João Silva Neto | Engenheiro da Computação">
-    <meta name="twitter:description"
-        content="Portfólio de João Silva Neto, Engenheiro da Computação com foco em software, APIs, automação, dados e infraestrutura.">
-    <meta name="twitter:image" content="https://joaosnet.github.io/assets/images/og-cover.jpg">
-    <meta name="twitter:image:alt" content="João Silva Neto — Engenheiro da Computação">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "João Silva Neto",
-        "jobTitle": "Engenheiro da Computação",
-        "url": "https://joaosnet.github.io/",
-        "image": "https://joaosnet.github.io/assets/images/og-cover.jpg",
-        "description": "Engenheiro da Computação com foco em software, APIs, automação, dados e infraestrutura.",
-        "knowsAbout": ["Arquitetura de Software", "APIs e Backend", "Interfaces Web", "Dados e Automação", "Infraestrutura e DevOps"],
-        "sameAs": [
-            "https://github.com/joaosnet",
-            "https://www.linkedin.com/in/joaonativi/",
-            "https://lattes.cnpq.br/1140714924160415",
-            "https://t.me/joaosilvaneto"
-        ]
-    }
-    </script>
-    <script>
-        (function () {
-            if (!window.location.hash || !window.history || !window.history.replaceState) {
-                return;
-            }
-
-            window.__initialPortfolioHash = window.location.hash;
-            window.history.replaceState(null, '', window.location.pathname + window.location.search);
-        }());
-    </script>
-    <script>
-        /* Apply saved light/dark mode and color palette before first paint to avoid FOUC */
-        (function () {
-            try {
-                var t = localStorage.getItem('theme') || 'dark';
-                var root = document.documentElement;
-                root.setAttribute('data-theme', t);
-
-                var p = localStorage.getItem('selectedTheme') || 'amoled-black';
-                var palettes = {
-                    'cyber-blue': { primary: '#3b82f6', secondary: '#8b5cf6', accent: '#06b6d4', dark: '#020617', light: '#f8fafc', textGray: '#94a3b8' },
-                    'dracula': { primary: '#bd93f9', secondary: '#ff79c6', accent: '#8be9fd', dark: '#282a36', light: '#f8f8f2', textGray: '#bfbfbf' },
-                    'tokyo-night': { primary: '#7aa2f7', secondary: '#bb9af7', accent: '#7dcfff', dark: '#1a1b26', light: '#c0caf5', textGray: '#9aa5ce' },
-                    'nord': { primary: '#88c0d0', secondary: '#81a1c1', accent: '#5e81ac', dark: '#2e3440', light: '#eceff4', textGray: '#d8dee9' },
-                    'catppuccin-mocha': { primary: '#cba6f7', secondary: '#f38ba8', accent: '#89dceb', dark: '#1e1e2e', light: '#cdd6f4', textGray: '#a6adc8' },
-                    'amoled-black': { primary: '#38bdf8', secondary: '#818cf8', accent: '#f43f5e', dark: '#000000', light: '#f8fafc', textGray: '#a1a1aa' },
-                    'synthwave': { primary: '#ff007f', secondary: '#00f0ff', accent: '#ffb800', dark: '#1a102f', light: '#fdf4ff', textGray: '#d8b4e2' },
-                    'sunset-orange': { primary: '#f97316', secondary: '#ef4444', accent: '#f59e0b', dark: '#1c1917', light: '#fef2f2', textGray: '#a8a29e' },
-                    'forest-green': { primary: '#10b981', secondary: '#059669', accent: '#84cc16', dark: '#022c22', light: '#f0fdf4', textGray: '#6b7280' },
-                    'neon-pink': { primary: '#ec4899', secondary: '#f43f5e', accent: '#d946ef', dark: '#1a0b2e', light: '#fdf2f8', textGray: '#9ca3af' },
-                    'golden-amber': { primary: '#eab308', secondary: '#f59e0b', accent: '#fb923c', dark: '#1c1917', light: '#fffbeb', textGray: '#78716c' },
-                    'ocean-teal': { primary: '#14b8a6', secondary: '#0d9488', accent: '#06b6d4', dark: '#042f2e', light: '#f0fdfa', textGray: '#64748b' },
-                    'royal-purple': { primary: '#8b5cf6', secondary: '#7c3aed', accent: '#a78bfa', dark: '#0f0a1e', light: '#faf5ff', textGray: '#8b8b9e' },
-                    'crimson-red': { primary: '#ef4444', secondary: '#dc2626', accent: '#f87171', dark: '#1a0505', light: '#fef2f2', textGray: '#991b1b' }
-                };
-
-                if (palettes[p]) {
-                    var pal = palettes[p];
-                    root.style.setProperty('--primary', pal.primary);
-                    root.style.setProperty('--secondary', pal.secondary);
-                    root.style.setProperty('--accent', pal.accent);
-                    if (t !== 'light') {
-                        root.style.setProperty('--dark', pal.dark);
-                        root.style.setProperty('--light', pal.light);
-                        root.style.setProperty('--text-gray', pal.textGray);
-                    }
-                }
-            } catch (e) { /* localStorage unavailable */ }
-        }());
-    </script>
-    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="icon" href="assets/images/favicon.png" type="image/png">
-    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="assets/images/favicon.png">
-    <link rel="manifest" href="site.webmanifest">
-    <link rel="stylesheet" href="assets/css/styles.css?v=4.0">
-    <style>
-        /* Keep empty - all styles are in assets/css/styles.css */
-    </style>
-
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;sha256-QRTVbc38f8W20ed+YSekIye/u+obAvryOHUF7x829I0=&#39; https://cdn.gtranslate.net/widgets/latest/lib.min.js; style-src &#39;self&#39; &#39;unsafe-inline&#39; https://cdn.gtranslate.net; img-src &#39;self&#39; data: https://cdn.gtranslate.net; font-src &#39;self&#39;; connect-src &#39;self&#39; https://formspree.io https://translate-pa.googleapis.com https://script.google.com https://script.googleusercontent.com; form-action https://formspree.io; base-uri &#39;none&#39;; object-src &#39;none&#39;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="color-scheme" content="dark light">
+  <title>João Silva Neto | Desenvolvedor de software · Estudante de Engenharia de Computação</title>
+  <meta name="description" content="João Silva Neto — desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Explore projetos de backend, automação, IoT e visualização de dados.">
+  <meta name="author" content="João Silva Neto">
+  
+  <link rel="canonical" href="https://joaosnet.github.io/">
+  <link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/">
+  <link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/">
+  <link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="João Silva Neto">
+  <meta property="og:description" content="João Silva Neto — desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Explore projetos de backend, automação, IoT e visualização de dados.">
+  <meta property="og:url" content="https://joaosnet.github.io/">
+  <meta property="og:image" content="https://joaosnet.github.io/assets/images/og-excellence.png">
+  <meta property="og:image:alt" content="João Silva Neto · Software, systems & experiments">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/portfolio.css">
+  <script src="/assets/js/boot.js"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "João Silva Neto", "url": "https://joaosnet.github.io", "description": "João Silva Neto — desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Explore projetos de backend, automação, IoT e visualização de dados.", "sameAs": ["https://github.com/joaosnet", "https://www.linkedin.com/in/joaonativi/"]}</script>
+  <script src="/assets/js/portfolio.js" defer></script>
+  <script src="/assets/js/analytics.js" defer></script>
+  <script src="/assets/js/languages.js" defer></script>
+  <script src="/assets/js/easter-eggs.js" defer></script>
 </head>
-
-<body>
-    <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <a class="logo" href="#home" aria-label="Voltar ao início">
-                    <i class="fas fa-code"></i>
-                    <span class="logo-full">João Silva Neto</span>
-                    <span class="logo-short">João</span>
-                </a>
-                <nav aria-label="Navegação principal">
-                    <ul>
-                        <li><a href="#home">Início</a></li>
-                        <li><a href="#skills">Habilidades</a></li>
-                        <li><a href="#education">Formação</a></li>
-                        <li><a href="#projects">Projetos</a></li>
-                        <li><a href="#published">Páginas</a></li>
-                        <li><a href="#contact">Fale Comigo</a></li>
-                        <li><a href="docs/crv.pdf" download="curriculo-joao-silva-neto.pdf" aria-label="Baixar currículo em PDF" title="Baixar currículo em PDF">Currículo</a></li>
-                    </ul>
-                </nav>
-                <div class="header-actions">
-                    <button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema" title="Alternar tema">
-                        <i class="fas fa-sun"></i>
-                    </button>
-                    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false">
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                        <span aria-hidden="true"></span>
-                    </button>
-                </div>
+<body data-page="/" data-lang="pt">
+  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="/" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Silva Neto<span class="brand-dot">.</span></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-track="menu" hidden>Menu <span aria-hidden="true">☰</span></button>
+      <nav id="main-nav" aria-label="Menu">
+        <a href="/#projects" data-track="nav-projects">Projetos</a>
+        <a href="/#published" data-track="nav-lab">Laboratório<span class="nav-dot" aria-hidden="true"></span></a>
+        <a href="/#education" data-track="nav-about">Sobre</a>
+        <a href="/#contact" data-track="nav-contact">Contato</a>
+      </nav>
+      <div class="header-tools">
+        <a class="language-switch" href="/en/" hreflang="en" lang="en" aria-label="Read in English" data-track="language">EN <span aria-hidden="true">↗</span></a>
+        <button class="theme-toggle" type="button" aria-label="Alternar tema claro/escuro" title="Alternar tema claro/escuro" data-track="theme" hidden><span aria-hidden="true">◐</span></button>
+        <div class="palette-wrapper">
+          <button class="palette-toggle" type="button" aria-expanded="false" aria-controls="palette-popover" aria-label="Personalizar matiz do tema" title="Personalizar matiz do tema" data-track="theme-palette" hidden>
+            <span class="palette-swatch-ring" aria-hidden="true">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="4" class="swatch-center-indicator"></circle>
+                <path d="M12 2v3M12 19v3M2 12h3M19 12h3" opacity="0.5"></path>
+              </svg>
+            </span>
+          </button>
+          <div id="palette-popover" class="palette-popover" role="region" aria-label="Sintonia Cromática" hidden>
+            <div class="palette-popover-header">
+              <span class="palette-title">Sintonia Cromática</span>
+              <button type="button" class="text-button palette-reset" aria-label="Restaurar matiz padrão" title="Restaurar matiz padrão">↺</button>
             </div>
+            <div class="palette-indicator-row">
+              <span class="palette-hue-label" id="palette-hue-label">192° HUE</span>
+            </div>
+            <div class="palette-slider-wrapper">
+              <label for="palette-hue-slider" class="sr-only">Matiz do tema</label>
+              <input type="range" id="palette-hue-slider" class="palette-slider" min="0" max="360" step="1" value="192" aria-label="Matiz do tema">
+            </div>
+            <div class="palette-presets" role="group" aria-label="Predefinições de matiz">
+              <button type="button" class="palette-preset preset-cyan" data-hue="192" aria-label="Cyan 192°" title="Cyan (192°)"></button>
+              <button type="button" class="palette-preset preset-violet" data-hue="260" aria-label="Violet 260°" title="Violet (260°)"></button>
+              <button type="button" class="palette-preset preset-mint" data-hue="155" aria-label="Mint 155°" title="Mint (155°)"></button>
+              <button type="button" class="palette-preset preset-amber" data-hue="35" aria-label="Amber 35°" title="Amber (35°)"></button>
+              <button type="button" class="palette-preset preset-rose" data-hue="330" aria-label="Rose 330°" title="Rose (330°)"></button>
+            </div>
+          </div>
         </div>
-        <div id="scroll-progress" class="scroll-progress-bar" aria-hidden="true"></div>
-    </header>
-
-    <div class="overlay"></div>
-
-    <main id="main-content" tabindex="-1">
-    <section id="home" class="hero">
-        <div id="particles-js"></div>
-        <div class="floating-shapes">
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-            <div class="shape"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-avatar-wrapper hidden">
-                    <img src="assets/images/hero-avatar.jpg?v=2" alt="Foto de João Silva Neto" class="hero-avatar"
-                        loading="eager" width="180" height="180">
-                </div>
-                <p class="hero-kicker">Buscando Estágio em Engenharia de Software</p>
-                <h1>João Silva Neto, Engenheiro da Computação</h1>
-                <p>Engenheiro de Computação com foco em construir produtos escaláveis. Transformo desafios complexos em soluções eficientes de alto desempenho usando Python, Machine Learning e arquitetura em nuvem.</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary"><i class="fas fa-code-branch" aria-hidden="true"></i> Ver projetos</a>
-                    <a href="docs/crv.pdf" class="btn btn-secondary" download><i class="fas fa-file-download" aria-hidden="true"></i> Baixar CV</a>
-                    <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope" aria-hidden="true"></i> Entrar em contato</a>
-                </div>
-            </div>
-        </div>
-        <a href="#skills" class="hero-scroll-indicator" aria-label="Rolar para a próxima seção" title="Explorar conteúdo">
-            <div class="mouse-icon" aria-hidden="true"><span class="mouse-wheel"></span></div>
-            <div class="mouse-arrows" aria-hidden="true"><i class="fas fa-chevron-down"></i></div>
-        </a>
-    </section>
-
-    <section id="skills" class="features">
-        <div class="container">
-            <div class="section-title hidden">
-                <h2>Competências de Engenharia</h2>
-                <p>Áreas em que combino fundamentos de computação, prática de desenvolvimento e tecnologias de mercado.</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card hidden">
-                    <i class="fas fa-sitemap" aria-hidden="true"></i>
-                    <h3>Arquitetura & Nuvem</h3>
-                    <p>Desenho de sistemas escaláveis e microsserviços. Experiência com <strong>AWS</strong>, <strong>Docker</strong>, CI/CD e decisões orientadas a alta disponibilidade e testes.</p>
-                </div>
-                <div class="feature-card hidden">
-                    <i class="fas fa-server" aria-hidden="true"></i>
-                    <h3>APIs e Backend</h3>
-                    <p>Desenvolvimento focado em performance com <strong>Python</strong>, <strong>FastAPI</strong>, Node.js e C++. Integração ágil com serviços REST, WebSocket e bancos de dados.</p>
-                </div>
-                <div class="feature-card hidden">
-                    <i class="fas fa-laptop-code" aria-hidden="true"></i>
-                    <h3>Frontend & Mobile</h3>
-                    <p>Construção de interfaces responsivas e produtos cross-platform usando <strong>React</strong>, <strong>TypeScript</strong>, JavaScript e <strong>Flutter (Dart)</strong>.</p>
-                </div>
-                <div class="feature-card hidden">
-                    <i class="fas fa-brain" aria-hidden="true"></i>
-                    <h3>Dados & Machine Learning</h3>
-                    <p>Automação de pipelines ETL, modelagem matemática, sinais e sistemas. Criação de modelos preditivos com <strong>PyTorch</strong>, XGBoost e análise quantitativa.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="education" class="specs">
-        <div class="container">
-            <div class="section-title hidden">
-                <h2>Formação & Destaques Acadêmicos</h2>
-                <p>Engenharia de Computação pela Universidade Federal do Pará (UFPA).</p>
-            </div>
-            <div class="education-grid">
-                <div class="education-card hidden">
-                    <div class="education-header">
-                        <div class="education-title-wrap">
-                            <i class="fas fa-university" aria-hidden="true"></i>
-                            <h3>Bacharelado em Engenharia de Computação</h3>
-                        </div>
-                        <span class="education-badge">Previsão: 2026</span>
-                    </div>
-                    <p class="education-highlight">
-                        Desempenho de excelência (Nota Máxima 100 / Conceito E) em disciplinas fundamentais de engenharia: 
-                        <strong>Engenharia de Software, Banco de Dados, Métodos Numéricos, Projetos de Hardware e Computação em Nuvem (IoT)</strong>.
-                    </p>
-                    <div class="education-tcc">
-                        <div class="tcc-header">
-                            <i class="fas fa-microchip" aria-hidden="true"></i>
-                            <h4>TCC: AetherSense</h4>
-                        </div>
-                        <blockquote class="tcc-quote">
-                            "Sistema de percepção espacial e monitoramento de sinais vitais baseado em Channel State Information (CSI) de redes WiFi sob a ótica da computação de borda."
-                        </blockquote>
-                        <p class="tcc-desc">
-                            Projeto avançado unindo IoT, processamento de sinais e Edge Computing para detecção passiva de presença e biometria sem contato via variações de radiofrequência WiFi.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="projects" class="specs">
-        <div class="container">
-            <div class="section-title hidden">
-                <h2>Projetos Realizados</h2>
-                <p>Repositórios públicos aparecem com link direto para o GitHub. Projetos privados ficam marcados com
-                    cadeado, cada data mostra a última atividade registrada.</p>
-            </div>
-            <div class="specs-flex">
-                <!-- PROJECTS_START -->
-
-                <div class="timeline-container" aria-label="Linha do tempo de repositórios">
-                    <div class="timeline-items">
-                        
-                    <article class="timeline-item">
-                        <span class="timeline-dot" aria-hidden="true"></span>
-                        <div class="timeline-card" data-language="JavaScript" data-language-color="#f1e05a" data-stars="4" data-forks="1" data-topics="">
-                            <div class="timeline-card-meta">
-                                <div class="timeline-card-date" title="Data da última atividade registrada pelo GitHub">
-                                    <span class="timeline-card-date-label">Atualizado no GitHub</span>
-                                    <time datetime="2026-09-12T22:35:01+00:00">12/09/2026</time>
-                                </div>
-                                <span class="timeline-card-visibility timeline-card-visibility--public" title="Repositório público">
-                                    <i class="fas fa-unlock-alt" aria-hidden="true"></i> Público
-                                </span>
-                            </div>
-                            <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>
-
-                            <div class="timeline-card-image-wrapper">
-                                <img src="./assets/project-images/LAPSHub_dmovel_web_app_banner.webp" alt="Prévia do projeto dmovel_web_app" class="timeline-card-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'"/>
-                            </div>
-
-                            <div class="timeline-card-body">
-                                <h3 class="timeline-card-heading">
-                                    <a href="https://github.com/LAPSHub/dmovel_web_app" target="_blank" rel="noopener noreferrer" class="timeline-card-title">
-                                    dmovel_web_app
-                                </a>
-                                </h3>
-                                <span class="timeline-card-language">
-                                    <span class="timeline-card-language-dot" style="background: #f1e05a;"></span>
-                                    JavaScript
-                                </span>
-                                <p class="timeline-card-description">Repositorio para o aplicativo web do DMóvel</p>
-                                <p class="timeline-card-access-note">Repositório público: você pode abrir o código e acompanhar a atividade diretamente no GitHub.</p>
-                            </div>
-
-                            <div class="timeline-card-actions">
-                                <a href="https://github.com/LAPSHub/dmovel_web_app" target="_blank" rel="noopener noreferrer" class="timeline-card-btn">
-                                <i class="fab fa-github" aria-hidden="true"></i> Ver no GitHub
-                            </a>
-                            <a href="https://lapshub.github.io/dmovel_web_app/" target="_blank" rel="noopener noreferrer" class="timeline-card-btn timeline-card-btn--page">
-                                <i class="fas fa-globe" aria-hidden="true"></i> Ver página
-                            </a>
-                                <button type="button" class="timeline-card-btn timeline-card-details" aria-haspopup="dialog">
-                                <i class="fas fa-info-circle" aria-hidden="true"></i> Ver detalhes
-                            </button>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="timeline-item">
-                        <span class="timeline-dot" aria-hidden="true"></span>
-                        <div class="timeline-card" data-language="Python" data-language-color="#3572A5" data-stars="2" data-forks="0" data-topics="config,github-config">
-                            <div class="timeline-card-meta">
-                                <div class="timeline-card-date" title="Data da última atividade registrada pelo GitHub">
-                                    <span class="timeline-card-date-label">Atualizado no GitHub</span>
-                                    <time datetime="2026-09-12T08:11:14+00:00">12/09/2026</time>
-                                </div>
-                                <span class="timeline-card-visibility timeline-card-visibility--public" title="Repositório público">
-                                    <i class="fas fa-unlock-alt" aria-hidden="true"></i> Público
-                                </span>
-                            </div>
-                            <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>
-
-                            <div class="timeline-card-image-wrapper">
-                                <img src="https://raw.githubusercontent.com/joaosnet/joaosnet/main/light_mode.svg" alt="Prévia do projeto joaosnet" class="timeline-card-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'"/>
-                            </div>
-
-                            <div class="timeline-card-body">
-                                <h3 class="timeline-card-heading">
-                                    <a href="https://github.com/joaosnet/joaosnet" target="_blank" rel="noopener noreferrer" class="timeline-card-title">
-                                    joaosnet
-                                </a>
-                                </h3>
-                                <span class="timeline-card-language">
-                                    <span class="timeline-card-language-dot" style="background: #3572A5;"></span>
-                                    Python
-                                </span>
-                                <p class="timeline-card-description">Atualizar todos os dias Meu perfil do github</p>
-                                <p class="timeline-card-access-note">Repositório público: você pode abrir o código e acompanhar a atividade diretamente no GitHub.</p>
-                            </div>
-
-                            <div class="timeline-card-actions">
-                                <a href="https://github.com/joaosnet/joaosnet" target="_blank" rel="noopener noreferrer" class="timeline-card-btn">
-                                <i class="fab fa-github" aria-hidden="true"></i> Ver no GitHub
-                            </a>
-                            
-                                <button type="button" class="timeline-card-btn timeline-card-details" aria-haspopup="dialog">
-                                <i class="fas fa-info-circle" aria-hidden="true"></i> Ver detalhes
-                            </button>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="timeline-item">
-                        <span class="timeline-dot" aria-hidden="true"></span>
-                        <div class="timeline-card" data-language="HTML" data-language-color="#e34c26" data-stars="2" data-forks="0" data-topics="">
-                            <div class="timeline-card-meta">
-                                <div class="timeline-card-date" title="Data da última atividade registrada pelo GitHub">
-                                    <span class="timeline-card-date-label">Atualizado no GitHub</span>
-                                    <time datetime="2026-09-10T11:40:45+00:00">10/09/2026</time>
-                                </div>
-                                <span class="timeline-card-visibility timeline-card-visibility--private" title="Repositório privado">
-                                    <i class="fas fa-lock" aria-hidden="true"></i> Privado
-                                </span>
-                            </div>
-                            <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>
-
-                            <div class="timeline-card-image-wrapper">
-                                <img src="./assets/project-images/LAPSHub_dmovel-fastapi_banner_readme.webp" alt="Prévia do projeto dmovel-fastapi" class="timeline-card-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'"/>
-                            </div>
-
-                            <div class="timeline-card-body">
-                                <h3 class="timeline-card-heading">
-                                    <span class="timeline-card-title timeline-card-title--private">
-                                    dmovel-fastapi
-                                </span>
-                                </h3>
-                                <span class="timeline-card-language">
-                                    <span class="timeline-card-language-dot" style="background: #e34c26;"></span>
-                                    HTML
-                                </span>
-                                <p class="timeline-card-description">Api do Aplicativo DMovel</p>
-                                <p class="timeline-card-access-note">Repositório privado: o código fica restrito, mas este card mostra o contexto e a evolução do trabalho.</p>
-                            </div>
-
-                            <div class="timeline-card-actions">
-                                <span class="timeline-card-btn timeline-card-btn--private" aria-label="Projeto privado sem link público">
-                                <i class="fas fa-lock" aria-hidden="true"></i> Acesso privado
-                            </span>
-                                <button type="button" class="timeline-card-btn timeline-card-details" aria-haspopup="dialog">
-                                <i class="fas fa-info-circle" aria-hidden="true"></i> Ver detalhes
-                            </button>
-                            </div>
-                        </div>
-                    </article>
-                    <article class="timeline-item">
-                        <span class="timeline-dot" aria-hidden="true"></span>
-                        <div class="timeline-card" data-language="Rust" data-language-color="#dea584" data-stars="0" data-forks="0" data-topics="">
-                            <div class="timeline-card-meta">
-                                <div class="timeline-card-date" title="Data da última atividade registrada pelo GitHub">
-                                    <span class="timeline-card-date-label">Atualizado no GitHub</span>
-                                    <time datetime="2026-08-04T00:57:06+00:00">04/08/2026</time>
-                                </div>
-                                <span class="timeline-card-visibility timeline-card-visibility--public" title="Repositório público">
-                                    <i class="fas fa-unlock-alt" aria-hidden="true"></i> Público
-                                </span>
-                            </div>
-                            <p class="timeline-card-update-note">A data indica a última alteração registrada pelo GitHub neste repositório.</p>
-
-                            <div class="timeline-card-image-wrapper">
-                                <img src="./assets/project-images/joaosnet_aethersense_logo_inicial.webp" alt="Prévia do projeto aethersense" class="timeline-card-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'"/>
-                            </div>
-
-                            <div class="timeline-card-body">
-                                <h3 class="timeline-card-heading">
-                                    <a href="https://github.com/joaosnet/aethersense" target="_blank" rel="noopener noreferrer" class="timeline-card-title">
-                                    aethersense
-                                </a>
-                                </h3>
-                                <span class="timeline-card-language">
-                                    <span class="timeline-card-language-dot" style="background: #dea584;"></span>
-                                    Rust
-                                </span>
-                                <p class="timeline-card-description">Plataforma de detecção Wi-Fi CSI com firmware ESP32, back-end Rust, painel web e pipeline de aprendizado de máquina.</p>
-                                <p class="timeline-card-access-note">Repositório público: você pode abrir o código e acompanhar a atividade diretamente no GitHub.</p>
-                            </div>
-
-                            <div class="timeline-card-actions">
-                                <a href="https://github.com/joaosnet/aethersense" target="_blank" rel="noopener noreferrer" class="timeline-card-btn">
-                                <i class="fab fa-github" aria-hidden="true"></i> Ver no GitHub
-                            </a>
-                            
-                                <button type="button" class="timeline-card-btn timeline-card-details" aria-haspopup="dialog">
-                                <i class="fas fa-info-circle" aria-hidden="true"></i> Ver detalhes
-                            </button>
-                            </div>
-                        </div>
-                    </article>
-                        
-                        <div class="timeline-more-item">
-                            <span class="timeline-more-dot" aria-hidden="true"></span>
-                            <div class="timeline-more-content">
-                                <a href="https://github.com/joaosnet?tab=repositories" target="_blank" rel="noopener noreferrer" class="timeline-more-btn">
-                                    Ver todos os repositórios <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- PROJECTS_END -->
-            </div>
-        </div>
-    </section>
-
-    <section id="published" class="specs">
-        <div class="container">
-            <div class="section-title hidden">
-                <h2>Páginas Publicadas</h2>
-                <p>Todos os links públicos do GitHub Pages associados aos meus repositórios com suas respectivas pré-visualizações.</p>
-            </div>
-            <div class="specs-flex">
-                <!-- PAGES_START -->
-
-                    <div class="published-pages-list">
-                        
-                            <article class="published-page-link">
-                                <div class="published-page-image-wrapper">
-                                    <img src="./assets/project-images/LAPSHub_dmovel_web_app_banner.webp" alt="Prévia visual de dmovel_web_app" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
-                                </div>
-                                <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
-                                <span class="published-page-copy">
-                                    <strong>dmovel_web_app</strong>
-                                    <span>Repositorio para o aplicativo web do DMóvel</span>
-                                    <small>lapshub.github.io/dmovel_web_app</small>
-                                </span>
-                                <a href="https://lapshub.github.io/dmovel_web_app/" target="_blank" rel="noopener noreferrer" class="published-page-open">
-                                    Abrir site <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                                </a>
-                            </article>
-                            <article class="published-page-link">
-                                <div class="published-page-image-wrapper">
-                                    <img src="./assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp" alt="Prévia visual de dmovel-sitec-2026" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
-                                </div>
-                                <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
-                                <span class="published-page-copy">
-                                    <strong>dmovel-sitec-2026</strong>
-                                    <span>♿ Apresentação Interativa do DMovel no SITEC UFPA 2026 (1 e 2 de setembro) com Vídeo...</span>
-                                    <small>joaosnet.github.io/dmovel-sitec-2026</small>
-                                </span>
-                                <a href="https://joaosnet.github.io/dmovel-sitec-2026/" target="_blank" rel="noopener noreferrer" class="published-page-open">
-                                    Abrir site <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                                </a>
-                            </article>
-                            <article class="published-page-link">
-                                <div class="published-page-image-wrapper">
-                                    <img src="https://repository-images.githubusercontent.com/1147417574/2e9cb016-ba5f-45c7-bdad-35d9acb32834" alt="Prévia visual de evolutionary-optimization-viz-ag-pso" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
-                                </div>
-                                <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
-                                <span class="published-page-copy">
-                                    <strong>evolutionary-optimization-viz-ag-pso</strong>
-                                    <span>Visualização interativa comparando Algoritmos Genéticos (Real-Coded) e PSO na otimização da...</span>
-                                    <small>joaosnet.github.io/evolutionary-optimization-viz-ag-pso</small>
-                                </span>
-                                <a href="https://joaosnet.github.io/evolutionary-optimization-viz-ag-pso/" target="_blank" rel="noopener noreferrer" class="published-page-open">
-                                    Abrir site <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                                </a>
-                            </article>
-                            <article class="published-page-link">
-                                <div class="published-page-image-wrapper">
-                                    <img src="https://repository-images.githubusercontent.com/1035239619/78d2241b-080e-4b10-8add-3741eff5d77e" alt="Prévia visual de cartilha_dash" class="published-page-image" loading="lazy" onerror="this.onerror=null;this.src='./assets/images/favicon.png'">
-                                </div>
-                                <span class="published-page-icon"><i class="fas fa-globe" aria-hidden="true"></i></span>
-                                <span class="published-page-copy">
-                                    <strong>cartilha_dash</strong>
-                                    <span>Practical Guide for Students: Interactive Dashboards with Dash and Plotly   A complete guide...</span>
-                                    <small>joaosnet.github.io/cartilha_dash</small>
-                                </span>
-                                <a href="https://joaosnet.github.io/cartilha_dash/" target="_blank" rel="noopener noreferrer" class="published-page-open">
-                                    Abrir site <i class="fas fa-external-link-alt" aria-hidden="true"></i>
-                                </a>
-                            </article>
-                    </div>
-                <!-- PAGES_END -->
-            </div>
-        </div>
-    </section>
-    
-    <section id="contact" class="cta">
-        <div class="container contact-panel">
-            <div class="contact-copy">
-                <h2>Procurando um estagiário com visão de engenharia?</h2>
-                <p>Estou disponível para novas oportunidades. Seja para uma vaga de estágio ou projeto de desenvolvimento, entre em contato e vamos conversar sobre como posso agregar valor ao seu time.</p>
-                
-                <div class="contact-channels-quick">
-                    <a href="https://t.me/joaosilvaneto" target="_blank" rel="noopener noreferrer" class="contact-channel-pill contact-channel-telegram">
-                        <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-                        <span>Telegram Direto</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/joaonativi/" target="_blank" rel="noopener noreferrer" class="contact-channel-pill contact-channel-linkedin">
-                        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="docs/crv.pdf" download="curriculo-joao-silva-neto.pdf" class="contact-channel-pill contact-channel-cv">
-                        <i class="fas fa-file-download" aria-hidden="true"></i>
-                        <span>Baixar CV</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="form-container">
-                <div class="form-background-effects" aria-hidden="true">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <div class="shape shape-3"></div>
-                    <div class="shape shape-4"></div>
-                </div>
-
-                <div class="contact-quick-hub">
-                    <div class="contact-telegram-cta">
-                        <a href="https://t.me/joaosilvaneto" target="_blank" rel="noopener noreferrer"
-                            class="btn btn-secondary contact-telegram-btn">
-                            <i class="fab fa-telegram-plane" aria-hidden="true"></i>
-                            <span>Conversar no Telegram</span>
-                            <span class="badge-online" aria-label="Resposta rápida">Online</span>
-                        </a>
-                    </div>
-
-                    <div class="contact-email-card">
-                        <div class="contact-email-header">
-                            <span class="contact-email-label"><i class="fas fa-envelope-open-text" aria-hidden="true"></i> E-mail direto:</span>
-                            <span class="contact-email-val" id="email-text-display">joao.silva.neto@itec.ufpa.br</span>
-                        </div>
-                        <div class="contact-actions">
-                            <button type="button" id="copy-email-btn"
-                                class="btn btn-secondary contact-action-btn" aria-label="Copiar email"
-                                title="Copiar email">
-                                <i class="fas fa-copy" aria-hidden="true"></i>
-                                <span class="contact-action-text">Copiar e-mail</span>
-                            </button>
-                            <button type="button" id="send-mail-btn" class="btn btn-secondary contact-action-btn"
-                                aria-label="Enviar via email" title="Enviar via email">
-                                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                                <span class="contact-action-text">Abrir no app</span>
-                            </button>
-                            <button type="button" id="open-gmail-btn"
-                                class="btn btn-secondary contact-action-btn" aria-label="Abrir Gmail"
-                                title="Abrir Gmail">
-                                <i class="fab fa-google" aria-hidden="true"></i>
-                                <span class="contact-action-text">Gmail Web</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="contact-divider" aria-hidden="true">
-                    <span>ou preencha o formulário</span>
-                </div>
-
-                <div class="contact-form">
-                    <form action="https://formspree.io/f/mdoqyljj" method="POST" id="contact-form" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" data-dashlane-ignore="true" aria-label="Formulário de contato" novalidate>
-                        <div class="form-group">
-                            <label for="name" class="form-label">Seu Nome</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-user form-icon" aria-hidden="true"></i>
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Ex: Maria Souza"
-                                    autocomplete="name" autocorrect="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="form-label">Seu E-mail</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-envelope form-icon" aria-hidden="true"></i>
-                                <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="Ex: maria@empresa.com" inputmode="email" autocomplete="email" autocorrect="off" autocapitalize="off" spellcheck="false" data-form-type="other" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message" class="form-label">Mensagem</label>
-                            <div class="input-wrapper">
-                                <i class="fas fa-comment-alt form-icon textarea-icon" aria-hidden="true"></i>
-                                <textarea id="message" name="message" class="form-control"
-                                    placeholder="Conte brevemente o contexto, oportunidade ou projeto..." aria-describedby="contact-helper"
-                                    rows="4" autocomplete="off" data-form-type="other" data-lpignore="true" data-1p-ignore="true" data-bwignore="true" required></textarea>
-                            </div>
-                        </div>
-                        <p class="contact-helper" id="contact-helper">
-                            <i class="fas fa-shield-alt" aria-hidden="true" title="Privacidade"></i>
-                            <span>Seus dados são enviados diretamente e com segurança. Respondo em menos de 24h.</span>
-                        </p>
-                        <button type="submit" class="btn btn-primary contact-submit">
-                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                            <span>Enviar mensagem</span>
-                        </button>
-                    </form>
-                    <div id="toast" aria-live="polite" role="status"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-        <section id="resume" class="footer-panel" aria-label="Currículo e links profissionais">
-            <footer>
-                <div class="container">
-                    <div class="footer-grid">
-                        <div class="footer-column">
-                            <h3>João Silva Neto</h3>
-                            <p>Engenheiro da Computação com interesse em desenvolvimento de software, automação,
-                                dados, infraestrutura e soluções que aproximam tecnologia de problemas reais.</p>
-                            <a href="docs/crv.pdf" class="btn btn-primary footer-cv" download="curriculo-joao-silva-neto.pdf" aria-label="Baixar currículo em PDF">
-                                <i class="fas fa-file-download" aria-hidden="true"></i> Baixar CV (PDF)
-                            </a>
-                        </div>
-                        <div class="footer-column">
-                            <h3>Links Rápidos</h3>
-                            <ul>
-                                <li><a href="#skills">Habilidades</a></li>
-                                <li><a href="#projects">Projetos</a></li>
-                                <li><a href="#contact">Contato</a></li>
-                                <li><a href="docs/crv.pdf" download="curriculo-joao-silva-neto.pdf">Currículo em PDF</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-column">
-                            <h3>Contato</h3>
-                            <ul>
-                                <li><a href="mailto:joao.silva.neto@itec.ufpa.br">joao.silva.neto@itec.ufpa.br</a></li>
-                                <li><a href="https://www.linkedin.com/in/joaonativi/" target="_blank"
-                                        rel="noopener noreferrer">LinkedIn</a></li>
-                                <li><a href="https://github.com/joaosnet" target="_blank"
-                                        rel="noopener noreferrer">GitHub</a></li>
-                            <li><a href="https://lattes.cnpq.br/1140714924160415" target="_blank"
-                                rel="noopener noreferrer">Lattes</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="footer-achievement-banner" id="footer-achievement" data-track-event="achievement_footer_reached">
-                        <canvas id="achievement-confetti-canvas" class="achievement-confetti-canvas" aria-hidden="true"></canvas>
-                        
-                        <div class="achievement-card minimal-card" id="achievement-card-root">
-                            <!-- Barra Minimizada (Visível quando recolhido) -->
-                            <div class="achievement-collapsed-bar" id="achievement-collapsed-bar">
-                                <div class="collapsed-info">
-                                    <span class="collapsed-icon">🏆</span>
-                                    <span class="collapsed-title">Explorador do Portfólio</span>
-                                    <span class="collapsed-separator">•</span>
-                                    <span class="collapsed-text">Visitante nº <strong class="collapsed-counter" id="collapsed-views">-</strong> em 2026</span>
-                                </div>
-                                <button type="button" class="btn-achievement-toggle" id="btn-achievement-expand" aria-expanded="false" aria-label="Expandir conquista">
-                                    <span>Expandir</span>
-                                    <i class="fas fa-chevron-down" aria-hidden="true"></i>
-                                </button>
-                            </div>
-
-                            <!-- Conteúdo Expandido (Visível por padrão) -->
-                            <div class="achievement-expanded-content" id="achievement-expanded-content">
-                                <div class="achievement-top-row">
-                                    <span class="achievement-badge-pill">
-                                        <i class="fas fa-check-circle" aria-hidden="true"></i> Jornada Concluída
-                                    </span>
-                                    <button type="button" class="btn-achievement-toggle" id="btn-achievement-collapse" aria-expanded="true" aria-label="Minimizar conquista">
-                                        <span>Minimizar</span>
-                                        <i class="fas fa-chevron-up" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-
-                                <div class="achievement-main-body">
-                                    <div class="achievement-icon-wrapper">
-                                        <span class="achievement-trophy-icon">🏆</span>
-                                    </div>
-                                    <div class="achievement-text-content">
-                                        <h4 class="achievement-title">Explorador do Portfólio</h4>
-                                        <p class="achievement-subtitle">Parabéns por explorar todo o conteúdo até o final da página!</p>
-                                        <p class="achievement-counter-line">
-                                            <i class="fas fa-medal" aria-hidden="true"></i>
-                                            Você é o visitante nº <strong id="unique-views" class="achievement-highlight-num">-</strong> a concluir esta navegação em 2026.
-                                        </p>
-                                    </div>
-                                    <div class="achievement-action-wrapper">
-                                        <button type="button" class="btn-celebrate-minimal" id="btn-celebrate" aria-label="Comemorar conquista com confetes">
-                                            <span>🎉 Comemorar</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="copyright">
-                        <p>&copy; 2026 João Silva Neto. Todos os direitos reservados.</p>
-                        <span id="page-last-updated">Última atualização: 13/09/2026</span>
-                    </div>
-                </div>
-            </footer>
-        </section>
-    </main>
-
-    <!-- Floating Action Buttons -->
-    <button id="scroll-down" class="floating-btn" aria-label="Rolar para a próxima seção" title="Próxima seção">
-        <i class="fas fa-arrow-down" aria-hidden="true"></i>
-    </button>
-    <button id="back-to-top" class="floating-btn" aria-label="Voltar ao início" title="Voltar ao início">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
-    </button>
-    <button id="fab-contact" class="floating-btn" aria-label="Entrar em contato" title="Entrar em contato">
-        <i class="fas fa-envelope" aria-hidden="true"></i>
-    </button>
-
-    <!-- Matrix Hacker Easter Egg Overlay -->
-    <div id="matrix-easter-egg" class="matrix-easter-egg-overlay" aria-hidden="true">
-        <canvas id="matrix-canvas"></canvas>
-        <div class="matrix-hud-card">
-            <div class="matrix-hud-header">
-                <span class="matrix-dot red"></span>
-                <span class="matrix-dot yellow"></span>
-                <span class="matrix-dot green"></span>
-                <span class="matrix-hud-title"><i class="fas fa-terminal" aria-hidden="true"></i> TERMINAL // ACCESS_GRANTED</span>
-                <button type="button" class="matrix-close-btn" id="matrix-close-btn" aria-label="Fechar terminal">&times;</button>
-            </div>
-            <div class="matrix-hud-body">
-                <p class="matrix-cmd">> OVERRIDE_GRAVITY: ENABLED</p>
-                <p class="matrix-msg">⚡ <strong>ACESSO ROOT:</strong> Você já está no nível mais alto do sistema!</p>
-                <p class="matrix-sub">João Silva Neto // Engenharia &amp; Software v2026</p>
-            </div>
-        </div>
+        <a class="header-contact" href="/#contact" data-track="header-contact">Vamos conversar <span aria-hidden="true">↗</span></a>
+      </div>
     </div>
+  </header>
+  <main id="main-content" tabindex="-1">
+<section class="hero section" id="home" data-section="home">
+  <div class="hero-grid container">
+    <div class="hero-copy">
+      <p class="availability"><span class="tiny-dot" aria-hidden="true"></span>Aberto a estágios em software</p>
+      <h1>Ideias que ganham<br><span class="gradient-text">vida em código.</span></h1>
+      <p class="hero-intro">Sou João, desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Conecto código, dados e dispositivos para transformar perguntas em projetos que você pode explorar.</p>
+      <div class="hero-actions"><a class="button primary" href="#projects" data-track="hero-projects">Explorar projetos <span aria-hidden="true">↗</span></a><a class="button secondary" href="/docs/crv.pdf" download data-track="cv-download">Baixar currículo <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-links"><span>Backend · Python · Automação</span><a href="https://www.linkedin.com/in/joaonativi/" target="_blank" rel="noopener noreferrer" data-track="linkedin">LinkedIn ↗</a><a href="https://github.com/joaosnet" target="_blank" rel="noopener noreferrer" data-track="github">GitHub ↗</a></div>
+    </div>
+    <div class="hero-art">
+      <div class="portrait-frame"><div class="portrait-orbit orbit-one"></div><div class="portrait-orbit orbit-two"></div><div class="portrait-dots" aria-hidden="true"></div><img class="portrait" src="/assets/images/hero-avatar.jpg" alt="Retrato de João Silva Neto" width="240" height="240" fetchpriority="high"><span class="orbit-label orbit-code" aria-hidden="true">&lt;/&gt; software</span><span class="orbit-label orbit-signal" aria-hidden="true">∿ systems</span><span class="orbit-label orbit-data" aria-hidden="true">{ } experiments</span><span class="art-coordinate" aria-hidden="true">01°27′ S / 48°30′ W</span></div>
+      <div class="hero-art-caption"><span class="tiny-dot" aria-hidden="true"></span><span>DISPOSITIVOS → DADOS → EXPERIÊNCIAS</span><span aria-hidden="true">↗</span></div>
+    </div>
+  </div>
+  <div class="container hero-bottom"><p>Projetos reais. Código aberto. Curiosidade contínua.</p><a href="#projects" class="scroll-link" aria-label="Explorar projetos" data-track="hero-scroll">↓</a><span>UFPA / COMPUTING</span></div>
+</section>
+<section class="section projects-section" id="projects" data-section="projects">
+  <div class="container">
+    <div class="section-heading"><div><p class="eyebrow">01 / TRABALHOS SELECIONADOS</p><h2>Ideias em funcionamento.</h2></div><p class="section-intro">Nove recortes do que gosto de construir. Explore o contexto, as escolhas e o código por trás de cada projeto.</p></div>
+    <div class="filters" role="group" aria-label="Filtrar projetos por competência" hidden><button type="button" class="filter-button selected" data-filter="backend" aria-pressed="true" data-track="filter-backend"><span class="filter-text">Backend</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button><button type="button" class="filter-button" data-filter="devices" aria-pressed="false" data-track="filter-devices"><span class="filter-text">IoT &amp; sistemas</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button><button type="button" class="filter-button" data-filter="data" aria-pressed="false" data-track="filter-data"><span class="filter-text">Dados &amp; algoritmos</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button><button type="button" class="filter-button" data-filter="interfaces" aria-pressed="false" data-track="filter-interfaces"><span class="filter-text">Interfaces</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button><button type="button" class="filter-button filter-all-btn" data-filter="all" aria-pressed="false" data-track="filter-all"><span class="filter-text">Ver todos</span></button></div>
+    <p class="sr-only" id="filter-status" role="status" data-results="projetos encontrados" data-empty="Nenhum projeto corresponde ao filtro."></p>
+    <!-- PROJECTS_START -->
+    <div class="project-grid"><article class="project-card" data-skills="backend devices data" data-project="aethersense">
+      <a class="visual-link" href="/projects/aethersense/" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-signal" aria-hidden="true">
+  <img class="project-card-image" src="/assets/project-images/joaosnet_aethersense_logo_inicial.webp" alt="" loading="lazy" width="600" height="338">
+  <span class="visual-index">01 / AetherSense</span>
+  <div class="signal-orbits"><span></span><span></span><span></span><div class="signal-core">a<span>~</span></div></div><span class="visual-caption">Wi-Fi CSI → ESP32 → Rust</span>
+  
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">IoT · Pesquisa aplicada</p><h3><a href="/projects/aethersense/" data-track="project-title">AetherSense <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Uma plataforma experimental que conecta sinais Wi-Fi, processamento e uma interface web para explorar sensoriamento sem câmeras.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Rust</li><li>ESP32</li><li>React</li><li>Python</li></ul><div class="card-footer"><a href="/projects/aethersense/" data-track="project-case">Explorar projeto <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">01</span></div></div>
+    </article><article class="project-card" data-skills="interfaces" data-project="dmovel">
+      <a class="visual-link" href="/projects/dmovel/" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-mobile" aria-hidden="true">
+  <img class="project-card-image" src="/assets/project-images/LAPSHub_dmovel_web_app_banner.webp" alt="" loading="lazy" width="600" height="338">
+  <span class="visual-index">02 / DMóvel</span>
+  <div class="device-window"><div class="device-top"><span></span><span></span><span></span></div><div class="device-content"><span class="device-logo">D<span>m</span></span><div class="device-lines"><i></i><i></i><i></i></div><div class="device-grid"><i></i><i></i><i></i></div></div></div><span class="visual-caption">WEB + MOBILE / LAPSHub</span>
+  
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Produto · Multiplataforma</p><h3><a href="/projects/dmovel/" data-track="project-title">DMóvel <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Aplicação do ecossistema DMóvel com acesso pela web e distribuições móveis, desenvolvida no contexto acadêmico do LAPSHub.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Flutter</li><li>Dart</li><li>Web</li><li>Android</li></ul><div class="card-footer"><a href="/projects/dmovel/" data-track="project-case">Explorar projeto <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">02</span></div></div>
+    </article><article class="project-card" data-skills="data interfaces" data-project="evolutionary-lab">
+      <a class="visual-link" href="/projects/evolutionary-lab/" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-optimization" aria-hidden="true">
+  
+  <span class="visual-index">03 / Evolutionary Lab</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Algoritmos · Visualização</p><h3><a href="/projects/evolutionary-lab/" data-track="project-title">Evolutionary Lab <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Um laboratório no navegador para comparar algoritmos genéticos, enxames de partículas e evolução diferencial em funções de teste.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>JavaScript</li><li>Plotly</li><li>AG</li><li>PSO</li></ul><div class="card-footer"><a href="/projects/evolutionary-lab/" data-track="project-case">Explorar projeto <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">03</span></div></div>
+    </article><article class="project-card" data-skills="data interfaces" data-project="cartilha-dash">
+      <a class="visual-link" href="https://github.com/joaosnet/cartilha_dash" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  
+  <span class="visual-index">04 / Cartilha Dash</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Publicado · Visualização de dados</p><h3><a href="https://github.com/joaosnet/cartilha_dash" data-track="project-title">Cartilha Dash <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Guia prático para criar dashboards interativos com Python, Dash e Plotly, com material disponível para explorar no navegador.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Python</li><li>Dash</li><li>Plotly</li></ul><div class="card-footer"><a href="https://joaosnet.github.io/cartilha_dash/" data-track="project-case">Abrir demonstração <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">04</span></div></div>
+    </article><article class="project-card" data-skills="interfaces" data-project="dmovel-sitec">
+      <a class="visual-link" href="https://github.com/joaosnet/dmovel-sitec-2026" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  <img class="project-card-image" src="/assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp" alt="" loading="lazy" width="600" height="338">
+  <span class="visual-index">05 / DMóvel · SITEC 2026</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Publicado · Apresentação interativa</p><h3><a href="https://github.com/joaosnet/dmovel-sitec-2026" data-track="project-title">DMóvel · SITEC 2026 <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Apresentação do DMóvel para o SITEC UFPA 2026, reunindo vídeo, contexto do projeto e acesso à experimentação por QR Code.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>HTML</li><li>Web</li><li>Acessibilidade</li></ul><div class="card-footer"><a href="https://joaosnet.github.io/dmovel-sitec-2026/" data-track="project-case">Abrir demonstração <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">05</span></div></div>
+    </article><article class="project-card" data-skills="backend" data-project="sigaa-mcp">
+      <a class="visual-link" href="https://github.com/joaosnet/sigaa-ufpa-mcp" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  
+  <span class="visual-index">06 / SIGAA UFPA MCP</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Código público · Automação</p><h3><a href="https://github.com/joaosnet/sigaa-ufpa-mcp" data-track="project-title">SIGAA UFPA MCP <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Servidor MCP para automatizar o acesso ao SIGAA da UFPA, explorando integração com navegador e fluxos de autenticação.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Python</li><li>MCP</li><li>Automação</li></ul><div class="card-footer"><a href="https://github.com/joaosnet/sigaa-ufpa-mcp" data-track="project-case">Código no GitHub <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">06</span></div></div>
+    </article><article class="project-card" data-skills="backend devices" data-project="varedura">
+      <a class="visual-link" href="https://github.com/joaosnet/Varedura" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  <img class="project-card-image" src="/assets/project-images/joaosnet_Varedura_demo.gif" alt="" loading="lazy" width="600" height="338">
+  <span class="visual-index">07 / Varedura</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Código público · Ferramentas</p><h3><a href="https://github.com/joaosnet/Varedura" data-track="project-title">Varedura <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Ferramentas para limpeza do Docker, monitoramento de rede e integração MCP. O repositório documenta o desenvolvimento com GitHub Copilot CLI.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Docker</li><li>MCP</li><li>CLI</li></ul><div class="card-footer"><a href="https://github.com/joaosnet/Varedura" data-track="project-case">Código no GitHub <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">07</span></div></div>
+    </article><article class="project-card" data-skills="backend" data-project="klique-api">
+      <a class="visual-link" href="https://github.com/joaosnet/klique-api" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  <img class="project-card-image" src="/assets/project-images/joaosnet_Klique_icon.webp" alt="" loading="lazy" width="600" height="338">
+  <span class="visual-index">08 / Klique API</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Código público · Backend</p><h3><a href="https://github.com/joaosnet/klique-api" data-track="project-title">Klique API <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Backend do projeto Klique desenvolvido em Python. Código e histórico de desenvolvimento disponíveis para consulta no GitHub.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Python</li><li>Backend</li><li>API</li></ul><div class="card-footer"><a href="https://github.com/joaosnet/klique-api" data-track="project-case">Código no GitHub <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">08</span></div></div>
+    </article><article class="project-card" data-skills="data" data-project="federated-learning">
+      <a class="visual-link" href="https://github.com/ealexbarros/fl_projects" tabindex="-1" aria-hidden="true" data-track="project-visual">
+<div class="project-visual visual-code" aria-hidden="true">
+  
+  <span class="visual-index">09 / Federated Learning</span>
+  <div class="contour-map"><div class="contour c1"></div><div class="contour c2"></div><div class="contour c3"></div><div class="contour c4"></div><div class="contour c5"></div><span class="point p1"></span><span class="point p2"></span><span class="point p3"></span><span class="point p4"></span><span class="point p5"></span><span class="point p6"></span></div><span class="visual-caption">AG / PSO / ED → f(x, y)</span>
+</div>
+</a>
+      <div class="project-body"><p class="card-eyebrow">Contribuição · Aprendizado federado</p><h3><a href="https://github.com/ealexbarros/fl_projects" data-track="project-title">Federated Learning <span aria-hidden="true">↗</span></a></h3><p class="project-summary">Contribuição em um repositório de projetos de aprendizado federado, com experimentos em notebooks. Participação consultável no histórico público.</p><ul class="tags" aria-label="Filtrar projetos por competência"><li>Python</li><li>Jupyter</li><li>Machine Learning</li></ul><div class="card-footer"><a href="https://github.com/ealexbarros/fl_projects" data-track="project-case">Código no GitHub <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">09</span></div></div>
+    </article></div>
+    <!-- PROJECTS_END -->
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
-    <script src="assets/js/utils.js?v=4.1" defer></script>
-    <script src="assets/js/geo-counter.js?v=4.1" defer></script>
-    <script src="assets/js/theme-selector.js?v=4.1" defer></script>
-    <script src="assets/js/horizontal-scroll.js?v=4.1" defer></script>
-    <script src="assets/js/project-details.js?v=4.1" defer></script>
-    <script src="assets/js/theme-manager.js?v=4.1" defer></script>
-    <script src="assets/js/mobile-menu.js?v=4.1" defer></script>
-    <script src="assets/js/animations.js?v=4.1" defer></script>
-    <script src="assets/js/contact-form.js?v=4.1" defer></script>
-    <!-- GTranslate - Automatic translation and language picker -->
-    <div class="gtranslate_wrapper" aria-label="Selecionar idioma"></div>
-    <script>
-        window.gtranslateSettings = {
-            default_language: "pt",
-            detect_browser_language: true,
-            native_language_names: true,
-            languages: ["pt", "en", "es", "fr", "de"],
-            alt_flags: {
-                "pt": "brazil"
-            },
-            wrapper_selector: ".gtranslate_wrapper",
-            switcher_horizontal_position: "left",
-            switcher_vertical_position: "bottom",
-            float_switcher_open_direction: "top"
-        };
-    </script>
-    <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>
+  </div>
+</section>
+<section class="section lab-section" id="published" data-section="lab">
+  <div class="container"><div class="section-heading"><div><p class="eyebrow">02 / PLAYGROUND</p><h2>Menos apresentação. Mais experimentação.</h2></div><p class="section-intro">Mova os controles. Observe o resultado. É assim que gosto de aprender e construir.</p></div>
+  <div class="lab-panel"><div class="lab-info"><p class="experiment-label"><span class="tiny-dot" aria-hidden="true"></span>EXPERIMENTO 001</p><h3>Do ruído ao sinal</h3><p>Um pequeno experimento de processamento: ajuste o ruído e veja como uma média móvel suaviza um sinal sintético.</p><div class="lab-controls" hidden><label for="noise">Ruído<output id="noise-value" for="noise">0.45</output></label><input id="noise" type="range" min="0" max="1" step="0.05" value="0.45" data-track="lab-noise"><label for="smoothing">Janela do filtro<output id="smoothing-value" for="smoothing">9</output></label><input id="smoothing" type="range" min="1" max="25" step="2" value="9" data-track="lab-smoothing"><button class="text-button lab-reset" type="button" data-track="lab-reset">↺ Restaurar</button></div><noscript><p>Ative JavaScript para ajustar este experimento. Projetos, currículo e contato continuam disponíveis.</p></noscript><p class="lab-disclaimer">Simulação didática local. Não usa sensores nem representa medições do AetherSense.</p></div>
+  <div class="lab-chart"><div class="chart-header"><span>signal.playground</span><span class="chart-indicator">LOCAL / SYNTHETIC</span></div><div class="chart-legend"><span class="legend-raw">Sinal com ruído</span><span class="legend-filtered">Média móvel</span></div><canvas id="signal-canvas" width="800" height="360" aria-hidden="true"></canvas><div class="chart-summary" aria-live="polite"><span>Erro RMS em relação ao sinal original</span><div><span class="legend-raw">Sinal com ruído: <output id="raw-rms">—</output></span><span class="legend-filtered">Média móvel: <output id="filtered-rms">—</output></span></div></div></div></div>
+  <!-- PAGES_START -->
+  <a class="lab-next" href="https://joaosnet.github.io/evolutionary-optimization-viz-ag-pso/" target="_blank" rel="noopener noreferrer" data-track="lab-demo" data-project="evolutionary-lab"><span class="lab-next-icon" aria-hidden="true">↗</span><div><h3>Continue explorando</h3><p>Compare AG, PSO e evolução diferencial em um laboratório completo, com superfícies 3D e parâmetros ajustáveis.</p></div><span class="lab-next-label">Evolutionary Lab <span aria-hidden="true">↗</span></span></a>
+  <!-- PAGES_END -->
+  </div>
+</section>
+<section class="section about-section" id="education" data-section="about"><div class="container about-grid"><div class="about-copy"><p class="eyebrow">03 / QUEM ESTÁ POR TRÁS</p><h2>Curiosidade como ponto de partida.</h2><p>Gosto de entender o sistema inteiro: da aquisição de um sinal à API que o processa e à interface que torna o resultado útil. Minha experiência vem de projetos acadêmicos e pessoais, com foco em aprender, documentar e construir soluções verificáveis.</p><div class="education-box"><span class="education-icon" aria-hidden="true">⌘</span><div><h3>Engenharia de Computação · UFPA</h3><p>Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado, conforme currículo.</p></div></div><a href="/docs/crv.pdf" class="text-link" data-track="cv-view">Ver currículo <span aria-hidden="true">↗</span></a></div><div class="timeline" aria-label="Minha trajetória"><article class="timeline-entry"><p class="timeline-date">2022 — agora</p><h3>Software &amp; interfaces</h3><p>Projetos acadêmicos e pessoais com desenvolvimento web, APIs e aplicações multiplataforma.</p></article><article class="timeline-entry"><p class="timeline-date">2023 — agora</p><h3>Dispositivos &amp; sinais</h3><p>Exploração de ESP32, IoT e processamento de sinais. AetherSense é o projeto de TCC em desenvolvimento.</p></article><article class="timeline-entry"><p class="timeline-date">2024 — agora</p><h3>Integrações &amp; automação</h3><p>Python, integração de serviços e ferramentas para reduzir trabalho manual.</p></article></div></div>
+<div class="container skills-map" id="skills"><p>Do dispositivo à experiência: selecione uma competência para encontrar os projetos relacionados.</p><div class="skill-network"><a href="#projects" class="skill-node" data-skill="backend" data-track="skill-backend"><span aria-hidden="true">{ }</span>Backend<span aria-hidden="true">↗</span></a><a href="#projects" class="skill-node" data-skill="devices" data-track="skill-devices"><span aria-hidden="true">∿</span>IoT &amp; sistemas<span aria-hidden="true">↗</span></a><a href="#projects" class="skill-node" data-skill="data" data-track="skill-data"><span aria-hidden="true">∑</span>Dados &amp; algoritmos<span aria-hidden="true">↗</span></a><a href="#projects" class="skill-node" data-skill="interfaces" data-track="skill-interfaces"><span aria-hidden="true">⌘</span>Interfaces<span aria-hidden="true">↗</span></a></div></div></section>
+<section class="section contact-section" id="contact" data-section="contact"><div class="container contact-grid"><div class="contact-copy"><p class="eyebrow">04 / PRÓXIMA CONVERSA</p><h2>Vamos construir o que vem a seguir?</h2><p>Procuro um estágio em software onde eu possa contribuir, aprender com uma equipe e trabalhar em problemas reais. Também gosto de trocar ideias sobre os projetos.</p><a class="contact-email" href="mailto:joao.silva.neto@itec.ufpa.br" data-track="email-open">joao.silva.neto@itec.ufpa.br <span aria-hidden="true">↗</span></a><div class="contact-links"><button class="text-button copy-email" data-email="joao.silva.neto@itec.ufpa.br" data-success="E-mail copiado." data-error="Não foi possível copiar. O endereço está disponível logo acima." data-track="email-copy" type="button" hidden>Copiar e-mail</button><a href="https://www.linkedin.com/in/joaonativi/" target="_blank" rel="noopener noreferrer" data-track="linkedin">LinkedIn ↗</a><a href="https://github.com/joaosnet" target="_blank" rel="noopener noreferrer" data-track="github">GitHub ↗</a></div><div class="contact-note"><span class="tiny-dot" aria-hidden="true"></span>Aberto a estágios em software</div></div>
+<form id="contact-form" action="https://formspree.io/f/mdoqyljj" method="post" data-sending="Enviando…" data-success="Mensagem enviada. Obrigado pelo contato!" data-error="Não foi possível enviar. Sua mensagem foi preservada. Tente novamente ou use o e-mail." data-rate-error="O serviço recebeu muitas solicitações. Aguarde e tente novamente ou use o e-mail." data-invalid="Revise os campos indicados antes de enviar.">
+  <div class="form-row"><div class="field"><label for="name">Seu nome</label><input id="name" name="name" autocomplete="name" maxlength="100" required aria-describedby="name-error"><span class="field-error" id="name-error"></span></div><div class="field"><label for="email">Seu e-mail</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="email-error"><span class="field-error" id="email-error"></span></div></div>
+  <div class="form-row"><div class="field"><label for="reason">Sobre o que vamos conversar?</label><select id="reason" name="reason" data-track="contact-reason"><option value="opportunity">Oportunidade de estágio</option><option value="collaboration">Colaboração</option><option value="feedback">Dúvida ou feedback</option></select></div><div class="field"><label for="project">Projeto (opcional)</label><select id="project" name="project" data-track="contact-project"><option value="">Sem projeto específico</option><option value="aethersense">AetherSense</option><option value="dmovel">DMóvel</option><option value="evolutionary-lab">Evolutionary Lab</option></select></div></div>
+  <div class="field"><label for="message">Sua mensagem</label><textarea id="message" name="message" rows="5" minlength="3" maxlength="5000" required placeholder="Conte um pouco sobre a oportunidade ou sua ideia…" aria-describedby="message-error"></textarea><span class="field-error" id="message-error"></span></div>
+  <div class="honeypot" aria-hidden="true"><label for="website">Website</label><input id="website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+  <p class="form-status" id="form-status" role="status" tabindex="-1"></p><div class="form-fallback" hidden><a href="mailto:joao.silva.neto@itec.ufpa.br" data-track="email-fallback">Abrir e-mail ↗</a></div>
+  <button class="button primary submit-button" type="submit" data-track="contact-submit">Enviar mensagem <span aria-hidden="true">↗</span></button><p class="form-note">Envio via Formspree. Seus dados são usados para responder ao contato. <a href="/privacy/">Privacidade</a></p>
+</form></div></section>
+</main>
+  <footer class="site-footer" data-section="footer">
+    <div class="container language-panel notranslate" translate="no">
+      <div class="language-panel-main">
+        <label for="site-language" class="language-label">
+          <span class="language-globe-icon" aria-hidden="true">🌐</span>
+          <span>Idioma</span>
+        </label>
+        <div class="language-select-wrapper">
+          <select id="site-language" class="language-select" data-track="language-select" aria-label="Selecionar idioma do portfólio" hidden>
+            <optgroup label="Versões Nativas">
+              <option value="pt">Português (Brasil)</option>
+              <option value="en">English (US)</option>
+            </optgroup>
+            <optgroup data-machine label="Tradução Automática">
+            </optgroup>
+          </select>
+        </div>
+        <span id="translation-status" class="translation-status" role="status" aria-live="polite"></span>
+      </div>
+      <div class="language-panel-actions">
+        <button class="text-button" id="secret-terminal" data-track="secret-terminal" title="↑ ↑ ↓ ↓ ← → ← → B A" hidden aria-label="Abrir terminal secreto">{ }</button>
+        <button class="text-button" id="explorer-badge" data-track="explorer-badge" hidden>✦ Explorador do portfólio</button>
+      </div>
+    </div>
+    <div class="container"><a class="text-link" href="https://lattes.cnpq.br/1140714924160415" target="_blank" rel="noopener noreferrer" data-track="lattes">Currículo Lattes ↗</a></div>
+    <div class="container footer-top"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>João Silva Neto.</a><p>Feito com curiosidade. Construído com intenção.</p><a class="back-top" href="#main-content" aria-label="Voltar ao início" data-track="back-top">↑</a></div>
+    <div class="container footer-bottom"><div class="footer-legal"><span>© 2026 João Silva Neto · Belém, PA · Brasil</span><span class="visitor-counter-badge" id="visitor-badge" data-track="visitor-badge" hidden><span class="visitor-dot" aria-hidden="true">✦</span><span class="visitor-text">Navegador nº <strong id="visitor-count" class="visitor-num">1</strong> em 2026</span></span></div><div><a href="/privacy/" data-track="privacy">Privacidade</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">Métricas</button><a href="https://github.com/joaosnet" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
+  </footer>
+  <aside class="metrics-notice" aria-label="Métricas" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">Prévia · métricas sem envio</span><button class="text-button metrics-toggle" type="button">Desativar</button><a href="/privacy/">Privacidade</a><button class="notice-close" type="button" aria-label="Recolher aviso de métricas">×</button></aside>
+  <div class="toast" role="status" aria-live="polite" hidden></div>
+  <dialog id="secret-dialog" class="secret-dialog notranslate" translate="no" aria-labelledby="secret-title">
+    <form method="dialog"><button class="text-button" aria-label="Fechar terminal">×</button></form>
+    <div class="matrix-rain" aria-hidden="true">0101 · UFPA · λ · 1010<br>01 · &lt;/&gt; · 110 · π<br>λ · 0101 · HELLO WORLD<br>101 · SIGNAL FOUND · 01</div>
+    <p class="eyebrow">PORTFOLIO / SECRET TERMINAL</p><h2 id="secret-title">Hello, explorer.</h2>
+    <p>Curiosidade é uma boa habilidade de engenharia. Você encontrou a porta secreta.</p>
+    <p class="secret-hint">Próxima pista: no laboratório, encontre o sinal sem ruído e sem suavização.</p>
+    <p><kbd>Esc</kbd> para voltar à exploração</p>
+  </dialog>
 </body>
-
 </html>
-

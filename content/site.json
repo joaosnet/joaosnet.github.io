@@ -1,0 +1,74 @@
+{
+  "name": "João Silva Neto",
+  "url": "https://joaosnet.github.io",
+  "email": "joao.silva.neto@itec.ufpa.br",
+  "github": "https://github.com/joaosnet",
+  "lattes": "https://lattes.cnpq.br/1140714924160415",
+  "linkedin": "https://www.linkedin.com/in/joaonativi/",
+  "form_endpoint": "https://formspree.io/f/mdoqyljj",
+  "analytics_endpoint": "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec",
+  "analytics_validated": true,
+  "release": "portfolio-excellence-v1",
+  "profile": {
+    "pt": {
+      "title": "Desenvolvedor de software · Estudante de Engenharia de Computação",
+      "description": "João Silva Neto — desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Explore projetos de backend, automação, IoT e visualização de dados.",
+      "availability": "Aberto a estágios em software",
+      "headline": "Ideias que ganham",
+      "headline_accent": "vida em código.",
+      "intro": "Sou João, desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Conecto código, dados e dispositivos para transformar perguntas em projetos que você pode explorar.",
+      "focus": "Backend · Python · Automação",
+      "location": "Belém, PA · Brasil",
+      "education": "Engenharia de Computação · UFPA",
+      "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado, conforme currículo.",
+      "about": "Gosto de entender o sistema inteiro: da aquisição de um sinal à API que o processa e à interface que torna o resultado útil. Minha experiência vem de projetos acadêmicos e pessoais, com foco em aprender, documentar e construir soluções verificáveis.",
+      "experience": [
+        [
+          "2022 — agora",
+          "Software & interfaces",
+          "Projetos acadêmicos e pessoais com desenvolvimento web, APIs e aplicações multiplataforma."
+        ],
+        [
+          "2023 — agora",
+          "Dispositivos & sinais",
+          "Exploração de ESP32, IoT e processamento de sinais. AetherSense é o projeto de TCC em desenvolvimento."
+        ],
+        [
+          "2024 — agora",
+          "Integrações & automação",
+          "Python, integração de serviços e ferramentas para reduzir trabalho manual."
+        ]
+      ]
+    },
+    "en": {
+      "title": "Software developer · Computer Engineering student",
+      "description": "João Silva Neto — software developer and Computer Engineering student at UFPA. Explore backend, automation, IoT and data visualization projects.",
+      "availability": "Open to software internships",
+      "headline": "Engineering ideas",
+      "headline_accent": "into working things.",
+      "intro": "I'm João, a software developer and Computer Engineering student at UFPA. I connect code, data and devices to turn questions into projects you can explore.",
+      "focus": "Backend · Python · Automation",
+      "location": "Belém, Brazil",
+      "education": "Computer Engineering · UFPA",
+      "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English, as stated in my résumé.",
+      "about": "I enjoy understanding the whole system: from acquiring a signal to the API that processes it and the interface that makes the result useful. My experience comes from academic and personal projects, with an emphasis on learning, documentation and verifiable work.",
+      "experience": [
+        [
+          "2022 — present",
+          "Software & interfaces",
+          "Academic and personal projects involving web development, APIs and cross-platform applications."
+        ],
+        [
+          "2023 — present",
+          "Devices & signals",
+          "Exploring ESP32, IoT and signal processing. AetherSense is my undergraduate thesis project in development."
+        ],
+        [
+          "2024 — present",
+          "Integrations & automation",
+          "Python, service integrations and tools that reduce manual work."
+        ]
+      ]
+    }
+  }
+}

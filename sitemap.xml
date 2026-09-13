@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://joaosnet.github.io/</loc>
-        <lastmod>2026-09-13</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://joaosnet.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/privacy/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/projects/aethersense/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/aethersense/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/aethersense/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/aethersense/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/projects/dmovel/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/dmovel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/dmovel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/dmovel/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/projects/evolutionary-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/evolutionary-lab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/evolutionary-lab/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/evolutionary-lab/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/en/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/privacy/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/en/projects/aethersense/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/aethersense/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/aethersense/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/aethersense/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/en/projects/dmovel/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/dmovel/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/dmovel/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/dmovel/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://joaosnet.github.io/en/projects/evolutionary-lab/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/evolutionary-lab/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/evolutionary-lab/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/evolutionary-lab/"/>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

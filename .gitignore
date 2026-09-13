@@ -7,6 +7,7 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+.build-staging/
 downloads/
 eggs/
 .eggs/
@@ -29,7 +30,6 @@ env/
 
 # UV
 .uv/
-uv.lock
 
 # IDEs
 .vscode/
@@ -59,6 +59,7 @@ coverage.xml
 
 # Pytest
 .pytest_cache/
+.pytest_tmp/
 
 # Ruff
 .ruff_cache/
@@ -76,7 +77,20 @@ Thumbs.db
 .DS_Store
 *.log
 
+# Local review material and generated public build
+.private-preview/
+artifacts/
+dist/
+node_modules/
+playwright-report/
+test-results/
+.lighthouseci/
+
 # Temporary files
 *.tmp
 *.temp
 ~$*
+
+# Graphify caches
+graphify-out/cache/
+

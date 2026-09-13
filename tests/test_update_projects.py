@@ -1,438 +1,126 @@
-"""
-Testes para o script update_projects.py
-Testa funcionalidades críticas como:
-- Detecção de idioma
-- Tradução
-- Geração de HTML
-- Manipulação de descrições None/ vazias
-- Validação de estrutura de projetos
-"""
+import hashlib
+from unittest.mock import Mock
 
 import pytest
-import sys
-import os
-from unittest.mock import Mock, patch, MagicMock
-from datetime import datetime
 
-# Adicionar o diretório raiz ao path
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import update_projects as updater
+from build_site import safe_url
 
-from update_projects import (
-    detect_language,
-    translate_to_portuguese,
-    generate_project_html,
-    generate_pages_links_html,
-    get_github_pages_url,
-    collect_public_pages_links,
-    mask_repo_name,
+
+def client(repo="owner/public", private=False, status=200, **values):
+    session = Mock()
+    session.get.return_value.status_code = status
+    session.get.return_value.json.return_value = {
+        "full_name": repo,
+        "private": private,
+        "stargazers_count": 3,
+        "pushed_at": "2026-09-07T12:00:00Z",
+        **values,
+    }
+    return session
+
+
+def test_public_import_never_uses_environment_tokens(monkeypatch):
+    monkeypatch.setenv("PRIVATE_REPOS_TOKEN", "fake-private-token")
+    monkeypatch.setenv("GITHUB_TOKEN", "fake-github-token")
+    session = client()
+    result = updater.public_snapshot(
+        [
+            {"id": "public", "repo": "owner/public", "visibility": "public"},
+            {"id": "secret", "repo": "owner/private", "visibility": "private"},
+        ],
+        session,
+    )
+    assert list(result) == ["public"]
+    assert session.get.call_count == 1
+    assert session.trust_env is False
+    kwargs = session.get.call_args.kwargs
+    assert "Authorization" not in kwargs["headers"]
+    assert kwargs["allow_redirects"] is False
+    assert kwargs["timeout"] == 15
+
+
+@pytest.mark.parametrize("status", [301, 302, 403, 404, 429, 500])
+def test_api_failure_does_not_accept_redirect_or_data(status):
+    with pytest.raises(RuntimeError):
+        updater.fetch_repository("owner/public", session=client(status=status))
+
+
+def test_public_to_private_change_is_rejected():
+    with pytest.raises(ValueError):
+        updater.public_snapshot(
+            [{"id": "public", "repo": "owner/public", "visibility": "public"}], client(private=True)
+        )
+
+
+@pytest.mark.parametrize(
+    "repo", ["../private", "owner/repo/../../secrets", "https://evil.test", "a/b?token=x", "a/b\n"]
 )
-
-
-class TestDetectLanguage:
-    """Testes para detecção de idioma"""
-
-    def test_detect_portuguese(self):
-        """Deve detectar texto em português"""
-        text = "Este é um projeto de aplicação web para gerenciamento de dados"
-        assert detect_language(text) == "pt"
-
-    def test_detect_portuguese_with_common_words(self):
-        """Deve detectar português por palavras comuns"""
-        text = "Sistema para cadastro de usuários com configuração automática"
-        assert detect_language(text) == "pt"
-
-    def test_detect_english(self):
-        """Deve detectar texto em inglês"""
-        text = "This is a web application for data management and user authentication"
-        assert detect_language(text) == "en"
-
-    def test_detect_english_common_words(self):
-        """Deve detectar inglês por palavras comuns"""
-        text = "The system provides user management and configuration tools"
-        assert detect_language(text) == "en"
-
-    def test_detect_empty_text(self):
-        """Deve retornar 'unknown' para texto vazio"""
-        assert detect_language("") == "unknown"
-        assert detect_language(None) == "unknown"
-
-    def test_detect_short_text(self):
-        """Deve lidar com textos curtos"""
-        text = "API"
-        result = detect_language(text)
-        assert result in ["unknown", "en", "other"]
-
-
-class TestTranslateToPortuguese:
-    """Testes para tradução"""
-
-    @patch("update_projects._HAS_REQUESTS", False)
-    def test_skip_translation_if_portuguese(self):
-        """Não deve traduzir se texto já está em português"""
-        text = "Este é um projeto em português"
-        result = translate_to_portuguese(text)
-        # Deve retornar o original se detectar como pt
-        assert result == text
-
-    def test_handle_empty_text(self):
-        """Deve lidar com textos vazios"""
-        assert translate_to_portuguese("") == ""
-        assert translate_to_portuguese(None) is None
-
-    def test_handle_short_text(self):
-        """Deve lidar com textos curtos (< 3 chars)"""
-        assert translate_to_portuguese("OK") == "OK"
-
-
-class TestGenerateProjectHTML:
-    """Testes para geração de HTML de projetos"""
-
-    def test_generate_html_public_project(self):
-        """Deve gerar HTML correto para projeto público"""
-        project = {
-            "name": "test-project",
-            "description": "Um projeto de teste",
-            "html_url": "https://github.com/joaosnet/test-project",
-            "preview_image": "https://example.com/image.png",
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-
-        assert "test-project" in html
-        assert "Um projeto de teste" in html
-        assert "https://github.com/joaosnet/test-project" in html
-        assert "https://example.com/image.png" in html
-        assert 'class="timeline-item"' in html
-        assert "timeline-card-body" in html
-        assert "timeline-dot" in html
-        assert "Ver no GitHub" in html
-        assert "Ver detalhes" in html
-        assert "timeline-card-details" in html
-
-    def test_generate_html_public_project_with_github_pages(self):
-        """Deve gerar link de GitHub Pages quando o projeto público tiver Pages"""
-        project = {
-            "name": "pages-project",
-            "description": "Projeto com página publicada",
-            "html_url": "https://github.com/joaosnet/pages-project",
-            "preview_image": None,
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-            "has_pages": True,
-            "homepage": "",
-            "owner": {"login": "joaosnet"},
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-
-        assert "Ver página" in html
-        assert "https://joaosnet.github.io/pages-project/" in html
-        assert "timeline-card-btn--page" in html
-
-    def test_generate_html_private_project(self):
-        """Deve gerar HTML correto para projeto privado"""
-        project = {
-            "name": "private-project",
-            "description": "Projeto privado de teste",
-            "html_url": "https://github.com/joaosnet/private-project",
-            "preview_image": None,
-            "updated_at": "2026-04-02T22:18:41Z",
-            "private": True,
-        }
-
-        html = generate_project_html(project, is_last=True, position="right")
-
-        assert "private-project" in html
-        assert "Projeto privado de teste" in html
-        assert 'class="timeline-item"' in html
-        assert "Privado" in html
-        assert "fa-lock" in html
-        assert "Ver detalhes" in html
-        assert "timeline-card-details" in html
-        assert "Ver no GitHub" not in html
-        assert "Ver página" not in html
-
-    def test_generate_html_none_description(self):
-        """Deve lidar com descrição None"""
-        project = {
-            "name": "no-desc-project",
-            "description": None,
-            "html_url": "https://github.com/joaosnet/no-desc-project",
-            "preview_image": None,
-            "updated_at": "2026-04-01T21:09:16Z",
-            "private": False,
-        }
-
-        # Não deve falhar mesmo com description = None
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "no-desc-project" in html
-
-    def test_generate_html_empty_description(self):
-        """Deve lidar com descrição vazia"""
-        project = {
-            "name": "empty-desc-project",
-            "description": "",
-            "html_url": "https://github.com/joaosnet/empty-desc-project",
-            "preview_image": None,
-            "updated_at": "2026-04-01T21:09:16Z",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "empty-desc-project" in html
-
-    def test_generate_html_with_translated_description(self):
-        """Deve usar descrição traduzida se disponível"""
-        project = {
-            "name": "translated-project",
-            "description": "Original description in English",
-            "description_translated": "Descrição traduzida para português",
-            "html_url": "https://github.com/joaosnet/translated-project",
-            "preview_image": None,
-            "updated_at": "2026-04-01T21:09:16Z",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "Descrição traduzida para português" in html
-        assert "Original description in English" not in html
-
-    def test_generate_html_position_argument_is_visual_noop(self):
-        """Deve manter assinatura legada sem voltar ao layout alternado"""
-        project = {
-            "name": "right-project",
-            "description": "Projeto à direita",
-            "html_url": "https://github.com/joaosnet/right-project",
-            "preview_image": None,
-            "updated_at": "2026-04-01T21:09:16Z",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="right")
-        assert 'class="timeline-item"' in html
-        assert "timeline-item-right" not in html
-        assert "timeline-card--right" not in html
-
-
-class TestMaskRepoName:
-    """Testes para mascaramento de nomes de repositórios"""
-
-    def test_mask_private_repo(self):
-        """Deve mascarar nome de repo privado"""
-        repo = {"private": True}
-        assert mask_repo_name(repo) == "private repo"
-
-    def test_mask_public_repo(self):
-        """Deve mostrar nome de repo público"""
-        repo = {
-            "private": False,
-            "owner": {"login": "joaosnet"},
-            "name": "public-repo",
-        }
-        assert mask_repo_name(repo) == "joaosnet/public-repo"
-
-
-class TestGitHubPagesLinks:
-    """Testes para links públicos de GitHub Pages"""
-
-    def test_get_github_pages_url_from_homepage(self):
-        project = {
-            "name": "cartilha_dash",
-            "private": False,
-            "homepage": "https://joaosnet.github.io/cartilha_dash/",
-            "has_pages": True,
-            "owner": {"login": "joaosnet"},
-        }
-
-        assert get_github_pages_url(project) == "https://joaosnet.github.io/cartilha_dash/"
-
-    def test_get_github_pages_url_derived_for_project_site(self):
-        project = {
-            "name": "demo",
-            "private": False,
-            "homepage": "",
-            "has_pages": True,
-            "owner": {"login": "joaosnet"},
-        }
-
-        assert get_github_pages_url(project) == "https://joaosnet.github.io/demo/"
-
-    def test_get_github_pages_url_derived_for_user_site(self):
-        project = {
-            "name": "joaosnet.github.io",
-            "private": False,
-            "homepage": "",
-            "has_pages": True,
-            "owner": {"login": "joaosnet"},
-        }
-
-        assert get_github_pages_url(project) == "https://joaosnet.github.io/"
-
-    def test_get_github_pages_url_ignores_private_repo(self):
-        project = {
-            "name": "private-pages",
-            "private": True,
-            "homepage": "https://joaosnet.github.io/private-pages/",
-            "has_pages": True,
-            "owner": {"login": "joaosnet"},
-        }
-
-        assert get_github_pages_url(project) is None
-
-    def test_collect_public_pages_links(self):
-        repos = [
-            {
-                "name": "joaosnet.github.io",
-                "private": False,
-                "homepage": "https://joaosnet.github.io/",
-                "has_pages": True,
-                "html_url": "https://github.com/joaosnet/joaosnet.github.io",
-                "description": "Portfolio",
-                "updated_at": "2026-04-01T00:00:00Z",
-                "owner": {"login": "joaosnet"},
-            },
-            {
-                "name": "private-pages",
-                "private": True,
-                "homepage": "https://joaosnet.github.io/private-pages/",
-                "has_pages": True,
-                "html_url": "https://github.com/joaosnet/private-pages",
-                "owner": {"login": "joaosnet"},
-            },
-            {
-                "name": "demo",
-                "private": False,
-                "homepage": "",
-                "has_pages": True,
-                "html_url": "https://github.com/joaosnet/demo",
-                "description": "Demo page",
-                "updated_at": "2026-04-02T00:00:00Z",
-                "owner": {"login": "joaosnet"},
-            },
-        ]
-
-        pages = collect_public_pages_links(repos)
-
-        assert len(pages) == 1
-        assert pages[0]["url"] == "https://joaosnet.github.io/demo/"
-
-    def test_generate_pages_links_html(self):
-        pages = [
-            {
-                "name": "cartilha_dash",
-                "url": "https://joaosnet.github.io/cartilha_dash/",
-                "description": "Cartilha pública",
-                "preview_image": "./assets/images/favicon.png",
-            }
-        ]
-
-        html = generate_pages_links_html(pages)
-
-        assert "published-pages-list" in html
-        assert "cartilha_dash" in html
-        assert "https://joaosnet.github.io/cartilha_dash/" in html
-        assert "published-page-image" in html
-        assert "<iframe" not in html
-        assert "Abrir site" in html
-
-
-class TestProjectValidation:
-    """Testes de validação de estrutura de projetos"""
-
-    def test_project_with_all_fields(self):
-        """Deve lidar com projeto com todos os campos"""
-        project = {
-            "name": "complete-project",
-            "description": "Projeto completo",
-            "description_translated": "Projeto completo traduzido",
-            "html_url": "https://github.com/joaosnet/complete-project",
-            "preview_image": "https://example.com/img.png",
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-            "fork": False,
-        }
-
-        html = generate_project_html(project, is_last=True, position="left")
-        assert "complete-project" in html
-        assert "Projeto completo traduzido" in html
-
-    def test_project_with_minimal_fields(self):
-        """Deve lidar com projeto com campos mínimos"""
-        project = {
-            "name": "minimal-project",
-            "description": None,
-            "html_url": "https://github.com/joaosnet/minimal-project",
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-        }
-
-        # Não deve falhar
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "minimal-project" in html
-
-    def test_project_date_format(self):
-        """Deve formatar data corretamente"""
-        project = {
-            "name": "date-project",
-            "description": "Projeto com data",
-            "html_url": "https://github.com/joaosnet/date-project",
-            "preview_image": None,
-            "updated_at": "2026-04-03T04:43:00+00:00",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "03/04/2026" in html
-        assert "2026-04-03T04:43:00+00:00" in html  # datetime ISO
-
-
-class TestEdgeCases:
-    """Testes para casos extremas"""
-
-    def test_special_characters_in_description(self):
-        """Deve lidar com caracteres especiais na descrição"""
-        project = {
-            "name": "special-chars-project",
-            "description": "Projeto com <html> & \"aspas\" 'simples'",
-            "html_url": "https://github.com/joaosnet/special-chars-project",
-            "preview_image": None,
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-        }
-
-        # Não deve falhar
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "special-chars-project" in html
-
-    def test_very_long_description(self):
-        """Deve lidar com descrições muito longas"""
-        project = {
-            "name": "long-desc-project",
-            "description": "A" * 1000,
-            "html_url": "https://github.com/joaosnet/long-desc-project",
-            "preview_image": None,
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-        }
-
-        # Não deve falhar
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "long-desc-project" in html
-
-    def test_project_with_none_image(self):
-        """Deve lidar com imagem None"""
-        project = {
-            "name": "no-image-project",
-            "description": "Projeto sem imagem",
-            "html_url": "https://github.com/joaosnet/no-image-project",
-            "preview_image": None,
-            "updated_at": "2026-04-03T04:43:00Z",
-            "private": False,
-        }
-
-        html = generate_project_html(project, is_last=False, position="left")
-        assert "no-image-project" in html
-        # Não deve ter tag img se preview_image é None
-        assert '<img src=""' not in html
+def test_repository_identifier_injection_is_rejected(repo):
+    session = client()
+    with pytest.raises(ValueError):
+        updater.fetch_repository(repo, session=session)
+    session.get.assert_not_called()
+
+
+@pytest.mark.parametrize(
+    "url",
+    [
+        "javascript:alert(1)",
+        "http://github.com",
+        "https://user:password@github.com/x",
+        "https://github.com:8000/x",
+        "https://github.com/x\n",
+    ],
+)
+def test_unsafe_links_are_rejected(url):
+    with pytest.raises(ValueError):
+        safe_url(url)
+
+
+def test_private_preview_needs_explicit_local_allowlist(tmp_path, monkeypatch):
+    (tmp_path / "allowlist.json").write_text("[]")
+    monkeypatch.setenv("PRIVATE_REPOS_TOKEN", "fake")
+    session = client()
+    with pytest.raises(ValueError):
+        updater.private_preview("owner/private", tmp_path, session)
+    session.get.assert_not_called()
+
+
+def test_private_preview_is_local_and_contains_no_token(tmp_path, monkeypatch):
+    (tmp_path / "allowlist.json").write_text('["owner/private"]')
+    monkeypatch.setenv("PRIVATE_REPOS_TOKEN", "fake-private-value")
+    session = client("owner/private", private=True, name="private", description="Private source")
+    digest = updater.private_preview("owner/private", tmp_path, session)
+    raw = (tmp_path / (digest + ".json")).read_bytes()
+    assert hashlib.sha256(raw).hexdigest() == digest
+    assert b"fake-private-value" not in raw
+    assert session.get.call_count == 1
+    assert session.get.call_args.kwargs["headers"]["Authorization"] == "Bearer fake-private-value"
+
+
+def test_raw_private_payload_cannot_be_promoted(tmp_path, monkeypatch):
+    monkeypatch.setattr(updater, "ROOT", tmp_path)
+    folder = tmp_path / ".private-preview"
+    folder.mkdir()
+    source = folder / "review.json"
+    source.write_text('{"source":"private-name","description":"raw"}')
+    digest = hashlib.sha256(source.read_bytes()).hexdigest()
+    with pytest.raises(ValueError):
+        updater.approve_export(source, digest)
+    assert not (tmp_path / "content/private-approved.json").exists()
+
+
+def test_changed_review_digest_is_rejected(tmp_path, monkeypatch):
+    monkeypatch.setattr(updater, "ROOT", tmp_path)
+    folder = tmp_path / ".private-preview"
+    folder.mkdir()
+    source = folder / "review.json"
+    source.write_text("[]")
+    with pytest.raises(ValueError):
+        updater.approve_export(source, "0" * 64)
+
+
+def test_wrong_repository_response_is_rejected():
+    with pytest.raises(ValueError):
+        updater.fetch_repository("owner/public", session=client("other/repo"))
