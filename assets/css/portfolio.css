@@ -422,9 +422,36 @@ p {
   margin-left: 10px;
 }
 .menu-toggle {
-  border: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   background: none;
-  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  font-size: 1.15rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.menu-toggle:hover {
+  border-color: var(--cyan);
+  background: color-mix(in srgb, var(--cyan) 10%, transparent);
+}
+.menu-toggle[aria-expanded="true"] {
+  border-color: var(--cyan);
+  background: color-mix(in srgb, var(--cyan) 16%, transparent);
+}
+.menu-text {
+  display: none;
+}
+.menu-icon {
+  display: inline-block;
+  font-size: 1.15rem;
+  line-height: 1;
 }
 .hero {
   position: relative;
@@ -1919,23 +1946,39 @@ a:hover.text-link {
   }
   .site-header {
     height: 74px;
+    overflow: visible;
   }
   .header-inner {
-    gap: 15px;
-    flex-wrap: wrap;
+    gap: 8px;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
   }
   .brand {
-    font-size: 1rem;
+    order: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .header-tools {
+    order: 2;
     margin-left: auto;
-    gap: 14px;
+    gap: 8px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
   .header-contact {
     display: none;
   }
   .nav-ready .menu-toggle {
-    display: block;
+    order: 3;
+    display: inline-flex;
+    margin-left: 2px;
+    flex-shrink: 0;
   }
   .nav-ready #main-nav {
     display: none;
@@ -1950,6 +1993,8 @@ a:hover.text-link {
     align-items: flex-start;
     gap: 4px;
     margin: 0;
+    z-index: 50;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
   }
   .nav-ready #main-nav.open {
     display: flex;
@@ -2167,6 +2212,41 @@ a:hover.text-link {
   }
   .prose-page h1 {
     font-size: 2.8rem;
+  }
+}
+@media (max-width: 540px) {
+  .header-inner {
+    gap: 6px;
+  }
+  .header-tools {
+    gap: 6px;
+  }
+  .palette-popover {
+    width: min(270px, calc(100vw - 32px));
+    right: -42px;
+  }
+}
+@media (max-width: 360px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+  .header-inner {
+    gap: 4px;
+  }
+  .header-tools {
+    gap: 4px;
+  }
+  .brand {
+    font-size: 0.85rem;
+    gap: 6px;
+  }
+  .brand-mark {
+    font-size: 1.25rem;
+    margin-right: 1px;
+  }
+  .language-switch {
+    font-size: 0.72rem;
+    padding: 6px 2px;
   }
 }
 @media (max-width: 540px) {

@@ -37,7 +37,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Silva Neto<span class="brand-dot">.</span></span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-track="menu" hidden>{{ t.menu }} <span aria-hidden="true">☰</span></button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="{{ t.menu }}" title="{{ t.menu }}" data-track="menu" hidden><span class="menu-text">{{ t.menu }}</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="{{ t.menu }}">
         <a href="{{ base }}#projects" data-track="nav-projects">{{ t.nav_projects }}</a>
         <a href="{{ base }}#published" data-track="nav-lab">{{ t.nav_lab }}<span class="nav-dot" aria-hidden="true"></span></a>
