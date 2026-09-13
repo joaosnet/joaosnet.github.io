@@ -8,7 +8,7 @@ import hashlib
 import json
 import re
 import shutil
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -110,8 +110,20 @@ def build(output=None):
     site = read_json(ROOT / "content/site.json")
     ui = read_json(ROOT / "content/ui.json")
     projects = load_projects()
+    extra_cards = read_json(ROOT / "content/project-cards.json")
+    ids = {p["id"] for p in projects}
+    for index, card in enumerate(extra_cards, start=len(projects) + 1):
+        if not REPO.fullmatch(card["repo"]) or not TOKEN.fullmatch(card["id"]) or card["id"] in ids:
+            raise ValueError("Invalid or duplicate project card")
+        ids.add(card["id"])
+        safe_url(card.get("demo", ""))
+        card["number"] = f"{index:02}"
+        card["card_url"] = "https://github.com/" + card["repo"]
+        card["card_cta_url"] = card.get("demo") or card["card_url"]
+    cards = projects + extra_cards
     safe_url(site["url"])
     safe_url(site["github"], {"github.com"})
+    safe_url(site["lattes"], {"lattes.cnpq.br"})
     safe_url(site["linkedin"], {"linkedin.com", "www.linkedin.com"})
     safe_url(site["form_endpoint"], {"formspree.io"})
     endpoint = site.get("analytics_endpoint", "")
@@ -125,7 +137,13 @@ def build(output=None):
     pages = []
     all_pages = []
     track_ids = {"content", "form-field", "unlabelled-control", "page"}
-    csp = "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self' https://formspree.io"
+    csp = (
+        "default-src 'none'; "
+        "script-src 'self' https://cdn.gtranslate.net/widgets/latest/lib.min.js; "
+        "style-src 'self' 'unsafe-inline' https://cdn.gtranslate.net; "
+        "img-src 'self' data: https://cdn.gtranslate.net; font-src 'self'; "
+        "connect-src 'self' https://formspree.io https://translate-pa.googleapis.com"
+    )
     if endpoint:
         csp += " https://script.google.com https://script.googleusercontent.com"
     csp += "; form-action https://formspree.io; base-uri 'none'; object-src 'none'"
@@ -158,6 +176,7 @@ def build(output=None):
                 path=path,
                 alternate=alternate,
                 projects=projects,
+                cards=cards,
                 project=project,
                 csp=page_csp,
                 schema=schema,
@@ -177,13 +196,23 @@ def build(output=None):
         "assets/js/boot.js",
         "assets/js/portfolio.js",
         "assets/js/analytics.js",
+        "assets/js/languages.js",
+        "assets/js/easter-eggs.js",
         "assets/images/hero-avatar.jpg",
         "assets/images/favicon.png",
+        "assets/images/favicon.svg",
     ]
     for asset in assets:
         target = destination / asset
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT / asset, target)
+    project_images_dir = ROOT / "assets/project-images"
+    if project_images_dir.exists():
+        target_images_dir = destination / "assets/project-images"
+        target_images_dir.mkdir(parents=True, exist_ok=True)
+        for img in project_images_dir.iterdir():
+            if img.is_file() and not any(k in img.name for k in ("private", "fastapi")):
+                shutil.copyfile(img, target_images_dir / img.name)
     fonts = ROOT / "assets/fonts"
     if fonts.exists():
         shutil.copytree(fonts, destination / "assets/fonts")
@@ -198,7 +227,7 @@ def build(output=None):
         "pageIds": all_pages,
         "productionHost": urlsplit(site["url"]).hostname,
         "trackIds": sorted(track_ids),
-        "projects": [p["id"] for p in projects],
+        "projects": [p["id"] for p in cards],
         "text": {
             k: {n: ui[k][n] for n in ("metrics_notice", "metrics_off", "metrics_preview", "disable", "enable")}
             for k in ui
@@ -208,18 +237,57 @@ def build(output=None):
     catalog = {
         "pages": all_pages,
         "elements": sorted(track_ids),
-        "projects": [p["id"] for p in projects],
+        "projects": [p["id"] for p in cards],
         "releases": [site["release"]],
     }
     # Deployment instructions consume this catalog; it contains only public identifiers.
     (ROOT / "analytics/catalog.json").write_text(json.dumps(catalog, indent=2), encoding="utf-8")
-    (destination / "robots.txt").write_text(
-        f"User-agent: *\nAllow: /\nSitemap: {site['url']}/sitemap.xml\n", encoding="utf-8"
+    robots_content = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /tests/\n"
+        "Disallow: /artifacts/\n"
+        "Disallow: /.private-preview/\n\n"
+        f"Sitemap: {site['url']}/sitemap.xml\n"
     )
-    xml = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
-    xml += "".join(f"<url><loc>{site['url']}{p}</loc></url>" for p in pages) + "</urlset>"
+    (destination / "robots.txt").write_text(robots_content, encoding="utf-8")
+    (ROOT / "robots.txt").write_text(robots_content, encoding="utf-8")
+
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
+    xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
+    for p in pages:
+        loc = f"{site['url']}{p}"
+        if p in ("/", "/en/"):
+            priority = "1.0" if p == "/" else "0.9"
+            changefreq = "weekly"
+        elif "privacy" in p:
+            priority = "0.3"
+            changefreq = "monthly"
+        else:
+            priority = "0.8"
+            changefreq = "weekly"
+
+        pt_path = p.removeprefix("/en") if p.startswith("/en/") else p
+        en_path = p if p.startswith("/en/") else ("/en" + p)
+        pt_url = f"{site['url']}{pt_path}"
+        en_url = f"{site['url']}{en_path}"
+
+        xml += "  <url>\n"
+        xml += f"    <loc>{loc}</loc>\n"
+        xml += f'    <xhtml:link rel="alternate" hreflang="pt-BR" href="{pt_url}"/>\n'
+        xml += f'    <xhtml:link rel="alternate" hreflang="en" href="{en_url}"/>\n'
+        xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{pt_url}"/>\n'
+        xml += f"    <lastmod>{today}</lastmod>\n"
+        xml += f"    <changefreq>{changefreq}</changefreq>\n"
+        xml += f"    <priority>{priority}</priority>\n"
+        xml += "  </url>\n"
+    xml += "</urlset>\n"
     (destination / "sitemap.xml").write_text(xml, encoding="utf-8")
+    (ROOT / "sitemap.xml").write_text(xml, encoding="utf-8")
     (destination / ".nojekyll").touch()
+    # Synchronize root index.html with the built homepage
+    shutil.copyfile(destination / "index.html", ROOT / "index.html")
     digest = hashlib.sha256((destination / "index.html").read_bytes()).hexdigest()[:12]
     if final_destination.exists():
         shutil.rmtree(final_destination)

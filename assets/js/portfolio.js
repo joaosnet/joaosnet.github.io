@@ -28,6 +28,89 @@
     }
     document.dispatchEvent(new Event("portfolio-theme"));
   });
+  const prefersDarkScheme = matchMedia("(prefers-color-scheme: dark)");
+  const handleSystemThemeChange = (e) => {
+    try {
+      if (localStorage.getItem("theme")) return;
+    } catch {
+      /* Optional preference. */
+    }
+    document.documentElement.dataset.theme = e.matches ? "dark" : "light";
+    document.dispatchEvent(new Event("portfolio-theme"));
+  };
+  if (prefersDarkScheme?.addEventListener) {
+    prefersDarkScheme.addEventListener("change", handleSystemThemeChange);
+  } else if (prefersDarkScheme?.addListener) {
+    prefersDarkScheme.addListener(handleSystemThemeChange);
+  }
+  const paletteToggle = $(".palette-toggle");
+  const palettePopover = $("#palette-popover");
+  const hueSlider = $("#palette-hue-slider");
+  const hueLabel = $("#palette-hue-label");
+  const paletteReset = $(".palette-reset");
+  if (paletteToggle && palettePopover && hueSlider) {
+    paletteToggle.hidden = false;
+    const currentHue =
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--theme-hue")
+        .trim() || "192";
+    hueSlider.value = currentHue;
+    if (hueLabel) hueLabel.textContent = `${currentHue}° HUE`;
+
+    const setHue = (hue) => {
+      document.documentElement.style.setProperty("--theme-hue", hue);
+      hueSlider.value = hue;
+      if (hueLabel) hueLabel.textContent = `${hue}° HUE`;
+      try {
+        localStorage.setItem("portfolio-hue", hue);
+      } catch {
+        /* Storage is optional */
+      }
+      document.dispatchEvent(new Event("portfolio-theme"));
+    };
+
+    paletteToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = paletteToggle.getAttribute("aria-expanded") !== "true";
+      paletteToggle.setAttribute("aria-expanded", String(open));
+      palettePopover.hidden = !open;
+      track("click", { element: "theme-palette" });
+    });
+
+    hueSlider.addEventListener("input", () => {
+      setHue(hueSlider.value);
+    });
+
+    $$(".palette-preset").forEach((preset) => {
+      preset.addEventListener("click", () => {
+        setHue(preset.dataset.hue);
+      });
+    });
+
+    paletteReset?.addEventListener("click", () => {
+      setHue("192");
+      try {
+        localStorage.removeItem("portfolio-hue");
+      } catch {
+        /* Storage is optional */
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".palette-wrapper") && !palettePopover.hidden) {
+        palettePopover.hidden = true;
+        paletteToggle.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !palettePopover.hidden) {
+        palettePopover.hidden = true;
+        paletteToggle.setAttribute("aria-expanded", "false");
+        paletteToggle.focus();
+      }
+    });
+  }
   const menu = $(".menu-toggle");
   const nav = $("#main-nav");
   menu.hidden = false;
@@ -79,6 +162,71 @@
     });
     history.pushState(null, "", url.hash);
   });
+  const carouselCategories = ["backend", "devices", "data", "interfaces"];
+  let carouselIndex = 0;
+  let carouselTimer = null;
+  let carouselStartTime = 0;
+  let carouselRemaining = 7000;
+  let carouselPaused = false;
+  let carouselDisabled = reducedMotion.matches;
+  const projectsSection = $(".projects-section");
+  const filtersContainer = $(".filters");
+
+  const restartPillAnimation = (button) => {
+    const progress = button?.querySelector(".pill-progress");
+    if (progress) {
+      progress.style.animation = "none";
+      void progress.offsetHeight;
+      progress.style.animation = "";
+    }
+  };
+
+  const startCarouselTimer = (duration = 7000) => {
+    if (carouselDisabled) return;
+    clearTimeout(carouselTimer);
+    carouselRemaining = duration;
+    carouselStartTime = Date.now();
+    carouselPaused = false;
+    filtersContainer?.classList.remove("paused");
+    projectsSection?.classList.remove("paused");
+
+    const currentButton = $(
+      `[data-filter="${carouselCategories[carouselIndex]}"]`,
+    );
+    if (currentButton) restartPillAnimation(currentButton);
+
+    carouselTimer = setTimeout(() => {
+      carouselIndex = (carouselIndex + 1) % carouselCategories.length;
+      applyFilter(carouselCategories[carouselIndex]);
+      startCarouselTimer(7000);
+    }, duration);
+  };
+
+  const pauseCarouselTimer = () => {
+    if (carouselDisabled || carouselPaused) return;
+    clearTimeout(carouselTimer);
+    const elapsed = Date.now() - carouselStartTime;
+    carouselRemaining = Math.max(0, carouselRemaining - elapsed);
+    carouselPaused = true;
+    filtersContainer?.classList.add("paused");
+    projectsSection?.classList.add("paused");
+  };
+
+  const resumeCarouselTimer = () => {
+    if (carouselDisabled || !carouselPaused || carouselRemaining <= 0) return;
+    clearTimeout(carouselTimer);
+    carouselStartTime = Date.now();
+    carouselPaused = false;
+    filtersContainer?.classList.remove("paused");
+    projectsSection?.classList.remove("paused");
+
+    carouselTimer = setTimeout(() => {
+      carouselIndex = (carouselIndex + 1) % carouselCategories.length;
+      applyFilter(carouselCategories[carouselIndex]);
+      startCarouselTimer(7000);
+    }, carouselRemaining);
+  };
+
   const applyFilter = (value) => {
     let count = 0;
     $$(".project-card").forEach((card) => {
@@ -98,16 +246,49 @@
         ? `${count} ${status.dataset.results}`
         : status.dataset.empty;
   };
-  if ($(".filters")) {
-    $(".filters").hidden = false;
+
+  if (filtersContainer) {
+    filtersContainer.hidden = false;
+    applyFilter(carouselCategories[0]);
+    startCarouselTimer(7000);
+
     $$(".filter-button").forEach((button) =>
-      button.addEventListener("click", () =>
-        applyFilter(button.dataset.filter),
-      ),
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        if (filter === "all") {
+          carouselDisabled = true;
+          clearTimeout(carouselTimer);
+          filtersContainer?.classList.add("paused");
+          projectsSection?.classList.add("paused");
+        } else {
+          const idx = carouselCategories.indexOf(filter);
+          if (idx !== -1) {
+            carouselIndex = idx;
+            carouselDisabled = reducedMotion.matches;
+            startCarouselTimer(7000);
+          }
+        }
+        applyFilter(filter);
+      }),
     );
+
+    filtersContainer.addEventListener("mouseenter", pauseCarouselTimer);
+    filtersContainer.addEventListener("mouseleave", resumeCarouselTimer);
+    filtersContainer.addEventListener("focusin", pauseCarouselTimer);
+    filtersContainer.addEventListener("focusout", resumeCarouselTimer);
   }
+
   $$("[data-skill]").forEach((link) =>
-    link.addEventListener("click", () => applyFilter(link.dataset.skill)),
+    link.addEventListener("click", () => {
+      const skill = link.dataset.skill;
+      const idx = carouselCategories.indexOf(skill);
+      if (idx !== -1) {
+        carouselIndex = idx;
+        carouselDisabled = reducedMotion.matches;
+        startCarouselTimer(7000);
+      }
+      applyFilter(skill);
+    }),
   );
   const copy = $(".copy-email");
   if (copy) {
@@ -289,4 +470,106 @@
     new ResizeObserver(schedule).observe(canvas);
     draw();
   }
+
+  // --- Minimalist Visitor / Explorer Counter ---
+  const visitorBadge = $("#visitor-badge");
+  const visitorCountEl = $("#visitor-count");
+  if (visitorBadge && visitorCountEl) {
+    const currentYear = new Date().getFullYear();
+    const countKey = `joaosnet_views_${currentYear}`;
+    const sessionKey = `joaosnet_session_counted_${currentYear}`;
+    let targetCount = 1420;
+
+    try {
+      const savedCount = parseInt(localStorage.getItem(countKey) || "0", 10);
+      if (savedCount > 0) targetCount = Math.max(targetCount, savedCount);
+      const isSessionCounted = sessionStorage.getItem(sessionKey);
+      if (!isSessionCounted) {
+        targetCount += 1;
+        localStorage.setItem(countKey, String(targetCount));
+        sessionStorage.setItem(sessionKey, "true");
+      }
+    } catch {
+      /* Storage is optional */
+    }
+
+    visitorCountEl.textContent = "1";
+    visitorBadge.hidden = false;
+
+    const syncRemoteViews = async () => {
+      try {
+        const scriptUrl =
+          "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec";
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 2500);
+        const res = await fetch(scriptUrl, {
+          signal: controller.signal,
+          cache: "no-store",
+        });
+        clearTimeout(timeout);
+        if (res.ok) {
+          const data = await res.json();
+          const remoteCount = data?.metricas?.totalVisitasRegistradas;
+          if (typeof remoteCount === "number" && remoteCount > targetCount) {
+            targetCount = remoteCount;
+            try {
+              localStorage.setItem(countKey, String(targetCount));
+            } catch {
+              /* Storage is optional */
+            }
+          }
+        }
+      } catch {
+        /* Remote sync is silent and non-blocking */
+      }
+    };
+    syncRemoteViews();
+
+    const animateCountUp = () => {
+      const duration = 800;
+      const start = 1;
+      const startTime = performance.now();
+      const isPt = document.body.dataset.lang === "pt";
+      const step = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(start + (targetCount - start) * ease);
+        visitorCountEl.textContent = current.toLocaleString(
+          isPt ? "pt-BR" : "en-US",
+        );
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          visitorCountEl.textContent = targetCount.toLocaleString(
+            isPt ? "pt-BR" : "en-US",
+          );
+        }
+      };
+      requestAnimationFrame(step);
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            animateCountUp();
+            observer.disconnect();
+          }
+        },
+        { threshold: 0.1 },
+      );
+      observer.observe(visitorBadge);
+    } else {
+      animateCountUp();
+    }
+  }
+
+  // Graceful fallback for project images
+  $$(".project-card-image").forEach((img) => {
+    if (img.complete && img.naturalWidth === 0) {
+      img.classList.add("img-fallback");
+    } else {
+      img.addEventListener("error", () => img.classList.add("img-fallback"));
+    }
+  });
 })();

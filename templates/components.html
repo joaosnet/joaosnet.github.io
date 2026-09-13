@@ -1,5 +1,6 @@
 {% macro visual(p, t) %}
 <div class="project-visual visual-{{ p.visual }}" aria-hidden="true">
+  {% if p.image is defined and p.image %}<img class="project-card-image" src="{{ p.image }}" alt="" loading="lazy" width="600" height="338">{% endif %}
   <span class="visual-index">{{ p.number }} / {{ p.name }}</span>
   {% if p.visual == 'signal' %}<div class="signal-orbits"><span></span><span></span><span></span><div class="signal-core">a<span>~</span></div></div><span class="visual-caption">Wi-Fi CSI → ESP32 → Rust</span>
   {% elif p.visual == 'mobile' %}<div class="device-window"><div class="device-top"><span></span><span></span><span></span></div><div class="device-content"><span class="device-logo">D<span>m</span></span><div class="device-lines"><i></i><i></i><i></i></div><div class="device-grid"><i></i><i></i><i></i></div></div></div><span class="visual-caption">WEB + MOBILE / LAPSHub</span>

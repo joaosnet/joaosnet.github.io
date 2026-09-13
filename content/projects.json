@@ -10,6 +10,7 @@
     "skills": ["backend", "devices", "data"],
     "demo": "",
     "visual": "signal",
+    "image": "/assets/project-images/joaosnet_aethersense_logo_inicial.webp",
     "pt": {
       "eyebrow": "IoT · Pesquisa aplicada",
       "title": "O invisível também tem sinal.",
@@ -72,6 +73,7 @@
     "skills": ["interfaces"],
     "demo": "https://lapshub.github.io/dmovel_web_app/",
     "visual": "mobile",
+    "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp",
     "pt": {
       "eyebrow": "Produto · Multiplataforma",
       "title": "Um projeto, diferentes telas.",

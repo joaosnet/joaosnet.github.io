@@ -1,16 +1,16 @@
-# Graph Report - joaosnet.github.io  (2026-09-08)
+# Graph Report - joaosnet.github.io  (2026-09-13)
 
 ## Corpus Check
-- 37 files · ~419,099 words
+- 34 files · ~200,564 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 949 nodes · 1191 edges · 51 communities (33 shown, 18 thin omitted)
+- 1169 nodes · 1408 edges · 70 communities (52 shown, 18 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `a68f3edb`
+- Built from commit: `28dc4d2e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -39,9 +39,12 @@
 - [[_COMMUNITY_Community 22|Community 22]]
 - [[_COMMUNITY_Community 23|Community 23]]
 - [[_COMMUNITY_Community 24|Community 24]]
+- [[_COMMUNITY_Community 25|Community 25]]
 - [[_COMMUNITY_Community 26|Community 26]]
 - [[_COMMUNITY_Community 27|Community 27]]
 - [[_COMMUNITY_Community 28|Community 28]]
+- [[_COMMUNITY_Community 29|Community 29]]
+- [[_COMMUNITY_Community 30|Community 30]]
 - [[_COMMUNITY_Community 31|Community 31]]
 - [[_COMMUNITY_Community 34|Community 34]]
 - [[_COMMUNITY_Community 37|Community 37]]
@@ -49,8 +52,20 @@
 - [[_COMMUNITY_Community 39|Community 39]]
 - [[_COMMUNITY_Community 40|Community 40]]
 - [[_COMMUNITY_Community 41|Community 41]]
+- [[_COMMUNITY_Community 42|Community 42]]
 - [[_COMMUNITY_Community 43|Community 43]]
+- [[_COMMUNITY_Community 44|Community 44]]
+- [[_COMMUNITY_Community 45|Community 45]]
+- [[_COMMUNITY_Community 46|Community 46]]
+- [[_COMMUNITY_Community 47|Community 47]]
+- [[_COMMUNITY_Community 48|Community 48]]
 - [[_COMMUNITY_Community 49|Community 49]]
+- [[_COMMUNITY_Community 50|Community 50]]
+- [[_COMMUNITY_Community 51|Community 51]]
+- [[_COMMUNITY_Community 52|Community 52]]
+- [[_COMMUNITY_Community 53|Community 53]]
+- [[_COMMUNITY_Community 54|Community 54]]
+- [[_COMMUNITY_Community 55|Community 55]]
 - [[_COMMUNITY_Community 58|Community 58]]
 - [[_COMMUNITY_Community 64|Community 64]]
 - [[_COMMUNITY_Community 66|Community 66]]
@@ -65,8 +80,8 @@
 - [[_COMMUNITY_Community 183|Community 183]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `pt` - 101 edges
-2. `en` - 101 edges
+1. `pt` - 109 edges
+2. `en` - 109 edges
 3. `HorizontalScrollHandler` - 48 edges
 4. `GeoViewsCounter` - 28 edges
 5. `ScrollNavigationHandler` - 23 edges
@@ -74,25 +89,25 @@
 7. `main()` - 18 edges
 8. `ThemeSelector` - 18 edges
 9. `generate_project_html()` - 16 edges
-10. `AnimationsHandler` - 13 edges
+10. `aethersense` - 15 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `private_preview()` --calls--> `read_json()`  [INFERRED]
   update_projects.py → build_site.py
 - `main()` --calls--> `read_json()`  [INFERRED]
   update_projects.py → build_site.py
-- `approve_export()` --calls--> `load_projects()`  [INFERRED]
-  update_projects.py → build_site.py
+- `test_unsafe_links_are_rejected()` --calls--> `safe_url()`  [INFERRED]
+  tests/test_update_projects.py → build_site.py
 - `build()` --calls--> `generate_cvs()`  [INFERRED]
   build_site.py → scripts/build_cv.py
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (51 total, 18 thin omitted)
+## Communities (70 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.15
-Nodes (11): collect_public_pages_links(), generate_pages_links_html(), get_github_pages_url(), Return the public GitHub Pages URL for a repository when available.      GitHu, Return the public GitHub Pages URL for a repository when available.      GitHu, Collect all public GitHub Pages links from the fetched repositories., Collect all public GitHub Pages links from the fetched repositories., Generate the public GitHub Pages showcase block. (+3 more)
+Cohesion: 0.12
+Nodes (14): collect_public_pages_links(), generate_pages_links_html(), get_github_pages_url(), normalize_url(), Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu (+6 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
@@ -112,7 +127,7 @@ Nodes (20): Deve ter meta viewport para responsividade, Deve ter meta charset, D
 
 ### Community 6 - "Community 6"
 Cohesion: 0.07
-Nodes (27): detect_language(), Translate text to Portuguese using free translation APIs.     Tries multiple fr, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Translate text to Portuguese using free translation APIs.     Tries multiple fr, translate_to_portuguese(), client(), Testes para o script update_projects.py Testa funcionalidades críticas como: - D (+19 more)
+Nodes (28): detect_language(), Translate text to Portuguese using free translation APIs.     Tries multiple fr, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Detect if text is likely in Portuguese or another language.     Returns 'pt' if, Translate text to Portuguese using free translation APIs.     Tries multiple fr, translate_to_portuguese(), client(), Testes para o script update_projects.py Testa funcionalidades críticas como: - D (+20 more)
 
 ### Community 12 - "Community 12"
 Cohesion: 0.25
@@ -127,12 +142,16 @@ Cohesion: 0.40
 Nodes (5): Replace owner avatar image URLs with a local placeholder inside the projects blo, Replace owner avatar image URLs with a local placeholder inside the projects blo, Replace owner avatar image URLs with a local placeholder inside the projects blo, Replace owner avatar image URLs with a local placeholder inside the projects blo, sanitize_existing_project_images()
 
 ### Community 23 - "Community 23"
-Cohesion: 0.67
-Nodes (3): normalize_url(), Normalize user-facing URLs for project links., Normalize user-facing URLs for project links.
+Cohesion: 0.18
+Nodes (8): load(), native(), option, picker, save(), status, supported, translate()
 
 ### Community 24 - "Community 24"
-Cohesion: 0.15
-Nodes (16): approve_export(), check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials.  P, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+8 more)
+Cohesion: 0.16
+Nodes (15): check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials.  P, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+7 more)
+
+### Community 25 - "Community 25"
+Cohesion: 0.20
+Nodes (7): badge, dialog, observer, sections, sequence, trigger, visited
 
 ### Community 26 - "Community 26"
 Cohesion: 0.13
@@ -141,6 +160,14 @@ Nodes (16): download_image_for_private_repo(), _finalize_downloaded_image(), fin
 ### Community 27 - "Community 27"
 Cohesion: 0.20
 Nodes (10): fetch_projects(), find_repo_preview_image(), get_api_token(), Find the best preview image for a repository.      Strategy (in order):     1, Find the best preview image for a repository.      Strategy (in order):     1, Find the best preview image for a repository.      Strategy (in order):     1, Return the best available token, preferring PRIVATE_REPOS_TOKEN., Fetch repositories from GitHub API.     Tries authenticated endpoint first (pub (+2 more)
+
+### Community 29 - "Community 29"
+Cohesion: 0.33
+Nodes (5): description, name, private, source, updated_at
+
+### Community 30 - "Community 30"
+Cohesion: 0.04
+Nodes (48): carousel, initialSelected, isFiltersVisible, isPausedAfterLeave, isPausedOnHover, pillProgressInfo, pillProgressPaused, pillsCount (+40 more)
 
 ### Community 31 - "Community 31"
 Cohesion: 0.12
@@ -151,8 +178,8 @@ Cohesion: 0.40
 Nodes (5): commit_downloaded_images(), Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git., Commit downloaded images to git.
 
 ### Community 37 - "Community 37"
-Cohesion: 0.06
-Nodes (27): Testes para validar arquivos JavaScript, Testes para validar arquivos JavaScript, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica), utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve chamar APIs públicas de IP/geo no navegador, geo-counter.js não deve ter erros de sintaxe (verificação básica), geo-counter.js deve ter métodos de sincronização global com Apps Script (+19 more)
+Cohesion: 0.15
+Nodes (10): Testes para validar arquivos JavaScript, Testes para validar arquivos JavaScript, utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve ter erros de sintaxe (verificação básica), utils.js não deve ter erros de sintaxe (verificação básica), geo-counter.js não deve chamar APIs públicas de IP/geo no navegador, geo-counter.js não deve ter erros de sintaxe (verificação básica), geo-counter.js deve ter métodos de sincronização global com Apps Script (+2 more)
 
 ### Community 38 - "Community 38"
 Cohesion: 0.10
@@ -160,23 +187,67 @@ Nodes (16): Testes para validar diretórios de assets, Diretório de imagens de 
 
 ### Community 40 - "Community 40"
 Cohesion: 0.02
-Nodes (101): pt, about_kicker, about_title, all, back, backend, case, close_notice (+93 more)
+Nodes (109): pt, about_kicker, about_title, all, back, backend, case, close_notice (+101 more)
 
 ### Community 41 - "Community 41"
 Cohesion: 0.02
-Nodes (101): en, about_kicker, about_title, all, back, backend, case, close_notice (+93 more)
+Nodes (109): en, about_kicker, about_title, all, back, backend, case, close_notice (+101 more)
+
+### Community 42 - "Community 42"
+Cohesion: 0.38
+Nodes (6): draw_annotated_box(), main(), process_pair(), Generate annotated comparison crops with professional red bounding boxes and pin, Draw a clean, surgical red bounding box with corner accents and a floating badge, Crop image, draw annotations, scale if needed, and save.
 
 ### Community 43 - "Community 43"
 Cohesion: 0.05
-Nodes (36): analytics_endpoint, analytics_validated, email, about, availability, description, education, education_detail (+28 more)
+Nodes (37): analytics_endpoint, analytics_validated, email, about, availability, description, education, education_detail (+29 more)
+
+### Community 45 - "Community 45"
+Cohesion: 0.29
+Nodes (7): $(), applyFilter(), draw(), restartPillAnimation(), resumeCarouselTimer(), startCarouselTimer(), toast()
+
+### Community 46 - "Community 46"
+Cohesion: 0.13
+Nodes (15): complete, computedAspectRatio, computedHeight, computedWidth, cssClass, display, heightAttr, loading (+7 more)
+
+### Community 47 - "Community 47"
+Cohesion: 0.13
+Nodes (15): complete, computedAspectRatio, computedHeight, computedWidth, cssClass, display, heightAttr, loading (+7 more)
+
+### Community 48 - "Community 48"
+Cohesion: 0.13
+Nodes (15): complete, computedAspectRatio, computedHeight, computedWidth, cssClass, display, heightAttr, loading (+7 more)
 
 ### Community 49 - "Community 49"
-Cohesion: 0.08
-Nodes (25): $(), applyFilter(), button, canvas, context, controller, copy, draw() (+17 more)
+Cohesion: 0.04
+Nodes (37): button, canvas, carouselCategories, context, controller, copy, currentYear, error (+29 more)
+
+### Community 50 - "Community 50"
+Cohesion: 0.13
+Nodes (15): complete, computedAspectRatio, computedHeight, computedWidth, cssClass, display, heightAttr, loading (+7 more)
+
+### Community 51 - "Community 51"
+Cohesion: 0.13
+Nodes (15): varedura, complete, computedAspectRatio, computedHeight, computedWidth, cssClass, display, heightAttr (+7 more)
+
+### Community 52 - "Community 52"
+Cohesion: 0.17
+Nodes (10): Testes para validar arquivos CSS, styles.css deve existir, Testes para validar arquivos CSS, styles.css deve existir, Testes para validar arquivos CSS, styles.css deve ter override para tema claro, styles.css deve existir, styles.css deve ter override para tema claro (+2 more)
+
+### Community 53 - "Community 53"
+Cohesion: 0.20
+Nodes (7): contact-form.js não deve ter erros de sintaxe (verificação básica), project-details.js não deve ter erros de sintaxe (verificação básica), contact-form.js não deve ter erros de sintaxe (verificação básica), contact-form.js não deve ter erros de sintaxe (verificação básica), project-details.js não deve ter erros de sintaxe (verificação básica), styles.css deve ter variáveis de tema, styles.css deve ter variáveis de tema
+
+### Community 54 - "Community 54"
+Cohesion: 0.22
+Nodes (9): hasFallbackClass, imgDisplay, imgOpacity, imgVisibility, vectorDisplay, vectorVisibility, images, fallbackTest (+1 more)
+
+### Community 55 - "Community 55"
+Cohesion: 0.29
+Nodes (3): parser(), Parser HTML simples para extrair informações, SimpleHTMLParser
 
 ### Community 58 - "Community 58"
-Cohesion: 0.09
-Nodes (9): HTMLParser, Page, parser(), Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, Parser HTML simples para extrair informações, SimpleHTMLParser, test_bilingual_routes_metadata_and_names(), test_every_local_link_and_asset_exists() (+1 more)
+Cohesion: 0.13
+Nodes (6): HTMLParser, Page, Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, test_bilingual_routes_metadata_and_names(), test_every_local_link_and_asset_exists(), test_strict_csp_and_no_inline_event_handlers()
 
 ### Community 64 - "Community 64"
 Cohesion: 0.14
@@ -192,7 +263,7 @@ Nodes (10): Atualizar projetos, code:powershell (uv sync --frozen --extra dev), 
 
 ### Community 74 - "Community 74"
 Cohesion: 0.31
-Nodes (8): build(), load_projects(), Build only explicitly approved public assets. Never reads .env or calls the netw, read_json(), safe_url(), generate_cvs(), Generate concise, selectable bilingual PDFs using only documented profile facts., test_unsafe_links_are_rejected()
+Nodes (8): build(), load_projects(), Build only explicitly approved public assets. Never reads .env or calls the netw, read_json(), safe_url(), approve_export(), generate_cvs(), Generate concise, selectable bilingual PDFs using only documented profile facts.
 
 ### Community 75 - "Community 75"
 Cohesion: 0.20
@@ -210,8 +281,12 @@ Nodes (3): Handler, Serve only the generated site, with localized 404 pages and 
 Cohesion: 0.40
 Nodes (4): elements, pages, projects, releases
 
+### Community 181 - "Community 181"
+Cohesion: 0.40
+Nodes (4): navLang, preference, saved, savedHue
+
 ## Knowledge Gaps
-- **322 isolated node(s):** `name`, `private`, `version`, `test`, `test:browser` (+317 more)
+- **487 isolated node(s):** `theme`, `bgColor`, `theme`, `bgColor`, `beforeTheme` (+482 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -219,13 +294,13 @@ Nodes (4): elements, pages, projects, releases
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `pt` connect `Community 40` to `Community 41`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `get_api_token()` connect `Community 27` to `Community 24`, `Community 2`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **What connects `Build only explicitly approved public assets. Never reads .env or calls the netw`, `Script para gerar imagem Open Graph (og-cover.jpg) de 1200x630 px em alta resolu`, `name` to the rest of the system?**
-  _492 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `projects` connect `Community 54` to `Community 46`, `Community 47`, `Community 48`, `Community 50`, `Community 51`?**
+  _High betweenness centrality (0.009) - this node is a cross-community bridge._
+- **What connects `Build only explicitly approved public assets. Never reads .env or calls the netw`, `theme`, `bgColor` to the rest of the system?**
+  _661 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12105263157894737 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**

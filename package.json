@@ -5,7 +5,7 @@
   "scripts": {
     "test": "node --test tests/collector.test.cjs",
     "test:browser": "playwright test",
-    "test:syntax": "node --check assets/js/boot.js && node --check assets/js/portfolio.js && node --check assets/js/analytics.js",
+    "test:syntax": "node --check assets/js/boot.js && node --check assets/js/portfolio.js && node --check assets/js/analytics.js && node --check assets/js/languages.js && node --check assets/js/easter-eggs.js",
     "audit:performance": "node scripts/lighthouse.cjs"
   },
   "devDependencies": {

@@ -52,7 +52,8 @@ def generate_cvs(output, site, projects):
         paragraph(
             f'<link href="{site["url"]}">joaosnet.github.io</link> | '
             f'<link href="{site["github"]}">GitHub</link> | '
-            f'<link href="{site["linkedin"]}">LinkedIn</link>'
+            f'<link href="{site["linkedin"]}">LinkedIn</link> | '
+            f'<link href="{site["lattes"]}">Lattes</link>'
         )
         paragraph("Perfil" if lang == "pt" else "Profile", "Section")
         paragraph(escape(profile["about"]))

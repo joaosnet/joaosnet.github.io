@@ -31,6 +31,7 @@
     "email-copy",
     "email-fallback",
     "email-open",
+    "explorer-badge",
     "filter-all",
     "filter-backend",
     "filter-data",
@@ -46,6 +47,8 @@
     "lab-reset",
     "lab-smoothing",
     "language",
+    "language-select",
+    "lattes",
     "linkedin",
     "menu",
     "metrics-toggle",
@@ -58,17 +61,26 @@
     "project-case",
     "project-title",
     "project-visual",
+    "secret-terminal",
     "skill-backend",
     "skill-data",
     "skill-devices",
     "skill-interfaces",
     "theme",
-    "unlabelled-control"
+    "theme-palette",
+    "unlabelled-control",
+    "visitor-badge"
   ],
   "projects": [
     "aethersense",
     "dmovel",
-    "evolutionary-lab"
+    "evolutionary-lab",
+    "cartilha-dash",
+    "dmovel-sitec",
+    "sigaa-mcp",
+    "varedura",
+    "klique-api",
+    "federated-learning"
   ],
   "releases": [
     "portfolio-excellence-v1"

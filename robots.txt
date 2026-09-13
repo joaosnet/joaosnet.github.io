@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /tests/
+Disallow: /artifacts/
+Disallow: /.private-preview/
 
 Sitemap: https://joaosnet.github.io/sitemap.xml

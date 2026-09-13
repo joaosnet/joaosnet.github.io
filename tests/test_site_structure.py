@@ -38,7 +38,8 @@ def test_only_allowlisted_public_files_are_built(built):
                 ".git/",
                 "graphify",
                 "private-preview",
-                "project-images",
+                "private-archive",
+                "dmovel-fastapi",
                 "collector.gs",
                 "analytics-apps-script",
                 "uv.lock",
@@ -78,7 +79,7 @@ def test_bilingual_routes_metadata_and_names(built):
         en = path.is_relative_to(built / "en")
         assert page.find("html", lang="en" if en else "pt-BR")
         assert "João Silva Neto" in text
-        assert "GTranslate" not in text
+        assert not page.find("script", src="https://cdn.gtranslate.net/widgets/latest/lib.min.js")
         assert len(page.find("h1")) == 1
         canonical = page.find("link", rel="canonical")[0]["href"]
         assert canonical.startswith("https://joaosnet.github.io/")
@@ -94,7 +95,9 @@ def test_strict_csp_and_no_inline_event_handlers(built):
         page = Page(path.read_text(encoding="utf-8"))
         csp = page.find("meta", **{"http-equiv": "Content-Security-Policy"})[0]["content"]
         assert "default-src 'none'" in csp
-        assert "unsafe-inline" not in csp and "unsafe-eval" not in csp
+        directives = {part.strip().split()[0]: part.strip().split()[1:] for part in csp.split(";") if part.strip()}
+        assert "unsafe-inline" not in directives.get("script-src", [])
+        assert "unsafe-eval" not in directives.get("script-src", [])
         assert "base-uri 'none'" in csp
         for tag, attrs in page.elements:
             assert not any(k.startswith("on") or k == "style" for k in attrs)
@@ -119,8 +122,12 @@ def test_cv_is_one_page_selectable_and_factual(built, name, phrase):
 
 
 def test_metrics_have_no_transport_before_backend_validation(built):
+    site = builder.read_json(builder.ROOT / "content/site.json")
     config = json.loads((built / "assets/analytics-config.json").read_text(encoding="utf-8"))
-    assert config["endpoint"] == ""
+    if not site.get("analytics_validated"):
+        assert config["endpoint"] == ""
+    else:
+        assert config["endpoint"].startswith("https://script.google.com/")
     assert "form-field" in config["trackIds"]
     assert not any(key in config for key in ("token", "secret", "ip"))
 

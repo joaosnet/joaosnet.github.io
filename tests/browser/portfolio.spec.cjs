@@ -92,14 +92,14 @@ test("keyboard skip link moves focus to main and menu closes with Escape", async
 test("filters and skill map select real projects", async ({ page }) => {
   await page.goto("/");
   await page.locator("[data-filter=backend]").click();
-  await expect(page.locator(".project-card:visible")).toHaveCount(1);
-  await expect(page.locator(".project-card:visible h3")).toContainText(
+  await expect(page.locator(".project-card:visible")).toHaveCount(4);
+  await expect(page.locator(".project-card:visible h3").first()).toContainText(
     "AetherSense",
   );
   await page.locator("[data-skill=interfaces]").click();
-  await expect(page.locator(".project-card:visible")).toHaveCount(2);
+  await expect(page.locator(".project-card:visible")).toHaveCount(4);
   await page.locator("[data-filter=all]").click();
-  await expect(page.locator(".project-card:visible")).toHaveCount(3);
+  await expect(page.locator(".project-card:visible")).toHaveCount(9);
 });
 
 test("lab computes actual results and reset restores them", async ({
@@ -225,7 +225,7 @@ test("all essential content and contact work without JavaScript", async ({
   await page.goto("http://127.0.0.1:8765/");
   await expect(page.locator("#main-nav")).toBeVisible();
   await expect(page.locator("#education h2")).toBeVisible();
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".project-card")).toHaveCount(9);
   await expect(page.locator("#contact-form")).toHaveAttribute("method", "post");
   await expect(page.locator("a[download]").first()).toHaveAttribute(
     "href",
@@ -297,7 +297,7 @@ test("missing pages return localized accessible recovery with HTTP 404", async (
       "noindex, follow",
     );
     await page.locator(".not-found .button").click();
-    await expect(page.locator(".project-card")).toHaveCount(3);
+    await expect(page.locator(".project-card")).toHaveCount(9);
   }
 });
 

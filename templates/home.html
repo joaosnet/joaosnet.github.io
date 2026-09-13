@@ -20,14 +20,15 @@
 <section class="section projects-section" id="projects" data-section="projects">
   <div class="container">
     <div class="section-heading"><div><p class="eyebrow">{{ t.projects_kicker }}</p><h2>{{ t.projects_title }}</h2></div><p class="section-intro">{{ t.projects_intro }}</p></div>
-    <div class="filters" role="group" aria-label="{{ t.filter }}" hidden>{% for skill in ['all', 'backend', 'devices', 'data', 'interfaces'] %}<button type="button" class="filter-button{{ ' selected' if skill == 'all' else '' }}" data-filter="{{ skill }}" aria-pressed="{{ 'true' if skill == 'all' else 'false' }}" data-track="filter-{{ skill }}">{{ t[skill] }}</button>{% endfor %}</div>
+    <div class="filters" role="group" aria-label="{{ t.filter }}" hidden>{% for skill in ['backend', 'devices', 'data', 'interfaces'] %}<button type="button" class="filter-button{{ ' selected' if loop.first else '' }}" data-filter="{{ skill }}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-track="filter-{{ skill }}"><span class="filter-text">{{ t[skill] }}</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button>{% endfor %}<button type="button" class="filter-button filter-all-btn" data-filter="all" aria-pressed="false" data-track="filter-all"><span class="filter-text">{{ t.filter_all_label }}</span></button></div>
     <p class="sr-only" id="filter-status" role="status" data-results="{{ t.results }}" data-empty="{{ t.project_count_zero }}"></p>
     <!-- PROJECTS_START -->
-    <div class="project-grid">{% for p in projects %}<article class="project-card" data-skills="{{ p.skills|join(' ') }}" data-project="{{ p.id }}">
-      <a class="visual-link" href="{{ base }}projects/{{ p.id }}/" tabindex="-1" aria-hidden="true" data-track="project-visual">{{ visual(p, t) }}</a>
-      <div class="project-body"><p class="card-eyebrow">{{ p[lang].eyebrow }}</p><h3><a href="{{ base }}projects/{{ p.id }}/" data-track="project-title">{{ p.name }} <span aria-hidden="true">↗</span></a></h3><p class="project-summary">{{ p[lang].summary }}</p><ul class="tags" aria-label="{{ t.filter }}">{% for tag in p.tags[:4] %}<li>{{ tag }}</li>{% endfor %}</ul><div class="card-footer"><a href="{{ base }}projects/{{ p.id }}/" data-track="project-case">{{ t.case }} <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">{{ p.number }}</span></div></div>
+    <div class="project-grid">{% for p in cards %}<article class="project-card" data-skills="{{ p.skills|join(' ') }}" data-project="{{ p.id }}">
+      <a class="visual-link" href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" tabindex="-1" aria-hidden="true" data-track="project-visual">{{ visual(p, t) }}</a>
+      <div class="project-body"><p class="card-eyebrow">{{ p[lang].eyebrow }}</p><h3><a href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-title">{{ p.name }} <span aria-hidden="true">↗</span></a></h3><p class="project-summary">{{ p[lang].summary }}</p><ul class="tags" aria-label="{{ t.filter }}">{% for tag in p.tags[:4] %}<li>{{ tag }}</li>{% endfor %}</ul><div class="card-footer"><a href="{{ p.get('card_cta_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-case">{{ (t.demo if p.demo else t.code) if p.get('card_url') else t.case }} <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">{{ p.number }}</span></div></div>
     </article>{% endfor %}</div>
     <!-- PROJECTS_END -->
+
   </div>
 </section>
 <section class="section lab-section" id="published" data-section="lab">

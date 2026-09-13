@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cartilha-dash", "name": "Cartilha Dash", "repo": "joaosnet/cartilha_dash",
+    "tags": ["Python", "Dash", "Plotly"], "skills": ["data", "interfaces"], "visual": "code", "symbol": "{ data }",
+    "demo": "https://joaosnet.github.io/cartilha_dash/",
+    "pt": {"eyebrow": "Publicado · Visualização de dados", "summary": "Guia prático para criar dashboards interativos com Python, Dash e Plotly, com material disponível para explorar no navegador."},
+    "en": {"eyebrow": "Published · Data visualization", "summary": "A practical guide to building interactive dashboards with Python, Dash and Plotly, with learning material available in the browser."}
+  },
+  {
+    "id": "dmovel-sitec", "name": "DMóvel · SITEC 2026", "repo": "joaosnet/dmovel-sitec-2026",
+    "image": "/assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp",
+    "tags": ["HTML", "Web", "Acessibilidade"], "skills": ["interfaces"], "visual": "code", "symbol": "D / 2026",
+    "demo": "https://joaosnet.github.io/dmovel-sitec-2026/",
+    "pt": {"eyebrow": "Publicado · Apresentação interativa", "summary": "Apresentação do DMóvel para o SITEC UFPA 2026, reunindo vídeo, contexto do projeto e acesso à experimentação por QR Code."},
+    "en": {"eyebrow": "Published · Interactive presentation", "summary": "DMóvel presentation for SITEC UFPA 2026, bringing together video, project context and QR-code access to experimentation."}
+  },
+  {
+    "id": "sigaa-mcp", "name": "SIGAA UFPA MCP", "repo": "joaosnet/sigaa-ufpa-mcp",
+    "tags": ["Python", "MCP", "Automação"], "skills": ["backend"], "visual": "code", "symbol": "> mcp",
+    "demo": "",
+    "pt": {"eyebrow": "Código público · Automação", "summary": "Servidor MCP para automatizar o acesso ao SIGAA da UFPA, explorando integração com navegador e fluxos de autenticação."},
+    "en": {"eyebrow": "Public code · Automation", "summary": "An MCP server for automating access to UFPA's SIGAA, exploring browser integration and authentication workflows."}
+  },
+  {
+    "id": "varedura", "name": "Varedura", "repo": "joaosnet/Varedura",
+    "image": "/assets/project-images/joaosnet_Varedura_demo.gif",
+    "tags": ["Docker", "MCP", "CLI"], "skills": ["backend", "devices"], "visual": "code", "symbol": "$ sweep",
+    "demo": "",
+    "pt": {"eyebrow": "Código público · Ferramentas", "summary": "Ferramentas para limpeza do Docker, monitoramento de rede e integração MCP. O repositório documenta o desenvolvimento com GitHub Copilot CLI."},
+    "en": {"eyebrow": "Public code · Developer tools", "summary": "Tools for Docker cleanup, network monitoring and MCP integration. The repository documents development with GitHub Copilot CLI."}
+  },
+  {
+    "id": "klique-api", "name": "Klique API", "repo": "joaosnet/klique-api",
+    "image": "/assets/project-images/joaosnet_Klique_icon.webp",
+    "tags": ["Python", "Backend", "API"], "skills": ["backend"], "visual": "code", "symbol": "{ api }",
+    "demo": "",
+    "pt": {"eyebrow": "Código público · Backend", "summary": "Backend do projeto Klique desenvolvido em Python. Código e histórico de desenvolvimento disponíveis para consulta no GitHub."},
+    "en": {"eyebrow": "Public code · Backend", "summary": "The Python backend for Klique. Source code and development history are available on GitHub."}
+  },
+  {
+    "id": "federated-learning", "name": "Federated Learning", "repo": "ealexbarros/fl_projects",
+    "tags": ["Python", "Jupyter", "Machine Learning"], "skills": ["data"], "visual": "code", "symbol": "Σ models",
+    "demo": "",
+    "pt": {"eyebrow": "Contribuição · Aprendizado federado", "summary": "Contribuição em um repositório de projetos de aprendizado federado, com experimentos em notebooks. Participação consultável no histórico público."},
+    "en": {"eyebrow": "Contribution · Federated learning", "summary": "Contribution to a federated-learning project repository with notebook experiments. Participation can be checked in the public history."}
+  }
+]

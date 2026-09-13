@@ -3,10 +3,11 @@
   "url": "https://joaosnet.github.io",
   "email": "joao.silva.neto@itec.ufpa.br",
   "github": "https://github.com/joaosnet",
+  "lattes": "https://lattes.cnpq.br/1140714924160415",
   "linkedin": "https://www.linkedin.com/in/joaonativi/",
   "form_endpoint": "https://formspree.io/f/mdoqyljj",
-  "analytics_endpoint": "",
-  "analytics_validated": false,
+  "analytics_endpoint": "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec",
+  "analytics_validated": true,
   "release": "portfolio-excellence-v1",
   "profile": {
     "pt": {

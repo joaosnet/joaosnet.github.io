@@ -504,6 +504,7 @@ p {
   margin: 30px 0;
 }
 .filter-button {
+  position: relative;
   border: 1px solid var(--line);
   background: none;
   border-radius: 30px;
@@ -511,6 +512,11 @@ p {
   font-size: 0.8rem;
   color: var(--muted);
   min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
 }
 .filter-button:hover {
   color: var(--text);
@@ -519,6 +525,46 @@ p {
   border-color: var(--cyan);
   background: color-mix(in srgb, var(--cyan) 9%, transparent);
   color: var(--cyan);
+}
+.filter-text {
+  position: relative;
+  z-index: 2;
+}
+.pill-border-timer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  display: none;
+}
+.filter-button.selected .pill-border-timer {
+  display: block;
+}
+.pill-track {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 2;
+}
+.pill-progress {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: pillTimer 7s linear forwards;
+}
+.filters.paused .pill-progress {
+  animation-play-state: paused;
+}
+@keyframes pillTimer {
+  from {
+    stroke-dashoffset: 100;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 .project-grid {
   display: grid;
@@ -550,6 +596,23 @@ p {
   background: #0d1723;
   border-bottom: 1px solid var(--line);
   color: #a2b6ce;
+}
+.project-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px 12px 0 0;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+.project-card:hover .project-card-image {
+  transform: scale(1.03);
+}
+.project-card-image.img-fallback {
+  display: none !important;
 }
 .visual-index {
   position: absolute;
@@ -1222,6 +1285,91 @@ a:hover.text-link {
   border-top: 1px solid var(--line);
   padding: 40px 0 28px;
   background: var(--surface);
+}
+.language-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 24px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.88rem;
+}
+.language-panel-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+.language-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+}
+.language-globe-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+.language-select-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.language-panel select,
+.language-select {
+  min-width: 170px;
+  max-width: 250px;
+  padding: 8px 12px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.language-panel select:hover,
+.language-select:hover {
+  border-color: var(--cyan);
+}
+.language-panel select:focus-visible,
+.language-select:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-color: var(--cyan);
+}
+.language-panel select optgroup {
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--muted);
+}
+.language-panel select option {
+  font-weight: normal;
+  background: var(--bg);
+  color: var(--text);
+  padding: 4px;
+}
+.translation-status,
+#translation-status {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.language-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+#secret-terminal {
+  color: var(--cyan);
+  font: 1.1rem monospace;
+  padding: 6px 10px;
 }
 .footer-top {
   display: flex;

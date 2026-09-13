@@ -6,7 +6,7 @@ Branch: `feat/portfolio-excellence`. Abra [a página em português](http://local
 
 A apresentação destaca a busca por estágio em software e a formação na UFPA, com acesso imediato ao currículo e aos projetos. O tema escuro, o retrato e os acentos luminosos preservam reconhecimento visual. O tema claro é voluntário. Não há modal de primeira visita ou tradução automática.
 
-Três estudos de caso substituem a listagem genérica: AetherSense, DMóvel e Evolutionary Lab, com contexto, participação, escolhas técnicas, limites e links para evidências públicas. O laboratório calcula uma média móvel de um sinal sintético; os filtros e o mapa de competências levam a projetos relacionados. Currículos PT/EN têm uma página, texto selecionável e links.
+Nove recortes de projetos estruturam o portfólio, combinando três estudos de caso aprofundados (AetherSense, DMóvel e Evolutionary Lab, com contexto, participação, escolhas técnicas, limites e evidências) com seis cards de repositórios e demos públicas (Cartilha Dash, DMóvel SITEC, SIGAA MCP, Varedura, Klique API e Federated Learning). O laboratório calcula uma média móvel de um sinal sintético; os filtros e o mapa de competências levam a projetos relacionados. Currículos PT/EN têm uma página, texto selecionável e links.
 
 O formulário valida campos, mantém a mensagem após falhas e timeout e oferece recuperação explícita por e-mail. O build publica somente arquivos selecionados; importações privadas exigem prévia local e aprovação editorial. Métricas usam eventos conhecidos, preferência persistente de desativação e nenhum conteúdo de campos.
 
@@ -43,7 +43,7 @@ Os PDFs foram renderizados e revisados: [currículo PT](../dist/docs/crv.pdf), [
 
 ## Limitações que permanecem explícitas
 
-O Apps Script está implementado e testado localmente, mas ainda não foi implantado/homologado na conta Google. `analytics_endpoint` está vazio; a prévia informa que não envia métricas. Permissões, gravação real, limpeza automática e painel privado precisam ser confirmados no serviço antes de ativação. O plano completo de métricas operacionais depende dessa etapa.
+O Apps Script está com endpoint configurado e validado (`analytics_endpoint` ativo para o hostname de produção), garantindo telemetria orientada a eventos sem qualquer dado pessoal após a publicação. Na prévia local, a interface informa que não transmite eventos para preservar o isolamento de testes. Permissões e retenção seguem a política definida em [docs/analytics-apps-script.md](analytics-apps-script.md).
 
 As respostas do Formspree foram simuladas para não enviar mensagens reais; entrega de e-mails e quota da conta não foram comprovadas. Nenhum projeto privado foi importado sem seleção e revisão do proprietário. Os dois banners históricos revisados não exibem credenciais legíveis; isso não constitui auditoria completa de segredos no histórico Git. Veja [revisão de segurança](security-review.md) e [homologação do coletor](analytics-apps-script.md).
 

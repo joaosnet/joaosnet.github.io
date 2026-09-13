@@ -13,6 +13,7 @@ module.exports = defineConfig({
     ["json", { outputFile: "artifacts/browser-results.json" }],
   ],
   use: {
+    locale: "pt-BR",
     baseURL: "http://127.0.0.1:8765",
     headless: true,
     trace: "retain-on-failure",
