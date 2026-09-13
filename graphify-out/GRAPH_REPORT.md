@@ -1,16 +1,16 @@
 # Graph Report - joaosnet.github.io  (2026-09-13)
 
 ## Corpus Check
-- 34 files · ~200,564 words
+- 33 files · ~200,239 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1169 nodes · 1408 edges · 70 communities (52 shown, 18 thin omitted)
+- 1169 nodes · 1408 edges · 71 communities (53 shown, 18 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `28dc4d2e`
+- Built from commit: `dfcbc54e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -66,6 +66,7 @@
 - [[_COMMUNITY_Community 53|Community 53]]
 - [[_COMMUNITY_Community 54|Community 54]]
 - [[_COMMUNITY_Community 55|Community 55]]
+- [[_COMMUNITY_Community 56|Community 56]]
 - [[_COMMUNITY_Community 58|Community 58]]
 - [[_COMMUNITY_Community 64|Community 64]]
 - [[_COMMUNITY_Community 66|Community 66]]
@@ -103,11 +104,11 @@
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (70 total, 18 thin omitted)
+## Communities (71 total, 18 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.12
-Nodes (14): collect_public_pages_links(), generate_pages_links_html(), get_github_pages_url(), normalize_url(), Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu (+6 more)
+Cohesion: 0.16
+Nodes (11): collect_public_pages_links(), get_github_pages_url(), normalize_url(), Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Normalize user-facing URLs for project links., Return the public GitHub Pages URL for a repository when available.      GitHu, Collect all public GitHub Pages links from the fetched repositories. (+3 more)
 
 ### Community 2 - "Community 2"
 Cohesion: 0.05
@@ -147,7 +148,7 @@ Nodes (8): load(), native(), option, picker, save(), status, supported, translat
 
 ### Community 24 - "Community 24"
 Cohesion: 0.16
-Nodes (15): check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials.  P, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+7 more)
+Nodes (15): check_user_contributed(), fetch_repository(), main(), private_preview(), public_snapshot(), Explicit project imports. Public refreshes never receive private credentials., # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no, # IMPORTANT: Skip avatars.githubusercontent.com - these are user/org avatars, no (+7 more)
 
 ### Community 25 - "Community 25"
 Cohesion: 0.20
@@ -245,6 +246,10 @@ Nodes (9): hasFallbackClass, imgDisplay, imgOpacity, imgVisibility, vectorDispla
 Cohesion: 0.29
 Nodes (3): parser(), Parser HTML simples para extrair informações, SimpleHTMLParser
 
+### Community 56 - "Community 56"
+Cohesion: 0.50
+Nodes (3): generate_pages_links_html(), Generate the public GitHub Pages showcase block., Generate the public GitHub Pages showcase block.
+
 ### Community 58 - "Community 58"
 Cohesion: 0.13
 Nodes (6): HTMLParser, Page, Testes para validar a estrutura do site (index.html) Verifica: - Presença de mar, test_bilingual_routes_metadata_and_names(), test_every_local_link_and_asset_exists(), test_strict_csp_and_no_inline_event_handlers()
@@ -286,7 +291,7 @@ Cohesion: 0.40
 Nodes (4): navLang, preference, saved, savedHue
 
 ## Knowledge Gaps
-- **487 isolated node(s):** `theme`, `bgColor`, `theme`, `bgColor`, `beforeTheme` (+482 more)
+- **487 isolated node(s):** `name`, `private`, `version`, `test`, `test:browser` (+482 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **18 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -294,16 +299,16 @@ Nodes (4): navLang, preference, saved, savedHue
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `pt` connect `Community 40` to `Community 41`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `projects` connect `Community 54` to `Community 46`, `Community 47`, `Community 48`, `Community 50`, `Community 51`?**
-  _High betweenness centrality (0.009) - this node is a cross-community bridge._
-- **What connects `Build only explicitly approved public assets. Never reads .env or calls the netw`, `theme`, `bgColor` to the rest of the system?**
+  _High betweenness centrality (0.010) - this node is a cross-community bridge._
+- **What connects `Build only explicitly approved public assets. Never reads .env or calls the netw`, `name`, `private` to the rest of the system?**
   _661 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.12105263157894737 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
   _Cohesion score 0.08865248226950355 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
   _Cohesion score 0.046511627906976744 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
   _Cohesion score 0.06097560975609756 - nodes in this community are weakly interconnected._
+- **Should `Community 5` be split into smaller, more focused modules?**
+  _Cohesion score 0.05263157894736842 - nodes in this community are weakly interconnected._

@@ -58,1203 +58,6 @@
       "norm_label": "build only explicitly approved public assets. never reads .env or calls the netw"
     },
     {
-      "label": "critic_report_output.json",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L1",
-      "id": "critic_report_output_json",
-      "community": 30,
-      "norm_label": "critic_report_output.json"
-    },
-    {
-      "label": "theme",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L2",
-      "id": "joaosnet_github_io_critic_report_output_theme",
-      "community": 30,
-      "norm_label": "theme"
-    },
-    {
-      "label": "dark",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L3",
-      "id": "joaosnet_github_io_critic_report_output_theme_dark",
-      "community": 30,
-      "norm_label": "dark"
-    },
-    {
-      "label": "theme",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L4",
-      "id": "joaosnet_github_io_critic_report_output_dark_theme",
-      "community": 30,
-      "norm_label": "theme"
-    },
-    {
-      "label": "bgColor",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L5",
-      "id": "joaosnet_github_io_critic_report_output_dark_bgcolor",
-      "community": 30,
-      "norm_label": "bgcolor"
-    },
-    {
-      "label": "light",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L7",
-      "id": "joaosnet_github_io_critic_report_output_theme_light",
-      "community": 30,
-      "norm_label": "light"
-    },
-    {
-      "label": "theme",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L8",
-      "id": "joaosnet_github_io_critic_report_output_light_theme",
-      "community": 30,
-      "norm_label": "theme"
-    },
-    {
-      "label": "bgColor",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L9",
-      "id": "joaosnet_github_io_critic_report_output_light_bgcolor",
-      "community": 30,
-      "norm_label": "bgcolor"
-    },
-    {
-      "label": "dynamic",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L11",
-      "id": "joaosnet_github_io_critic_report_output_theme_dynamic",
-      "community": 30,
-      "norm_label": "dynamic"
-    },
-    {
-      "label": "beforeTheme",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L12",
-      "id": "joaosnet_github_io_critic_report_output_dynamic_beforetheme",
-      "community": 30,
-      "norm_label": "beforetheme"
-    },
-    {
-      "label": "afterTheme",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L13",
-      "id": "joaosnet_github_io_critic_report_output_dynamic_aftertheme",
-      "community": 30,
-      "norm_label": "aftertheme"
-    },
-    {
-      "label": "images",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L16",
-      "id": "joaosnet_github_io_critic_report_output_images",
-      "community": 54,
-      "norm_label": "images"
-    },
-    {
-      "label": "projects",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L17",
-      "id": "joaosnet_github_io_critic_report_output_images_projects",
-      "community": 54,
-      "norm_label": "projects"
-    },
-    {
-      "label": "aethersense",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L18",
-      "id": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "community": 46,
-      "norm_label": "aethersense"
-    },
-    {
-      "label": "src",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L19",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_src",
-      "community": 46,
-      "norm_label": "src"
-    },
-    {
-      "label": "loading",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L20",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_loading",
-      "community": 46,
-      "norm_label": "loading"
-    },
-    {
-      "label": "widthAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L21",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_widthattr",
-      "community": 46,
-      "norm_label": "widthattr"
-    },
-    {
-      "label": "heightAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L22",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_heightattr",
-      "community": 46,
-      "norm_label": "heightattr"
-    },
-    {
-      "label": "naturalWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L23",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_naturalwidth",
-      "community": 46,
-      "norm_label": "naturalwidth"
-    },
-    {
-      "label": "naturalHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L24",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_naturalheight",
-      "community": 46,
-      "norm_label": "naturalheight"
-    },
-    {
-      "label": "complete",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L25",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_complete",
-      "community": 46,
-      "norm_label": "complete"
-    },
-    {
-      "label": "computedWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L26",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_computedwidth",
-      "community": 46,
-      "norm_label": "computedwidth"
-    },
-    {
-      "label": "computedHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L27",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_computedheight",
-      "community": 46,
-      "norm_label": "computedheight"
-    },
-    {
-      "label": "computedAspectRatio",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L28",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_computedaspectratio",
-      "community": 46,
-      "norm_label": "computedaspectratio"
-    },
-    {
-      "label": "cssClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L29",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_cssclass",
-      "community": 46,
-      "norm_label": "cssclass"
-    },
-    {
-      "label": "display",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L30",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_display",
-      "community": 46,
-      "norm_label": "display"
-    },
-    {
-      "label": "position",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L31",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_position",
-      "community": 46,
-      "norm_label": "position"
-    },
-    {
-      "label": "objectFit",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L32",
-      "id": "joaosnet_github_io_critic_report_output_aethersense_objectfit",
-      "community": 46,
-      "norm_label": "objectfit"
-    },
-    {
-      "label": "dmovel",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L34",
-      "id": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "community": 47,
-      "norm_label": "dmovel"
-    },
-    {
-      "label": "src",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L35",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_src",
-      "community": 47,
-      "norm_label": "src"
-    },
-    {
-      "label": "loading",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L36",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_loading",
-      "community": 47,
-      "norm_label": "loading"
-    },
-    {
-      "label": "widthAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L37",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_widthattr",
-      "community": 47,
-      "norm_label": "widthattr"
-    },
-    {
-      "label": "heightAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L38",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_heightattr",
-      "community": 47,
-      "norm_label": "heightattr"
-    },
-    {
-      "label": "naturalWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L39",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_naturalwidth",
-      "community": 47,
-      "norm_label": "naturalwidth"
-    },
-    {
-      "label": "naturalHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L40",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_naturalheight",
-      "community": 47,
-      "norm_label": "naturalheight"
-    },
-    {
-      "label": "complete",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L41",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_complete",
-      "community": 47,
-      "norm_label": "complete"
-    },
-    {
-      "label": "computedWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L42",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_computedwidth",
-      "community": 47,
-      "norm_label": "computedwidth"
-    },
-    {
-      "label": "computedHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L43",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_computedheight",
-      "community": 47,
-      "norm_label": "computedheight"
-    },
-    {
-      "label": "computedAspectRatio",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L44",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_computedaspectratio",
-      "community": 47,
-      "norm_label": "computedaspectratio"
-    },
-    {
-      "label": "cssClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L45",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_cssclass",
-      "community": 47,
-      "norm_label": "cssclass"
-    },
-    {
-      "label": "display",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L46",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_display",
-      "community": 47,
-      "norm_label": "display"
-    },
-    {
-      "label": "position",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L47",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_position",
-      "community": 47,
-      "norm_label": "position"
-    },
-    {
-      "label": "objectFit",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L48",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_objectfit",
-      "community": 47,
-      "norm_label": "objectfit"
-    },
-    {
-      "label": "dmovel-sitec",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L50",
-      "id": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "community": 48,
-      "norm_label": "dmovel-sitec"
-    },
-    {
-      "label": "src",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L51",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_src",
-      "community": 48,
-      "norm_label": "src"
-    },
-    {
-      "label": "loading",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L52",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_loading",
-      "community": 48,
-      "norm_label": "loading"
-    },
-    {
-      "label": "widthAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L53",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_widthattr",
-      "community": 48,
-      "norm_label": "widthattr"
-    },
-    {
-      "label": "heightAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L54",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_heightattr",
-      "community": 48,
-      "norm_label": "heightattr"
-    },
-    {
-      "label": "naturalWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L55",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalwidth",
-      "community": 48,
-      "norm_label": "naturalwidth"
-    },
-    {
-      "label": "naturalHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L56",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalheight",
-      "community": 48,
-      "norm_label": "naturalheight"
-    },
-    {
-      "label": "complete",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L57",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_complete",
-      "community": 48,
-      "norm_label": "complete"
-    },
-    {
-      "label": "computedWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L58",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedwidth",
-      "community": 48,
-      "norm_label": "computedwidth"
-    },
-    {
-      "label": "computedHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L59",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedheight",
-      "community": 48,
-      "norm_label": "computedheight"
-    },
-    {
-      "label": "computedAspectRatio",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L60",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedaspectratio",
-      "community": 48,
-      "norm_label": "computedaspectratio"
-    },
-    {
-      "label": "cssClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L61",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_cssclass",
-      "community": 48,
-      "norm_label": "cssclass"
-    },
-    {
-      "label": "display",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L62",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_display",
-      "community": 48,
-      "norm_label": "display"
-    },
-    {
-      "label": "position",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L63",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_position",
-      "community": 48,
-      "norm_label": "position"
-    },
-    {
-      "label": "objectFit",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L64",
-      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_objectfit",
-      "community": 48,
-      "norm_label": "objectfit"
-    },
-    {
-      "label": "varedura",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L66",
-      "id": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "community": 51,
-      "norm_label": "varedura"
-    },
-    {
-      "label": "src",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L67",
-      "id": "joaosnet_github_io_critic_report_output_varedura_src",
-      "community": 51,
-      "norm_label": "src"
-    },
-    {
-      "label": "loading",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L68",
-      "id": "joaosnet_github_io_critic_report_output_varedura_loading",
-      "community": 51,
-      "norm_label": "loading"
-    },
-    {
-      "label": "widthAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L69",
-      "id": "joaosnet_github_io_critic_report_output_varedura_widthattr",
-      "community": 51,
-      "norm_label": "widthattr"
-    },
-    {
-      "label": "heightAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L70",
-      "id": "joaosnet_github_io_critic_report_output_varedura_heightattr",
-      "community": 51,
-      "norm_label": "heightattr"
-    },
-    {
-      "label": "naturalWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L71",
-      "id": "joaosnet_github_io_critic_report_output_varedura_naturalwidth",
-      "community": 51,
-      "norm_label": "naturalwidth"
-    },
-    {
-      "label": "naturalHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L72",
-      "id": "joaosnet_github_io_critic_report_output_varedura_naturalheight",
-      "community": 51,
-      "norm_label": "naturalheight"
-    },
-    {
-      "label": "complete",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L73",
-      "id": "joaosnet_github_io_critic_report_output_varedura_complete",
-      "community": 51,
-      "norm_label": "complete"
-    },
-    {
-      "label": "computedWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L74",
-      "id": "joaosnet_github_io_critic_report_output_varedura_computedwidth",
-      "community": 51,
-      "norm_label": "computedwidth"
-    },
-    {
-      "label": "computedHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L75",
-      "id": "joaosnet_github_io_critic_report_output_varedura_computedheight",
-      "community": 51,
-      "norm_label": "computedheight"
-    },
-    {
-      "label": "computedAspectRatio",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L76",
-      "id": "joaosnet_github_io_critic_report_output_varedura_computedaspectratio",
-      "community": 51,
-      "norm_label": "computedaspectratio"
-    },
-    {
-      "label": "cssClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L77",
-      "id": "joaosnet_github_io_critic_report_output_varedura_cssclass",
-      "community": 51,
-      "norm_label": "cssclass"
-    },
-    {
-      "label": "display",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L78",
-      "id": "joaosnet_github_io_critic_report_output_varedura_display",
-      "community": 51,
-      "norm_label": "display"
-    },
-    {
-      "label": "position",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L79",
-      "id": "joaosnet_github_io_critic_report_output_varedura_position",
-      "community": 51,
-      "norm_label": "position"
-    },
-    {
-      "label": "objectFit",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L80",
-      "id": "joaosnet_github_io_critic_report_output_varedura_objectfit",
-      "community": 51,
-      "norm_label": "objectfit"
-    },
-    {
-      "label": "klique-api",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L82",
-      "id": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "community": 50,
-      "norm_label": "klique-api"
-    },
-    {
-      "label": "src",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L83",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_src",
-      "community": 50,
-      "norm_label": "src"
-    },
-    {
-      "label": "loading",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L84",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_loading",
-      "community": 50,
-      "norm_label": "loading"
-    },
-    {
-      "label": "widthAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L85",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_widthattr",
-      "community": 50,
-      "norm_label": "widthattr"
-    },
-    {
-      "label": "heightAttr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L86",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_heightattr",
-      "community": 50,
-      "norm_label": "heightattr"
-    },
-    {
-      "label": "naturalWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L87",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_naturalwidth",
-      "community": 50,
-      "norm_label": "naturalwidth"
-    },
-    {
-      "label": "naturalHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L88",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_naturalheight",
-      "community": 50,
-      "norm_label": "naturalheight"
-    },
-    {
-      "label": "complete",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L89",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_complete",
-      "community": 50,
-      "norm_label": "complete"
-    },
-    {
-      "label": "computedWidth",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L90",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_computedwidth",
-      "community": 50,
-      "norm_label": "computedwidth"
-    },
-    {
-      "label": "computedHeight",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L91",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_computedheight",
-      "community": 50,
-      "norm_label": "computedheight"
-    },
-    {
-      "label": "computedAspectRatio",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L92",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_computedaspectratio",
-      "community": 50,
-      "norm_label": "computedaspectratio"
-    },
-    {
-      "label": "cssClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L93",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_cssclass",
-      "community": 50,
-      "norm_label": "cssclass"
-    },
-    {
-      "label": "display",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L94",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_display",
-      "community": 50,
-      "norm_label": "display"
-    },
-    {
-      "label": "position",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L95",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_position",
-      "community": 50,
-      "norm_label": "position"
-    },
-    {
-      "label": "objectFit",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L96",
-      "id": "joaosnet_github_io_critic_report_output_klique_api_objectfit",
-      "community": 50,
-      "norm_label": "objectfit"
-    },
-    {
-      "label": "fallbackTest",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L99",
-      "id": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "community": 54,
-      "norm_label": "fallbacktest"
-    },
-    {
-      "label": "hasFallbackClass",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L100",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_hasfallbackclass",
-      "community": 54,
-      "norm_label": "hasfallbackclass"
-    },
-    {
-      "label": "imgDisplay",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L101",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgdisplay",
-      "community": 54,
-      "norm_label": "imgdisplay"
-    },
-    {
-      "label": "imgOpacity",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L102",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgopacity",
-      "community": 54,
-      "norm_label": "imgopacity"
-    },
-    {
-      "label": "imgVisibility",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L103",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgvisibility",
-      "community": 54,
-      "norm_label": "imgvisibility"
-    },
-    {
-      "label": "vectorDisplay",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L104",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_vectordisplay",
-      "community": 54,
-      "norm_label": "vectordisplay"
-    },
-    {
-      "label": "vectorVisibility",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L105",
-      "id": "joaosnet_github_io_critic_report_output_fallbacktest_vectorvisibility",
-      "community": 54,
-      "norm_label": "vectorvisibility"
-    },
-    {
-      "label": "i18n",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L108",
-      "id": "joaosnet_github_io_critic_report_output_i18n",
-      "community": 30,
-      "norm_label": "i18n"
-    },
-    {
-      "label": "consoleErrors",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L109",
-      "id": "joaosnet_github_io_critic_report_output_i18n_consoleerrors",
-      "community": 30,
-      "norm_label": "consoleerrors"
-    },
-    {
-      "label": "pageErrors",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L110",
-      "id": "joaosnet_github_io_critic_report_output_i18n_pageerrors",
-      "community": 30,
-      "norm_label": "pageerrors"
-    },
-    {
-      "label": "networkErrors",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L111",
-      "id": "joaosnet_github_io_critic_report_output_i18n_networkerrors",
-      "community": 30,
-      "norm_label": "networkerrors"
-    },
-    {
-      "label": "statusTextEs",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L117",
-      "id": "joaosnet_github_io_critic_report_output_i18n_statustextes",
-      "community": 30,
-      "norm_label": "statustextes"
-    },
-    {
-      "label": "statusTextFr",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L118",
-      "id": "joaosnet_github_io_critic_report_output_i18n_statustextfr",
-      "community": 30,
-      "norm_label": "statustextfr"
-    },
-    {
-      "label": "nativeRoutes",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L119",
-      "id": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
-      "community": 30,
-      "norm_label": "nativeroutes"
-    },
-    {
-      "label": "ptLang",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L120",
-      "id": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang",
-      "community": 30,
-      "norm_label": "ptlang"
-    },
-    {
-      "label": "enLang",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L121",
-      "id": "joaosnet_github_io_critic_report_output_nativeroutes_enlang",
-      "community": 30,
-      "norm_label": "enlang"
-    },
-    {
-      "label": "carousel",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L124",
-      "id": "joaosnet_github_io_critic_report_output_carousel",
-      "community": 30,
-      "norm_label": "carousel"
-    },
-    {
-      "label": "isFiltersVisible",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L125",
-      "id": "joaosnet_github_io_critic_report_output_carousel_isfiltersvisible",
-      "community": 30,
-      "norm_label": "isfiltersvisible"
-    },
-    {
-      "label": "initialSelected",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L126",
-      "id": "joaosnet_github_io_critic_report_output_carousel_initialselected",
-      "community": 30,
-      "norm_label": "initialselected"
-    },
-    {
-      "label": "pillsCount",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L127",
-      "id": "joaosnet_github_io_critic_report_output_carousel_pillscount",
-      "community": 30,
-      "norm_label": "pillscount"
-    },
-    {
-      "label": "pillProgressInfo",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L128",
-      "id": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "community": 30,
-      "norm_label": "pillprogressinfo"
-    },
-    {
-      "label": "strokeDasharray",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L129",
-      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedasharray",
-      "community": 30,
-      "norm_label": "strokedasharray"
-    },
-    {
-      "label": "strokeDashoffset",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L130",
-      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedashoffset",
-      "community": 30,
-      "norm_label": "strokedashoffset"
-    },
-    {
-      "label": "animationName",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L131",
-      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationname",
-      "community": 30,
-      "norm_label": "animationname"
-    },
-    {
-      "label": "animationDuration",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L132",
-      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationduration",
-      "community": 30,
-      "norm_label": "animationduration"
-    },
-    {
-      "label": "animationPlayState",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L133",
-      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationplaystate",
-      "community": 30,
-      "norm_label": "animationplaystate"
-    },
-    {
-      "label": "isPausedOnHover",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L135",
-      "id": "joaosnet_github_io_critic_report_output_carousel_ispausedonhover",
-      "community": 30,
-      "norm_label": "ispausedonhover"
-    },
-    {
-      "label": "pillProgressPaused",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L136",
-      "id": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused",
-      "community": 30,
-      "norm_label": "pillprogresspaused"
-    },
-    {
-      "label": "animationPlayState",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L137",
-      "id": "joaosnet_github_io_critic_report_output_pillprogresspaused_animationplaystate",
-      "community": 30,
-      "norm_label": "animationplaystate"
-    },
-    {
-      "label": "isPausedAfterLeave",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L139",
-      "id": "joaosnet_github_io_critic_report_output_carousel_ispausedafterleave",
-      "community": 30,
-      "norm_label": "ispausedafterleave"
-    },
-    {
-      "label": "counter",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L141",
-      "id": "joaosnet_github_io_critic_report_output_counter",
-      "community": 30,
-      "norm_label": "counter"
-    },
-    {
-      "label": "badgeVisible",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L142",
-      "id": "joaosnet_github_io_critic_report_output_counter_badgevisible",
-      "community": 30,
-      "norm_label": "badgevisible"
-    },
-    {
-      "label": "badgeText",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L143",
-      "id": "joaosnet_github_io_critic_report_output_counter_badgetext",
-      "community": 30,
-      "norm_label": "badgetext"
-    },
-    {
-      "label": "countText",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L144",
-      "id": "joaosnet_github_io_critic_report_output_counter_counttext",
-      "community": 30,
-      "norm_label": "counttext"
-    },
-    {
-      "label": "networkRequests",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L145",
-      "id": "joaosnet_github_io_critic_report_output_counter_networkrequests",
-      "community": 30,
-      "norm_label": "networkrequests"
-    },
-    {
-      "label": "seo",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L152",
-      "id": "joaosnet_github_io_critic_report_output_seo",
-      "community": 30,
-      "norm_label": "seo"
-    },
-    {
-      "label": "sitemapMatches",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L153",
-      "id": "joaosnet_github_io_critic_report_output_seo_sitemapmatches",
-      "community": 30,
-      "norm_label": "sitemapmatches"
-    },
-    {
-      "label": "robotsMatches",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L154",
-      "id": "joaosnet_github_io_critic_report_output_seo_robotsmatches",
-      "community": 30,
-      "norm_label": "robotsmatches"
-    },
-    {
-      "label": "indexMatches",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L155",
-      "id": "joaosnet_github_io_critic_report_output_seo_indexmatches",
-      "community": 30,
-      "norm_label": "indexmatches"
-    },
-    {
-      "label": "sitemapUrlsCount",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L156",
-      "id": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount",
-      "community": 30,
-      "norm_label": "sitemapurlscount"
-    },
-    {
-      "label": "hasHreflangPt",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L157",
-      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangpt",
-      "community": 30,
-      "norm_label": "hashreflangpt"
-    },
-    {
-      "label": "hasHreflangEn",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L158",
-      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangen",
-      "community": 30,
-      "norm_label": "hashreflangen"
-    },
-    {
-      "label": "hasHreflangXDefault",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L159",
-      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault",
-      "community": 30,
-      "norm_label": "hashreflangxdefault"
-    },
-    {
-      "label": "robotsDisallows",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L160",
-      "id": "joaosnet_github_io_critic_report_output_seo_robotsdisallows",
-      "community": 30,
-      "norm_label": "robotsdisallows"
-    },
-    {
-      "label": "robotsSitemap",
-      "file_type": "code",
-      "source_file": "critic_report_output.json",
-      "source_location": "L161",
-      "id": "joaosnet_github_io_critic_report_output_seo_robotssitemap",
-      "community": 30,
-      "norm_label": "robotssitemap"
-    },
-    {
       "label": "package.json",
       "file_type": "code",
       "source_file": "package.json",
@@ -1435,13 +238,13 @@
       "norm_label": "main()"
     },
     {
-      "label": "Explicit project imports. Public refreshes never receive private credentials.  P",
+      "label": "Explicit project imports. Public refreshes never receive private credentials.",
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L1",
       "id": "joaosnet_github_io_update_projects_rationale_1",
       "community": 24,
-      "norm_label": "explicit project imports. public refreshes never receive private credentials.  p"
+      "norm_label": "explicit project imports. public refreshes never receive private credentials."
     },
     {
       "label": "allowlist.json",
@@ -5602,6 +4405,1203 @@
       "norm_label": "code:powershell (uv run ruff check build_site.py update_projects.py scripts t)"
     },
     {
+      "label": "critic_report_output.json",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L1",
+      "community": 30,
+      "norm_label": "critic_report_output.json",
+      "id": "critic_report_output_json"
+    },
+    {
+      "label": "theme",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L2",
+      "community": 30,
+      "norm_label": "theme",
+      "id": "joaosnet_github_io_critic_report_output_theme"
+    },
+    {
+      "label": "dark",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L3",
+      "community": 30,
+      "norm_label": "dark",
+      "id": "joaosnet_github_io_critic_report_output_theme_dark"
+    },
+    {
+      "label": "theme",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L4",
+      "community": 30,
+      "norm_label": "theme",
+      "id": "joaosnet_github_io_critic_report_output_dark_theme"
+    },
+    {
+      "label": "bgColor",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L5",
+      "community": 30,
+      "norm_label": "bgcolor",
+      "id": "joaosnet_github_io_critic_report_output_dark_bgcolor"
+    },
+    {
+      "label": "light",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L7",
+      "community": 30,
+      "norm_label": "light",
+      "id": "joaosnet_github_io_critic_report_output_theme_light"
+    },
+    {
+      "label": "theme",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L8",
+      "community": 30,
+      "norm_label": "theme",
+      "id": "joaosnet_github_io_critic_report_output_light_theme"
+    },
+    {
+      "label": "bgColor",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L9",
+      "community": 30,
+      "norm_label": "bgcolor",
+      "id": "joaosnet_github_io_critic_report_output_light_bgcolor"
+    },
+    {
+      "label": "dynamic",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L11",
+      "community": 30,
+      "norm_label": "dynamic",
+      "id": "joaosnet_github_io_critic_report_output_theme_dynamic"
+    },
+    {
+      "label": "beforeTheme",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L12",
+      "community": 30,
+      "norm_label": "beforetheme",
+      "id": "joaosnet_github_io_critic_report_output_dynamic_beforetheme"
+    },
+    {
+      "label": "afterTheme",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L13",
+      "community": 30,
+      "norm_label": "aftertheme",
+      "id": "joaosnet_github_io_critic_report_output_dynamic_aftertheme"
+    },
+    {
+      "label": "images",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L16",
+      "community": 54,
+      "norm_label": "images",
+      "id": "joaosnet_github_io_critic_report_output_images"
+    },
+    {
+      "label": "projects",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L17",
+      "community": 54,
+      "norm_label": "projects",
+      "id": "joaosnet_github_io_critic_report_output_images_projects"
+    },
+    {
+      "label": "aethersense",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L18",
+      "community": 46,
+      "norm_label": "aethersense",
+      "id": "joaosnet_github_io_critic_report_output_projects_aethersense"
+    },
+    {
+      "label": "src",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L19",
+      "community": 46,
+      "norm_label": "src",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_src"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L20",
+      "community": 46,
+      "norm_label": "loading",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_loading"
+    },
+    {
+      "label": "widthAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L21",
+      "community": 46,
+      "norm_label": "widthattr",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_widthattr"
+    },
+    {
+      "label": "heightAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L22",
+      "community": 46,
+      "norm_label": "heightattr",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_heightattr"
+    },
+    {
+      "label": "naturalWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L23",
+      "community": 46,
+      "norm_label": "naturalwidth",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_naturalwidth"
+    },
+    {
+      "label": "naturalHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L24",
+      "community": 46,
+      "norm_label": "naturalheight",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_naturalheight"
+    },
+    {
+      "label": "complete",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L25",
+      "community": 46,
+      "norm_label": "complete",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_complete"
+    },
+    {
+      "label": "computedWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L26",
+      "community": 46,
+      "norm_label": "computedwidth",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_computedwidth"
+    },
+    {
+      "label": "computedHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L27",
+      "community": 46,
+      "norm_label": "computedheight",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_computedheight"
+    },
+    {
+      "label": "computedAspectRatio",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L28",
+      "community": 46,
+      "norm_label": "computedaspectratio",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_computedaspectratio"
+    },
+    {
+      "label": "cssClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L29",
+      "community": 46,
+      "norm_label": "cssclass",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_cssclass"
+    },
+    {
+      "label": "display",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L30",
+      "community": 46,
+      "norm_label": "display",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_display"
+    },
+    {
+      "label": "position",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L31",
+      "community": 46,
+      "norm_label": "position",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_position"
+    },
+    {
+      "label": "objectFit",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L32",
+      "community": 46,
+      "norm_label": "objectfit",
+      "id": "joaosnet_github_io_critic_report_output_aethersense_objectfit"
+    },
+    {
+      "label": "dmovel",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L34",
+      "community": 47,
+      "norm_label": "dmovel",
+      "id": "joaosnet_github_io_critic_report_output_projects_dmovel"
+    },
+    {
+      "label": "src",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L35",
+      "community": 47,
+      "norm_label": "src",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_src"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L36",
+      "community": 47,
+      "norm_label": "loading",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_loading"
+    },
+    {
+      "label": "widthAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L37",
+      "community": 47,
+      "norm_label": "widthattr",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_widthattr"
+    },
+    {
+      "label": "heightAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L38",
+      "community": 47,
+      "norm_label": "heightattr",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_heightattr"
+    },
+    {
+      "label": "naturalWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L39",
+      "community": 47,
+      "norm_label": "naturalwidth",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_naturalwidth"
+    },
+    {
+      "label": "naturalHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L40",
+      "community": 47,
+      "norm_label": "naturalheight",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_naturalheight"
+    },
+    {
+      "label": "complete",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L41",
+      "community": 47,
+      "norm_label": "complete",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_complete"
+    },
+    {
+      "label": "computedWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L42",
+      "community": 47,
+      "norm_label": "computedwidth",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_computedwidth"
+    },
+    {
+      "label": "computedHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L43",
+      "community": 47,
+      "norm_label": "computedheight",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_computedheight"
+    },
+    {
+      "label": "computedAspectRatio",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L44",
+      "community": 47,
+      "norm_label": "computedaspectratio",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_computedaspectratio"
+    },
+    {
+      "label": "cssClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L45",
+      "community": 47,
+      "norm_label": "cssclass",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_cssclass"
+    },
+    {
+      "label": "display",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L46",
+      "community": 47,
+      "norm_label": "display",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_display"
+    },
+    {
+      "label": "position",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L47",
+      "community": 47,
+      "norm_label": "position",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_position"
+    },
+    {
+      "label": "objectFit",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L48",
+      "community": 47,
+      "norm_label": "objectfit",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_objectfit"
+    },
+    {
+      "label": "dmovel-sitec",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L50",
+      "community": 48,
+      "norm_label": "dmovel-sitec",
+      "id": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec"
+    },
+    {
+      "label": "src",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L51",
+      "community": 48,
+      "norm_label": "src",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_src"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L52",
+      "community": 48,
+      "norm_label": "loading",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_loading"
+    },
+    {
+      "label": "widthAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L53",
+      "community": 48,
+      "norm_label": "widthattr",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_widthattr"
+    },
+    {
+      "label": "heightAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L54",
+      "community": 48,
+      "norm_label": "heightattr",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_heightattr"
+    },
+    {
+      "label": "naturalWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L55",
+      "community": 48,
+      "norm_label": "naturalwidth",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalwidth"
+    },
+    {
+      "label": "naturalHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L56",
+      "community": 48,
+      "norm_label": "naturalheight",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalheight"
+    },
+    {
+      "label": "complete",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L57",
+      "community": 48,
+      "norm_label": "complete",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_complete"
+    },
+    {
+      "label": "computedWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L58",
+      "community": 48,
+      "norm_label": "computedwidth",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedwidth"
+    },
+    {
+      "label": "computedHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L59",
+      "community": 48,
+      "norm_label": "computedheight",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedheight"
+    },
+    {
+      "label": "computedAspectRatio",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L60",
+      "community": 48,
+      "norm_label": "computedaspectratio",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedaspectratio"
+    },
+    {
+      "label": "cssClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L61",
+      "community": 48,
+      "norm_label": "cssclass",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_cssclass"
+    },
+    {
+      "label": "display",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L62",
+      "community": 48,
+      "norm_label": "display",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_display"
+    },
+    {
+      "label": "position",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L63",
+      "community": 48,
+      "norm_label": "position",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_position"
+    },
+    {
+      "label": "objectFit",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L64",
+      "community": 48,
+      "norm_label": "objectfit",
+      "id": "joaosnet_github_io_critic_report_output_dmovel_sitec_objectfit"
+    },
+    {
+      "label": "varedura",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L66",
+      "community": 51,
+      "norm_label": "varedura",
+      "id": "joaosnet_github_io_critic_report_output_projects_varedura"
+    },
+    {
+      "label": "src",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L67",
+      "community": 51,
+      "norm_label": "src",
+      "id": "joaosnet_github_io_critic_report_output_varedura_src"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L68",
+      "community": 51,
+      "norm_label": "loading",
+      "id": "joaosnet_github_io_critic_report_output_varedura_loading"
+    },
+    {
+      "label": "widthAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L69",
+      "community": 51,
+      "norm_label": "widthattr",
+      "id": "joaosnet_github_io_critic_report_output_varedura_widthattr"
+    },
+    {
+      "label": "heightAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L70",
+      "community": 51,
+      "norm_label": "heightattr",
+      "id": "joaosnet_github_io_critic_report_output_varedura_heightattr"
+    },
+    {
+      "label": "naturalWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L71",
+      "community": 51,
+      "norm_label": "naturalwidth",
+      "id": "joaosnet_github_io_critic_report_output_varedura_naturalwidth"
+    },
+    {
+      "label": "naturalHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L72",
+      "community": 51,
+      "norm_label": "naturalheight",
+      "id": "joaosnet_github_io_critic_report_output_varedura_naturalheight"
+    },
+    {
+      "label": "complete",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L73",
+      "community": 51,
+      "norm_label": "complete",
+      "id": "joaosnet_github_io_critic_report_output_varedura_complete"
+    },
+    {
+      "label": "computedWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L74",
+      "community": 51,
+      "norm_label": "computedwidth",
+      "id": "joaosnet_github_io_critic_report_output_varedura_computedwidth"
+    },
+    {
+      "label": "computedHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L75",
+      "community": 51,
+      "norm_label": "computedheight",
+      "id": "joaosnet_github_io_critic_report_output_varedura_computedheight"
+    },
+    {
+      "label": "computedAspectRatio",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L76",
+      "community": 51,
+      "norm_label": "computedaspectratio",
+      "id": "joaosnet_github_io_critic_report_output_varedura_computedaspectratio"
+    },
+    {
+      "label": "cssClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L77",
+      "community": 51,
+      "norm_label": "cssclass",
+      "id": "joaosnet_github_io_critic_report_output_varedura_cssclass"
+    },
+    {
+      "label": "display",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L78",
+      "community": 51,
+      "norm_label": "display",
+      "id": "joaosnet_github_io_critic_report_output_varedura_display"
+    },
+    {
+      "label": "position",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L79",
+      "community": 51,
+      "norm_label": "position",
+      "id": "joaosnet_github_io_critic_report_output_varedura_position"
+    },
+    {
+      "label": "objectFit",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L80",
+      "community": 51,
+      "norm_label": "objectfit",
+      "id": "joaosnet_github_io_critic_report_output_varedura_objectfit"
+    },
+    {
+      "label": "klique-api",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L82",
+      "community": 50,
+      "norm_label": "klique-api",
+      "id": "joaosnet_github_io_critic_report_output_projects_klique_api"
+    },
+    {
+      "label": "src",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L83",
+      "community": 50,
+      "norm_label": "src",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_src"
+    },
+    {
+      "label": "loading",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L84",
+      "community": 50,
+      "norm_label": "loading",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_loading"
+    },
+    {
+      "label": "widthAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L85",
+      "community": 50,
+      "norm_label": "widthattr",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_widthattr"
+    },
+    {
+      "label": "heightAttr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L86",
+      "community": 50,
+      "norm_label": "heightattr",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_heightattr"
+    },
+    {
+      "label": "naturalWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L87",
+      "community": 50,
+      "norm_label": "naturalwidth",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_naturalwidth"
+    },
+    {
+      "label": "naturalHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L88",
+      "community": 50,
+      "norm_label": "naturalheight",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_naturalheight"
+    },
+    {
+      "label": "complete",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L89",
+      "community": 50,
+      "norm_label": "complete",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_complete"
+    },
+    {
+      "label": "computedWidth",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L90",
+      "community": 50,
+      "norm_label": "computedwidth",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_computedwidth"
+    },
+    {
+      "label": "computedHeight",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L91",
+      "community": 50,
+      "norm_label": "computedheight",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_computedheight"
+    },
+    {
+      "label": "computedAspectRatio",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L92",
+      "community": 50,
+      "norm_label": "computedaspectratio",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_computedaspectratio"
+    },
+    {
+      "label": "cssClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L93",
+      "community": 50,
+      "norm_label": "cssclass",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_cssclass"
+    },
+    {
+      "label": "display",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L94",
+      "community": 50,
+      "norm_label": "display",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_display"
+    },
+    {
+      "label": "position",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L95",
+      "community": 50,
+      "norm_label": "position",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_position"
+    },
+    {
+      "label": "objectFit",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L96",
+      "community": 50,
+      "norm_label": "objectfit",
+      "id": "joaosnet_github_io_critic_report_output_klique_api_objectfit"
+    },
+    {
+      "label": "fallbackTest",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L99",
+      "community": 54,
+      "norm_label": "fallbacktest",
+      "id": "joaosnet_github_io_critic_report_output_images_fallbacktest"
+    },
+    {
+      "label": "hasFallbackClass",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L100",
+      "community": 54,
+      "norm_label": "hasfallbackclass",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_hasfallbackclass"
+    },
+    {
+      "label": "imgDisplay",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L101",
+      "community": 54,
+      "norm_label": "imgdisplay",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgdisplay"
+    },
+    {
+      "label": "imgOpacity",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L102",
+      "community": 54,
+      "norm_label": "imgopacity",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgopacity"
+    },
+    {
+      "label": "imgVisibility",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L103",
+      "community": 54,
+      "norm_label": "imgvisibility",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_imgvisibility"
+    },
+    {
+      "label": "vectorDisplay",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L104",
+      "community": 54,
+      "norm_label": "vectordisplay",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_vectordisplay"
+    },
+    {
+      "label": "vectorVisibility",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L105",
+      "community": 54,
+      "norm_label": "vectorvisibility",
+      "id": "joaosnet_github_io_critic_report_output_fallbacktest_vectorvisibility"
+    },
+    {
+      "label": "i18n",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L108",
+      "community": 30,
+      "norm_label": "i18n",
+      "id": "joaosnet_github_io_critic_report_output_i18n"
+    },
+    {
+      "label": "consoleErrors",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L109",
+      "community": 30,
+      "norm_label": "consoleerrors",
+      "id": "joaosnet_github_io_critic_report_output_i18n_consoleerrors"
+    },
+    {
+      "label": "pageErrors",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L110",
+      "community": 30,
+      "norm_label": "pageerrors",
+      "id": "joaosnet_github_io_critic_report_output_i18n_pageerrors"
+    },
+    {
+      "label": "networkErrors",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L111",
+      "community": 30,
+      "norm_label": "networkerrors",
+      "id": "joaosnet_github_io_critic_report_output_i18n_networkerrors"
+    },
+    {
+      "label": "statusTextEs",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L117",
+      "community": 30,
+      "norm_label": "statustextes",
+      "id": "joaosnet_github_io_critic_report_output_i18n_statustextes"
+    },
+    {
+      "label": "statusTextFr",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L118",
+      "community": 30,
+      "norm_label": "statustextfr",
+      "id": "joaosnet_github_io_critic_report_output_i18n_statustextfr"
+    },
+    {
+      "label": "nativeRoutes",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L119",
+      "community": 30,
+      "norm_label": "nativeroutes",
+      "id": "joaosnet_github_io_critic_report_output_i18n_nativeroutes"
+    },
+    {
+      "label": "ptLang",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L120",
+      "community": 30,
+      "norm_label": "ptlang",
+      "id": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang"
+    },
+    {
+      "label": "enLang",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L121",
+      "community": 30,
+      "norm_label": "enlang",
+      "id": "joaosnet_github_io_critic_report_output_nativeroutes_enlang"
+    },
+    {
+      "label": "carousel",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L124",
+      "community": 30,
+      "norm_label": "carousel",
+      "id": "joaosnet_github_io_critic_report_output_carousel"
+    },
+    {
+      "label": "isFiltersVisible",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L125",
+      "community": 30,
+      "norm_label": "isfiltersvisible",
+      "id": "joaosnet_github_io_critic_report_output_carousel_isfiltersvisible"
+    },
+    {
+      "label": "initialSelected",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L126",
+      "community": 30,
+      "norm_label": "initialselected",
+      "id": "joaosnet_github_io_critic_report_output_carousel_initialselected"
+    },
+    {
+      "label": "pillsCount",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L127",
+      "community": 30,
+      "norm_label": "pillscount",
+      "id": "joaosnet_github_io_critic_report_output_carousel_pillscount"
+    },
+    {
+      "label": "pillProgressInfo",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L128",
+      "community": 30,
+      "norm_label": "pillprogressinfo",
+      "id": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo"
+    },
+    {
+      "label": "strokeDasharray",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L129",
+      "community": 30,
+      "norm_label": "strokedasharray",
+      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedasharray"
+    },
+    {
+      "label": "strokeDashoffset",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L130",
+      "community": 30,
+      "norm_label": "strokedashoffset",
+      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedashoffset"
+    },
+    {
+      "label": "animationName",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L131",
+      "community": 30,
+      "norm_label": "animationname",
+      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationname"
+    },
+    {
+      "label": "animationDuration",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L132",
+      "community": 30,
+      "norm_label": "animationduration",
+      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationduration"
+    },
+    {
+      "label": "animationPlayState",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L133",
+      "community": 30,
+      "norm_label": "animationplaystate",
+      "id": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationplaystate"
+    },
+    {
+      "label": "isPausedOnHover",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L135",
+      "community": 30,
+      "norm_label": "ispausedonhover",
+      "id": "joaosnet_github_io_critic_report_output_carousel_ispausedonhover"
+    },
+    {
+      "label": "pillProgressPaused",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L136",
+      "community": 30,
+      "norm_label": "pillprogresspaused",
+      "id": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused"
+    },
+    {
+      "label": "animationPlayState",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L137",
+      "community": 30,
+      "norm_label": "animationplaystate",
+      "id": "joaosnet_github_io_critic_report_output_pillprogresspaused_animationplaystate"
+    },
+    {
+      "label": "isPausedAfterLeave",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L139",
+      "community": 30,
+      "norm_label": "ispausedafterleave",
+      "id": "joaosnet_github_io_critic_report_output_carousel_ispausedafterleave"
+    },
+    {
+      "label": "counter",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L141",
+      "community": 30,
+      "norm_label": "counter",
+      "id": "joaosnet_github_io_critic_report_output_counter"
+    },
+    {
+      "label": "badgeVisible",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L142",
+      "community": 30,
+      "norm_label": "badgevisible",
+      "id": "joaosnet_github_io_critic_report_output_counter_badgevisible"
+    },
+    {
+      "label": "badgeText",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L143",
+      "community": 30,
+      "norm_label": "badgetext",
+      "id": "joaosnet_github_io_critic_report_output_counter_badgetext"
+    },
+    {
+      "label": "countText",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L144",
+      "community": 30,
+      "norm_label": "counttext",
+      "id": "joaosnet_github_io_critic_report_output_counter_counttext"
+    },
+    {
+      "label": "networkRequests",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L145",
+      "community": 30,
+      "norm_label": "networkrequests",
+      "id": "joaosnet_github_io_critic_report_output_counter_networkrequests"
+    },
+    {
+      "label": "seo",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L152",
+      "community": 30,
+      "norm_label": "seo",
+      "id": "joaosnet_github_io_critic_report_output_seo"
+    },
+    {
+      "label": "sitemapMatches",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L153",
+      "community": 30,
+      "norm_label": "sitemapmatches",
+      "id": "joaosnet_github_io_critic_report_output_seo_sitemapmatches"
+    },
+    {
+      "label": "robotsMatches",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L154",
+      "community": 30,
+      "norm_label": "robotsmatches",
+      "id": "joaosnet_github_io_critic_report_output_seo_robotsmatches"
+    },
+    {
+      "label": "indexMatches",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L155",
+      "community": 30,
+      "norm_label": "indexmatches",
+      "id": "joaosnet_github_io_critic_report_output_seo_indexmatches"
+    },
+    {
+      "label": "sitemapUrlsCount",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L156",
+      "community": 30,
+      "norm_label": "sitemapurlscount",
+      "id": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount"
+    },
+    {
+      "label": "hasHreflangPt",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L157",
+      "community": 30,
+      "norm_label": "hashreflangpt",
+      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangpt"
+    },
+    {
+      "label": "hasHreflangEn",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L158",
+      "community": 30,
+      "norm_label": "hashreflangen",
+      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangen"
+    },
+    {
+      "label": "hasHreflangXDefault",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L159",
+      "community": 30,
+      "norm_label": "hashreflangxdefault",
+      "id": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault"
+    },
+    {
+      "label": "robotsDisallows",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L160",
+      "community": 30,
+      "norm_label": "robotsdisallows",
+      "id": "joaosnet_github_io_critic_report_output_seo_robotsdisallows"
+    },
+    {
+      "label": "robotsSitemap",
+      "file_type": "code",
+      "source_file": "critic_report_output.json",
+      "source_location": "L161",
+      "community": 30,
+      "norm_label": "robotssitemap",
+      "id": "joaosnet_github_io_critic_report_output_seo_robotssitemap"
+    },
+    {
       "label": "generate_og_cover.py",
       "file_type": "code",
       "source_file": "generate_og_cover.py",
@@ -7091,7 +7091,7 @@
       "file_type": "code",
       "source_file": "update_projects.py",
       "source_location": "L603",
-      "community": 0,
+      "community": 56,
       "norm_label": "generate_pages_links_html()",
       "id": "joaosnet_github_io_update_projects_generate_pages_links_html"
     },
@@ -7280,7 +7280,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L604",
-      "community": 0,
+      "community": 56,
       "norm_label": "generate the public github pages showcase block.",
       "id": "joaosnet_github_io_update_projects_rationale_604"
     },
@@ -8711,7 +8711,7 @@
       "file_type": "code",
       "source_file": "tests/test_update_projects.py",
       "source_location": "L321",
-      "community": 0,
+      "community": 56,
       "norm_label": ".test_generate_pages_links_html()",
       "id": "tests_test_update_projects_testgithubpageslinks_test_generate_pages_links_html"
     },
@@ -10304,7 +10304,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L578",
-      "community": 0,
+      "community": 56,
       "norm_label": "generate the public github pages showcase block.",
       "id": "joaosnet_github_io_update_projects_rationale_578"
     },
@@ -10717,1326 +10717,6 @@
       "weight": 1.0,
       "source": "joaosnet_github_io_build_site_build",
       "target": "scripts_build_cv_generate_cvs"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_theme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L16",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_images",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L108",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_i18n",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L124",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_carousel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L141",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_counter",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L152",
-      "weight": 1.0,
-      "source": "critic_report_output_json",
-      "target": "joaosnet_github_io_critic_report_output_seo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme",
-      "target": "joaosnet_github_io_critic_report_output_theme_dark",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme",
-      "target": "joaosnet_github_io_critic_report_output_theme_light",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L11",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme",
-      "target": "joaosnet_github_io_critic_report_output_theme_dynamic",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_dark",
-      "target": "joaosnet_github_io_critic_report_output_dark_theme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L5",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_dark",
-      "target": "joaosnet_github_io_critic_report_output_dark_bgcolor",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L8",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_light",
-      "target": "joaosnet_github_io_critic_report_output_light_theme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_light",
-      "target": "joaosnet_github_io_critic_report_output_light_bgcolor",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L12",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_dynamic",
-      "target": "joaosnet_github_io_critic_report_output_dynamic_beforetheme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L13",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_theme_dynamic",
-      "target": "joaosnet_github_io_critic_report_output_dynamic_aftertheme",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L17",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images",
-      "target": "joaosnet_github_io_critic_report_output_images_projects",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L99",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images",
-      "target": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L18",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_projects",
-      "target": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L34",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_projects",
-      "target": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L50",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_projects",
-      "target": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L66",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_projects",
-      "target": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L82",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_projects",
-      "target": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L19",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_src",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L20",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_loading",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L21",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_widthattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L22",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_heightattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L23",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_naturalwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L24",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_naturalheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L25",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L26",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_computedwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L27",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_computedheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L28",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_computedaspectratio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L29",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_cssclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L30",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_display",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L31",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_position",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L32",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
-      "target": "joaosnet_github_io_critic_report_output_aethersense_objectfit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L35",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_src",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L36",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_loading",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L37",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_widthattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L38",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_heightattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L39",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_naturalwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L40",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_naturalheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L41",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L42",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_computedwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L43",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_computedheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L44",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_computedaspectratio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L45",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_cssclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L46",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_display",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L47",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_position",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L48",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_objectfit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L51",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_src",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L52",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_loading",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L53",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_widthattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L54",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_heightattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L55",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L56",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L57",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L58",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L59",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L60",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedaspectratio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L61",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_cssclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L62",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_display",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L63",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_position",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L64",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
-      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_objectfit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L67",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_src",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L68",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_loading",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L69",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_widthattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L70",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_heightattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L71",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_naturalwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L72",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_naturalheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L73",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L74",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_computedwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L75",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_computedheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L76",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_computedaspectratio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L77",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_cssclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L78",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_display",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L79",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_position",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L80",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
-      "target": "joaosnet_github_io_critic_report_output_varedura_objectfit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L83",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_src",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L84",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_loading",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L85",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_widthattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L86",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_heightattr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L87",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_naturalwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L88",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_naturalheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L89",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_complete",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L90",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_computedwidth",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L91",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_computedheight",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L92",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_computedaspectratio",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L93",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_cssclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L94",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_display",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L95",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_position",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L96",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
-      "target": "joaosnet_github_io_critic_report_output_klique_api_objectfit",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L100",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_hasfallbackclass",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L101",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgdisplay",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L102",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgopacity",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L103",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgvisibility",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L104",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_vectordisplay",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L105",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
-      "target": "joaosnet_github_io_critic_report_output_fallbacktest_vectorvisibility",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L109",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_consoleerrors",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L110",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_pageerrors",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L111",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_networkerrors",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L117",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_statustextes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L118",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_statustextfr",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L119",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n",
-      "target": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L120",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
-      "target": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L121",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
-      "target": "joaosnet_github_io_critic_report_output_nativeroutes_enlang",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L125",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_isfiltersvisible",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L126",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_initialselected",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L127",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_pillscount",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L128",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L135",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_ispausedonhover",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L136",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L139",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel",
-      "target": "joaosnet_github_io_critic_report_output_carousel_ispausedafterleave",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L129",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedasharray",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L130",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedashoffset",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L131",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationname",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L132",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationduration",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L133",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
-      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationplaystate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L137",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused",
-      "target": "joaosnet_github_io_critic_report_output_pillprogresspaused_animationplaystate",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L142",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_counter",
-      "target": "joaosnet_github_io_critic_report_output_counter_badgevisible",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L143",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_counter",
-      "target": "joaosnet_github_io_critic_report_output_counter_badgetext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L144",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_counter",
-      "target": "joaosnet_github_io_critic_report_output_counter_counttext",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L145",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_counter",
-      "target": "joaosnet_github_io_critic_report_output_counter_networkrequests",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L153",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_sitemapmatches",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L154",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_robotsmatches",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L155",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_indexmatches",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L156",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L157",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangpt",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L158",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangen",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L159",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L160",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_robotsdisallows",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "critic_report_output.json",
-      "source_location": "L161",
-      "weight": 1.0,
-      "source": "joaosnet_github_io_critic_report_output_seo",
-      "target": "joaosnet_github_io_critic_report_output_seo_robotssitemap",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -17642,6 +16322,1326 @@
       "confidence_score": 1.0,
       "source": "tests_testes_executar_todos_os_testes",
       "target": "tests_testes_codeblock_1"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_theme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_images"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L108",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_i18n"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L124",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_carousel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L141",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_counter"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L152",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "critic_report_output_json",
+      "target": "joaosnet_github_io_critic_report_output_seo"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme",
+      "target": "joaosnet_github_io_critic_report_output_theme_dark"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme",
+      "target": "joaosnet_github_io_critic_report_output_theme_light"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme",
+      "target": "joaosnet_github_io_critic_report_output_theme_dynamic"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_dark",
+      "target": "joaosnet_github_io_critic_report_output_dark_theme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_dark",
+      "target": "joaosnet_github_io_critic_report_output_dark_bgcolor"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_light",
+      "target": "joaosnet_github_io_critic_report_output_light_theme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L9",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_light",
+      "target": "joaosnet_github_io_critic_report_output_light_bgcolor"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L12",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_dynamic",
+      "target": "joaosnet_github_io_critic_report_output_dynamic_beforetheme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_theme_dynamic",
+      "target": "joaosnet_github_io_critic_report_output_dynamic_aftertheme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images",
+      "target": "joaosnet_github_io_critic_report_output_images_projects"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L99",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images",
+      "target": "joaosnet_github_io_critic_report_output_images_fallbacktest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_projects",
+      "target": "joaosnet_github_io_critic_report_output_projects_aethersense"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_projects",
+      "target": "joaosnet_github_io_critic_report_output_projects_dmovel"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L50",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_projects",
+      "target": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L66",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_projects",
+      "target": "joaosnet_github_io_critic_report_output_projects_varedura"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L82",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_projects",
+      "target": "joaosnet_github_io_critic_report_output_projects_klique_api"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_src"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_widthattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_heightattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_naturalwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L24",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_naturalheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L25",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_computedwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_computedheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_computedaspectratio"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L29",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_cssclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L30",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_display"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_position"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L32",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_aethersense",
+      "target": "joaosnet_github_io_critic_report_output_aethersense_objectfit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_src"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L37",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_widthattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_heightattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_naturalwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_naturalheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L41",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L42",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_computedwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_computedheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_computedaspectratio"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_cssclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_display"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_position"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L48",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_objectfit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L51",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_src"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L53",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_widthattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L54",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_heightattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L55",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_naturalheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L58",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L60",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_computedaspectratio"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_cssclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L62",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_display"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_position"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_dmovel_sitec",
+      "target": "joaosnet_github_io_critic_report_output_dmovel_sitec_objectfit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L67",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_src"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L68",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L69",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_widthattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L70",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_heightattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L71",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_naturalwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L72",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_naturalheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L73",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L74",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_computedwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L75",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_computedheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L76",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_computedaspectratio"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L77",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_cssclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L78",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_display"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L79",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_position"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L80",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_varedura",
+      "target": "joaosnet_github_io_critic_report_output_varedura_objectfit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_src"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L84",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_loading"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L85",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_widthattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L86",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_heightattr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L87",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_naturalwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L88",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_naturalheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L89",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_complete"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_computedwidth"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L91",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_computedheight"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L92",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_computedaspectratio"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L93",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_cssclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L94",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_display"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L95",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_position"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L96",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_projects_klique_api",
+      "target": "joaosnet_github_io_critic_report_output_klique_api_objectfit"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L100",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_hasfallbackclass"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L101",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgdisplay"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L102",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgopacity"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L103",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_imgvisibility"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L104",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_vectordisplay"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L105",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_images_fallbacktest",
+      "target": "joaosnet_github_io_critic_report_output_fallbacktest_vectorvisibility"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L109",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_consoleerrors"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L110",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_pageerrors"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L111",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_networkerrors"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_statustextes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L118",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_statustextfr"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L119",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n",
+      "target": "joaosnet_github_io_critic_report_output_i18n_nativeroutes"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L120",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
+      "target": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L121",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_i18n_nativeroutes",
+      "target": "joaosnet_github_io_critic_report_output_nativeroutes_enlang"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L125",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_isfiltersvisible"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L126",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_initialselected"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L127",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_pillscount"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L128",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L135",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_ispausedonhover"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L136",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L139",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel",
+      "target": "joaosnet_github_io_critic_report_output_carousel_ispausedafterleave"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L129",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
+      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedasharray"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L130",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
+      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_strokedashoffset"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L131",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
+      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationname"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L132",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
+      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationduration"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L133",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogressinfo",
+      "target": "joaosnet_github_io_critic_report_output_pillprogressinfo_animationplaystate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L137",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_carousel_pillprogresspaused",
+      "target": "joaosnet_github_io_critic_report_output_pillprogresspaused_animationplaystate"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L142",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_counter",
+      "target": "joaosnet_github_io_critic_report_output_counter_badgevisible"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L143",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_counter",
+      "target": "joaosnet_github_io_critic_report_output_counter_badgetext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L144",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_counter",
+      "target": "joaosnet_github_io_critic_report_output_counter_counttext"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L145",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_counter",
+      "target": "joaosnet_github_io_critic_report_output_counter_networkrequests"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L153",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_sitemapmatches"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L154",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_robotsmatches"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L155",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_indexmatches"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L156",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L157",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangpt"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L158",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangen"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L159",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L160",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_robotsdisallows"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "critic_report_output.json",
+      "source_location": "L161",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "joaosnet_github_io_critic_report_output_seo",
+      "target": "joaosnet_github_io_critic_report_output_seo_robotssitemap"
     },
     {
       "relation": "contains",
@@ -24919,5 +24919,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "28dc4d2e8d496a71518b97f8072acf88238b7370"
+  "built_at_commit": "dfcbc54e0a23ae0d8e51c65a91dd4ed123e09be8"
 }
