@@ -25,8 +25,8 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\index.html": {
-    "mtime": 1789336979.151084,
-    "ast_hash": "f457e99c6683d76f73688bc20d150514",
+    "mtime": 1789401151.605958,
+    "ast_hash": "4e271289778529e54555123886707753",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.codex\\AGENTS.md": {
@@ -105,7 +105,7 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\robots.txt": {
-    "mtime": 1789336979.1187634,
+    "mtime": 1789401151.5556226,
     "ast_hash": "df0d2b5994669461bda579862d1f28e9",
     "semantic_hash": ""
   },
@@ -180,8 +180,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\build_site.py": {
-    "mtime": 1789331854.2053945,
-    "ast_hash": "bf260a2a0fb7c0f9c29781e2f070ceda",
+    "mtime": 1789401107.4527,
+    "ast_hash": "e2d1a0979c3e6711a9e9644cb33c06f1",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\package.json": {
@@ -190,7 +190,7 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\analytics\\catalog.json": {
-    "mtime": 1789336979.1175814,
+    "mtime": 1789401151.5546207,
     "ast_hash": "200358b12d99ab6b86a992f118e80e17",
     "semantic_hash": ""
   },
@@ -350,8 +350,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\home.html": {
-    "mtime": 1789331854.2313159,
-    "ast_hash": "338dd0e06de03489fe3ef8e961b29c17",
+    "mtime": 1789401053.4222398,
+    "ast_hash": "ee2f506f2f70bb7bd7416bd59810b792",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\privacy.html": {
@@ -487,6 +487,56 @@
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\favicon.svg": {
     "mtime": 1789331854.1938486,
     "ast_hash": "ad8918fc5b54b5c8ffac4fec68af0dc8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\404.html": {
+    "mtime": 1789401151.3395684,
+    "ast_hash": "d3aae6f8a8b36831ffb46c5e49e96bf8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\index.html": {
+    "mtime": 1789401151.331005,
+    "ast_hash": "900693afa1a9c406cb309979526a6547",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\privacy\\index.html": {
+    "mtime": 1789401151.332006,
+    "ast_hash": "c4dfb946f335bd2e92366ae6edc19da8",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\aethersense\\index.html": {
+    "mtime": 1789401151.3335133,
+    "ast_hash": "f52537a9a92fcac3e2876e725e85d6e4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\dmovel\\index.html": {
+    "mtime": 1789401151.3350396,
+    "ast_hash": "40b66f8657d1fb167de38c53b4f6750d",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\evolutionary-lab\\index.html": {
+    "mtime": 1789401151.3375692,
+    "ast_hash": "8d546e21fa1f0510e83bd0750c4480d2",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\privacy\\index.html": {
+    "mtime": 1789401151.3074353,
+    "ast_hash": "6a97932ee30ddcad2f5553bf3e6a6dae",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\aethersense\\index.html": {
+    "mtime": 1789401151.3174345,
+    "ast_hash": "261a97b85958ba96065c56a30f3a20bb",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\dmovel\\index.html": {
+    "mtime": 1789401151.3214755,
+    "ast_hash": "d13905d4653659c0b63c2393d2705b9a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\evolutionary-lab\\index.html": {
+    "mtime": 1789401151.3224761,
+    "ast_hash": "2c9cb6194469d6795f3f15bda2048af1",
     "semantic_hash": ""
   }
 }

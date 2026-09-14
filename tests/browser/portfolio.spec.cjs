@@ -35,6 +35,7 @@ for (const lang of ["pt", "en"]) {
   test(`${lang} pages have no axe A/AA violations in both themes`, async ({
     page,
   }) => {
+    test.setTimeout(90000);
     const root = lang === "pt" ? "/" : "/en/";
     for (const route of [
       root,

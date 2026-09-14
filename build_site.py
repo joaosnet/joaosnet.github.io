@@ -286,8 +286,16 @@ def build(output=None):
     (destination / "sitemap.xml").write_text(xml, encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(xml, encoding="utf-8")
     (destination / ".nojekyll").touch()
-    # Synchronize root index.html with the built homepage
+    (ROOT / ".nojekyll").touch()
+    # Synchronize root index.html and routes with the built site
     shutil.copyfile(destination / "index.html", ROOT / "index.html")
+    for route in ("projects", "en", "privacy"):
+        src = destination / route
+        dest = ROOT / route
+        if src.exists():
+            if dest.exists():
+                shutil.rmtree(dest)
+            shutil.copytree(src, dest)
     digest = hashlib.sha256((destination / "index.html").read_bytes()).hexdigest()[:12]
     if final_destination.exists():
         shutil.rmtree(final_destination)
