@@ -1183,19 +1183,28 @@
       "norm_label": "savedcount"
     },
     {
-      "label": "syncRemoteViews()",
+      "label": "getClientMetadata()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
       "source_location": "L501",
+      "id": "js_portfolio_getclientmetadata",
+      "community": 73,
+      "norm_label": "getclientmetadata()"
+    },
+    {
+      "label": "syncRemoteViews()",
+      "file_type": "code",
+      "source_file": "assets/js/portfolio.js",
+      "source_location": "L538",
       "id": "js_portfolio_syncremoteviews",
-      "community": 49,
+      "community": 73,
       "norm_label": "syncremoteviews()"
     },
     {
       "label": "animateCountUp()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L569",
+      "source_location": "L612",
       "id": "js_portfolio_animatecountup",
       "community": 49,
       "norm_label": "animatecountup()"
@@ -1204,7 +1213,7 @@
       "label": "observer",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L593",
+      "source_location": "L636",
       "id": "js_portfolio_observer",
       "community": 49,
       "norm_label": "observer"
@@ -12579,6 +12588,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "assets/js/portfolio.js",
+      "source_location": "L501",
+      "weight": 1.0,
+      "source": "assets_js_portfolio_js",
+      "target": "js_portfolio_getclientmetadata",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/portfolio.js",
       "source_location": "L472",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12680,6 +12699,17 @@
       "confidence_score": 1.0,
       "source": "js_portfolio_resumecarouseltimer",
       "target": "js_portfolio_startcarouseltimer"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/portfolio.js",
+      "source_location": "L553",
+      "weight": 1.0,
+      "source": "js_portfolio_syncremoteviews",
+      "target": "js_portfolio_getclientmetadata",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -16150,9 +16180,9 @@
       "source_file": "README.md",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_vis\u00e3o_geral",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_vis\u00e3o_geral"
     },
     {
       "relation": "contains",
@@ -16160,9 +16190,9 @@
       "source_file": "README.md",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa"
     },
     {
       "relation": "contains",
@@ -16170,9 +16200,9 @@
       "source_file": "README.md",
       "source_location": "L72",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio"
     },
     {
       "relation": "contains",
@@ -16180,9 +16210,9 @@
       "source_file": "README.md",
       "source_location": "L103",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local"
     },
     {
       "relation": "contains",
@@ -16190,9 +16220,9 @@
       "source_file": "README.md",
       "source_location": "L138",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos"
     },
     {
       "relation": "contains",
@@ -16200,9 +16230,9 @@
       "source_file": "README.md",
       "source_location": "L155",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar"
     },
     {
       "relation": "contains",
@@ -16210,9 +16240,9 @@
       "source_file": "README.md",
       "source_location": "L185",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_documenta\u00e7\u00e3o_detalhada",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_documenta\u00e7\u00e3o_detalhada"
     },
     {
       "relation": "contains",
@@ -16220,9 +16250,9 @@
       "source_file": "README.md",
       "source_location": "L194",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_jo\u00e3o_silva_neto_portfolio",
-      "target": "joaosnet_github_io_readme_contato_redes",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_contato_redes"
     },
     {
       "relation": "contains",
@@ -16290,9 +16320,9 @@
       "source_file": "README.md",
       "source_location": "L33",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "target": "joaosnet_github_io_readme_codeblock_1",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_1"
     },
     {
       "relation": "contains",
@@ -16300,9 +16330,9 @@
       "source_file": "README.md",
       "source_location": "L52",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "target": "joaosnet_github_io_readme_1_acessibilidade_e_design_system_aaa",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_1_acessibilidade_e_design_system_aaa"
     },
     {
       "relation": "contains",
@@ -16310,9 +16340,9 @@
       "source_file": "README.md",
       "source_location": "L57",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "target": "joaosnet_github_io_readme_2_internacionaliza\u00e7\u00e3o_h\u00edbrida_i18n",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_2_internacionaliza\u00e7\u00e3o_h\u00edbrida_i18n"
     },
     {
       "relation": "contains",
@@ -16320,9 +16350,9 @@
       "source_file": "README.md",
       "source_location": "L62",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "target": "joaosnet_github_io_readme_3_coleta_de_m\u00e9tricas_privacy_first",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_3_coleta_de_m\u00e9tricas_privacy_first"
     },
     {
       "relation": "contains",
@@ -16330,9 +16360,9 @@
       "source_file": "README.md",
       "source_location": "L67",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_destaques_de_engenharia_padr\u00e3o_aaa",
-      "target": "joaosnet_github_io_readme_4_gera\u00e7\u00e3o_program\u00e1tica_de_curr\u00edculos",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_4_gera\u00e7\u00e3o_program\u00e1tica_de_curr\u00edculos"
     },
     {
       "relation": "contains",
@@ -16350,9 +16380,9 @@
       "source_file": "README.md",
       "source_location": "L74",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_estrutura_do_reposit\u00f3rio",
-      "target": "joaosnet_github_io_readme_codeblock_2",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_2"
     },
     {
       "relation": "contains",
@@ -16370,9 +16400,9 @@
       "source_file": "README.md",
       "source_location": "L105",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
-      "target": "joaosnet_github_io_readme_pr\u00e9_requisitos",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_pr\u00e9_requisitos"
     },
     {
       "relation": "contains",
@@ -16380,9 +16410,9 @@
       "source_file": "README.md",
       "source_location": "L110",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
-      "target": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o"
     },
     {
       "relation": "contains",
@@ -16390,9 +16420,9 @@
       "source_file": "README.md",
       "source_location": "L122",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_come\u00e7ando_desenvolvimento_local",
-      "target": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local"
     },
     {
       "relation": "contains",
@@ -16400,9 +16430,9 @@
       "source_file": "README.md",
       "source_location": "L112",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_1_clonagem_e_instala\u00e7\u00e3o",
-      "target": "joaosnet_github_io_readme_codeblock_3",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_3"
     },
     {
       "relation": "contains",
@@ -16420,9 +16450,9 @@
       "source_file": "README.md",
       "source_location": "L124",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_2_compila\u00e7\u00e3o_e_pr\u00e9via_local",
-      "target": "joaosnet_github_io_readme_codeblock_4",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_4"
     },
     {
       "relation": "contains",
@@ -16430,9 +16460,9 @@
       "source_file": "README.md",
       "source_location": "L142",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_atualiza\u00e7\u00e3o_de_projetos",
-      "target": "joaosnet_github_io_readme_codeblock_5",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_5"
     },
     {
       "relation": "contains",
@@ -16440,9 +16470,9 @@
       "source_file": "README.md",
       "source_location": "L172",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "joaosnet_github_io_readme_garantia_de_qualidade_crit\u00e9rios_the_bar",
-      "target": "joaosnet_github_io_readme_codeblock_6",
-      "confidence_score": 1.0
+      "target": "joaosnet_github_io_readme_codeblock_6"
     },
     {
       "relation": "contains",
@@ -25310,5 +25340,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1e36285cea79b7450e4946e6537053ea9f5b375b"
+  "built_at_commit": "2defa71495880f549ce8997ef513b61fe9a35945"
 }

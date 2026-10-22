@@ -1,16 +1,16 @@
-# Graph Report - joaosnet.github.io  (2026-09-13)
+# Graph Report - joaosnet.github.io  (2026-10-22)
 
 ## Corpus Check
-- 33 files · ~200,883 words
+- 33 files · ~212,263 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1188 nodes · 1430 edges · 83 communities (55 shown, 28 thin omitted)
+- 1189 nodes · 1432 edges · 84 communities (55 shown, 29 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 38 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1e36285c`
+- Built from commit: `2defa714`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -83,6 +83,7 @@
 - [[_COMMUNITY_Community 70|Community 70]]
 - [[_COMMUNITY_Community 71|Community 71]]
 - [[_COMMUNITY_Community 72|Community 72]]
+- [[_COMMUNITY_Community 73|Community 73]]
 - [[_COMMUNITY_Community 74|Community 74]]
 - [[_COMMUNITY_Community 75|Community 75]]
 - [[_COMMUNITY_Community 135|Community 135]]
@@ -116,7 +117,7 @@
 - `test_skip_translation_if_portuguese()` --calls--> `translate_to_portuguese()`  [INFERRED]
   tests/test_update_projects.py → update_projects.py
 
-## Communities (83 total, 28 thin omitted)
+## Communities (84 total, 29 thin omitted)
 
 ### Community 0 - "Community 0"
 Cohesion: 0.16
@@ -313,7 +314,7 @@ Nodes (4): navLang, preference, saved, savedHue
 ## Knowledge Gaps
 - **496 isolated node(s):** `name`, `private`, `version`, `test`, `test:browser` (+491 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **28 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **29 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_

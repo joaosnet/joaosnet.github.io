@@ -110,9 +110,9 @@ class Sheet {
         return this;
       },
       setValues(values) {
-        values.forEach((values, i) => {
+        values.forEach((vals, i) => {
           if (!sheet.rows[row - 1 + i]) sheet.rows[row - 1 + i] = [];
-          values.forEach((v, j) => (sheet.rows[row - 1 + i][col - 1 + j] = v));
+          vals.forEach((v, j) => (sheet.rows[row - 1 + i][col - 1 + j] = v));
         });
         return this;
       },
@@ -143,8 +143,11 @@ function runtime() {
     EventsV1: new Sheet(),
     MonthlyV1: new Sheet(),
     Dashboard: new Sheet(),
+    Visitas: new Sheet(),
+    Eventos: new Sheet(),
   };
   sheets.EventsV1.appendRow(Array.from(context.EVENT_FIELDS));
+  sheets.Visitas.appendRow(Array.from(context.VISIT_FIELDS));
   const props = {
     SHEET_ID: "test-only",
     ALLOWED_CATALOG: JSON.stringify(catalog),
@@ -176,7 +179,13 @@ function runtime() {
       }),
     },
     SpreadsheetApp: {
-      openById: () => ({ getSheetByName: (name) => sheets[name] }),
+      openById: () => ({
+        getSheetByName: (name) => sheets[name],
+        insertSheet: (name) => {
+          if (!sheets[name]) sheets[name] = new Sheet();
+          return sheets[name];
+        },
+      }),
     },
   });
   vm.runInContext(source, scope);
@@ -189,13 +198,26 @@ function runtime() {
     },
   };
 }
-test("GET never returns spreadsheet records or totals", () => {
-  const { scope } = runtime();
-  assert.deepEqual(Object.keys(scope.doGet()).sort(), [
-    "service",
-    "status",
-    "version",
+test("GET returns health status and counts for visits and events", () => {
+  const { scope, sheets } = runtime();
+  sheets.Visitas.appendRow([
+    "2026-10-22",
+    "/",
+    "Desktop",
+    "Windows",
+    "Chrome",
+    "1920x1080",
+    "UTC",
+    "SP",
+    "pt-BR",
+    "UTC-3",
+    "",
   ]);
+  const res = scope.doGet();
+  assert.equal(res.status, "online");
+  assert.equal(res.service, "portfolio-telemetry");
+  assert.equal(res.metricas.totalVisitasRegistradas, 1);
+  assert.equal(res.metricas.totalEventosRegistrados, 0);
 });
 test("POST validates before writing, deduplicates, and respects lock/quota", () => {
   const { scope, sheets, props, lock } = runtime();
@@ -219,6 +241,30 @@ test("POST validates before writing, deduplicates, and respects lock/quota", () 
   );
   assert.equal(sheets.EventsV1.getLastRow(), 2);
   assert.equal(scope.doPost({ postData: { contents: "not json" } }).ok, false);
+});
+test("POST visit records visitor metadata, sanitizes formulas, and increments quota", () => {
+  const { scope, sheets } = runtime();
+  const visitPayload = {
+    type: "visit",
+    timestamp: new Date().toISOString(),
+    path: "/",
+    device: "Desktop",
+    os: "Windows",
+    browser: "Chrome",
+    resolution: "1920x1080",
+    timezone: "America/Sao_Paulo",
+    cityRegion: "=CMD|' /C calc'!A0",
+    language: "pt-BR",
+    utcOffset: "UTC-3",
+    referrer: "https://google.com",
+  };
+  const request = {
+    postData: { contents: JSON.stringify(visitPayload) },
+  };
+  const res = scope.doPost(request);
+  assert.equal(res.ok, true);
+  assert.equal(sheets.Visitas.getLastRow(), 2);
+  assert.equal(sheets.Visitas.rows[1][7].startsWith("'"), true);
 });
 test("maintenance purges 180-day events and keeps monthly counts exactly once", () => {
   const { scope, sheets } = runtime();

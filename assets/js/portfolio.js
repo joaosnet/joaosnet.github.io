@@ -498,6 +498,43 @@
     );
     visitorBadge.hidden = false;
 
+    const getClientMetadata = () => {
+      const ua = navigator.userAgent || "";
+      let os = "Desconhecido";
+      if (/Windows/i.test(ua)) os = "Windows";
+      else if (/Android/i.test(ua)) os = "Android";
+      else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+      else if (/Mac OS X|Macintosh/i.test(ua)) os = "macOS";
+      else if (/Linux/i.test(ua)) os = "Linux";
+
+      let browser = "Desconhecido";
+      if (/Edg\//i.test(ua)) browser = "Edge";
+      else if (/OPR\/|Opera/i.test(ua)) browser = "Opera";
+      else if (/Chrome/i.test(ua)) browser = "Chrome";
+      else if (/Firefox/i.test(ua)) browser = "Firefox";
+      else if (/Safari/i.test(ua)) browser = "Safari";
+
+      const resolution =
+        window.screen && window.screen.width && window.screen.height
+          ? `${window.screen.width}x${window.screen.height}`
+          : "Desconhecido";
+
+      let timezone = "Desconhecido";
+      try {
+        timezone =
+          Intl?.DateTimeFormat?.().resolvedOptions?.().timeZone ||
+          "Desconhecido";
+      } catch {
+        /* Intl optional */
+      }
+
+      const offsetMin = new Date().getTimezoneOffset();
+      const offsetHours = -offsetMin / 60;
+      const utcOffset = `UTC${offsetHours >= 0 ? "+" : ""}${offsetHours}`;
+
+      return { os, browser, resolution, timezone, utcOffset };
+    };
+
     const syncRemoteViews = async () => {
       try {
         const scriptUrl =
@@ -513,6 +550,7 @@
             host === "127.0.0.1";
           if (!isSessionCounted && !isLocal) {
             sessionStorage.setItem(sessionKey, "true");
+            const meta = getClientMetadata();
             const visitData = {
               type: "visit",
               timestamp: new Date().toISOString(),
@@ -523,6 +561,11 @@
               device: /Mobi|Android/i.test(navigator.userAgent)
                 ? "Mobile"
                 : "Desktop",
+              os: meta.os,
+              browser: meta.browser,
+              resolution: meta.resolution,
+              timezone: meta.timezone,
+              utcOffset: meta.utcOffset,
               source: "portfolio-client",
             };
             fetch(scriptUrl, {

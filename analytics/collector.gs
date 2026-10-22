@@ -1,6 +1,6 @@
-/** Event-only collector v1. Keep this script and its Google Sheet private.
+/** Event-only & Visit telemetry collector v2. Keep this script and its Google Sheet private.
  * Run setup() as the sheet owner, then deploy a web app (execute as owner).
- * POST writes events. GET exposes only version/health, never records or totals.
+ * POST writes events and visits. GET exposes version/health and summary totals.
  * No secrets in browser JavaScript. Public ingress is best-effort, not abuse-proof.
  */
 var EVENT_FIELDS = [
@@ -24,9 +24,161 @@ var EVENT_NAMES = [
   "contact_result",
   "copy_result",
 ];
+var VISIT_FIELDS = [
+  "Data/Hora",
+  "Página",
+  "Dispositivo",
+  "Sistema Operacional",
+  "Navegador",
+  "Resolução",
+  "Fuso IANA",
+  "Cidade/Região",
+  "Idioma",
+  "UTC Offset",
+  "Origem",
+];
 var MAX_EVENTS_PER_DAY = 2000;
 var MAX_EVENTS_PER_BATCH = 20;
 var RETENTION_DAYS = 180;
+
+var DEFAULT_CATALOG = {
+  pages: [
+    "/",
+    "/privacy/",
+    "/projects/aethersense/",
+    "/projects/dmovel/",
+    "/projects/evolutionary-lab/",
+    "/404.html",
+    "/en/",
+    "/en/privacy/",
+    "/en/projects/aethersense/",
+    "/en/projects/dmovel/",
+    "/en/projects/evolutionary-lab/",
+    "/en/404.html",
+  ],
+  elements: [
+    "back-top",
+    "brand",
+    "case-back",
+    "case-code",
+    "case-contact",
+    "case-demo",
+    "case-history",
+    "case-readme",
+    "contact-project",
+    "contact-reason",
+    "contact-submit",
+    "content",
+    "cv-download",
+    "cv-view",
+    "email-copy",
+    "email-fallback",
+    "email-open",
+    "explorer-badge",
+    "filter-all",
+    "filter-backend",
+    "filter-data",
+    "filter-devices",
+    "filter-interfaces",
+    "form-field",
+    "github",
+    "header-contact",
+    "hero-projects",
+    "hero-scroll",
+    "lab-demo",
+    "lab-noise",
+    "lab-reset",
+    "lab-smoothing",
+    "language",
+    "language-select",
+    "lattes",
+    "linkedin",
+    "menu",
+    "metrics-toggle",
+    "nav-about",
+    "nav-contact",
+    "nav-lab",
+    "nav-projects",
+    "page",
+    "privacy",
+    "project-case",
+    "project-title",
+    "project-visual",
+    "secret-terminal",
+    "skill-backend",
+    "skill-data",
+    "skill-devices",
+    "skill-interfaces",
+    "theme",
+    "theme-palette",
+    "unlabelled-control",
+    "visitor-badge",
+  ],
+  projects: [
+    "aethersense",
+    "dmovel",
+    "evolutionary-lab",
+    "cartilha-dash",
+    "dmovel-sitec",
+    "sigaa-mcp",
+    "varedura",
+    "klique-api",
+    "federated-learning",
+  ],
+  releases: ["portfolio-excellence-v1"],
+};
+
+function sanitizeText(value, maxLen) {
+  if (value === null || value === undefined) return "";
+  var str = String(value).trim();
+  if (maxLen && str.length > maxLen) str = str.slice(0, maxLen);
+  if (/^[=+\-@\t\r\n]/.test(str)) {
+    str = "'" + str;
+  }
+  return str;
+}
+
+function getBook(properties) {
+  var sheetId = properties ? properties.getProperty("SHEET_ID") : null;
+  if (sheetId) {
+    try {
+      var book = SpreadsheetApp.openById(sheetId);
+      if (book) return book;
+    } catch (_) {}
+  }
+  try {
+    if (typeof SpreadsheetApp.getActiveSpreadsheet === "function") {
+      var active = SpreadsheetApp.getActiveSpreadsheet();
+      if (active) {
+        if (properties && !sheetId) {
+          try {
+            properties.setProperty("SHEET_ID", active.getId());
+          } catch (_) {}
+        }
+        return active;
+      }
+    }
+  } catch (_) {}
+  return null;
+}
+
+function getCatalog(properties) {
+  var raw = properties ? properties.getProperty("ALLOWED_CATALOG") : null;
+  if (raw) {
+    try {
+      return JSON.parse(raw);
+    } catch (_) {}
+  }
+  if (properties && !raw) {
+    try {
+      properties.setProperty(
+        "ALLOWED_CATALOG",
+        JSON.stringify(DEFAULT_CATALOG),
+      );
+    } catch (_) {}
+  }
+  return DEFAULT_CATALOG;
+}
 
 function validateBatch(payload, allowed, now) {
   if (
@@ -86,7 +238,7 @@ function validateBatch(payload, allowed, now) {
       Math.abs(Date.parse(e.time) - now) > 86400000
     )
       throw new Error("time");
-    // Even an incorrectly edited catalog cannot authorize spreadsheet formulas.
+    // Previne injeção de fórmulas no catálogo ou payloads
     EVENT_FIELDS.forEach(function (key) {
       var value = e[key];
       if (key === "version") return;
@@ -108,13 +260,87 @@ function jsonResponse(value) {
     ContentService.MimeType.JSON,
   );
 }
+
 function doGet() {
+  var totalVisitas = 0;
+  var totalEventos = 0;
+  try {
+    var properties = PropertiesService.getScriptProperties();
+    var book = getBook(properties);
+    if (book) {
+      var visitasSheet = book.getSheetByName("Visitas");
+      if (visitasSheet && visitasSheet.getLastRow() > 1) {
+        totalVisitas = visitasSheet.getLastRow() - 1;
+      }
+      var legacyEvents = book.getSheetByName("Eventos");
+      if (legacyEvents && legacyEvents.getLastRow() > 1) {
+        totalEventos += legacyEvents.getLastRow() - 1;
+      }
+      var eventsSheet = book.getSheetByName("EventsV1");
+      if (eventsSheet && eventsSheet.getLastRow() > 1) {
+        totalEventos += eventsSheet.getLastRow() - 1;
+      }
+      var monthlySheet = book.getSheetByName("MonthlyV1");
+      if (monthlySheet && monthlySheet.getLastRow() > 1) {
+        var mRows = monthlySheet
+          .getRange(2, 9, monthlySheet.getLastRow() - 1, 1)
+          .getValues();
+        mRows.forEach(function (r) {
+          totalEventos += Number(r[0]) || 0;
+        });
+      }
+    }
+  } catch (_) {}
+
   return jsonResponse({
+    status: "online",
     version: 1,
-    service: "portfolio-events",
-    status: "ready",
+    service: "portfolio-telemetry",
+    timestamp: new Date().toISOString(),
+    metricas: {
+      totalVisitasRegistradas: totalVisitas,
+      totalEventosRegistrados: totalEventos,
+    },
   });
 }
+
+function recordVisit(payload, book, properties) {
+  var sheet = book.getSheetByName("Visitas");
+  if (!sheet) {
+    if (book.insertSheet) {
+      sheet = book.insertSheet("Visitas");
+      sheet.appendRow(VISIT_FIELDS);
+      sheet.setFrozenRows(1);
+    } else {
+      return false;
+    }
+  }
+
+  var row = [
+    sanitizeText(payload.timestamp || new Date().toISOString(), 40),
+    sanitizeText(payload.path || "/", 100),
+    sanitizeText(payload.device || "Desktop", 20),
+    sanitizeText(payload.os || payload.sistemaOperacional || "Desconhecido", 40),
+    sanitizeText(payload.browser || payload.navegador || "Desconhecido", 40),
+    sanitizeText(payload.resolution || payload.resolucao || "Desconhecido", 30),
+    sanitizeText(payload.timezone || payload.fuso || "Desconhecido", 60),
+    sanitizeText(payload.cityRegion || payload.cidade || "Desconhecido", 60),
+    sanitizeText(payload.language || payload.idioma || "pt-BR", 20),
+    sanitizeText(payload.utcOffset || "UTC", 20),
+    sanitizeText(payload.referrer || payload.origem || "", 150),
+  ];
+
+  if (sheet.getRange) {
+    var target = sheet.getRange(sheet.getLastRow() + 1, 1, 1, row.length);
+    if (target.setNumberFormat) target.setNumberFormat("@");
+    if (target.setValues) target.setValues([row]);
+    else if (sheet.appendRow) sheet.appendRow(row);
+  } else if (sheet.appendRow) {
+    sheet.appendRow(row);
+  }
+  return true;
+}
+
 function doPost(e) {
   if (
     !e ||
@@ -122,38 +348,61 @@ function doPost(e) {
     typeof e.postData.contents !== "string" ||
     e.postData.contents.length > 20000
   )
-    return jsonResponse({ ok: false });
-  var rows;
+    return jsonResponse({ ok: false, status: "error" });
+
+  var payload;
   try {
-    var properties = PropertiesService.getScriptProperties();
-    var allowed = JSON.parse(properties.getProperty("ALLOWED_CATALOG") || "{}");
-    rows = validateBatch(JSON.parse(e.postData.contents), allowed, Date.now());
+    payload = JSON.parse(e.postData.contents);
   } catch (_) {
-    return jsonResponse({ ok: false });
+    return jsonResponse({ ok: false, status: "error" });
   }
+
+  var properties = PropertiesService.getScriptProperties();
   var lock = LockService.getScriptLock();
-  if (!lock.tryLock(3000)) return jsonResponse({ ok: false });
+  if (!lock.tryLock(3000)) return jsonResponse({ ok: false, status: "error" });
+
   try {
     var day = new Date().toISOString().slice(0, 10);
     var count =
       properties.getProperty("QUOTA_DAY") === day
         ? Number(properties.getProperty("QUOTA_COUNT") || 0)
         : 0;
+
+    var book = getBook(properties);
+    if (!book) return jsonResponse({ ok: false, status: "error" });
+
+    // Rota 1: Registro de Visita individual ({ type: "visit", ... })
+    if (payload && payload.type === "visit") {
+      if (count + 1 > MAX_EVENTS_PER_DAY)
+        return jsonResponse({ ok: false, status: "quota_exceeded" });
+      recordVisit(payload, book, properties);
+      properties.setProperties({
+        QUOTA_DAY: day,
+        QUOTA_COUNT: String(count + 1),
+      });
+      return jsonResponse({ ok: true, status: "success" });
+    }
+
+    // Rota 2: Lote moderno de eventos ({ version: 1, events: [...] })
+    var allowed = getCatalog(properties);
+    var rows = validateBatch(payload, allowed, Date.now());
+
     if (count + rows.length > MAX_EVENTS_PER_DAY)
-      return jsonResponse({ ok: false });
-    var sheet = SpreadsheetApp.openById(
-      properties.getProperty("SHEET_ID"),
-    ).getSheetByName("EventsV1");
-    if (!sheet) return jsonResponse({ ok: false });
+      return jsonResponse({ ok: false, status: "quota_exceeded" });
+
+    var sheet =
+      book.getSheetByName("EventsV1") || book.getSheetByName("Eventos");
+    if (!sheet) return jsonResponse({ ok: false, status: "error" });
     if (sheet.getLastRow() + rows.length > 360001)
-      return jsonResponse({ ok: false });
+      return jsonResponse({ ok: false, status: "error" });
+
     var cache = CacheService.getScriptCache();
     var seen = {};
     rows = rows.filter(function (row) {
       var id = row[1];
-      if (seen[id] || cache.get(id)) return false;
+      if (seen[id] || (cache && cache.get(id))) return false;
       seen[id] = true;
-      // Durable deduplication; exact UUID matches in the ID column only.
+      // Deduplicação pelo UUID
       return (
         sheet.getLastRow() < 2 ||
         !sheet
@@ -163,6 +412,7 @@ function doPost(e) {
           .findNext()
       );
     });
+
     if (rows.length) {
       var target = sheet.getRange(
         sheet.getLastRow() + 1,
@@ -170,19 +420,40 @@ function doPost(e) {
         rows.length,
         EVENT_FIELDS.length,
       );
-      target.setNumberFormat("@");
+      if (target.setNumberFormat) target.setNumberFormat("@");
       target.setValues(rows);
-      rows.forEach(function (row) {
-        cache.put(row[1], "1", 21600);
-      });
+      if (cache) {
+        rows.forEach(function (row) {
+          cache.put(row[1], "1", 21600);
+        });
+      }
       properties.setProperties({
         QUOTA_DAY: day,
         QUOTA_COUNT: String(count + rows.length),
       });
+
+      // Se o lote contiver evento de page_view, sincroniza também na aba Visitas se configurado
+      var pageView = payload.events.find(function (evt) {
+        return evt.name === "page_view";
+      });
+      if (pageView) {
+        recordVisit(
+          {
+            timestamp: pageView.time,
+            path: pageView.page,
+            device: pageView.modality === "touch" ? "Mobile" : "Desktop",
+            language: pageView.lang,
+            source: "events-batch",
+          },
+          book,
+          properties,
+        );
+      }
     }
-    return jsonResponse({ ok: true });
+
+    return jsonResponse({ ok: true, status: "success" });
   } catch (_) {
-    return jsonResponse({ ok: false });
+    return jsonResponse({ ok: false, status: "error" });
   } finally {
     lock.releaseLock();
   }
@@ -190,18 +461,28 @@ function doPost(e) {
 
 function setup() {
   var properties = PropertiesService.getScriptProperties();
-  if (
-    !properties.getProperty("SHEET_ID") ||
-    !properties.getProperty("ALLOWED_CATALOG")
-  )
-    throw new Error("Set SHEET_ID and ALLOWED_CATALOG script properties first");
-  var book = SpreadsheetApp.openById(properties.getProperty("SHEET_ID"));
+  var book = getBook(properties);
+  if (!book) {
+    throw new Error(
+      "Não foi possível acessar a planilha. Execute o Apps Script diretamente de dentro da planilha (Extensões > Apps Script) ou configure a propriedade SHEET_ID.",
+    );
+  }
+
+  // Inicializa o catálogo padrão nas propriedades do script caso ainda não exista
+  getCatalog(properties);
+
   var events = book.getSheetByName("EventsV1") || book.insertSheet("EventsV1");
   if (!events.getLastRow()) events.appendRow(EVENT_FIELDS);
   events.setFrozenRows(1);
+
+  var visitas = book.getSheetByName("Visitas") || book.insertSheet("Visitas");
+  if (!visitas.getLastRow()) visitas.appendRow(VISIT_FIELDS);
+  visitas.setFrozenRows(1);
+
   ["MonthlyV1", "Dashboard"].forEach(function (name) {
     if (!book.getSheetByName(name)) book.insertSheet(name);
   });
+
   ScriptApp.getProjectTriggers()
     .filter(function (trigger) {
       return trigger.getHandlerFunction() === "maintain";
@@ -247,11 +528,16 @@ function maintain() {
   var lock = LockService.getScriptLock();
   if (!lock.tryLock(5000)) return;
   try {
-    var book = SpreadsheetApp.openById(
-      PropertiesService.getScriptProperties().getProperty("SHEET_ID"),
-    );
-    var events = book.getSheetByName("EventsV1");
+    var properties = PropertiesService.getScriptProperties();
+    var book = getBook(properties);
+    if (!book) return;
+
+    var events =
+      book.getSheetByName("EventsV1") || book.getSheetByName("Eventos");
+    if (!events) return;
     var summary = book.getSheetByName("MonthlyV1");
+    if (!summary) return;
+
     var rows =
       events.getLastRow() > 1
         ? events
@@ -270,13 +556,11 @@ function maintain() {
     rows.forEach(function (row) {
       (Date.parse(String(row[3])) >= cutoff ? live : expired).push(row);
     });
-    // MonthlyV1 stores ONLY already-expired rows, so daily runs never double-count live events.
+
     var archived =
       summary.getLastRow() > 1
         ? summary.getRange(2, 1, summary.getLastRow() - 1, 9).getValues()
         : [];
-    // The watermark is committed in the same write as monthly totals. If the
-    // subsequent event pruning fails, a retry must not archive those rows twice.
     var watermark = summary.getLastRow()
       ? Date.parse(String(summary.getRange(1, 10, 1, 1).getValues()[0][0]))
       : NaN;
@@ -332,7 +616,9 @@ function maintain() {
       ].join("|");
       totals[dimension] = (totals[dimension] || 0) + merged[key];
     });
+
     var dashboard = book.getSheetByName("Dashboard");
+    if (!dashboard) return;
     var dashboardHeader = [
       "Event",
       "Section",
