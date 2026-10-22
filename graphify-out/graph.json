@@ -1195,7 +1195,7 @@
       "label": "syncRemoteViews()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L538",
+      "source_location": "L566",
       "id": "js_portfolio_syncremoteviews",
       "community": 73,
       "norm_label": "syncremoteviews()"
@@ -1204,7 +1204,7 @@
       "label": "animateCountUp()",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L612",
+      "source_location": "L642",
       "id": "js_portfolio_animatecountup",
       "community": 49,
       "norm_label": "animatecountup()"
@@ -1213,7 +1213,7 @@
       "label": "observer",
       "file_type": "code",
       "source_file": "assets/js/portfolio.js",
-      "source_location": "L636",
+      "source_location": "L666",
       "id": "js_portfolio_observer",
       "community": 49,
       "norm_label": "observer"
@@ -12590,9 +12590,9 @@
       "source_file": "assets/js/portfolio.js",
       "source_location": "L501",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "assets_js_portfolio_js",
-      "target": "js_portfolio_getclientmetadata",
-      "confidence_score": 1.0
+      "target": "js_portfolio_getclientmetadata"
     },
     {
       "relation": "contains",
@@ -12707,9 +12707,9 @@
       "source_file": "assets/js/portfolio.js",
       "source_location": "L553",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "js_portfolio_syncremoteviews",
-      "target": "js_portfolio_getclientmetadata",
-      "confidence_score": 1.0
+      "target": "js_portfolio_getclientmetadata"
     },
     {
       "relation": "contains",
@@ -25340,5 +25340,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2defa71495880f549ce8997ef513b61fe9a35945"
+  "built_at_commit": "558e3a0b9b738466a7ce2e32b0e4c0a332ef77d9"
 }

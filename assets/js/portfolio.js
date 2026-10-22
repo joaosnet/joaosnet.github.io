@@ -532,7 +532,35 @@
       const offsetHours = -offsetMin / 60;
       const utcOffset = `UTC${offsetHours >= 0 ? "+" : ""}${offsetHours}`;
 
-      return { os, browser, resolution, timezone, utcOffset };
+      const getChannel = (ref) => {
+        if (!ref) return "direct";
+        const r = ref.toLowerCase();
+        if (
+          r.includes("linkedin") ||
+          r.includes("t.co") ||
+          r.includes("twitter") ||
+          r.includes("instagram") ||
+          r.includes("facebook")
+        )
+          return "social";
+        if (r.includes("github") || r.includes("lattes")) return "dev";
+        if (
+          r.includes("google") ||
+          r.includes("bing") ||
+          r.includes("yahoo") ||
+          r.includes("duckduckgo")
+        )
+          return "search";
+        if (
+          r.includes("telegram") ||
+          r.includes("t.me") ||
+          r.includes("whatsapp")
+        )
+          return "messaging";
+        return "other";
+      };
+
+      return { os, browser, resolution, timezone, utcOffset, getChannel };
     };
 
     const syncRemoteViews = async () => {
@@ -551,12 +579,14 @@
           if (!isSessionCounted && !isLocal) {
             sessionStorage.setItem(sessionKey, "true");
             const meta = getClientMetadata();
+            const ref = document.referrer || "";
             const visitData = {
               type: "visit",
               timestamp: new Date().toISOString(),
               path: window.location.pathname + window.location.hash,
               url: window.location.href,
-              referrer: document.referrer || "",
+              referrer: ref,
+              channel: meta.getChannel(ref),
               language: navigator.language || "",
               device: /Mobi|Android/i.test(navigator.userAgent)
                 ? "Mobile"

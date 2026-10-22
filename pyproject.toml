@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [
     "requests>=2.32.0,<3",
-    "Pillow>=11,<13",
+    "Pillow>=11,<14",
     "Jinja2>=3.1.6,<4",
     "reportlab>=4.4,<6",
 ]

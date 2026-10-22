@@ -1,4 +1,4 @@
-/** Event-only & Visit telemetry collector v2. Keep this script and its Google Sheet private.
+/** Event-only & Visit telemetry collector v3. Keep this script and its Google Sheet private.
  * Run setup() as the sheet owner, then deploy a web app (execute as owner).
  * POST writes events and visits. GET exposes version/health and summary totals.
  * No secrets in browser JavaScript. Public ingress is best-effort, not abuse-proof.
@@ -35,7 +35,8 @@ var VISIT_FIELDS = [
   "Cidade/Região",
   "Idioma",
   "UTC Offset",
-  "Origem",
+  "Canal de Tráfego",
+  "Domínio Origem",
 ];
 var MAX_EVENTS_PER_DAY = 2000;
 var MAX_EVENTS_PER_BATCH = 20;
@@ -127,6 +128,26 @@ var DEFAULT_CATALOG = {
   ],
   releases: ["portfolio-excellence-v1"],
 };
+
+function onOpen() {
+  if (typeof SpreadsheetApp.getUi === "function") {
+    SpreadsheetApp.getUi()
+      .createMenu("📊 Telemetria Portfólio")
+      .addItem("🔄 Recriar / Atualizar Dashboard", "criarDashboard")
+      .addToUi();
+  }
+}
+
+function criarDashboard() {
+  var properties = PropertiesService.getScriptProperties();
+  var book = getBook(properties);
+  if (book) {
+    setupDashboard(book);
+    if (typeof book.toast === "function") {
+      book.toast("Dashboard atualizado com sucesso!", "📊 Telemetria", 5);
+    }
+  }
+}
 
 function sanitizeText(value, maxLen) {
   if (value === null || value === undefined) return "";
@@ -238,7 +259,6 @@ function validateBatch(payload, allowed, now) {
       Math.abs(Date.parse(e.time) - now) > 86400000
     )
       throw new Error("time");
-    // Previne injeção de fórmulas no catálogo ou payloads
     EVENT_FIELDS.forEach(function (key) {
       var value = e[key];
       if (key === "version") return;
@@ -316,6 +336,16 @@ function recordVisit(payload, book, properties) {
     }
   }
 
+  var channel = payload.channel || payload.canal || "direct";
+  var referrer = payload.referrer || payload.origem || "";
+  var domain = "";
+  if (referrer) {
+    try {
+      var match = referrer.match(/^https?:\/\/([^/?#]+)/i);
+      if (match) domain = match[1];
+    } catch (_) {}
+  }
+
   var row = [
     sanitizeText(payload.timestamp || new Date().toISOString(), 40),
     sanitizeText(payload.path || "/", 100),
@@ -327,7 +357,8 @@ function recordVisit(payload, book, properties) {
     sanitizeText(payload.cityRegion || payload.cidade || "Desconhecido", 60),
     sanitizeText(payload.language || payload.idioma || "pt-BR", 20),
     sanitizeText(payload.utcOffset || "UTC", 20),
-    sanitizeText(payload.referrer || payload.origem || "", 150),
+    sanitizeText(channel, 30),
+    sanitizeText(domain || referrer, 100),
   ];
 
   if (sheet.getRange) {
@@ -339,6 +370,272 @@ function recordVisit(payload, book, properties) {
     sheet.appendRow(row);
   }
   return true;
+}
+
+function setupDashboard(book) {
+  var dash = book.getSheetByName("Dashboard");
+  if (!dash) {
+    dash = book.insertSheet ? book.insertSheet("Dashboard", 0) : null;
+  }
+  if (!dash) return;
+
+  var visitsSheet = book.getSheetByName("Visitas");
+  var legacyEvents = book.getSheetByName("Eventos");
+  var modernEvents = book.getSheetByName("EventsV1");
+
+  var visitsData = [];
+  if (visitsSheet && visitsSheet.getLastRow() > 1) {
+    var vCols =
+      typeof visitsSheet.getLastColumn === "function"
+        ? visitsSheet.getLastColumn()
+        : 12;
+    visitsData = visitsSheet
+      .getRange(2, 1, visitsSheet.getLastRow() - 1, Math.max(12, vCols))
+      .getValues();
+  }
+
+  var cvDownloads = 0;
+  var contatos = 0;
+  var telegramClicks = 0;
+  var linkedinClicks = 0;
+  var conquistas = 0;
+
+  if (legacyEvents && legacyEvents.getLastRow() > 1) {
+    var lCols =
+      typeof legacyEvents.getLastColumn === "function"
+        ? legacyEvents.getLastColumn()
+        : 10;
+    var legacyData = legacyEvents
+      .getRange(2, 1, legacyEvents.getLastRow() - 1, lCols)
+      .getValues();
+    legacyData.forEach(function (row) {
+      var ev = String(row[1] || "").toLowerCase();
+      if (ev.indexOf("download_cv") !== -1) cvDownloads++;
+      else if (ev.indexOf("submit_contact") !== -1) contatos++;
+      else if (ev.indexOf("click_telegram") !== -1) telegramClicks++;
+      else if (ev.indexOf("click_linkedin") !== -1) linkedinClicks++;
+      else if (ev.indexOf("achievement_footer_reached") !== -1) conquistas++;
+    });
+  }
+
+  if (modernEvents && modernEvents.getLastRow() > 1) {
+    var mCols =
+      typeof modernEvents.getLastColumn === "function"
+        ? modernEvents.getLastColumn()
+        : 12;
+    var modernData = modernEvents
+      .getRange(2, 1, modernEvents.getLastRow() - 1, mCols)
+      .getValues();
+    modernData.forEach(function (row) {
+      var name = String(row[2] || "").toLowerCase();
+      var element = String(row[6] || "").toLowerCase();
+      if (
+        element.indexOf("cv-download") !== -1 ||
+        element.indexOf("cv-view") !== -1
+      )
+        cvDownloads++;
+      else if (
+        name === "contact_result" ||
+        element.indexOf("contact-submit") !== -1
+      )
+        contatos++;
+      else if (element.indexOf("linkedin") !== -1) linkedinClicks++;
+      else if (element.indexOf("explorer-badge") !== -1) conquistas++;
+    });
+  }
+
+  var desktopCount = 0;
+  var mobileCount = 0;
+  var tabletCount = 0;
+
+  var socialCount = 0;
+  var devCount = 0;
+  var directCount = 0;
+  var searchCount = 0;
+  var messagingCount = 0;
+
+  var chromeCount = 0;
+  var safariCount = 0;
+  var edgeCount = 0;
+  var firefoxCount = 0;
+  var outrosNavCount = 0;
+
+  visitsData.forEach(function (row) {
+    var dev = String(row[2] || "");
+    if (dev === "Desktop") desktopCount++;
+    else if (dev === "Mobile") mobileCount++;
+    else if (dev === "Tablet") tabletCount++;
+
+    var nav = String(row[4] || "");
+    if (nav === "Chrome") chromeCount++;
+    else if (nav === "Safari") safariCount++;
+    else if (nav === "Edge") edgeCount++;
+    else if (nav === "Firefox") firefoxCount++;
+    else if (nav && nav !== "Desconhecido") outrosNavCount++;
+
+    var channel = String(row[10] || "").toLowerCase();
+    if (channel === "social") socialCount++;
+    else if (channel === "dev") devCount++;
+    else if (channel === "direct") directCount++;
+    else if (channel === "search") searchCount++;
+    else if (channel === "messaging") messagingCount++;
+  });
+
+  if (typeof dash.clear === "function") dash.clear();
+  if (typeof dash.setTabColor === "function") dash.setTabColor("#38bdf8");
+
+  var dataAtualizacao = new Date().toLocaleString("pt-BR", {
+    timeZone: "America/Belem",
+  });
+
+  var setCell = function (
+    rangeStr,
+    val,
+    bg,
+    fg,
+    size,
+    isBold,
+    align,
+    doMerge,
+  ) {
+    if (!dash.getRange) return;
+    var r = dash.getRange(rangeStr);
+    if (!r) return;
+    if (doMerge && typeof r.merge === "function") r.merge();
+    if (typeof r.setValue === "function") r.setValue(val);
+    if (bg && typeof r.setBackground === "function") r.setBackground(bg);
+    if (fg && typeof r.setFontColor === "function") r.setFontColor(fg);
+    if (size && typeof r.setFontSize === "function") r.setFontSize(size);
+    if (isBold && typeof r.setFontWeight === "function") r.setFontWeight("bold");
+    if (align && typeof r.setHorizontalAlignment === "function")
+      r.setHorizontalAlignment(align);
+  };
+
+  setCell(
+    "A1:F1",
+    "📊 DASHBOARD DE TELEMETRIA & CONVERSÕES — JOÃO SILVA NETO (Atualizado: " +
+      dataAtualizacao +
+      ")",
+    "#0f172a",
+    "#38bdf8",
+    12,
+    true,
+    "center",
+    true,
+  );
+
+  setCell("A3", "👥 Total de Visitas", "#e2e8f0", null, null, true, "center");
+  setCell("A4", visitsData.length, "#e2e8f0", null, 16, true, "center");
+
+  setCell("B3", "📄 Downloads de CV", "#e0f2fe", "#0284c7", null, true, "center");
+  setCell("B4", cvDownloads, "#e0f2fe", "#0284c7", 16, true, "center");
+
+  setCell("C3", "✉️ Contatos Enviados", "#fae8ff", "#a21caf", null, true, "center");
+  setCell("C4", contatos, "#fae8ff", "#a21caf", 16, true, "center");
+
+  setCell("D3", "💬 Cliques Telegram", "#f0fdf4", "#15803d", null, true, "center");
+  setCell("D4", telegramClicks, "#f0fdf4", "#15803d", 16, true, "center");
+
+  setCell("E3", "💼 Cliques LinkedIn", "#fef3c7", "#b45309", null, true, "center");
+  setCell("E4", linkedinClicks, "#fef3c7", "#b45309", 16, true, "center");
+
+  setCell(
+    "F3",
+    "🏆 Conquistas Fim Página",
+    "#ffedd5",
+    "#c2410c",
+    null,
+    true,
+    "center",
+  );
+  setCell("F4", conquistas, "#ffedd5", "#c2410c", 16, true, "center");
+
+  setCell(
+    "A6:B6",
+    "📱 Dispositivos",
+    "#1e293b",
+    "#ffffff",
+    null,
+    true,
+    null,
+    true,
+  );
+  setCell("A7", "Desktop");
+  setCell("B7", desktopCount, null, null, null, true, "center");
+  setCell("A8", "Mobile");
+  setCell("B8", mobileCount, null, null, null, true, "center");
+  setCell("A9", "Tablet");
+  setCell("B9", tabletCount, null, null, null, true, "center");
+
+  setCell(
+    "C6:D6",
+    "🌐 Canais de Tráfego",
+    "#1e293b",
+    "#ffffff",
+    null,
+    true,
+    null,
+    true,
+  );
+  setCell("C7", "social (LinkedIn/X)");
+  setCell("D7", socialCount, null, null, null, true, "center");
+  setCell("C8", "dev (GitHub/Lattes)");
+  setCell("D8", devCount, null, null, null, true, "center");
+  setCell("C9", "direct (Acesso Direto)");
+  setCell("D9", directCount, null, null, null, true, "center");
+  setCell("C10", "search (Google/Bing)");
+  setCell("D10", searchCount, null, null, null, true, "center");
+  setCell("C11", "messaging (Telegram)");
+  setCell("D11", messagingCount, null, null, null, true, "center");
+
+  setCell(
+    "E6:F6",
+    "🧭 Navegadores",
+    "#1e293b",
+    "#ffffff",
+    null,
+    true,
+    null,
+    true,
+  );
+  setCell("E7", "Chrome");
+  setCell("F7", chromeCount, null, null, null, true, "center");
+  setCell("E8", "Safari");
+  setCell("F8", safariCount, null, null, null, true, "center");
+  setCell("E9", "Edge");
+  setCell("F9", edgeCount, null, null, null, true, "center");
+  setCell("E10", "Firefox");
+  setCell("F10", firefoxCount, null, null, null, true, "center");
+  setCell("E11", "Opera / Outros");
+  setCell("F11", outrosNavCount, null, null, null, true, "center");
+
+  if (dash.setBorder) {
+    try {
+      dash
+        .getRange("A6:F11")
+        .setBorder(
+          true,
+          true,
+          true,
+          true,
+          true,
+          true,
+          "#cbd5e1",
+          SpreadsheetApp.BorderStyle ? SpreadsheetApp.BorderStyle.SOLID : null,
+        );
+    } catch (_) {}
+  }
+
+  if (dash.setColumnWidth) {
+    try {
+      dash.setColumnWidth(1, 140);
+      dash.setColumnWidth(2, 110);
+      dash.setColumnWidth(3, 160);
+      dash.setColumnWidth(4, 110);
+      dash.setColumnWidth(5, 150);
+      dash.setColumnWidth(6, 130);
+    } catch (_) {}
+  }
 }
 
 function doPost(e) {
@@ -402,7 +699,6 @@ function doPost(e) {
       var id = row[1];
       if (seen[id] || (cache && cache.get(id))) return false;
       seen[id] = true;
-      // Deduplicação pelo UUID
       return (
         sheet.getLastRow() < 2 ||
         !sheet
@@ -431,24 +727,6 @@ function doPost(e) {
         QUOTA_DAY: day,
         QUOTA_COUNT: String(count + rows.length),
       });
-
-      // Se o lote contiver evento de page_view, sincroniza também na aba Visitas se configurado
-      var pageView = payload.events.find(function (evt) {
-        return evt.name === "page_view";
-      });
-      if (pageView) {
-        recordVisit(
-          {
-            timestamp: pageView.time,
-            path: pageView.page,
-            device: pageView.modality === "touch" ? "Mobile" : "Desktop",
-            language: pageView.lang,
-            source: "events-batch",
-          },
-          book,
-          properties,
-        );
-      }
     }
 
     return jsonResponse({ ok: true, status: "success" });
@@ -468,7 +746,6 @@ function setup() {
     );
   }
 
-  // Inicializa o catálogo padrão nas propriedades do script caso ainda não exista
   getCatalog(properties);
 
   var events = book.getSheetByName("EventsV1") || book.insertSheet("EventsV1");
@@ -483,6 +760,8 @@ function setup() {
     if (!book.getSheetByName(name)) book.insertSheet(name);
   });
 
+  setupDashboard(book);
+
   ScriptApp.getProjectTriggers()
     .filter(function (trigger) {
       return trigger.getHandlerFunction() === "maintain";
@@ -491,7 +770,6 @@ function setup() {
       ScriptApp.deleteTrigger(trigger);
     });
   ScriptApp.newTrigger("maintain").timeBased().everyDays(1).atHour(3).create();
-  maintain();
 }
 
 function aggregateRows(rows) {
@@ -512,7 +790,6 @@ function aggregateRows(rows) {
   return counts;
 }
 
-// A single rectangular write replaces values without a destructive clear-first gap.
 function replaceRows(sheet, rows, width) {
   var height = Math.max(sheet.getLastRow(), rows.length);
   var padded = [];
@@ -598,46 +875,8 @@ function maintain() {
     if (expired.length) {
       replaceRows(events, [EVENT_FIELDS].concat(live), EVENT_FIELDS.length);
     }
-    var merged = aggregateRows(live);
-    monthly.forEach(function (row) {
-      var key = row.slice(0, 8).join("|");
-      merged[key] = (merged[key] || 0) + Number(row[8]);
-    });
-    var totals = {};
-    Object.keys(merged).forEach(function (key) {
-      var parts = key.split("|");
-      var dimension = [
-        parts[1],
-        parts[3],
-        parts[4],
-        parts[5],
-        parts[6],
-        parts[7],
-      ].join("|");
-      totals[dimension] = (totals[dimension] || 0) + merged[key];
-    });
 
-    var dashboard = book.getSheetByName("Dashboard");
-    if (!dashboard) return;
-    var dashboardHeader = [
-      "Event",
-      "Section",
-      "Element",
-      "Project",
-      "Language",
-      "Outcome",
-      "Count (events, not people)",
-    ];
-    var table = Object.keys(totals)
-      .sort(function (a, b) {
-        return totals[b] - totals[a];
-      })
-      .map(function (key) {
-        return key.split("|").concat(totals[key]);
-      });
-    replaceRows(dashboard, [dashboardHeader].concat(table), 7);
-    dashboard.setFrozenRows(1);
-    dashboard.autoResizeColumns(1, 7);
+    setupDashboard(book);
   } finally {
     lock.releaseLock();
   }

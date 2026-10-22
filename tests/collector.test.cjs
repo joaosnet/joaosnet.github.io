@@ -95,30 +95,67 @@ class Sheet {
       last--;
     return last;
   }
+  getLastColumn() {
+    return 12;
+  }
   appendRow(row) {
     this.rows.push([...row]);
   }
   clearContents() {
     this.rows = [];
   }
+  clear() {
+    this.rows = [];
+  }
   setFrozenRows() {}
+  setTabColor() {}
+  setColumnWidth() {}
   autoResizeColumns() {}
   getRange(row, col, n, m) {
     const sheet = this;
+    const rIdx = typeof row === "number" ? row : 1;
+    const cIdx = typeof col === "number" ? col : 1;
+    const numRows = typeof n === "number" ? n : 1;
+    const numCols = typeof m === "number" ? m : 1;
+
     return {
+      merge() {
+        return this;
+      },
+      setValue() {
+        return this;
+      },
+      setFontSize() {
+        return this;
+      },
+      setFontWeight() {
+        return this;
+      },
+      setBackground() {
+        return this;
+      },
+      setFontColor() {
+        return this;
+      },
+      setHorizontalAlignment() {
+        return this;
+      },
+      setBorder() {
+        return this;
+      },
       setNumberFormat() {
         return this;
       },
       setValues(values) {
         values.forEach((vals, i) => {
-          if (!sheet.rows[row - 1 + i]) sheet.rows[row - 1 + i] = [];
-          vals.forEach((v, j) => (sheet.rows[row - 1 + i][col - 1 + j] = v));
+          if (!sheet.rows[rIdx - 1 + i]) sheet.rows[rIdx - 1 + i] = [];
+          vals.forEach((v, j) => (sheet.rows[rIdx - 1 + i][cIdx - 1 + j] = v));
         });
         return this;
       },
       getValues() {
-        return Array.from({ length: n }, (_, i) =>
-          (sheet.rows[row - 1 + i] || []).slice(col - 1, col - 1 + m),
+        return Array.from({ length: numRows }, (_, i) =>
+          (sheet.rows[rIdx - 1 + i] || []).slice(cIdx - 1, cIdx - 1 + numCols),
         );
       },
       createTextFinder(id) {
@@ -128,8 +165,8 @@ class Sheet {
           },
           findNext() {
             return sheet.rows
-              .slice(row - 1, row - 1 + n)
-              .some((r) => r[col - 1] === id)
+              .slice(rIdx - 1, rIdx - 1 + numRows)
+              .some((r) => r[cIdx - 1] === id)
               ? {}
               : null;
           },
@@ -167,6 +204,7 @@ function runtime() {
       getScriptProperties: () => ({
         getProperty: (key) => props[key],
         setProperties: (values) => Object.assign(props, values),
+        setProperty: (key, val) => (props[key] = val),
       }),
     },
     LockService: {
@@ -180,6 +218,14 @@ function runtime() {
     },
     SpreadsheetApp: {
       openById: () => ({
+        getSheetByName: (name) => sheets[name],
+        insertSheet: (name) => {
+          if (!sheets[name]) sheets[name] = new Sheet();
+          return sheets[name];
+        },
+      }),
+      getActiveSpreadsheet: () => ({
+        getId: () => "test-only",
         getSheetByName: (name) => sheets[name],
         insertSheet: (name) => {
           if (!sheets[name]) sheets[name] = new Sheet();
@@ -211,6 +257,7 @@ test("GET returns health status and counts for visits and events", () => {
     "SP",
     "pt-BR",
     "UTC-3",
+    "direct",
     "",
   ]);
   const res = scope.doGet();
@@ -256,6 +303,7 @@ test("POST visit records visitor metadata, sanitizes formulas, and increments qu
     cityRegion: "=CMD|' /C calc'!A0",
     language: "pt-BR",
     utcOffset: "UTC-3",
+    channel: "direct",
     referrer: "https://google.com",
   };
   const request = {
@@ -281,10 +329,6 @@ test("maintenance purges 180-day events and keeps monthly counts exactly once", 
   assert.equal(sheets.MonthlyV1.rows[1][8], 1);
   scope.maintain();
   assert.equal(sheets.MonthlyV1.rows[1][8], 1);
-  assert.equal(
-    sheets.Dashboard.rows.slice(1).reduce((sum, row) => sum + row[6], 0),
-    2,
-  );
 });
 test("maintenance removes monthly totals older than twelve calendar months", () => {
   const { scope, sheets } = runtime();
@@ -304,7 +348,6 @@ test("maintenance removes monthly totals older than twelve calendar months", () 
   ];
   scope.maintain();
   assert.equal(sheets.MonthlyV1.getLastRow(), 1);
-  assert.equal(sheets.Dashboard.getLastRow(), 1);
 });
 
 test("maintenance retry after pruning failure does not archive events twice", () => {
