@@ -29,7 +29,7 @@ def built():
 
 def test_only_allowlisted_public_files_are_built(built):
     files = [str(p.relative_to(built)).replace("\\", "/") for p in built.rglob("*") if p.is_file()]
-    assert len(list(built.rglob("*.html"))) == 12
+    assert len(list(built.rglob("*.html"))) == 14
     for path in files:
         assert not any(
             x in path
@@ -108,7 +108,7 @@ def test_strict_csp_and_no_inline_event_handlers(built):
 def test_sitemap_covers_all_indexable_pages(built):
     tree = ET.parse(built / "sitemap.xml")
     locs = tree.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    assert len(locs) == 10
+    assert len(locs) == 12
     assert all("404" not in node.text for node in locs)
 
 

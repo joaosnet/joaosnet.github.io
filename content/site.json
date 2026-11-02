@@ -1,72 +1,82 @@
 {
-  "name": "João Silva Neto",
+  "name": "João Natividade",
   "url": "https://joaosnet.github.io",
-  "email": "joao.silva.neto@itec.ufpa.br",
+  "email": "joaodacruznatividade+carreira@gmail.com",
   "github": "https://github.com/joaosnet",
   "lattes": "https://lattes.cnpq.br/1140714924160415",
   "linkedin": "https://www.linkedin.com/in/joaonativi/",
   "form_endpoint": "https://formspree.io/f/mdoqyljj",
   "analytics_endpoint": "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec",
   "analytics_validated": true,
-  "release": "portfolio-excellence-v1",
+  "release": "portfolio-excellence-v2",
   "profile": {
     "pt": {
       "title": "Desenvolvedor de software · Estudante de Engenharia de Computação",
-      "description": "João Silva Neto — desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Explore projetos de backend, automação, IoT e visualização de dados.",
-      "availability": "Aberto a estágios em software",
-      "headline": "Ideias que ganham",
-      "headline_accent": "vida em código.",
-      "intro": "Sou João, desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Conecto código, dados e dispositivos para transformar perguntas em projetos que você pode explorar.",
-      "focus": "Backend · Python · Automação",
+      "description": "João Natividade — desenvolvedor de software e formando em Engenharia de Computação na UFPA. Backend em Python, sistemas em Rust, automação e interfaces gráficas no navegador.",
+      "availability": "Estágio concluído no LaPS/UFPA · Disponível para contratação",
+      "headline": "Engenharia de software,",
+      "headline_accent": "sistemas e interfaces.",
+      "intro": "Sou João Natividade, desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Trabalho com backend em Python, sistemas em Rust, automação e interfaces gráficas no navegador.",
+      "focus": "Backend · Python & Rust · Nuvem & Automação",
       "location": "Belém, PA · Brasil",
       "education": "Engenharia de Computação · UFPA",
-      "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado, conforme currículo.",
-      "about": "Gosto de entender o sistema inteiro: da aquisição de um sinal à API que o processa e à interface que torna o resultado útil. Minha experiência vem de projetos acadêmicos e pessoais, com foco em aprender, documentar e construir soluções verificáveis.",
+      "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado.",
+      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs e serviços na nuvem ao processamento de dados e interfaces em tempo real. Experiência prática em projetos acadêmicos e no estágio obrigatório no laboratório LaPS da UFPA.",
       "experience": [
         [
-          "2022 — agora",
-          "Software & interfaces",
-          "Projetos acadêmicos e pessoais com desenvolvimento web, APIs e aplicações multiplataforma."
+          "2026",
+          "Estágio em Engenharia de Software · LaPS / UFPA (DMóvel)",
+          "Manutenção de backend em FastAPI na AWS, telas em Flutter/Dart, saneamento de vazamentos de memória e criação de dashboards em Dash e Plotly. Avaliado com nota 10,0."
         ],
         [
-          "2023 — agora",
-          "Dispositivos & sinais",
-          "Exploração de ESP32, IoT e processamento de sinais. AetherSense é o projeto de TCC em desenvolvimento."
+          "2024 — atual",
+          "Automação & microsserviços",
+          "Desenvolvimento de serviços em Python, automação de fluxos com MCP e conteinerização com Docker."
         ],
         [
-          "2024 — agora",
-          "Integrações & automação",
-          "Python, integração de serviços e ferramentas para reduzir trabalho manual."
+          "2023 — atual",
+          "Sistemas embarcados & sinais",
+          "Processamento de sinais e IoT com ESP32 e Rust (AetherSense) e laboratórios interativos em Canvas 2D a 120 FPS."
+        ],
+        [
+          "2022 — atual",
+          "Software & web",
+          "Desenvolvimento de aplicações web, APIs REST e ferramentas com foco em código aberto e reprodutibilidade."
         ]
       ]
     },
     "en": {
-      "title": "Software developer · Computer Engineering student",
-      "description": "João Silva Neto — software developer and Computer Engineering student at UFPA. Explore backend, automation, IoT and data visualization projects.",
-      "availability": "Open to software internships",
-      "headline": "Engineering ideas",
-      "headline_accent": "into working things.",
-      "intro": "I'm João, a software developer and Computer Engineering student at UFPA. I connect code, data and devices to turn questions into projects you can explore.",
-      "focus": "Backend · Python · Automation",
-      "location": "Belém, Brazil",
+      "title": "Software Engineer · Computer Engineering Student",
+      "description": "João Natividade — software developer and Computer Engineering student at UFPA. Python backend, Rust systems, automation and browser graphics.",
+      "availability": "Internship completed at LaPS/UFPA · Open to work",
+      "headline": "Software engineering,",
+      "headline_accent": "systems and interfaces.",
+      "intro": "I'm João Natividade, a software developer and Computer Engineering student at UFPA. I build Python backends, Rust systems, automation tools, and browser graphics.",
+      "focus": "Backend · Python & Rust · Cloud & Automation",
+      "location": "Belém, Brazil · Remote",
       "education": "Computer Engineering · UFPA",
-      "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English, as stated in my résumé.",
-      "about": "I enjoy understanding the whole system: from acquiring a signal to the API that processes it and the interface that makes the result useful. My experience comes from academic and personal projects, with an emphasis on learning, documentation and verifiable work.",
+      "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English.",
+      "about": "Focused on end-to-end software engineering: from API design and cloud infrastructure to signal processing and real-time browser interfaces. Practical experience in academic projects and internship at UFPA's LaPS laboratory.",
       "experience": [
         [
-          "2022 — present",
-          "Software & interfaces",
-          "Academic and personal projects involving web development, APIs and cross-platform applications."
-        ],
-        [
-          "2023 — present",
-          "Devices & signals",
-          "Exploring ESP32, IoT and signal processing. AetherSense is my undergraduate thesis project in development."
+          "2026",
+          "Software Engineering Intern · LaPS / UFPA (DMóvel)",
+          "FastAPI backend maintenance on AWS, Flutter/Dart screens, memory leak resolution, and dashboards with Dash/Plotly. Graded 10.0/10."
         ],
         [
           "2024 — present",
-          "Integrations & automation",
-          "Python, service integrations and tools that reduce manual work."
+          "Automation & microservices",
+          "Python services, workflow automation with MCP, and Docker containerization."
+        ],
+        [
+          "2023 — present",
+          "Embedded systems & signals",
+          "Signal processing and IoT with ESP32 and Rust (AetherSense) and 120 FPS interactive Canvas 2D labs."
+        ],
+        [
+          "2022 — present",
+          "Software & web",
+          "Web applications, REST APIs, and tools focused on open source and reproducibility."
         ]
       ]
     }

@@ -180,7 +180,7 @@ def build(output=None):
                 project=project,
                 csp=page_csp,
                 schema=schema,
-                cv="/docs/crv.pdf" if lang == "pt" else "/docs/cv-joao-silva-neto-en.pdf",
+                cv="/docs/cv-joao-natividade-pt.pdf" if lang == "pt" else "/docs/cv-joao-natividade-en.pdf",
             )
             html = env.get_template(template).render(**context)
             track_ids.update(re.findall(r'data-track="([a-z0-9-]+)"', html))

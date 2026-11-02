@@ -6,8 +6,18 @@
     "visibility": "public",
     "category": "systems",
     "number": "01",
-    "tags": ["Rust", "ESP32", "React", "Python", "ONNX"],
-    "skills": ["backend", "devices", "data"],
+    "tags": [
+      "Rust",
+      "ESP32",
+      "React",
+      "Python",
+      "ONNX"
+    ],
+    "skills": [
+      "backend",
+      "devices",
+      "data"
+    ],
     "demo": "",
     "visual": "signal",
     "image": "/assets/project-images/joaosnet_aethersense_logo_inicial.webp",
@@ -69,8 +79,15 @@
     "visibility": "public",
     "category": "interfaces",
     "number": "02",
-    "tags": ["Flutter", "Dart", "Web", "Android"],
-    "skills": ["interfaces"],
+    "tags": [
+      "Flutter",
+      "Dart",
+      "Web",
+      "Android"
+    ],
+    "skills": [
+      "interfaces"
+    ],
     "demo": "https://lapshub.github.io/dmovel_web_app/",
     "visual": "mobile",
     "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp",
@@ -132,8 +149,17 @@
     "visibility": "public",
     "category": "data",
     "number": "03",
-    "tags": ["JavaScript", "Plotly", "AG", "PSO", "ED"],
-    "skills": ["data", "interfaces"],
+    "tags": [
+      "JavaScript",
+      "Plotly",
+      "AG",
+      "PSO",
+      "ED"
+    ],
+    "skills": [
+      "data",
+      "interfaces"
+    ],
     "demo": "https://joaosnet.github.io/evolutionary-optimization-viz-ag-pso/",
     "visual": "optimization",
     "pt": {
@@ -185,6 +211,78 @@
       "limitations": "An exploration tool. Results depend on the function, parameters and randomness; a single run does not establish that one algorithm is better.",
       "evidence": "The demo and public code allow experiments to be reproduced. The README documents algorithm operators and interface options.",
       "takeaway": "Connecting mathematical foundations to an interface that invites experimentation."
+    }
+  },
+  {
+    "id": "interactive-signals",
+    "name": "Interactive Signals & Systems",
+    "repo": "joaosnet/interactive-signals-and-systems",
+    "visibility": "public",
+    "category": "systems",
+    "number": "04",
+    "tags": [
+      "Canvas 2D",
+      "Three.js",
+      "JavaScript",
+      "Processamento de Sinais",
+      "120 FPS"
+    ],
+    "skills": [
+      "interfaces",
+      "data",
+      "devices"
+    ],
+    "demo": "https://joaosnet.github.io/interactive-signals-and-systems/",
+    "visual": "signal",
+    "pt": {
+      "eyebrow": "Processamento de Sinais · Web",
+      "title": "Convolução contínua e séries de Fourier em 3D no navegador.",
+      "summary": "Laboratório interativo para estudar convolução e Fourier em 3D a 120 FPS. Usa Canvas 2D nativo e projeção de câmera com Three.js, sem bibliotecas prontas de gráficos.",
+      "status": "Aplicação web pública",
+      "role": "Autor do projeto. Desenvolvido para rodar direto no GitHub Pages sem dependências de servidor.",
+      "problem": "Explicar visualmente o cálculo da integral de convolução e a decomposição de Fourier sem depender de software proprietário ou instalações locais.",
+      "decisions": [
+        [
+          "Canvas 2D com projeção 3D",
+          "Pipeline próprio a 120 FPS usando projeção geométrica da câmera do Three.js direto no Canvas 2D, evitando o peso de frameworks de plotagem."
+        ],
+        [
+          "Cálculo de suporte e regimes",
+          "Algoritmo que calcula o intervalo de suporte dos sinais e deduz os limites exatos de integração em cada etapa."
+        ],
+        [
+          "Casos clássicos de livros-texto",
+          "Exemplos analíticos baseados nas referências de Oppenheim e Lathi, com visualização passo a passo."
+        ]
+      ],
+      "limitations": "O processamento roda no navegador do cliente; taxas de 120 FPS exigem suporte de aceleração de hardware do dispositivo.",
+      "evidence": "Código aberto e demonstração funcional no GitHub Pages com suporte aos idiomas português e inglês.",
+      "takeaway": "Construção de interface matemática rápida direto nas APIs nativas do navegador."
+    },
+    "en": {
+      "eyebrow": "Signal Processing · Web",
+      "title": "Real-time 3D continuous convolution and Fourier series.",
+      "summary": "Interactive lab for continuous convolution and Fourier decomposition at 120 FPS. Built with native Canvas 2D and Three.js camera projection, without third-party plotting libraries.",
+      "status": "Public web application",
+      "role": "Creator. Designed to run entirely client-side on GitHub Pages without a backend.",
+      "problem": "Explain continuous convolution integrals and Fourier series visually, without proprietary desktop software.",
+      "decisions": [
+        [
+          "Canvas 2D with 3D projection",
+          "Custom 120 FPS rendering pipeline using Three.js camera projection directly into Canvas 2D, avoiding heavy plotting packages."
+        ],
+        [
+          "Support and regime calculation",
+          "Algorithm that computes signal support intervals and derives exact integration limits for each segment."
+        ],
+        [
+          "Textbook reference cases",
+          "Analytical examples based on Oppenheim and Lathi, with step-by-step graphical verification."
+        ]
+      ],
+      "limitations": "Runs entirely in the browser; maintaining 120 FPS depends on the user's hardware graphics support.",
+      "evidence": "Open source repository and live demo on GitHub Pages supporting Portuguese and English.",
+      "takeaway": "High-frame-rate mathematical visualization built on native browser APIs."
     }
   }
 ]

@@ -47,6 +47,36 @@ def public_snapshot(projects, session=None):
     return result
 
 
+def discover_public_repos(username="joaosnet", session=None):
+    client = session or requests.Session()
+    client.trust_env = False
+    headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+    response = client.get(f"https://api.github.com/users/{username}/repos?per_page=100", headers=headers, timeout=15)
+    if response.status_code != 200:
+        raise RuntimeError("GitHub user repos request failed")
+    repos = response.json()
+    projects = read_json(ROOT / "content/projects.json")
+    cards = read_json(ROOT / "content/project-cards.json")
+    known_repos = {p.get("repo", "").lower() for p in projects + cards if p.get("repo")}
+    new_repos = []
+    for r in repos:
+        if r.get("fork") or r.get("private"):
+            continue
+        full_name = r.get("full_name", "")
+        if full_name.lower() in known_repos:
+            continue
+        new_repos.append({
+            "repo": full_name,
+            "name": r.get("name"),
+            "description": r.get("description") or "",
+            "has_pages": bool(r.get("has_pages")),
+            "homepage": r.get("homepage") or "",
+            "stars": int(r.get("stargazers_count", 0)),
+            "pushed_at": r.get("pushed_at"),
+        })
+    return new_repos
+
+
 def private_preview(repo, directory=None, session=None):
     folder = Path(directory or ROOT / ".private-preview")
     allowlist = read_json(folder / "allowlist.json")
@@ -118,6 +148,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("public")
+    commands.add_parser("discover")
     private = commands.add_parser("private-preview")
     private.add_argument("repo")
     approve = commands.add_parser("approve")
@@ -129,6 +160,15 @@ def main():
             data = public_snapshot(read_json(ROOT / "content/projects.json"))
             (ROOT / "content/public-metadata.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
             print(f"Refreshed {len(data)} explicitly selected public projects")
+        elif args.command == "discover":
+            discovered = discover_public_repos()
+            if not discovered:
+                print("No new public repositories found. Everything is up to date.")
+            else:
+                print(f"Discovered {len(discovered)} new public repository(ies):")
+                for item in discovered:
+                    pages_info = " [Pages active]" if item["has_pages"] else ""
+                    print(f"- {item['repo']}{pages_info}: {item['description']}")
         elif args.command == "private-preview":
             digest = private_preview(args.repo)
             print(f"Local review saved. SHA-256: {digest}. Nothing published.")

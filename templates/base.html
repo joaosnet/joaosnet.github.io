@@ -20,7 +20,7 @@
   <meta property="og:description" content="{{ project[lang].summary if project else profile.description }}">
   <meta property="og:url" content="{{ site.url }}{{ path }}">
   <meta property="og:image" content="{{ site.url }}/assets/images/og-excellence.png">
-  <meta property="og:image:alt" content="João Silva Neto · Software, systems & experiments">
+  <meta property="og:image:alt" content="{{ site.name }} · Software, systems & experiments">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -36,7 +36,7 @@
   <a class="skip-link" href="#main-content">{{ t.skip }}</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Silva Neto<span class="brand-dot">.</span></span></a>
+      <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>{{ site.name }}<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="{{ t.menu }}" title="{{ t.menu }}" data-track="menu" hidden><span class="menu-text">{{ t.menu }}</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="{{ t.menu }}">
         <a href="{{ base }}#projects" data-track="nav-projects">{{ t.nav_projects }}</a>
@@ -108,8 +108,8 @@
       </div>
     </div>
     <div class="container"><a class="text-link" href="{{ site.lattes }}" target="_blank" rel="noopener noreferrer" data-track="lattes">Currículo Lattes ↗</a></div>
-    <div class="container footer-top"><a class="brand" href="{{ base }}"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>João Silva Neto.</a><p>{{ t.footer }}</p><a class="back-top" href="#main-content" aria-label="{{ t.home }}" data-track="back-top">↑</a></div>
-    <div class="container footer-bottom"><div class="footer-legal"><span>© 2026 João Silva Neto · {{ profile.location }}</span><span class="visitor-counter-badge" id="visitor-badge" data-track="visitor-badge" hidden><span class="visitor-dot" aria-hidden="true">✦</span><span class="visitor-text">{{ t.visitor_prefix }} <strong id="visitor-count" class="visitor-num">1</strong> {{ t.visitor_suffix }}</span></span></div><div><a href="{{ base }}privacy/" data-track="privacy">{{ t.privacy }}</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">{{ t.metrics }}</button><a href="{{ site.github }}" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
+    <div class="container footer-top"><a class="brand" href="{{ base }}"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>{{ site.name }}.</a><p>{{ t.footer }}</p><a class="back-top" href="#main-content" aria-label="{{ t.home }}" data-track="back-top">↑</a></div>
+    <div class="container footer-bottom"><div class="footer-legal"><span>© 2026 {{ site.name }} (João Silva Neto) · {{ profile.location }}</span><span class="visitor-counter-badge" id="visitor-badge" data-track="visitor-badge" hidden><span class="visitor-dot" aria-hidden="true">✦</span><span class="visitor-text">{{ t.visitor_prefix }} <strong id="visitor-count" class="visitor-num">1</strong> {{ t.visitor_suffix }}</span></span></div><div><a href="{{ base }}privacy/" data-track="privacy">{{ t.privacy }}</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">{{ t.metrics }}</button><a href="{{ site.github }}" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
   </footer>
   <aside class="metrics-notice" aria-label="{{ t.metrics }}" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">{{ t.metrics_preview }}</span><button class="text-button metrics-toggle" type="button">{{ t.disable }}</button><a href="{{ base }}privacy/">{{ t.privacy }}</a><button class="notice-close" type="button" aria-label="{{ t.close_notice }}">×</button></aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>

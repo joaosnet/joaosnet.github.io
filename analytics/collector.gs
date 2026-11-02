@@ -49,12 +49,14 @@ var DEFAULT_CATALOG = {
     "/projects/aethersense/",
     "/projects/dmovel/",
     "/projects/evolutionary-lab/",
+    "/projects/interactive-signals/",
     "/404.html",
     "/en/",
     "/en/privacy/",
     "/en/projects/aethersense/",
     "/en/projects/dmovel/",
     "/en/projects/evolutionary-lab/",
+    "/en/projects/interactive-signals/",
     "/en/404.html",
   ],
   elements: [
@@ -119,6 +121,7 @@ var DEFAULT_CATALOG = {
     "aethersense",
     "dmovel",
     "evolutionary-lab",
+    "interactive-signals",
     "cartilha-dash",
     "dmovel-sitec",
     "sigaa-mcp",
@@ -126,7 +129,7 @@ var DEFAULT_CATALOG = {
     "klique-api",
     "federated-learning",
   ],
-  releases: ["portfolio-excellence-v1"],
+  releases: ["portfolio-excellence-v1", "portfolio-excellence-v2"],
 };
 
 function onOpen() {
@@ -134,7 +137,17 @@ function onOpen() {
     SpreadsheetApp.getUi()
       .createMenu("📊 Telemetria Portfólio")
       .addItem("🔄 Recriar / Atualizar Dashboard", "criarDashboard")
+      .addItem("🔄 Atualizar Catálogo Permitido", "atualizarCatalogo")
       .addToUi();
+  }
+}
+
+function atualizarCatalogo() {
+  var properties = PropertiesService.getScriptProperties();
+  properties.setProperty("ALLOWED_CATALOG", JSON.stringify(DEFAULT_CATALOG));
+  var book = getBook(properties);
+  if (book && typeof book.toast === "function") {
+    book.toast("Catálogo de telemetria v2 atualizado com sucesso!", "📊 Telemetria", 5);
   }
 }
 
