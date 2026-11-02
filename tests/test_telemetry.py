@@ -1,11 +1,8 @@
 """Automated end-to-end tests for portfolio telemetry and catalog alignment."""
 
 import json
-from pathlib import Path
-import re
 import urllib.request
-
-import pytest
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 

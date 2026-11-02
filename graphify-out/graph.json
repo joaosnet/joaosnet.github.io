@@ -211,30 +211,39 @@
       "norm_label": "public_snapshot()"
     },
     {
-      "label": "private_preview()",
+      "label": "discover_public_repos()",
       "file_type": "code",
       "source_file": "update_projects.py",
       "source_location": "L50",
+      "id": "joaosnet_github_io_update_projects_discover_public_repos",
+      "community": 74,
+      "norm_label": "discover_public_repos()"
+    },
+    {
+      "label": "private_preview()",
+      "file_type": "code",
+      "source_file": "update_projects.py",
+      "source_location": "L80",
       "id": "joaosnet_github_io_update_projects_private_preview",
-      "community": 24,
+      "community": 74,
       "norm_label": "private_preview()"
     },
     {
       "label": "approve_export()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L74",
+      "source_location": "L104",
       "id": "joaosnet_github_io_update_projects_approve_export",
-      "community": 24,
+      "community": 74,
       "norm_label": "approve_export()"
     },
     {
       "label": "main()",
       "file_type": "code",
       "source_file": "update_projects.py",
-      "source_location": "L117",
+      "source_location": "L147",
       "id": "joaosnet_github_io_update_projects_main",
-      "community": 24,
+      "community": 74,
       "norm_label": "main()"
     },
     {
@@ -349,7 +358,7 @@
       "label": "elements",
       "file_type": "code",
       "source_file": "analytics/catalog.json",
-      "source_location": "L16",
+      "source_location": "L18",
       "id": "analytics_catalog_elements",
       "community": 176,
       "norm_label": "elements"
@@ -358,7 +367,7 @@
       "label": "projects",
       "file_type": "code",
       "source_file": "analytics/catalog.json",
-      "source_location": "L74",
+      "source_location": "L76",
       "id": "analytics_catalog_projects",
       "community": 176,
       "norm_label": "projects"
@@ -367,7 +376,7 @@
       "label": "releases",
       "file_type": "code",
       "source_file": "analytics/catalog.json",
-      "source_location": "L85",
+      "source_location": "L88",
       "id": "analytics_catalog_releases",
       "community": 176,
       "norm_label": "releases"
@@ -1327,6 +1336,33 @@
       "norm_label": "stars"
     },
     {
+      "label": "interactive-signals",
+      "file_type": "code",
+      "source_file": "content/public-metadata.json",
+      "source_location": "L14",
+      "id": "content_public_metadata_interactive_signals",
+      "community": 75,
+      "norm_label": "interactive-signals"
+    },
+    {
+      "label": "updated_at",
+      "file_type": "code",
+      "source_file": "content/public-metadata.json",
+      "source_location": "L15",
+      "id": "content_public_metadata_interactive_signals_updated_at",
+      "community": 75,
+      "norm_label": "updated_at"
+    },
+    {
+      "label": "stars",
+      "file_type": "code",
+      "source_file": "content/public-metadata.json",
+      "source_location": "L16",
+      "id": "content_public_metadata_interactive_signals_stars",
+      "community": 75,
+      "norm_label": "stars"
+    },
+    {
       "label": "site.json",
       "file_type": "code",
       "source_file": "content/site.json",
@@ -1555,7 +1591,7 @@
       "label": "en",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L43",
+      "source_location": "L48",
       "id": "content_site_profile_en",
       "community": 43,
       "norm_label": "en"
@@ -1564,7 +1600,7 @@
       "label": "title",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L44",
+      "source_location": "L49",
       "id": "content_site_en_title",
       "community": 43,
       "norm_label": "title"
@@ -1573,7 +1609,7 @@
       "label": "description",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L45",
+      "source_location": "L50",
       "id": "content_site_en_description",
       "community": 43,
       "norm_label": "description"
@@ -1582,7 +1618,7 @@
       "label": "availability",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L46",
+      "source_location": "L51",
       "id": "content_site_en_availability",
       "community": 43,
       "norm_label": "availability"
@@ -1591,7 +1627,7 @@
       "label": "headline",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L47",
+      "source_location": "L52",
       "id": "content_site_en_headline",
       "community": 43,
       "norm_label": "headline"
@@ -1600,7 +1636,7 @@
       "label": "headline_accent",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L48",
+      "source_location": "L53",
       "id": "content_site_en_headline_accent",
       "community": 43,
       "norm_label": "headline_accent"
@@ -1609,7 +1645,7 @@
       "label": "intro",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L49",
+      "source_location": "L54",
       "id": "content_site_en_intro",
       "community": 43,
       "norm_label": "intro"
@@ -1618,7 +1654,7 @@
       "label": "focus",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L50",
+      "source_location": "L55",
       "id": "content_site_en_focus",
       "community": 43,
       "norm_label": "focus"
@@ -1627,7 +1663,7 @@
       "label": "location",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L51",
+      "source_location": "L56",
       "id": "content_site_en_location",
       "community": 43,
       "norm_label": "location"
@@ -1636,7 +1672,7 @@
       "label": "education",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L52",
+      "source_location": "L57",
       "id": "content_site_en_education",
       "community": 43,
       "norm_label": "education"
@@ -1645,7 +1681,7 @@
       "label": "education_detail",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L53",
+      "source_location": "L58",
       "id": "content_site_en_education_detail",
       "community": 43,
       "norm_label": "education_detail"
@@ -1654,7 +1690,7 @@
       "label": "about",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L54",
+      "source_location": "L59",
       "id": "content_site_en_about",
       "community": 43,
       "norm_label": "about"
@@ -1663,7 +1699,7 @@
       "label": "experience",
       "file_type": "code",
       "source_file": "content/site.json",
-      "source_location": "L55",
+      "source_location": "L60",
       "id": "content_site_en_experience",
       "community": 43,
       "norm_label": "experience"
@@ -3652,19 +3688,19 @@
       "label": "generate_cvs()",
       "file_type": "code",
       "source_file": "scripts/build_cv.py",
-      "source_location": "L12",
+      "source_location": "L13",
       "id": "scripts_build_cv_generate_cvs",
       "community": 74,
       "norm_label": "generate_cvs()"
     },
     {
-      "label": "Generate concise, selectable bilingual PDFs using only documented profile facts.",
+      "label": "Generate professional, ATS-friendly bilingual PDFs using verified facts.",
       "file_type": "rationale",
       "source_file": "scripts/build_cv.py",
       "source_location": "L1",
       "id": "scripts_build_cv_rationale_1",
       "community": 74,
-      "norm_label": "generate concise, selectable bilingual pdfs using only documented profile facts."
+      "norm_label": "generate professional, ats-friendly bilingual pdfs using verified facts."
     },
     {
       "label": "fetch_assets.py",
@@ -3944,6 +3980,51 @@
       "id": "tests_test_site_structure_test_private_projects_require_review_and_cannot_export_sources",
       "community": 58,
       "norm_label": "test_private_projects_require_review_and_cannot_export_sources()"
+    },
+    {
+      "label": "test_telemetry.py",
+      "file_type": "code",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L1",
+      "id": "tests_test_telemetry_py",
+      "community": 57,
+      "norm_label": "test_telemetry.py"
+    },
+    {
+      "label": "test_telemetry_config_and_catalog_alignment()",
+      "file_type": "code",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L10",
+      "id": "tests_test_telemetry_test_telemetry_config_and_catalog_alignment",
+      "community": 57,
+      "norm_label": "test_telemetry_config_and_catalog_alignment()"
+    },
+    {
+      "label": "test_collector_gs_default_catalog_supports_v1_and_v2()",
+      "file_type": "code",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L40",
+      "id": "tests_test_telemetry_test_collector_gs_default_catalog_supports_v1_and_v2",
+      "community": 57,
+      "norm_label": "test_collector_gs_default_catalog_supports_v1_and_v2()"
+    },
+    {
+      "label": "test_live_production_telemetry_health()",
+      "file_type": "code",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L49",
+      "id": "tests_test_telemetry_test_live_production_telemetry_health",
+      "community": 57,
+      "norm_label": "test_live_production_telemetry_health()"
+    },
+    {
+      "label": "Automated end-to-end tests for portfolio telemetry and catalog alignment.",
+      "file_type": "rationale",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L1",
+      "id": "tests_test_telemetry_rationale_1",
+      "community": 57,
+      "norm_label": "automated end-to-end tests for portfolio telemetry and catalog alignment."
     },
     {
       "label": "test_update_projects.py",
@@ -4589,7 +4670,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L1",
-      "community": 59,
+      "community": 30,
       "norm_label": "critic_report_output.json",
       "id": "critic_report_output_json"
     },
@@ -4598,7 +4679,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L2",
-      "community": 52,
+      "community": 30,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_theme"
     },
@@ -4607,7 +4688,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L3",
-      "community": 52,
+      "community": 30,
       "norm_label": "dark",
       "id": "joaosnet_github_io_critic_report_output_theme_dark"
     },
@@ -4616,7 +4697,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L4",
-      "community": 52,
+      "community": 30,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_dark_theme"
     },
@@ -4625,7 +4706,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L5",
-      "community": 52,
+      "community": 30,
       "norm_label": "bgcolor",
       "id": "joaosnet_github_io_critic_report_output_dark_bgcolor"
     },
@@ -4634,7 +4715,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L7",
-      "community": 52,
+      "community": 30,
       "norm_label": "light",
       "id": "joaosnet_github_io_critic_report_output_theme_light"
     },
@@ -4643,7 +4724,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L8",
-      "community": 52,
+      "community": 30,
       "norm_label": "theme",
       "id": "joaosnet_github_io_critic_report_output_light_theme"
     },
@@ -4652,7 +4733,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L9",
-      "community": 52,
+      "community": 30,
       "norm_label": "bgcolor",
       "id": "joaosnet_github_io_critic_report_output_light_bgcolor"
     },
@@ -4661,7 +4742,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L11",
-      "community": 52,
+      "community": 30,
       "norm_label": "dynamic",
       "id": "joaosnet_github_io_critic_report_output_theme_dynamic"
     },
@@ -4670,7 +4751,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L12",
-      "community": 52,
+      "community": 30,
       "norm_label": "beforetheme",
       "id": "joaosnet_github_io_critic_report_output_dynamic_beforetheme"
     },
@@ -4679,7 +4760,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L13",
-      "community": 52,
+      "community": 30,
       "norm_label": "aftertheme",
       "id": "joaosnet_github_io_critic_report_output_dynamic_aftertheme"
     },
@@ -4688,7 +4769,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L16",
-      "community": 59,
+      "community": 54,
       "norm_label": "images",
       "id": "joaosnet_github_io_critic_report_output_images"
     },
@@ -4697,7 +4778,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L17",
-      "community": 59,
+      "community": 54,
       "norm_label": "projects",
       "id": "joaosnet_github_io_critic_report_output_images_projects"
     },
@@ -5444,7 +5525,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L108",
-      "community": 57,
+      "community": 30,
       "norm_label": "i18n",
       "id": "joaosnet_github_io_critic_report_output_i18n"
     },
@@ -5453,7 +5534,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L109",
-      "community": 57,
+      "community": 30,
       "norm_label": "consoleerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_consoleerrors"
     },
@@ -5462,7 +5543,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L110",
-      "community": 57,
+      "community": 30,
       "norm_label": "pageerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_pageerrors"
     },
@@ -5471,7 +5552,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L111",
-      "community": 57,
+      "community": 30,
       "norm_label": "networkerrors",
       "id": "joaosnet_github_io_critic_report_output_i18n_networkerrors"
     },
@@ -5480,7 +5561,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L117",
-      "community": 57,
+      "community": 30,
       "norm_label": "statustextes",
       "id": "joaosnet_github_io_critic_report_output_i18n_statustextes"
     },
@@ -5489,7 +5570,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L118",
-      "community": 57,
+      "community": 30,
       "norm_label": "statustextfr",
       "id": "joaosnet_github_io_critic_report_output_i18n_statustextfr"
     },
@@ -5498,7 +5579,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L119",
-      "community": 57,
+      "community": 30,
       "norm_label": "nativeroutes",
       "id": "joaosnet_github_io_critic_report_output_i18n_nativeroutes"
     },
@@ -5507,7 +5588,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L120",
-      "community": 57,
+      "community": 30,
       "norm_label": "ptlang",
       "id": "joaosnet_github_io_critic_report_output_nativeroutes_ptlang"
     },
@@ -5516,7 +5597,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L121",
-      "community": 57,
+      "community": 30,
       "norm_label": "enlang",
       "id": "joaosnet_github_io_critic_report_output_nativeroutes_enlang"
     },
@@ -5651,7 +5732,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L141",
-      "community": 59,
+      "community": 30,
       "norm_label": "counter",
       "id": "joaosnet_github_io_critic_report_output_counter"
     },
@@ -5660,7 +5741,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L142",
-      "community": 59,
+      "community": 30,
       "norm_label": "badgevisible",
       "id": "joaosnet_github_io_critic_report_output_counter_badgevisible"
     },
@@ -5669,7 +5750,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L143",
-      "community": 59,
+      "community": 30,
       "norm_label": "badgetext",
       "id": "joaosnet_github_io_critic_report_output_counter_badgetext"
     },
@@ -5678,7 +5759,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L144",
-      "community": 59,
+      "community": 30,
       "norm_label": "counttext",
       "id": "joaosnet_github_io_critic_report_output_counter_counttext"
     },
@@ -5687,7 +5768,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L145",
-      "community": 59,
+      "community": 30,
       "norm_label": "networkrequests",
       "id": "joaosnet_github_io_critic_report_output_counter_networkrequests"
     },
@@ -5696,7 +5777,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L152",
-      "community": 55,
+      "community": 30,
       "norm_label": "seo",
       "id": "joaosnet_github_io_critic_report_output_seo"
     },
@@ -5705,7 +5786,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L153",
-      "community": 55,
+      "community": 30,
       "norm_label": "sitemapmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_sitemapmatches"
     },
@@ -5714,7 +5795,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L154",
-      "community": 55,
+      "community": 30,
       "norm_label": "robotsmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_robotsmatches"
     },
@@ -5723,7 +5804,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L155",
-      "community": 55,
+      "community": 30,
       "norm_label": "indexmatches",
       "id": "joaosnet_github_io_critic_report_output_seo_indexmatches"
     },
@@ -5732,7 +5813,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L156",
-      "community": 55,
+      "community": 30,
       "norm_label": "sitemapurlscount",
       "id": "joaosnet_github_io_critic_report_output_seo_sitemapurlscount"
     },
@@ -5741,7 +5822,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L157",
-      "community": 55,
+      "community": 30,
       "norm_label": "hashreflangpt",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangpt"
     },
@@ -5750,7 +5831,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L158",
-      "community": 55,
+      "community": 30,
       "norm_label": "hashreflangen",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangen"
     },
@@ -5759,7 +5840,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L159",
-      "community": 55,
+      "community": 30,
       "norm_label": "hashreflangxdefault",
       "id": "joaosnet_github_io_critic_report_output_seo_hashreflangxdefault"
     },
@@ -5768,7 +5849,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L160",
-      "community": 55,
+      "community": 30,
       "norm_label": "robotsdisallows",
       "id": "joaosnet_github_io_critic_report_output_seo_robotsdisallows"
     },
@@ -5777,7 +5858,7 @@
       "file_type": "code",
       "source_file": "critic_report_output.json",
       "source_location": "L161",
-      "community": 55,
+      "community": 30,
       "norm_label": "robotssitemap",
       "id": "joaosnet_github_io_critic_report_output_seo_robotssitemap"
     },
@@ -7217,7 +7298,7 @@
       "file_type": "code",
       "source_file": "update_projects.py",
       "source_location": "L184",
-      "community": 24,
+      "community": 59,
       "norm_label": "check_user_contributed()",
       "id": "joaosnet_github_io_update_projects_check_user_contributed"
     },
@@ -7289,7 +7370,7 @@
       "file_type": "code",
       "source_file": "update_projects.py",
       "source_location": "L783",
-      "community": 26,
+      "community": 24,
       "norm_label": "optimize_image()",
       "id": "joaosnet_github_io_update_projects_optimize_image"
     },
@@ -7298,7 +7379,7 @@
       "file_type": "code",
       "source_file": "update_projects.py",
       "source_location": "L831",
-      "community": 26,
+      "community": 24,
       "norm_label": "_finalize_downloaded_image()",
       "id": "joaosnet_github_io_update_projects_finalize_downloaded_image"
     },
@@ -7406,7 +7487,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L185",
-      "community": 24,
+      "community": 59,
       "norm_label": "check if the user has actually contributed to the repository.     returns true",
       "id": "joaosnet_github_io_update_projects_rationale_185"
     },
@@ -7469,7 +7550,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L784",
-      "community": 26,
+      "community": 24,
       "norm_label": "resize (cap width) and convert an image to webp to drastically cut file size.",
       "id": "joaosnet_github_io_update_projects_rationale_784"
     },
@@ -7478,7 +7559,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L832",
-      "community": 26,
+      "community": 24,
       "norm_label": "optimize a freshly-written image and return its public ./path, tracking it for c",
       "id": "joaosnet_github_io_update_projects_rationale_832"
     },
@@ -7901,7 +7982,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L15",
-      "community": 58,
+      "community": 55,
       "norm_label": "simplehtmlparser",
       "id": "tests_test_site_structure_simplehtmlparser"
     },
@@ -7910,7 +7991,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L18",
-      "community": 58,
+      "community": 55,
       "norm_label": ".__init__()",
       "id": "tests_test_site_structure_simplehtmlparser_init"
     },
@@ -7919,7 +8000,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L27",
-      "community": 58,
+      "community": 55,
       "norm_label": ".handle_starttag()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_starttag"
     },
@@ -7928,7 +8009,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L37",
-      "community": 58,
+      "community": 55,
       "norm_label": ".handle_data()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_data"
     },
@@ -7937,7 +8018,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L41",
-      "community": 58,
+      "community": 55,
       "norm_label": ".handle_comment()",
       "id": "tests_test_site_structure_simplehtmlparser_handle_comment"
     },
@@ -7964,7 +8045,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L59",
-      "community": 58,
+      "community": 55,
       "norm_label": "parser()",
       "id": "tests_test_site_structure_parser"
     },
@@ -7991,7 +8072,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L75",
-      "community": 71,
+      "community": 5,
       "norm_label": ".test_has_required_scripts()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_required_scripts"
     },
@@ -8000,7 +8081,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L95",
-      "community": 72,
+      "community": 5,
       "norm_label": ".test_has_css_stylesheet()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_css_stylesheet"
     },
@@ -8009,7 +8090,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L102",
-      "community": 62,
+      "community": 5,
       "norm_label": ".test_has_meta_viewport()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_meta_viewport"
     },
@@ -8027,7 +8108,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L116",
-      "community": 63,
+      "community": 5,
       "norm_label": ".test_has_contact_form()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_contact_form"
     },
@@ -8036,7 +8117,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L121",
-      "community": 65,
+      "community": 5,
       "norm_label": ".test_has_theme_toggle()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_theme_toggle"
     },
@@ -8054,7 +8135,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L129",
-      "community": 67,
+      "community": 5,
       "norm_label": ".test_has_footer_views_counter()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_footer_views_counter"
     },
@@ -8072,7 +8153,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L138",
-      "community": 68,
+      "community": 5,
       "norm_label": ".test_has_telegram_contact_link()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_telegram_contact_link"
     },
@@ -8099,7 +8180,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L152",
-      "community": 69,
+      "community": 5,
       "norm_label": ".test_has_scroll_down_button()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_scroll_down_button"
     },
@@ -8117,7 +8198,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L161",
-      "community": 60,
+      "community": 5,
       "norm_label": ".test_has_matrix_easter_egg()",
       "id": "tests_test_site_structure_testindexhtmlstructure_test_has_matrix_easter_egg"
     },
@@ -8144,7 +8225,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L175",
-      "community": 60,
+      "community": 5,
       "norm_label": ".test_all_js_files_exist()",
       "id": "tests_test_site_structure_testjavascriptfiles_test_all_js_files_exist"
     },
@@ -8153,7 +8234,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L191",
-      "community": 61,
+      "community": 37,
       "norm_label": ".test_no_syntax_errors_in_utils()",
       "id": "tests_test_site_structure_testjavascriptfiles_test_no_syntax_errors_in_utils"
     },
@@ -8207,7 +8288,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L253",
-      "community": 58,
+      "community": 52,
       "norm_label": "testcssfiles",
       "id": "tests_test_site_structure_testcssfiles"
     },
@@ -8225,7 +8306,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L261",
-      "community": 58,
+      "community": 52,
       "norm_label": ".test_styles_css_exists()",
       "id": "tests_test_site_structure_testcssfiles_test_styles_css_exists"
     },
@@ -8243,7 +8324,7 @@
       "file_type": "code",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L281",
-      "community": 58,
+      "community": 52,
       "norm_label": ".test_styles_has_light_theme_override()",
       "id": "tests_test_site_structure_testcssfiles_test_styles_has_light_theme_override"
     },
@@ -8306,7 +8387,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L16",
-      "community": 58,
+      "community": 55,
       "norm_label": "parser html simples para extrair informacoes",
       "id": "tests_test_site_structure_rationale_16"
     },
@@ -8351,7 +8432,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L76",
-      "community": 71,
+      "community": 5,
       "norm_label": "deve ter todos os scripts necessarios",
       "id": "tests_test_site_structure_rationale_76"
     },
@@ -8360,7 +8441,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L96",
-      "community": 72,
+      "community": 5,
       "norm_label": "deve ter folha de estilos",
       "id": "tests_test_site_structure_rationale_96"
     },
@@ -8369,7 +8450,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L103",
-      "community": 62,
+      "community": 5,
       "norm_label": "deve ter meta viewport para responsividade",
       "id": "tests_test_site_structure_rationale_103"
     },
@@ -8387,7 +8468,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L117",
-      "community": 63,
+      "community": 5,
       "norm_label": "deve ter formulario de contato",
       "id": "tests_test_site_structure_rationale_117"
     },
@@ -8396,7 +8477,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L122",
-      "community": 65,
+      "community": 5,
       "norm_label": "deve ter botao de troca de tema",
       "id": "tests_test_site_structure_rationale_122"
     },
@@ -8414,7 +8495,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L130",
-      "community": 67,
+      "community": 5,
       "norm_label": "deve ter contador de visitantes no footer",
       "id": "tests_test_site_structure_rationale_130"
     },
@@ -8432,7 +8513,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L139",
-      "community": 68,
+      "community": 5,
       "norm_label": "deve ter botao para contato no telegram",
       "id": "tests_test_site_structure_rationale_139"
     },
@@ -8459,7 +8540,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L153",
-      "community": 69,
+      "community": 5,
       "norm_label": "deve ter botao flutuante de rolar para baixo",
       "id": "tests_test_site_structure_rationale_153"
     },
@@ -8477,7 +8558,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L162",
-      "community": 60,
+      "community": 5,
       "norm_label": "deve ter container e canvas do easter egg matrix",
       "id": "tests_test_site_structure_rationale_162"
     },
@@ -8495,7 +8576,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L176",
-      "community": 60,
+      "community": 5,
       "norm_label": "todos os arquivos js obrigatorios devem existir",
       "id": "tests_test_site_structure_rationale_176"
     },
@@ -8504,7 +8585,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L192",
-      "community": 61,
+      "community": 37,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)",
       "id": "tests_test_site_structure_rationale_192"
     },
@@ -8558,7 +8639,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L254",
-      "community": 58,
+      "community": 52,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_254"
     },
@@ -8567,7 +8648,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L262",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_262"
     },
@@ -8585,7 +8666,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L282",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_282"
     },
@@ -9566,7 +9647,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L245",
-      "community": 58,
+      "community": 52,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_245"
     },
@@ -9575,7 +9656,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L253",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_253"
     },
@@ -9593,7 +9674,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L273",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_273"
     },
@@ -9656,7 +9737,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L178",
-      "community": 61,
+      "community": 37,
       "norm_label": "utils.js nao deve ter erros de sintaxe (verificacao basica)",
       "id": "tests_test_site_structure_rationale_178"
     },
@@ -9701,7 +9782,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L231",
-      "community": 58,
+      "community": 52,
       "norm_label": "testes para validar arquivos css",
       "id": "tests_test_site_structure_rationale_231"
     },
@@ -9710,7 +9791,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L239",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve existir",
       "id": "tests_test_site_structure_rationale_239"
     },
@@ -9719,7 +9800,7 @@
       "file_type": "rationale",
       "source_file": "tests/test_site_structure.py",
       "source_location": "L259",
-      "community": 58,
+      "community": 52,
       "norm_label": "styles.css deve ter override para tema claro",
       "id": "tests_test_site_structure_rationale_259"
     },
@@ -10430,7 +10511,7 @@
       "file_type": "rationale",
       "source_file": "update_projects.py",
       "source_location": "L164",
-      "community": 24,
+      "community": 59,
       "norm_label": "check if the user has actually contributed to the repository.     returns true",
       "id": "joaosnet_github_io_update_projects_rationale_164"
     },
@@ -10816,6 +10897,17 @@
       "confidence": "INFERRED",
       "confidence_score": 0.8,
       "source_file": "update_projects.py",
+      "source_location": "L58",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_update_projects_discover_public_repos",
+      "target": "joaosnet_github_io_build_site_read_json"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "update_projects.py",
       "source_location": "L52",
       "weight": 1.0,
       "source": "joaosnet_github_io_update_projects_private_preview",
@@ -11047,6 +11139,16 @@
       "confidence_score": 1.0,
       "source": "update_projects_py",
       "target": "joaosnet_github_io_update_projects_public_snapshot"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L50",
+      "weight": 1.0,
+      "source": "update_projects_py",
+      "target": "joaosnet_github_io_update_projects_discover_public_repos",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -11390,6 +11492,17 @@
       "confidence_score": 1.0,
       "source": "joaosnet_github_io_update_projects_main",
       "target": "joaosnet_github_io_update_projects_public_snapshot"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "update_projects.py",
+      "source_location": "L164",
+      "weight": 1.0,
+      "source": "joaosnet_github_io_update_projects_main",
+      "target": "joaosnet_github_io_update_projects_discover_public_repos",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -12745,6 +12858,16 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "content/public-metadata.json",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "content_public_metadata_json",
+      "target": "content_public_metadata_interactive_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "content/public-metadata.json",
       "source_location": "L3",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -12800,6 +12923,26 @@
       "confidence_score": 1.0,
       "source": "content_public_metadata_evolutionary_lab",
       "target": "content_public_metadata_evolutionary_lab_stars"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "content/public-metadata.json",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "content_public_metadata_interactive_signals",
+      "target": "content_public_metadata_interactive_signals_updated_at",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "content/public-metadata.json",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "content_public_metadata_interactive_signals",
+      "target": "content_public_metadata_interactive_signals_stars",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -15846,6 +15989,46 @@
       "confidence_score": 1.0,
       "source": "tests_test_site_structure_test_strict_csp_and_no_inline_event_handlers",
       "target": "tests_test_site_structure_page_find"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_test_telemetry_py",
+      "target": "tests_test_telemetry_test_telemetry_config_and_catalog_alignment",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "tests_test_telemetry_py",
+      "target": "tests_test_telemetry_test_collector_gs_default_catalog_supports_v1_and_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L49",
+      "weight": 1.0,
+      "source": "tests_test_telemetry_py",
+      "target": "tests_test_telemetry_test_live_production_telemetry_health",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_telemetry.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_telemetry_rationale_1",
+      "target": "tests_test_telemetry_py",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -25340,5 +25523,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "558e3a0b9b738466a7ce2e32b0e4c0a332ef77d9"
+  "built_at_commit": "e0af565f8256d9c3f6b222e0b323c8b4b8c29d39"
 }

@@ -1,13 +1,13 @@
 """Generate professional, ATS-friendly bilingual PDFs using verified facts."""
 
+import shutil
 from html import escape
 from pathlib import Path
-import shutil
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
-from reportlab.platypus import HRFlowable, Paragraph, SimpleDocTemplate, Spacer
+from reportlab.platypus import HRFlowable, Paragraph, SimpleDocTemplate
 
 
 def generate_cvs(output, site, projects):
@@ -139,17 +139,19 @@ def generate_cvs(output, site, projects):
         section("Resumo Profissional" if lang == "pt" else "Professional Summary")
         if lang == "pt":
             summary_text = (
-                "Estudante concluinte de Engenharia de Computação na UFPA com sólida atuação em desenvolvimento backend, "
-                "microsserviços e computação em nuvem (AWS). Experiência prática na manutenção e otimização de APIs em Python "
-                "(FastAPI), depuração de vazamentos de memória em aplicações multiplataforma (Flutter/Dart), criação de "
-                "dashboards interativos com Dash e desenvolvimento de ferramentas visuais em tempo real (120 FPS em Canvas)."
+                "Estudante concluinte de Engenharia de Computação na UFPA com sólida atuação em desenvolvimento "
+                "backend, microsserviços e computação em nuvem (AWS). Experiência prática na manutenção e "
+                "otimização de APIs em Python (FastAPI), depuração de vazamentos de memória em aplicações "
+                "multiplataforma (Flutter/Dart), criação de dashboards interativos com Dash e desenvolvimento "
+                "de ferramentas visuais em tempo real (120 FPS em Canvas)."
             )
         else:
             summary_text = (
-                "Graduating Computer Engineering student at UFPA with strong hands-on experience in backend development, "
-                "microservices, and cloud computing (AWS). Practical expertise maintaining and optimizing Python APIs (FastAPI), "
-                "resolving memory leaks in cross-platform apps (Flutter/Dart), building interactive dashboards with Dash, "
-                "and developing real-time browser graphics (120 FPS Canvas)."
+                "Graduating Computer Engineering student at UFPA with strong hands-on experience in backend "
+                "development, microservices, and cloud computing (AWS). Practical expertise maintaining and "
+                "optimizing Python APIs (FastAPI), resolving memory leaks in cross-platform apps (Flutter/Dart), "
+                "building interactive dashboards with Dash, and developing real-time browser graphics "
+                "(120 FPS Canvas)."
             )
         p(summary_text)
 
@@ -158,18 +160,53 @@ def generate_cvs(output, site, projects):
         if lang == "pt":
             p("Estagiário em Engenharia de Software · LaPS / UFPA (Projeto DMóvel)", "CVJobTitle")
             p("Março de 2026 — Setembro de 2026 | Belém, PA | Carga Horária: 360 horas", "CVJobMeta")
-            p("• Manutenção e refatoração do backend em Python com FastAPI, integrado a bancos de dados e serviços na Amazon Web Services (AWS).", "CVBullet")
-            p("• Desenvolvimento e manutenção de interface assistiva multiplataforma em Flutter/Dart e dashboards analíticos com Dash (Python), HTML, CSS e JavaScript.", "CVBullet")
-            p("• Diagnóstico e saneamento de vazamentos de memória (memory leaks) e gargalos de runtime em produção no aplicativo móvel.", "CVBullet")
-            p("• Gestão de branches de código via Git e preparação de material técnico demonstrativo para o evento SITEC 2026.", "CVBullet")
-            p("• Desempenho técnico avaliado com nota máxima 10,0 (Conceito Excelente) pelo orientador permanente.", "CVBullet")
+            p(
+                "• Manutenção e refatoração do backend em Python com FastAPI, integrado a bancos de dados e "
+                "serviços na Amazon Web Services (AWS).",
+                "CVBullet",
+            )
+            p(
+                "• Desenvolvimento e manutenção de interface assistiva multiplataforma em Flutter/Dart e "
+                "dashboards analíticos com Dash (Python), HTML, CSS e JavaScript.",
+                "CVBullet",
+            )
+            p(
+                "• Diagnóstico e saneamento de vazamentos de memória (memory leaks) e gargalos de runtime em produção "
+                "no aplicativo móvel.",
+                "CVBullet",
+            )
+            p(
+                "• Gestão de branches de código via Git e preparação de material técnico demonstrativo para o evento "
+                "SITEC 2026.",
+                "CVBullet",
+            )
+            p(
+                "• Desempenho técnico avaliado com nota máxima 10,0 (Conceito Excelente) pelo orientador permanente.",
+                "CVBullet",
+            )
         else:
             p("Software Engineering Intern · LaPS / UFPA (DMóvel Assistive Technology)", "CVJobTitle")
             p("March 2026 — September 2026 | Belém, Brazil | 360 Hours", "CVJobMeta")
-            p("• Maintained and refactored Python/FastAPI backend integrated with databases and cloud services on Amazon Web Services (AWS).", "CVBullet")
-            p("• Developed and maintained cross-platform assistive UI in Flutter/Dart and interactive dashboards using Dash (Python), HTML, CSS, and JavaScript.", "CVBullet")
-            p("• Diagnosed and resolved memory leaks and runtime performance bottlenecks in the production mobile app.", "CVBullet")
-            p("• Managed Git branch workflows and produced technical demonstration materials for the SITEC 2026 conference.", "CVBullet")
+            p(
+                "• Maintained and refactored Python/FastAPI backend integrated with databases and cloud services on "
+                "Amazon Web Services (AWS).",
+                "CVBullet",
+            )
+            p(
+                "• Developed and maintained cross-platform assistive UI in Flutter/Dart and interactive dashboards "
+                "using Dash (Python), HTML, CSS, and JavaScript.",
+                "CVBullet",
+            )
+            p(
+                "• Diagnosed and resolved memory leaks and runtime performance bottlenecks in the production mobile "
+                "app.",
+                "CVBullet",
+            )
+            p(
+                "• Managed Git branch workflows and produced technical demonstration materials for the SITEC 2026 "
+                "conference.",
+                "CVBullet",
+            )
             p("• Graded 10.0/10 (Concept Excellent) by the permanent lab advisor.", "CVBullet")
 
         # Projects
@@ -179,9 +216,17 @@ def generate_cvs(output, site, projects):
             tags_str = ", ".join(project.get("tags", [])[:5])
             p(f'<b>{escape(project["name"])}</b> ({tags_str})', "CVJobTitle")
             p(escape(d["summary"]), "CVBody")
-            demo_url = project.get("demo") or (site["url"] + ("/" if lang == "pt" else "/en/") + "projects/" + project["id"] + "/")
-            code_url = project.get("github") or (site["github"] + "/" + project.get("repo", "").split("/")[-1])
-            p(f'• Link: <link href="{demo_url}">{demo_url.removeprefix("https://")}</link> | Código: <link href="{code_url}">{code_url.removeprefix("https://")}</link>', "CVBullet")
+            demo_base = site["url"] + ("/" if lang == "pt" else "/en/") + "projects/" + project["id"] + "/"
+            demo_url = project.get("demo") or demo_base
+            code_base = site["github"] + "/" + project.get("repo", "").split("/")[-1]
+            code_url = project.get("github") or code_base
+            demo_display = demo_url.removeprefix("https://")
+            code_display = code_url.removeprefix("https://")
+            p(
+                f'• Link: <link href="{demo_url}">{demo_display}</link> | '
+                f'Código: <link href="{code_url}">{code_display}</link>',
+                "CVBullet",
+            )
 
         # Technical Skills
         section("Competências Técnicas" if lang == "pt" else "Technical Skills")
@@ -199,12 +244,20 @@ def generate_cvs(output, site, projects):
         if lang == "pt":
             p("<b>Bacharelado em Engenharia de Computação</b> — Universidade Federal do Pará (UFPA)", "CVJobTitle")
             p("Bacharelado em andamento · Previsão de conclusão: 2026 | Belém, PA", "CVJobMeta")
-            p("• Destaque Acadêmico: Nota máxima (100) em Projetos de Hardware, Engenharia de Software, Banco de Dados e Computação em Nuvem.", "CVBullet")
+            p(
+                "• Destaque Acadêmico: Nota máxima (100) em Projetos de Hardware, Engenharia de Software, "
+                "Banco de Dados e Computação em Nuvem.",
+                "CVBullet",
+            )
             p("• Idiomas: Português (Nativo) | Inglês (Avançado)", "CVBullet")
         else:
             p("<b>Bachelor of Science in Computer Engineering</b> — Universidade Federal do Pará (UFPA)", "CVJobTitle")
             p("Bachelor's degree in progress · Expected graduation: 2026 | Belém, Brazil", "CVJobMeta")
-            p("• Academic Honors: Maximum grade (100/100) in Hardware Design, Software Engineering, Databases, and Cloud Computing.", "CVBullet")
+            p(
+                "• Academic Honors: Maximum grade (100/100) in Hardware Design, Software Engineering, "
+                "Databases, and Cloud Computing.",
+                "CVBullet",
+            )
             p("• Languages: Portuguese (Native) | English (Advanced)", "CVBullet")
 
         target_file = output / main_name

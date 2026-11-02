@@ -1,7 +1,7 @@
 {
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\update_projects.py": {
-    "mtime": 1789331854.2376387,
-    "ast_hash": "1dd0be5c23ad814f2704665a9842b441",
+    "mtime": 1793646602.9172668,
+    "ast_hash": "195fefac127825859438881aeac8a7b4",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_env_variables.py": {
@@ -10,8 +10,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_site_structure.py": {
-    "mtime": 1789331854.236054,
-    "ast_hash": "da4e6abee34c13ea908aca6f8e65e3ba",
+    "mtime": 1793646869.5659752,
+    "ast_hash": "715e91cf53e6d4fd5dfe088ebaa38270",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_update_projects.py": {
@@ -25,8 +25,8 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\index.html": {
-    "mtime": 1792696574.6713107,
-    "ast_hash": "4e271289778529e54555123886707753",
+    "mtime": 1793647707.1150274,
+    "ast_hash": "9e319eec5e74b95597fb861425944a71",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.codex\\AGENTS.md": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\crv.pdf": {
-    "mtime": 1787351429.467486,
-    "ast_hash": "92af0e8f8720f25dad84d11e214ef040",
+    "mtime": 1793647707.0899947,
+    "ast_hash": "a56c547b04b1eff99a7ba8bf17d4bf00",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\assets\\images\\favicon.png": {
@@ -105,7 +105,7 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\robots.txt": {
-    "mtime": 1792696574.6367266,
+    "mtime": 1793647707.0929534,
     "ast_hash": "df0d2b5994669461bda579862d1f28e9",
     "semantic_hash": ""
   },
@@ -174,14 +174,9 @@
     "ast_hash": "619d18de3f815969fb64653c6748cb85",
     "semantic_hash": ""
   },
-  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\Curriculo_Joao_Silva_Neto_TI_ICJ.pdf": {
-    "mtime": 1787164559.8240342,
-    "ast_hash": "17da4a58a1a45e4a33c941f49ec35534",
-    "semantic_hash": ""
-  },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\build_site.py": {
-    "mtime": 1789401792.208479,
-    "ast_hash": "e2d1a0979c3e6711a9e9644cb33c06f1",
+    "mtime": 1793646672.6841497,
+    "ast_hash": "500c51d672dc7b773ced2e877cb0b6b7",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\package.json": {
@@ -190,8 +185,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\analytics\\catalog.json": {
-    "mtime": 1792696574.6361501,
-    "ast_hash": "200358b12d99ab6b86a992f118e80e17",
+    "mtime": 1793647707.0929534,
+    "ast_hash": "18ed7840503d3f692b6b8eccbae7ae72",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\artifacts\\browser-results.json": {
@@ -240,18 +235,18 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\content\\projects.json": {
-    "mtime": 1789331854.2070897,
-    "ast_hash": "36546a1bb3d0d03c2519ca09da04cea5",
+    "mtime": 1793646293.6956184,
+    "ast_hash": "e6f1c6a55b053e3a47d67d1b2df01e5e",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\content\\public-metadata.json": {
-    "mtime": 1792695560.826823,
-    "ast_hash": "d3864a8af993e3cb23ef8ac4eaaca753",
+    "mtime": 1793646303.622955,
+    "ast_hash": "0716b89a9134ed34c7473882abce177a",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\content\\site.json": {
-    "mtime": 1789331854.2081506,
-    "ast_hash": "fd13e02bcfaaa686f5b611faba48cb09",
+    "mtime": 1793646708.5007296,
+    "ast_hash": "85b6503e52d55325df8811d4ff89ccc3",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\content\\ui.json": {
@@ -260,8 +255,8 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\scripts\\build_cv.py": {
-    "mtime": 1789331854.2249935,
-    "ast_hash": "dc5fcdc34b1c684e053748ce5ebe5528",
+    "mtime": 1793647650.9994147,
+    "ast_hash": "e143d8cfebb553660adc8b366d6b3e6c",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\scripts\\fetch_assets.py": {
@@ -335,13 +330,13 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\404.html": {
-    "mtime": 1789331854.2297218,
-    "ast_hash": "acfcc88fec614d9df746933bd493e538",
+    "mtime": 1793646325.5490682,
+    "ast_hash": "8e2af650ca25f0b6336e42b8bc8a9ae6",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\base.html": {
-    "mtime": 1789334273.910232,
-    "ast_hash": "32bd17120494265dfcf39feff5222bbf",
+    "mtime": 1793646855.3372667,
+    "ast_hash": "5da00ee912d7ef879f3fc76c0f2ba3f4",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\components.html": {
@@ -355,13 +350,13 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\privacy.html": {
-    "mtime": 1789331854.2318287,
-    "ast_hash": "8937b8c0cb8e74d942c26d12fd083545",
+    "mtime": 1793646390.8606088,
+    "ast_hash": "24d9257bb91c6f22e59b90808df5d6ae",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\templates\\project.html": {
-    "mtime": 1789331854.232364,
-    "ast_hash": "27226aef8734f7ef97e35e1eb6c147d8",
+    "mtime": 1793646346.4857073,
+    "ast_hash": "32620f6cdd33dc182300583011941832",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\artifacts\\after-case-study.png": {
@@ -490,58 +485,88 @@
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\404.html": {
-    "mtime": 1792696574.444412,
-    "ast_hash": "d3aae6f8a8b36831ffb46c5e49e96bf8",
+    "mtime": 1793647706.8350294,
+    "ast_hash": "f0b8f836b5b8fdcbfb0ab385a4da4b01",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\index.html": {
-    "mtime": 1792696574.439318,
-    "ast_hash": "900693afa1a9c406cb309979526a6547",
+    "mtime": 1793647706.8269877,
+    "ast_hash": "63080349ba24b7f85dbcbae6cdc3d053",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\privacy\\index.html": {
-    "mtime": 1792696574.440331,
-    "ast_hash": "c4dfb946f335bd2e92366ae6edc19da8",
+    "mtime": 1793647706.8279886,
+    "ast_hash": "431fcc4c71da1a0f9dd4a7966763a44a",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\aethersense\\index.html": {
-    "mtime": 1792696574.441332,
-    "ast_hash": "f52537a9a92fcac3e2876e725e85d6e4",
+    "mtime": 1793647706.8299887,
+    "ast_hash": "798c41933f497cc2125fb9ebedc7492c",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\dmovel\\index.html": {
-    "mtime": 1792696574.44233,
-    "ast_hash": "40b66f8657d1fb167de38c53b4f6750d",
+    "mtime": 1793647706.831989,
+    "ast_hash": "6ad442f3d7722e14a894ef8a7e45d440",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\evolutionary-lab\\index.html": {
-    "mtime": 1792696574.443411,
-    "ast_hash": "8d546e21fa1f0510e83bd0750c4480d2",
+    "mtime": 1793647706.8329887,
+    "ast_hash": "e9812715ef988d756df741edb63e84b5",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\privacy\\index.html": {
-    "mtime": 1792696574.4224186,
-    "ast_hash": "6a97932ee30ddcad2f5553bf3e6a6dae",
+    "mtime": 1793647706.8099878,
+    "ast_hash": "941b5b2b30b7e8c17011a92eb3f5c768",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\aethersense\\index.html": {
-    "mtime": 1792696574.4298015,
-    "ast_hash": "261a97b85958ba96065c56a30f3a20bb",
+    "mtime": 1793647706.8169863,
+    "ast_hash": "6a9a7dc9948e0349277cc5158e43a56b",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\dmovel\\index.html": {
-    "mtime": 1792696574.43081,
-    "ast_hash": "d13905d4653659c0b63c2393d2705b9a",
+    "mtime": 1793647706.817988,
+    "ast_hash": "bd62d388e68cc9353c3b234b4683d1c5",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\evolutionary-lab\\index.html": {
-    "mtime": 1792696574.4328122,
-    "ast_hash": "2c9cb6194469d6795f3f15bda2048af1",
+    "mtime": 1793647706.8199887,
+    "ast_hash": "c34b0ffd4bcd6cd47cc77247d259777c",
     "semantic_hash": ""
   },
   "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\.github\\workflows\\maintenance.yml": {
     "mtime": 1791726283.919978,
     "ast_hash": "79314e37e4add1b0a26efecf765003d9",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\tests\\test_telemetry.py": {
+    "mtime": 1793647655.6689975,
+    "ast_hash": "7f22fb9a2497b23e66b6e391b73b993a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\en\\projects\\interactive-signals\\index.html": {
+    "mtime": 1793647706.8340812,
+    "ast_hash": "6a903cbcc3e5cb6764367cb75ed619c4",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\projects\\interactive-signals\\index.html": {
+    "mtime": 1793647706.8219867,
+    "ast_hash": "46142574b69d6c768efdc072ff3aca31",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\cv-joao-natividade-en.pdf": {
+    "mtime": 1793647707.0899947,
+    "ast_hash": "1e890c5e881012750d291a97da31aa2a",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\cv-joao-natividade-pt.pdf": {
+    "mtime": 1793647707.0899947,
+    "ast_hash": "a56c547b04b1eff99a7ba8bf17d4bf00",
+    "semantic_hash": ""
+  },
+  "C:\\Users\\joaod\\Documents\\GitHub\\joaosnet.github.io\\docs\\cv-joao-silva-neto-en.pdf": {
+    "mtime": 1793647707.090954,
+    "ast_hash": "1e890c5e881012750d291a97da31aa2a",
     "semantic_hash": ""
   }
 }
