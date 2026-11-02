@@ -21,7 +21,7 @@ test("first visit is readable, has no modal, no overflow or JS errors", async ({
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("/");
   await expect(page.locator("#raw-rms")).not.toHaveText("—");
-  await expect(page.locator("h1")).toContainText("vida em código");
+  await expect(page.locator("h1")).toContainText("Engenharia de software");
   await expect(page.locator("[role=dialog]:visible")).toHaveCount(0);
   expect(
     await page.evaluate(
@@ -100,9 +100,9 @@ test("filters and skill map select real projects", async ({ page }) => {
     "AetherSense",
   );
   await page.locator("[data-skill=interfaces]").click();
-  await expect(page.locator(".project-card:visible")).toHaveCount(4);
+  await expect(page.locator(".project-card:visible")).toHaveCount(5);
   await page.locator("[data-filter=all]").click();
-  await expect(page.locator(".project-card:visible")).toHaveCount(9);
+  await expect(page.locator(".project-card:visible")).toHaveCount(10);
 });
 
 test("lab computes actual results and reset restores them", async ({
@@ -124,7 +124,7 @@ test("language switch preserves project and name", async ({ page }) => {
   await page.locator(".language-switch").click();
   await expect(page).toHaveURL(/\/en\/projects\/dmovel\//);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.locator(".brand").first()).toContainText("João Silva Neto");
+  await expect(page.locator(".brand").first()).toContainText("João Natividade");
   await expect(page.locator("h1")).toContainText("different screens");
 });
 
@@ -228,11 +228,11 @@ test("all essential content and contact work without JavaScript", async ({
   await page.goto("http://127.0.0.1:8765/");
   await expect(page.locator("#main-nav")).toBeVisible();
   await expect(page.locator("#education h2")).toBeVisible();
-  await expect(page.locator(".project-card")).toHaveCount(9);
+  await expect(page.locator(".project-card")).toHaveCount(10);
   await expect(page.locator("#contact-form")).toHaveAttribute("method", "post");
   await expect(page.locator("a[download]").first()).toHaveAttribute(
     "href",
-    "/docs/crv.pdf",
+    "/docs/cv-joao-natividade-pt.pdf",
   );
   expect(
     await page.evaluate(
@@ -300,7 +300,7 @@ test("missing pages return localized accessible recovery with HTTP 404", async (
       "noindex, follow",
     );
     await page.locator(".not-found .button").click();
-    await expect(page.locator(".project-card")).toHaveCount(9);
+    await expect(page.locator(".project-card")).toHaveCount(10);
   }
 });
 
