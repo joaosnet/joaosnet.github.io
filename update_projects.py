@@ -65,15 +65,17 @@ def discover_public_repos(username="joaosnet", session=None):
         full_name = r.get("full_name", "")
         if full_name.lower() in known_repos:
             continue
-        new_repos.append({
-            "repo": full_name,
-            "name": r.get("name"),
-            "description": r.get("description") or "",
-            "has_pages": bool(r.get("has_pages")),
-            "homepage": r.get("homepage") or "",
-            "stars": int(r.get("stargazers_count", 0)),
-            "pushed_at": r.get("pushed_at"),
-        })
+        new_repos.append(
+            {
+                "repo": full_name,
+                "name": r.get("name"),
+                "description": r.get("description") or "",
+                "has_pages": bool(r.get("has_pages")),
+                "homepage": r.get("homepage") or "",
+                "stars": int(r.get("stargazers_count", 0)),
+                "pushed_at": r.get("pushed_at"),
+            }
+        )
     return new_repos
 
 
