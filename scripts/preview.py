@@ -1,5 +1,7 @@
 """Serve only the generated site, with localized 404 pages and a test-friendly health URL."""
 
+from __future__ import annotations
+
 import argparse
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
@@ -13,7 +15,12 @@ class Handler(SimpleHTTPRequestHandler):
 
     def send_error(self, code, message=None, explain=None):
         if code == 404:
-            page = root / ("en/404.html" if self.path.startswith("/en/") else "404.html")
+            if self.path.startswith("/es/"):
+                page = root / "es/404.html"
+            elif self.path.startswith("/en/"):
+                page = root / "en/404.html"
+            else:
+                page = root / "404.html"
             if page.exists():
                 body = page.read_bytes()
                 self.send_response(404)

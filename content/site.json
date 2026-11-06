@@ -11,33 +11,65 @@
   "analytics_endpoint": "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec",
   "analytics_validated": true,
   "release": "portfolio-excellence-v2",
+  "software_registration": {
+    "process": "BR512025004902-1",
+    "program_title": "DMovel-Ferramenta móvel para fomento à autonomia de PCDs",
+    "created_date": "2025-06-20",
+    "issued_date": "2025-10-07",
+    "protection_years": 50,
+    "legal_basis": "Lei 9.609/1998, art. 2º, §2º",
+    "holders": ["UFOPA", "UFPA", "UEMA"],
+    "holders_full": "Universidade Federal do Oeste do Pará, Universidade Federal do Pará e Universidade do Estado do Maranhão",
+    "hash_algorithm": "SHA-512",
+    "hash_value": "7b71759f2e290a69456cd7671c1ceec30a6ba446e63fa61c17cbaf0d153654b3177545f644307f65a9821555f107a472f1b93af0123a7bcb77518a33db9bbe7e",
+    "certificate_pdf": "/docs/inpi-dmovel-br512025004902-1.pdf",
+    "pt": {
+      "title": "Propriedade Intelectual Registrada no INPI",
+      "badge": "Registro Oficial · INPI",
+      "summary": "Registro de Programa de Computador expedido pelo Instituto Nacional da Propriedade Industrial (INPI) sob o nº BR512025004902-1. Coautoria registrada no ecossistema assistivo DMóvel em parceria interinstitucional entre UFOPA, UFPA e UEMA, com validade de 50 anos (Lei 9.609/1998)."
+    },
+    "en": {
+      "title": "Registered Software IP at INPI",
+      "badge": "Official IP Registration · INPI",
+      "summary": "Computer Program Registration issued by the Brazilian National Institute of Industrial Property (INPI) under #BR512025004902-1. Registered co-authorship for the DMóvel assistive ecosystem in inter-institutional partnership with UFOPA, UFPA, and UEMA, with 50-year legal protection (Law 9.609/1998)."
+    },
+    "es": {
+      "title": "Propiedad Intelectual de Software Registrada en INPI",
+      "badge": "Registro Oficial · INPI",
+      "summary": "Registro de Programa de Computación expedido por el Instituto Nacional de la Propiedad Industrial de Brasil (INPI) bajo el nº BR512025004902-1. Coautoría registrada en el ecosistema asistivo DMóvel en alianza interinstitucional entre UFOPA, UFPA y UEMA, con 50 años de protección legal (Ley 9.609/1998)."
+    }
+  },
   "testimonial": {
     "author": "Prof. Dr. Ronaldo de Freitas Zampolo",
     "role": {
       "pt": "Professor Orientador no LaPS / FCT-UFPA",
-      "en": "Faculty Advisor at LaPS / FCT-UFPA"
+      "en": "Faculty Advisor at LaPS / FCT-UFPA",
+      "es": "Profesor Orientador en LaPS / FCT-UFPA"
     },
     "affiliation": "LaPS · FCT / UFPA",
     "evaluation": {
       "grade": "10,0",
       "rating": {
         "pt": "Excelente",
-        "en": "Excellent"
+        "en": "Excellent",
+        "es": "Excelente"
       }
     },
     "quote": {
       "pt": "O discente João da Cruz de Natividade e Silva Neto executou com competência as tarefas de refatoração de interface móvel, saneamento de bugs e gerenciamento da infraestrutura em nuvem AWS. O estagiário prestou contribuição importante para o desenvolvimento do ecossistema assistivo DMóvel e para a produção audiovisual voltada à SITEC 2026, demonstrando maturidade técnica, rigor e responsabilidade.",
-      "en": "The student João da Cruz de Natividade e Silva Neto executed with competence the tasks of mobile interface refactoring, bug fixing, and AWS cloud infrastructure management. He made a significant contribution to the DMóvel assistive ecosystem and to audiovisual production for SITEC 2026, demonstrating technical maturity, rigor, and responsibility."
+      "en": "The student João da Cruz de Natividade e Silva Neto executed with competence the tasks of mobile interface refactoring, bug fixing, and AWS cloud infrastructure management. He made a significant contribution to the DMóvel assistive ecosystem and to audiovisual production for SITEC 2026, demonstrating technical maturity, rigor, and responsibility.",
+      "es": "El estudiante João da Cruz de Natividade e Silva Neto ejecutó con competencia las tareas de refactorización de interfaz móvil, saneamiento de bugs y gestión de la infraestructura en la nube AWS. Realizó una contribución relevante al desarrollo del ecosistema asistivo DMóvel y a la producción audiovisual para la SITEC 2026, demostrando madurez técnica, rigor y responsabilidad."
     }
   },
   "timezone": {
     "pt": "Fuso UTC-3 (Belém/PA) · Sobreposição com horário comercial dos EUA (EST) e Europa (CET) · Inglês avançado",
-    "en": "UTC-3 (Belém, Brazil) · Full overlap with US business hours (EST) and partial with Europe (CET) · Advanced English"
+    "en": "UTC-3 (Belém, Brazil) · Full overlap with US business hours (EST) and partial with Europe (CET) · Advanced English",
+    "es": "Huso UTC-3 (Belém, Brasil) · Superposición completa con horario comercial de EE. UU. (EST) y América Latina, y parcial con Europa (CET) · Inglés avanzado"
   },
   "profile": {
     "pt": {
       "title": "Engenheiro de Software · Backend Python & Rust, Automação e IoT",
-      "description": "João Natividade — engenheiro de software com foco em backend Python, sistemas em Rust, automação MCP, computação em nuvem (AWS) e IoT. Disponível para projetos sob demanda, consultoria e contratação remota.",
+      "description": "João Natividade — engenheiro de software com foco em backend Python, sistemas em Rust, automação MCP, computação em nuvem (AWS) e IoT. Coautor de software registrado no INPI (BR512025004902-1). Disponível para projetos sob demanda, consultoria e contratação remota.",
       "availability": "Disponível para projetos sob demanda, consultoria técnica e vagas remotas",
       "headline": "Engenharia de software,",
       "headline_accent": "sistemas e interfaces.",
@@ -46,12 +78,12 @@
       "location": "Belém, PA · Brasil (Remoto)",
       "education": "Engenharia de Computação · UFPA",
       "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado.",
-      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs assíncronas e serviços na nuvem (AWS) à conteinerização, automação com MCP e telemetria de sensores em tempo real. Experiência comprovada em produção com avaliação máxima (10,0) no laboratório LaPS da UFPA.",
+      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs assíncronas e serviços na nuvem (AWS) à conteinerização, automação com MCP e telemetria de sensores em tempo real. Coautor de software registrado no INPI (BR512025004902-1) e experiência comprovada em produção com avaliação máxima (10,0) no laboratório LaPS da UFPA.",
       "experience": [
         [
           "2026",
           "Engenharia de Software & Backend · LaPS / UFPA (DMóvel)",
-          "Manutenção de backend em FastAPI na AWS, refatoração de telas em Flutter/Dart com eliminação de vazamentos de memória e criação de dashboards em Dash. Avaliado com nota máxima 10,0."
+          "Manutenção de backend em FastAPI na AWS, refatoração de telas em Flutter/Dart com eliminação de vazamentos de memória e criação de dashboards em Dash. Coautor de software registrado no INPI (BR512025004902-1) e avaliado com nota máxima 10,0 (Excelente)."
         ],
         [
           "2024 — atual",
@@ -72,7 +104,7 @@
     },
     "en": {
       "title": "Software Engineer · Backend Python & Rust, Automation & IoT",
-      "description": "João Natividade — software engineer specializing in Python backend, Rust systems, MCP automation, cloud computing (AWS), and IoT. Available for contract projects, technical consulting, and remote roles.",
+      "description": "João Natividade — software engineer specializing in Python backend, Rust systems, MCP automation, cloud computing (AWS), and IoT. Registered software IP co-author at INPI (#BR512025004902-1). Available for contract projects, technical consulting, and remote roles.",
       "availability": "Available for contract projects, technical consulting, and remote roles",
       "headline": "Software engineering,",
       "headline_accent": "systems and interfaces.",
@@ -81,12 +113,12 @@
       "location": "Belém, Brazil · Remote",
       "education": "Computer Engineering · UFPA",
       "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English.",
-      "about": "Focused on end-to-end software engineering: from async API design and cloud infrastructure (AWS) to Docker containerization, MCP protocol automation, and real-time sensor telemetry. Proven production track record graded 10.0/10 at UFPA's LaPS laboratory.",
+      "about": "Focused on end-to-end software engineering: from async API design and cloud infrastructure (AWS) to Docker containerization, MCP protocol automation, and real-time sensor telemetry. Registered software IP co-author at INPI (#BR512025004902-1) and proven production track record graded 10.0/10 at UFPA's LaPS laboratory.",
       "experience": [
         [
           "2026",
           "Software Engineering & Backend · LaPS / UFPA (DMóvel)",
-          "FastAPI backend maintenance on AWS, Flutter/Dart mobile screens with memory leak remediation, and Dash dashboards. Graded 10.0/10 (Excellent)."
+          "FastAPI backend maintenance on AWS, Flutter/Dart mobile screens with memory leak remediation, and Dash dashboards. Registered software IP co-author at INPI (#BR512025004902-1) and graded 10.0/10 (Excellent)."
         ],
         [
           "2024 — present",
@@ -102,6 +134,41 @@
           "2022 — present",
           "Web Engineering & APIs",
           "Full-stack web applications, REST APIs, and tools focused on open source, security, and reproducibility."
+        ]
+      ]
+    },
+    "es": {
+      "title": "Ingeniero de Software · Backend Python & Rust, Automatización e IoT",
+      "description": "João Natividade — ingeniero de software enfocado en backend Python, sistemas en Rust, automatización MCP, computación en la nube (AWS) e IoT. Coautor de software registrado en INPI (BR512025004902-1). Disponible para proyectos a medida, consultoría y contratación remota.",
+      "availability": "Disponible para proyectos a medida, consultoría técnica y roles remotos",
+      "headline": "Ingeniería de software,",
+      "headline_accent": "sistemas e interfaces.",
+      "intro": "Soy João Natividade, ingeniero de software. Construyo APIs de alto rendimiento en Python y Rust, automatizaciones de seguridad y servidores MCP, sistemas IoT con ESP32 e interfaces analíticas en tiempo real en el navegador.",
+      "focus": "Backend · Python & Rust · Nube AWS & Automatización MCP",
+      "location": "Belém, Brasil · Remoto",
+      "education": "Ingeniería de Computación · UFPA",
+      "education_detail": "Grado en curso · graduación prevista en 2026. Inglés avanzado.",
+      "about": "Enfoque en ingeniería de software integral: desde el diseño de APIs asíncronas e infraestructura en la nube (AWS) hasta contenerización Docker, automatización con protocolo MCP y telemetría de sensores en tiempo real. Coautor de software registrado en el INPI (BR512025004902-1) y calificación máxima (10,0) en el laboratorio LaPS de la UFPA.",
+      "experience": [
+        [
+          "2026",
+          "Ingeniería de Software & Backend · LaPS / UFPA (DMóvel)",
+          "Mantenimiento de backend en FastAPI en AWS, refactorización de pantallas móviles en Flutter/Dart con eliminación de memory leaks y paneles en Dash. Coautor de registro INPI (BR512025004902-1) y evaluado con nota máxima 10,0 (Excelente)."
+        ],
+        [
+          "2024 — actual",
+          "Automatización & Servidores MCP",
+          "Servidores MCP personalizados para flujos de IA, herramientas CLI asíncronas de seguridad (Varedura) y contenerización con Docker."
+        ],
+        [
+          "2023 — actual",
+          "Sistemas Embebidos & IoT",
+          "Procesamiento de señales y WiFi Sensing con ESP32 y Rust (AetherSense) y laboratorios interactivos en Canvas a 120 FPS."
+        ],
+        [
+          "2022 — actual",
+          "Ingeniería Web & APIs",
+          "Aplicaciones web completas, APIs REST y herramientas orientadas a código abierto, seguridad y reproducibilidad."
         ]
       ]
     }

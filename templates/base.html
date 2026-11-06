@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ 'pt-BR' if lang == 'pt' else 'en' }}" data-theme="dark">
+<html lang="{{ 'pt-BR' if lang == 'pt' else ('es' if lang == 'es' else 'en') }}" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,11 +12,12 @@
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
   {% if path.endswith('404.html') %}<meta name="robots" content="noindex, follow">{% endif %}
   <link rel="canonical" href="{{ site.url }}{{ path }}">
-  <link rel="alternate" hreflang="{{ 'pt-BR' if lang == 'en' else 'en' }}" href="{{ site.url }}{{ alternate }}">
-  <link rel="alternate" hreflang="{{ 'pt-BR' if lang == 'pt' else 'en' }}" href="{{ site.url }}{{ path }}">
-  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ path if lang == 'pt' else alternate }}">
+  <link rel="alternate" hreflang="pt-BR" href="{{ site.url }}{{ alternates.pt }}">
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ alternates.en }}">
+  <link rel="alternate" hreflang="es" href="{{ site.url }}{{ alternates.es }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ alternates.pt }}">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="{{ 'pt_BR' if lang == 'pt' else 'en_US' }}">
+  <meta property="og:locale" content="{{ 'pt_BR' if lang == 'pt' else ('es_ES' if lang == 'es' else 'en_US') }}">
   <meta property="og:title" content="{{ (project.name + ' · ') if project else '' }}{{ site.name }}">
   <meta property="og:description" content="{{ project[lang].summary if project else profile.description }}">
   <meta property="og:url" content="{{ site.url }}{{ path }}">
@@ -47,7 +48,18 @@
         <a href="{{ base }}#contact" data-track="nav-contact">{{ t.nav_contact }}</a>
       </nav>
       <div class="header-tools">
-        <a class="language-switch" href="{{ alternate }}" hreflang="{{ 'en' if lang == 'pt' else 'pt-BR' }}" lang="{{ 'en' if lang == 'pt' else 'pt-BR' }}" aria-label="{{ 'Read in English' if lang == 'pt' else 'Ler em português' }}" data-track="language">{{ 'EN' if lang == 'pt' else 'PT' }} <span aria-hidden="true">↗</span></a>
+        <div class="lang-switch-group" role="group" aria-label="{{ 'Alternar idioma' if lang == 'pt' else ('Cambiar idioma' if lang == 'es' else 'Switch language') }}">
+          {% if lang == 'pt' %}
+          <a class="language-switch" href="{{ alternates.en }}" hreflang="en" lang="en" aria-label="Read in English" data-track="language">EN <span aria-hidden="true">↗</span></a>
+          <a class="language-switch-alt" href="{{ alternates.es }}" hreflang="es" lang="es" aria-label="Leer en español" data-track="language-secondary">ES <span aria-hidden="true">↗</span></a>
+          {% elif lang == 'en' %}
+          <a class="language-switch" href="{{ alternates.pt }}" hreflang="pt-BR" lang="pt-BR" aria-label="Ler em português" data-track="language">PT <span aria-hidden="true">↗</span></a>
+          <a class="language-switch-alt" href="{{ alternates.es }}" hreflang="es" lang="es" aria-label="Leer en español" data-track="language-secondary">ES <span aria-hidden="true">↗</span></a>
+          {% else %}
+          <a class="language-switch" href="{{ alternates.pt }}" hreflang="pt-BR" lang="pt-BR" aria-label="Ler em português" data-track="language">PT <span aria-hidden="true">↗</span></a>
+          <a class="language-switch-alt" href="{{ alternates.en }}" hreflang="en" lang="en" aria-label="Read in English" data-track="language-secondary">EN <span aria-hidden="true">↗</span></a>
+          {% endif %}
+        </div>
         <button class="theme-toggle" type="button" aria-label="{{ t.theme }}" title="{{ t.theme }}" data-track="theme" hidden><span aria-hidden="true">◐</span></button>
         <div class="palette-wrapper">
           <button class="palette-toggle" type="button" aria-expanded="false" aria-controls="palette-popover" aria-label="{{ t.palette_toggle }}" title="{{ t.palette_toggle }}" data-track="theme-palette" hidden>
@@ -90,23 +102,24 @@
       <div class="language-panel-main">
         <label for="site-language" class="language-label">
           <span class="language-globe-icon" aria-hidden="true">🌐</span>
-          <span>{{ 'Idioma' if lang == 'pt' else 'Language' }}</span>
+          <span>{{ 'Idioma' if (lang == 'pt' or lang == 'es') else 'Language' }}</span>
         </label>
         <div class="language-select-wrapper">
-          <select id="site-language" class="language-select" data-track="language-select" aria-label="{{ 'Selecionar idioma do portfólio' if lang == 'pt' else 'Select portfolio language' }}" hidden>
-            <optgroup label="{{ 'Versões Nativas' if lang == 'pt' else 'Native Versions' }}">
-              <option value="pt">Português (Brasil)</option>
-              <option value="en">English (US)</option>
+          <select id="site-language" class="language-select" data-track="language-select" aria-label="{{ 'Selecionar idioma do portfólio' if lang == 'pt' else ('Seleccionar idioma del portafolio' if lang == 'es' else 'Select portfolio language') }}" hidden>
+            <optgroup label="{{ 'Versões Nativas' if lang == 'pt' else ('Versiones Nativas' if lang == 'es' else 'Native Versions') }}">
+              <option value="pt"{% if lang == 'pt' %} selected{% endif %}>Português (Brasil)</option>
+              <option value="en"{% if lang == 'en' %} selected{% endif %}>English (US)</option>
+              <option value="es"{% if lang == 'es' %} selected{% endif %}>Español</option>
             </optgroup>
-            <optgroup data-machine label="{{ 'Tradução Automática' if lang == 'pt' else 'Machine Translation' }}">
+            <optgroup data-machine label="{{ 'Tradução Automática' if lang == 'pt' else ('Traducción Automática' if lang == 'es' else 'Machine Translation') }}">
             </optgroup>
           </select>
         </div>
         <span id="translation-status" class="translation-status" role="status" aria-live="polite"></span>
       </div>
       <div class="language-panel-actions">
-        <button class="text-button" id="secret-terminal" data-track="secret-terminal" title="↑ ↑ ↓ ↓ ← → ← → B A" hidden aria-label="{{ 'Abrir terminal secreto' if lang == 'pt' else 'Open secret terminal' }}">{ }</button>
-        <button class="text-button" id="explorer-badge" data-track="explorer-badge" hidden>{{ '✦ Explorador do portfólio' if lang == 'pt' else '✦ Portfolio explorer' }}</button>
+        <button class="text-button" id="secret-terminal" data-track="secret-terminal" title="↑ ↑ ↓ ↓ ← → ← → B A" hidden aria-label="{{ 'Abrir terminal secreto' if lang == 'pt' else ('Abrir terminal secreto' if lang == 'es' else 'Open secret terminal') }}">{ }</button>
+        <button class="text-button" id="explorer-badge" data-track="explorer-badge" hidden>{{ '✦ Explorador do portfólio' if lang == 'pt' else ('✦ Explorador del portafolio' if lang == 'es' else '✦ Portfolio explorer') }}</button>
       </div>
     </div>
     <div class="container"><a class="text-link" href="{{ site.lattes }}" target="_blank" rel="noopener noreferrer" data-track="lattes">Currículo Lattes ↗</a></div>
@@ -116,12 +129,12 @@
   <aside class="metrics-notice" aria-label="{{ t.metrics }}" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">{{ t.metrics_preview }}</span><button class="text-button metrics-toggle" type="button">{{ t.disable }}</button><a href="{{ base }}privacy/">{{ t.privacy }}</a><button class="notice-close" type="button" aria-label="{{ t.close_notice }}">×</button></aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <dialog id="secret-dialog" class="secret-dialog notranslate" translate="no" aria-labelledby="secret-title">
-    <form method="dialog"><button class="text-button" aria-label="{{ 'Fechar terminal' if lang == 'pt' else 'Close terminal' }}">×</button></form>
+    <form method="dialog"><button class="text-button" aria-label="{{ 'Fechar terminal' if lang == 'pt' else ('Cerrar terminal' if lang == 'es' else 'Close terminal') }}">×</button></form>
     <div class="matrix-rain" aria-hidden="true">0101 · UFPA · λ · 1010<br>01 · &lt;/&gt; · 110 · π<br>λ · 0101 · HELLO WORLD<br>101 · SIGNAL FOUND · 01</div>
     <p class="eyebrow">PORTFOLIO / SECRET TERMINAL</p><h2 id="secret-title">Hello, explorer.</h2>
-    <p>{{ 'Curiosidade é uma boa habilidade de engenharia. Você encontrou a porta secreta.' if lang == 'pt' else 'Curiosity is a useful engineering skill. You found the secret door.' }}</p>
-    <p class="secret-hint">{{ 'Próxima pista: no laboratório, encontre o sinal sem ruído e sem suavização.' if lang == 'pt' else 'Next clue: in the lab, find the signal with no noise and no smoothing.' }}</p>
-    <p><kbd>Esc</kbd> {{ 'para voltar à exploração' if lang == 'pt' else 'to return to exploring' }}</p>
+    <p>{{ 'Curiosidade é uma boa habilidade de engenharia. Você encontrou a porta secreta.' if lang == 'pt' else ('La curiosidad es una gran habilidad de ingeniería. Has encontrado la puerta secreta.' if lang == 'es' else 'Curiosity is a useful engineering skill. You found the secret door.') }}</p>
+    <p class="secret-hint">{{ 'Próxima pista: no laboratório, encontre o sinal sem ruído e sem suavização.' if lang == 'pt' else ('Siguiente pista: en el laboratorio, encuentra la señal sin ruido y sin suavizado.' if lang == 'es' else 'Next clue: in the lab, find the signal with no noise and no smoothing.') }}</p>
+    <p><kbd>Esc</kbd> {{ 'para voltar à exploração' if lang == 'pt' else ('para volver a la exploración' if lang == 'es' else 'to return to exploring') }}</p>
   </dialog>
 </body>
 </html>

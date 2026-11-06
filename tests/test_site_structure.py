@@ -29,7 +29,7 @@ def built():
 
 def test_only_allowlisted_public_files_are_built(built):
     files = [str(p.relative_to(built)).replace("\\", "/") for p in built.rglob("*") if p.is_file()]
-    assert len(list(built.rglob("*.html"))) == 16
+    assert len(list(built.rglob("*.html"))) == 24
     for path in files:
         assert not any(
             x in path
@@ -76,8 +76,13 @@ def test_bilingual_routes_metadata_and_names(built):
     for path in built.rglob("*.html"):
         text = path.read_text(encoding="utf-8")
         page = Page(text)
-        en = path.is_relative_to(built / "en")
-        assert page.find("html", lang="en" if en else "pt-BR")
+        if path.is_relative_to(built / "en"):
+            expected_lang = "en"
+        elif path.is_relative_to(built / "es"):
+            expected_lang = "es"
+        else:
+            expected_lang = "pt-BR"
+        assert page.find("html", lang=expected_lang)
         assert "João Silva Neto" in text
         assert not page.find("script", src="https://cdn.gtranslate.net/widgets/latest/lib.min.js")
         assert len(page.find("h1")) == 1
@@ -85,8 +90,9 @@ def test_bilingual_routes_metadata_and_names(built):
         assert canonical.startswith("https://joaosnet.github.io/")
         if path.name != "404.html":
             for alternate in page.find("link", rel="alternate"):
-                dest = built / urlsplit(alternate["href"]).path.lstrip("/") / "index.html"
-                assert dest.exists()
+                if alternate.get("hreflang") in ("pt-BR", "en", "es", "x-default"):
+                    dest = built / urlsplit(alternate["href"]).path.lstrip("/") / "index.html"
+                    assert dest.exists()
     assert "Engenheiro da Computação" not in (built / "index.html").read_text(encoding="utf-8")
 
 
@@ -108,52 +114,88 @@ def test_strict_csp_and_no_inline_event_handlers(built):
 def test_sitemap_covers_all_indexable_pages(built):
     tree = ET.parse(built / "sitemap.xml")
     locs = tree.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    assert len(locs) == 14
+    assert len(locs) == 21
     assert all("404" not in node.text for node in locs)
 
 
 def test_commercial_positioning_and_services(built):
     home_pt = (built / "index.html").read_text(encoding="utf-8")
     home_en = (built / "en/index.html").read_text(encoding="utf-8")
+    home_es = (built / "es/index.html").read_text(encoding="utf-8")
 
     # Positioning: no longer "estágio" in hero or contact intro
     assert "Procuro um estágio em software" not in home_pt
     assert "looking for a software internship" not in home_en.lower()
+    assert "busco una pasantía" not in home_es.lower()
 
     # Pricing & Services
     assert "R$ 120 / hora" in home_pt
     assert "$25 USD / hour" in home_en
+    assert "$25 USD / hora" in home_es
     assert "A partir de R$ 3.500" in home_pt
     assert "Starting at $800 USD" in home_en
+    assert "A partir de $800 USD" in home_es
 
     # Cal.com scheduling link
     assert "https://cal.com/joao-neto-xqw0df/15min" in home_pt
     assert "https://cal.com/joao-neto-xqw0df/15min" in home_en
+    assert "https://cal.com/joao-neto-xqw0df/15min" in home_es
 
     # Case studies outcomes
     dmovel_pt = (built / "projects/dmovel/index.html").read_text(encoding="utf-8")
+    dmovel_es = (built / "es/projects/dmovel/index.html").read_text(encoding="utf-8")
     aethersense_pt = (built / "projects/aethersense/index.html").read_text(encoding="utf-8")
     varedura_pt = (built / "projects/varedura/index.html").read_text(encoding="utf-8")
     varedura_en = (built / "en/projects/varedura/index.html").read_text(encoding="utf-8")
+    varedura_es = (built / "es/projects/varedura/index.html").read_text(encoding="utf-8")
 
     assert "10,0" in dmovel_pt
     assert "0,68 m" in aethersense_pt
     assert "100% Async" in varedura_pt
     assert "High-throughput asynchronous recon" in varedura_en
+    assert "Motor asíncrono de alto rendimiento para escaneo de redes" in varedura_es
+
+    # INPI Registration
+    assert "BR512025004902-1" in home_pt
+    assert "BR512025004902-1" in home_en
+    assert "BR512025004902-1" in home_es
+    assert "BR512025004902-1" in dmovel_pt
+    assert "BR512025004902-1" in dmovel_es
 
     # Official Testimonial
     assert "Prof. Dr. Ronaldo de Freitas Zampolo" in home_pt
     assert "Prof. Dr. Ronaldo de Freitas Zampolo" in home_en
+    assert "Prof. Dr. Ronaldo de Freitas Zampolo" in home_es
     assert "10,0" in home_pt
 
 
-@pytest.mark.parametrize("name,phrase", [("crv.pdf", "em andamento"), ("cv-joao-silva-neto-en.pdf", "in progress")])
+def test_inpi_certificate_pdf_is_valid(built):
+    cert = built / "docs/inpi-dmovel-br512025004902-1.pdf"
+    assert cert.exists()
+    reader = PdfReader(cert)
+    assert len(reader.pages) == 2
+    full_text = "".join(p.extract_text() or "" for p in reader.pages)
+    assert "BR512025004902-1" in full_text
+    assert "DMovel" in full_text
+
+
+@pytest.mark.parametrize(
+    "name,phrase",
+    [
+        ("crv.pdf", "em andamento"),
+        ("cv-joao-silva-neto-en.pdf", "in progress"),
+        ("cv-joao-natividade-pt.pdf", "em andamento"),
+        ("cv-joao-natividade-en.pdf", "in progress"),
+        ("cv-joao-natividade-es.pdf", "en curso"),
+    ],
+)
 def test_cv_is_one_page_selectable_and_factual(built, name, phrase):
     pdf = PdfReader(built / "docs" / name)
     assert len(pdf.pages) == 1
     text = pdf.pages[0].extract_text()
     assert "João Silva Neto" in text and phrase in text
     assert "AetherSense" in text and "DMóvel" in text
+    assert "BR512025004902-1" in text
 
 
 def test_metrics_have_no_transport_before_backend_validation(built):

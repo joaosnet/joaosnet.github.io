@@ -2007,11 +2007,13 @@ a:hover.text-link {
   }
   html:not(.nav-ready) .header-inner {
     padding-block: 15px;
+    flex-wrap: wrap;
   }
   html:not(.nav-ready) #main-nav {
     order: 3;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: 8px;
   }
   html:not(.nav-ready) .header-tools {
@@ -2269,13 +2271,13 @@ a:hover.text-link {
     margin-bottom: 24px;
   }
   .hero-actions {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
   }
   .hero-actions .button {
-    flex: 1;
-    gap: 12px;
+    flex: 1 1 calc(50% - 8px);
+    gap: 10px;
     font-size: 0.76rem;
-    padding-inline: 12px;
+    padding-inline: 10px;
   }
   .hero-links {
     margin-top: 20px;
@@ -2870,5 +2872,182 @@ a:hover.text-link {
   .outcomes-grid {
     grid-template-columns: 1fr;
     gap: 12px;
+  }
+}
+
+
+/* Multi-language Header Switching */
+.lang-switch-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.language-switch-alt {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 4px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.language-switch-alt:hover,
+.language-switch-alt:focus-visible {
+  color: var(--text);
+  border-color: var(--cyan);
+  background: var(--surface-2);
+}
+
+/* Official Software Registration (INPI) */
+.ip-container {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.ip-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--cyan);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-top: 20px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+.ip-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+.ip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+}
+:root[data-theme="light"] .ip-badge {
+  color: #0b6c88;
+}
+.ip-program-title {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.ip-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.ip-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.ip-meta-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.ip-meta-value {
+  font-size: 0.9rem;
+  color: var(--text);
+}
+.ip-hash-box {
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ip-hash-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  font-weight: 600;
+}
+.ip-hash-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.74rem;
+  color: var(--text);
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+.ip-card-footer {
+  display: flex;
+  justify-content: flex-start;
+}
+.ip-verify-btn {
+  font-weight: 600;
+  font-size: 0.88rem;
+}
+
+/* Case study registration evidence */
+.case-registration {
+  margin: 24px 0;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--cyan);
+  border-radius: 10px;
+}
+.case-reg-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.reg-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+}
+:root[data-theme="light"] .reg-badge {
+  color: #0b6c88;
+}
+.case-reg-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+.case-reg-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.case-reg-action {
+  margin-top: 14px;
+}
+
+@media (max-width: 800px) {
+  .ip-card {
+    padding: 20px;
+  }
+  .case-registration {
+    padding: 18px;
   }
 }

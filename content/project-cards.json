@@ -15,6 +15,10 @@
     "en": {
       "eyebrow": "Published · Data visualization",
       "summary": "A practical guide to building interactive dashboards with Python, Dash and Plotly, with learning material available in the browser."
+    },
+    "es": {
+      "eyebrow": "Publicado · Visualización de datos",
+      "summary": "Guía práctica para construir paneles interactivos con Python, Dash y Plotly, con material disponible para explorar en el navegador."
     }
   },
   {
@@ -34,6 +38,10 @@
     "en": {
       "eyebrow": "Published · Interactive presentation",
       "summary": "DMóvel presentation for SITEC UFPA 2026, bringing together video, project context and QR-code access to experimentation."
+    },
+    "es": {
+      "eyebrow": "Publicado · Presentación interactiva",
+      "summary": "Presentación de DMóvel para la SITEC UFPA 2026, integrando video institucional, contexto del proyecto y acceso a experimentación vía código QR."
     }
   },
   {
@@ -52,6 +60,10 @@
     "en": {
       "eyebrow": "Public code · Automation",
       "summary": "An MCP server for automating access to UFPA's SIGAA, exploring LLM tool integration and authentication workflows."
+    },
+    "es": {
+      "eyebrow": "Código público · Automatización",
+      "summary": "Servidor MCP para automatizar el acceso al SIGAA de la UFPA, explorando integración con modelos LLM, herramientas y flujos de autenticación."
     }
   },
   {
@@ -71,6 +83,10 @@
     "en": {
       "eyebrow": "Public code · Backend",
       "summary": "The Python backend for Klique. Source code and development history are available on GitHub."
+    },
+    "es": {
+      "eyebrow": "Código público · Backend",
+      "summary": "Backend del proyecto Klique desarrollado en Python. Código fuente e historial de desarrollo disponibles para consulta en GitHub."
     }
   },
   {
@@ -89,6 +105,10 @@
     "en": {
       "eyebrow": "Contribution · Federated learning",
       "summary": "Contribution to a federated-learning project repository with notebook experiments. Participation can be checked in the public history."
+    },
+    "es": {
+      "eyebrow": "Contribución · Aprendizaje federado",
+      "summary": "Contribución en un repositorio de proyectos de aprendizaje federado, con experimentos en notebooks. Participación consultable en el historial público."
     }
   }
 ]

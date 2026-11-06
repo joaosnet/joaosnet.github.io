@@ -98,6 +98,45 @@
           "label": "Occupancy and vitals inference with zero camera or microphone usage"
         }
       ]
+    },
+    "es": {
+      "eyebrow": "IoT · Investigación aplicada",
+      "title": "Lo invisible también tiene señal.",
+      "summary": "Plataforma experimental que conecta señales Wi-Fi, procesamiento e interfaz web para explorar detección de presencia sin cámaras.",
+      "status": "Prototipo de investigación · Tesis",
+      "role": "Proyecto de tesis en Ingeniería de Computación. El alcance técnico es verificable en el repositorio público; la autoría de cambios individuales se puede consultar en el historial de contribuciones.",
+      "problem": "Investigar cómo las variaciones de Channel State Information (CSI) en redes Wi-Fi pueden ser adquiridas, procesadas y visualizadas en un sistema experimental.",
+      "decisions": [
+        [
+          "Del dispositivo a la interfaz",
+          "Firmware ESP32 para adquisición, backend en Rust para ingesta y procesamiento, y React/TypeScript para visualización."
+        ],
+        [
+          "Canalización separada de aprendizaje automático",
+          "Herramientas en Python entrenan y evalúan modelos, exportando artefactos ONNX para inferencia."
+        ],
+        [
+          "Exploración reproducible",
+          "Docker Compose y un modo de reproducción permiten explorar el panel sin necesidad de programar microcontroladores."
+        ]
+      ],
+      "limitations": "Prototipo experimental. Los resultados dependen del entorno, topología y calibración. No es un dispositivo médico ni un sistema validado para diagnósticos o seguridad crítica.",
+      "evidence": "El README público documenta componentes, configuración, pruebas y límites. Capturas locales, credenciales y datos residenciales están excluidos de este caso de estudio.",
+      "takeaway": "Un ejercicio de ingeniería que integra hardware, sistemas, datos y producto.",
+      "outcomes": [
+        {
+          "value": "0,68 m",
+          "label": "Precisión de localización validada en fusión multi-nodo C5+WROOM"
+        },
+        {
+          "value": "120 FPS",
+          "label": "Renderizado y streaming de señales en tiempo real en el navegador"
+        },
+        {
+          "value": "100% Local",
+          "label": "Inferencia de ocupación y signos vitales sin cámaras ni micrófonos"
+        }
+      ]
     }
   },
   {
@@ -120,12 +159,25 @@
     "demo": "https://lapshub.github.io/dmovel_web_app/",
     "visual": "mobile",
     "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp",
+    "registration": {
+      "process": "BR512025004902-1",
+      "program_title": "DMovel-Ferramenta móvel para fomento à autonomia de PCDs",
+      "created_date": "2025-06-20",
+      "issued_date": "2025-10-07",
+      "protection_years": 50,
+      "legal_basis": "Lei 9.609/1998, art. 2º, §2º",
+      "holders": ["UFOPA", "UFPA", "UEMA"],
+      "holders_full": "Universidade Federal do Oeste do Pará, Universidade Federal do Pará e Universidade do Estado do Maranhão",
+      "hash_algorithm": "SHA-512",
+      "hash_value": "7b71759f2e290a69456cd7671c1ceec30a6ba446e63fa61c17cbaf0d153654b3177545f644307f65a9821555f107a472f1b93af0123a7bcb77518a33db9bbe7e",
+      "certificate_pdf": "/docs/inpi-dmovel-br512025004902-1.pdf"
+    },
     "pt": {
       "eyebrow": "Produto & Engenharia · LaPS / UFPA",
       "title": "Um projeto, diferentes telas: acessibilidade móvel, backend AWS e telemetria.",
-      "summary": "Ecossistema de tecnologia assistiva com aplicativo móvel em Flutter, backend em FastAPI hospedado na AWS e dashboards analíticos de dados.",
-      "status": "Estágio concluído com nota máxima 10,0",
-      "role": "Engenheiro estagiário no LaPS/UFPA. Responsável pela manutenção de backend em FastAPI na nuvem AWS, saneamento de vazamentos de memória (memory leaks) na aplicação móvel Flutter/Dart e desenvolvimento de dashboards analíticos em Dash (Python).",
+      "summary": "Ecossistema de tecnologia assistiva com aplicativo móvel em Flutter, backend em FastAPI hospedado na AWS e dashboards analíticos de dados. Coautoria de software registrado no INPI (BR512025004902-1).",
+      "status": "Estágio concluído com nota máxima 10,0 · Software Registrado no INPI",
+      "role": "Engenheiro estagiário no LaPS/UFPA. Responsável pela manutenção de backend em FastAPI na nuvem AWS, saneamento de vazamentos de memória (memory leaks) na aplicação móvel Flutter/Dart e desenvolvimento de dashboards analíticos em Dash (Python). Coautor registrado da propriedade intelectual no INPI.",
       "problem": "Garantir alta disponibilidade e fluidez em uma aplicação móvel assistiva, eliminando travamentos de memória por decodificação de imagem e auditando custos de infraestrutura em nuvem.",
       "decisions": [
         [
@@ -142,7 +194,7 @@
         ]
       ],
       "limitations": "A infraestrutura em produção atende aos usuários do projeto acadêmico e é administrada sob os controles de credenciais e orçamento da instituição.",
-      "evidence": "Relatório final de estágio aprovado e assinado com nota 10,0 pelo Prof. Dr. Ronaldo de Freitas Zampolo. Código e releases públicos no GitHub do LAPSHub.",
+      "evidence": "Relatório final de estágio aprovado e assinado com nota 10,0 pelo Prof. Dr. Ronaldo de Freitas Zampolo. Certificado oficial de Registro de Programa de Computador no INPI sob o nº BR512025004902-1 disponível em /docs/inpi-dmovel-br512025004902-1.pdf. Código e releases públicos no GitHub do LAPSHub.",
       "takeaway": "Engenharia de software aplicada a um produto de impacto social real, unindo nuvem, mobile e rigor na gestão de memória.",
       "outcomes": [
         {
@@ -156,15 +208,19 @@
         {
           "value": "FastAPI + AWS",
           "label": "Backend em nuvem com auditoria rigorosa de consumo e credenciais"
+        },
+        {
+          "value": "Registro INPI",
+          "label": "Propriedade intelectual registrada em coautoria (BR512025004902-1 · UFOPA/UFPA/UEMA)"
         }
       ]
     },
     "en": {
       "eyebrow": "Product & Engineering · LaPS / UFPA",
       "title": "One project, different screens: mobile accessibility, AWS backend, and telemetry.",
-      "summary": "Assistive technology ecosystem featuring a Flutter mobile app, an async FastAPI backend on AWS, and analytical telemetry dashboards.",
-      "status": "Internship completed with top grade 10.0/10",
-      "role": "Software Engineering Intern at LaPS/UFPA. Responsible for maintaining the FastAPI backend on AWS, resolving critical mobile memory leaks in Flutter/Dart, and building interactive Dash/Plotly dashboards.",
+      "summary": "Assistive technology ecosystem featuring a Flutter mobile app, an async FastAPI backend on AWS, and analytical telemetry dashboards. Registered software IP co-author at INPI (#BR512025004902-1).",
+      "status": "Internship completed with top grade 10.0/10 · Registered Software IP at INPI",
+      "role": "Software Engineering Intern at LaPS/UFPA. Responsible for maintaining the FastAPI backend on AWS, resolving critical mobile memory leaks in Flutter/Dart, and building interactive Dash/Plotly dashboards. Registered co-author for the official software copyright at INPI.",
       "problem": "Ensure high availability and seamless UX in an assistive mobile application by eliminating image decoding memory crashes and auditing cloud infrastructure costs.",
       "decisions": [
         [
@@ -181,7 +237,7 @@
         ]
       ],
       "limitations": "Production cloud infrastructure serves academic stakeholders and is governed by university credentials and budget policies.",
-      "evidence": "Final internship report signed and graded 10.0/10 (Excellent) by Prof. Dr. Ronaldo de Freitas Zampolo. Public releases and source code at LAPSHub GitHub.",
+      "evidence": "Final internship report signed and graded 10.0/10 (Excellent) by Prof. Dr. Ronaldo de Freitas Zampolo. Official Computer Program Registration certificate at INPI #BR512025004902-1 available at /docs/inpi-dmovel-br512025004902-1.pdf. Public releases and source code at LAPSHub GitHub.",
       "takeaway": "Production engineering applied to assistive technology: cloud, mobile, and strict memory management.",
       "outcomes": [
         {
@@ -195,6 +251,53 @@
         {
           "value": "FastAPI + AWS",
           "label": "Cloud backend maintenance with cost auditing and secure credentials"
+        },
+        {
+          "value": "Registered IP",
+          "label": "Registered software IP co-author at Brazil Patent Office (INPI #BR512025004902-1)"
+        }
+      ]
+    },
+    "es": {
+      "eyebrow": "Producto & Ingeniería · LaPS / UFPA",
+      "title": "Un proyecto, diferentes pantallas: accesibilidad móvil, backend AWS y telemetría.",
+      "summary": "Ecosistema de tecnología asistiva con aplicación móvil en Flutter, backend en FastAPI en AWS y paneles analíticos de telemetría. Coautoría de software registrado en el INPI (BR512025004902-1).",
+      "status": "Prácticas concluidas con nota máxima 10,0 · Software Registrado en INPI",
+      "role": "Ingeniero de software en LaPS/UFPA. Responsable del mantenimiento del backend en FastAPI en la nube AWS, saneamiento de fugas de memoria (memory leaks) en la aplicación móvil Flutter/Dart y desarrollo de paneles analíticos en Dash (Python). Coautor registrado de la propiedad intelectual en el INPI.",
+      "problem": "Garantizar alta disponibilidad y fluidez en una aplicación móvil asistiva, eliminando bloqueos de memoria por decodificación de imágenes y auditando los costes de infraestructura en la nube.",
+      "decisions": [
+        [
+          "Optimización de memoria y caché de imágenes",
+          "Implementación de OptimizedCachedImage con cálculo dinámico de memCacheWidth/Height y carga progresiva de miniaturas WebP, evitando desbordamientos de RAM en móviles."
+        ],
+        [
+          "Backend asíncrono en FastAPI en AWS",
+          "Desarrollo y auditoría de rutas REST con BackgroundTasks para respuestas inmediatas, control de credenciales IAM y gestión del consumo en la nube."
+        ],
+        [
+          "Paneles analíticos con Dash y Plotly",
+          "Construcción de paneles visuales para telemetría del proyecto y preparación de demostración técnica audiovisual para la SITEC 2026."
+        ]
+      ],
+      "limitations": "La infraestructura en producción atiende a usuarios del proyecto académico y se administra bajo las políticas de credenciales y presupuesto de la institución.",
+      "evidence": "Informe final de prácticas firmado y calificado con nota 10,0 (Excelente) por el Prof. Dr. Ronaldo de Freitas Zampolo. Certificado oficial de Registro de Software en el INPI nº BR512025004902-1 disponible en /docs/inpi-dmovel-br512025004902-1.pdf. Código y versiones públicas en el GitHub de LAPSHub.",
+      "takeaway": "Ingeniería de software aplicada a un producto de impacto social real: nube, móvil y rigor en la gestión de memoria.",
+      "outcomes": [
+        {
+          "value": "10,0",
+          "label": "Evaluación oficial de supervisión con calificación Excelente en todos los criterios"
+        },
+        {
+          "value": "Cero leaks",
+          "label": "Saneamiento de fugas de memoria en la decodificación y caché de imágenes"
+        },
+        {
+          "value": "FastAPI + AWS",
+          "label": "Mantenimiento de backend en la nube con auditoría de costes y credenciales seguras"
+        },
+        {
+          "value": "Registro INPI",
+          "label": "Propiedad intelectual registrada en coautoría (BR512025004902-1 · UFOPA/UFPA/UEMA)"
         }
       ]
     }
@@ -297,6 +400,45 @@
           "label": "Lightweight containerized distribution with minimal overhead"
         }
       ]
+    },
+    "es": {
+      "eyebrow": "Seguridad · Automatización Asíncrona",
+      "title": "Escaneo asíncrono y auditoría de superficie de ataque.",
+      "summary": "Herramienta CLI y conector MCP de alto rendimiento para enumeración de subdominios, verificación de puertos y auditoría rápida de activos de red.",
+      "status": "Herramienta de código abierto en producción",
+      "role": "Autor y mantenedor. Diseñado con concurrencia no bloqueante, tipado estricto e integración directa con flujos de agentes de IA y pipelines de CI/CD.",
+      "problem": "Ejecutar reconocimiento de activos y mapeo de superficies expuestas con rapidez, sin cuellos de botella de concurrencia ni dependencias pesadas.",
+      "decisions": [
+        [
+          "Motor de concurrencia con AsyncIO",
+          "Pipeline asíncrono en Python que ejecuta resoluciones DNS y sondeos HTTP concurrentes sin bloquear el bucle de eventos."
+        ],
+        [
+          "Servidor MCP para agentes de IA",
+          "Implementación del Model Context Protocol que permite a los LLMs auditar entornos y consultar infraestructura de forma estructurada."
+        ],
+        [
+          "Contenerización y reproducibilidad",
+          "Entorno empaquetado en Docker para ejecución aislada y reproducible en terminales locales y servidores de CI/CD."
+        ]
+      ],
+      "limitations": "Diseñado para pruebas autorizadas de seguridad defensiva e inventario de activos propios. La tasa de transferencia efectiva depende de la latencia y ancho de banda de la red.",
+      "evidence": "Repositorio público en GitHub con código fuente auditable, demostración en GIF e historial verificable de contribuciones.",
+      "takeaway": "Ingeniería de software aplicada a la seguridad defensiva: alta concurrencia asíncrona y conectividad moderna con herramientas de IA.",
+      "outcomes": [
+        {
+          "value": "100% Async",
+          "label": "Motor asíncrono de alto rendimiento para escaneo de redes"
+        },
+        {
+          "value": "CLI + MCP",
+          "label": "Productividad en línea de comandos y conector nativo para agentes de IA"
+        },
+        {
+          "value": "Cero bloat",
+          "label": "Distribución ligera y contenerizada con mínimo consumo de recursos"
+        }
+      ]
     }
   },
   {
@@ -394,6 +536,45 @@
         {
           "value": "Zero backend",
           "label": "Stochastic optimization executed entirely client-side"
+        }
+      ]
+    },
+    "es": {
+      "eyebrow": "Algoritmos · Visualización",
+      "title": "Algoritmos que usted puede observar.",
+      "summary": "Laboratorio en el navegador para comparar algoritmos genéticos, optimización por enjambre de partículas y evolución diferencial en funciones de prueba.",
+      "status": "Demostración interactiva pública",
+      "role": "Proyecto publicado en mi GitHub. Código fuente e historial abiertos permiten inspeccionar la implementación; las características están documentadas en su README.",
+      "problem": "Hacer más comprensible la búsqueda de soluciones de optimización observando poblaciones y comparando su convergencia visualmente.",
+      "decisions": [
+        [
+          "Completamente en el navegador",
+          "JavaScript ejecuta los algoritmos sin un backend, facilitando el acceso y la experimentación inmediata."
+        ],
+        [
+          "Comparación visual",
+          "Plotly muestra superficies 3D, poblaciones y curvas de convergencia para AG, PSO y ED."
+        ],
+        [
+          "Parámetros ajustables",
+          "Los controles permiten ajustar hiperparámetros y experimentar con funciones con interfaz en portugués e inglés."
+        ]
+      ],
+      "limitations": "Herramienta de exploración didáctica. Los resultados dependen de la función, parámetros y aleatoriedad; una ejecución aislada no demuestra la superioridad de un algoritmo.",
+      "evidence": "La demostración y el código público permiten reproducir experimentos. El README documenta los operadores de cada algoritmo y las opciones de la interfaz.",
+      "takeaway": "Conectar fundamentos matemáticos con una interfaz interactiva que invita a la experimentación.",
+      "outcomes": [
+        {
+          "value": "3 Algoritmos",
+          "label": "Comparación directa de convergencia entre AG, PSO y ED"
+        },
+        {
+          "value": "Superficies 3D",
+          "label": "Visualización tridimensional de funciones de prueba con Plotly"
+        },
+        {
+          "value": "Cero backend",
+          "label": "Optimización estocástica ejecutada completamente en el cliente vía JavaScript"
         }
       ]
     }
@@ -494,6 +675,45 @@
         {
           "value": "100% Web",
           "label": "Educational convolution and Fourier simulation accessible on any browser"
+        }
+      ]
+    },
+    "es": {
+      "eyebrow": "Procesamiento de Señales · Web",
+      "title": "Convolución continua y series de Fourier en 3D en tiempo real en el navegador.",
+      "summary": "Laboratorio interactivo para estudiar convolución y descomposición de Fourier en 3D a 120 FPS. Desarrollado con Canvas 2D nativo y proyección de cámara de Three.js, sin bibliotecas externas de gráficos.",
+      "status": "Aplicación web pública",
+      "role": "Creador del proyecto. Diseñado para ejecutarse completamente en el cliente en GitHub Pages sin dependencias de servidor.",
+      "problem": "Explicar visualmente la integral de convolución continua y las series de Fourier sin depender de software privativo de escritorio.",
+      "decisions": [
+        [
+          "Canvas 2D con proyección 3D",
+          "Pipeline propio de renderizado a 120 FPS utilizando la proyección geométrica de cámara de Three.js directamente en Canvas 2D, evitando el peso de frameworks de gráficos."
+        ],
+        [
+          "Cálculo de soporte y regímenes",
+          "Algoritmo que calcula los intervalos de soporte de las señales y deduce los límites exactos de integración en cada etapa."
+        ],
+        [
+          "Casos clásicos de libros de texto",
+          "Ejemplos analíticos basados en las referencias de Oppenheim y Lathi, con verificación gráfica paso a paso."
+        ]
+      ],
+      "limitations": "Se ejecuta completamente en el navegador; mantener 120 FPS depende del soporte de aceleración gráfica por hardware del dispositivo.",
+      "evidence": "Código abierto y demostración interactiva en GitHub Pages con soporte para portugués e inglés.",
+      "takeaway": "Construcción de interfaces matemáticas de alto rendimiento directamente sobre APIs nativas del navegador.",
+      "outcomes": [
+        {
+          "value": "120 FPS",
+          "label": "Renderizado continuo en Canvas 2D sin bibliotecas pesadas de terceros"
+        },
+        {
+          "value": "3D Realtime",
+          "label": "Proyección geométrica de cámara en tiempo real mediante Three.js"
+        },
+        {
+          "value": "100% Web",
+          "label": "Simulación didáctica de convolución y Fourier accesible en cualquier dispositivo"
         }
       ]
     }

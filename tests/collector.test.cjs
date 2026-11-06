@@ -32,6 +32,12 @@ test("accepts the exact browser schema and maintains stable column ordering", ()
   assert.equal(rows[0][1], e.id);
   assert.equal(rows[0][6], "hero-projects");
 });
+test("accepts events in all supported languages: pt, en, es", () => {
+  for (const lang of ["pt", "en", "es"]) {
+    const rows = validate([event({ lang })]);
+    assert.equal(rows.length, 1);
+  }
+});
 for (const [key, value] of Object.entries({
   name: "unknown",
   page: "/?email=secret",

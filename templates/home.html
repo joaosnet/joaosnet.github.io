@@ -156,6 +156,38 @@
   </div>
   {% endif %}
 
+  {% if site.software_registration %}
+  <div class="container ip-container">
+    <div class="section-subheading">
+      <p class="eyebrow">{{ t.ip_kicker }}</p>
+      <h3>{{ t.ip_title }}</h3>
+    </div>
+    <article class="ip-card">
+      <div class="ip-card-header">
+        <span class="ip-badge"><span class="tiny-dot" aria-hidden="true"></span>{{ t.ip_badge }}</span>
+        <h4 class="ip-program-title">{{ site.software_registration.program_title }}</h4>
+      </div>
+      <div class="ip-meta-grid">
+        <div class="ip-meta-item">
+          <span class="ip-meta-label">{{ t.ip_holders_label }}</span>
+          <span class="ip-meta-value">{{ site.software_registration.holders|join(', ') }}</span>
+        </div>
+        <div class="ip-meta-item">
+          <span class="ip-meta-label">{{ t.ip_issued_label }}</span>
+          <span class="ip-meta-value">{{ site.software_registration.issued_date }} · Lei 9.609/1998</span>
+        </div>
+      </div>
+      <div class="ip-hash-box">
+        <span class="ip-hash-label">{{ t.ip_hash_label }}</span>
+        <code class="ip-hash-code">{{ site.software_registration.hash_value }}</code>
+      </div>
+      <div class="ip-card-footer">
+        <a class="button outline ip-verify-btn" href="{{ site.software_registration.certificate_pdf }}" target="_blank" rel="noopener noreferrer" data-track="ip-certificate">{{ t.ip_verify_cta }} <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+  </div>
+  {% endif %}
+
   <div class="container skills-map" id="skills">
     <p>{{ t.skills_intro }}</p>
     <div class="skill-network">

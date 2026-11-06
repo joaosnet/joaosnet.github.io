@@ -14,6 +14,7 @@
   <link rel="canonical" href="https://joaosnet.github.io/en/projects/evolutionary-lab/">
   <link rel="alternate" hreflang="pt-BR" href="https://joaosnet.github.io/projects/evolutionary-lab/">
   <link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/evolutionary-lab/">
+  <link rel="alternate" hreflang="es" href="https://joaosnet.github.io/es/projects/evolutionary-lab/">
   <link rel="alternate" hreflang="x-default" href="https://joaosnet.github.io/projects/evolutionary-lab/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
@@ -47,7 +48,12 @@
         <a href="/en/#contact" data-track="nav-contact">Contact</a>
       </nav>
       <div class="header-tools">
-        <a class="language-switch" href="/projects/evolutionary-lab/" hreflang="pt-BR" lang="pt-BR" aria-label="Ler em português" data-track="language">PT <span aria-hidden="true">↗</span></a>
+        <div class="lang-switch-group" role="group" aria-label="Switch language">
+          
+          <a class="language-switch" href="/projects/evolutionary-lab/" hreflang="pt-BR" lang="pt-BR" aria-label="Ler em português" data-track="language">PT <span aria-hidden="true">↗</span></a>
+          <a class="language-switch-alt" href="/es/projects/evolutionary-lab/" hreflang="es" lang="es" aria-label="Leer en español" data-track="language-secondary">ES <span aria-hidden="true">↗</span></a>
+          
+        </div>
         <button class="theme-toggle" type="button" aria-label="Switch light/dark theme" title="Switch light/dark theme" data-track="theme" hidden><span aria-hidden="true">◐</span></button>
         <div class="palette-wrapper">
           <button class="palette-toggle" type="button" aria-expanded="false" aria-controls="palette-popover" aria-label="Customize theme hue" title="Customize theme hue" data-track="theme-palette" hidden>
@@ -128,7 +134,8 @@
           <select id="site-language" class="language-select" data-track="language-select" aria-label="Select portfolio language" hidden>
             <optgroup label="Native Versions">
               <option value="pt">Português (Brasil)</option>
-              <option value="en">English (US)</option>
+              <option value="en" selected>English (US)</option>
+              <option value="es">Español</option>
             </optgroup>
             <optgroup data-machine label="Machine Translation">
             </optgroup>

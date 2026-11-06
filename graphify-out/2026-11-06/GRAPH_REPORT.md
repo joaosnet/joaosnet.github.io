@@ -1,15 +1,17 @@
 # Graph Report - joaosnet.github.io  (2026-11-06)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 45 files · ~49,338 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .gs 1, .css 1)
 
 ## Summary
-- 409 nodes · 509 edges · 33 communities (21 shown, 12 thin omitted)
+- 407 nodes · 487 edges · 33 communities (21 shown, 12 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.93)
-- Token cost: 1,375 input · 341 output
+- Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eef8ee2d`
+- Built from commit: `5b1ec2a5`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,6 +22,7 @@
 - Analytics and Review Documentation
 - GitHub Pages Deployment
 - Dependabot Configuration
+- Bilingual CV Generation
 - Frontend Dependencies and Testing
 - Maintenance Workflow
 - Node.js Core Utilities
@@ -43,20 +46,20 @@
 ## God Nodes (most connected - your core abstractions)
 1. `with` - 14 edges
 2. `Sheet` - 13 edges
-3. `build()` - 12 edges
+3. `with` - 12 edges
 4. `private_preview()` - 12 edges
-5. `with` - 12 edges
-6. `main()` - 11 edges
-7. `read_json()` - 10 edges
-8. `Testes Locais - Portfolio Website` - 10 edges
-9. `João Silva Neto · Portfolio` - 9 edges
-10. `Page` - 8 edges
+5. `main()` - 11 edges
+6. `Testes Locais - Portfolio Website` - 10 edges
+7. `João Silva Neto · Portfolio` - 9 edges
+8. `Page` - 8 edges
+9. `client()` - 8 edges
+10. `read_json()` - 7 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Limitações que permanecem explícitas` --references--> `main()`  [INFERRED]
-  docs/preview-review.md → update_projects.py
 - `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` --references--> `private_preview()`  [INFERRED]
   docs/architecture-security-isolation.md → update_projects.py
+- `Limitações que permanecem explícitas` --references--> `main()`  [INFERRED]
+  docs/preview-review.md → update_projects.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `test_private_review_and_env_are_ignored()`  [INFERRED]
   docs/architecture-security-isolation.md → tests/test_env_variables.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `private_preview()`  [INFERRED]
@@ -147,22 +150,22 @@ Nodes (5): on, pull_request, push, workflow_call, branches
 
 ### Community 57 - "Build System and Agent Rules"
 Cohesion: 0.08
-Nodes (28): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, build(), load_projects(), read_json(), safe_url(), 2. Ponto de Entrada `main()` e Governança de Dados, generate_cvs() (+20 more)
+Nodes (23): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, read_json(), 2. Ponto de Entrada `main()` e Governança de Dados, test_live_production_telemetry_health(), test_telemetry_config_and_catalog_alignment(), client(), test_api_failure_does_not_accept_redirect_or_data() (+15 more)
 
 ### Community 58 - "HTML and PDF Parsing Tests"
-Cohesion: 0.12
-Nodes (8): built(), Page, test_bilingual_routes_metadata_and_names(), test_build_cannot_delete_other_directories(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_metrics_have_no_transport_before_backend_validation(), test_strict_csp_and_no_inline_event_handlers()
+Cohesion: 0.11
+Nodes (8): built(), Page, test_bilingual_routes_metadata_and_names(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_metrics_have_no_transport_before_backend_validation(), test_private_projects_require_review_and_cannot_export_sources(), test_strict_csp_and_no_inline_event_handlers()
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `joaosnet-portfolio`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 235 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 238 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `main()` connect `Build System and Agent Rules` to `Analytics and Review Documentation`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `private_preview()` (e.g. with `Rules for All Agents & Subagents:` and `3. Isolamento e Segurança de Projetos Privados (`private_preview`)`) actually correct?**
   _`private_preview()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `joaosnet-portfolio` to the rest of the system?**
@@ -171,7 +174,7 @@ _Questions this graph is uniquely positioned to answer:_
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._
 - **Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `Build System and Agent Rules`?**
   _High betweenness centrality (0.091) - this node is a cross-community bridge._
+- **Are the 3 inferred relationships involving `main()` (e.g. with `Rules for All Agents & Subagents:` and `2. Ponto de Entrada `main()` e Governança de Dados`) actually correct?**
+  _`main()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Deployment Pipeline Configuration` be split into smaller, more focused modules?**
   _Cohesion score 0.08 - nodes in this community are weakly interconnected._
-- **Should `Security Architecture and Governance` be split into smaller, more focused modules?**
-  _Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected._

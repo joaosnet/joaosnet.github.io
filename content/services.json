@@ -23,6 +23,16 @@
         ],
         "proof_label": "Explore related projects"
       },
+      "es": {
+        "title": "APIs y Microservicios de Alto Rendimiento",
+        "description": "Arquitectura y desarrollo de backends asíncronos y escalables en Python (FastAPI) y Rust, integrados con la nube AWS y bases de datos relacionales.",
+        "deliverables": [
+          "Endpoints asíncronos y documentados (OpenAPI / Swagger)",
+          "Contenerización Docker y pipelines de despliegue en la nube",
+          "Auditoría de rendimiento, observabilidad y mitigación de memory leaks"
+        ],
+        "proof_label": "Ver proyectos relacionados"
+      },
       "proof": ["dmovel", "klique-api"]
     },
     {
@@ -47,6 +57,16 @@
           "High-throughput asynchronous reconnaissance and attack-surface scanning"
         ],
         "proof_label": "Explore automations"
+      },
+      "es": {
+        "title": "Automatizaciones de Seguridad y Servidores MCP",
+        "description": "Herramientas CLI asíncronas, conectores de IA mediante protocolo MCP (Model Context Protocol) y canalizaciones automatizadas de reconocimiento y productividad técnica.",
+        "deliverables": [
+          "Servidores MCP a medida para integración con Claude, Gemini e IDEs",
+          "Herramientas CLI rápidas y reproducibles en Python y Rust",
+          "Pipelines de escaneo asíncrono y auditoría de superficie de ataque"
+        ],
+        "proof_label": "Ver automatizaciones"
       },
       "proof": ["varedura", "sigaa-mcp"]
     },
@@ -73,6 +93,16 @@
         ],
         "proof_label": "Explore systems"
       },
+      "es": {
+        "title": "Sistemas Embebidos, IoT y Paneles Analíticos",
+        "description": "Firmware para microcontroladores ESP32, procesamiento de señales de sensores, telemetría en tiempo real y paneles analíticos en el navegador.",
+        "deliverables": [
+          "Firmware ESP32 con Wi-Fi/MQTT y protocolos personalizados de paquetes",
+          "Pipelines de procesamiento de señales e inferencia neuronal embebida (ONNX)",
+          "Paneles interactivos en Dash (Python) y gráficos a 120 FPS en Canvas"
+        ],
+        "proof_label": "Ver sistemas"
+      },
       "proof": ["aethersense", "cartilha-dash"]
     }
   ],
@@ -90,6 +120,12 @@
         "subtitle": "Defined milestones and deliverables",
         "price": "Starting at $800 USD",
         "note": "Best for MVPs, complete APIs, custom MCP servers, or bounded automation pipelines with guaranteed deadlines."
+      },
+      "es": {
+        "title": "Proyecto Cerrado",
+        "subtitle": "Alcance y entregables predefinidos",
+        "price": "A partir de $800 USD",
+        "note": "Ideal para MVPs, APIs completas, servidores MCP o automatizaciones con alcance delimitado y plazo fijo."
       }
     },
     {
@@ -105,6 +141,12 @@
         "subtitle": "On-demand and flexible",
         "price": "$25 USD / hour",
         "note": "Bug diagnosis, performance tuning, architecture review, or cloud infrastructure troubleshooting."
+      },
+      "es": {
+        "title": "Consultoría por Hora",
+        "subtitle": "Bajo demanda y flexible",
+        "price": "$25 USD / hora",
+        "note": "Diagnóstico de fallos, optimización de rendimiento, revisión de arquitectura o saneamiento de infraestructura en la nube."
       }
     },
     {
@@ -120,6 +162,12 @@
         "subtitle": "Ongoing engineering capacity",
         "price": "Starting at $3,000 USD / mo",
         "note": "Dedicated backend, automation, and systems engineering integrated directly into your engineering team (Full-time / Contract)."
+      },
+      "es": {
+        "title": "Contrato Mensual / Remoto",
+        "subtitle": "Dedicación continua para su equipo",
+        "price": "A partir de $3,000 USD / mes",
+        "note": "Dedicación en ingeniería backend, automatización y sistemas con integración directa a su equipo técnico (Full-time / Contract)."
       }
     }
   ]

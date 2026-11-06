@@ -36,15 +36,23 @@
   let desired =
     normalize(read() || navigator.languages?.[0] || navigator.language) ||
     source;
-  // Explicit English URLs keep their reviewed English copy unless a machine language was chosen.
-  if (location.pathname.startsWith("/en/") && ["pt", "en"].includes(desired))
+  // Explicit English / Spanish URLs keep their reviewed copy unless a machine language was chosen.
+  if (location.pathname.startsWith("/en/") && ["pt", "en", "es"].includes(desired))
     desired = "en";
+  if (location.pathname.startsWith("/es/") && ["pt", "en", "es"].includes(desired))
+    desired = "es";
   const native = (language) => {
     save(language);
-    let path = location.pathname.replace(/^\/en(?:\/|$)/, "/");
+    let path = location.pathname.replace(/^\/(?:en|es)(?:\/|$)/, "/");
     if (!path.startsWith("/")) path = "/" + path;
-    const target =
-      language === "en" ? "/en" + (path === "/" ? "/" : path) : path;
+    let target;
+    if (language === "en") {
+      target = "/en" + (path === "/" ? "/" : path);
+    } else if (language === "es") {
+      target = "/es" + (path === "/" ? "/" : path);
+    } else {
+      target = path;
+    }
     const targetUrl = target + location.search + location.hash;
     if (location.pathname === target) {
       location.reload();
@@ -53,10 +61,11 @@
     }
   };
   document
-    .querySelectorAll(".language-switch")
-    .forEach((link) =>
-      link.addEventListener("click", () => save(source === "pt" ? "en" : "pt")),
-    );
+    .querySelectorAll(".language-switch, .language-switch-alt")
+    .forEach((link) => {
+      const targetLang = link.getAttribute("lang")?.split("-")[0] || "pt";
+      link.addEventListener("click", () => save(targetLang));
+    });
   let names;
   try {
     names = new Intl.DisplayNames([source], { type: "language" });
@@ -68,7 +77,7 @@
   const formatName = (str) =>
     str ? str.charAt(0).toUpperCase() + str.slice(1) : str;
   [...supported]
-    .filter((code) => !["pt", "en"].includes(code))
+    .filter((code) => !["pt", "en", "es"].includes(code))
     .sort((a, b) => (names?.of(a) || a).localeCompare(names?.of(b) || b))
     .forEach((code) => {
       const option = document.createElement("option");
@@ -80,19 +89,15 @@
   picker.value = desired;
   const updateStatus = () => {
     if (!status) return;
-    if (desired === "pt") {
-      status.textContent =
-        source === "pt"
-          ? "Versão nativa (revisada)"
-          : "Native version (reviewed)";
-    } else if (desired === "en") {
-      status.textContent =
-        source === "pt"
-          ? "Versão nativa (revisada)"
-          : "Native version (reviewed)";
+    if (source === "pt") {
+      status.textContent = "Versão nativa (revisada)";
+    } else if (source === "es") {
+      status.textContent = "Versión nativa (revisada)";
+    } else {
+      status.textContent = "Native version (reviewed)";
     }
   };
-  if (["pt", "en"].includes(desired)) {
+  if (["pt", "en", "es"].includes(desired)) {
     updateStatus();
   }
   // Never let the translation engine inspect editable/contact content.
@@ -140,20 +145,22 @@
     status.textContent =
       source === "pt"
         ? "Traduzindo automaticamente…"
-        : "Translating automatically…";
+        : source === "es"
+          ? "Traduciendo automáticamente…"
+          : "Translating automatically…";
     try {
       const engine = await load();
       if (current !== revision) return;
       const timer = setTimeout(() => {
         if (current === revision)
           status.textContent =
-            "Translation unavailable. Português / English remain available.";
+            "Translation unavailable. Português / English / Español remain available.";
       }, 20000);
       engine.resultCallback = () => {
         clearTimeout(timer);
         if (current !== revision) return;
         status.textContent = engine.error
-          ? "Translation unavailable. Português / English remain available."
+          ? "Translation unavailable. Português / English / Español remain available."
           : "Auto · GTranslate / Google";
         if (!engine.error) {
           document.documentElement.lang = language;
@@ -174,12 +181,12 @@
     } catch {
       if (current === revision)
         status.textContent =
-          "Translation unavailable. Português / English remain available.";
+          "Translation unavailable. Português / English / Español remain available.";
     }
   };
   picker.addEventListener("change", () => {
     desired = picker.value;
-    if (["pt", "en"].includes(desired)) {
+    if (["pt", "en", "es"].includes(desired)) {
       native(desired);
     } else {
       save(desired);
@@ -195,5 +202,5 @@
       translate(desired);
     }
   });
-  if (!["pt", "en"].includes(desired)) translate(desired);
+  if (!["pt", "en", "es"].includes(desired)) translate(desired);
 })();

@@ -48,6 +48,7 @@ var DEFAULT_CATALOG = {
     "/privacy/",
     "/projects/aethersense/",
     "/projects/dmovel/",
+    "/projects/varedura/",
     "/projects/evolutionary-lab/",
     "/projects/interactive-signals/",
     "/404.html",
@@ -55,9 +56,18 @@ var DEFAULT_CATALOG = {
     "/en/privacy/",
     "/en/projects/aethersense/",
     "/en/projects/dmovel/",
+    "/en/projects/varedura/",
     "/en/projects/evolutionary-lab/",
     "/en/projects/interactive-signals/",
     "/en/404.html",
+    "/es/",
+    "/es/privacy/",
+    "/es/projects/aethersense/",
+    "/es/projects/dmovel/",
+    "/es/projects/varedura/",
+    "/es/projects/evolutionary-lab/",
+    "/es/projects/interactive-signals/",
+    "/es/404.html",
   ],
   elements: [
     "back-top",
@@ -88,11 +98,14 @@ var DEFAULT_CATALOG = {
     "header-contact",
     "hero-projects",
     "hero-scroll",
+    "ip-certificate",
     "lab-demo",
     "lab-noise",
     "lab-reset",
     "lab-smoothing",
     "language",
+    "language-es",
+    "language-secondary",
     "language-select",
     "lattes",
     "linkedin",
@@ -258,7 +271,7 @@ function validateBatch(payload, allowed, now) {
         "header",
         "page",
       ].indexOf(e.section) < 0 ||
-      ["pt", "en"].indexOf(e.lang) < 0 ||
+      ["pt", "en", "es"].indexOf(e.lang) < 0 ||
       ["mouse", "touch", "pen", "keyboard", "system"].indexOf(e.modality) < 0 ||
       ["none", "success", "error", "invalid", "timeout", "limited"].indexOf(
         e.outcome,
