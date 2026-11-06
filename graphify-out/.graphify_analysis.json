@@ -48,6 +48,16 @@
     ],
     "2": [
       "ast",
+      "docs_architecture_security_isolation",
+      "docs_architecture_security_isolation_1_topologia_do_sistema_e_fronteira_de_publicação",
+      "docs_architecture_security_isolation_3_isolamento_e_segurança_de_projetos_privados_private_preview",
+      "docs_architecture_security_isolation_4_testes_de_segurança_em_ambiente_sintético_tests_test_env_variables_py",
+      "docs_architecture_security_isolation_5_diretriz_universal_para_agentes_de_ia_knowledge_graph_first",
+      "docs_architecture_security_isolation_a_proibição_estrita_de_varredura_especulativa",
+      "docs_architecture_security_isolation_arquitetura_governança_de_dados_e_isolamento_de_segurança",
+      "docs_architecture_security_isolation_b_ordem_de_navegação_obrigatória",
+      "docs_architecture_security_isolation_c_protocolo_de_delegação_para_subagentes",
+      "docs_architecture_security_isolation_d_higiene_e_atualização_do_grafo",
       "pytest",
       "tests_test_env_variables",
       "tests_test_env_variables_rationale_1",
@@ -236,13 +246,9 @@
       "github_workflows_update_projects_update_projects_timeout_minutes",
       "github_workflows_update_projects_with_python_version"
     ],
-    "11": [
-      "agents",
-      "agents_graphify"
-    ],
     "12": [
       "claude",
-      "claude_graphify"
+      "claude_graphify_knowledge_graph_first"
     ],
     "13": [
       "github_workflows_validate_steps_with",
@@ -281,7 +287,7 @@
     ],
     "16": [
       "gemini",
-      "gemini_graphify"
+      "gemini_graphify_knowledge_graph_first"
     ],
     "17": [
       "github_workflows_validate_jobs_validate",
@@ -378,6 +384,9 @@
       "pkg_joaosnet_portfolio"
     ],
     "57": [
+      "agents",
+      "agents_graphify_knowledge_graph_first",
+      "agents_rules_for_all_agents_subagents",
       "argparse",
       "base64",
       "build_site",
@@ -387,6 +396,7 @@
       "build_site_read_json",
       "build_site_safe_url",
       "datetime",
+      "docs_architecture_security_isolation_2_ponto_de_entrada_main_e_governança_de_dados",
       "hashlib",
       "jinja2",
       "json",
@@ -469,7 +479,7 @@
   "cohesion": {
     "0": 0.125,
     "1": 0.08,
-    "2": 0.38095238095238093,
+    "2": 0.14705882352941177,
     "3": 0.09057971014492754,
     "4": 0.18181818181818182,
     "5": 0.2,
@@ -478,7 +488,6 @@
     "8": 0.06896551724137931,
     "9": 0.07407407407407407,
     "10": 0.09090909090909091,
-    "11": 1.0,
     "12": 1.0,
     "13": 0.18181818181818182,
     "14": 0.2,
@@ -498,7 +507,7 @@
     "42": 0.4,
     "44": 1.0,
     "46": 1.0,
-    "57": 0.08490566037735849,
+    "57": 0.07769423558897243,
     "58": 0.11904761904761904,
     "136": 0.2857142857142857
   },
@@ -519,9 +528,19 @@
       "degree": 12
     },
     {
+      "id": "update_projects_private_preview",
+      "label": "private_preview()",
+      "degree": 12
+    },
+    {
       "id": "github_workflows_maintenance_steps_with",
       "label": "with",
       "degree": 12
+    },
+    {
+      "id": "update_projects_main",
+      "label": "main()",
+      "degree": 11
     },
     {
       "id": "build_site_read_json",
@@ -532,16 +551,6 @@
       "id": "tests_testes_testes_locais_portfolio_website",
       "label": "Testes Locais - Portfolio Website",
       "degree": 10
-    },
-    {
-      "id": "update_projects_main",
-      "label": "main()",
-      "degree": 9
-    },
-    {
-      "id": "update_projects_private_preview",
-      "label": "private_preview()",
-      "degree": 9
     },
     {
       "id": "readme_joão_silva_neto_portfolio",
@@ -567,55 +576,60 @@
       "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities; peripheral node `Limitações que permanecem explícitas` unexpectedly reaches hub `main()`"
     },
     {
-      "source": "test_build_cannot_delete_other_directories()",
-      "target": "build()",
-      "source_files": [
-        "tests/test_site_structure.py",
-        "build_site.py"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `test_build_cannot_delete_other_directories()` unexpectedly reaches hub `build()`"
-    },
-    {
-      "source": "test_metrics_have_no_transport_before_backend_validation()",
-      "target": "read_json()",
-      "source_files": [
-        "tests/test_site_structure.py",
-        "build_site.py"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "connects across different repos/directories; bridges separate communities; peripheral node `test_metrics_have_no_transport_before_backend_validation()` unexpectedly reaches hub `read_json()`"
-    },
-    {
-      "source": "built()",
-      "target": "build()",
-      "source_files": [
-        "tests/test_site_structure.py",
-        "build_site.py"
-      ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "connects across different repos/directories; bridges separate communities"
-    },
-    {
-      "source": "test_private_import_without_token_does_not_access_network()",
+      "source": "3. Isolamento e Segurança de Projetos Privados (`private_preview`)",
       "target": "private_preview()",
       "source_files": [
-        "tests/test_env_variables.py",
+        "docs/architecture-security-isolation.md",
         "update_projects.py"
       ],
-      "confidence": "EXTRACTED",
-      "relation": "calls",
-      "why": "connects across different repos/directories; bridges separate communities"
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities; peripheral node `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` unexpectedly reaches hub `private_preview()`"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "test_private_review_and_env_are_ignored()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "tests/test_env_variables.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `test_private_review_and_env_are_ignored()` unexpectedly reaches hub `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)`"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "private_preview()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "update_projects.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "test_import_does_not_load_dotenv()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "tests/test_env_variables.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
     }
   ],
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `main()` connect `Site Build Logic` to `Analytics and Review Docs`?",
-      "why": "High betweenness centrality (0.086) - this node is a cross-community bridge."
+      "question": "Why does `main()` connect `Build System and Agent Rules` to `Analytics and Review Documentation`?",
+      "why": "High betweenness centrality (0.098) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `private_preview()` (e.g. with `Rules for All Agents & Subagents:` and `3. Isolamento e Segurança de Projetos Privados (`private_preview`)`) actually correct?",
+      "why": "`private_preview()` has 3 INFERRED edges - model-reasoned connections that need verification."
     },
     {
       "type": "isolated_nodes",
@@ -624,28 +638,23 @@
     },
     {
       "type": "low_cohesion",
-      "question": "Should `Portfolio Project Overview` be split into smaller, more focused modules?",
+      "question": "Should `Portfolio Features and Documentation` be split into smaller, more focused modules?",
       "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Limitações que permanecem explícitas` connect `Analytics and Review Docs` to `Site Build Logic`?",
-      "why": "High betweenness centrality (0.085) - this node is a cross-community bridge."
+      "question": "Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `Build System and Agent Rules`?",
+      "why": "High betweenness centrality (0.091) - this node is a cross-community bridge."
     },
     {
       "type": "low_cohesion",
-      "question": "Should `Deployment Pipeline` be split into smaller, more focused modules?",
+      "question": "Should `Deployment Pipeline Configuration` be split into smaller, more focused modules?",
       "why": "Cohesion score 0.08 - nodes in this community are weakly interconnected."
     },
     {
       "type": "low_cohesion",
-      "question": "Should `Analytics and Review Docs` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.09057971014492754 - nodes in this community are weakly interconnected."
-    },
-    {
-      "type": "low_cohesion",
-      "question": "Should `Node Dependency Management` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.07308377896613191 - nodes in this community are weakly interconnected."
+      "question": "Should `Security Architecture and Governance` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected."
     }
   ]
 }

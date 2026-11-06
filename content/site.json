@@ -6,77 +6,102 @@
   "lattes": "https://lattes.cnpq.br/1140714924160415",
   "linkedin": "https://www.linkedin.com/in/joaonativi/",
   "form_endpoint": "https://formspree.io/f/mdoqyljj",
+  "scheduling": "https://cal.com/joao-neto-xqw0df/15min",
+  "google_site_verification": "kBN4gIT2PMTq6IDMQQRmtiMgn5Jqvna483A0dDH38dE",
   "analytics_endpoint": "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec",
   "analytics_validated": true,
   "release": "portfolio-excellence-v2",
+  "testimonial": {
+    "author": "Prof. Dr. Ronaldo de Freitas Zampolo",
+    "role": {
+      "pt": "Professor Orientador no LaPS / FCT-UFPA",
+      "en": "Faculty Advisor at LaPS / FCT-UFPA"
+    },
+    "affiliation": "LaPS · FCT / UFPA",
+    "evaluation": {
+      "grade": "10,0",
+      "rating": {
+        "pt": "Excelente",
+        "en": "Excellent"
+      }
+    },
+    "quote": {
+      "pt": "O discente João da Cruz de Natividade e Silva Neto executou com competência as tarefas de refatoração de interface móvel, saneamento de bugs e gerenciamento da infraestrutura em nuvem AWS. O estagiário prestou contribuição importante para o desenvolvimento do ecossistema assistivo DMóvel e para a produção audiovisual voltada à SITEC 2026, demonstrando maturidade técnica, rigor e responsabilidade.",
+      "en": "The student João da Cruz de Natividade e Silva Neto executed with competence the tasks of mobile interface refactoring, bug fixing, and AWS cloud infrastructure management. He made a significant contribution to the DMóvel assistive ecosystem and to audiovisual production for SITEC 2026, demonstrating technical maturity, rigor, and responsibility."
+    }
+  },
+  "timezone": {
+    "pt": "Fuso UTC-3 (Belém/PA) · Sobreposição com horário comercial dos EUA (EST) e Europa (CET) · Inglês avançado",
+    "en": "UTC-3 (Belém, Brazil) · Full overlap with US business hours (EST) and partial with Europe (CET) · Advanced English"
+  },
   "profile": {
     "pt": {
-      "title": "Desenvolvedor de software · Estudante de Engenharia de Computação",
-      "description": "João Natividade — desenvolvedor de software e formando em Engenharia de Computação na UFPA. Backend em Python, sistemas em Rust, automação e interfaces gráficas no navegador.",
-      "availability": "Estágio concluído no LaPS/UFPA · Disponível para contratação",
+      "title": "Engenheiro de Software · Backend Python & Rust, Automação e IoT",
+      "description": "João Natividade — engenheiro de software com foco em backend Python, sistemas em Rust, automação MCP, computação em nuvem (AWS) e IoT. Disponível para projetos sob demanda, consultoria e contratação remota.",
+      "availability": "Disponível para projetos sob demanda, consultoria técnica e vagas remotas",
       "headline": "Engenharia de software,",
       "headline_accent": "sistemas e interfaces.",
-      "intro": "Sou João Natividade, desenvolvedor de software e estudante de Engenharia de Computação na UFPA. Trabalho com backend em Python, sistemas em Rust, automação e interfaces gráficas no navegador.",
-      "focus": "Backend · Python & Rust · Nuvem & Automação",
-      "location": "Belém, PA · Brasil",
+      "intro": "Sou João Natividade, engenheiro de software. Construo APIs de alta performance em Python e Rust, automações de segurança e servidores MCP, sistemas IoT com ESP32 e interfaces analíticas em tempo real.",
+      "focus": "Backend · Python & Rust · Nuvem AWS & Automação MCP",
+      "location": "Belém, PA · Brasil (Remoto)",
       "education": "Engenharia de Computação · UFPA",
       "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado.",
-      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs e serviços na nuvem ao processamento de dados e interfaces em tempo real. Experiência prática em projetos acadêmicos e no estágio obrigatório no laboratório LaPS da UFPA.",
+      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs assíncronas e serviços na nuvem (AWS) à conteinerização, automação com MCP e telemetria de sensores em tempo real. Experiência comprovada em produção com avaliação máxima (10,0) no laboratório LaPS da UFPA.",
       "experience": [
         [
           "2026",
-          "Estágio em Engenharia de Software · LaPS / UFPA (DMóvel)",
-          "Manutenção de backend em FastAPI na AWS, telas em Flutter/Dart, saneamento de vazamentos de memória e criação de dashboards em Dash e Plotly. Avaliado com nota 10,0."
+          "Engenharia de Software & Backend · LaPS / UFPA (DMóvel)",
+          "Manutenção de backend em FastAPI na AWS, refatoração de telas em Flutter/Dart com eliminação de vazamentos de memória e criação de dashboards em Dash. Avaliado com nota máxima 10,0."
         ],
         [
           "2024 — atual",
-          "Automação & microsserviços",
-          "Desenvolvimento de serviços em Python, automação de fluxos com MCP e conteinerização com Docker."
+          "Automação & Servidores MCP",
+          "Desenvolvimento de servidores MCP para conectividade de IA, ferramentas CLI assíncronas de segurança (Varedura) e conteinerização com Docker."
         ],
         [
           "2023 — atual",
-          "Sistemas embarcados & sinais",
-          "Processamento de sinais e IoT com ESP32 e Rust (AetherSense) e laboratórios interativos em Canvas 2D a 120 FPS."
+          "Sistemas Embarcados & IoT",
+          "Processamento de sinais e WiFi Sensing com ESP32 e Rust (AetherSense) e laboratórios interativos em Canvas a 120 FPS."
         ],
         [
           "2022 — atual",
-          "Software & web",
-          "Desenvolvimento de aplicações web, APIs REST e ferramentas com foco em código aberto e reprodutibilidade."
+          "Engenharia Web & APIs",
+          "Desenvolvimento de aplicações web completas, APIs REST e ferramentas com foco em código aberto, segurança e reprodutibilidade."
         ]
       ]
     },
     "en": {
-      "title": "Software Engineer · Computer Engineering Student",
-      "description": "João Natividade — software developer and Computer Engineering student at UFPA. Python backend, Rust systems, automation and browser graphics.",
-      "availability": "Internship completed at LaPS/UFPA · Open to work",
+      "title": "Software Engineer · Backend Python & Rust, Automation & IoT",
+      "description": "João Natividade — software engineer specializing in Python backend, Rust systems, MCP automation, cloud computing (AWS), and IoT. Available for contract projects, technical consulting, and remote roles.",
+      "availability": "Available for contract projects, technical consulting, and remote roles",
       "headline": "Software engineering,",
       "headline_accent": "systems and interfaces.",
-      "intro": "I'm João Natividade, a software developer and Computer Engineering student at UFPA. I build Python backends, Rust systems, automation tools, and browser graphics.",
-      "focus": "Backend · Python & Rust · Cloud & Automation",
+      "intro": "I'm João Natividade, a software engineer. I build high-performance APIs in Python and Rust, security automations and MCP servers, IoT systems with ESP32, and real-time analytical browser interfaces.",
+      "focus": "Backend · Python & Rust · AWS Cloud & MCP Automation",
       "location": "Belém, Brazil · Remote",
       "education": "Computer Engineering · UFPA",
       "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English.",
-      "about": "Focused on end-to-end software engineering: from API design and cloud infrastructure to signal processing and real-time browser interfaces. Practical experience in academic projects and internship at UFPA's LaPS laboratory.",
+      "about": "Focused on end-to-end software engineering: from async API design and cloud infrastructure (AWS) to Docker containerization, MCP protocol automation, and real-time sensor telemetry. Proven production track record graded 10.0/10 at UFPA's LaPS laboratory.",
       "experience": [
         [
           "2026",
-          "Software Engineering Intern · LaPS / UFPA (DMóvel)",
-          "FastAPI backend maintenance on AWS, Flutter/Dart screens, memory leak resolution, and dashboards with Dash/Plotly. Graded 10.0/10."
+          "Software Engineering & Backend · LaPS / UFPA (DMóvel)",
+          "FastAPI backend maintenance on AWS, Flutter/Dart mobile screens with memory leak remediation, and Dash dashboards. Graded 10.0/10 (Excellent)."
         ],
         [
           "2024 — present",
-          "Automation & microservices",
-          "Python services, workflow automation with MCP, and Docker containerization."
+          "Automation & MCP Servers",
+          "Custom MCP servers for AI workflows, asynchronous security CLI tools (Varedura), and Docker containerization."
         ],
         [
           "2023 — present",
-          "Embedded systems & signals",
-          "Signal processing and IoT with ESP32 and Rust (AetherSense) and 120 FPS interactive Canvas 2D labs."
+          "Embedded Systems & IoT",
+          "Signal processing and WiFi Sensing with ESP32 and Rust (AetherSense) and 120 FPS interactive Canvas labs."
         ],
         [
           "2022 — present",
-          "Software & web",
-          "Web applications, REST APIs, and tools focused on open source and reproducibility."
+          "Web Engineering & APIs",
+          "Full-stack web applications, REST APIs, and tools focused on open source, security, and reproducibility."
         ]
       ]
     }

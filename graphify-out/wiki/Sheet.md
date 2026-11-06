@@ -2,7 +2,7 @@
 
 > God node · 13 connections · `tests/collector.test.cjs`
 
-**Community:** [Node Core Utilities](Node_Core_Utilities.md)
+**Community:** [Node.js Core Utilities](Node.js_Core_Utilities.md)
 
 ## Connections by Relation
 

@@ -18,7 +18,7 @@
 
 ## Relationships
 
-- [Deployment Pipeline](Deployment_Pipeline.md) (1 shared connections)
+- [Deployment Pipeline Configuration](Deployment_Pipeline_Configuration.md) (1 shared connections)
 
 ## Source Files
 

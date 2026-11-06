@@ -1,4 +1,4 @@
-# Analytics and Review Docs
+# Analytics and Review Documentation
 
 > 24 nodes · cohesion 0.09
 
@@ -31,9 +31,9 @@
 
 ## Relationships
 
-- [Local Testing Documentation](Local_Testing_Documentation.md) (1 shared connections)
-- [Site Build Logic](Site_Build_Logic.md) (1 shared connections)
-- [Portfolio Project Overview](Portfolio_Project_Overview.md) (1 shared connections)
+- [Local Test Suite Execution](Local_Test_Suite_Execution.md) (1 shared connections)
+- [Build System and Agent Rules](Build_System_and_Agent_Rules.md) (1 shared connections)
+- [Portfolio Features and Documentation](Portfolio_Features_and_Documentation.md) (1 shared connections)
 
 ## Source Files
 

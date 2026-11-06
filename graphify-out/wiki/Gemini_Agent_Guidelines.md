@@ -1,11 +1,11 @@
-# Agent Documentation
+# Gemini Agent Guidelines
 
 > 2 nodes · cohesion 1.00
 
 ## Key Concepts
 
-- **AGENTS.md** (1 connections) — `AGENTS.md`
-- **graphify** (1 connections) — `AGENTS.md`
+- **GEMINI.md** (1 connections) — `GEMINI.md`
+- **graphify & Knowledge Graph First** (1 connections) — `GEMINI.md`
 
 ## Relationships
 
@@ -13,7 +13,7 @@
 
 ## Source Files
 
-- `AGENTS.md`
+- `GEMINI.md`
 
 ## Audit Trail
 

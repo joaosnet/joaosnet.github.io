@@ -1,4 +1,4 @@
-# Node Dependency Management
+# Frontend Dependencies and Testing
 
 > 34 nodes · cohesion 0.07
 
@@ -33,7 +33,7 @@
 
 ## Relationships
 
-- [Node Core Utilities](Node_Core_Utilities.md) (1 shared connections)
+- [Node.js Core Utilities](Node.js_Core_Utilities.md) (1 shared connections)
 
 ## Source Files
 

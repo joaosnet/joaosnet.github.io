@@ -1,11 +1,10 @@
-# Gemini AI Documentation
+# Project Root Identifier
 
-> 2 nodes · cohesion 1.00
+> 1 nodes · cohesion 1.00
 
 ## Key Concepts
 
-- **GEMINI.md** (1 connections) — `GEMINI.md`
-- **graphify** (1 connections) — `GEMINI.md`
+- **joaosnet-portfolio** (0 connections) — `pyproject.toml`
 
 ## Relationships
 
@@ -13,11 +12,11 @@
 
 ## Source Files
 
-- `GEMINI.md`
+- `pyproject.toml`
 
 ## Audit Trail
 
-- EXTRACTED: 1 (100%)
+- EXTRACTED: 0 (0%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

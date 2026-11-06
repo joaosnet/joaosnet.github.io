@@ -1,4 +1,4 @@
-# HTML and PDF Parsing
+# HTML and PDF Parsing Tests
 
 > 21 nodes · cohesion 0.12
 
@@ -28,8 +28,8 @@
 
 ## Relationships
 
-- [Site Build Logic](Site_Build_Logic.md) (7 shared connections)
-- [Environment Security Tests](Environment_Security_Tests.md) (1 shared connections)
+- [Build System and Agent Rules](Build_System_and_Agent_Rules.md) (7 shared connections)
+- [Security Architecture and Governance](Security_Architecture_and_Governance.md) (1 shared connections)
 
 ## Source Files
 

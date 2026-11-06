@@ -1,0 +1,126 @@
+{
+  "packages": [
+    {
+      "id": "apis",
+      "icon": "backend",
+      "pt": {
+        "title": "APIs & Microsserviços de Alta Performance",
+        "description": "Arquitetura e desenvolvimento de backends assíncronos e escaláveis em Python (FastAPI) e Rust, integrados à nuvem AWS e bancos de dados relacionais.",
+        "deliverables": [
+          "Endpoints assíncronos e documentados (OpenAPI / Swagger)",
+          "Conteinerização Docker e pipelines de implantação em nuvem",
+          "Auditoria de desempenho, observabilidade e saneamento de memory leaks"
+        ],
+        "proof_label": "Ver projetos relacionados"
+      },
+      "en": {
+        "title": "High-Performance APIs & Microservices",
+        "description": "Design and implementation of asynchronous, scalable backends in Python (FastAPI) and Rust, integrated with AWS and relational databases.",
+        "deliverables": [
+          "Documented async REST APIs (OpenAPI / Swagger)",
+          "Docker containerization and cloud deployment pipelines",
+          "Performance auditing, telemetry, and memory leak mitigation"
+        ],
+        "proof_label": "Explore related projects"
+      },
+      "proof": ["dmovel", "klique-api"]
+    },
+    {
+      "id": "automation",
+      "icon": "automation",
+      "pt": {
+        "title": "Automações de Segurança & Servidores MCP",
+        "description": "Ferramentas CLI assíncronas, conectores de IA via protocolo MCP (Model Context Protocol) e automações para varredura e produtividade técnica.",
+        "deliverables": [
+          "Servidores MCP sob medida para integração com Claude, Gemini e IDEs",
+          "Ferramentas CLI rápidas e reprodutíveis em Python e Rust",
+          "Pipelines de varredura assíncrona e auditoria de superfície de ataque"
+        ],
+        "proof_label": "Ver automações"
+      },
+      "en": {
+        "title": "Security Automations & MCP Servers",
+        "description": "Asynchronous CLI tools, AI connectors via Model Context Protocol (MCP), and automated recon/productivity pipelines.",
+        "deliverables": [
+          "Custom MCP servers for LLM tool integration (Claude, Gemini, IDEs)",
+          "Fast, reproducible CLI tools in Python and Rust",
+          "High-throughput asynchronous reconnaissance and attack-surface scanning"
+        ],
+        "proof_label": "Explore automations"
+      },
+      "proof": ["varedura", "sigaa-mcp"]
+    },
+    {
+      "id": "iot",
+      "icon": "devices",
+      "pt": {
+        "title": "Sistemas Embarcados, IoT & Dashboards",
+        "description": "Firmware para microcontroladores ESP32, processamento de sinais de sensores, telemetria em tempo real e dashboards analíticos.",
+        "deliverables": [
+          "Firmware ESP32 com Wi-Fi/MQTT e protocolos customizados de pacotes",
+          "Pipelines de processamento de sinais e inferência neural embarcada (ONNX)",
+          "Dashboards analíticos em Dash (Python) e gráficos interativos a 120 FPS"
+        ],
+        "proof_label": "Ver sistemas"
+      },
+      "en": {
+        "title": "Embedded Systems, IoT & Analytics Dashboards",
+        "description": "ESP32 firmware, sensor signal processing, real-time telemetry, and analytical browser dashboards.",
+        "deliverables": [
+          "ESP32 firmware with Wi-Fi/MQTT and custom packet protocols",
+          "Signal processing pipelines and embedded neural inference (ONNX)",
+          "Interactive analytical dashboards with Dash (Python) and 120 FPS Canvas"
+        ],
+        "proof_label": "Explore systems"
+      },
+      "proof": ["aethersense", "cartilha-dash"]
+    }
+  ],
+  "models": [
+    {
+      "id": "fixed",
+      "pt": {
+        "title": "Projeto Fechado",
+        "subtitle": "Escopo e entregáveis pré-definidos",
+        "price": "A partir de R$ 3.500",
+        "note": "Ideal para MVPs, APIs completas, servidores MCP ou automações com escopo delimitado e prazo fixo."
+      },
+      "en": {
+        "title": "Fixed-Scope Project",
+        "subtitle": "Defined milestones and deliverables",
+        "price": "Starting at $800 USD",
+        "note": "Best for MVPs, complete APIs, custom MCP servers, or bounded automation pipelines with guaranteed deadlines."
+      }
+    },
+    {
+      "id": "hourly",
+      "pt": {
+        "title": "Hora Técnica / Consultoria",
+        "subtitle": "Sob demanda e flexível",
+        "price": "R$ 120 / hora",
+        "note": "Diagnóstico de bugs, otimização de performance, consultoria de arquitetura ou saneamento de infraestrutura."
+      },
+      "en": {
+        "title": "Hourly Consulting",
+        "subtitle": "On-demand and flexible",
+        "price": "$25 USD / hour",
+        "note": "Bug diagnosis, performance tuning, architecture review, or cloud infrastructure troubleshooting."
+      }
+    },
+    {
+      "id": "retainer",
+      "pt": {
+        "title": "Contrato Mensal / Remoto",
+        "subtitle": "Dedicação contínua para sua equipe",
+        "price": "A partir de R$ 10.000 / mês",
+        "note": "Atuação dedicada em engenharia backend, automações e sistemas com integração direta ao seu time (Full-time / Contract)."
+      },
+      "en": {
+        "title": "Dedicated Monthly / Remote",
+        "subtitle": "Ongoing engineering capacity",
+        "price": "Starting at $3,000 USD / mo",
+        "note": "Dedicated backend, automation, and systems engineering integrated directly into your engineering team (Full-time / Contract)."
+      }
+    }
+  ]
+}

@@ -9,6 +9,7 @@
   <title>{% block title %}{{ site.name }} | {{ profile.title }}{% endblock %}</title>
   <meta name="description" content="{{ project[lang].summary if project else profile.description }}">
   <meta name="author" content="{{ site.name }}">
+  {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
   {% if path.endswith('404.html') %}<meta name="robots" content="noindex, follow">{% endif %}
   <link rel="canonical" href="{{ site.url }}{{ path }}">
   <link rel="alternate" hreflang="{{ 'pt-BR' if lang == 'en' else 'en' }}" href="{{ site.url }}{{ alternate }}">
@@ -39,6 +40,7 @@
       <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>{{ site.name }}<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="{{ t.menu }}" title="{{ t.menu }}" data-track="menu" hidden><span class="menu-text">{{ t.menu }}</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="{{ t.menu }}">
+        <a href="{{ base }}#services" data-track="nav-services">{{ t.nav_services }}</a>
         <a href="{{ base }}#projects" data-track="nav-projects">{{ t.nav_projects }}</a>
         <a href="{{ base }}#published" data-track="nav-lab">{{ t.nav_lab }}<span class="nav-dot" aria-hidden="true"></span></a>
         <a href="{{ base }}#education" data-track="nav-about">{{ t.nav_about }}</a>

@@ -2,7 +2,7 @@
 
 > God node · 9 connections · `README.md`
 
-**Community:** [Portfolio Project Overview](Portfolio_Project_Overview.md)
+**Community:** [Portfolio Features and Documentation](Portfolio_Features_and_Documentation.md)
 
 ## Connections by Relation
 

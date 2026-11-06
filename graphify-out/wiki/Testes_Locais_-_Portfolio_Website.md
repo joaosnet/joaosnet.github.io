@@ -2,7 +2,7 @@
 
 > God node · 10 connections · `tests/TESTES.md`
 
-**Community:** [Local Testing Documentation](Local_Testing_Documentation.md)
+**Community:** [Local Test Suite Execution](Local_Test_Suite_Execution.md)
 
 ## Connections by Relation
 

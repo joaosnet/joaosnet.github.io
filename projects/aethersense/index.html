@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;sha256-QqVS8zD+iCnB8k8LPzgbaVSjYjwiv5IBNIW3bGDAya4=&#39; https://cdn.gtranslate.net/widgets/latest/lib.min.js; style-src &#39;self&#39; &#39;unsafe-inline&#39; https://cdn.gtranslate.net; img-src &#39;self&#39; data: https://cdn.gtranslate.net; font-src &#39;self&#39;; connect-src &#39;self&#39; https://formspree.io https://translate-pa.googleapis.com https://script.google.com https://script.googleusercontent.com; form-action https://formspree.io; base-uri &#39;none&#39;; object-src &#39;none&#39;">
+  <meta http-equiv="Content-Security-Policy" content="default-src &#39;none&#39;; script-src &#39;self&#39; &#39;sha256-JFGTyrhoL8whl1QNNEwOh9MZG6xHvRk4JPom1/Sqkj4=&#39; https://cdn.gtranslate.net/widgets/latest/lib.min.js; style-src &#39;self&#39; &#39;unsafe-inline&#39; https://cdn.gtranslate.net; img-src &#39;self&#39; data: https://cdn.gtranslate.net; font-src &#39;self&#39;; connect-src &#39;self&#39; https://formspree.io https://translate-pa.googleapis.com https://script.google.com https://script.googleusercontent.com; form-action https://formspree.io; base-uri &#39;none&#39;; object-src &#39;none&#39;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="color-scheme" content="dark light">
   <title>AetherSense | João Natividade</title>
   <meta name="description" content="Uma plataforma experimental que conecta sinais Wi-Fi, processamento e uma interface web para explorar sensoriamento sem câmeras.">
   <meta name="author" content="João Natividade">
+  <meta name="google-site-verification" content="kBN4gIT2PMTq6IDMQQRmtiMgn5Jqvna483A0dDH38dE">
   
   <link rel="canonical" href="https://joaosnet.github.io/projects/aethersense/">
   <link rel="alternate" hreflang="en" href="https://joaosnet.github.io/en/projects/aethersense/">
@@ -26,7 +27,7 @@
   <link rel="preload" href="/assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/portfolio.css">
   <script src="/assets/js/boot.js"></script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "name": "João Natividade", "url": "https://joaosnet.github.io", "description": "João Natividade — desenvolvedor de software e formando em Engenharia de Computação na UFPA. Backend em Python, sistemas em Rust, automação e interfaces gráficas no navegador.", "sameAs": ["https://github.com/joaosnet", "https://www.linkedin.com/in/joaonativi/"]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareSourceCode", "name": "AetherSense", "description": "Uma plataforma experimental que conecta sinais Wi-Fi, processamento e uma interface web para explorar sensoriamento sem câmeras.", "programmingLanguage": ["Rust", "ESP32", "React", "Python", "ONNX"], "codeRepository": "https://github.com/joaosnet/aethersense", "author": {"@type": "Person", "name": "João Natividade", "url": "https://joaosnet.github.io"}}</script>
   <script src="/assets/js/portfolio.js" defer></script>
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/languages.js" defer></script>
@@ -39,6 +40,7 @@
       <a class="brand" href="/" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Natividade<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu" title="Menu" data-track="menu" hidden><span class="menu-text">Menu</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="Menu">
+        <a href="/#services" data-track="nav-services">Serviços</a>
         <a href="/#projects" data-track="nav-projects">Projetos</a>
         <a href="/#published" data-track="nav-lab">Laboratório<span class="nav-dot" aria-hidden="true"></span></a>
         <a href="/#education" data-track="nav-about">Sobre</a>
@@ -91,6 +93,29 @@
   
 </div>
 </div>
+
+<section class="case-outcomes">
+  <p class="eyebrow">Resultados mensuráveis</p>
+  <div class="outcomes-grid">
+    
+    <div class="outcome-card">
+      <span class="outcome-value">0,68 m</span>
+      <span class="outcome-label">Acurácia de localização validada em fusão multi-nó C5+WROOM</span>
+    </div>
+    
+    <div class="outcome-card">
+      <span class="outcome-value">120 FPS</span>
+      <span class="outcome-label">Renderização e streaming de sinais em tempo real no navegador</span>
+    </div>
+    
+    <div class="outcome-card">
+      <span class="outcome-value">100% Local</span>
+      <span class="outcome-label">Inferência de ocupação e sinais vitais sem câmeras nem microfones</span>
+    </div>
+    
+  </div>
+</section>
+
 <div class="case-details"><section><p class="eyebrow">01 / O problema</p><h2>O problema</h2><p>Investigar como variações do Channel State Information (CSI) de redes Wi-Fi podem ser adquiridas, processadas e visualizadas em um sistema experimental.</p></section><section><p class="eyebrow">02 / Contexto &amp; participação</p><h2>Contexto &amp; participação</h2><p>Projeto de TCC em Engenharia de Computação. O escopo técnico abaixo é verificável no repositório público; autoria específica de mudanças pode ser consultada no histórico de contribuições.</p></section></div><section class="case-decisions"><p class="eyebrow">03 / Escolhas de engenharia</p><h2>Escolhas de engenharia</h2><div class="decision-grid"><article><span class="decision-number">01</span><h3>Do dispositivo à interface</h3><p>Firmware ESP32 para aquisição, backend Rust para ingestão e processamento, e React/TypeScript para visualização.</p></article><article><span class="decision-number">02</span><h3>Aprendizado de máquina separado</h3><p>Um pipeline Python treina e avalia modelos, exportando artefatos ONNX para inferência.</p></article><article><span class="decision-number">03</span><h3>Exploração reproduzível</h3><p>Docker Compose e um modo de reprodução permitem explorar o dashboard sem gravar firmware.</p></article></div></section><section class="case-limits"><h2>Limites do projeto</h2><p>Protótipo experimental. Resultados dependem do ambiente, da topologia e da calibração. Não é um dispositivo médico nem uma solução validada para diagnóstico ou decisões de segurança.</p></section><section class="case-evidence"><h2>Explore as evidências</h2><p>O README público documenta componentes, execução, testes e limites. Capturas locais, credenciais e dados residenciais não fazem parte deste estudo de caso.</p><div class="case-actions"><a class="text-link" href="https://github.com/joaosnet/aethersense#readme" target="_blank" rel="noopener noreferrer" data-track="case-readme">README ↗</a><a class="text-link" href="https://github.com/joaosnet/aethersense/commits" target="_blank" rel="noopener noreferrer" data-track="case-history">Histórico de contribuições ↗</a></div></section><div class="case-takeaway"><p>Um exercício de engenharia que atravessa hardware, sistemas, dados e produto.</p><a class="button primary" href="/?project=aethersense#contact" data-track="case-contact">Conversar sobre este projeto ↗</a></div></article>
 </main>
   <footer class="site-footer" data-section="footer">
@@ -119,7 +144,7 @@
     </div>
     <div class="container"><a class="text-link" href="https://lattes.cnpq.br/1140714924160415" target="_blank" rel="noopener noreferrer" data-track="lattes">Currículo Lattes ↗</a></div>
     <div class="container footer-top"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>João Natividade.</a><p>Feito com curiosidade. Construído com intenção.</p><a class="back-top" href="#main-content" aria-label="Voltar ao início" data-track="back-top">↑</a></div>
-    <div class="container footer-bottom"><div class="footer-legal"><span>© 2026 João Natividade (João Silva Neto) · Belém, PA · Brasil</span><span class="visitor-counter-badge" id="visitor-badge" data-track="visitor-badge" hidden><span class="visitor-dot" aria-hidden="true">✦</span><span class="visitor-text">Navegador nº <strong id="visitor-count" class="visitor-num">1</strong> em 2026</span></span></div><div><a href="/privacy/" data-track="privacy">Privacidade</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">Métricas</button><a href="https://github.com/joaosnet" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
+    <div class="container footer-bottom"><div class="footer-legal"><span>© 2026 João Natividade (João Silva Neto) · Belém, PA · Brasil (Remoto)</span><span class="visitor-counter-badge" id="visitor-badge" data-track="visitor-badge" hidden><span class="visitor-dot" aria-hidden="true">✦</span><span class="visitor-text">Navegador nº <strong id="visitor-count" class="visitor-num">1</strong> em 2026</span></span></div><div><a href="/privacy/" data-track="privacy">Privacidade</a><button class="text-button metrics-toggle" type="button" hidden data-track="metrics-toggle">Métricas</button><a href="https://github.com/joaosnet" target="_blank" rel="noopener noreferrer" data-track="github">GitHub <span aria-hidden="true">↗</span></a></div></div>
   </footer>
   <aside class="metrics-notice" aria-label="Métricas" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">Prévia · métricas sem envio</span><button class="text-button metrics-toggle" type="button">Desativar</button><a href="/privacy/">Privacidade</a><button class="notice-close" type="button" aria-label="Recolher aviso de métricas">×</button></aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>

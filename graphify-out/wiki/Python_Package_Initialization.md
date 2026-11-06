@@ -1,10 +1,10 @@
-# Portfolio Frontend Logic
+# Python Package Initialization
 
 > 1 nodes · cohesion 1.00
 
 ## Key Concepts
 
-- **portfolio.js** (0 connections) — `assets/js/portfolio.js`
+- **__init__.py** (0 connections) — `tests/__init__.py`
 
 ## Relationships
 
@@ -12,7 +12,7 @@
 
 ## Source Files
 
-- `assets/js/portfolio.js`
+- `tests/__init__.py`
 
 ## Audit Trail
 

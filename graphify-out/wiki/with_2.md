@@ -2,7 +2,7 @@
 
 > God node · 12 connections · `.github/workflows/maintenance.yml`
 
-**Community:** [Maintenance Workflows](Maintenance_Workflows.md)
+**Community:** [Maintenance Workflow](Maintenance_Workflow.md)
 
 ## Connections by Relation
 

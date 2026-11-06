@@ -1,4 +1,4 @@
-# PDF Resume Generation
+# Bilingual CV Generation
 
 > 7 nodes · cohesion 0.29
 
@@ -14,7 +14,7 @@
 
 ## Relationships
 
-- [Site Build Logic](Site_Build_Logic.md) (3 shared connections)
+- [Build System and Agent Rules](Build_System_and_Agent_Rules.md) (3 shared connections)
 
 ## Source Files
 

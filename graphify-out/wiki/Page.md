@@ -2,7 +2,7 @@
 
 > God node · 8 connections · `tests/test_site_structure.py`
 
-**Community:** [HTML and PDF Parsing](HTML_and_PDF_Parsing.md)
+**Community:** [HTML and PDF Parsing Tests](HTML_and_PDF_Parsing_Tests.md)
 
 ## Connections by Relation
 

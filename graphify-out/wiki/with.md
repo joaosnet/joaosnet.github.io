@@ -2,7 +2,7 @@
 
 > God node · 14 connections · `.github/workflows/validate.yml`
 
-**Community:** [Workflow Action Configuration](Workflow_Action_Configuration.md)
+**Community:** [CI Cache and Environment Setup](CI_Cache_and_Environment_Setup.md)
 
 ## Connections by Relation
 

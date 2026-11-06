@@ -1,4 +1,4 @@
-# Local Testing Documentation
+# Local Test Suite Execution
 
 > 30 nodes · cohesion 0.07
 
@@ -33,7 +33,7 @@
 
 ## Relationships
 
-- [Analytics and Review Docs](Analytics_and_Review_Docs.md) (1 shared connections)
+- [Analytics and Review Documentation](Analytics_and_Review_Documentation.md) (1 shared connections)
 
 ## Source Files
 

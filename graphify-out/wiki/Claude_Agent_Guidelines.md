@@ -1,10 +1,11 @@
-# Project Root Metadata
+# Claude Agent Guidelines
 
-> 1 nodes · cohesion 1.00
+> 2 nodes · cohesion 1.00
 
 ## Key Concepts
 
-- **joaosnet-portfolio** (0 connections) — `pyproject.toml`
+- **CLAUDE.md** (1 connections) — `CLAUDE.md`
+- **graphify & Knowledge Graph First** (1 connections) — `CLAUDE.md`
 
 ## Relationships
 
@@ -12,11 +13,11 @@
 
 ## Source Files
 
-- `pyproject.toml`
+- `CLAUDE.md`
 
 ## Audit Trail
 
-- EXTRACTED: 0 (0%)
+- EXTRACTED: 1 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

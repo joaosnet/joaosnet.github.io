@@ -29,7 +29,7 @@ def built():
 
 def test_only_allowlisted_public_files_are_built(built):
     files = [str(p.relative_to(built)).replace("\\", "/") for p in built.rglob("*") if p.is_file()]
-    assert len(list(built.rglob("*.html"))) == 14
+    assert len(list(built.rglob("*.html"))) == 16
     for path in files:
         assert not any(
             x in path
@@ -108,8 +108,43 @@ def test_strict_csp_and_no_inline_event_handlers(built):
 def test_sitemap_covers_all_indexable_pages(built):
     tree = ET.parse(built / "sitemap.xml")
     locs = tree.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    assert len(locs) == 12
+    assert len(locs) == 14
     assert all("404" not in node.text for node in locs)
+
+
+def test_commercial_positioning_and_services(built):
+    home_pt = (built / "index.html").read_text(encoding="utf-8")
+    home_en = (built / "en/index.html").read_text(encoding="utf-8")
+
+    # Positioning: no longer "estágio" in hero or contact intro
+    assert "Procuro um estágio em software" not in home_pt
+    assert "looking for a software internship" not in home_en.lower()
+
+    # Pricing & Services
+    assert "R$ 120 / hora" in home_pt
+    assert "$25 USD / hour" in home_en
+    assert "A partir de R$ 3.500" in home_pt
+    assert "Starting at $800 USD" in home_en
+
+    # Cal.com scheduling link
+    assert "https://cal.com/joao-neto-xqw0df/15min" in home_pt
+    assert "https://cal.com/joao-neto-xqw0df/15min" in home_en
+
+    # Case studies outcomes
+    dmovel_pt = (built / "projects/dmovel/index.html").read_text(encoding="utf-8")
+    aethersense_pt = (built / "projects/aethersense/index.html").read_text(encoding="utf-8")
+    varedura_pt = (built / "projects/varedura/index.html").read_text(encoding="utf-8")
+    varedura_en = (built / "en/projects/varedura/index.html").read_text(encoding="utf-8")
+
+    assert "10,0" in dmovel_pt
+    assert "0,68 m" in aethersense_pt
+    assert "100% Async" in varedura_pt
+    assert "High-throughput asynchronous recon" in varedura_en
+
+    # Official Testimonial
+    assert "Prof. Dr. Ronaldo de Freitas Zampolo" in home_pt
+    assert "Prof. Dr. Ronaldo de Freitas Zampolo" in home_en
+    assert "10,0" in home_pt
 
 
 @pytest.mark.parametrize("name,phrase", [("crv.pdf", "em andamento"), ("cv-joao-silva-neto-en.pdf", "in progress")])

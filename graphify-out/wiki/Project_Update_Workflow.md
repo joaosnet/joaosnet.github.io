@@ -1,4 +1,4 @@
-# Project Update Automation
+# Project Update Workflow
 
 > 22 nodes · cohesion 0.09
 

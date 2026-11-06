@@ -44,7 +44,21 @@
       ],
       "limitations": "Protótipo experimental. Resultados dependem do ambiente, da topologia e da calibração. Não é um dispositivo médico nem uma solução validada para diagnóstico ou decisões de segurança.",
       "evidence": "O README público documenta componentes, execução, testes e limites. Capturas locais, credenciais e dados residenciais não fazem parte deste estudo de caso.",
-      "takeaway": "Um exercício de engenharia que atravessa hardware, sistemas, dados e produto."
+      "takeaway": "Um exercício de engenharia que atravessa hardware, sistemas, dados e produto.",
+      "outcomes": [
+        {
+          "value": "0,68 m",
+          "label": "Acurácia de localização validada em fusão multi-nó C5+WROOM"
+        },
+        {
+          "value": "120 FPS",
+          "label": "Renderização e streaming de sinais em tempo real no navegador"
+        },
+        {
+          "value": "100% Local",
+          "label": "Inferência de ocupação e sinais vitais sem câmeras nem microfones"
+        }
+      ]
     },
     "en": {
       "eyebrow": "IoT · Applied research",
@@ -69,7 +83,21 @@
       ],
       "limitations": "An experimental prototype. Results depend on the environment, topology and calibration. It is not a medical device or a validated diagnostic or safety system.",
       "evidence": "The public README documents components, setup, tests and limitations. Local captures, credentials and residential data are excluded from this case study.",
-      "takeaway": "An engineering exercise spanning hardware, systems, data and product."
+      "takeaway": "An engineering exercise spanning hardware, systems, data and product.",
+      "outcomes": [
+        {
+          "value": "0.68 m",
+          "label": "Validated localization accuracy with C5+WROOM multi-node fusion"
+        },
+        {
+          "value": "120 FPS",
+          "label": "Real-time browser signal rendering and telemetry streaming"
+        },
+        {
+          "value": "100% Local",
+          "label": "Occupancy and vitals inference with zero camera or microphone usage"
+        }
+      ]
     }
   },
   {
@@ -82,8 +110,9 @@
     "tags": [
       "Flutter",
       "Dart",
-      "Web",
-      "Android"
+      "FastAPI",
+      "AWS",
+      "Dash"
     ],
     "skills": [
       "interfaces"
@@ -92,54 +121,182 @@
     "visual": "mobile",
     "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp",
     "pt": {
-      "eyebrow": "Produto · Multiplataforma",
-      "title": "Um projeto, diferentes telas.",
-      "summary": "Aplicação do ecossistema DMóvel com acesso pela web e distribuições móveis, desenvolvida no contexto acadêmico do LAPSHub.",
-      "status": "Projeto acadêmico em equipe",
-      "role": "Projeto acadêmico associado ao LAPSHub, citado no meu currículo. Este estudo descreve o produto público da equipe, sem atribuir a mim a autoria exclusiva de seus componentes.",
-      "problem": "Disponibilizar o sistema DMóvel em diferentes plataformas e oferecer um caminho direto para acessar a aplicação e suas versões.",
+      "eyebrow": "Produto & Engenharia · LaPS / UFPA",
+      "title": "Um projeto, diferentes telas: acessibilidade móvel, backend AWS e telemetria.",
+      "summary": "Ecossistema de tecnologia assistiva com aplicativo móvel em Flutter, backend em FastAPI hospedado na AWS e dashboards analíticos de dados.",
+      "status": "Estágio concluído com nota máxima 10,0",
+      "role": "Engenheiro estagiário no LaPS/UFPA. Responsável pela manutenção de backend em FastAPI na nuvem AWS, saneamento de vazamentos de memória (memory leaks) na aplicação móvel Flutter/Dart e desenvolvimento de dashboards analíticos em Dash (Python).",
+      "problem": "Garantir alta disponibilidade e fluidez em uma aplicação móvel assistiva, eliminando travamentos de memória por decodificação de imagem e auditando custos de infraestrutura em nuvem.",
       "decisions": [
         [
-          "Acesso pelo navegador",
-          "A versão web oferece uma entrada direta, sem exigir a instalação de um aplicativo."
+          "Otimização de memória e cache de imagens",
+          "Implementação do OptimizedCachedImage com cálculo dinâmico de memCacheWidth/Height e carregamento progressivo de miniaturas WebP, evitando estouro de RAM no mobile."
         ],
         [
-          "Distribuições por plataforma",
-          "O repositório publica versões móveis e orienta os diferentes caminhos de instalação."
+          "Backend assíncrono em FastAPI na AWS",
+          "Desenvolvimento e auditoria de rotas REST com BackgroundTasks para desonerar o app, controle de credenciais e gestão de consumo na nuvem."
         ],
         [
-          "Versões rastreáveis",
-          "Releases e código público permitem consultar a evolução do projeto e suas contribuições."
+          "Dashboards analíticos com Dash e Plotly",
+          "Criação de painéis visuais para monitoramento do projeto e apresentação técnica com material audiovisual na SITEC 2026."
         ]
       ],
-      "limitations": "A demonstração externa pode depender de serviços, permissões ou condições de rede. Sua disponibilidade é independente deste portfólio.",
-      "evidence": "Demonstração web, instruções de uso, releases e histórico de contribuições estão disponíveis no repositório público do LAPSHub.",
-      "takeaway": "Aprendizado em contexto de equipe, com atenção à entrega e ao acesso do usuário."
+      "limitations": "A infraestrutura em produção atende aos usuários do projeto acadêmico e é administrada sob os controles de credenciais e orçamento da instituição.",
+      "evidence": "Relatório final de estágio aprovado e assinado com nota 10,0 pelo Prof. Dr. Ronaldo de Freitas Zampolo. Código e releases públicos no GitHub do LAPSHub.",
+      "takeaway": "Engenharia de software aplicada a um produto de impacto social real, unindo nuvem, mobile e rigor na gestão de memória.",
+      "outcomes": [
+        {
+          "value": "10,0",
+          "label": "Avaliação oficial da supervisão com conceito Excelente em todos os quesitos"
+        },
+        {
+          "value": "Zero leaks",
+          "label": "Saneamento de vazamentos de memória na decodificação e cache de imagens"
+        },
+        {
+          "value": "FastAPI + AWS",
+          "label": "Backend em nuvem com auditoria rigorosa de consumo e credenciais"
+        }
+      ]
     },
     "en": {
-      "eyebrow": "Product · Cross-platform",
-      "title": "One project, different screens.",
-      "summary": "An application in the DMóvel ecosystem with web access and mobile distributions, developed in the academic context of LAPSHub.",
-      "status": "Academic team project",
-      "role": "An academic project associated with LAPSHub and referenced in my résumé. This case study describes the team's public product without claiming sole authorship of its components.",
-      "problem": "Make DMóvel available across platforms and provide a direct path to the application and its releases.",
+      "eyebrow": "Product & Engineering · LaPS / UFPA",
+      "title": "One project, different screens: mobile accessibility, AWS backend, and telemetry.",
+      "summary": "Assistive technology ecosystem featuring a Flutter mobile app, an async FastAPI backend on AWS, and analytical telemetry dashboards.",
+      "status": "Internship completed with top grade 10.0/10",
+      "role": "Software Engineering Intern at LaPS/UFPA. Responsible for maintaining the FastAPI backend on AWS, resolving critical mobile memory leaks in Flutter/Dart, and building interactive Dash/Plotly dashboards.",
+      "problem": "Ensure high availability and seamless UX in an assistive mobile application by eliminating image decoding memory crashes and auditing cloud infrastructure costs.",
       "decisions": [
         [
-          "Browser access",
-          "The web version provides a direct entry point without requiring an application install."
+          "Memory tuning and progressive image caching",
+          "Implemented OptimizedCachedImage with dynamic memCacheWidth/Height calculation and WebP thumbnails, completely preventing out-of-memory crashes on mobile."
         ],
         [
-          "Platform-specific distributions",
-          "The repository publishes mobile versions and documents their installation paths."
+          "Async FastAPI backend on AWS",
+          "Developed and audited REST routes with BackgroundTasks for instant client responses, managing IAM credentials and cloud consumption."
         ],
         [
-          "Traceable releases",
-          "Public releases and source code make the project's evolution and contributions inspectable."
+          "Analytics dashboards with Dash & Plotly",
+          "Built data telemetry dashboards and produced technical audiovisual demonstrations for SITEC 2026."
         ]
       ],
-      "limitations": "The external demo may depend on services, permissions or network conditions. Its availability is independent of this portfolio.",
-      "evidence": "A web demo, usage instructions, releases and contribution history are available in LAPSHub's public repository.",
-      "takeaway": "Learning in a team context, with attention to delivery and user access."
+      "limitations": "Production cloud infrastructure serves academic stakeholders and is governed by university credentials and budget policies.",
+      "evidence": "Final internship report signed and graded 10.0/10 (Excellent) by Prof. Dr. Ronaldo de Freitas Zampolo. Public releases and source code at LAPSHub GitHub.",
+      "takeaway": "Production engineering applied to assistive technology: cloud, mobile, and strict memory management.",
+      "outcomes": [
+        {
+          "value": "10.0/10",
+          "label": "Top supervisor evaluation with Excellent grade across all criteria"
+        },
+        {
+          "value": "Zero leaks",
+          "label": "Eliminated image decoding memory leaks on mobile devices"
+        },
+        {
+          "value": "FastAPI + AWS",
+          "label": "Cloud backend maintenance with cost auditing and secure credentials"
+        }
+      ]
+    }
+  },
+  {
+    "id": "varedura",
+    "name": "Varedura",
+    "repo": "joaosnet/Varedura",
+    "visibility": "public",
+    "category": "systems",
+    "number": "03",
+    "tags": [
+      "Python",
+      "AsyncIO",
+      "Docker",
+      "MCP",
+      "Segurança"
+    ],
+    "skills": [
+      "backend",
+      "devices"
+    ],
+    "demo": "",
+    "visual": "code",
+    "image": "/assets/project-images/joaosnet_Varedura_demo.gif",
+    "pt": {
+      "eyebrow": "Segurança · Automação Assíncrona",
+      "title": "Varredura assíncrona e auditoria de superfície de ataque.",
+      "summary": "Ferramenta CLI e conector MCP de alta vazão para enumeração de subdomínios, verificação de portas e auditoria rápida de ativos de rede.",
+      "status": "Ferramenta open-source em produção",
+      "role": "Autor e mantenedor. Desenvolvido com foco em execução assíncrona não-bloqueante, tipagem estrita e integração com pipelines de segurança e agentes de IA.",
+      "problem": "Executar reconhecimento de ativos e detecção de superfícies expostas com rapidez, sem gargalos de concorrência ou dependências externas pesadas.",
+      "decisions": [
+        [
+          "Execução assíncrona com AsyncIO",
+          "Motor concorrente em Python que dispara centenas de resoluções DNS e sondagens HTTP simultâneas sem travar o loop de eventos."
+        ],
+        [
+          "Conector MCP para Agentes de IA",
+          "Implementação do Model Context Protocol, permitindo que LLMs auditem ambientes e consultem infraestruturas de forma estruturada."
+        ],
+        [
+          "Conteinerização e portabilidade",
+          "Ambiente empacotado em Docker para execução isolada e reprodutível em pipelines de CI/CD ou servidores de auditoria."
+        ]
+      ],
+      "limitations": "Projetado para testes autorizados de segurança defensiva e inventário de ativos próprios. A taxa máxima depende da latência e da banda de rede do ambiente.",
+      "evidence": "Repositório público com código-fonte auditável, demonstração interativa e histórico de commits disponível no GitHub.",
+      "takeaway": "Engenharia de software aplicada à segurança: concorrência assíncrona de alto rendimento e integração com IA.",
+      "outcomes": [
+        {
+          "value": "100% Async",
+          "label": "Arquitetura concorrente de alta vazão para checagens de rede"
+        },
+        {
+          "value": "CLI + MCP",
+          "label": "Automação via linha de comando e conector nativo para agentes de IA"
+        },
+        {
+          "value": "Zero bloat",
+          "label": "Execução leve e conteinerizada sem dependências externas pesadas"
+        }
+      ]
+    },
+    "en": {
+      "eyebrow": "Security · Async Automation",
+      "title": "High-throughput asynchronous recon and attack-surface auditing.",
+      "summary": "Fast CLI tool and MCP connector for subdomain enumeration, network probing, and attack-surface discovery.",
+      "status": "Open-source production tool",
+      "role": "Creator and maintainer. Engineered with non-blocking concurrency, strict typing, and seamless integration with AI workflows and CI/CD pipelines.",
+      "problem": "Perform fast asset discovery and attack-surface mapping without concurrency bottlenecks or bloated configuration requirements.",
+      "decisions": [
+        [
+          "AsyncIO Concurrency Engine",
+          "Python async pipeline performing concurrent DNS resolutions and HTTP probes without blocking the I/O event loop."
+        ],
+        [
+          "MCP Server for AI Agents",
+          "Model Context Protocol implementation enabling LLMs to query network topology and audit infrastructure cleanly."
+        ],
+        [
+          "Containerized Reproducibility",
+          "Packaged Docker deployment for isolated, deterministic execution across local machines and cloud CI/CD runners."
+        ]
+      ],
+      "limitations": "Designed for authorized defensive security audits and internal asset inventory. Effective throughput depends on network latency and target rate limits.",
+      "evidence": "Public GitHub repository with open source code, recorded GIF demos, and verifiable contribution history.",
+      "takeaway": "Software engineering applied to defensive security: high concurrency and modern AI tool connectivity.",
+      "outcomes": [
+        {
+          "value": "100% Async",
+          "label": "Asynchronous engine delivering high-throughput network sweeps"
+        },
+        {
+          "value": "CLI + MCP",
+          "label": "CLI productivity combined with native Model Context Protocol support"
+        },
+        {
+          "value": "Zero bloat",
+          "label": "Lightweight containerized distribution with minimal overhead"
+        }
+      ]
     }
   },
   {
@@ -148,7 +305,7 @@
     "repo": "joaosnet/evolutionary-optimization-viz-ag-pso",
     "visibility": "public",
     "category": "data",
-    "number": "03",
+    "number": "04",
     "tags": [
       "JavaScript",
       "Plotly",
@@ -185,7 +342,21 @@
       ],
       "limitations": "É uma ferramenta de exploração. O resultado depende da função, dos parâmetros e da aleatoriedade; uma execução isolada não estabelece superioridade de um algoritmo.",
       "evidence": "A demonstração e o código público permitem reproduzir experimentos. O README documenta os operadores de cada algoritmo e as opções da interface.",
-      "takeaway": "Conectar fundamentos matemáticos a uma interface que convida a experimentar."
+      "takeaway": "Conectar fundamentos matemáticos a uma interface que convida a experimentar.",
+      "outcomes": [
+        {
+          "value": "3 Algoritmos",
+          "label": "Comparação direta de convergência entre AG, PSO e ED"
+        },
+        {
+          "value": "3D Surfaces",
+          "label": "Visualização tridimensional de funções de teste com Plotly"
+        },
+        {
+          "value": "Zero backend",
+          "label": "Execução estocástica inteiramente no cliente via JavaScript"
+        }
+      ]
     },
     "en": {
       "eyebrow": "Algorithms · Visualization",
@@ -210,7 +381,21 @@
       ],
       "limitations": "An exploration tool. Results depend on the function, parameters and randomness; a single run does not establish that one algorithm is better.",
       "evidence": "The demo and public code allow experiments to be reproduced. The README documents algorithm operators and interface options.",
-      "takeaway": "Connecting mathematical foundations to an interface that invites experimentation."
+      "takeaway": "Connecting mathematical foundations to an interface that invites experimentation.",
+      "outcomes": [
+        {
+          "value": "3 Algorithms",
+          "label": "Side-by-side convergence benchmark of GA, PSO, and DE"
+        },
+        {
+          "value": "3D Surfaces",
+          "label": "Three-dimensional benchmark function surfaces with Plotly"
+        },
+        {
+          "value": "Zero backend",
+          "label": "Stochastic optimization executed entirely client-side"
+        }
+      ]
     }
   },
   {
@@ -219,7 +404,7 @@
     "repo": "joaosnet/interactive-signals-and-systems",
     "visibility": "public",
     "category": "systems",
-    "number": "04",
+    "number": "05",
     "tags": [
       "Canvas 2D",
       "Three.js",
@@ -257,7 +442,21 @@
       ],
       "limitations": "O processamento roda no navegador do cliente; taxas de 120 FPS exigem suporte de aceleração de hardware do dispositivo.",
       "evidence": "Código aberto e demonstração funcional no GitHub Pages com suporte aos idiomas português e inglês.",
-      "takeaway": "Construção de interface matemática rápida direto nas APIs nativas do navegador."
+      "takeaway": "Construção de interface matemática rápida direto nas APIs nativas do navegador.",
+      "outcomes": [
+        {
+          "value": "120 FPS",
+          "label": "Renderização contínua em Canvas 2D sem bibliotecas pesadas de terceiros"
+        },
+        {
+          "value": "3D Realtime",
+          "label": "Projeção geométrica de câmera com Three.js em tempo real"
+        },
+        {
+          "value": "100% Web",
+          "label": "Simulação didática de convolução e Fourier acessível em qualquer dispositivo"
+        }
+      ]
     },
     "en": {
       "eyebrow": "Signal Processing · Web",
@@ -282,7 +481,21 @@
       ],
       "limitations": "Runs entirely in the browser; maintaining 120 FPS depends on the user's hardware graphics support.",
       "evidence": "Open source repository and live demo on GitHub Pages supporting Portuguese and English.",
-      "takeaway": "High-frame-rate mathematical visualization built on native browser APIs."
+      "takeaway": "High-frame-rate mathematical visualization built on native browser APIs.",
+      "outcomes": [
+        {
+          "value": "120 FPS",
+          "label": "Continuous Canvas 2D rendering without bloated third-party charting packages"
+        },
+        {
+          "value": "3D Realtime",
+          "label": "Real-time camera geometric projection using Three.js"
+        },
+        {
+          "value": "100% Web",
+          "label": "Educational convolution and Fourier simulation accessible on any browser"
+        }
+      ]
     }
   }
 ]

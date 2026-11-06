@@ -1,15 +1,14 @@
-# Validation Job Steps
+# Node.js Validation Workflow
 
-> 6 nodes · cohesion 0.33
+> 5 nodes · cohesion 0.40
 
 ## Key Concepts
 
-- **validate** (5 connections) — `.github/workflows/validate.yml`
-- **steps** (3 connections) — `.github/workflows/validate.yml`
-- **name** (1 connections) — `.github/workflows/validate.yml`
+- **validate-node** (6 connections) — `.github/workflows/validate.yml`
 - **if** (1 connections) — `.github/workflows/validate.yml`
 - **needs** (1 connections) — `.github/workflows/validate.yml`
 - **runs-on** (1 connections) — `.github/workflows/validate.yml`
+- **timeout-minutes** (1 connections) — `.github/workflows/validate.yml`
 
 ## Relationships
 
@@ -22,7 +21,7 @@
 
 ## Audit Trail
 
-- EXTRACTED: 7 (100%)
+- EXTRACTED: 6 (100%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

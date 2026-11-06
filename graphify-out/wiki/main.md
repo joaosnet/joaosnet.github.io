@@ -1,24 +1,26 @@
 # main()
 
-> God node · 9 connections · `update_projects.py`
+> God node · 11 connections · `update_projects.py`
 
-**Community:** [Site Build Logic](Site_Build_Logic.md)
+**Community:** [Build System and Agent Rules](Build_System_and_Agent_Rules.md)
 
 ## Connections by Relation
 
 ### calls
+- [private_preview()](private_preview.md) `EXTRACTED`
 - json `EXTRACTED`
 - [read_json()](read_json.md) `EXTRACTED`
-- [private_preview()](private_preview.md) `EXTRACTED`
 - approve_export() `EXTRACTED`
 - public_snapshot() `EXTRACTED`
-- argparse `EXTRACTED`
 - discover_public_repos() `EXTRACTED`
+- argparse `EXTRACTED`
 
 ### contains
 - update_projects.py `EXTRACTED`
 
 ### references
+- 2. Ponto de Entrada `main()` e Governança de Dados `INFERRED`
+- Rules for All Agents & Subagents: `INFERRED`
 - Limitações que permanecem explícitas `INFERRED`
 
 ---

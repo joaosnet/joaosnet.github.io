@@ -1,4 +1,4 @@
-# Workflow Action Configuration
+# CI Cache and Environment Setup
 
 > 11 nodes · cohesion 0.18
 
@@ -19,7 +19,7 @@
 ## Relationships
 
 - [Conditional Workflow Steps](Conditional_Workflow_Steps.md) (3 shared connections)
-- [Environment Output Mapping](Environment_Output_Mapping.md) (1 shared connections)
+- [Multi-Language Build Steps](Multi-Language_Build_Steps.md) (1 shared connections)
 
 ## Source Files
 

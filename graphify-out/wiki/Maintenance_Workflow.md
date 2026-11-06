@@ -1,4 +1,4 @@
-# Maintenance Workflows
+# Maintenance Workflow
 
 > 29 nodes · cohesion 0.07
 

@@ -2,7 +2,7 @@
 
 > God node · 12 connections · `build_site.py`
 
-**Community:** [Site Build Logic](Site_Build_Logic.md)
+**Community:** [Build System and Agent Rules](Build_System_and_Agent_Rules.md)
 
 ## Connections by Relation
 

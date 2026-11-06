@@ -1,11 +1,10 @@
-# Claude AI Documentation
+# Portfolio Logic Script
 
-> 2 nodes · cohesion 1.00
+> 1 nodes · cohesion 1.00
 
 ## Key Concepts
 
-- **CLAUDE.md** (1 connections) — `CLAUDE.md`
-- **graphify** (1 connections) — `CLAUDE.md`
+- **portfolio.js** (0 connections) — `assets/js/portfolio.js`
 
 ## Relationships
 
@@ -13,11 +12,11 @@
 
 ## Source Files
 
-- `CLAUDE.md`
+- `assets/js/portfolio.js`
 
 ## Audit Trail
 
-- EXTRACTED: 1 (100%)
+- EXTRACTED: 0 (0%)
 - INFERRED: 0 (0%)
 - AMBIGUOUS: 0 (0%)
 

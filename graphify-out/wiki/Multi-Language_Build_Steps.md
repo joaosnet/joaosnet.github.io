@@ -1,4 +1,4 @@
-# Environment Output Mapping
+# Multi-Language Build Steps
 
 > 8 nodes · cohesion 0.25
 
@@ -16,7 +16,7 @@
 ## Relationships
 
 - [Conditional Workflow Steps](Conditional_Workflow_Steps.md) (1 shared connections)
-- [Workflow Action Configuration](Workflow_Action_Configuration.md) (1 shared connections)
+- [CI Cache and Environment Setup](CI_Cache_and_Environment_Setup.md) (1 shared connections)
 - [Python Validation Workflow](Python_Validation_Workflow.md) (1 shared connections)
 
 ## Source Files

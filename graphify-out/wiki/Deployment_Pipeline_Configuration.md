@@ -1,4 +1,4 @@
-# Deployment Pipeline
+# Deployment Pipeline Configuration
 
 > 26 nodes · cohesion 0.08
 

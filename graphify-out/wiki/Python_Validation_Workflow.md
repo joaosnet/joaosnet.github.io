@@ -18,9 +18,9 @@
 ## Relationships
 
 - [Workflow Trigger Rules](Workflow_Trigger_Rules.md) (1 shared connections)
-- [Environment Output Mapping](Environment_Output_Mapping.md) (1 shared connections)
-- [Validation Job Steps](Validation_Job_Steps.md) (1 shared connections)
-- [Node Validation Workflow](Node_Validation_Workflow.md) (1 shared connections)
+- [Multi-Language Build Steps](Multi-Language_Build_Steps.md) (1 shared connections)
+- [Validation Job Definitions](Validation_Job_Definitions.md) (1 shared connections)
+- [Node.js Validation Workflow](Node.js_Validation_Workflow.md) (1 shared connections)
 - [Browser Validation Workflow](Browser_Validation_Workflow.md) (1 shared connections)
 - [Conditional Workflow Steps](Conditional_Workflow_Steps.md) (1 shared connections)
 
