@@ -2,6 +2,7 @@
 .claude/
 .codex/
 .agents/
+.gemini/
 .private-preview/
 .env
 .env.*
@@ -10,6 +11,10 @@ dist/
 .build-staging/
 node_modules/
 .venv/
+.pytest_cache/
+.pytest_tmp/
+.ruff_cache/
+__pycache__/
 test-results/
 playwright-report/
 package-lock.json
