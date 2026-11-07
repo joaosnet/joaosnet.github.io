@@ -11,11 +11,13 @@
   <meta name="author" content="{{ site.name }}">
   {% if site.google_site_verification %}<meta name="google-site-verification" content="{{ site.google_site_verification }}">{% endif %}
   {% if path.endswith('404.html') %}<meta name="robots" content="noindex, follow">{% endif %}
+  {% if not path.endswith('404.html') %}
   <link rel="canonical" href="{{ site.url }}{{ path }}">
   <link rel="alternate" hreflang="pt-BR" href="{{ site.url }}{{ alternates.pt }}">
   <link rel="alternate" hreflang="en" href="{{ site.url }}{{ alternates.en }}">
   <link rel="alternate" hreflang="es" href="{{ site.url }}{{ alternates.es }}">
   <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ alternates.pt }}">
+  {% endif %}
   <meta property="og:type" content="website">
   <meta property="og:locale" content="{{ 'pt_BR' if lang == 'pt' else ('es_ES' if lang == 'es' else 'en_US') }}">
   <meta property="og:title" content="{{ (project.name + ' · ') if project else '' }}{{ site.name }}">

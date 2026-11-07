@@ -1,9 +1,7 @@
 {
   "0": "Portfolio Features and Documentation",
   "1": "Deployment Pipeline Configuration",
-  "2": "Security Architecture and Governance",
   "3": "Analytics and Review Documentation",
-  "4": "GitHub Pages Deployment",
   "5": "Dependabot Configuration",
   "7": "Frontend Dependencies and Testing",
   "8": "Maintenance Workflow",
@@ -28,7 +26,5 @@
   "42": "Workflow Trigger Rules",
   "44": "Static Build Assets",
   "46": "Project Root Identifier",
-  "57": "Build System and Agent Rules",
-  "58": "HTML and PDF Parsing Tests",
-  "136": "Local Preview Server"
+  "57": "Build System and Agent Rules"
 }

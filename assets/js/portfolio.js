@@ -483,19 +483,21 @@
     try {
       const rawSaved = localStorage.getItem(countKey);
       const savedCount = parseInt(rawSaved || "0", 10);
-      // Discard legacy/artificial baseline (>= 1000) from earlier development
-      if (savedCount > 0 && savedCount < 1000) {
+      if (savedCount > 0) {
         targetCount = savedCount;
-      } else if (savedCount >= 1000) {
-        localStorage.removeItem(countKey);
       }
     } catch {
       /* Storage is optional */
     }
 
-    visitorCountEl.textContent = targetCount.toLocaleString(
-      document.body.dataset.lang === "pt" ? "pt-BR" : "en-US",
-    );
+    const formatCount = (count) => {
+      const pageLang = (document.body.dataset.lang || "pt").toLowerCase();
+      const locale =
+        pageLang === "pt" ? "pt-BR" : pageLang === "es" ? "es-ES" : "en-US";
+      return count.toLocaleString(locale);
+    };
+
+    visitorCountEl.textContent = formatCount(targetCount);
     visitorBadge.hidden = false;
 
     const getClientMetadata = () => {
@@ -513,11 +515,6 @@
       else if (/Chrome/i.test(ua)) browser = "Chrome";
       else if (/Firefox/i.test(ua)) browser = "Firefox";
       else if (/Safari/i.test(ua)) browser = "Safari";
-
-      const resolution =
-        window.screen && window.screen.width && window.screen.height
-          ? `${window.screen.width}x${window.screen.height}`
-          : "Desconhecido";
 
       let timezone = "Desconhecido";
       try {
@@ -560,13 +557,52 @@
         return "other";
       };
 
-      return { os, browser, resolution, timezone, utcOffset, getChannel };
+      return { os, browser, timezone, utcOffset, getChannel };
     };
 
     const syncRemoteViews = async () => {
       try {
-        const scriptUrl =
-          "https://script.google.com/macros/s/AKfycbxzLmn6N4YTTDG_e0JvTxagP3NqXRxaoxj22yuNi7GPrAIg9ZhMksw85kORdgCUTgwWdQ/exec";
+        try {
+          if (localStorage.getItem("portfolio-metrics-disabled") === "true") return;
+        } catch {
+          /* Storage optional */
+        }
+        if (
+          document.body.dataset.page?.includes("404") ||
+          document.querySelector(".not-found")
+        )
+          return;
+
+        const host = window.location.hostname || "";
+        const isLocal =
+          window.location.protocol === "file:" ||
+          host === "localhost" ||
+          host === "127.0.0.1";
+        if (isLocal) return;
+
+        let scriptUrl = window.__portfolioAnalyticsConfig?.endpoint || null;
+        if (!scriptUrl) {
+          try {
+            const cfgRes = await fetch("/assets/analytics-config.json", {
+              credentials: "omit",
+            });
+            if (cfgRes.ok) {
+              const cfg = await cfgRes.json();
+              if (
+                cfg?.endpoint &&
+                /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(
+                  cfg.endpoint,
+                )
+              ) {
+                scriptUrl = cfg.endpoint;
+                window.__portfolioAnalyticsConfig = cfg;
+              }
+            }
+          } catch {
+            /* Fallback safe */
+          }
+        }
+        if (!scriptUrl) return;
 
         // Record new visit via POST if not already counted in this session
         try {
@@ -579,12 +615,20 @@
           if (!isSessionCounted && !isLocal) {
             sessionStorage.setItem(sessionKey, "true");
             const meta = getClientMetadata();
-            const ref = document.referrer || "";
+            let ref = document.referrer || "";
+            if (ref) {
+              try {
+                const parsedRef = new URL(ref);
+                ref = parsedRef.origin + parsedRef.pathname;
+              } catch {
+                ref = ref.split("?")[0].split("#")[0];
+              }
+            }
+            const canonicalPath = (window.location.pathname || "/").split("?")[0].split("#")[0];
             const visitData = {
               type: "visit",
               timestamp: new Date().toISOString(),
-              path: window.location.pathname + window.location.hash,
-              url: window.location.href,
+              path: canonicalPath,
               referrer: ref,
               channel: meta.getChannel(ref),
               language: navigator.language || "",
@@ -593,7 +637,6 @@
                 : "Desktop",
               os: meta.os,
               browser: meta.browser,
-              resolution: meta.resolution,
               timezone: meta.timezone,
               utcOffset: meta.utcOffset,
               source: "portfolio-client",
@@ -627,10 +670,7 @@
             } catch {
               /* Storage is optional */
             }
-            const isPt = document.body.dataset.lang === "pt";
-            visitorCountEl.textContent = targetCount.toLocaleString(
-              isPt ? "pt-BR" : "en-US",
-            );
+            visitorCountEl.textContent = formatCount(targetCount);
           }
         }
       } catch {
@@ -643,20 +683,15 @@
       const duration = 800;
       const start = 1;
       const startTime = performance.now();
-      const isPt = document.body.dataset.lang === "pt";
       const step = (now) => {
         const progress = Math.min((now - startTime) / duration, 1);
         const ease = 1 - Math.pow(1 - progress, 4);
         const current = Math.floor(start + (targetCount - start) * ease);
-        visitorCountEl.textContent = current.toLocaleString(
-          isPt ? "pt-BR" : "en-US",
-        );
+        visitorCountEl.textContent = formatCount(current);
         if (progress < 1) {
           requestAnimationFrame(step);
         } else {
-          visitorCountEl.textContent = targetCount.toLocaleString(
-            isPt ? "pt-BR" : "en-US",
-          );
+          visitorCountEl.textContent = formatCount(targetCount);
         }
       };
       requestAnimationFrame(step);
@@ -686,4 +721,30 @@
       img.addEventListener("error", () => img.classList.add("img-fallback"));
     }
   });
+
+  // Dynamic 404 localization for path-based language entry
+  const notFoundSection = $(".not-found");
+  if (notFoundSection) {
+    const rawPath = window.location.pathname.toLowerCase();
+    const isEn = rawPath.startsWith("/en/") || rawPath === "/en";
+    const isEs = rawPath.startsWith("/es/") || rawPath === "/es";
+    let targetLang = isEn ? "en" : isEs ? "es" : null;
+    if (!targetLang) {
+      try {
+        const savedLang = localStorage.getItem("portfolio-language");
+        if (savedLang === "en" || savedLang === "es") targetLang = savedLang;
+      } catch {
+        /* Storage optional */
+      }
+    }
+    if (targetLang) {
+      $$("[data-lang-" + targetLang + "]").forEach((el) => {
+        el.textContent = el.getAttribute("data-lang-" + targetLang);
+      });
+      const homeLink = notFoundSection.querySelector(
+        ".button.primary, .not-found-home-btn",
+      );
+      if (homeLink) homeLink.href = "/" + targetLang + "/";
+    }
+  }
 })();

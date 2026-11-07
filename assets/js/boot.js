@@ -9,6 +9,10 @@ try {
     location.pathname === "/en/" ||
     location.pathname === "/en" ||
     location.pathname === "/en/index.html";
+  const isRootEs =
+    location.pathname === "/es/" ||
+    location.pathname === "/es" ||
+    location.pathname === "/es/index.html";
 
   if (!saved) {
     const navLang = (
@@ -16,14 +20,18 @@ try {
       navigator.language ||
       ""
     ).toLowerCase();
-    if (navLang.startsWith("en") && isRootPt) {
+    if (navLang.startsWith("en") && (isRootPt || isRootEs)) {
       location.replace("/en/" + location.search + location.hash);
-    } else if (navLang.startsWith("pt") && isRootEn) {
+    } else if (navLang.startsWith("es") && (isRootPt || isRootEn)) {
+      location.replace("/es/" + location.search + location.hash);
+    } else if (navLang.startsWith("pt") && (isRootEn || isRootEs)) {
       location.replace("/" + location.search + location.hash);
     }
-  } else if (saved === "en" && isRootPt) {
+  } else if (saved === "en" && (isRootPt || isRootEs)) {
     location.replace("/en/" + location.search + location.hash);
-  } else if (saved === "pt" && isRootEn) {
+  } else if (saved === "es" && (isRootPt || isRootEn)) {
+    location.replace("/es/" + location.search + location.hash);
+  } else if (saved === "pt" && (isRootEn || isRootEs)) {
     location.replace("/" + location.search + location.hash);
   }
 } catch {

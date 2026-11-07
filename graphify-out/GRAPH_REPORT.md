@@ -1,26 +1,26 @@
-# Graph Report - joaosnet.github.io  (2026-11-06)
+# Graph Report - joaosnet.github.io  (2026-11-07)
 
 ## Corpus Check
-- 45 files · ~67,338 words
+- 46 files · ~70,716 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .gs 1, .css 1)
 
 ## Summary
-- 412 nodes · 507 edges · 34 communities (22 shown, 12 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 13 edges (avg confidence: 0.93)
+- 421 nodes · 527 edges · 33 communities (21 shown, 12 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 14 edges (avg confidence: 0.93)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5b1ec2a5`
+- Built from commit: `01a35e60`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Portfolio Features and Documentation
 - Deployment Pipeline Configuration
-- Security Architecture and Governance
+- Arquitetura, Governança de Dados e Isolamento de Segurança
 - Analytics and Review Documentation
-- GitHub Pages Deployment
+- test_site_structure.py
 - Dependabot Configuration
 - build_site.py
 - Frontend Dependencies and Testing
@@ -40,29 +40,28 @@
 - Workflow Trigger Rules
 - Project Root Identifier
 - Build System and Agent Rules
-- HTML and PDF Parsing Tests
-- Local Preview Server
+- preview.py
 
 ## God Nodes (most connected - your core abstractions)
-1. `with` - 14 edges
-2. `Sheet` - 13 edges
-3. `build()` - 12 edges
+1. `Sheet` - 16 edges
+2. `with` - 14 edges
+3. `build()` - 13 edges
 4. `private_preview()` - 12 edges
 5. `with` - 12 edges
-6. `main()` - 11 edges
-7. `read_json()` - 10 edges
+6. `read_json()` - 11 edges
+7. `main()` - 11 edges
 8. `Testes Locais - Portfolio Website` - 10 edges
-9. `João Silva Neto · Portfolio` - 9 edges
-10. `Page` - 8 edges
+9. `Page` - 9 edges
+10. `João Silva Neto · Portfolio` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Limitações que permanecem explícitas` --references--> `main()`  [INFERRED]
-  docs/preview-review.md → update_projects.py
 - `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` --references--> `private_preview()`  [INFERRED]
   docs/architecture-security-isolation.md → update_projects.py
+- `Limitações que permanecem explícitas` --references--> `main()`  [INFERRED]
+  docs/preview-review.md → update_projects.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `test_private_review_and_env_are_ignored()`  [INFERRED]
   docs/architecture-security-isolation.md → tests/test_env_variables.py
-- `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `private_preview()`  [INFERRED]
+- `2. Ponto de Entrada `main()` e Governança de Dados` --references--> `public_snapshot()`  [INFERRED]
   docs/architecture-security-isolation.md → update_projects.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `test_import_does_not_load_dotenv()`  [INFERRED]
   docs/architecture-security-isolation.md → tests/test_env_variables.py
@@ -70,35 +69,35 @@
 ## Import Cycles
 - None detected.
 
-## Communities (34 total, 12 thin omitted)
+## Communities (33 total, 12 thin omitted)
 
 ### Community 0 - "Portfolio Features and Documentation"
 Cohesion: 0.12
 Nodes (16): 1. Acessibilidade e Design System AAA, 1. Clonagem e Instalação, 2. Compilação e Prévia Local, 2. Internacionalização Híbrida (I18n), 3. Coleta de Métricas Privacy-First, 4. Geração Programática de Currículos, Atualização de Projetos, Começando (Desenvolvimento Local) (+8 more)
 
 ### Community 1 - "Deployment Pipeline Configuration"
-Cohesion: 0.08
-Nodes (26): environment, needs, permissions, runs-on, steps, name, url, jobs (+18 more)
+Cohesion: 0.06
+Nodes (36): concurrency, cancel-in-progress, group, environment, needs, permissions, runs-on, steps (+28 more)
 
-### Community 2 - "Security Architecture and Governance"
-Cohesion: 0.15
-Nodes (12): 1. Topologia do Sistema e Fronteira de Publicação, 3. Isolamento e Segurança de Projetos Privados (`private_preview`), 4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`), 5. Diretriz Universal para Agentes de IA: Knowledge Graph First, A. Proibição Estrita de Varredura Especulativa, Arquitetura, Governança de Dados e Isolamento de Segurança, B. Ordem de Navegação Obrigatória, C. Protocolo de Delegação para Subagentes (+4 more)
+### Community 2 - "Arquitetura, Governança de Dados e Isolamento de Segurança"
+Cohesion: 0.22
+Nodes (8): 1. Topologia do Sistema e Fronteira de Publicação, 3. Isolamento e Segurança de Projetos Privados (`private_preview`), 5. Diretriz Universal para Agentes de IA: Knowledge Graph First, A. Proibição Estrita de Varredura Especulativa, Arquitetura, Governança de Dados e Isolamento de Segurança, B. Ordem de Navegação Obrigatória, C. Protocolo de Delegação para Subagentes, D. Higiene e Atualização do Grafo
 
 ### Community 3 - "Analytics and Review Documentation"
 Cohesion: 0.09
 Nodes (19): Dados e controles, Estado da entrega, Extrair insights, Implantação após a revisão, Métricas de interação · coletor v1, Retenção, segurança e limites, Comparação visual, Evidências de validação (+11 more)
 
-### Community 4 - "GitHub Pages Deployment"
-Cohesion: 0.18
-Nodes (10): concurrency, cancel-in-progress, group, name, on, push, workflow_dispatch, permissions (+2 more)
+### Community 4 - "test_site_structure.py"
+Cohesion: 0.12
+Nodes (8): built(), Page, test_404_pages_exclude_canonical_and_alternate(), test_bilingual_routes_metadata_and_names(), test_build_cannot_delete_other_directories(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_strict_csp_and_no_inline_event_handlers()
 
 ### Community 5 - "Dependabot Configuration"
 Cohesion: 0.20
 Nodes (9): patterns, dependencies, interval, updates, directory, groups, package-ecosystem, schedule (+1 more)
 
 ### Community 6 - "build_site.py"
-Cohesion: 0.09
-Nodes (8): build(), load_projects(), read_json(), safe_url(), generate_cvs(), test_private_projects_require_review_and_cannot_export_sources(), test_live_production_telemetry_health(), test_telemetry_config_and_catalog_alignment()
+Cohesion: 0.08
+Nodes (16): build(), get_content_lastmod(), load_projects(), read_json(), safe_url(), 2. Ponto de Entrada `main()` e Governança de Dados, generate_cvs(), test_metrics_have_no_transport_before_backend_validation() (+8 more)
 
 ### Community 7 - "Frontend Dependencies and Testing"
 Cohesion: 0.07
@@ -109,8 +108,8 @@ Cohesion: 0.07
 Nodes (28): jobs, maintenance, runs-on, steps, timeout-minutes, name, on, schedule (+20 more)
 
 ### Community 9 - "Node.js Core Utilities"
-Cohesion: 0.07
-Nodes (10): assert, catalog, context, fs, { randomUUID }, runtime(), Sheet, source (+2 more)
+Cohesion: 0.06
+Nodes (12): assert, catalog, context, fs, parseA1Notation(), path, { randomUUID }, runtime() (+4 more)
 
 ### Community 10 - "Project Update Workflow"
 Cohesion: 0.09
@@ -153,32 +152,28 @@ Cohesion: 0.40
 Nodes (5): on, pull_request, push, workflow_call, branches
 
 ### Community 57 - "Build System and Agent Rules"
-Cohesion: 0.14
-Nodes (20): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, 2. Ponto de Entrada `main()` e Governança de Dados, client(), test_api_failure_does_not_accept_redirect_or_data(), test_changed_review_digest_is_rejected(), test_private_preview_is_local_and_contains_no_token(), test_private_preview_needs_explicit_local_allowlist() (+12 more)
-
-### Community 58 - "HTML and PDF Parsing Tests"
-Cohesion: 0.11
-Nodes (8): built(), Page, test_bilingual_routes_metadata_and_names(), test_build_cannot_delete_other_directories(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_metrics_have_no_transport_before_backend_validation(), test_strict_csp_and_no_inline_event_handlers()
+Cohesion: 0.12
+Nodes (20): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, 4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`), test_import_does_not_load_dotenv(), test_private_import_without_token_does_not_access_network(), test_private_review_and_env_are_ignored(), client(), test_api_failure_does_not_accept_redirect_or_data() (+12 more)
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `joaosnet-portfolio`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 238 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 240 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `Build System and Agent Rules` to `Analytics and Review Documentation`, `build_site.py`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
+- **Why does `main()` connect `build_site.py` to `Build System and Agent Rules`, `Analytics and Review Documentation`?**
+  _High betweenness centrality (0.097) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `private_preview()` (e.g. with `Rules for All Agents & Subagents:` and `3. Isolamento e Segurança de Projetos Privados (`private_preview`)`) actually correct?**
   _`private_preview()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `joaosnet-portfolio` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Portfolio Features and Documentation` be split into smaller, more focused modules?**
   _Cohesion score 0.125 - nodes in this community are weakly interconnected._
-- **Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `Build System and Agent Rules`?**
-  _High betweenness centrality (0.092) - this node is a cross-community bridge._
+- **Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `build_site.py`?**
+  _High betweenness centrality (0.091) - this node is a cross-community bridge._
 - **Should `Deployment Pipeline Configuration` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
-- **Should `Security Architecture and Governance` be split into smaller, more focused modules?**
-  _Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05555555555555555 - nodes in this community are weakly interconnected._
+- **Should `Analytics and Review Documentation` be split into smaller, more focused modules?**
+  _Cohesion score 0.09057971014492754 - nodes in this community are weakly interconnected._

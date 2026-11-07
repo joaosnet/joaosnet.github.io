@@ -125,6 +125,7 @@ def approve_export(path, digest):
         "visual",
         "pt",
         "en",
+        "es",
     }
     if not isinstance(reviewed, list) or any(
         set(p) - allowed or p.get("visibility") != "private" or p.get("reviewed") is not True for p in reviewed

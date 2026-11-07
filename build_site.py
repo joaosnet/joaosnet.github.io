@@ -8,6 +8,7 @@ import hashlib
 import json
 import re
 import shutil
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -21,6 +22,25 @@ REPO = re.compile(r"^[A-Za-z0-9][A-Za-z0-9-]{0,38}/(?!\.{1,2}$)[A-Za-z0-9_.-]{1,
 
 def read_json(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
+
+
+def get_content_lastmod():
+    site_file = ROOT / "content/site.json"
+    try:
+        res = subprocess.run(
+            ["git", "-C", str(ROOT), "log", "-1", "--format=%cs", str(site_file)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        date_str = res.stdout.strip()
+        if re.fullmatch(r"\d{4}-\d{2}-\d{2}", date_str):
+            return date_str
+    except Exception:
+        pass
+    if site_file.exists():
+        return datetime.fromtimestamp(site_file.stat().st_mtime, tz=timezone.utc).strftime("%Y-%m-%d")
+    return datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 
 def safe_url(url, hosts=None):
@@ -296,7 +316,7 @@ def build(output=None):
             target.write_text(html, encoding="utf-8")
             all_pages.append(path)
             if template != "404.html":
-                pages.append(path)
+                pages.append((path, project))
 
     # Copy an allowlist, never the repository or historical project-image directory.
     assets = [
@@ -326,8 +346,14 @@ def build(output=None):
     if project_images_dir.exists():
         target_images_dir = destination / "assets/project-images"
         target_images_dir.mkdir(parents=True, exist_ok=True)
+        allowed_img_exts = {".webp", ".png", ".jpg", ".jpeg", ".svg", ".gif"}
         for img in project_images_dir.iterdir():
-            if img.is_file() and not any(k in img.name for k in ("private", "fastapi")):
+            if (
+                img.is_file()
+                and img.suffix.lower() in allowed_img_exts
+                and not img.name.startswith(".")
+                and not any(k in img.name.lower() for k in ("private", "fastapi"))
+            ):
                 shutil.copyfile(img, target_images_dir / img.name)
     fonts = ROOT / "assets/fonts"
     if fonts.exists():
@@ -338,6 +364,37 @@ def build(output=None):
     from scripts.build_cv import generate_cvs
 
     generate_cvs(destination / "docs", site, projects)
+
+    # docs/index.html: hybrid client/meta redirect with noindex
+    docs_dir = destination / "docs"
+    docs_dir.mkdir(parents=True, exist_ok=True)
+    redirect_script = (
+        "var lang = (localStorage.getItem('portfolio-language') || navigator.language || '').toLowerCase();\n"
+        "var target = lang.startsWith('en') ? '/en/#education' : (lang.startsWith('es') ? '/es/#education' : '/#education');\n"
+        "location.replace(target);"
+    )
+    redirect_hash = base64.b64encode(hashlib.sha256(redirect_script.encode()).digest()).decode()
+    docs_csp = f"default-src 'none'; script-src 'sha256-{redirect_hash}'; base-uri 'none'"
+    docs_html = (
+        "<!doctype html>\n"
+        '<html lang="pt-BR">\n'
+        "<head>\n"
+        '  <meta charset="utf-8">\n'
+        '  <meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        f'  <meta http-equiv="Content-Security-Policy" content="{docs_csp}">\n'
+        '  <title>João Silva Neto · Redirecionamento</title>\n'
+        '  <meta name="robots" content="noindex, follow">\n'
+        f'  <link rel="canonical" href="{site["url"]}/#education">\n'
+        '  <meta http-equiv="refresh" content="0; url=/#education">\n'
+        f"  <script>{redirect_script}</script>\n"
+        "</head>\n"
+        "<body>\n"
+        f"  <h1>{site['name']}</h1>\n"
+        '  <p>Redirecionando para Formação / Redirecting to education... <a href="/#education">Clique aqui se não for redirecionado automaticamente</a>.</p>\n'
+        "</body>\n"
+        "</html>\n"
+    )
+    (docs_dir / "index.html").write_text(docs_html, encoding="utf-8")
 
     config = {
         "endpoint": endpoint,
@@ -371,20 +428,30 @@ def build(output=None):
     (destination / "robots.txt").write_text(robots_content, encoding="utf-8")
     (ROOT / "robots.txt").write_text(robots_content, encoding="utf-8")
 
-    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    static_lastmod = get_content_lastmod()
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
     xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n'
-    for p in pages:
+    for p, proj in pages:
         loc = f"{site['url']}{p}"
         if p in ("/", "/en/", "/es/"):
             priority = "1.0" if p == "/" else "0.9"
             changefreq = "weekly"
+            lastmod = static_lastmod
         elif "privacy" in p:
             priority = "0.3"
             changefreq = "monthly"
+            lastmod = static_lastmod
         else:
             priority = "0.8"
             changefreq = "weekly"
+            if proj:
+                lastmod = (
+                    proj.get("updated")
+                    or (proj.get("registration", {}).get("issued_date") if proj.get("registration") else "")
+                    or static_lastmod
+                )
+            else:
+                lastmod = static_lastmod
 
         if p.startswith("/en/"):
             suffix = p.removeprefix("/en/")
@@ -399,13 +466,13 @@ def build(output=None):
 
         xml += "  <url>\n"
         xml += f"    <loc>{loc}</loc>\n"
+        xml += f"    <lastmod>{lastmod}</lastmod>\n"
+        xml += f"    <changefreq>{changefreq}</changefreq>\n"
+        xml += f"    <priority>{priority}</priority>\n"
         xml += f'    <xhtml:link rel="alternate" hreflang="pt-BR" href="{pt_url}"/>\n'
         xml += f'    <xhtml:link rel="alternate" hreflang="en" href="{en_url}"/>\n'
         xml += f'    <xhtml:link rel="alternate" hreflang="es" href="{es_url}"/>\n'
         xml += f'    <xhtml:link rel="alternate" hreflang="x-default" href="{pt_url}"/>\n'
-        xml += f"    <lastmod>{today}</lastmod>\n"
-        xml += f"    <changefreq>{changefreq}</changefreq>\n"
-        xml += f"    <priority>{priority}</priority>\n"
         xml += "  </url>\n"
     xml += "</urlset>\n"
     (destination / "sitemap.xml").write_text(xml, encoding="utf-8")
@@ -413,8 +480,11 @@ def build(output=None):
     (destination / ".nojekyll").touch()
     (ROOT / ".nojekyll").touch()
 
-    # Synchronize root index.html and routes with the built site
+    # Synchronize root index.html, 404.html, analytics config, docs, and routes with the built site
     shutil.copyfile(destination / "index.html", ROOT / "index.html")
+    shutil.copyfile(destination / "404.html", ROOT / "404.html")
+    (ROOT / "assets").mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(destination / "assets/analytics-config.json", ROOT / "assets/analytics-config.json")
     for route in ("projects", "en", "es", "privacy"):
         src = destination / route
         dest = ROOT / route
@@ -422,6 +492,11 @@ def build(output=None):
             if dest.exists():
                 shutil.rmtree(dest)
             shutil.copytree(src, dest)
+    docs_src = destination / "docs"
+    docs_dest = ROOT / "docs"
+    if docs_src.exists():
+        docs_dest.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(docs_src, docs_dest, dirs_exist_ok=True)
     digest = hashlib.sha256((destination / "index.html").read_bytes()).hexdigest()[:12]
     if final_destination.exists():
         shutil.rmtree(final_destination)

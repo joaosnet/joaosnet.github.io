@@ -80,6 +80,7 @@ var DEFAULT_CATALOG = {
     "case-readme",
     "contact-project",
     "contact-reason",
+    "contact-schedule",
     "contact-submit",
     "content",
     "cv-download",
@@ -96,7 +97,9 @@ var DEFAULT_CATALOG = {
     "form-field",
     "github",
     "header-contact",
+    "hero-contact",
     "hero-projects",
+    "hero-schedule",
     "hero-scroll",
     "ip-certificate",
     "lab-demo",
@@ -104,7 +107,6 @@ var DEFAULT_CATALOG = {
     "lab-reset",
     "lab-smoothing",
     "language",
-    "language-es",
     "language-secondary",
     "language-select",
     "lattes",
@@ -115,12 +117,19 @@ var DEFAULT_CATALOG = {
     "nav-contact",
     "nav-lab",
     "nav-projects",
+    "nav-services",
     "page",
+    "pricing-cta-fixed",
+    "pricing-cta-hourly",
+    "pricing-cta-retainer",
     "privacy",
     "project-case",
     "project-title",
     "project-visual",
     "secret-terminal",
+    "service-proof-apis",
+    "service-proof-automation",
+    "service-proof-iot",
     "skill-backend",
     "skill-data",
     "skill-devices",
@@ -388,6 +397,14 @@ function recordVisit(payload, book, properties) {
   ];
 
   if (sheet.getRange) {
+    var numRows = 1;
+    if (
+      typeof sheet.getMaxRows === "function" &&
+      typeof sheet.insertRowsAfter === "function" &&
+      sheet.getLastRow() + numRows > sheet.getMaxRows()
+    ) {
+      sheet.insertRowsAfter(sheet.getMaxRows(), Math.max(numRows + 100, 500));
+    }
     var target = sheet.getRange(sheet.getLastRow() + 1, 1, 1, row.length);
     if (target.setNumberFormat) target.setNumberFormat("@");
     if (target.setValues) target.setValues([row]);
@@ -408,6 +425,7 @@ function setupDashboard(book) {
   var visitsSheet = book.getSheetByName("Visitas");
   var legacyEvents = book.getSheetByName("Eventos");
   var modernEvents = book.getSheetByName("EventsV1");
+  var monthlySheet = book.getSheetByName("MonthlyV1");
 
   var visitsData = [];
   if (visitsSheet && visitsSheet.getLastRow() > 1) {
@@ -455,18 +473,45 @@ function setupDashboard(book) {
     modernData.forEach(function (row) {
       var name = String(row[2] || "").toLowerCase();
       var element = String(row[6] || "").toLowerCase();
+      var outcome = String(row[10] || "").toLowerCase();
       if (
         element.indexOf("cv-download") !== -1 ||
         element.indexOf("cv-view") !== -1
       )
         cvDownloads++;
-      else if (
-        name === "contact_result" ||
-        element.indexOf("contact-submit") !== -1
-      )
+      else if (name === "contact_result" && outcome === "success")
         contatos++;
       else if (element.indexOf("linkedin") !== -1) linkedinClicks++;
       else if (element.indexOf("explorer-badge") !== -1) conquistas++;
+    });
+  }
+
+  if (monthlySheet && monthlySheet.getLastRow() > 1) {
+    var monthlyCols =
+      typeof monthlySheet.getLastColumn === "function"
+        ? monthlySheet.getLastColumn()
+        : 9;
+    var monthlyData = monthlySheet
+      .getRange(2, 1, monthlySheet.getLastRow() - 1, Math.max(9, monthlyCols))
+      .getValues();
+    monthlyData.forEach(function (row) {
+      var evName = String(row[1] || "").toLowerCase();
+      var element = String(row[4] || "").toLowerCase();
+      var outcome = String(row[7] || "").toLowerCase();
+      var count = Number(row[8]) || 0;
+
+      if (
+        element.indexOf("cv-download") !== -1 ||
+        element.indexOf("cv-view") !== -1
+      ) {
+        cvDownloads += count;
+      } else if (evName === "contact_result" && outcome === "success") {
+        contatos += count;
+      } else if (element.indexOf("linkedin") !== -1) {
+        linkedinClicks += count;
+      } else if (element.indexOf("explorer-badge") !== -1) {
+        conquistas += count;
+      }
     });
   }
 
@@ -479,6 +524,7 @@ function setupDashboard(book) {
   var directCount = 0;
   var searchCount = 0;
   var messagingCount = 0;
+  var outrosCanalCount = 0;
 
   var chromeCount = 0;
   var safariCount = 0;
@@ -505,6 +551,7 @@ function setupDashboard(book) {
     else if (channel === "direct") directCount++;
     else if (channel === "search") searchCount++;
     else if (channel === "messaging") messagingCount++;
+    else outrosCanalCount++;
   });
 
   if (typeof dash.clear === "function") dash.clear();
@@ -613,6 +660,8 @@ function setupDashboard(book) {
   setCell("D10", searchCount, null, null, null, true, "center");
   setCell("C11", "messaging (Telegram)");
   setCell("D11", messagingCount, null, null, null, true, "center");
+  setCell("C12", "outros (Referral / Outros)");
+  setCell("D12", outrosCanalCount, null, null, null, true, "center");
 
   setCell(
     "E6:F6",
@@ -638,7 +687,7 @@ function setupDashboard(book) {
   if (dash.setBorder) {
     try {
       dash
-        .getRange("A6:F11")
+        .getRange("A6:F12")
         .setBorder(
           true,
           true,
@@ -736,6 +785,14 @@ function doPost(e) {
     });
 
     if (rows.length) {
+      var numRows = rows.length;
+      if (
+        typeof sheet.getMaxRows === "function" &&
+        typeof sheet.insertRowsAfter === "function" &&
+        sheet.getLastRow() + numRows > sheet.getMaxRows()
+      ) {
+        sheet.insertRowsAfter(sheet.getMaxRows(), Math.max(numRows + 100, 500));
+      }
       var target = sheet.getRange(
         sheet.getLastRow() + 1,
         1,
@@ -817,14 +874,20 @@ function aggregateRows(rows) {
 }
 
 function replaceRows(sheet, rows, width) {
-  var height = Math.max(sheet.getLastRow(), rows.length);
-  var padded = [];
-  for (var i = 0; i < height; i++) {
-    var row = rows[i] ? rows[i].slice() : [];
-    while (row.length < width) row.push("");
-    padded.push(row);
+  if (rows.length) {
+    var padded = [];
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i] ? rows[i].slice() : [];
+      while (row.length < width) row.push("");
+      padded.push(row);
+    }
+    sheet.getRange(1, 1, rows.length, width).setNumberFormat("@").setValues(padded);
   }
-  sheet.getRange(1, 1, height, width).setNumberFormat("@").setValues(padded);
+  if (sheet.getLastRow() > rows.length) {
+    if (typeof sheet.deleteRows === "function") {
+      sheet.deleteRows(rows.length + 1, sheet.getLastRow() - rows.length);
+    }
+  }
 }
 
 function maintain() {
@@ -864,13 +927,22 @@ function maintain() {
       summary.getLastRow() > 1
         ? summary.getRange(2, 1, summary.getLastRow() - 1, 9).getValues()
         : [];
-    var watermark = summary.getLastRow()
-      ? Date.parse(String(summary.getRange(1, 10, 1, 1).getValues()[0][0]))
-      : NaN;
-    if (!isFinite(watermark)) watermark = -Infinity;
+    var watermarkVal = summary.getLastRow()
+      ? summary.getRange(1, 10, 1, 1).getValues()[0][0]
+      : null;
+    var parsedWatermark = watermarkVal ? Date.parse(String(watermarkVal)) : NaN;
+    var watermark;
+    if (isFinite(parsedWatermark)) {
+      watermark = parsedWatermark;
+    } else if (archived.length > 0) {
+      watermark = cutoff;
+    } else {
+      watermark = -Infinity;
+    }
     var counts = aggregateRows(
       expired.filter(function (row) {
-        return Date.parse(String(row[3])) > watermark;
+        var t = Date.parse(String(row[3]));
+        return isFinite(t) && t > watermark;
       }),
     );
     archived.forEach(function (row) {

@@ -39,7 +39,8 @@
   let queue = [];
   let timer = null;
   let lastInput = "keyboard";
-  const lang = document.body.dataset.lang === "en" ? "en" : "pt";
+  const rawLang = (document.body.dataset.lang || "pt").split("-")[0].toLowerCase();
+  const lang = ["en", "es"].includes(rawLang) ? rawLang : "pt";
   const page = document.body.dataset.page;
   const notice = document.querySelector(".metrics-notice");
   const id = () => {
@@ -75,7 +76,7 @@
         "aria-label",
         (enabled ? t.disable : t.enable) +
           " · " +
-          (lang === "pt" ? "métricas de uso" : "usage metrics"),
+          (lang === "en" ? "usage metrics" : "métricas de uso"),
       );
       button.setAttribute("aria-pressed", String(enabled));
     });
@@ -89,7 +90,11 @@
       queue = [];
       return;
     }
-    if (!config || !isLive() || !queue.length) return;
+    if (!config || !queue.length) return;
+    if (!isLive()) {
+      queue = [];
+      return;
+    }
     const events = queue.splice(0, 20);
     const body = JSON.stringify({ version: 1, events });
     // Apps Script redirects have no portable CORS acknowledgement. Best effort, no blind retry.
@@ -145,7 +150,11 @@
       release: config.release,
     };
     queue.push(event);
-    if (queue.length > 100) queue.shift();
+    if (!isLive()) {
+      if (queue.length > 20) queue = queue.slice(-10);
+    } else if (queue.length > 100) {
+      queue.shift();
+    }
     // Preview tests can observe this safe event shape without a deployed collector.
     document.dispatchEvent(
       new CustomEvent("portfolio:metric", { detail: { ...event } }),

@@ -29,7 +29,7 @@ def built():
 
 def test_only_allowlisted_public_files_are_built(built):
     files = [str(p.relative_to(built)).replace("\\", "/") for p in built.rglob("*") if p.is_file()]
-    assert len(list(built.rglob("*.html"))) == 24
+    assert len(list(built.rglob("*.html"))) == 25
     for path in files:
         assert not any(
             x in path
@@ -86,9 +86,13 @@ def test_bilingual_routes_metadata_and_names(built):
         assert "João Silva Neto" in text
         assert not page.find("script", src="https://cdn.gtranslate.net/widgets/latest/lib.min.js")
         assert len(page.find("h1")) == 1
-        canonical = page.find("link", rel="canonical")[0]["href"]
-        assert canonical.startswith("https://joaosnet.github.io/")
-        if path.name != "404.html":
+        if path.name == "404.html":
+            assert len(page.find("link", rel="canonical")) == 0, f"{path} must not contain rel=canonical"
+            assert len(page.find("link", rel="alternate")) == 0, f"{path} must not contain rel=alternate"
+        else:
+            canonicals = page.find("link", rel="canonical")
+            assert len(canonicals) == 1, f"{path} must have exactly one rel=canonical"
+            assert canonicals[0]["href"].startswith("https://joaosnet.github.io/")
             for alternate in page.find("link", rel="alternate"):
                 if alternate.get("hreflang") in ("pt-BR", "en", "es", "x-default"):
                     dest = built / urlsplit(alternate["href"]).path.lstrip("/") / "index.html"
@@ -113,9 +117,42 @@ def test_strict_csp_and_no_inline_event_handlers(built):
 
 def test_sitemap_covers_all_indexable_pages(built):
     tree = ET.parse(built / "sitemap.xml")
-    locs = tree.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")
-    assert len(locs) == 21
-    assert all("404" not in node.text for node in locs)
+    locs = [node.text for node in tree.findall(".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc")]
+    assert len(locs) == len(set(locs)), "Sitemap must not contain duplicate URLs"
+    assert all("404" not in loc for loc in locs)
+
+    site = builder.read_json(builder.ROOT / "content/site.json")
+    site_url = site["url"].rstrip("/")
+
+    expected_urls = set()
+    for path in built.rglob("*.html"):
+        rel = path.relative_to(built).as_posix()
+        if path.name == "404.html" or rel == "docs/index.html":
+            continue
+        text = path.read_text(encoding="utf-8")
+        if 'name="robots" content="noindex' in text or 'content="noindex' in text:
+            continue
+        if rel == "index.html":
+            expected_urls.add(f"{site_url}/")
+        elif rel.endswith("/index.html"):
+            expected_urls.add(f"{site_url}/{rel[:-len('index.html')]}")
+        else:
+            expected_urls.add(f"{site_url}/{rel}")
+
+    assert set(locs) == expected_urls
+
+
+def test_404_pages_exclude_canonical_and_alternate(built):
+    not_found_pages = list(built.glob("**/404.html"))
+    assert len(not_found_pages) >= 3, "Expected at least 3 404 pages (root, /en/, /es/)"
+    for path in not_found_pages:
+        page = Page(path.read_text(encoding="utf-8"))
+        assert len(page.find("link", rel="canonical")) == 0, f"{path} must not contain rel=canonical"
+        assert len(page.find("link", rel="alternate")) == 0, f"{path} must not contain rel=alternate"
+        assert any(
+            meta.get("name") == "robots" and "noindex" in meta.get("content", "")
+            for meta in page.find("meta")
+        ), f"{path} must have noindex in robots meta"
 
 
 def test_commercial_positioning_and_services(built):
