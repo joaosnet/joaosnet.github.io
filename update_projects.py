@@ -7,11 +7,194 @@ import argparse
 import hashlib
 import json
 import os
+import re
 from pathlib import Path
+from urllib.parse import quote
 
 import requests
 
 from build_site import REPO, ROOT, read_json
+
+KNOWN_LOCAL_ASSETS = {
+    "evolutionary-lab": "/assets/project-images/joaosnet_T1_performance_tournament.gif",
+}
+
+EXCLUDED_IMAGE_PATHS = (
+    "/tests/",
+    "tests/",
+    "mascot/",
+    "node_modules/",
+    "vendor/",
+    ".github/",
+    "favicon",
+    "maskable",
+    "apple-touch",
+    "icon-",
+)
+
+ALLOWED_IMAGE_EXTS = {".gif", ".png", ".webp", ".jpg", ".jpeg", ".svg"}
+
+
+def score_image(path: str) -> int:
+    """Calculates relevance score for a candidate project image path.
+
+    Prioritizes animated GIFs (demo/showcase/preview) first, then high-resolution
+    banners, screenshots, and dashboards. Rejects test fixtures, favicons, and vendor assets.
+    """
+    p = path.lower()
+    if any(term in p for term in EXCLUDED_IMAGE_PATHS):
+        return -1
+    ext = Path(p).suffix
+    if ext not in ALLOWED_IMAGE_EXTS:
+        return -1
+
+    score = 0
+    if ext == ".gif":
+        score += 1000
+        if any(k in p for k in ("demo", "showcase", "preview", "tournament", "anim", "screen", "recording")):
+            score += 200
+    else:
+        score += 100
+        if any(k in p for k in ("banner", "social_preview", "og-banner", "og-preview", "card_hardware", "preview")):
+            score += 150
+        elif any(k in p for k in ("dashboard", "interativo", "screenshot", "screen", "showcase")):
+            score += 120
+        elif any(k in p for k in ("logo", "icon", "icone")):
+            score += 40
+        if "docs/" in p or "assets/" in p:
+            score += 20
+    return score
+
+
+def sanitize_image_filename(repo: str, remote_path: str) -> str:
+    """Derives a secure, sanitized local filename for a remote project image."""
+    if not REPO.fullmatch(repo):
+        raise ValueError("Invalid repository identifier")
+    owner, name = repo.split("/")
+    raw_stem = Path(remote_path).stem
+    ext = Path(remote_path).suffix.lower()
+    if ext not in ALLOWED_IMAGE_EXTS:
+        raise ValueError("Unsupported image extension")
+    clean_stem = re.sub(r"[^\w\-]", "_", raw_stem).strip("_")
+    clean_name = f"{owner}_{name}_{clean_stem}{ext}"
+    clean_name = re.sub(r"_+", "_", clean_name)
+    return clean_name
+
+
+def download_project_image(repo: str, branch: str, remote_path: str, dest_dir: Path | None = None, session=None) -> str:
+    """Downloads a remote project image anonymously with strict size and magic byte verification."""
+    if not REPO.fullmatch(repo):
+        raise ValueError("Invalid repository identifier")
+    folder = (dest_dir or (ROOT / "assets/project-images")).resolve()
+    clean_filename = sanitize_image_filename(repo, remote_path)
+    dest_path = (folder / clean_filename).resolve()
+    if not dest_path.is_relative_to(folder) or dest_path.is_symlink():
+        raise ValueError("Invalid image destination path")
+
+    client = session or requests.Session()
+    client.trust_env = False
+    quoted_path = quote(remote_path)
+    url = f"https://raw.githubusercontent.com/{repo}/{branch}/{quoted_path}"
+    response = client.get(url, timeout=20, stream=True, allow_redirects=False)
+    if response.status_code != 200:
+        raise RuntimeError(f"Failed to download image {remote_path} from {repo}: status {response.status_code}")
+
+    max_bytes = 20 * 1024 * 1024
+    downloaded = bytearray()
+    for chunk in response.iter_content(chunk_size=65536):
+        downloaded.extend(chunk)
+        if len(downloaded) > max_bytes:
+            raise ValueError(f"Image {remote_path} exceeds maximum size of 20MB")
+
+    raw_bytes = bytes(downloaded)
+    is_valid_magic = (
+        raw_bytes.startswith((b"GIF87a", b"GIF89a", b"\x89PNG", b"\xff\xd8\xff"))
+        or (raw_bytes[:4] == b"RIFF" and raw_bytes[8:12] == b"WEBP")
+        or b"<svg" in raw_bytes[:1024].lower()
+    )
+    if not is_valid_magic:
+        raise ValueError(f"File {remote_path} does not match expected image magic bytes")
+
+    dest_path.write_bytes(raw_bytes)
+    return f"/assets/project-images/{clean_filename}"
+
+
+def fetch_project_images(projects, cards, dest_dir: Path | None = None, session=None) -> bool:
+    """Discovers and downloads remote project images, giving top priority to animated GIFs.
+
+    Preserves existing local static assets when candidates are of equal tier,
+    upgrades static images when animated GIFs are discovered, and connects known
+    local assets for projects without remote images.
+    Returns True if any project or card image was updated.
+    """
+    folder = (dest_dir or (ROOT / "assets/project-images")).resolve()
+    folder.mkdir(parents=True, exist_ok=True)
+    client = session or requests.Session()
+    client.trust_env = False
+    changed = False
+
+    for item in projects + cards:
+        repo = item.get("repo", "")
+        if not repo or not REPO.fullmatch(repo):
+            continue
+
+        curr_img = item.get("image") or ""
+        curr_file_exists = (folder / Path(curr_img).name).exists() if curr_img else False
+        curr_is_gif = curr_img.lower().endswith(".gif")
+
+        best_candidate = None
+        default_branch = "main"
+
+        try:
+            repo_data = fetch_repository(repo, session=client)
+            default_branch = repo_data.get("default_branch") or "main"
+            tree_url = f"https://api.github.com/repos/{repo}/git/trees/{default_branch}?recursive=1"
+            headers = {"Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
+            resp = client.get(tree_url, headers=headers, timeout=15, allow_redirects=False)
+            if resp.status_code == 200:
+                candidates = []
+                for entry in resp.json().get("tree", []):
+                    if entry.get("type") == "blob":
+                        sc = score_image(entry.get("path", ""))
+                        if sc > 0:
+                            candidates.append((sc, entry["path"]))
+                if candidates:
+                    candidates.sort(key=lambda x: x[0], reverse=True)
+                    best_candidate = candidates[0]
+        except Exception:
+            best_candidate = None
+
+        if best_candidate:
+            cand_score, cand_path = best_candidate
+            cand_is_gif = cand_path.lower().endswith(".gif")
+
+            should_download = False
+            if not curr_img or not curr_file_exists:
+                should_download = True
+            elif cand_is_gif and not curr_is_gif:
+                should_download = True
+
+            if should_download:
+                try:
+                    new_img = download_project_image(
+                        repo, default_branch, cand_path, dest_dir=folder, session=client
+                    )
+                    if new_img != curr_img:
+                        item["image"] = new_img
+                        changed = True
+                except Exception:
+                    pass
+        else:
+            proj_id = item.get("id")
+            if (
+                not curr_img
+                and proj_id in KNOWN_LOCAL_ASSETS
+                and (folder / Path(KNOWN_LOCAL_ASSETS[proj_id]).name).exists()
+            ):
+                item["image"] = KNOWN_LOCAL_ASSETS[proj_id]
+                changed = True
+
+    return changed
 
 
 def fetch_repository(repo, token="", session=None):
@@ -151,6 +334,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     commands.add_parser("public")
+    commands.add_parser("images")
     commands.add_parser("discover")
     private = commands.add_parser("private-preview")
     private.add_argument("repo")
@@ -159,10 +343,24 @@ def main():
     approve.add_argument("--digest", required=True)
     args = parser.parse_args()
     try:
-        if args.command == "public":
-            data = public_snapshot(read_json(ROOT / "content/projects.json"))
-            (ROOT / "content/public-metadata.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
-            print(f"Refreshed {len(data)} explicitly selected public projects")
+        if args.command in ("public", "images"):
+            projects = read_json(ROOT / "content/projects.json")
+            cards = read_json(ROOT / "content/project-cards.json")
+            if args.command == "public":
+                data = public_snapshot(projects)
+                (ROOT / "content/public-metadata.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
+                print(f"Refreshed {len(data)} explicitly selected public projects")
+            changed = fetch_project_images(projects, cards)
+            if changed:
+                (ROOT / "content/projects.json").write_text(
+                    json.dumps(projects, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                )
+                (ROOT / "content/project-cards.json").write_text(
+                    json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                )
+                print("Updated project images in content catalog")
+            else:
+                print("Project images are up to date")
         elif args.command == "discover":
             discovered = discover_public_repos()
             if not discovered:
@@ -178,7 +376,7 @@ def main():
         else:
             approve_export(args.file, args.digest)
             print("Reviewed editorial export prepared. Build and inspect before publishing.")
-    except ValueError, RuntimeError, requests.RequestException, OSError:
+    except (ValueError, RuntimeError, requests.RequestException, OSError):
         # Do not print requests exceptions: they may include private URLs or headers.
         parser.exit(1, "Import stopped safely. Check local configuration, review schema and network access.\n")
 

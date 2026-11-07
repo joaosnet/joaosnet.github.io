@@ -65,12 +65,6 @@ coverage.xml
 .ruff_cache/
 
 # Project specific
-assets/project-images/*.png
-assets/project-images/*.jpg
-assets/project-images/*.jpeg
-assets/project-images/*.gif
-assets/project-images/*.svg
-!assets/project-images/.gitkeep
 
 # OS
 Thumbs.db

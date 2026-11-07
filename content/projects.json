@@ -20,7 +20,7 @@
     ],
     "demo": "",
     "visual": "signal",
-    "image": "/assets/project-images/joaosnet_aethersense_logo_inicial.webp",
+    "image": "/assets/project-images/joaosnet_aethersense_aethersense_showcase.gif",
     "pt": {
       "eyebrow": "IoT · Pesquisa aplicada",
       "title": "O invisível também tem sinal.",
@@ -166,7 +166,11 @@
       "issued_date": "2025-10-07",
       "protection_years": 50,
       "legal_basis": "Lei 9.609/1998, art. 2º, §2º",
-      "holders": ["UFOPA", "UFPA", "UEMA"],
+      "holders": [
+        "UFOPA",
+        "UFPA",
+        "UEMA"
+      ],
       "holders_full": "Universidade Federal do Oeste do Pará, Universidade Federal do Pará e Universidade do Estado do Maranhão",
       "hash_algorithm": "SHA-512",
       "hash_value": "7b71759f2e290a69456cd7671c1ceec30a6ba446e63fa61c17cbaf0d153654b3177545f644307f65a9821555f107a472f1b93af0123a7bcb77518a33db9bbe7e",
@@ -577,7 +581,8 @@
           "label": "Optimización estocástica ejecutada completamente en el cliente vía JavaScript"
         }
       ]
-    }
+    },
+    "image": "/assets/project-images/joaosnet_T1_performance_tournament.gif"
   },
   {
     "id": "interactive-signals",
@@ -716,6 +721,7 @@
           "label": "Simulación didáctica de convolución y Fourier accesible en cualquier dispositivo"
         }
       ]
-    }
+    },
+    "image": "/assets/project-images/joaosnet_interactive-signals-and-systems_og-banner.svg"
   }
 ]

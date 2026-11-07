@@ -124,3 +124,92 @@ def test_changed_review_digest_is_rejected(tmp_path, monkeypatch):
 def test_wrong_repository_response_is_rejected():
     with pytest.raises(ValueError):
         updater.fetch_repository("owner/public", session=client("other/repo"))
+
+
+def test_score_image_prioritizes_gifs():
+    assert updater.score_image("screenshots/demo.gif") > updater.score_image("assets/banner.png")
+    assert updater.score_image("docs/images/showcase.gif") > updater.score_image("docs/images/dashboard.png")
+    assert updater.score_image("assets/banner.png") > updater.score_image("assets/logo.png")
+
+
+def test_score_image_rejects_unwanted_paths_and_extensions():
+    assert updater.score_image("tests/fixture.gif") == -1
+    assert updater.score_image("favicon.png") == -1
+    assert updater.score_image("node_modules/pkg/img.png") == -1
+    assert updater.score_image("docs/manual.pdf") == -1
+    assert updater.score_image(".github/preview.png") == -1
+
+
+def test_sanitize_image_filename():
+    clean = updater.sanitize_image_filename("owner/my-repo", "assets/images/Dashboard+Totalmente+Interativo.PNG")
+    assert clean == "owner_my-repo_Dashboard_Totalmente_Interativo.png"
+    with pytest.raises(ValueError):
+        updater.sanitize_image_filename("invalid_repo", "banner.png")
+    with pytest.raises(ValueError):
+        updater.sanitize_image_filename("owner/repo", "script.exe")
+
+
+def test_download_project_image_verifies_magic_bytes_and_path(tmp_path):
+    dest_dir = tmp_path / "images"
+    dest_dir.mkdir()
+
+    session = Mock()
+    session.get.return_value.status_code = 200
+    session.get.return_value.iter_content.return_value = [b"GIF89a", b"\x00" * 20]
+    rel = updater.download_project_image("owner/repo", "main", "demo.gif", dest_dir=dest_dir, session=session)
+    assert rel == "/assets/project-images/owner_repo_demo.gif"
+    assert (dest_dir / "owner_repo_demo.gif").exists()
+
+    session.get.return_value.iter_content.return_value = [b"<html>not an image</html>"]
+    with pytest.raises(ValueError, match="magic bytes"):
+        updater.download_project_image("owner/repo", "main", "fake.png", dest_dir=dest_dir, session=session)
+
+    large_chunk = b"A" * (21 * 1024 * 1024)
+    session.get.return_value.iter_content.return_value = [large_chunk]
+    with pytest.raises(ValueError, match="exceeds maximum size"):
+        updater.download_project_image("owner/repo", "main", "huge.png", dest_dir=dest_dir, session=session)
+
+
+def test_fetch_project_images_prioritizes_gif_and_maps_local(tmp_path):
+    img_dir = tmp_path / "assets/project-images"
+    img_dir.mkdir(parents=True)
+    (img_dir / "existing_logo.webp").write_bytes(b"RIFF\x00\x00\x00\x00WEBP")
+    (img_dir / "joaosnet_T1_performance_tournament.gif").write_bytes(b"GIF89a\x00\x00")
+
+    projects = [
+        {"id": "aethersense", "repo": "owner/repo1", "image": "/assets/project-images/existing_logo.webp"},
+        {"id": "evolutionary-lab", "repo": "owner/repo2", "image": ""},
+    ]
+    cards = []
+
+    session = Mock()
+    mock_repo1 = {"default_branch": "main", "full_name": "owner/repo1"}
+    mock_tree1 = {
+        "tree": [
+            {"type": "blob", "path": "docs/showcase.gif"},
+            {"type": "blob", "path": "banner.png"},
+        ]
+    }
+
+    def mock_get(url, **kwargs):
+        resp = Mock()
+        resp.status_code = 200
+        if "repos/owner/repo1/git/trees" in url:
+            resp.json.return_value = mock_tree1
+        elif "repos/owner/repo1" in url:
+            resp.json.return_value = mock_repo1
+        elif "raw.githubusercontent.com/owner/repo1" in url:
+            resp.iter_content.return_value = [b"GIF89a", b"\x00" * 10]
+        elif "repos/owner/repo2" in url:
+            resp.json.return_value = {"default_branch": "main", "full_name": "owner/repo2"}
+            resp.status_code = 404
+        else:
+            resp.status_code = 404
+        return resp
+
+    session.get.side_effect = mock_get
+
+    changed = updater.fetch_project_images(projects, cards, dest_dir=img_dir, session=session)
+    assert changed is True
+    assert projects[0]["image"] == "/assets/project-images/owner_repo1_showcase.gif"
+    assert projects[1]["image"] == "/assets/project-images/joaosnet_T1_performance_tournament.gif"

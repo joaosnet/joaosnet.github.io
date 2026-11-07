@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090b10"/>
+      <stop offset="50%" stop-color="#0d111a"/>
+      <stop offset="100%" stop-color="#141a26"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#818cf8"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <radialGradient id="stageGlow" cx="65%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(56, 189, 248, 0.15)"/>
+      <stop offset="100%" stop-color="rgba(9, 11, 16, 0)"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#stageGlow)"/>
+
+  <!-- Left Header / Typography -->
+  <g transform="translate(80, 110)">
+    <!-- Pill Badge -->
+    <rect width="310" height="36" rx="18" fill="rgba(56, 189, 248, 0.12)" stroke="rgba(56, 189, 248, 0.3)" stroke-width="1.5"/>
+    <text x="18" y="23" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#38bdf8" letter-spacing="1">
+      UFPA • LATHI • OPPENHEIM
+    </text>
+
+    <!-- Main Title -->
+    <text x="0" y="95" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="800" fill="#ffffff" letter-spacing="-1">
+      Interactive 3D Signals
+    </text>
+    <text x="0" y="155" font-family="Inter, system-ui, sans-serif" font-size="52" font-weight="800" fill="url(#glow)" letter-spacing="-1">
+      &amp; Systems Lab
+    </text>
+
+    <!-- Subtitle -->
+    <text x="0" y="210" font-family="Inter, system-ui, sans-serif" font-size="20" font-weight="400" fill="#94a3b8">
+      Continuous Convolution (x ∗ h) &amp; Fourier Series Decomposition
+    </text>
+    <text x="0" y="240" font-family="Inter, system-ui, sans-serif" font-size="18" font-weight="400" fill="#64748b">
+      Visualização em 120 FPS • Caderno Analítico Passo a Passo • Áudio Sintetizado
+    </text>
+
+    <!-- Feature Tags -->
+    <g transform="translate(0, 280)">
+      <rect x="0" y="0" width="160" height="34" rx="8" fill="#1e2738" stroke="#334155" stroke-width="1"/>
+      <text x="16" y="22" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#f1f5f9">
+        y(t) = ∫ x h dτ
+      </text>
+
+      <rect x="175" y="0" width="175" height="34" rx="8" fill="#1e2738" stroke="#334155" stroke-width="1"/>
+      <text x="190" y="22" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#f1f5f9">
+        f(t) = a₀ + ∑ Cₙ
+      </text>
+
+      <rect x="365" y="0" width="160" height="34" rx="8" fill="#1e2738" stroke="#334155" stroke-width="1"/>
+      <text x="380" y="22" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#10b981">
+        ✓ 100% Client-Side
+      </text>
+    </g>
+
+    <!-- Live URL -->
+    <text x="0" y="380" font-family="JetBrains Mono, monospace" font-size="16" font-weight="500" fill="#38bdf8">
+      joaosnet.github.io/interactive-signals-and-systems
+    </text>
+  </g>
+
+  <!-- Right Visual Stage: 3D Grid + Coordinate Curves Graphic -->
+  <g transform="translate(680, 110)">
+    <!-- 3D Box Back Wall -->
+    <polygon points="60,260 440,200 440,40 60,80" fill="rgba(30, 41, 59, 0.45)" stroke="rgba(148, 163, 184, 0.25)" stroke-width="1.5"/>
+    <!-- 3D Floor -->
+    <polygon points="60,260 440,200 380,440 0,470" fill="rgba(15, 23, 42, 0.65)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.5"/>
+    <!-- Side Wall (Spectrum Wall) -->
+    <polygon points="440,200 380,440 380,240 440,40" fill="rgba(30, 41, 59, 0.55)" stroke="rgba(148, 163, 184, 0.3)" stroke-width="1.5"/>
+
+    <!-- Floor Grid Lines -->
+    <line x1="60" y1="260" x2="380" y2="440" stroke="rgba(148, 163, 184, 0.18)" stroke-width="1"/>
+    <line x1="160" y1="242" x2="100" y2="460" stroke="rgba(148, 163, 184, 0.18)" stroke-width="1"/>
+    <line x1="260" y1="225" x2="200" y2="450" stroke="rgba(148, 163, 184, 0.18)" stroke-width="1"/>
+    <line x1="360" y1="208" x2="300" y2="442" stroke="rgba(148, 163, 184, 0.18)" stroke-width="1"/>
+
+    <!-- Spectrum Stems on Side Wall -->
+    <line x1="430" y1="70" x2="430" y2="180" stroke="#10b981" stroke-width="3"/>
+    <circle cx="430" cy="70" r="5" fill="#10b981"/>
+    <line x1="410" y1="120" x2="410" y2="250" stroke="#10b981" stroke-width="3"/>
+    <circle cx="410" cy="120" r="5" fill="#10b981"/>
+    <line x1="395" y1="210" x2="395" y2="330" stroke="#10b981" stroke-width="3"/>
+    <circle cx="395" cy="210" r="5" fill="#10b981"/>
+
+    <!-- 3D Curves -->
+    <!-- Input Curve (Blue) -->
+    <path d="M50,330 C120,180 200,220 280,310" fill="none" stroke="#38bdf8" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Moving Kernel (Red) -->
+    <path d="M140,360 C200,210 260,240 330,340" fill="none" stroke="#fb7185" stroke-width="4" stroke-dasharray="6 4" stroke-linecap="round"/>
+    <!-- Overlap Product Area (Purple) -->
+    <polygon points="170,350 200,280 250,290 280,330" fill="rgba(192, 132, 252, 0.35)" stroke="#c084fc" stroke-width="2"/>
+    <!-- Output Convolution / Fourier Synthesis (Emerald) -->
+    <path d="M30,420 C140,410 240,320 380,240" fill="none" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="380" cy="240" r="8" fill="#10b981" stroke="#ffffff" stroke-width="2.5"/>
+  </g>
+</svg>

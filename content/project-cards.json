@@ -3,8 +3,15 @@
     "id": "cartilha-dash",
     "name": "Cartilha Dash",
     "repo": "joaosnet/cartilha_dash",
-    "tags": ["Python", "Dash", "Plotly"],
-    "skills": ["data", "interfaces"],
+    "tags": [
+      "Python",
+      "Dash",
+      "Plotly"
+    ],
+    "skills": [
+      "data",
+      "interfaces"
+    ],
     "visual": "code",
     "symbol": "{ data }",
     "demo": "https://joaosnet.github.io/cartilha_dash/",
@@ -19,15 +26,22 @@
     "es": {
       "eyebrow": "Publicado · Visualización de datos",
       "summary": "Guía práctica para construir paneles interactivos con Python, Dash y Plotly, con material disponible para explorar en el navegador."
-    }
+    },
+    "image": "/assets/project-images/joaosnet_cartilha_dash_Dashboard_Totalmente_Interativo.png"
   },
   {
     "id": "dmovel-sitec",
     "name": "DMóvel · SITEC 2026",
     "repo": "joaosnet/dmovel-sitec-2026",
     "image": "/assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp",
-    "tags": ["HTML", "Web", "Acessibilidade"],
-    "skills": ["interfaces"],
+    "tags": [
+      "HTML",
+      "Web",
+      "Acessibilidade"
+    ],
+    "skills": [
+      "interfaces"
+    ],
     "visual": "code",
     "symbol": "D / 2026",
     "demo": "https://joaosnet.github.io/dmovel-sitec-2026/",
@@ -48,8 +62,14 @@
     "id": "sigaa-mcp",
     "name": "SIGAA UFPA MCP",
     "repo": "joaosnet/sigaa-ufpa-mcp",
-    "tags": ["Python", "MCP", "Automação"],
-    "skills": ["backend"],
+    "tags": [
+      "Python",
+      "MCP",
+      "Automação"
+    ],
+    "skills": [
+      "backend"
+    ],
     "visual": "code",
     "symbol": "> mcp",
     "demo": "",
@@ -71,8 +91,14 @@
     "name": "Klique API",
     "repo": "joaosnet/klique-api",
     "image": "/assets/project-images/joaosnet_Klique_icon.webp",
-    "tags": ["Python", "Backend", "API"],
-    "skills": ["backend"],
+    "tags": [
+      "Python",
+      "Backend",
+      "API"
+    ],
+    "skills": [
+      "backend"
+    ],
     "visual": "code",
     "symbol": "{ api }",
     "demo": "",
@@ -93,8 +119,14 @@
     "id": "federated-learning",
     "name": "Federated Learning",
     "repo": "ealexbarros/fl_projects",
-    "tags": ["Python", "Jupyter", "Machine Learning"],
-    "skills": ["data"],
+    "tags": [
+      "Python",
+      "Jupyter",
+      "Machine Learning"
+    ],
+    "skills": [
+      "data"
+    ],
     "visual": "code",
     "symbol": "Σ models",
     "demo": "",
