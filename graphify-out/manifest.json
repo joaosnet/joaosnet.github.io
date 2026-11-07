@@ -1,8 +1,8 @@
 {
   "update_projects.py": {
-    "mtime": 1794067664.0556526,
-    "seen": 1794068096.263889,
-    "ast_hash": "ee044f812d6cc80e1a5f5e3bbe23679e",
+    "mtime": 1794068133.762612,
+    "seen": 1794079230.2933905,
+    "ast_hash": "6e600e98561810825722b16e6fdcc9ce",
     "semantic_hash": ""
   },
   "tests/test_env_variables.py": {
@@ -18,9 +18,9 @@
     "semantic_hash": ""
   },
   "tests/test_update_projects.py": {
-    "mtime": 1794067738.647928,
-    "seen": 1794068096.2638876,
-    "ast_hash": "377d11a4cae32474ac98eeaf65ad445e",
+    "mtime": 1794068133.7616088,
+    "seen": 1794079230.2933886,
+    "ast_hash": "9b1fb330e331da1eade398a642fee41d",
     "semantic_hash": ""
   },
   "tests/__init__.py": {
@@ -30,9 +30,9 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "index.html": {
-    "mtime": 1794067939.0968335,
-    "seen": 1794068096.2639296,
-    "ast_hash": "6a726787a4b2d93dbb9afd7ec3c44ab7",
+    "mtime": 1794081717.3026962,
+    "seen": 1794081738.3281562,
+    "ast_hash": "47ac2abe8ef998d233d213a8b67986e5",
     "semantic_hash": ""
   },
   ".github/workflows/update_projects.yml": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "docs/crv.pdf": {
-    "mtime": 1794067938.859072,
-    "seen": 1794068096.2639508,
-    "ast_hash": "4cf29a42fdf7a6e92a241008eaa33678",
+    "mtime": 1794081717.0353982,
+    "seen": 1794081738.328192,
+    "ast_hash": "85a533bfbeadb4e02c53411e9b198394",
     "semantic_hash": ""
   },
   "assets/images/favicon.png": {
@@ -78,8 +78,8 @@
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_Varedura_demo.gif": {
-    "mtime": 1794067166.2166827,
-    "seen": 1794068096.2639806,
+    "mtime": 1794068127.9931574,
+    "seen": 1794079230.293511,
     "ast_hash": "59c1d1e86ad99e68de666177bdc6fdeb",
     "semantic_hash": ""
   },
@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "robots.txt": {
-    "mtime": 1794067939.0308492,
-    "seen": 1794068096.2639391,
+    "mtime": 1794081717.207729,
+    "seen": 1794081738.328171,
     "ast_hash": "df0d2b5994669461bda579862d1f28e9",
     "semantic_hash": ""
   },
@@ -174,8 +174,8 @@
     "semantic_hash": ""
   },
   "analytics/catalog.json": {
-    "mtime": 1794067939.0298486,
-    "seen": 1794068096.2638366,
+    "mtime": 1794081717.206218,
+    "seen": 1794081738.3279927,
     "ast_hash": "6e1a28b94f0ca664877b5257d8ced194",
     "semantic_hash": ""
   },
@@ -198,15 +198,15 @@
     "semantic_hash": ""
   },
   "content/projects.json": {
-    "mtime": 1794067890.816729,
-    "seen": 1794068096.2638533,
+    "mtime": 1794068133.685514,
+    "seen": 1794079230.29335,
     "ast_hash": "39362ae0b9d95f3679885e5499ffc9a8",
     "semantic_hash": ""
   },
   "content/public-metadata.json": {
-    "mtime": 1794067890.8157294,
-    "seen": 1794068096.2638545,
-    "ast_hash": "1557d8fc163185cbf02a284e0b240593",
+    "mtime": 1794079223.8474634,
+    "seen": 1794079230.2933517,
+    "ast_hash": "70c9b99844deed3d6e85b1ad3d5f574b",
     "semantic_hash": ""
   },
   "content/site.json": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1789336972.3715255,
-    "seen": 1793993888.162519,
-    "ast_hash": "5dc4b1572ef4a22cc90c7a876d971e64",
+    "mtime": 1794081659.2726796,
+    "seen": 1794081738.3280969,
+    "ast_hash": "81500943e7eb6d45fc026090771e29b2",
     "semantic_hash": ""
   },
   ".github/dependabot.yml": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "content/project-cards.json": {
-    "mtime": 1794067890.8177297,
-    "seen": 1794068096.2638514,
-    "ast_hash": "03568d7de9146d66a39eaec1a11a7020",
+    "mtime": 1794079223.836206,
+    "seen": 1794079230.2933483,
+    "ast_hash": "fe73da9c35474751480bddb609679d7e",
     "semantic_hash": ""
   },
   "assets/images/favicon.svg": {
@@ -366,62 +366,62 @@
     "semantic_hash": ""
   },
   "en/404.html": {
-    "mtime": 1794067938.5178783,
-    "seen": 1794068096.263909,
+    "mtime": 1794081716.676645,
+    "seen": 1794081738.3281212,
     "ast_hash": "3df51b6b29edef51c4efd6ae038de8da",
     "semantic_hash": ""
   },
   "en/index.html": {
-    "mtime": 1794067938.507972,
-    "seen": 1794068096.2639103,
-    "ast_hash": "92373a5f32b549dd336708543566de20",
+    "mtime": 1794081716.666068,
+    "seen": 1794081738.328123,
+    "ast_hash": "bc183e2949dada139dd8cba354c89746",
     "semantic_hash": ""
   },
   "en/privacy/index.html": {
-    "mtime": 1794067938.5099678,
-    "seen": 1794068096.2639117,
+    "mtime": 1794081716.6675756,
+    "seen": 1794081738.3281257,
     "ast_hash": "1c665f8bac5a1d86153b6d1c2761bf1e",
     "semantic_hash": ""
   },
   "en/projects/aethersense/index.html": {
-    "mtime": 1794067938.5120916,
-    "seen": 1794068096.263913,
+    "mtime": 1794081716.6696348,
+    "seen": 1794081738.328128,
     "ast_hash": "c4e1077002d54bd9d7ed1a025842e38c",
     "semantic_hash": ""
   },
   "en/projects/dmovel/index.html": {
-    "mtime": 1794067938.5136943,
-    "seen": 1794068096.2639143,
+    "mtime": 1794081716.6706471,
+    "seen": 1794081738.32813,
     "ast_hash": "62af107576cb788b24cad620ade89564",
     "semantic_hash": ""
   },
   "en/projects/evolutionary-lab/index.html": {
-    "mtime": 1794067938.5156941,
-    "seen": 1794068096.2639158,
+    "mtime": 1794081716.673647,
+    "seen": 1794081738.3281324,
     "ast_hash": "a17a6a98b5983377e1ef72d8a2fed8f2",
     "semantic_hash": ""
   },
   "privacy/index.html": {
-    "mtime": 1794067938.480957,
-    "seen": 1794068096.263931,
+    "mtime": 1794081716.6403122,
+    "seen": 1794081738.3281581,
     "ast_hash": "246f14203f6d2ed7b1d6c9bafe426913",
     "semantic_hash": ""
   },
   "projects/aethersense/index.html": {
-    "mtime": 1794067938.4929588,
-    "seen": 1794068096.2639325,
+    "mtime": 1794081716.6518252,
+    "seen": 1794081738.3281603,
     "ast_hash": "6376777d59811fc010b8205217bde508",
     "semantic_hash": ""
   },
   "projects/dmovel/index.html": {
-    "mtime": 1794067938.49496,
-    "seen": 1794068096.2639337,
+    "mtime": 1794081716.6533327,
+    "seen": 1794081738.3281622,
     "ast_hash": "b49611517e811ec781fb3a865f1f0583",
     "semantic_hash": ""
   },
   "projects/evolutionary-lab/index.html": {
-    "mtime": 1794067938.499967,
-    "seen": 1794068096.263935,
+    "mtime": 1794081716.6553445,
+    "seen": 1794081738.3281646,
     "ast_hash": "ccc1b51e7c2e66c3ce1d9aea98aec79a",
     "semantic_hash": ""
   },
@@ -438,33 +438,33 @@
     "semantic_hash": ""
   },
   "en/projects/interactive-signals/index.html": {
-    "mtime": 1794067938.5168772,
-    "seen": 1794068096.263917,
+    "mtime": 1794081716.6746454,
+    "seen": 1794081738.3281343,
     "ast_hash": "22ad0f87de175004a47601627f7ce1a2",
     "semantic_hash": ""
   },
   "projects/interactive-signals/index.html": {
-    "mtime": 1794067938.5009658,
-    "seen": 1794068096.2639363,
+    "mtime": 1794081716.6563425,
+    "seen": 1794081738.3281667,
     "ast_hash": "6040c86ba7833a60ac48c8c0630fefbb",
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-en.pdf": {
-    "mtime": 1794067938.8718777,
-    "seen": 1794068096.2639525,
-    "ast_hash": "dae4b847833de6c105d6bdd4585fd45a",
+    "mtime": 1794081717.045607,
+    "seen": 1794081738.3281949,
+    "ast_hash": "9d4b172e89bb62ab3246fa6ce0aa4171",
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-pt.pdf": {
-    "mtime": 1794067938.767572,
-    "seen": 1794068096.263955,
-    "ast_hash": "4cf29a42fdf7a6e92a241008eaa33678",
+    "mtime": 1794081716.9719572,
+    "seen": 1794081738.3281994,
+    "ast_hash": "85a533bfbeadb4e02c53411e9b198394",
     "semantic_hash": ""
   },
   "docs/cv-joao-silva-neto-en.pdf": {
-    "mtime": 1794067938.9407783,
-    "seen": 1794068096.2639565,
-    "ast_hash": "dae4b847833de6c105d6bdd4585fd45a",
+    "mtime": 1794081717.111072,
+    "seen": 1794081738.3282015,
+    "ast_hash": "9d4b172e89bb62ab3246fa6ce0aa4171",
     "semantic_hash": ""
   },
   "playwright.config.cjs": {
@@ -528,92 +528,92 @@
     "semantic_hash": ""
   },
   "en/projects/varedura/index.html": {
-    "mtime": 1794067938.5146942,
-    "seen": 1794068096.2639184,
+    "mtime": 1794081716.6726458,
+    "seen": 1794081738.3281367,
     "ast_hash": "dc84fd253111e1035314d1ff4a065e7d",
     "semantic_hash": ""
   },
   "projects/varedura/index.html": {
-    "mtime": 1794067938.4979665,
-    "seen": 1794068096.2639375,
+    "mtime": 1794081716.6543415,
+    "seen": 1794081738.3281686,
     "ast_hash": "98d2b3a89da1410e851c52518f7110ae",
     "semantic_hash": ""
   },
   "es/404.html": {
-    "mtime": 1794067938.5294967,
-    "seen": 1794068096.2639196,
+    "mtime": 1794081716.6876788,
+    "seen": 1794081738.328139,
     "ast_hash": "82a3207f43cbb1b404baf5bde55e687a",
     "semantic_hash": ""
   },
   "es/index.html": {
-    "mtime": 1794067938.5198798,
-    "seen": 1794068096.2639208,
-    "ast_hash": "8f61a0b3effd624e10063e15a5deecb3",
+    "mtime": 1794081716.6791637,
+    "seen": 1794081738.328141,
+    "ast_hash": "1ddc397e8103a1f5280f9e929710f7f9",
     "semantic_hash": ""
   },
   "es/privacy/index.html": {
-    "mtime": 1794067938.5208788,
-    "seen": 1794068096.2639222,
+    "mtime": 1794081716.681164,
+    "seen": 1794081738.3281431,
     "ast_hash": "6852cc5cc400e1d37c5115a085f9d3aa",
     "semantic_hash": ""
   },
   "es/projects/aethersense/index.html": {
-    "mtime": 1794067938.5228784,
-    "seen": 1794068096.2639234,
+    "mtime": 1794081716.6826806,
+    "seen": 1794081738.3281455,
     "ast_hash": "7697aec2963d66f6e07be9480ef1bcd3",
     "semantic_hash": ""
   },
   "es/projects/dmovel/index.html": {
-    "mtime": 1794067938.5238783,
-    "seen": 1794068096.2639246,
+    "mtime": 1794081716.6836803,
+    "seen": 1794081738.3281472,
     "ast_hash": "9fbf92ecad1c30bdce7cfe32bccda3b6",
     "semantic_hash": ""
   },
   "es/projects/evolutionary-lab/index.html": {
-    "mtime": 1794067938.5268986,
-    "seen": 1794068096.263926,
+    "mtime": 1794081716.6856787,
+    "seen": 1794081738.3281496,
     "ast_hash": "d3e9b8b4eb255e4e0a82ddbdde0c1ed4",
     "semantic_hash": ""
   },
   "es/projects/interactive-signals/index.html": {
-    "mtime": 1794067938.5284908,
-    "seen": 1794068096.263927,
+    "mtime": 1794081716.686679,
+    "seen": 1794081738.3281515,
     "ast_hash": "43d59fb440c98bdca6475e2456bcf522",
     "semantic_hash": ""
   },
   "es/projects/varedura/index.html": {
-    "mtime": 1794067938.5243855,
-    "seen": 1794068096.2639284,
+    "mtime": 1794081716.6846814,
+    "seen": 1794081738.3281538,
     "ast_hash": "6cdd4258224591ae74ad89f0d4d97440",
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-es.pdf": {
-    "mtime": 1794067938.9497828,
-    "seen": 1794068096.263954,
-    "ast_hash": "9fae3349da0c558918352b19da6a68bf",
+    "mtime": 1794081717.121181,
+    "seen": 1794081738.328197,
+    "ast_hash": "aab11807422b7fbc2e4ace3259ab545b",
     "semantic_hash": ""
   },
   "docs/inpi-dmovel-br512025004902-1.pdf": {
-    "mtime": 1794067938.550265,
-    "seen": 1794068096.263958,
+    "mtime": 1794081716.7122757,
+    "seen": 1794081738.3282037,
     "ast_hash": "b28400821e748e4905b5e7b06f107ad8",
     "semantic_hash": ""
   },
   "assets/analytics-config.json": {
-    "mtime": 1794067939.1187925,
-    "seen": 1794068096.2638395,
+    "mtime": 1794081717.3342412,
+    "seen": 1794081738.327997,
     "ast_hash": "ee72a4ff28ce5600811c28a6f0cc67c3",
     "semantic_hash": ""
   },
   "404.html": {
-    "mtime": 1794067939.1182408,
-    "seen": 1794068096.2638907,
+    "mtime": 1794081717.3332565,
+    "seen": 1794081738.3280828,
     "ast_hash": "8564c53a882b7be36387472000f2d800",
     "semantic_hash": ""
   },
   "docs/index.html": {
-    "mtime": 1794067939.0298486,
-    "seen": 1794068096.263903,
+    "mtime": 1794081717.206218,
+    "seen": 1794081738.328111,
     "ast_hash": "f5fe2bbdaf65a736f3272e3b54d512dd",
     "semantic_hash": ""
   },
@@ -648,45 +648,69 @@
     "semantic_hash": ""
   },
   "assets/project-images/LAPSHub_dmovel_web_app_banner.png": {
-    "mtime": 1794067164.499281,
-    "seen": 1794068096.2639675,
+    "mtime": 1794068127.9649048,
+    "seen": 1794079230.2934835,
     "ast_hash": "74837891698bd6019e71cd2e7c098268",
     "semantic_hash": ""
   },
   "assets/project-images/ealexbarros_fl_projects_demo.gif": {
-    "mtime": 1794067890.8092117,
-    "seen": 1794068096.263972,
+    "mtime": 1794068133.832644,
+    "seen": 1794079230.2934916,
     "ast_hash": "ef01476135bf3063e94696e16acebdea",
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_cartilha_dash_demo.webp": {
-    "mtime": 1794067888.1144435,
-    "seen": 1794068096.263986,
+    "mtime": 1794068133.8570423,
+    "seen": 1794079230.2935224,
     "ast_hash": "42ceceaef484f805e11beff8c823b09d",
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.png": {
-    "mtime": 1794067176.1804142,
-    "seen": 1794068096.263989,
+    "mtime": 1794068127.9972825,
+    "seen": 1794079230.2935278,
     "ast_hash": "59c5f3affa8e3f06af65eefd1c7b4993",
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_evolutionary-optimization-viz-ag-pso_demo.webp": {
-    "mtime": 1794067797.1917248,
-    "seen": 1794068096.2639918,
+    "mtime": 1794068133.8841226,
+    "seen": 1794079230.293533,
     "ast_hash": "79b9af07b6d08b488771f6764186719d",
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_interactive-signals-and-systems_demo.webp": {
-    "mtime": 1794067844.9545288,
-    "seen": 1794068096.263996,
+    "mtime": 1794068133.9187653,
+    "seen": 1794079230.2935414,
     "ast_hash": "f9237b12a52e49442b529648961b2fe0",
     "semantic_hash": ""
   },
   "assets/project-images/joaosnet_klique-api_og-preview.jpg": {
-    "mtime": 1794067177.756991,
-    "seen": 1794068096.263999,
+    "mtime": 1794068127.9983733,
+    "seen": 1794079230.2935505,
     "ast_hash": "05ed642dc7e00093226470a3df8dd328",
+    "semantic_hash": ""
+  },
+  "assets/project-images/joaosnet_klique-api_demo.gif": {
+    "mtime": 1794079223.8155277,
+    "seen": 1794079230.2935476,
+    "ast_hash": "fc45fc3d215596eb2ae37960f9aefb0c",
+    "semantic_hash": ""
+  },
+  "assets/project-images/joaosnet_sigaa-ufpa-mcp_demo-preview.svg": {
+    "mtime": 1794079223.8231466,
+    "seen": 1794079230.2935567,
+    "ast_hash": "62a68366196ac4abacb620c67b31287f",
+    "semantic_hash": ""
+  },
+  "README.es.md": {
+    "mtime": 1794081706.6989567,
+    "seen": 1794081738.3280938,
+    "ast_hash": "26191ff94d310470f2d51cae7ab4c2fc",
+    "semantic_hash": ""
+  },
+  "README.pt.md": {
+    "mtime": 1794081681.8807316,
+    "seen": 1794081738.3280993,
+    "ast_hash": "1a576225af3959c296d30c39a4dfa818",
     "semantic_hash": ""
   },
   "package-lock.json": {

@@ -1,9 +1,9 @@
 <div align="center">
 
-# João Silva Neto · Portfolio
+# João Natividade · Portfolio
 
-**Engenharia de Computação & Desenvolvimento de Software**  
-*Sistemas Conectados, Backend de Alta Precisão, IoT & Interfaces Verificáveis*
+**Computer Engineering & Systems Software**  
+*Static-First Architecture, High-Precision Backend, IoT & Verifiable Interfaces*
 
 [![Validate & CI](https://github.com/joaosnet/joaosnet.github.io/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/joaosnet/joaosnet.github.io/actions/workflows/validate.yml)
 [![Pages Deploy](https://github.com/joaosnet/joaosnet.github.io/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/joaosnet/joaosnet.github.io/actions/workflows/pages.yml)
@@ -11,163 +11,176 @@
 [![Node.js 24](https://img.shields.io/badge/node.js-24-339933.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
 [![uv](https://img.shields.io/badge/package%20manager-uv-DE5FE9.svg)](https://github.com/astral-sh/uv)
 [![WCAG 2.2 AAA](https://img.shields.io/badge/accessibility-WCAG%202.2%20AAA-4c1.svg)](https://www.w3.org/WAI/standards-guidelines/wcag/)
-[![Dependabot Grouped](https://img.shields.io/badge/dependabot-grouped-0366d6.svg?logo=dependabot&logoColor=white)](https://github.com/joaosnet/joaosnet.github.io/blob/main/.github/dependabot.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-[🌐 Acessar Portfólio](https://joaosnet.github.io) • [📄 Currículo (PT-BR)](https://joaosnet.github.io/docs/crv.pdf) • [📄 Résumé (EN)](https://joaosnet.github.io/docs/cv-joao-silva-neto-en.pdf) • [🔬 Laboratório](https://joaosnet.github.io#lab)
+<br>
+
+**English** · [Português](README.pt.md) · [Español](README.es.md)
+
+[🌐 Live Portfolio](https://joaosnet.github.io/en/) • [📄 Résumé (EN)](https://joaosnet.github.io/docs/cv-joao-natividade-en.pdf) • [📄 Currículo (PT-BR)](https://joaosnet.github.io/docs/cv-joao-natividade-pt.pdf) • [📄 Currículum (ES)](https://joaosnet.github.io/docs/cv-joao-natividade-es.pdf) • [🔬 Interactive Lab](https://joaosnet.github.io/en/#lab)
 
 ---
 
 </div>
 
-## Visão Geral
+## Overview
 
-Este repositório abriga o código-fonte do portfólio profissional de **João Silva Neto**, graduando em Engenharia de Computação na Universidade Federal do Pará (UFPA). 
+Source code for the professional portfolio of **João Natividade**, Computer Engineering student at Universidade Federal do Pará (UFPA).
 
-Construído sob a filosofia **Static-First**, o projeto não utiliza frameworks JavaScript pesados em tempo de execução no navegador. Todo o conteúdo editorial e páginas são compilados estaticamente para o diretório `dist/` através de um pipeline determinístico em Python (`build_site.py`) com Jinja2, garantindo tempos de carregamento instantâneos, segurança máxima e notas de excelência nos Core Web Vitals.
+Built with a **Static-First** design, the site executes zero JavaScript frameworks on the client. A deterministic Python compilation pipeline (`build_site.py`) with Jinja2 compiles structured content into static artifacts under `dist/`, ensuring deterministic output, sub-50ms initial render, and strict Core Web Vitals compliance.
 
 ---
 
-## Destaques de Engenharia & Padrão AAA
+## Architecture & System Topology
 
-```
+```text
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        ARQUITETURA DE CAMADAS                          │
+│                        SYSTEM TOPOLOGY & PIPELINE                      │
 │                                                                        │
-│   [Conteúdo & Metadados]         [Motor de Renderização]               │
+│   [Structured Content]           [Compilation Engine]                  │
 │     content/site.json        ──►    build_site.py (Jinja2)             │
 │     content/projects.json    ──►    scripts/build_cv.py (ReportLab)    │
 │     content/ui.json                                                    │
 │                                            │                           │
 │                                            ▼                           │
-│   [Assets Otimizados]             [Publicação Estática]                │
+│   [Client Assets]                 [Static Artifacts]                   │
 │     Vanilla JS + Modern CSS  ──►       dist/ (HTML, CSS, JS, PDFs)     │
-│     WebP 16:9 + SVG Vetorial               │                           │
+│     WebP 16:9 + Vector SVG                 │                           │
 │                                            ▼                           │
-│   [Auditoria e CI/CD]             [Deploy Automatizado]                │
+│   [Verification & CI]             [Automated Deployment]               │
 │     Playwright + Axe + Pytest ──►    GitHub Pages (GitHub Actions)     │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-### 1. Acessibilidade e Design System AAA
-- **Adaptação Automática de Tema**: Detecção síncrona de `prefers-color-scheme` (Dark/Light) com persistência em `localStorage` e zero flash de conteúdo desestilizado (*Zero FOUC*).
-- **Contraste Rigoroso WCAG 2.2 AAA**: Relação de contraste validada acima de `7:1` em todos os elementos de texto e componentes interativos nos modos claro e escuro.
-- **Microinterações Refinadas**: Carrossel de categorias com anel de contagem regressiva em SVG e congelamento milimétrico ao passar o cursor ou focar (`animation-play-state: paused`).
+### Core Engineering Pillars
 
-### 2. Internacionalização Híbrida (I18n)
-- **Rotas Nacionais e Internacionais**: Rotas estáticas nativas `/` (Português) e `/en/` (Inglês) com detecção automática do idioma do navegador na primeira visita.
-- **Tradutor Global**: Integração otimizada para mais de 10 idiomas sem bloqueios de CORS ou dependências invasivas.
-- **SEO Multilíngue**: `sitemap.xml` e `robots.txt` completos, mapeando todas as rotas com anotações bidirecionais `xhtml:link rel="alternate" hreflang`.
-
-### 3. Coleta de Métricas Privacy-First
-- **Telemetria Serverless**: Coletor hospedado em Google Apps Script (`analytics/collector.gs`) com persistência em planilha dedicada.
-- **Contador Dinâmico de Visitantes**: Exibição em tempo real do badge de navegadores únicos anuais (`Navegador nº 1.4xx em 2026`).
-- **Privacidade por Padrão**: Zero rastreamento de dados pessoais, sem cookies de terceiros, sem armazenamento de endereços IP completos e com suporte a *opt-out*.
-
-### 4. Geração Programática de Currículos
-- Geração automática de currículos PDF de alta fidelidade com texto selecionável e vetorial via **ReportLab 5.x** em Português (`docs/crv.pdf`) e Inglês (`docs/cv-joao-silva-neto-en.pdf`).
+1. **WCAG 2.2 AAA Design System**: Contrast ratios exceed 7:1 across both dark and light modes. Theme preference is resolved synchronously from `localStorage` and `prefers-color-scheme` to eliminate flash of unstyled content (Zero FOUC).
+2. **Static Internationalization (i18n)**: Native prerendered routes `/` (Portuguese) and `/en/` (English), supplemented by client-side translation fallback for additional locales. Bi-directional `hreflang` metadata ensures accurate search indexing.
+3. **Privacy-First Telemetry**: Lightweight serverless collector hosted on Google Apps Script (`analytics/collector.gs`). Zero cookies, zero PII, no IP storage, and explicit user opt-out support.
+4. **Deterministic Document Compilation**: Programmatic PDF resume generation via **ReportLab 5.x** with vector typography (`docs/cv-joao-natividade-en.pdf`, `docs/cv-joao-natividade-pt.pdf`, `docs/cv-joao-natividade-es.pdf`).
 
 ---
 
-## Estrutura do Repositório
+## Security Isolation & Credentials Protocol
+
+This repository implements strict isolation boundaries documented in [docs/architecture-security-isolation.md](docs/architecture-security-isolation.md):
+
+- **Zero-Credential Public Builds**: Neither `build_site.py` nor public GitHub Actions workflows require API keys or environment files. AST static analysis in `tests/test_env_variables.py` proves `dotenv` is never imported or loaded during production builds.
+- **Fail-Safe Private Preview Isolation**: Evaluating private repositories with `update_projects.py private_preview` strictly requires `.private-preview/allowlist.json` and the `PRIVATE_REPOS_TOKEN` environment variable. If the variable is absent, execution halts immediately with zero network requests. All staging output is restricted to `.private-preview/` (git-ignored).
+- **Safe Verification Protocol**: Never inspect credentials in terminal logs or agent context using `cat` or `echo`. Verify variable presence quietly:
+  ```bash
+  # POSIX / Bash: check without echoing secrets
+  grep -sq "^PRIVATE_REPOS_TOKEN=" ~/.env && echo "Token present."
+
+  # PowerShell: check without outputting file contents
+  if (Test-Path "$HOME\.env") { Select-String -Path "$HOME\.env" -Pattern "^PRIVATE_REPOS_TOKEN=" -Quiet }
+  ```
+- **Interactive Secret Input**: To store credentials locally without printing characters on screen:
+  ```bash
+  # Typing is hidden via 'read -s'
+  printf "Enter PRIVATE_REPOS_TOKEN (typing hidden): " && read -s val && echo && echo "PRIVATE_REPOS_TOKEN=$val" >> ~/.env && echo "Saved."
+  ```
+
+---
+
+## Repository Structure
 
 ```text
 .
 ├── .github/
-│   ├── dependabot.yml           # Atualizações automáticas agrupadas por ecossistema
+│   ├── dependabot.yml           # Grouped automated dependency management
 │   └── workflows/
-│       ├── validate.yml         # CI rigoroso (Ruff, Pytest, Playwright, Audits)
-│       ├── pages.yml            # Deploy contínuo no GitHub Pages
-│       └── update_projects.yml  # Sincronização diária de repositórios do GitHub
+│       ├── validate.yml         # CI pipeline (Ruff, Pytest, Playwright, Audits)
+│       ├── pages.yml            # Deployment to GitHub Pages
+│       └── update_projects.yml  # Scheduled GitHub repository synchronization
 ├── analytics/
-│   ├── catalog.json             # Catálogo público de eventos de telemetria
-│   └── collector.gs             # Backend em Google Apps Script (Serverless)
+│   ├── catalog.json             # Public telemetry events catalog
+│   └── collector.gs             # Serverless backend (Google Apps Script)
 ├── assets/
-│   ├── css/portfolio.css        # Variáveis CSS, grid responsivo e microinterações
-│   ├── js/                      # JavaScript modular sem frameworks (boot, portfolio, languages)
-│   └── project-images/          # Banners e miniaturas otimizadas em WebP (16:9)
-├── content/                     # Dados estruturados e textos editoriais (PT/EN)
+│   ├── css/portfolio.css        # CSS custom properties, responsive grid & states
+│   ├── js/                      # Vanilla JS modules (boot, portfolio, languages)
+│   └── project-images/          # Responsive 16:9 WebP banners and thumbnails
+├── content/                     # Structured JSON content and metadata (PT, EN, ES)
+├── docs/                        # Technical specifications, architecture docs & PDFs
 ├── scripts/
-│   ├── build_cv.py              # Compilador de PDFs com ReportLab
-│   └── preview.py               # Servidor local isolado servindo apenas dist/
-├── templates/                   # Templates modulares Jinja2 (base, components, index)
-├── tests/                       # Suíte automatizada (Unitários, Integração e E2E Playwright)
-├── build_site.py                # Pipeline principal de compilação estática
-├── update_projects.py           # Atualizador de metadados de projetos via API do GitHub
-├── pyproject.toml               # Dependências Python gerenciadas via uv
-└── package.json                 # Dependências Node.js e scripts de automação de testes
+│   ├── build_cv.py              # PDF compiler using ReportLab 5.x
+│   └── preview.py               # Sandboxed local HTTP server serving dist/ only
+├── templates/                   # Semantic Jinja2 templates (base, components, index)
+├── tests/                       # Automated test suite (Pytest, Playwright E2E, Node)
+├── build_site.py                # Main static site compilation entry point
+├── update_projects.py           # GitHub API data collector and metadata manager
+├── pyproject.toml               # Python 3.14 project manifest managed via uv
+└── package.json                 # Node 24 dependencies and test scripts
 ```
 
 ---
 
-## Começando (Desenvolvimento Local)
+## Local Development
 
-### Pré-requisitos
+### Prerequisites
+
 - [Python 3.14+](https://www.python.org/)
-- [uv](https://github.com/astral-sh/uv) (gerenciador de pacotes e ambientes virtuais ultrarrápido)
+- [uv](https://github.com/astral-sh/uv) (fast Python package and project manager)
 - [Node.js 24+](https://nodejs.org/) & `npm`
 
-### 1. Clonagem e Instalação
+### 1. Installation
 
 ```powershell
-# Clonar o repositório
+# Clone the repository
 git clone https://github.com/joaosnet/joaosnet.github.io.git
 cd joaosnet.github.io
 
-# Sincronizar ambiente Python e dependências Node.js
+# Synchronize virtualenv and install Node dependencies
 uv sync --frozen --extra dev
 npm ci --ignore-scripts
 ```
 
-### 2. Compilação e Prévia Local
+### 2. Compilation and Local Preview
 
 ```powershell
-# Compilar todas as páginas estáticas, sitemap e currículos em PDF
+# Compile all pages, sitemaps, and PDF resumes
 uv run python build_site.py
 
-# Iniciar o servidor de visualização seguro
+# Start the sandboxed preview server
 uv run python scripts/preview.py --port 8765
 ```
 
-> [!NOTE]
-> Acesse **http://localhost:8765/** (Português) ou **http://localhost:8765/en/** (Inglês).  
-> O servidor de prévia publica estritamente a pasta `dist/`, impedindo exposição de arquivos internos da raiz.
+Navigate to `http://localhost:8765/` (Portuguese) or `http://localhost:8765/en/` (English). The preview server serves strictly from `dist/` to prevent directory traversal into repository internals.
 
 ---
 
-## Atualização de Projetos
+## Project Catalog Updates
 
-O catálogo de projetos pode ser atualizado com as estatísticas e metadados mais recentes do GitHub:
+Public repository metrics and releases can be synchronized from the GitHub API:
 
 ```powershell
-# Consultar repositórios públicos e regenerar content/projects.json
+# Query public repositories and regenerate content/projects.json
 uv run python update_projects.py public
 
-# Recompilar a distribuição estática
+# Recompile the static distribution
 uv run python build_site.py
 ```
 
-> [!TIP]
-> Em produção, este processo é executado de forma 100% autônoma todas as noites pelo workflow [`.github/workflows/update_projects.yml`](.github/workflows/update_projects.yml).
+Automated daily runs are managed by [`.github/workflows/update_projects.yml`](.github/workflows/update_projects.yml).
 
 ---
 
-## Garantia de Qualidade & Critérios "The Bar"
+## Quality Assurance & The Bar
 
-Todas as alterações submetidas passam pelo ciclo rigoroso de validação local e CI:
+Every change must satisfy non-negotiable verification criteria prior to merge:
 
-| Comando | Descrição do Teste / Validação |
+| Command | Verification Scope |
 | :--- | :--- |
-| `uv run ruff check` | Linting estático e aderência às regras do Python 3.14 |
-| `uv run pytest` | 36 testes unitários e de integração de templates e estrutura |
-| `npm run test:syntax` | Validação de sintaxe ECMAScript em todos os scripts JS |
-| `npm test` | 23 testes unitários de telemetria, esquema e sanitização |
-| `npm run test:browser` | 28 testes ponta a ponta (Desktop & Mobile) via Playwright |
-| `uv run pip-audit --local` | Auditoria contra vulnerabilidades conhecidas em pacotes Python |
-| `npm audit` | Auditoria de segurança de dependências Node.js |
-| `graphify update .` | Atualização do grafo de conhecimento arquitetural do projeto |
+| `uv run ruff check` | Static linting and Python 3.14 rules |
+| `uv run pytest` | 54 unit and integration tests (templates, telemetry, security isolation) |
+| `npm run test:syntax` | ECMAScript module and syntax validation |
+| `npm test` | 38 telemetry schema, sanitization, and formula-injection tests |
+| `npm run test:browser` | 28 end-to-end browser tests (Desktop & Mobile) via Playwright |
+| `uv run pip-audit --local` | Vulnerability scanning for Python packages |
+| `npm audit` | Dependency audit for Node.js modules |
+| `graphify update .` | AST-based architectural knowledge graph synchronization |
 
-Para rodar toda a suíte de qualidade de uma só vez:
+To run the complete verification suite:
 
 ```powershell
 uv run python build_site.py
@@ -178,28 +191,30 @@ npm test
 npm run test:browser
 uv run pip-audit --local
 npm audit --audit-level=moderate
+graphify update .
 ```
 
 ---
 
-## Documentação Detalhada
+## Technical Documentation
 
-- 📊 [**Configuração do Coletor e Apps Script**](docs/analytics-apps-script.md): Especificação da arquitetura serverless de telemetria.
-- 🔒 [**Revisão de Segurança e Limites de Hospedagem**](docs/security-review.md): Modelo de ameaças e práticas de isolamento.
-- 📁 [**Diretrizes para Projetos Privados**](docs/private-projects.md): Processo editorial de projetos proprietários e acadêmicos.
-- 👁️ [**Revisão e Comparação de Prévia**](docs/preview-review.md): Procedimentos de inspeção de fidelidade visual.
+- [Architecture, Data Governance & Security Isolation](docs/architecture-security-isolation.md)
+- [Analytics Collector & Serverless Backend](docs/analytics-apps-script.md)
+- [Security Review & Threat Model](docs/security-review.md)
+- [Private Projects Guidelines](docs/private-projects.md)
+- [Preview Review & Verification](docs/preview-review.md)
 
 ---
 
-## Contato & Redes
+## Contact
 
-- **Website**: [joaosnet.github.io](https://joaosnet.github.io)
+- **Email**: [joaodacruznatividade+carreira@gmail.com](mailto:joaodacruznatividade+carreira@gmail.com)
 - **LinkedIn**: [linkedin.com/in/joaonativi](https://www.linkedin.com/in/joaonativi/)
-- **Currículo Lattes**: [lattes.cnpq.br/1140714924160415](https://lattes.cnpq.br/1140714924160415)
-- **E-mail Institucional**: [joao.silva.neto@itec.ufpa.br](mailto:joao.silva.neto@itec.ufpa.br)
+- **Lattes**: [lattes.cnpq.br/1140714924160415](https://lattes.cnpq.br/1140714924160415)
+- **Website**: [joaosnet.github.io](https://joaosnet.github.io)
 
 ---
 
 <div align="center">
-  <sub>Desenvolvido com foco em precisão técnica, acessibilidade e performance. © 2026 João Silva Neto.</sub>
+  <sub>Engineered for technical precision, accessibility, and performance. © 2026 João Natividade.</sub>
 </div>
