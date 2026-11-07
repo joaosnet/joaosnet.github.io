@@ -119,13 +119,14 @@ def download_project_image(repo: str, branch: str, remote_path: str, dest_dir: P
     return f"/assets/project-images/{clean_filename}"
 
 
-def fetch_project_images(projects, cards, dest_dir: Path | None = None, session=None) -> bool:
+def fetch_project_images(
+    projects, cards, dest_dir: Path | None = None, session=None, metadata: dict | None = None
+) -> bool:
     """Discovers and downloads remote project images, giving top priority to animated GIFs.
 
-    Preserves existing local static assets when candidates are of equal tier,
-    upgrades static images when animated GIFs are discovered, and connects known
-    local assets for projects without remote images.
-    Returns True if any project or card image was updated.
+    Tracks Git blob SHAs to automatically detect when remote images are updated,
+    and attaches `?v=<sha[:8]>` cache-busting query strings so browsers always
+    receive the latest version immediately without CDN or browser stale cache delays.
     """
     folder = (dest_dir or (ROOT / "assets/project-images")).resolve()
     folder.mkdir(parents=True, exist_ok=True)
@@ -133,14 +134,24 @@ def fetch_project_images(projects, cards, dest_dir: Path | None = None, session=
     client.trust_env = False
     changed = False
 
+    meta_path = ROOT / "content/public-metadata.json"
+    meta = metadata
+    if meta is None:
+      meta = read_json(meta_path) if meta_path.exists() else {}
+
     for item in projects + cards:
         repo = item.get("repo", "")
         if not repo or not REPO.fullmatch(repo):
             continue
 
+        item_id = item.get("id") or ""
+        saved_info = meta.get(item_id, {})
+        saved_sha = saved_info.get("image_sha", "")
+
         curr_img = item.get("image") or ""
-        curr_file_exists = (folder / Path(curr_img).name).exists() if curr_img else False
-        curr_is_gif = curr_img.lower().endswith(".gif")
+        clean_curr_img = curr_img.split("?")[0] if curr_img else ""
+        curr_file_exists = (folder / Path(clean_curr_img).name).exists() if clean_curr_img else False
+        curr_is_gif = clean_curr_img.lower().endswith(".gif")
 
         best_candidate = None
         default_branch = "main"
@@ -157,7 +168,7 @@ def fetch_project_images(projects, cards, dest_dir: Path | None = None, session=
                     if entry.get("type") == "blob":
                         sc = score_image(entry.get("path", ""))
                         if sc > 0:
-                            candidates.append((sc, entry["path"]))
+                            candidates.append((sc, entry["path"], entry.get("sha") or ""))
                 if candidates:
                     candidates.sort(key=lambda x: x[0], reverse=True)
                     best_candidate = candidates[0]
@@ -165,34 +176,61 @@ def fetch_project_images(projects, cards, dest_dir: Path | None = None, session=
             best_candidate = None
 
         if best_candidate:
-            cand_score, cand_path = best_candidate
+            cand_score, cand_path, cand_sha = best_candidate
             cand_is_gif = cand_path.lower().endswith(".gif")
 
             should_download = False
-            if not curr_img or not curr_file_exists:
+            if not clean_curr_img or not curr_file_exists:
                 should_download = True
             elif cand_is_gif and not curr_is_gif:
                 should_download = True
+            elif cand_sha and saved_sha and cand_sha != saved_sha:
+                should_download = True
+
+            clean_filename = sanitize_image_filename(repo, cand_path)
+            version_suffix = f"?v={cand_sha[:8]}" if cand_sha else ""
+            expected_img = f"/assets/project-images/{clean_filename}{version_suffix}"
 
             if should_download:
                 try:
-                    new_img = download_project_image(
-                        repo, default_branch, cand_path, dest_dir=folder, session=client
-                    )
-                    if new_img != curr_img:
-                        item["image"] = new_img
+                    download_project_image(repo, default_branch, cand_path, dest_dir=folder, session=client)
+                    if expected_img != curr_img:
+                        item["image"] = expected_img
                         changed = True
+                    if item_id:
+                        if item_id not in meta:
+                            meta[item_id] = {}
+                        meta[item_id]["image_sha"] = cand_sha
+                        meta[item_id]["image_remote"] = cand_path
                 except Exception:
                     pass
+            else:
+                if (
+                    curr_img != expected_img
+                    and (folder / clean_filename).exists()
+                    and ((cand_is_gif and curr_is_gif) or (not cand_is_gif and not curr_is_gif))
+                ):
+                    item["image"] = expected_img
+                    changed = True
+                if item_id and cand_sha and meta.get(item_id, {}).get("image_sha") != cand_sha:
+                    if item_id not in meta:
+                        meta[item_id] = {}
+                    meta[item_id]["image_sha"] = cand_sha
+                    meta[item_id]["image_remote"] = cand_path
         else:
             proj_id = item.get("id")
             if (
-                not curr_img
+                not clean_curr_img
                 and proj_id in KNOWN_LOCAL_ASSETS
                 and (folder / Path(KNOWN_LOCAL_ASSETS[proj_id]).name).exists()
             ):
                 item["image"] = KNOWN_LOCAL_ASSETS[proj_id]
                 changed = True
+
+    if dest_dir is None and meta_path.exists():
+        current_meta = read_json(meta_path)
+        if meta != current_meta:
+            meta_path.write_text(json.dumps(meta, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
     return changed
 
@@ -346,11 +384,21 @@ def main():
         if args.command in ("public", "images"):
             projects = read_json(ROOT / "content/projects.json")
             cards = read_json(ROOT / "content/project-cards.json")
+            meta_path = ROOT / "content/public-metadata.json"
+            metadata = read_json(meta_path) if meta_path.exists() else {}
+
             if args.command == "public":
-                data = public_snapshot(projects)
-                (ROOT / "content/public-metadata.json").write_text(json.dumps(data, indent=2), encoding="utf-8")
-                print(f"Refreshed {len(data)} explicitly selected public projects")
-            changed = fetch_project_images(projects, cards)
+                snapshot = public_snapshot(projects)
+                for pid, pdata in snapshot.items():
+                    if pid not in metadata:
+                        metadata[pid] = {}
+                    metadata[pid].update(pdata)
+                meta_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+                print(f"Refreshed {len(snapshot)} explicitly selected public projects")
+
+            changed = fetch_project_images(projects, cards, metadata=metadata)
+            meta_path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
             if changed:
                 (ROOT / "content/projects.json").write_text(
                     json.dumps(projects, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -358,9 +406,9 @@ def main():
                 (ROOT / "content/project-cards.json").write_text(
                     json.dumps(cards, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
                 )
-                print("Updated project images in content catalog")
+                print("Updated project images and cache versions in content catalog")
             else:
-                print("Project images are up to date")
+                print("Project images and cache versions are up to date")
         elif args.command == "discover":
             discovered = discover_public_repos()
             if not discovered:

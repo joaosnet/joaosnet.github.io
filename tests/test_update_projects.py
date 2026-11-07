@@ -186,8 +186,8 @@ def test_fetch_project_images_prioritizes_gif_and_maps_local(tmp_path):
     mock_repo1 = {"default_branch": "main", "full_name": "owner/repo1"}
     mock_tree1 = {
         "tree": [
-            {"type": "blob", "path": "docs/showcase.gif"},
-            {"type": "blob", "path": "banner.png"},
+            {"type": "blob", "path": "docs/showcase.gif", "sha": "12345678abcdef"},
+            {"type": "blob", "path": "banner.png", "sha": "banner0000000"},
         ]
     }
 
@@ -209,7 +209,97 @@ def test_fetch_project_images_prioritizes_gif_and_maps_local(tmp_path):
 
     session.get.side_effect = mock_get
 
-    changed = updater.fetch_project_images(projects, cards, dest_dir=img_dir, session=session)
+    meta = {}
+    changed = updater.fetch_project_images(projects, cards, dest_dir=img_dir, session=session, metadata=meta)
     assert changed is True
-    assert projects[0]["image"] == "/assets/project-images/owner_repo1_showcase.gif"
+    assert projects[0]["image"] == "/assets/project-images/owner_repo1_showcase.gif?v=12345678"
     assert projects[1]["image"] == "/assets/project-images/joaosnet_T1_performance_tournament.gif"
+    assert meta["aethersense"]["image_sha"] == "12345678abcdef"
+
+
+def test_fetch_project_images_updates_when_remote_sha_changes(tmp_path):
+    img_dir = tmp_path / "assets/project-images"
+    img_dir.mkdir(parents=True)
+    (img_dir / "owner_repo1_demo.gif").write_bytes(b"GIF89a_old_content")
+
+    projects = [
+        {"id": "varedura", "repo": "owner/repo1", "image": "/assets/project-images/owner_repo1_demo.gif?v=oldsha01"},
+    ]
+    cards = []
+    meta = {
+        "varedura": {"image_sha": "oldsha012345", "image_remote": "demo.gif"}
+    }
+
+    session = Mock()
+    mock_repo1 = {"default_branch": "main", "full_name": "owner/repo1"}
+    mock_tree1 = {
+        "tree": [
+            {"type": "blob", "path": "demo.gif", "sha": "newsha99887766"},
+        ]
+    }
+
+    def mock_get(url, **kwargs):
+        resp = Mock()
+        resp.status_code = 200
+        if "repos/owner/repo1/git/trees" in url:
+            resp.json.return_value = mock_tree1
+        elif "repos/owner/repo1" in url:
+            resp.json.return_value = mock_repo1
+        elif "raw.githubusercontent.com/owner/repo1" in url:
+            resp.iter_content.return_value = [b"GIF89a_new_content"]
+        else:
+            resp.status_code = 404
+        return resp
+
+    session.get.side_effect = mock_get
+
+    changed = updater.fetch_project_images(projects, cards, dest_dir=img_dir, session=session, metadata=meta)
+    assert changed is True
+    assert projects[0]["image"] == "/assets/project-images/owner_repo1_demo.gif?v=newsha99"
+    assert meta["varedura"]["image_sha"] == "newsha99887766"
+
+
+def test_fetch_project_images_skips_download_when_sha_identical(tmp_path):
+    img_dir = tmp_path / "assets/project-images"
+    img_dir.mkdir(parents=True)
+    (img_dir / "owner_repo1_demo.gif").write_bytes(b"GIF89a_stable_content")
+
+    projects = [
+        {"id": "varedura", "repo": "owner/repo1", "image": "/assets/project-images/owner_repo1_demo.gif?v=samesha1"},
+    ]
+    cards = []
+    meta = {
+        "varedura": {"image_sha": "samesha12345", "image_remote": "demo.gif"}
+    }
+
+    session = Mock()
+    mock_repo1 = {"default_branch": "main", "full_name": "owner/repo1"}
+    mock_tree1 = {
+        "tree": [
+            {"type": "blob", "path": "demo.gif", "sha": "samesha12345"},
+        ]
+    }
+
+    raw_download_called = False
+
+    def mock_get(url, **kwargs):
+        nonlocal raw_download_called
+        resp = Mock()
+        resp.status_code = 200
+        if "repos/owner/repo1/git/trees" in url:
+            resp.json.return_value = mock_tree1
+        elif "repos/owner/repo1" in url:
+            resp.json.return_value = mock_repo1
+        elif "raw.githubusercontent.com" in url:
+            raw_download_called = True
+            resp.iter_content.return_value = [b"GIF89a"]
+        else:
+            resp.status_code = 404
+        return resp
+
+    session.get.side_effect = mock_get
+
+    changed = updater.fetch_project_images(projects, cards, dest_dir=img_dir, session=session, metadata=meta)
+    assert changed is False
+    assert raw_download_called is False
+    assert projects[0]["image"] == "/assets/project-images/owner_repo1_demo.gif?v=samesha1"

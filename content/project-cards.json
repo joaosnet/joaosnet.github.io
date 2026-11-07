@@ -27,13 +27,13 @@
       "eyebrow": "Publicado · Visualización de datos",
       "summary": "Guía práctica para construir paneles interactivos con Python, Dash y Plotly, con material disponible para explorar en el navegador."
     },
-    "image": "/assets/project-images/joaosnet_cartilha_dash_Dashboard_Totalmente_Interativo.png"
+    "image": "/assets/project-images/joaosnet_cartilha_dash_Dashboard_Totalmente_Interativo.png?v=a896b6ad"
   },
   {
     "id": "dmovel-sitec",
     "name": "DMóvel · SITEC 2026",
     "repo": "joaosnet/dmovel-sitec-2026",
-    "image": "/assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp",
+    "image": "/assets/project-images/joaosnet_dmovel-sitec-2026_social_preview.webp?v=28b7ceb2",
     "tags": [
       "HTML",
       "Web",
@@ -90,7 +90,7 @@
     "id": "klique-api",
     "name": "Klique API",
     "repo": "joaosnet/klique-api",
-    "image": "/assets/project-images/joaosnet_Klique_icon.webp",
+    "image": "/assets/project-images/joaosnet_Klique_icon.webp?v=2808e793",
     "tags": [
       "Python",
       "Backend",

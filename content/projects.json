@@ -20,7 +20,7 @@
     ],
     "demo": "",
     "visual": "signal",
-    "image": "/assets/project-images/joaosnet_aethersense_aethersense_showcase.gif",
+    "image": "/assets/project-images/joaosnet_aethersense_aethersense_showcase.gif?v=d4f5525e",
     "pt": {
       "eyebrow": "IoT · Pesquisa aplicada",
       "title": "O invisível também tem sinal.",
@@ -158,7 +158,7 @@
     ],
     "demo": "https://lapshub.github.io/dmovel_web_app/",
     "visual": "mobile",
-    "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp",
+    "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp?v=8d1d3297",
     "registration": {
       "process": "BR512025004902-1",
       "program_title": "DMovel-Ferramenta móvel para fomento à autonomia de PCDs",
@@ -326,7 +326,7 @@
     ],
     "demo": "",
     "visual": "code",
-    "image": "/assets/project-images/joaosnet_Varedura_demo.gif",
+    "image": "/assets/project-images/joaosnet_Varedura_demo.gif?v=bb5d0f98",
     "pt": {
       "eyebrow": "Segurança · Automação Assíncrona",
       "title": "Varredura assíncrona e auditoria de superfície de ataque.",
@@ -582,7 +582,7 @@
         }
       ]
     },
-    "image": "/assets/project-images/joaosnet_T1_performance_tournament.gif"
+    "image": "/assets/project-images/joaosnet_T1_performance_tournament.gif?v=604f6c09"
   },
   {
     "id": "interactive-signals",
@@ -722,6 +722,6 @@
         }
       ]
     },
-    "image": "/assets/project-images/joaosnet_interactive-signals-and-systems_og-banner.svg"
+    "image": "/assets/project-images/joaosnet_interactive-signals-and-systems_og-banner.svg?v=a87a8448"
   }
 ]
