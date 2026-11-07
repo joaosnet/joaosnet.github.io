@@ -93,4 +93,5 @@ test-results/
 
 # Graphify caches
 graphify-out/cache/
+graphify-out/*.lock
 

@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+
+echo "[pre-push hook] Executando verificações de qualidade antes do push..."
+
+# 1. Linting e conformidade Python (Ruff)
+echo "  → Verificando Ruff em Python..."
+uv run ruff check build_site.py update_projects.py scripts/build_cv.py scripts/preview.py scripts/fetch_assets.py tests
+
+# 2. Sintaxe de todos os arquivos JavaScript
+echo "  → Verificando sintaxe JavaScript..."
+npm run test:syntax
+
+# 3. Testes unitários do coletor e telemetria
+echo "  → Executando testes unitários do coletor..."
+npm test
+
+echo "[pre-push hook] ✓ Todas as verificações passaram com sucesso!"
