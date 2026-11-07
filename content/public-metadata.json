@@ -37,11 +37,15 @@
     "image_remote": "assets/images/social_preview.png"
   },
   "klique-api": {
-    "image_sha": "baf25e5ecc0289c5f8fd856dc441368d2b26b497",
-    "image_remote": "app/static/og-preview.jpg"
+    "image_sha": "656d89e964676dd07259aa1690c3d0d31593cd5b",
+    "image_remote": "docs/demo.gif"
   },
   "federated-learning": {
     "image_sha": "313bfb38ad529df4473277f1abf66ef275b6da8d",
     "image_remote": "assets/demo.gif"
+  },
+  "sigaa-mcp": {
+    "image_sha": "22ec4e532e4fba8796841053c56f72e19da198d7",
+    "image_remote": "assets/demo-preview.svg"
   }
 }

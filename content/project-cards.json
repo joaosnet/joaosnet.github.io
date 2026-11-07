@@ -84,13 +84,14 @@
     "es": {
       "eyebrow": "Código público · Automatización",
       "summary": "Servidor MCP para automatizar el acceso al SIGAA de la UFPA, explorando integración con modelos LLM, herramientas y flujos de autenticación."
-    }
+    },
+    "image": "/assets/project-images/joaosnet_sigaa-ufpa-mcp_demo-preview.svg?v=22ec4e53"
   },
   {
     "id": "klique-api",
     "name": "Klique API",
     "repo": "joaosnet/klique-api",
-    "image": "/assets/project-images/joaosnet_klique-api_og-preview.jpg?v=baf25e5e",
+    "image": "/assets/project-images/joaosnet_klique-api_demo.gif?v=656d89e9",
     "tags": [
       "Python",
       "Backend",
