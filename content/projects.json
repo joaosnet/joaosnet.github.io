@@ -158,7 +158,7 @@
     ],
     "demo": "https://lapshub.github.io/dmovel_web_app/",
     "visual": "mobile",
-    "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.webp?v=8d1d3297",
+    "image": "/assets/project-images/LAPSHub_dmovel_web_app_banner.png?v=a04bcae1",
     "registration": {
       "process": "BR512025004902-1",
       "program_title": "DMovel-Ferramenta móvel para fomento à autonomia de PCDs",
@@ -326,7 +326,7 @@
     ],
     "demo": "",
     "visual": "code",
-    "image": "/assets/project-images/joaosnet_Varedura_demo.gif?v=bb5d0f98",
+    "image": "/assets/project-images/joaosnet_Varedura_demo.gif?v=26175e13",
     "pt": {
       "eyebrow": "Segurança · Automação Assíncrona",
       "title": "Varredura assíncrona e auditoria de superfície de ataque.",

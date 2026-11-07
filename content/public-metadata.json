@@ -7,15 +7,17 @@
   "dmovel": {
     "updated_at": "2026-11-05T17:18:09Z",
     "stars": 6,
-    "image_sha": "8d1d3297f36ea808c53e0f8e67a30d35fb929a80"
+    "image_sha": "a04bcae1ea6be20945f642b9f31b57563de0fa73",
+    "image_remote": "assets/banner.png"
   },
   "varedura": {
     "updated_at": "2026-11-07T15:21:22Z",
     "stars": 0,
-    "image_sha": "bb5d0f9821cf0c9d33b4bddede8d348fbc1d8d74"
+    "image_sha": "26175e13dc70f22ce9fc3d7ac25df100a40e9296",
+    "image_remote": "screenshots/demo.gif"
   },
   "evolutionary-lab": {
-    "updated_at": "2026-02-12T15:42:10Z",
+    "updated_at": "2026-11-07T15:39:00Z",
     "stars": 0,
     "image_sha": "604f6c097615e73a4a430093d689416758f11145"
   },
@@ -28,9 +30,11 @@
     "image_sha": "a896b6adca1dcfa19bd545cbd1702c5d8937a831"
   },
   "dmovel-sitec": {
-    "image_sha": "28b7ceb275a94ddab9f36cfd46e117aa2bdcbbfb"
+    "image_sha": "0c7affa42d2ec40ab3892b9702d8dee3b271d537",
+    "image_remote": "assets/images/social_preview.png"
   },
   "klique-api": {
-    "image_sha": "2808e7937f8c30851486bd0e87fa4a2bf8f16d45"
+    "image_sha": "baf25e5ecc0289c5f8fd856dc441368d2b26b497",
+    "image_remote": "app/static/og-preview.jpg"
   }
 }
