@@ -370,7 +370,8 @@ def build(output=None):
     docs_dir.mkdir(parents=True, exist_ok=True)
     redirect_script = (
         "var lang = (localStorage.getItem('portfolio-language') || navigator.language || '').toLowerCase();\n"
-        "var target = lang.startsWith('en') ? '/en/#education' : (lang.startsWith('es') ? '/es/#education' : '/#education');\n"
+        "var target = lang.startsWith('en') ? '/en/#education' : "
+        "(lang.startsWith('es') ? '/es/#education' : '/#education');\n"
         "location.replace(target);"
     )
     redirect_hash = base64.b64encode(hashlib.sha256(redirect_script.encode()).digest()).decode()
@@ -390,7 +391,8 @@ def build(output=None):
         "</head>\n"
         "<body>\n"
         f"  <h1>{site['name']}</h1>\n"
-        '  <p>Redirecionando para Formação / Redirecting to education... <a href="/#education">Clique aqui se não for redirecionado automaticamente</a>.</p>\n'
+        '  <p>Redirecionando para Formação / Redirecting to education... '
+        '<a href="/#education">Clique aqui se não for redirecionado automaticamente</a>.</p>\n'
         "</body>\n"
         "</html>\n"
     )
