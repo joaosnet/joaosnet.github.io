@@ -85,7 +85,7 @@
       "eyebrow": "Código público · Automatización",
       "summary": "Servidor MCP para automatizar el acceso al SIGAA de la UFPA, explorando integración con modelos LLM, herramientas y flujos de autenticación."
     },
-    "image": "/assets/project-images/joaosnet_sigaa-ufpa-mcp_demo-preview.svg?v=22ec4e53"
+    "image": "/assets/project-images/joaosnet_sigaa-ufpa-mcp_demo.gif?v=10d8511a"
   },
   {
     "id": "klique-api",
