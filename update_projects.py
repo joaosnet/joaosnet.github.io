@@ -5,6 +5,7 @@ Private imports only write ignored local review material. Nothing is committed o
 
 import argparse
 import hashlib
+import io
 import json
 import os
 import re
@@ -81,30 +82,71 @@ def sanitize_image_filename(repo: str, remote_path: str) -> str:
     return clean_name
 
 
-def download_project_image(repo: str, branch: str, remote_path: str, dest_dir: Path | None = None, session=None) -> str:
-    """Downloads a remote project image anonymously with strict size and magic byte verification."""
+def optimize_heavy_gif(raw_bytes: bytes, target_width: int = 800, max_frames: int = 300) -> bytes:
+    """Optimizes heavy GIFs (> 15MB) into lightweight animated WebP (< 5MB).
+
+    Preserves fluid playback while downscaling resolution to card viewport size.
+    """
+    from PIL import Image, ImageSequence
+
+    orig = Image.open(io.BytesIO(raw_bytes))
+    w, h = orig.size
+    new_w = min(w, target_width)
+    new_h = int(h * (new_w / w))
+    duration = orig.info.get("duration", 50)
+    total_frames = getattr(orig, "n_frames", 1)
+    step = max(1, total_frames // max_frames)
+
+    frames = []
+    for i, frame in enumerate(ImageSequence.Iterator(orig)):
+        if i % step == 0:
+            f = frame.copy().convert("RGBA").resize((new_w, new_h), Image.Resampling.BILINEAR)
+            frames.append(f)
+
+    if not frames:
+        return raw_bytes
+
+    out_buf = io.BytesIO()
+    frames[0].save(
+        out_buf,
+        format="WEBP",
+        save_all=True,
+        append_images=frames[1:],
+        duration=int(duration * step),
+        loop=0,
+        quality=80,
+        method=4,
+    )
+    return out_buf.getvalue()
+
+
+def download_project_image(
+    repo: str,
+    branch: str,
+    remote_path: str,
+    dest_dir: Path | None = None,
+    session=None,
+    max_download_bytes: int = 100 * 1024 * 1024,
+) -> str:
+    """Downloads a remote project image anonymously with size, magic byte verification, and GIF optimization."""
     if not REPO.fullmatch(repo):
         raise ValueError("Invalid repository identifier")
     folder = (dest_dir or (ROOT / "assets/project-images")).resolve()
     clean_filename = sanitize_image_filename(repo, remote_path)
-    dest_path = (folder / clean_filename).resolve()
-    if not dest_path.is_relative_to(folder) or dest_path.is_symlink():
-        raise ValueError("Invalid image destination path")
 
     client = session or requests.Session()
     client.trust_env = False
     quoted_path = quote(remote_path)
     url = f"https://raw.githubusercontent.com/{repo}/{branch}/{quoted_path}"
-    response = client.get(url, timeout=20, stream=True, allow_redirects=False)
+    response = client.get(url, timeout=30, stream=True, allow_redirects=False)
     if response.status_code != 200:
         raise RuntimeError(f"Failed to download image {remote_path} from {repo}: status {response.status_code}")
 
-    max_bytes = 20 * 1024 * 1024
     downloaded = bytearray()
     for chunk in response.iter_content(chunk_size=65536):
         downloaded.extend(chunk)
-        if len(downloaded) > max_bytes:
-            raise ValueError(f"Image {remote_path} exceeds maximum size of 20MB")
+        if len(downloaded) > max_download_bytes:
+            raise ValueError(f"Image {remote_path} exceeds maximum size of 100MB")
 
     raw_bytes = bytes(downloaded)
     is_valid_magic = (
@@ -114,6 +156,20 @@ def download_project_image(repo: str, branch: str, remote_path: str, dest_dir: P
     )
     if not is_valid_magic:
         raise ValueError(f"File {remote_path} does not match expected image magic bytes")
+
+    # If GIF exceeds 15 MB, optimize to lightweight animated WebP (< 5MB)
+    if len(raw_bytes) > 15 * 1024 * 1024 and raw_bytes.startswith((b"GIF87a", b"GIF89a")):
+        optimized_bytes = optimize_heavy_gif(raw_bytes)
+        owner, name = repo.split("/")
+        raw_stem = Path(remote_path).stem
+        clean_stem = re.sub(r"[^\w\-]", "_", raw_stem).strip("_")
+        clean_filename = f"{owner}_{name}_{clean_stem}.webp"
+        clean_filename = re.sub(r"_+", "_", clean_filename)
+        raw_bytes = optimized_bytes
+
+    dest_path = (folder / clean_filename).resolve()
+    if not dest_path.is_relative_to(folder) or dest_path.is_symlink():
+        raise ValueError("Invalid image destination path")
 
     dest_path.write_bytes(raw_bytes)
     return f"/assets/project-images/{clean_filename}"
@@ -137,7 +193,7 @@ def fetch_project_images(
     meta_path = ROOT / "content/public-metadata.json"
     meta = metadata
     if meta is None:
-      meta = read_json(meta_path) if meta_path.exists() else {}
+        meta = read_json(meta_path) if meta_path.exists() else {}
 
     for item in projects + cards:
         repo = item.get("repo", "")
@@ -179,21 +235,26 @@ def fetch_project_images(
             cand_score, cand_path, cand_sha = best_candidate
             cand_is_gif = cand_path.lower().endswith(".gif")
 
+            clean_candidate_file = sanitize_image_filename(repo, cand_path)
+            candidate_webp_file = f"{Path(clean_candidate_file).stem}.webp"
+            cand_file_exists = (folder / clean_candidate_file).exists() or (folder / candidate_webp_file).exists()
+
             should_download = False
-            if not clean_curr_img or not curr_file_exists:
+            if not clean_curr_img or not cand_file_exists or not curr_file_exists:
                 should_download = True
             elif cand_is_gif and not curr_is_gif:
                 should_download = True
             elif cand_sha and saved_sha and cand_sha != saved_sha:
                 should_download = True
 
-            clean_filename = sanitize_image_filename(repo, cand_path)
-            version_suffix = f"?v={cand_sha[:8]}" if cand_sha else ""
-            expected_img = f"/assets/project-images/{clean_filename}{version_suffix}"
-
             if should_download:
                 try:
-                    download_project_image(repo, default_branch, cand_path, dest_dir=folder, session=client)
+                    saved_rel_path = download_project_image(
+                        repo, default_branch, cand_path, dest_dir=folder, session=client
+                    )
+                    clean_filename = Path(saved_rel_path).name
+                    version_suffix = f"?v={cand_sha[:8]}" if cand_sha else ""
+                    expected_img = f"/assets/project-images/{clean_filename}{version_suffix}"
                     if expected_img != curr_img:
                         item["image"] = expected_img
                         changed = True
@@ -205,18 +266,20 @@ def fetch_project_images(
                 except Exception:
                     pass
             else:
-                if (
-                    curr_img != expected_img
-                    and (folder / clean_filename).exists()
-                    and ((cand_is_gif and curr_is_gif) or (not cand_is_gif and not curr_is_gif))
-                ):
-                    item["image"] = expected_img
-                    changed = True
-                if item_id and cand_sha and meta.get(item_id, {}).get("image_sha") != cand_sha:
-                    if item_id not in meta:
-                        meta[item_id] = {}
-                    meta[item_id]["image_sha"] = cand_sha
-                    meta[item_id]["image_remote"] = cand_path
+                expected_stem = Path(clean_candidate_file).stem
+                curr_stem = Path(clean_curr_img).stem
+                if expected_stem == curr_stem:
+                    clean_filename = Path(clean_curr_img).name
+                    version_suffix = f"?v={cand_sha[:8]}" if cand_sha else ""
+                    expected_img = f"/assets/project-images/{clean_filename}{version_suffix}"
+                    if curr_img != expected_img and (folder / clean_filename).exists():
+                        item["image"] = expected_img
+                        changed = True
+                    if item_id and cand_sha and meta.get(item_id, {}).get("image_sha") != cand_sha:
+                        if item_id not in meta:
+                            meta[item_id] = {}
+                        meta[item_id]["image_sha"] = cand_sha
+                        meta[item_id]["image_remote"] = cand_path
         else:
             proj_id = item.get("id")
             if (

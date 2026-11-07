@@ -19,15 +19,18 @@
   "evolutionary-lab": {
     "updated_at": "2026-11-07T15:39:00Z",
     "stars": 0,
-    "image_sha": "604f6c097615e73a4a430093d689416758f11145"
+    "image_sha": "87459248a1a392b8f9ca310c47cd6e4da7e91ac9",
+    "image_remote": "demo.gif"
   },
   "interactive-signals": {
     "updated_at": "2026-11-06T16:35:38Z",
     "stars": 0,
-    "image_sha": "a87a8448c6c8815cd71cde1bfdc9504c9e808854"
+    "image_sha": "fe168bb831e76e2ba8e7a72e340e8d1dd1883b1f",
+    "image_remote": "assets/demo.gif"
   },
   "cartilha-dash": {
-    "image_sha": "a896b6adca1dcfa19bd545cbd1702c5d8937a831"
+    "image_sha": "9802db8bcc81918295c3074b606ae04a36be5f36",
+    "image_remote": "demo.gif"
   },
   "dmovel-sitec": {
     "image_sha": "0c7affa42d2ec40ab3892b9702d8dee3b271d537",
@@ -36,5 +39,9 @@
   "klique-api": {
     "image_sha": "baf25e5ecc0289c5f8fd856dc441368d2b26b497",
     "image_remote": "app/static/og-preview.jpg"
+  },
+  "federated-learning": {
+    "image_sha": "313bfb38ad529df4473277f1abf66ef275b6da8d",
+    "image_remote": "assets/demo.gif"
   }
 }

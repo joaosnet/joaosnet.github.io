@@ -27,7 +27,7 @@
       "eyebrow": "Publicado · Visualización de datos",
       "summary": "Guía práctica para construir paneles interactivos con Python, Dash y Plotly, con material disponible para explorar en el navegador."
     },
-    "image": "/assets/project-images/joaosnet_cartilha_dash_Dashboard_Totalmente_Interativo.png?v=a896b6ad"
+    "image": "/assets/project-images/joaosnet_cartilha_dash_demo.webp?v=9802db8b"
   },
   {
     "id": "dmovel-sitec",
@@ -141,6 +141,7 @@
     "es": {
       "eyebrow": "Contribución · Aprendizaje federado",
       "summary": "Contribución en un repositorio de proyectos de aprendizaje federado, con experimentos en notebooks. Participación consultable en el historial público."
-    }
+    },
+    "image": "/assets/project-images/ealexbarros_fl_projects_demo.gif?v=313bfb38"
   }
 ]

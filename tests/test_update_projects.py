@@ -164,7 +164,7 @@ def test_download_project_image_verifies_magic_bytes_and_path(tmp_path):
     with pytest.raises(ValueError, match="magic bytes"):
         updater.download_project_image("owner/repo", "main", "fake.png", dest_dir=dest_dir, session=session)
 
-    large_chunk = b"A" * (21 * 1024 * 1024)
+    large_chunk = b"A" * (101 * 1024 * 1024)
     session.get.return_value.iter_content.return_value = [large_chunk]
     with pytest.raises(ValueError, match="exceeds maximum size"):
         updater.download_project_image("owner/repo", "main", "huge.png", dest_dir=dest_dir, session=session)
@@ -303,3 +303,20 @@ def test_fetch_project_images_skips_download_when_sha_identical(tmp_path):
     assert changed is False
     assert raw_download_called is False
     assert projects[0]["image"] == "/assets/project-images/owner_repo1_demo.gif?v=samesha1"
+
+
+def test_download_project_image_optimizes_heavy_gif(tmp_path, monkeypatch):
+    dest_dir = tmp_path / "images"
+    dest_dir.mkdir()
+
+    session = Mock()
+    session.get.return_value.status_code = 200
+    dummy_gif = b"GIF89a" + b"\x00" * (16 * 1024 * 1024)
+    session.get.return_value.iter_content.return_value = [dummy_gif]
+
+    monkeypatch.setattr(updater, "optimize_heavy_gif", lambda b: b"RIFFfakeWEBP")
+
+    rel = updater.download_project_image("owner/repo", "main", "heavy.gif", dest_dir=dest_dir, session=session)
+    assert rel == "/assets/project-images/owner_repo_heavy.webp"
+    assert (dest_dir / "owner_repo_heavy.webp").exists()
+    assert (dest_dir / "owner_repo_heavy.webp").read_bytes() == b"RIFFfakeWEBP"

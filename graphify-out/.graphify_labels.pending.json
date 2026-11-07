@@ -5,7 +5,12 @@
   "11": "preview.py",
   "13": "with",
   "14": "parametrize",
-  "15": "test_update_projects.py",
+  "15": "jobs",
+  "17": "outputs",
   "25": "pre-push",
-  "136": "build_cv.py"
+  "26": "validate",
+  "27": "steps",
+  "28": "validate-browser",
+  "29": "validate-node",
+  "136": "build_site.py"
 }
