@@ -297,10 +297,10 @@
       try {
         await navigator.clipboard.writeText(copy.dataset.email);
         toast(copy.dataset.success);
-        track("copy_result", { outcome: "success" });
+        track("copy_result", { element: "email-copy", section: "contact", outcome: "success" });
       } catch {
         toast(copy.dataset.error);
-        track("copy_result", { outcome: "error" });
+        track("copy_result", { element: "email-copy", section: "contact", outcome: "error" });
       }
     });
   }
@@ -338,7 +338,7 @@
       if (invalid) {
         status.textContent = form.dataset.invalid;
         invalid.focus();
-        track("contact_result", { outcome: "invalid" });
+        track("contact_result", { element: "contact-submit", section: "contact", outcome: "invalid" });
         return;
       }
       if ($("#website").value) return;
@@ -365,7 +365,7 @@
         form.reset();
         fields.forEach((field) => field.removeAttribute("aria-invalid"));
         status.textContent = form.dataset.success;
-        track("contact_result", { outcome: "success" });
+        track("contact_result", { element: "contact-submit", section: "contact", outcome: "success" });
       } catch (error) {
         status.textContent =
           error.status === 429 ? form.dataset.rateError : form.dataset.error;
@@ -501,7 +501,7 @@
     visitorBadge.hidden = false;
 
     const inferCityRegion = (tz) => {
-      if (!tz || tz === "Desconhecido" || tz === "UTC") return "Desconhecido";
+      if (!tz || tz === "Desconhecido" || /^UTC|^GMT|^Etc\//i.test(tz)) return "Desconhecido";
       const tzMap = {
         "America/Belem": "Belém / PA",
         "America/Santarem": "Santarém / PA",
@@ -518,6 +518,7 @@
         "America/Maceio": "Maceió / AL",
         "America/Araguaina": "Palmas / TO",
         "America/Noronha": "Fernando de Noronha / PE",
+        "America/Eirunepe": "Eirunepé / AM",
         "America/Los_Angeles": "Los Angeles / EUA",
         "America/New_York": "Nova York / EUA",
         "America/Chicago": "Chicago / EUA",
@@ -525,6 +526,7 @@
         "America/Phoenix": "Phoenix / EUA",
         "America/Toronto": "Toronto / Canadá",
         "America/Vancouver": "Vancouver / Canadá",
+        "America/Mexico_City": "Cidade do México / México",
         "Europe/Berlin": "Berlim / Alemanha",
         "Europe/Oslo": "Oslo / Noruega",
         "Europe/London": "Londres / Reino Unido",
@@ -533,21 +535,27 @@
         "Europe/Madrid": "Madri / Espanha",
         "Europe/Rome": "Roma / Itália",
         "Europe/Amsterdam": "Amsterdã / Holanda",
+        "Europe/Dublin": "Dublin / Irlanda",
+        "Europe/Zurich": "Zurique / Suíça",
         "America/Lima": "Lima / Peru",
         "America/Bogota": "Bogotá / Colômbia",
         "America/Buenos_Aires": "Buenos Aires / Argentina",
+        "America/Argentina/Buenos_Aires": "Buenos Aires / Argentina",
         "America/Santiago": "Santiago / Chile",
         "America/Montevideo": "Montevidéu / Uruguai",
         "Asia/Tokyo": "Tóquio / Japão",
         "Asia/Shanghai": "Xangai / China",
-        "Asia/Singapore": "Singapura",
+        "Asia/Singapore": "Singapura / SG",
+        "Asia/Kolkata": "Nova Delhi / Índia",
+        "Asia/Dubai": "Dubai / EAU",
+        "Asia/Seoul": "Seul / Coreia do Sul",
         "Australia/Sydney": "Sydney / Austrália",
       };
       if (tzMap[tz]) return tzMap[tz];
-      const parts = tz.split("/");
+      const parts = String(tz).split("/");
       if (parts.length >= 2) {
         const city = parts[parts.length - 1].replace(/_/g, " ");
-        const region = parts[0];
+        const region = parts[0].replace(/_/g, " ");
         return `${city} / ${region}`;
       }
       return tz;
@@ -567,12 +575,22 @@
       else if (/Linux/i.test(ua)) os = "Linux";
 
       let browser = "Desconhecido";
+      let isWebview = false;
       if (/Edg\/|EdgiOS\//i.test(ua)) browser = "Edge";
-      else if (/OPR\/|Opera|OPT\//i.test(ua)) browser = "Opera";
+      else if (/OPR\/|Opera|OPT\/|OPiOS\//i.test(ua)) browser = "Opera";
       else if (/SamsungBrowser/i.test(ua)) browser = "Samsung Internet";
       else if (/CriOS\/|Chrome\//i.test(ua)) browser = "Chrome";
       else if (/FxiOS\/|Firefox\//i.test(ua)) browser = "Firefox";
-      else if (/Safari/i.test(ua)) browser = "Safari";
+      else if (/Instagram/i.test(ua)) {
+        browser = "Instagram WebView";
+        isWebview = true;
+      } else if (/FBAN|FBAV/i.test(ua)) {
+        browser = "Facebook WebView";
+        isWebview = true;
+      } else if (/LinkedInApp/i.test(ua)) {
+        browser = "LinkedIn WebView";
+        isWebview = true;
+      } else if (/Safari/i.test(ua)) browser = "Safari";
 
       const width = window.screen?.width || 0;
       const height = window.screen?.height || 0;
@@ -605,6 +623,7 @@
       const utcOffset = `UTC${offsetHours >= 0 ? "+" : ""}${offsetHours}`;
 
       const getChannel = (ref, utms = {}) => {
+        if (isWebview) return "social";
         if (utms.utmMedium) {
           const m = utms.utmMedium.toLowerCase();
           if (m === "email" || m === "newsletter") return "email";
@@ -614,14 +633,16 @@
         }
         if (utms.utmSource) {
           const s = utms.utmSource.toLowerCase();
-          if (["linkedin", "twitter", "x", "instagram", "facebook", "bsky", "threads"].includes(s))
+          if (["linkedin", "twitter", "x", "instagram", "facebook", "bsky", "bluesky", "threads"].includes(s))
             return "social";
-          if (["github", "lattes"].includes(s)) return "dev";
+          if (["github", "lattes", "cnpq"].includes(s)) return "dev";
+          if (["telegram", "whatsapp", "wa"].includes(s)) return "messaging";
         }
         if (!ref) return "direct";
         const r = ref.toLowerCase();
         if (
           r.includes("linkedin") ||
+          r.includes("lnkd.in") ||
           r.includes("t.co") ||
           r.includes("twitter") ||
           r.includes("x.com") ||
@@ -632,7 +653,7 @@
           r.includes("mastodon")
         )
           return "social";
-        if (r.includes("github") || r.includes("lattes")) return "dev";
+        if (r.includes("github") || r.includes("lattes") || r.includes("cnpq.br")) return "dev";
         if (
           r.includes("google") ||
           r.includes("bing") ||
@@ -790,7 +811,11 @@
         /* Remote sync is silent and non-blocking */
       }
     };
-    syncRemoteViews();
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => syncRemoteViews(), { timeout: 3000 });
+    } else {
+      window.addEventListener("load", () => setTimeout(syncRemoteViews, 600));
+    }
 
     const animateCountUp = () => {
       const duration = 800;

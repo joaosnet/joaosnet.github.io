@@ -763,10 +763,12 @@ test("setupDashboard counts exclusively contact_result with success and rescues 
 
   scope.setupDashboard(book);
 
-  assert.equal(sheets.Dashboard.rows[3][2], 4);
-  assert.equal(sheets.Dashboard.rows[3][1], 11);
+  // 5 KPI Cards aligned 2-by-2 with visual blocks: Col A (Visits), Col C (CV), Col E (Contact), Col G (LinkedIn), Col I (Explorer)
+  assert.equal(sheets.Dashboard.rows[3][0], 0);
+  assert.equal(sheets.Dashboard.rows[3][2], 11);
   assert.equal(sheets.Dashboard.rows[3][4], 4);
-  assert.equal(sheets.Dashboard.rows[3][5], 2);
+  assert.equal(sheets.Dashboard.rows[3][6], 4);
+  assert.equal(sheets.Dashboard.rows[3][8], 2);
 });
 
 test("setupDashboard supports other traffic channel and adds row outros (Referral / Outros)", () => {
@@ -823,4 +825,69 @@ test("maintenance protects against invalid watermark and does not duplicate arch
   scope.maintain();
 
   assert.equal(sheets.MonthlyV1.rows[1][8], 5);
+});
+
+test("inferCityRegion maps Brazilian timezones, international hubs, 3-segment timezones and rejects UTC", () => {
+  assert.equal(context.inferCityRegion("America/Belem"), "Belém / PA");
+  assert.equal(context.inferCityRegion("America/Eirunepe"), "Eirunepé / AM");
+  assert.equal(context.inferCityRegion("America/Sao_Paulo"), "São Paulo / SP");
+  assert.equal(context.inferCityRegion("America/Argentina/Buenos_Aires"), "Buenos Aires / Argentina");
+  assert.equal(context.inferCityRegion("America/Mexico_City"), "Cidade do México / México");
+  assert.equal(context.inferCityRegion("Europe/Dublin"), "Dublin / Irlanda");
+  assert.equal(context.inferCityRegion("Europe/Zurich"), "Zurique / Suíça");
+  assert.equal(context.inferCityRegion("Asia/Singapore"), "Singapura / SG");
+  assert.equal(context.inferCityRegion("Asia/Tokyo"), "Tóquio / Japão");
+  // UTC / GMT / Etc rejection
+  assert.equal(context.inferCityRegion("UTC"), "Desconhecido");
+  assert.equal(context.inferCityRegion("Etc/UTC"), "Desconhecido");
+  assert.equal(context.inferCityRegion("Etc/GMT+3"), "Desconhecido");
+  assert.equal(context.inferCityRegion("Desconhecido"), "Desconhecido");
+  assert.equal(context.inferCityRegion(""), "Desconhecido");
+});
+
+test("sanitizeText neutralizes multiline CSV injections and internal whitespace controls", () => {
+  const multiline = "Sao Paulo\r\n=cmd|' /C calc'!A0";
+  const sanitized = context.sanitizeText(multiline, 60);
+  assert.equal(sanitized.includes("\r"), false);
+  assert.equal(sanitized.includes("\n"), false);
+  assert.equal(sanitized.startsWith("'"), false); // space replaces newline, so it starts with Sao Paulo
+  assert.equal(sanitized.includes("=cmd"), true);
+
+  const directFormula = "\r\n=SUM(1+1)";
+  const sanitizedFormula = context.sanitizeText(directFormula, 60);
+  assert.equal(sanitizedFormula.startsWith("'="), true);
+});
+
+test("setupDashboard formats OS, Tablet, and closes all visit totals without orphans", () => {
+  const { scope, sheets } = runtime();
+  const book = scope.SpreadsheetApp.getActiveSpreadsheet();
+
+  sheets.Visitas.appendRow([
+    "2026-11-01", "/", "Desktop", "Windows", "Chrome", "1920x1080", "America/Sao_Paulo", "São Paulo / SP", "pt-BR", "UTC-3", "direct", "", "", "", "", "",
+  ]);
+  sheets.Visitas.appendRow([
+    "2026-11-01", "/", "Mobile", "iOS", "Safari", "390x844", "America/Belem", "Belém / PA", "pt-BR", "UTC-3", "social", "linkedin.com", "https://linkedin.com", "", "", "",
+  ]);
+  sheets.Visitas.appendRow([
+    "2026-11-01", "/", "Tablet", "iPadOS", "Safari", "820x1180", "America/Cuiaba", "Cuiabá / MT", "pt-BR", "UTC-4", "dev", "github.com", "https://github.com", "", "", "",
+  ]);
+  sheets.Visitas.appendRow([
+    "2026-11-01", "/", "SmartTV", "ChromeOS", "Opera", "3840x2160", "Etc/UTC", "Desconhecido", "en-US", "UTC", "email", "", "", "", "", "",
+  ]);
+
+  scope.setupDashboard(book);
+
+  // Total Visitas = 4
+  assert.equal(sheets.Dashboard.rows[3][0], 4);
+
+  // Dispositivos (Desktop: 1, Mobile: 1, Tablet: 1, Outros: 1) -> Total 4
+  assert.equal(sheets.Dashboard.rows[6][1], 1); // Desktop
+  assert.equal(sheets.Dashboard.rows[7][1], 1); // Mobile
+  assert.equal(sheets.Dashboard.rows[8][1], 1); // Tablet
+  assert.equal(sheets.Dashboard.rows[9][1], 1); // Outros / Desconhecido
+
+  // Sistemas Operacionais (Windows: 1, iOS/iPadOS: 2, ChromeOS/Outros: 1) -> Total 4
+  assert.equal(sheets.Dashboard.rows[6][7], 1); // Windows
+  assert.equal(sheets.Dashboard.rows[10][7], 2); // iOS / iPadOS (1 iOS + 1 iPadOS)
+  assert.equal(sheets.Dashboard.rows[11][7], 1); // ChromeOS / Outros
 });

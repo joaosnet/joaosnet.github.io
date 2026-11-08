@@ -1,5 +1,5 @@
 {% extends 'base.html' %}{% block title %}{{ t.privacy }} | {{ site.name }}{% endblock %}
-{% block content %}<article class="prose-page container" data-section="privacy"><a class="back-link" href="{{ base }}">← {{ t.home }}</a><p class="eyebrow">{{ t.privacy }} / 2026-09-07</p><h1>{{ t.privacy_title }}</h1><p class="lead">{{ t.privacy_intro }}</p>
+{% block content %}<article class="prose-page container" data-section="privacy"><a class="back-link" href="{{ base }}" data-track="page">← {{ t.home }}</a><p class="eyebrow">{{ t.privacy }} / 2026-09-07</p><h1>{{ t.privacy_title }}</h1><p class="lead">{{ t.privacy_intro }}</p>
 {% if lang == 'pt' %}
 <h2>Idioma e tradução automática</h2><p>Português, inglês e espanhol têm textos próprios revisados. Para outros idiomas, usamos GTranslate/Google: o navegador carrega o tradutor e envia conteúdo público da página ao serviço. O formulário e seus campos são excluídos da tradução. A escolha de idioma fica salva localmente e pode ser alterada no rodapé. A tradução automática pode conter erros e depende da disponibilidade do provedor.</p>
 <h2>Quem responde pelos dados</h2><p>{{ site.name }}, responsável por este portfólio. Para dúvidas, oposição ao tratamento ou solicitação de exclusão dos dados de contato, escreva para <a href="mailto:{{ site.email }}">{{ site.email }}</a>.</p>

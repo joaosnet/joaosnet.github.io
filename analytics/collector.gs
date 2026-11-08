@@ -138,6 +138,7 @@ var DEFAULT_CATALOG = {
     "skill-data",
     "skill-devices",
     "skill-interfaces",
+    "skip-link",
     "theme",
     "theme-palette",
     "unlabelled-control",
@@ -190,9 +191,9 @@ function criarDashboard() {
 
 function sanitizeText(value, maxLen) {
   if (value === null || value === undefined) return "";
-  var str = String(value).trim();
+  var str = String(value).replace(/[\r\n\t]/g, " ").trim();
   if (maxLen && str.length > maxLen) str = str.slice(0, maxLen);
-  if (/^[=+\-@\t\r\n]/.test(str)) {
+  if (/^[=+\-@|%]/.test(str)) {
     str = "'" + str;
   }
   return str;
@@ -321,7 +322,7 @@ function jsonResponse(value) {
 }
 
 function inferCityRegion(tz) {
-  if (!tz || tz === "Desconhecido" || tz === "UTC") return "Desconhecido";
+  if (!tz || tz === "Desconhecido" || /^UTC|^GMT|^Etc\//i.test(tz)) return "Desconhecido";
   var tzMap = {
     "America/Belem": "Belém / PA",
     "America/Santarem": "Santarém / PA",
@@ -338,6 +339,7 @@ function inferCityRegion(tz) {
     "America/Maceio": "Maceió / AL",
     "America/Araguaina": "Palmas / TO",
     "America/Noronha": "Fernando de Noronha / PE",
+    "America/Eirunepe": "Eirunepé / AM",
     "America/Los_Angeles": "Los Angeles / EUA",
     "America/New_York": "Nova York / EUA",
     "America/Chicago": "Chicago / EUA",
@@ -345,6 +347,7 @@ function inferCityRegion(tz) {
     "America/Phoenix": "Phoenix / EUA",
     "America/Toronto": "Toronto / Canadá",
     "America/Vancouver": "Vancouver / Canadá",
+    "America/Mexico_City": "Cidade do México / México",
     "Europe/Berlin": "Berlim / Alemanha",
     "Europe/Oslo": "Oslo / Noruega",
     "Europe/London": "Londres / Reino Unido",
@@ -353,21 +356,27 @@ function inferCityRegion(tz) {
     "Europe/Madrid": "Madri / Espanha",
     "Europe/Rome": "Roma / Itália",
     "Europe/Amsterdam": "Amsterdã / Holanda",
+    "Europe/Dublin": "Dublin / Irlanda",
+    "Europe/Zurich": "Zurique / Suíça",
     "America/Lima": "Lima / Peru",
     "America/Bogota": "Bogotá / Colômbia",
     "America/Buenos_Aires": "Buenos Aires / Argentina",
+    "America/Argentina/Buenos_Aires": "Buenos Aires / Argentina",
     "America/Santiago": "Santiago / Chile",
     "America/Montevideo": "Montevidéu / Uruguai",
     "Asia/Tokyo": "Tóquio / Japão",
     "Asia/Shanghai": "Xangai / China",
-    "Asia/Singapore": "Singapura",
+    "Asia/Singapore": "Singapura / SG",
+    "Asia/Kolkata": "Nova Delhi / Índia",
+    "Asia/Dubai": "Dubai / EAU",
+    "Asia/Seoul": "Seul / Coreia do Sul",
     "Australia/Sydney": "Sydney / Austrália",
   };
   if (tzMap[tz]) return tzMap[tz];
   var parts = String(tz).split("/");
   if (parts.length >= 2) {
     var city = parts[parts.length - 1].replace(/_/g, " ");
-    var region = parts[0];
+    var region = parts[0].replace(/_/g, " ");
     return city + " / " + region;
   }
   return tz;
@@ -415,12 +424,19 @@ function recordVisit(payload, book, properties) {
     }
   }
 
+  if (typeof sheet.getLastRow === "function" && sheet.getLastRow() >= 100000) {
+    return false;
+  }
+
   var channel = payload.channel || payload.canal || "direct";
   var referrer = payload.referrer || payload.origem || "";
+  var rawRefCompleto = String(payload.referrerCompleto || referrer || "").trim();
+  // Defense in depth: sanitize email tokens if any in referrer to prevent PII leakage
+  var safeRefCompleto = rawRefCompleto.replace(/[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+/g, "[email]");
   var domain = "";
-  if (referrer) {
+  if (safeRefCompleto) {
     try {
-      var match = referrer.match(/^https?:\/\/([^/?#]+)/i);
+      var match = safeRefCompleto.match(/^https?:\/\/([^/?#]+)/i);
       if (match) domain = match[1];
     } catch (_) {}
   }
@@ -443,8 +459,8 @@ function recordVisit(payload, book, properties) {
     sanitizeText(payload.language || payload.idioma || "pt-BR", 20),
     sanitizeText(payload.utcOffset || "UTC", 20),
     sanitizeText(channel, 30),
-    sanitizeText(domain || referrer, 100),
-    sanitizeText(payload.referrerCompleto || referrer || "", 200),
+    sanitizeText(domain || safeRefCompleto, 100),
+    sanitizeText(safeRefCompleto, 200),
     sanitizeText(payload.utmSource || payload.utm_source || "", 60),
     sanitizeText(payload.utmMedium || payload.utm_medium || "", 60),
     sanitizeText(payload.utmCampaign || payload.utm_campaign || "", 60),
@@ -493,7 +509,6 @@ function setupDashboard(book) {
 
   var cvDownloads = 0;
   var contatos = 0;
-  var telegramClicks = 0;
   var linkedinClicks = 0;
   var conquistas = 0;
 
@@ -553,12 +568,14 @@ function setupDashboard(book) {
   var desktopCount = 0;
   var mobileCount = 0;
   var tabletCount = 0;
+  var outrosDevCount = 0;
 
   var socialCount = 0;
   var devCount = 0;
   var directCount = 0;
   var searchCount = 0;
   var messagingCount = 0;
+  var emailCount = 0;
   var outrosCanalCount = 0;
 
   var chromeCount = 0;
@@ -575,12 +592,14 @@ function setupDashboard(book) {
   var outrosOsCount = 0;
 
   var cityCounts = {};
+  var unmappedCitiesCount = 0;
 
   visitsData.forEach(function (row) {
     var dev = String(row[2] || "");
     if (dev === "Desktop") desktopCount++;
     else if (dev === "Mobile") mobileCount++;
     else if (dev === "Tablet") tabletCount++;
+    else outrosDevCount++;
 
     var os = String(row[3] || "");
     if (os === "Windows") windowsCount++;
@@ -595,11 +614,13 @@ function setupDashboard(book) {
     else if (nav === "Safari") safariCount++;
     else if (nav === "Edge") edgeCount++;
     else if (nav === "Firefox") firefoxCount++;
-    else if (nav && nav !== "Desconhecido") outrosNavCount++;
+    else outrosNavCount++;
 
     var city = String(row[7] || "").trim();
     if (city && city !== "Desconhecido") {
       cityCounts[city] = (cityCounts[city] || 0) + 1;
+    } else {
+      unmappedCitiesCount++;
     }
 
     var channel = String(row[10] || "").toLowerCase();
@@ -608,6 +629,7 @@ function setupDashboard(book) {
     else if (channel === "direct") directCount++;
     else if (channel === "search") searchCount++;
     else if (channel === "messaging") messagingCount++;
+    else if (channel === "email") emailCount++;
     else outrosCanalCount++;
   });
 
@@ -615,7 +637,7 @@ function setupDashboard(book) {
     return cityCounts[b] - cityCounts[a];
   });
   var topCities = sortedCities.slice(0, 5);
-  var otherCitiesTotal = 0;
+  var otherCitiesTotal = unmappedCitiesCount;
   sortedCities.slice(5).forEach(function (c) {
     otherCitiesTotal += cityCounts[c];
   });
@@ -641,6 +663,9 @@ function setupDashboard(book) {
     var r = dash.getRange(rangeStr);
     if (!r) return;
     if (doMerge && typeof r.merge === "function") r.merge();
+    if (typeof r.setNumberFormat === "function" && typeof val === "string") {
+      r.setNumberFormat("@");
+    }
     if (typeof r.setValue === "function") r.setValue(val);
     if (bg && typeof r.setBackground === "function") r.setBackground(bg);
     if (fg && typeof r.setFontColor === "function") r.setFontColor(fg);
@@ -663,59 +688,35 @@ function setupDashboard(book) {
     true,
   );
 
-  setCell("A3", "👥 Total de Visitas", "#e2e8f0", null, null, true, "center");
-  setCell("A4", visitsData.length, "#e2e8f0", null, 16, true, "center");
+  // 5 KPI Cards aligned 2-by-2 with the 5 visual blocks below
+  setCell("A3:B3", "👥 Total de Visitas", "#e2e8f0", null, null, true, "center", true);
+  setCell("A4:B4", visitsData.length, "#e2e8f0", null, 16, true, "center", true);
 
-  setCell("B3", "📄 Downloads de CV", "#e0f2fe", "#0284c7", null, true, "center");
-  setCell("B4", cvDownloads, "#e0f2fe", "#0284c7", 16, true, "center");
+  setCell("C3:D3", "📄 Downloads de CV", "#e0f2fe", "#0284c7", null, true, "center", true);
+  setCell("C4:D4", cvDownloads, "#e0f2fe", "#0284c7", 16, true, "center", true);
 
-  setCell("C3", "✉️ Contatos Enviados", "#fae8ff", "#a21caf", null, true, "center");
-  setCell("C4", contatos, "#fae8ff", "#a21caf", 16, true, "center");
+  setCell("E3:F3", "✉️ Contatos Enviados", "#fae8ff", "#a21caf", null, true, "center", true);
+  setCell("E4:F4", contatos, "#fae8ff", "#a21caf", 16, true, "center", true);
 
-  setCell("D3", "💬 Cliques Telegram", "#f0fdf4", "#15803d", null, true, "center");
-  setCell("D4", telegramClicks, "#f0fdf4", "#15803d", 16, true, "center");
+  setCell("G3:H3", "💼 Cliques LinkedIn", "#fef3c7", "#b45309", null, true, "center", true);
+  setCell("G4:H4", linkedinClicks, "#fef3c7", "#b45309", 16, true, "center", true);
 
-  setCell("E3", "💼 Cliques LinkedIn", "#fef3c7", "#b45309", null, true, "center");
-  setCell("E4", linkedinClicks, "#fef3c7", "#b45309", 16, true, "center");
+  setCell("I3:J3", "🏆 Conquistas Fim Página", "#ffedd5", "#c2410c", null, true, "center", true);
+  setCell("I4:J4", conquistas, "#ffedd5", "#c2410c", 16, true, "center", true);
 
-  setCell(
-    "F3",
-    "🏆 Conquistas Fim Página",
-    "#ffedd5",
-    "#c2410c",
-    null,
-    true,
-    "center",
-  );
-  setCell("F4", conquistas, "#ffedd5", "#c2410c", 16, true, "center");
-
-  setCell(
-    "A6:B6",
-    "📱 Dispositivos",
-    "#1e293b",
-    "#ffffff",
-    null,
-    true,
-    null,
-    true,
-  );
+  // Bloco 1: Dispositivos (A6:B10)
+  setCell("A6:B6", "📱 Dispositivos", "#1e293b", "#ffffff", null, true, null, true);
   setCell("A7", "Desktop");
   setCell("B7", desktopCount, null, null, null, true, "center");
   setCell("A8", "Mobile");
   setCell("B8", mobileCount, null, null, null, true, "center");
   setCell("A9", "Tablet");
   setCell("B9", tabletCount, null, null, null, true, "center");
+  setCell("A10", "Outros / Desconhecido");
+  setCell("B10", outrosDevCount, null, null, null, true, "center");
 
-  setCell(
-    "C6:D6",
-    "🌐 Canais de Tráfego",
-    "#1e293b",
-    "#ffffff",
-    null,
-    true,
-    null,
-    true,
-  );
+  // Bloco 2: Canais de Tráfego (C6:D12)
+  setCell("C6:D6", "🌐 Canais de Tráfego", "#1e293b", "#ffffff", null, true, null, true);
   setCell("C7", "social (LinkedIn/X/Threads)");
   setCell("D7", socialCount, null, null, null, true, "center");
   setCell("C8", "dev (GitHub/Lattes)");
@@ -724,21 +725,13 @@ function setupDashboard(book) {
   setCell("D9", directCount, null, null, null, true, "center");
   setCell("C10", "search (Google/Bing)");
   setCell("D10", searchCount, null, null, null, true, "center");
-  setCell("C11", "messaging (Telegram/WA)");
-  setCell("D11", messagingCount, null, null, null, true, "center");
+  setCell("C11", "email / messaging");
+  setCell("D11", emailCount + messagingCount, null, null, null, true, "center");
   setCell("C12", "outros (Referral / Outros)");
   setCell("D12", outrosCanalCount, null, null, null, true, "center");
 
-  setCell(
-    "E6:F6",
-    "🧭 Navegadores",
-    "#1e293b",
-    "#ffffff",
-    null,
-    true,
-    null,
-    true,
-  );
+  // Bloco 3: Navegadores (E6:F11)
+  setCell("E6:F6", "🧭 Navegadores", "#1e293b", "#ffffff", null, true, null, true);
   setCell("E7", "Chrome");
   setCell("F7", chromeCount, null, null, null, true, "center");
   setCell("E8", "Safari");
@@ -750,16 +743,8 @@ function setupDashboard(book) {
   setCell("E11", "Opera / Outros");
   setCell("F11", outrosNavCount, null, null, null, true, "center");
 
-  setCell(
-    "G6:H6",
-    "💻 Sistemas Operacionais",
-    "#1e293b",
-    "#ffffff",
-    null,
-    true,
-    null,
-    true,
-  );
+  // Bloco 4: Sistemas Operacionais (G6:H12)
+  setCell("G6:H6", "💻 Sistemas Operacionais", "#1e293b", "#ffffff", null, true, null, true);
   setCell("G7", "Windows");
   setCell("H7", windowsCount, null, null, null, true, "center");
   setCell("G8", "macOS");
@@ -773,31 +758,25 @@ function setupDashboard(book) {
   setCell("G12", "ChromeOS / Outros");
   setCell("H12", outrosOsCount, null, null, null, true, "center");
 
-  setCell(
-    "I6:J6",
-    "📍 Top Cidades / Regiões",
-    "#1e293b",
-    "#ffffff",
-    null,
-    true,
-    null,
-    true,
-  );
+  // Bloco 5: Top Cidades / Regiões (I6:J12)
+  setCell("I6:J6", "📍 Top Cidades / Regiões", "#1e293b", "#ffffff", null, true, null, true);
   for (var ci = 0; ci < 5; ci++) {
     var cRow = 7 + ci;
-    var cName = topCities[ci] || "—";
+    var rawCityName = topCities[ci] || "—";
+    var safeCityName = String(rawCityName).replace(/^[=+\-@\t\r\n]/g, "");
     var cVal = topCities[ci] ? cityCounts[topCities[ci]] : 0;
-    setCell("I" + cRow, cName);
+    setCell("I" + cRow, safeCityName);
     setCell("J" + cRow, cVal, null, null, null, true, "center");
   }
-  setCell("I12", "Demais localidades");
+  setCell("I12", "Demais / Não identificadas");
   setCell("J12", otherCitiesTotal, null, null, null, true, "center");
 
-  if (dash.setBorder) {
+  var applyBorder = function (rangeStr) {
+    if (!dash.getRange) return;
     try {
-      dash
-        .getRange("A6:J12")
-        .setBorder(
+      var r = dash.getRange(rangeStr);
+      if (r && typeof r.setBorder === "function") {
+        r.setBorder(
           true,
           true,
           true,
@@ -807,8 +786,21 @@ function setupDashboard(book) {
           "#cbd5e1",
           SpreadsheetApp.BorderStyle ? SpreadsheetApp.BorderStyle.SOLID : null,
         );
+      }
     } catch (_) {}
-  }
+  };
+
+  applyBorder("A3:B4");
+  applyBorder("C3:D4");
+  applyBorder("E3:F4");
+  applyBorder("G3:H4");
+  applyBorder("I3:J4");
+
+  applyBorder("A6:B10");
+  applyBorder("C6:D12");
+  applyBorder("E6:F11");
+  applyBorder("G6:H12");
+  applyBorder("I6:J12");
 
   if (dash.setColumnWidth) {
     try {
@@ -877,6 +869,11 @@ function doPost(e) {
 
     var sheet =
       book.getSheetByName("EventsV1") || book.getSheetByName("Eventos");
+    if (!sheet && book.insertSheet) {
+      sheet = book.insertSheet("EventsV1");
+      sheet.appendRow(EVENT_FIELDS);
+      sheet.setFrozenRows(1);
+    }
     if (!sheet) return jsonResponse({ ok: false, status: "error" });
     if (sheet.getLastRow() + rows.length > 360001)
       return jsonResponse({ ok: false, status: "error" });
@@ -1086,6 +1083,20 @@ function maintain() {
 
     if (expired.length) {
       replaceRows(events, [EVENT_FIELDS].concat(live), EVENT_FIELDS.length);
+    }
+
+    var visitas = book.getSheetByName("Visitas");
+    if (visitas && visitas.getLastRow() > 1) {
+      var vCols = typeof visitas.getLastColumn === "function" ? visitas.getLastColumn() : VISIT_FIELDS.length;
+      var vRows = visitas.getRange(2, 1, visitas.getLastRow() - 1, vCols).getValues();
+      var liveVisits = [];
+      var expiredVisits = [];
+      vRows.forEach(function (r) {
+        (Date.parse(String(r[0])) >= cutoff ? liveVisits : expiredVisits).push(r);
+      });
+      if (expiredVisits.length) {
+        replaceRows(visitas, [VISIT_FIELDS].concat(liveVisits), vCols);
+      }
     }
 
     setupDashboard(book);

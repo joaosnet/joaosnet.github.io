@@ -37,7 +37,7 @@
   <script src="/assets/js/easter-eggs.js" defer></script>
 </head>
 <body data-page="/" data-lang="pt">
-  <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
+  <a class="skip-link" href="#main-content" data-track="skip-link">Pular para o conteúdo</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Natividade<span class="brand-dot">.</span></span></a>
@@ -70,14 +70,14 @@
           <div id="palette-popover" class="palette-popover" role="region" aria-label="Sintonia Cromática" hidden>
             <div class="palette-popover-header">
               <span class="palette-title">Sintonia Cromática</span>
-              <button type="button" class="text-button palette-reset" aria-label="Restaurar matiz padrão" title="Restaurar matiz padrão">↺</button>
+              <button type="button" class="text-button palette-reset" data-track="theme-palette" aria-label="Restaurar matiz padrão" title="Restaurar matiz padrão">↺</button>
             </div>
             <div class="palette-indicator-row">
               <span class="palette-hue-label" id="palette-hue-label">192° HUE</span>
             </div>
             <div class="palette-slider-wrapper">
               <label for="palette-hue-slider" class="sr-only">Matiz do tema</label>
-              <input type="range" id="palette-hue-slider" class="palette-slider" min="0" max="360" step="1" value="192" aria-label="Matiz do tema">
+              <input type="range" id="palette-hue-slider" class="palette-slider" min="0" max="360" step="1" value="192" data-track="theme-palette" aria-label="Matiz do tema">
             </div>
             <div class="palette-presets" role="group" aria-label="Predefinições de matiz">
               <button type="button" class="palette-preset preset-cyan" data-hue="192" data-track="theme-palette" aria-label="Cyan 192°" title="Cyan (192°)"></button>
@@ -595,7 +595,7 @@
   <aside class="metrics-notice" aria-label="Métricas" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">Prévia · métricas sem envio</span><button class="text-button metrics-toggle" type="button">Desativar</button><a href="/privacy/">Privacidade</a><button class="notice-close" type="button" aria-label="Recolher aviso de métricas">×</button></aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <dialog id="secret-dialog" class="secret-dialog notranslate" translate="no" aria-labelledby="secret-title">
-    <form method="dialog"><button class="text-button" aria-label="Fechar terminal">×</button></form>
+    <form method="dialog"><button class="text-button" data-track="secret-terminal" aria-label="Fechar terminal">×</button></form>
     <div class="matrix-rain" aria-hidden="true">0101 · UFPA · λ · 1010<br>01 · &lt;/&gt; · 110 · π<br>λ · 0101 · HELLO WORLD<br>101 · SIGNAL FOUND · 01</div>
     <p class="eyebrow">PORTFOLIO / SECRET TERMINAL</p><h2 id="secret-title">Hello, explorer.</h2>
     <p>Curiosidade é uma boa habilidade de engenharia. Você encontrou a porta secreta.</p>

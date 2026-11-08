@@ -37,7 +37,7 @@
   <script src="/assets/js/easter-eggs.js" defer></script>
 </head>
 <body data-page="{{ path }}" data-lang="{{ lang }}">
-  <a class="skip-link" href="#main-content">{{ t.skip }}</a>
+  <a class="skip-link" href="#main-content" data-track="skip-link">{{ t.skip }}</a>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>{{ site.name }}<span class="brand-dot">.</span></span></a>
@@ -76,14 +76,14 @@
           <div id="palette-popover" class="palette-popover" role="region" aria-label="{{ t.palette_title }}" hidden>
             <div class="palette-popover-header">
               <span class="palette-title">{{ t.palette_title }}</span>
-              <button type="button" class="text-button palette-reset" aria-label="{{ t.palette_reset }}" title="{{ t.palette_reset }}">↺</button>
+              <button type="button" class="text-button palette-reset" data-track="theme-palette" aria-label="{{ t.palette_reset }}" title="{{ t.palette_reset }}">↺</button>
             </div>
             <div class="palette-indicator-row">
               <span class="palette-hue-label" id="palette-hue-label">192° HUE</span>
             </div>
             <div class="palette-slider-wrapper">
               <label for="palette-hue-slider" class="sr-only">{{ t.palette_hue }}</label>
-              <input type="range" id="palette-hue-slider" class="palette-slider" min="0" max="360" step="1" value="192" aria-label="{{ t.palette_hue }}">
+              <input type="range" id="palette-hue-slider" class="palette-slider" min="0" max="360" step="1" value="192" data-track="theme-palette" aria-label="{{ t.palette_hue }}">
             </div>
             <div class="palette-presets" role="group" aria-label="{{ t.palette_presets }}">
               <button type="button" class="palette-preset preset-cyan" data-hue="192" data-track="theme-palette" aria-label="Cyan 192°" title="Cyan (192°)"></button>
@@ -131,7 +131,7 @@
   <aside class="metrics-notice" aria-label="{{ t.metrics }}" hidden><span class="tiny-dot" aria-hidden="true"></span><span id="metrics-label">{{ t.metrics_preview }}</span><button class="text-button metrics-toggle" type="button">{{ t.disable }}</button><a href="{{ base }}privacy/">{{ t.privacy }}</a><button class="notice-close" type="button" aria-label="{{ t.close_notice }}">×</button></aside>
   <div class="toast" role="status" aria-live="polite" hidden></div>
   <dialog id="secret-dialog" class="secret-dialog notranslate" translate="no" aria-labelledby="secret-title">
-    <form method="dialog"><button class="text-button" aria-label="{{ 'Fechar terminal' if lang == 'pt' else ('Cerrar terminal' if lang == 'es' else 'Close terminal') }}">×</button></form>
+    <form method="dialog"><button class="text-button" data-track="secret-terminal" aria-label="{{ 'Fechar terminal' if lang == 'pt' else ('Cerrar terminal' if lang == 'es' else 'Close terminal') }}">×</button></form>
     <div class="matrix-rain" aria-hidden="true">0101 · UFPA · λ · 1010<br>01 · &lt;/&gt; · 110 · π<br>λ · 0101 · HELLO WORLD<br>101 · SIGNAL FOUND · 01</div>
     <p class="eyebrow">PORTFOLIO / SECRET TERMINAL</p><h2 id="secret-title">Hello, explorer.</h2>
     <p>{{ 'Curiosidade é uma boa habilidade de engenharia. Você encontrou a porta secreta.' if lang == 'pt' else ('La curiosidad es una gran habilidad de ingeniería. Has encontrado la puerta secreta.' if lang == 'es' else 'Curiosity is a useful engineering skill. You found the secret door.') }}</p>

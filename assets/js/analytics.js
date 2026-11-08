@@ -239,36 +239,43 @@
     if (document.visibilityState === "hidden") flush();
   });
   window.addEventListener("pagehide", flush);
-  fetch("/assets/analytics-config.json", { credentials: "omit" })
-    .then((response) => {
-      if (!response.ok) throw new Error("Config unavailable");
-      return response.json();
-    })
-    .then((value) => {
-      if (
-        !Array.isArray(value.pageIds) ||
-        !Array.isArray(value.trackIds) ||
-        !Array.isArray(value.projects)
+  const onConfigReady = (value) => {
+    if (
+      !Array.isArray(value.pageIds) ||
+      !Array.isArray(value.trackIds) ||
+      !Array.isArray(value.projects)
+    )
+      return;
+    if (
+      value.endpoint &&
+      !/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(
+        value.endpoint,
       )
-        return;
-      if (
-        value.endpoint &&
-        !/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(
-          value.endpoint,
-        )
-      )
-        return;
-      config = value;
-      update();
-      notice.hidden = false;
-      emit("page_view", {
-        element: "page",
-        section: "page",
-        modality: "system",
-      });
-    })
-    .catch(() => {
-      enabled = false;
-      queue = [];
+    )
+      return;
+    config = value;
+    window.__portfolioAnalyticsConfig = value;
+    update();
+    notice.hidden = false;
+    emit("page_view", {
+      element: "page",
+      section: "page",
+      modality: "system",
     });
+  };
+
+  if (window.__portfolioAnalyticsConfig) {
+    onConfigReady(window.__portfolioAnalyticsConfig);
+  } else {
+    fetch("/assets/analytics-config.json", { credentials: "omit" })
+      .then((response) => {
+        if (!response.ok) throw new Error("Config unavailable");
+        return response.json();
+      })
+      .then(onConfigReady)
+      .catch(() => {
+        enabled = false;
+        queue = [];
+      });
+  }
 })();
