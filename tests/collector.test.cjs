@@ -154,7 +154,7 @@ class Sheet {
     return last;
   }
   getLastColumn() {
-    return 12;
+    return (context && context.VISIT_FIELDS) ? context.VISIT_FIELDS.length : 16;
   }
   getMaxRows() {
     return this.maxRows;
@@ -438,10 +438,10 @@ test("POST visit records visitor metadata, sanitizes formulas, and increments qu
   assert.equal(sheets.Visitas.rows[1][7].startsWith("'"), true);
 });
 
-test("visit integrity: validates 12-column schema, default values, length clamping, and domain parsing", () => {
+test("visit integrity: validates 16-column schema, default values, length clamping, and domain parsing", () => {
   const { scope, sheets } = runtime();
 
-  // Test 1: Minimal payload applies proper defaults and outputs exact 12 columns
+  // Test 1: Minimal payload applies proper defaults and outputs exact 16 columns
   const minimalVisit = { type: "visit" };
   const resMin = scope.doPost({
     postData: { contents: JSON.stringify(minimalVisit) },
@@ -451,7 +451,7 @@ test("visit integrity: validates 12-column schema, default values, length clampi
   assert.equal(sheets.Visitas.getLastRow(), 2);
 
   const row1 = sheets.Visitas.rows[1];
-  assert.equal(row1.length, 12, "Visit row must contain exactly 12 columns");
+  assert.equal(row1.length, 16, "Visit row must contain exactly 16 columns");
   assert.ok(row1[0].length > 0, "timestamp default should be generated");
   assert.equal(row1[1], "/", "default path should be /");
   assert.equal(row1[2], "Desktop", "default device should be Desktop");
@@ -464,6 +464,10 @@ test("visit integrity: validates 12-column schema, default values, length clampi
   assert.equal(row1[9], "UTC", "default utcOffset should be UTC");
   assert.equal(row1[10], "direct", "default channel should be direct");
   assert.equal(row1[11], "", "default referrer should be empty");
+  assert.equal(row1[12], "", "default referrerCompleto should be empty");
+  assert.equal(row1[13], "", "default utmSource should be empty");
+  assert.equal(row1[14], "", "default utmMedium should be empty");
+  assert.equal(row1[15], "", "default utmCampaign should be empty");
 
   // Test 2: Full payload with domain extraction and Portuguese aliases
   const fullVisit = {
@@ -480,6 +484,10 @@ test("visit integrity: validates 12-column schema, default values, length clampi
     utcOffset: "UTC-3",
     canal: "referral",
     origem: "https://news.ycombinator.com/item?id=42000000",
+    referrerCompleto: "https://news.ycombinator.com/item?id=42000000",
+    utmSource: "hackernews",
+    utmMedium: "post",
+    utmCampaign: "launch",
   };
   const resFull = scope.doPost({
     postData: { contents: JSON.stringify(fullVisit) },
@@ -500,6 +508,10 @@ test("visit integrity: validates 12-column schema, default values, length clampi
   assert.equal(row2[9], "UTC-3");
   assert.equal(row2[10], "referral");
   assert.equal(row2[11], "news.ycombinator.com", "domain should be extracted from referrer URL");
+  assert.equal(row2[12], "https://news.ycombinator.com/item?id=42000000");
+  assert.equal(row2[13], "hackernews");
+  assert.equal(row2[14], "post");
+  assert.equal(row2[15], "launch");
 
   // Test 3: String length truncation according to column limits
   const longVisit = {
@@ -515,6 +527,10 @@ test("visit integrity: validates 12-column schema, default values, length clampi
     utcOffset: "U".repeat(40),
     channel: "H".repeat(50),
     referrer: "not-a-url-" + "x".repeat(150),
+    referrerCompleto: "https://" + "x".repeat(250),
+    utmSource: "S".repeat(100),
+    utmMedium: "M".repeat(100),
+    utmCampaign: "C".repeat(100),
   };
   const resLong = scope.doPost({
     postData: { contents: JSON.stringify(longVisit) },
@@ -532,6 +548,10 @@ test("visit integrity: validates 12-column schema, default values, length clampi
   assert.ok(row3[9].length <= 20);
   assert.ok(row3[10].length <= 30);
   assert.ok(row3[11].length <= 100);
+  assert.ok(row3[12].length <= 200);
+  assert.ok(row3[13].length <= 60);
+  assert.ok(row3[14].length <= 60);
+  assert.ok(row3[15].length <= 60);
 });
 
 test("visit integrity: sanitizes formula injections across all fields", () => {
@@ -550,13 +570,17 @@ test("visit integrity: sanitizes formula injections across all fields", () => {
     utcOffset: "+03:00",
     channel: "-direct",
     referrer: "@https://evil.site",
+    referrerCompleto: "=https://evil.site/full",
+    utmSource: "+evil_source",
+    utmMedium: "-evil_medium",
+    utmCampaign: "@evil_campaign",
   };
   const res = scope.doPost({
     postData: { contents: JSON.stringify(injectionVisit) },
   });
   assert.equal(res.ok, true);
   const row = sheets.Visitas.rows[1];
-  for (let col = 0; col < 12; col++) {
+  for (let col = 0; col < 16; col++) {
     assert.equal(
       row[col].startsWith("'"),
       true,

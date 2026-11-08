@@ -37,6 +37,10 @@ var VISIT_FIELDS = [
   "UTC Offset",
   "Canal de Tráfego",
   "Domínio Origem",
+  "Referrer Completo",
+  "UTM Source",
+  "UTM Medium",
+  "UTM Campaign",
 ];
 var MAX_EVENTS_PER_DAY = 2000;
 var MAX_EVENTS_PER_BATCH = 20;
@@ -316,6 +320,59 @@ function jsonResponse(value) {
   );
 }
 
+function inferCityRegion(tz) {
+  if (!tz || tz === "Desconhecido" || tz === "UTC") return "Desconhecido";
+  var tzMap = {
+    "America/Belem": "Belém / PA",
+    "America/Santarem": "Santarém / PA",
+    "America/Sao_Paulo": "São Paulo / SP",
+    "America/Cuiaba": "Cuiabá / MT",
+    "America/Manaus": "Manaus / AM",
+    "America/Fortaleza": "Fortaleza / CE",
+    "America/Recife": "Recife / PE",
+    "America/Bahia": "Salvador / BA",
+    "America/Porto_Velho": "Porto Velho / RO",
+    "America/Boa_Vista": "Boa Vista / RR",
+    "America/Rio_Branco": "Rio Branco / AC",
+    "America/Campo_Grande": "Campo Grande / MS",
+    "America/Maceio": "Maceió / AL",
+    "America/Araguaina": "Palmas / TO",
+    "America/Noronha": "Fernando de Noronha / PE",
+    "America/Los_Angeles": "Los Angeles / EUA",
+    "America/New_York": "Nova York / EUA",
+    "America/Chicago": "Chicago / EUA",
+    "America/Denver": "Denver / EUA",
+    "America/Phoenix": "Phoenix / EUA",
+    "America/Toronto": "Toronto / Canadá",
+    "America/Vancouver": "Vancouver / Canadá",
+    "Europe/Berlin": "Berlim / Alemanha",
+    "Europe/Oslo": "Oslo / Noruega",
+    "Europe/London": "Londres / Reino Unido",
+    "Europe/Paris": "Paris / França",
+    "Europe/Lisbon": "Lisboa / Portugal",
+    "Europe/Madrid": "Madri / Espanha",
+    "Europe/Rome": "Roma / Itália",
+    "Europe/Amsterdam": "Amsterdã / Holanda",
+    "America/Lima": "Lima / Peru",
+    "America/Bogota": "Bogotá / Colômbia",
+    "America/Buenos_Aires": "Buenos Aires / Argentina",
+    "America/Santiago": "Santiago / Chile",
+    "America/Montevideo": "Montevidéu / Uruguai",
+    "Asia/Tokyo": "Tóquio / Japão",
+    "Asia/Shanghai": "Xangai / China",
+    "Asia/Singapore": "Singapura",
+    "Australia/Sydney": "Sydney / Austrália",
+  };
+  if (tzMap[tz]) return tzMap[tz];
+  var parts = String(tz).split("/");
+  if (parts.length >= 2) {
+    var city = parts[parts.length - 1].replace(/_/g, " ");
+    var region = parts[0];
+    return city + " / " + region;
+  }
+  return tz;
+}
+
 function doGet() {
   var totalVisitas = 0;
   var totalEventos = 0;
@@ -327,22 +384,9 @@ function doGet() {
       if (visitasSheet && visitasSheet.getLastRow() > 1) {
         totalVisitas = visitasSheet.getLastRow() - 1;
       }
-      var legacyEvents = book.getSheetByName("Eventos");
-      if (legacyEvents && legacyEvents.getLastRow() > 1) {
-        totalEventos += legacyEvents.getLastRow() - 1;
-      }
       var eventsSheet = book.getSheetByName("EventsV1");
       if (eventsSheet && eventsSheet.getLastRow() > 1) {
-        totalEventos += eventsSheet.getLastRow() - 1;
-      }
-      var monthlySheet = book.getSheetByName("MonthlyV1");
-      if (monthlySheet && monthlySheet.getLastRow() > 1) {
-        var mRows = monthlySheet
-          .getRange(2, 9, monthlySheet.getLastRow() - 1, 1)
-          .getValues();
-        mRows.forEach(function (r) {
-          totalEventos += Number(r[0]) || 0;
-        });
+        totalEventos = eventsSheet.getLastRow() - 1;
       }
     }
   } catch (_) {}
@@ -381,6 +425,12 @@ function recordVisit(payload, book, properties) {
     } catch (_) {}
   }
 
+  var tz = payload.timezone || payload.fuso || "";
+  var city = payload.cityRegion || payload.cidade || "";
+  if (!city || city === "Desconhecido") {
+    city = inferCityRegion(tz);
+  }
+
   var row = [
     sanitizeText(payload.timestamp || new Date().toISOString(), 40),
     sanitizeText(payload.path || "/", 100),
@@ -388,12 +438,16 @@ function recordVisit(payload, book, properties) {
     sanitizeText(payload.os || payload.sistemaOperacional || "Desconhecido", 40),
     sanitizeText(payload.browser || payload.navegador || "Desconhecido", 40),
     sanitizeText(payload.resolution || payload.resolucao || "Desconhecido", 30),
-    sanitizeText(payload.timezone || payload.fuso || "Desconhecido", 60),
-    sanitizeText(payload.cityRegion || payload.cidade || "Desconhecido", 60),
+    sanitizeText(tz || "Desconhecido", 60),
+    sanitizeText(city || "Desconhecido", 60),
     sanitizeText(payload.language || payload.idioma || "pt-BR", 20),
     sanitizeText(payload.utcOffset || "UTC", 20),
     sanitizeText(channel, 30),
     sanitizeText(domain || referrer, 100),
+    sanitizeText(payload.referrerCompleto || referrer || "", 200),
+    sanitizeText(payload.utmSource || payload.utm_source || "", 60),
+    sanitizeText(payload.utmMedium || payload.utm_medium || "", 60),
+    sanitizeText(payload.utmCampaign || payload.utm_campaign || "", 60),
   ];
 
   if (sheet.getRange) {
@@ -423,7 +477,6 @@ function setupDashboard(book) {
   if (!dash) return;
 
   var visitsSheet = book.getSheetByName("Visitas");
-  var legacyEvents = book.getSheetByName("Eventos");
   var modernEvents = book.getSheetByName("EventsV1");
   var monthlySheet = book.getSheetByName("MonthlyV1");
 
@@ -432,9 +485,9 @@ function setupDashboard(book) {
     var vCols =
       typeof visitsSheet.getLastColumn === "function"
         ? visitsSheet.getLastColumn()
-        : 12;
+        : 16;
     visitsData = visitsSheet
-      .getRange(2, 1, visitsSheet.getLastRow() - 1, Math.max(12, vCols))
+      .getRange(2, 1, visitsSheet.getLastRow() - 1, Math.max(16, vCols))
       .getValues();
   }
 
@@ -443,24 +496,6 @@ function setupDashboard(book) {
   var telegramClicks = 0;
   var linkedinClicks = 0;
   var conquistas = 0;
-
-  if (legacyEvents && legacyEvents.getLastRow() > 1) {
-    var lCols =
-      typeof legacyEvents.getLastColumn === "function"
-        ? legacyEvents.getLastColumn()
-        : 10;
-    var legacyData = legacyEvents
-      .getRange(2, 1, legacyEvents.getLastRow() - 1, lCols)
-      .getValues();
-    legacyData.forEach(function (row) {
-      var ev = String(row[1] || "").toLowerCase();
-      if (ev.indexOf("download_cv") !== -1) cvDownloads++;
-      else if (ev.indexOf("submit_contact") !== -1) contatos++;
-      else if (ev.indexOf("click_telegram") !== -1) telegramClicks++;
-      else if (ev.indexOf("click_linkedin") !== -1) linkedinClicks++;
-      else if (ev.indexOf("achievement_footer_reached") !== -1) conquistas++;
-    });
-  }
 
   if (modernEvents && modernEvents.getLastRow() > 1) {
     var mCols =
@@ -532,11 +567,28 @@ function setupDashboard(book) {
   var firefoxCount = 0;
   var outrosNavCount = 0;
 
+  var windowsCount = 0;
+  var macCount = 0;
+  var linuxCount = 0;
+  var androidCount = 0;
+  var iosCount = 0;
+  var outrosOsCount = 0;
+
+  var cityCounts = {};
+
   visitsData.forEach(function (row) {
     var dev = String(row[2] || "");
     if (dev === "Desktop") desktopCount++;
     else if (dev === "Mobile") mobileCount++;
     else if (dev === "Tablet") tabletCount++;
+
+    var os = String(row[3] || "");
+    if (os === "Windows") windowsCount++;
+    else if (os === "macOS") macCount++;
+    else if (os === "Linux") linuxCount++;
+    else if (os === "Android") androidCount++;
+    else if (os === "iOS" || os === "iPadOS") iosCount++;
+    else outrosOsCount++;
 
     var nav = String(row[4] || "");
     if (nav === "Chrome") chromeCount++;
@@ -545,6 +597,11 @@ function setupDashboard(book) {
     else if (nav === "Firefox") firefoxCount++;
     else if (nav && nav !== "Desconhecido") outrosNavCount++;
 
+    var city = String(row[7] || "").trim();
+    if (city && city !== "Desconhecido") {
+      cityCounts[city] = (cityCounts[city] || 0) + 1;
+    }
+
     var channel = String(row[10] || "").toLowerCase();
     if (channel === "social") socialCount++;
     else if (channel === "dev") devCount++;
@@ -552,6 +609,15 @@ function setupDashboard(book) {
     else if (channel === "search") searchCount++;
     else if (channel === "messaging") messagingCount++;
     else outrosCanalCount++;
+  });
+
+  var sortedCities = Object.keys(cityCounts).sort(function (a, b) {
+    return cityCounts[b] - cityCounts[a];
+  });
+  var topCities = sortedCities.slice(0, 5);
+  var otherCitiesTotal = 0;
+  sortedCities.slice(5).forEach(function (c) {
+    otherCitiesTotal += cityCounts[c];
   });
 
   if (typeof dash.clear === "function") dash.clear();
@@ -585,7 +651,7 @@ function setupDashboard(book) {
   };
 
   setCell(
-    "A1:F1",
+    "A1:J1",
     "📊 DASHBOARD DE TELEMETRIA & CONVERSÕES — JOÃO SILVA NETO (Atualizado: " +
       dataAtualizacao +
       ")",
@@ -650,7 +716,7 @@ function setupDashboard(book) {
     null,
     true,
   );
-  setCell("C7", "social (LinkedIn/X)");
+  setCell("C7", "social (LinkedIn/X/Threads)");
   setCell("D7", socialCount, null, null, null, true, "center");
   setCell("C8", "dev (GitHub/Lattes)");
   setCell("D8", devCount, null, null, null, true, "center");
@@ -658,7 +724,7 @@ function setupDashboard(book) {
   setCell("D9", directCount, null, null, null, true, "center");
   setCell("C10", "search (Google/Bing)");
   setCell("D10", searchCount, null, null, null, true, "center");
-  setCell("C11", "messaging (Telegram)");
+  setCell("C11", "messaging (Telegram/WA)");
   setCell("D11", messagingCount, null, null, null, true, "center");
   setCell("C12", "outros (Referral / Outros)");
   setCell("D12", outrosCanalCount, null, null, null, true, "center");
@@ -684,10 +750,53 @@ function setupDashboard(book) {
   setCell("E11", "Opera / Outros");
   setCell("F11", outrosNavCount, null, null, null, true, "center");
 
+  setCell(
+    "G6:H6",
+    "💻 Sistemas Operacionais",
+    "#1e293b",
+    "#ffffff",
+    null,
+    true,
+    null,
+    true,
+  );
+  setCell("G7", "Windows");
+  setCell("H7", windowsCount, null, null, null, true, "center");
+  setCell("G8", "macOS");
+  setCell("H8", macCount, null, null, null, true, "center");
+  setCell("G9", "Linux");
+  setCell("H9", linuxCount, null, null, null, true, "center");
+  setCell("G10", "Android");
+  setCell("H10", androidCount, null, null, null, true, "center");
+  setCell("G11", "iOS / iPadOS");
+  setCell("H11", iosCount, null, null, null, true, "center");
+  setCell("G12", "ChromeOS / Outros");
+  setCell("H12", outrosOsCount, null, null, null, true, "center");
+
+  setCell(
+    "I6:J6",
+    "📍 Top Cidades / Regiões",
+    "#1e293b",
+    "#ffffff",
+    null,
+    true,
+    null,
+    true,
+  );
+  for (var ci = 0; ci < 5; ci++) {
+    var cRow = 7 + ci;
+    var cName = topCities[ci] || "—";
+    var cVal = topCities[ci] ? cityCounts[topCities[ci]] : 0;
+    setCell("I" + cRow, cName);
+    setCell("J" + cRow, cVal, null, null, null, true, "center");
+  }
+  setCell("I12", "Demais localidades");
+  setCell("J12", otherCitiesTotal, null, null, null, true, "center");
+
   if (dash.setBorder) {
     try {
       dash
-        .getRange("A6:F12")
+        .getRange("A6:J12")
         .setBorder(
           true,
           true,
@@ -704,11 +813,15 @@ function setupDashboard(book) {
   if (dash.setColumnWidth) {
     try {
       dash.setColumnWidth(1, 140);
-      dash.setColumnWidth(2, 110);
+      dash.setColumnWidth(2, 90);
       dash.setColumnWidth(3, 160);
-      dash.setColumnWidth(4, 110);
-      dash.setColumnWidth(5, 150);
-      dash.setColumnWidth(6, 130);
+      dash.setColumnWidth(4, 90);
+      dash.setColumnWidth(5, 140);
+      dash.setColumnWidth(6, 90);
+      dash.setColumnWidth(7, 150);
+      dash.setColumnWidth(8, 90);
+      dash.setColumnWidth(9, 180);
+      dash.setColumnWidth(10, 90);
     } catch (_) {}
   }
 }
@@ -839,7 +952,7 @@ function setup() {
   if (!visitas.getLastRow()) visitas.appendRow(VISIT_FIELDS);
   visitas.setFrozenRows(1);
 
-  ["MonthlyV1", "Dashboard"].forEach(function (name) {
+  ["Dashboard"].forEach(function (name) {
     if (!book.getSheetByName(name)) book.insertSheet(name);
   });
 
@@ -898,11 +1011,9 @@ function maintain() {
     var book = getBook(properties);
     if (!book) return;
 
-    var events =
-      book.getSheetByName("EventsV1") || book.getSheetByName("Eventos");
+    var events = book.getSheetByName("EventsV1") || book.getSheetByName("Eventos");
     if (!events) return;
     var summary = book.getSheetByName("MonthlyV1");
-    if (!summary) return;
 
     var rows =
       events.getLastRow() > 1
@@ -923,53 +1034,56 @@ function maintain() {
       (Date.parse(String(row[3])) >= cutoff ? live : expired).push(row);
     });
 
-    var archived =
-      summary.getLastRow() > 1
-        ? summary.getRange(2, 1, summary.getLastRow() - 1, 9).getValues()
-        : [];
-    var watermarkVal = summary.getLastRow()
-      ? summary.getRange(1, 10, 1, 1).getValues()[0][0]
-      : null;
-    var parsedWatermark = watermarkVal ? Date.parse(String(watermarkVal)) : NaN;
-    var watermark;
-    if (isFinite(parsedWatermark)) {
-      watermark = parsedWatermark;
-    } else if (archived.length > 0) {
-      watermark = cutoff;
-    } else {
-      watermark = -Infinity;
-    }
-    var counts = aggregateRows(
-      expired.filter(function (row) {
-        var t = Date.parse(String(row[3]));
-        return isFinite(t) && t > watermark;
-      }),
-    );
-    archived.forEach(function (row) {
-      var key = row.slice(0, 8).join("|");
-      counts[key] = (counts[key] || 0) + Number(row[8]);
-    });
-    var monthly = Object.keys(counts)
-      .sort()
-      .filter(function (key) {
-        return key.slice(0, 7) >= monthCutoff;
-      })
-      .map(function (key) {
-        return key.split("|").concat(counts[key]);
+    if (summary) {
+      var archived =
+        summary.getLastRow() > 1
+          ? summary.getRange(2, 1, summary.getLastRow() - 1, 9).getValues()
+          : [];
+      var watermarkVal = summary.getLastRow()
+        ? summary.getRange(1, 10, 1, 1).getValues()[0][0]
+        : null;
+      var parsedWatermark = watermarkVal ? Date.parse(String(watermarkVal)) : NaN;
+      var watermark;
+      if (isFinite(parsedWatermark)) {
+        watermark = parsedWatermark;
+      } else if (archived.length > 0) {
+        watermark = cutoff;
+      } else {
+        watermark = -Infinity;
+      }
+      var counts = aggregateRows(
+        expired.filter(function (row) {
+          var t = Date.parse(String(row[3]));
+          return isFinite(t) && t > watermark;
+        }),
+      );
+      archived.forEach(function (row) {
+        var key = row.slice(0, 8).join("|");
+        counts[key] = (counts[key] || 0) + Number(row[8]);
       });
-    var monthlyHeader = [
-      "month",
-      "event",
-      "page",
-      "section",
-      "element",
-      "project",
-      "lang",
-      "outcome",
-      "count",
-      new Date(cutoff).toISOString(),
-    ];
-    replaceRows(summary, [monthlyHeader].concat(monthly), 10);
+      var monthly = Object.keys(counts)
+        .sort()
+        .filter(function (key) {
+          return key.slice(0, 7) >= monthCutoff;
+        })
+        .map(function (key) {
+          return key.split("|").concat(counts[key]);
+        });
+      var monthlyHeader = [
+        "month",
+        "event",
+        "page",
+        "section",
+        "element",
+        "project",
+        "lang",
+        "outcome",
+        "count",
+        new Date(cutoff).toISOString(),
+      ];
+      replaceRows(summary, [monthlyHeader].concat(monthly), 10);
+    }
+
     if (expired.length) {
       replaceRows(events, [EVENT_FIELDS].concat(live), EVENT_FIELDS.length);
     }

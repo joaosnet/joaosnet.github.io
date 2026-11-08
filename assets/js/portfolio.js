@@ -500,21 +500,94 @@
     visitorCountEl.textContent = formatCount(targetCount);
     visitorBadge.hidden = false;
 
+    const inferCityRegion = (tz) => {
+      if (!tz || tz === "Desconhecido" || tz === "UTC") return "Desconhecido";
+      const tzMap = {
+        "America/Belem": "Belém / PA",
+        "America/Santarem": "Santarém / PA",
+        "America/Sao_Paulo": "São Paulo / SP",
+        "America/Cuiaba": "Cuiabá / MT",
+        "America/Manaus": "Manaus / AM",
+        "America/Fortaleza": "Fortaleza / CE",
+        "America/Recife": "Recife / PE",
+        "America/Bahia": "Salvador / BA",
+        "America/Porto_Velho": "Porto Velho / RO",
+        "America/Boa_Vista": "Boa Vista / RR",
+        "America/Rio_Branco": "Rio Branco / AC",
+        "America/Campo_Grande": "Campo Grande / MS",
+        "America/Maceio": "Maceió / AL",
+        "America/Araguaina": "Palmas / TO",
+        "America/Noronha": "Fernando de Noronha / PE",
+        "America/Los_Angeles": "Los Angeles / EUA",
+        "America/New_York": "Nova York / EUA",
+        "America/Chicago": "Chicago / EUA",
+        "America/Denver": "Denver / EUA",
+        "America/Phoenix": "Phoenix / EUA",
+        "America/Toronto": "Toronto / Canadá",
+        "America/Vancouver": "Vancouver / Canadá",
+        "Europe/Berlin": "Berlim / Alemanha",
+        "Europe/Oslo": "Oslo / Noruega",
+        "Europe/London": "Londres / Reino Unido",
+        "Europe/Paris": "Paris / França",
+        "Europe/Lisbon": "Lisboa / Portugal",
+        "Europe/Madrid": "Madri / Espanha",
+        "Europe/Rome": "Roma / Itália",
+        "Europe/Amsterdam": "Amsterdã / Holanda",
+        "America/Lima": "Lima / Peru",
+        "America/Bogota": "Bogotá / Colômbia",
+        "America/Buenos_Aires": "Buenos Aires / Argentina",
+        "America/Santiago": "Santiago / Chile",
+        "America/Montevideo": "Montevidéu / Uruguai",
+        "Asia/Tokyo": "Tóquio / Japão",
+        "Asia/Shanghai": "Xangai / China",
+        "Asia/Singapore": "Singapura",
+        "Australia/Sydney": "Sydney / Austrália",
+      };
+      if (tzMap[tz]) return tzMap[tz];
+      const parts = tz.split("/");
+      if (parts.length >= 2) {
+        const city = parts[parts.length - 1].replace(/_/g, " ");
+        const region = parts[0];
+        return `${city} / ${region}`;
+      }
+      return tz;
+    };
+
     const getClientMetadata = () => {
       const ua = navigator.userAgent || "";
+      const touchPoints = navigator.maxTouchPoints || 0;
+
       let os = "Desconhecido";
       if (/Windows/i.test(ua)) os = "Windows";
       else if (/Android/i.test(ua)) os = "Android";
-      else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
+      else if (/iPhone|iPod/i.test(ua)) os = "iOS";
+      else if (/iPad/i.test(ua) || (/Macintosh/i.test(ua) && touchPoints > 1)) os = "iPadOS";
       else if (/Mac OS X|Macintosh/i.test(ua)) os = "macOS";
+      else if (/CrOS/i.test(ua)) os = "ChromeOS";
       else if (/Linux/i.test(ua)) os = "Linux";
 
       let browser = "Desconhecido";
-      if (/Edg\//i.test(ua)) browser = "Edge";
-      else if (/OPR\/|Opera/i.test(ua)) browser = "Opera";
-      else if (/Chrome/i.test(ua)) browser = "Chrome";
-      else if (/Firefox/i.test(ua)) browser = "Firefox";
+      if (/Edg\/|EdgiOS\//i.test(ua)) browser = "Edge";
+      else if (/OPR\/|Opera|OPT\//i.test(ua)) browser = "Opera";
+      else if (/SamsungBrowser/i.test(ua)) browser = "Samsung Internet";
+      else if (/CriOS\/|Chrome\//i.test(ua)) browser = "Chrome";
+      else if (/FxiOS\/|Firefox\//i.test(ua)) browser = "Firefox";
       else if (/Safari/i.test(ua)) browser = "Safari";
+
+      const width = window.screen?.width || 0;
+      const height = window.screen?.height || 0;
+      const resolution = width && height ? `${width}x${height}` : "Desconhecido";
+
+      let device = "Desktop";
+      if (
+        /iPad|Tablet/i.test(ua) ||
+        os === "iPadOS" ||
+        (/Android/i.test(ua) && !/Mobile/i.test(ua))
+      ) {
+        device = "Tablet";
+      } else if (/Mobi|Android/i.test(ua) || os === "iOS") {
+        device = "Mobile";
+      }
 
       let timezone = "Desconhecido";
       try {
@@ -525,19 +598,38 @@
         /* Intl optional */
       }
 
+      const cityRegion = inferCityRegion(timezone);
+
       const offsetMin = new Date().getTimezoneOffset();
       const offsetHours = -offsetMin / 60;
       const utcOffset = `UTC${offsetHours >= 0 ? "+" : ""}${offsetHours}`;
 
-      const getChannel = (ref) => {
+      const getChannel = (ref, utms = {}) => {
+        if (utms.utmMedium) {
+          const m = utms.utmMedium.toLowerCase();
+          if (m === "email" || m === "newsletter") return "email";
+          if (m === "social" || m === "post" || m === "feed") return "social";
+          if (m === "dev" || m === "github") return "dev";
+          if (m === "cpc" || m === "ads") return "ads";
+        }
+        if (utms.utmSource) {
+          const s = utms.utmSource.toLowerCase();
+          if (["linkedin", "twitter", "x", "instagram", "facebook", "bsky", "threads"].includes(s))
+            return "social";
+          if (["github", "lattes"].includes(s)) return "dev";
+        }
         if (!ref) return "direct";
         const r = ref.toLowerCase();
         if (
           r.includes("linkedin") ||
           r.includes("t.co") ||
           r.includes("twitter") ||
+          r.includes("x.com") ||
           r.includes("instagram") ||
-          r.includes("facebook")
+          r.includes("facebook") ||
+          r.includes("bsky.app") ||
+          r.includes("threads.net") ||
+          r.includes("mastodon")
         )
           return "social";
         if (r.includes("github") || r.includes("lattes")) return "dev";
@@ -545,19 +637,30 @@
           r.includes("google") ||
           r.includes("bing") ||
           r.includes("yahoo") ||
-          r.includes("duckduckgo")
+          r.includes("duckduckgo") ||
+          r.includes("ecosia")
         )
           return "search";
         if (
           r.includes("telegram") ||
           r.includes("t.me") ||
-          r.includes("whatsapp")
+          r.includes("whatsapp") ||
+          r.includes("wa.me")
         )
           return "messaging";
         return "other";
       };
 
-      return { os, browser, timezone, utcOffset, getChannel };
+      return {
+        os,
+        browser,
+        device,
+        resolution,
+        timezone,
+        cityRegion,
+        utcOffset,
+        getChannel,
+      };
     };
 
     const syncRemoteViews = async () => {
@@ -625,20 +728,30 @@
               }
             }
             const canonicalPath = (window.location.pathname || "/").split("?")[0].split("#")[0];
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get("utm_source") || "";
+            const utmMedium = urlParams.get("utm_medium") || "";
+            const utmCampaign = urlParams.get("utm_campaign") || "";
+            const channel = meta.getChannel(ref, { utmSource, utmMedium, utmCampaign });
+
             const visitData = {
               type: "visit",
               timestamp: new Date().toISOString(),
               path: canonicalPath,
-              referrer: ref,
-              channel: meta.getChannel(ref),
-              language: navigator.language || "",
-              device: /Mobi|Android/i.test(navigator.userAgent)
-                ? "Mobile"
-                : "Desktop",
+              device: meta.device,
               os: meta.os,
               browser: meta.browser,
+              resolution: meta.resolution,
               timezone: meta.timezone,
+              cityRegion: meta.cityRegion,
+              language: navigator.language || "",
               utcOffset: meta.utcOffset,
+              channel,
+              referrer: ref,
+              referrerCompleto: ref,
+              utmSource,
+              utmMedium,
+              utmCampaign,
               source: "portfolio-client",
             };
             fetch(scriptUrl, {
