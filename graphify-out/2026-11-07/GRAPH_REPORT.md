@@ -1,12 +1,12 @@
 # Graph Report - joaosnet.github.io  (2026-11-07)
 
 ## Corpus Check
-- 48 files · ~73,987 words
+- 50 files · ~76,301 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .gs 1, .css 1)
 
 ## Summary
-- 449 nodes · 586 edges · 33 communities (21 shown, 12 thin omitted)
+- 477 nodes · 626 edges · 34 communities (22 shown, 12 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 17 edges (avg confidence: 0.91)
 - Token cost: 0 input · 0 output
 
@@ -16,11 +16,11 @@
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- Portfolio Features and Documentation
+- João Natividade · Portfolio
 - Deployment Pipeline Configuration
 - test_env_variables.py
 - Analytics and Review Documentation
-- test_site_structure.py
+- João Natividade · Portafolio
 - Dependabot Configuration
 - build_site.py
 - Frontend Dependencies and Testing
@@ -30,6 +30,7 @@
 - preview.py
 - Claude Agent Guidelines
 - with
+- João Natividade · Portfólio
 - jobs
 - Gemini Agent Guidelines
 - outputs
@@ -44,21 +45,21 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `Sheet` - 16 edges
-2. `with` - 14 edges
-3. `fetch_project_images()` - 14 edges
+2. `fetch_project_images()` - 14 edges
+3. `with` - 14 edges
 4. `build()` - 13 edges
-5. `with` - 12 edges
-6. `read_json()` - 12 edges
+5. `read_json()` - 12 edges
+6. `main()` - 12 edges
 7. `private_preview()` - 12 edges
-8. `main()` - 12 edges
-9. `download_project_image()` - 10 edges
-10. `Testes Locais - Portfolio Website` - 10 edges
+8. `with` - 12 edges
+9. `João Natividade · Portafolio` - 10 edges
+10. `João Natividade · Portfolio` - 10 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` --references--> `private_preview()`  [INFERRED]
-  docs/architecture-security-isolation.md → update_projects.py
 - `Limitações que permanecem explícitas` --references--> `main()`  [INFERRED]
   docs/preview-review.md → update_projects.py
+- `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` --references--> `private_preview()`  [INFERRED]
+  docs/architecture-security-isolation.md → update_projects.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `test_private_review_and_env_are_ignored()`  [INFERRED]
   docs/architecture-security-isolation.md → tests/test_env_variables.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `private_preview()`  [INFERRED]
@@ -69,35 +70,35 @@
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 12 thin omitted)
+## Communities (34 total, 12 thin omitted)
 
-### Community 0 - "Portfolio Features and Documentation"
-Cohesion: 0.12
-Nodes (16): 1. Acessibilidade e Design System AAA, 1. Clonagem e Instalação, 2. Compilação e Prévia Local, 2. Internacionalização Híbrida (I18n), 3. Coleta de Métricas Privacy-First, 4. Geração Programática de Currículos, Atualização de Projetos, Começando (Desenvolvimento Local) (+8 more)
+### Community 0 - "João Natividade · Portfolio"
+Cohesion: 0.14
+Nodes (14): 1. Installation, 2. Compilation and Local Preview, Architecture & System Topology, Contact, Core Engineering Pillars, João Natividade · Portfolio, Local Development, Overview (+6 more)
 
 ### Community 1 - "Deployment Pipeline Configuration"
 Cohesion: 0.06
 Nodes (36): concurrency, cancel-in-progress, group, environment, needs, permissions, runs-on, steps (+28 more)
 
 ### Community 2 - "test_env_variables.py"
-Cohesion: 0.14
+Cohesion: 0.15
 Nodes (12): 1. Topologia do Sistema e Fronteira de Publicação, 3. Isolamento e Segurança de Projetos Privados (`private_preview`), 4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`), 5. Diretriz Universal para Agentes de IA: Knowledge Graph First, A. Proibição Estrita de Varredura Especulativa, Arquitetura, Governança de Dados e Isolamento de Segurança, B. Ordem de Navegação Obrigatória, C. Protocolo de Delegação para Subagentes (+4 more)
 
 ### Community 3 - "Analytics and Review Documentation"
-Cohesion: 0.09
+Cohesion: 0.11
 Nodes (19): Dados e controles, Estado da entrega, Extrair insights, Implantação após a revisão, Métricas de interação · coletor v1, Retenção, segurança e limites, Comparação visual, Evidências de validação (+11 more)
 
-### Community 4 - "test_site_structure.py"
-Cohesion: 0.10
-Nodes (11): built(), Page, test_404_pages_exclude_canonical_and_alternate(), test_bilingual_routes_metadata_and_names(), test_build_cannot_delete_other_directories(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_metrics_have_no_transport_before_backend_validation() (+3 more)
+### Community 4 - "João Natividade · Portafolio"
+Cohesion: 0.14
+Nodes (14): 1. Instalación, 2. Compilación y Previsualización Local, Actualización del Catálogo de Proyectos, Aislamiento de Seguridad & Protocolo de Credenciales, Arquitectura & Topología del Sistema, Contacto, Desarrollo Local, Documentación Técnica (+6 more)
 
 ### Community 5 - "Dependabot Configuration"
 Cohesion: 0.20
 Nodes (9): patterns, dependencies, interval, updates, directory, groups, package-ecosystem, schedule (+1 more)
 
 ### Community 6 - "build_site.py"
-Cohesion: 0.07
-Nodes (38): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, read_json(), 2. Ponto de Entrada `main()` e Governança de Dados, test_collector_gs_default_catalog_supports_v1_and_v2(), test_live_production_telemetry_health(), test_telemetry_config_and_catalog_alignment(), client() (+30 more)
+Cohesion: 0.08
+Nodes (34): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, 2. Ponto de Entrada `main()` e Governança de Dados, client(), test_api_failure_does_not_accept_redirect_or_data(), test_changed_review_digest_is_rejected(), test_download_project_image_optimizes_heavy_gif(), test_download_project_image_verifies_magic_bytes_and_path() (+26 more)
 
 ### Community 7 - "Frontend Dependencies and Testing"
 Cohesion: 0.07
@@ -118,6 +119,10 @@ Nodes (21): jobs, update-projects, name, on, push, schedule, workflow_dispatch, 
 ### Community 13 - "with"
 Cohesion: 0.18
 Nodes (11): with, cache, filters, if-no-files-found, include-hidden-files, name, node-version, path (+3 more)
+
+### Community 14 - "João Natividade · Portfólio"
+Cohesion: 0.14
+Nodes (14): 1. Instalação, 2. Compilação e Prévia Local, Arquitetura & Topologia do Sistema, Atualização do Catálogo de Projetos, Contato, Desenvolvimento Local, Documentação Técnica, Estrutura do Repositório (+6 more)
 
 ### Community 15 - "jobs"
 Cohesion: 0.20
@@ -152,28 +157,28 @@ Cohesion: 0.40
 Nodes (5): on, pull_request, push, workflow_call, branches
 
 ### Community 136 - "build_site.py"
-Cohesion: 0.10
-Nodes (6): build(), get_content_lastmod(), load_projects(), safe_url(), generate_cvs(), install()
+Cohesion: 0.05
+Nodes (21): build(), get_content_lastmod(), load_projects(), read_json(), safe_url(), generate_cvs(), install(), built() (+13 more)
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `joaosnet-portfolio`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 250 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 269 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `build_site.py` to `Analytics and Review Documentation`?**
-  _High betweenness centrality (0.106) - this node is a cross-community bridge._
+- **Why does `main()` connect `build_site.py` to `preview.py`, `Analytics and Review Documentation`, `build_site.py`?**
+  _High betweenness centrality (0.079) - this node is a cross-community bridge._
 - **What connects `joaosnet-portfolio` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Portfolio Features and Documentation` be split into smaller, more focused modules?**
-  _Cohesion score 0.125 - nodes in this community are weakly interconnected._
-- **Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `build_site.py`?**
-  _High betweenness centrality (0.098) - this node is a cross-community bridge._
+- **Should `João Natividade · Portfolio` be split into smaller, more focused modules?**
+  _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
+- **Why does `Arquitetura, Governança de Dados e Isolamento de Segurança` connect `test_env_variables.py` to `Analytics and Review Documentation`, `build_site.py`?**
+  _High betweenness centrality (0.067) - this node is a cross-community bridge._
 - **Should `Deployment Pipeline Configuration` be split into smaller, more focused modules?**
   _Cohesion score 0.05555555555555555 - nodes in this community are weakly interconnected._
 - **Should `test_env_variables.py` be split into smaller, more focused modules?**
-  _Cohesion score 0.13725490196078433 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected._
 - **Should `Analytics and Review Documentation` be split into smaller, more focused modules?**
-  _Cohesion score 0.09057971014492754 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

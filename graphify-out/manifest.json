@@ -30,9 +30,9 @@
     "semantic_hash": "8d771d95e254e5e632c1dcfdef3bd38a"
   },
   "index.html": {
-    "mtime": 1794081717.3026962,
-    "seen": 1794081738.3281562,
-    "ast_hash": "47ac2abe8ef998d233d213a8b67986e5",
+    "mtime": 1794099361.1520238,
+    "seen": 1794099366.1171513,
+    "ast_hash": "55695a4d9fab4f8029b2e6dd73047d4c",
     "semantic_hash": ""
   },
   ".github/workflows/update_projects.yml": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "docs/crv.pdf": {
-    "mtime": 1794081717.0353982,
-    "seen": 1794081738.328192,
-    "ast_hash": "85a533bfbeadb4e02c53411e9b198394",
+    "mtime": 1794099361.0917451,
+    "seen": 1794099366.117171,
+    "ast_hash": "1b92aa3ccd83909d4ca866d8c5d0aef3",
     "semantic_hash": ""
   },
   "assets/images/favicon.png": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "content/public-metadata.json": {
-    "mtime": 1794079223.8474634,
-    "seen": 1794079230.2933517,
-    "ast_hash": "70c9b99844deed3d6e85b1ad3d5f574b",
+    "mtime": 1794099361.0776713,
+    "seen": 1794099366.117071,
+    "ast_hash": "509ece639222371d3cca406029db3b6a",
     "semantic_hash": ""
   },
   "content/site.json": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "content/project-cards.json": {
-    "mtime": 1794079223.836206,
-    "seen": 1794079230.2933483,
-    "ast_hash": "fe73da9c35474751480bddb609679d7e",
+    "mtime": 1794099361.0681455,
+    "seen": 1794099366.1170669,
+    "ast_hash": "9f71e8b9bcc31dc1dbc1d0cbedf27424",
     "semantic_hash": ""
   },
   "assets/images/favicon.svg": {
@@ -372,9 +372,9 @@
     "semantic_hash": ""
   },
   "en/index.html": {
-    "mtime": 1794081716.666068,
-    "seen": 1794081738.328123,
-    "ast_hash": "bc183e2949dada139dd8cba354c89746",
+    "mtime": 1794099361.1310153,
+    "seen": 1794099366.1171317,
+    "ast_hash": "c1df1607ddaf6d5023c6dd3e76c63719",
     "semantic_hash": ""
   },
   "en/privacy/index.html": {
@@ -450,21 +450,21 @@
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-en.pdf": {
-    "mtime": 1794081717.045607,
-    "seen": 1794081738.3281949,
-    "ast_hash": "9d4b172e89bb62ab3246fa6ce0aa4171",
+    "mtime": 1794099361.1034112,
+    "seen": 1794099366.1171722,
+    "ast_hash": "44826858d26e829ca8fa9f3a162680a6",
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-pt.pdf": {
-    "mtime": 1794081716.9719572,
-    "seen": 1794081738.3281994,
-    "ast_hash": "85a533bfbeadb4e02c53411e9b198394",
+    "mtime": 1794099361.1159072,
+    "seen": 1794099366.1171749,
+    "ast_hash": "1b92aa3ccd83909d4ca866d8c5d0aef3",
     "semantic_hash": ""
   },
   "docs/cv-joao-silva-neto-en.pdf": {
-    "mtime": 1794081717.111072,
-    "seen": 1794081738.3282015,
-    "ast_hash": "9d4b172e89bb62ab3246fa6ce0aa4171",
+    "mtime": 1794099361.1180782,
+    "seen": 1794099366.1171758,
+    "ast_hash": "44826858d26e829ca8fa9f3a162680a6",
     "semantic_hash": ""
   },
   "playwright.config.cjs": {
@@ -546,9 +546,9 @@
     "semantic_hash": ""
   },
   "es/index.html": {
-    "mtime": 1794081716.6791637,
-    "seen": 1794081738.328141,
-    "ast_hash": "1ddc397e8103a1f5280f9e929710f7f9",
+    "mtime": 1794099361.1410143,
+    "seen": 1794099366.1171422,
+    "ast_hash": "f71c1528c6c451319cfe7b59352be64c",
     "semantic_hash": ""
   },
   "es/privacy/index.html": {
@@ -588,9 +588,9 @@
     "semantic_hash": ""
   },
   "docs/cv-joao-natividade-es.pdf": {
-    "mtime": 1794081717.121181,
-    "seen": 1794081738.328197,
-    "ast_hash": "aab11807422b7fbc2e4ace3259ab545b",
+    "mtime": 1794099361.113466,
+    "seen": 1794099366.1171734,
+    "ast_hash": "b75b20f01cd90c244120a2e05b47fc43",
     "semantic_hash": ""
   },
   "docs/inpi-dmovel-br512025004902-1.pdf": {
@@ -711,6 +711,18 @@
     "mtime": 1794081681.8807316,
     "seen": 1794081738.3280993,
     "ast_hash": "1a576225af3959c296d30c39a4dfa818",
+    "semantic_hash": ""
+  },
+  "docs/next-improvements-roadmap.md": {
+    "mtime": 1794099320.1159906,
+    "seen": 1794099350.41323,
+    "ast_hash": "48ddaacefda80737bc91a02ab65ce5cf",
+    "semantic_hash": ""
+  },
+  "assets/project-images/joaosnet_sigaa-ufpa-mcp_demo.gif": {
+    "mtime": 1794099361.0571375,
+    "seen": 1794099366.1172197,
+    "ast_hash": "49f8120e007beaa2b34ccc0dc579de11",
     "semantic_hash": ""
   },
   "package-lock.json": {
