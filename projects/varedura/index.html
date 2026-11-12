@@ -35,15 +35,28 @@
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/languages.js" defer></script>
   <script src="/assets/js/easter-eggs.js" defer></script>
+  <script type="module" src="/assets/js/animations/orchestrator.js"></script>
 </head>
 <body data-page="/projects/varedura/" data-lang="pt">
   <a class="skip-link" href="#main-content" data-track="skip-link">Pular para o conteúdo</a>
+  <aside class="status-bar notranslate" translate="no" aria-label="Status do sistema">
+    <div class="container status-inner">
+      <span class="status-item">belém, pa</span>
+      <span class="status-sep" aria-hidden="true">//</span>
+      <span class="status-item"><span class="sr-only">Horário local de Belém (UTC−3)</span><span aria-hidden="true">[<time class="status-clock" data-status-clock>--:--:--</time> BRT]</span></span>
+      <span class="status-sep status-sep-live" aria-hidden="true">//</span>
+      <span class="status-item status-live"><span class="status-pulse" aria-hidden="true"></span>status: aberto a projetos de sistemas e pesquisa</span>
+      <span class="status-sep status-optional" aria-hidden="true">//</span>
+      <span class="status-item status-optional">render: <output data-status-render>estático</output></span>
+    </div>
+  </aside>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="/" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>João Natividade<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu" title="Menu" data-track="menu" hidden><span class="menu-text">Menu</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="Menu">
         <a href="/#services" data-track="nav-services">Serviços</a>
+        <a href="/#process" data-track="nav-process">Processo</a>
         <a href="/#projects" data-track="nav-projects">Projetos</a>
         <a href="/#published" data-track="nav-lab">Laboratório<span class="nav-dot" aria-hidden="true"></span></a>
         <a href="/#education" data-track="nav-about">Sobre</a>

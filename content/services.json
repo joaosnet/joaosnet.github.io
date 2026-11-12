@@ -170,5 +170,139 @@
         "note": "Dedicación en ingeniería backend, automatización y sistemas con integración directa a su equipo técnico (Full-time / Contract)."
       }
     }
+  ],
+  "cycles": [
+    {
+      "id": "spec",
+      "pt": {
+        "title": "Especificação e modelagem",
+        "summary": "Transformar o problema em escopo escrito, com limites e riscos explícitos.",
+        "deliverables": [
+          "Escopo com critérios de aceite por funcionalidade",
+          "Diagrama de arquitetura e contratos de API (OpenAPI)",
+          "Lista de riscos, dependências e o que fica fora"
+        ],
+        "acceptance": "Você aprova o escopo escrito antes de qualquer código."
+      },
+      "en": {
+        "title": "Specification & modeling",
+        "summary": "Turn the problem into a written scope with explicit limits and risks.",
+        "deliverables": [
+          "Scope with acceptance criteria per feature",
+          "Architecture diagram and API contracts (OpenAPI)",
+          "List of risks, dependencies and what stays out"
+        ],
+        "acceptance": "You sign off the written scope before any code is written."
+      },
+      "es": {
+        "title": "Especificación y modelado",
+        "summary": "Convertir el problema en un alcance escrito, con límites y riesgos explícitos.",
+        "deliverables": [
+          "Alcance con criterios de aceptación por funcionalidad",
+          "Diagrama de arquitectura y contratos de API (OpenAPI)",
+          "Lista de riesgos, dependencias y lo que queda fuera"
+        ],
+        "acceptance": "Apruebas el alcance escrito antes de cualquier línea de código."
+      }
+    },
+    {
+      "id": "design",
+      "pt": {
+        "title": "Arquitetura de baixo nível",
+        "summary": "Definir dados, interfaces e falhas antes de escrever a lógica de negócio.",
+        "deliverables": [
+          "Esquema de dados e plano de migrações",
+          "Interfaces entre dispositivo, backend e interface",
+          "Plano de logs, métricas e alertas"
+        ],
+        "acceptance": "Cada interface tem casos de falha documentados e revisados."
+      },
+      "en": {
+        "title": "Low-level architecture",
+        "summary": "Define data, interfaces and failure modes before writing business logic.",
+        "deliverables": [
+          "Data schema and migration plan",
+          "Interfaces between device, backend and UI",
+          "Logging, metrics and alerting plan"
+        ],
+        "acceptance": "Every interface has documented and reviewed failure cases."
+      },
+      "es": {
+        "title": "Arquitectura de bajo nivel",
+        "summary": "Definir datos, interfaces y fallos antes de escribir la lógica de negocio.",
+        "deliverables": [
+          "Esquema de datos y plan de migraciones",
+          "Interfaces entre dispositivo, backend e interfaz",
+          "Plan de logs, métricas y alertas"
+        ],
+        "acceptance": "Cada interfaz tiene casos de fallo documentados y revisados."
+      }
+    },
+    {
+      "id": "build",
+      "pt": {
+        "title": "Prototipagem incremental",
+        "summary": "Entregas pequenas e funcionando, num ambiente que você consegue abrir.",
+        "deliverables": [
+          "Entregas semanais em ambiente de homologação",
+          "Ambiente reproduzível com Docker Compose",
+          "Integração contínua com testes automatizados"
+        ],
+        "acceptance": "Cada entrega passa no CI e roda no ambiente de homologação."
+      },
+      "en": {
+        "title": "Incremental prototyping",
+        "summary": "Small, working increments in an environment you can open yourself.",
+        "deliverables": [
+          "Weekly increments on a staging environment",
+          "Reproducible environment with Docker Compose",
+          "Continuous integration with automated tests"
+        ],
+        "acceptance": "Every increment passes CI and runs on staging."
+      },
+      "es": {
+        "title": "Prototipado incremental",
+        "summary": "Entregas pequeñas y funcionando, en un entorno que puedes abrir tú mismo.",
+        "deliverables": [
+          "Entregas semanales en entorno de pruebas",
+          "Entorno reproducible con Docker Compose",
+          "Integración continua con pruebas automatizadas"
+        ],
+        "acceptance": "Cada entrega pasa el CI y funciona en el entorno de pruebas."
+      }
+    },
+    {
+      "id": "audit",
+      "pt": {
+        "title": "Auditoria e entrega",
+        "summary": "Revisar segurança, desempenho e acessibilidade e passar o sistema adiante.",
+        "deliverables": [
+          "Auditoria de dependências, segredos e permissões",
+          "Medição de desempenho e acessibilidade com relatório",
+          "Documentação de operação e sessão de handover"
+        ],
+        "acceptance": "Checklist de aceite final assinado com o relatório anexado."
+      },
+      "en": {
+        "title": "Audit & handover",
+        "summary": "Review security, performance and accessibility, then hand the system over.",
+        "deliverables": [
+          "Audit of dependencies, secrets and permissions",
+          "Performance and accessibility measurement with report",
+          "Operations documentation and handover session"
+        ],
+        "acceptance": "Final acceptance checklist signed with the report attached."
+      },
+      "es": {
+        "title": "Auditoría y entrega",
+        "summary": "Revisar seguridad, rendimiento y accesibilidad, y transferir el sistema.",
+        "deliverables": [
+          "Auditoría de dependencias, secretos y permisos",
+          "Medición de rendimiento y accesibilidad con informe",
+          "Documentación de operación y sesión de traspaso"
+        ],
+        "acceptance": "Checklist de aceptación final firmado con el informe adjunto."
+      }
+    }
   ]
 }

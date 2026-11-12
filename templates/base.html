@@ -35,15 +35,28 @@
   <script src="/assets/js/analytics.js" defer></script>
   <script src="/assets/js/languages.js" defer></script>
   <script src="/assets/js/easter-eggs.js" defer></script>
+  <script type="module" src="/assets/js/animations/orchestrator.js"></script>
 </head>
 <body data-page="{{ path }}" data-lang="{{ lang }}">
   <a class="skip-link" href="#main-content" data-track="skip-link">{{ t.skip }}</a>
+  <aside class="status-bar notranslate" translate="no" aria-label="{{ t.status_label }}">
+    <div class="container status-inner">
+      <span class="status-item">{{ t.status_location }}</span>
+      <span class="status-sep" aria-hidden="true">//</span>
+      <span class="status-item"><span class="sr-only">{{ t.status_time }}</span><span aria-hidden="true">[<time class="status-clock" data-status-clock>--:--:--</time> BRT]</span></span>
+      <span class="status-sep status-sep-live" aria-hidden="true">//</span>
+      <span class="status-item status-live"><span class="status-pulse" aria-hidden="true"></span>status: {{ t.status_open }}</span>
+      <span class="status-sep status-optional" aria-hidden="true">//</span>
+      <span class="status-item status-optional">{{ t.status_render }}: <output data-status-render>{{ t.status_static }}</output></span>
+    </div>
+  </aside>
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="{{ base }}" data-track="brand"><span class="brand-mark" aria-hidden="true">&lt;/&gt;</span><span>{{ site.name }}<span class="brand-dot">.</span></span></a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="{{ t.menu }}" title="{{ t.menu }}" data-track="menu" hidden><span class="menu-text">{{ t.menu }}</span><span class="menu-icon" aria-hidden="true">☰</span></button>
       <nav id="main-nav" aria-label="{{ t.menu }}">
         <a href="{{ base }}#services" data-track="nav-services">{{ t.nav_services }}</a>
+        <a href="{{ base }}#process" data-track="nav-process">{{ t.nav_process }}</a>
         <a href="{{ base }}#projects" data-track="nav-projects">{{ t.nav_projects }}</a>
         <a href="{{ base }}#published" data-track="nav-lab">{{ t.nav_lab }}<span class="nav-dot" aria-hidden="true"></span></a>
         <a href="{{ base }}#education" data-track="nav-about">{{ t.nav_about }}</a>

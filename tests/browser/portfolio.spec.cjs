@@ -72,7 +72,9 @@ for (const lang of ["pt", "en", "es"]) {
 
   }) => {
 
-    test.setTimeout(90000);
+    // 7 routes x 2 themes of full axe scans; the home page grew with the craft sections.
+
+    test.setTimeout(150000);
 
     const root = lang === "pt" ? "/" : `/${lang}/`;
 
@@ -676,3 +678,140 @@ test("reduced motion, denied storage, malformed hash and small screen remain usa
 
 });
 
+// --- Craft roadmap (status bar, cycles, code stream, mesh, credential stack) ---
+
+test("status bar shows a live Belém clock and measured render time", async ({
+  page,
+}) => {
+  await page.goto("/");
+  const clock = page.locator("[data-status-clock]");
+  await expect(clock).toHaveText(/^\d{2}:\d{2}:\d{2}$/);
+  const first = await clock.textContent();
+  await expect(clock).not.toHaveText(first, { timeout: 3000 });
+  await expect(page.locator("[data-status-render]")).toHaveText(/^\d+ms$/);
+});
+
+test("enhancements degrade to complete static content without JavaScript", async ({
+  browser,
+}) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("http://127.0.0.1:8765/");
+  await expect(page.locator("[data-status-clock]")).toHaveText("--:--:--");
+  await expect(page.locator(".stream-panel")).toHaveCount(4);
+  for (const panel of await page.locator(".stream-panel").all())
+    await expect(panel).toBeVisible();
+  await expect(page.locator(".stream-tabs")).toBeHidden();
+  await expect(page.locator(".hero-mesh-poster")).toBeVisible();
+  await expect(page.locator(".stack-controls")).toBeHidden();
+  for (const card of await page.locator(".stack-card").all())
+    await expect(card).toBeVisible();
+  await context.close();
+});
+
+test("engineering cycles open from the keyboard", async ({ page }) => {
+  await page.goto("/#process");
+  const summary = page.locator(".cycle-details summary").first();
+  await summary.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.locator(".cycle-details").first()).toHaveAttribute("open", "");
+  await expect(page.locator(".cycle-deliverables").first()).toBeVisible();
+});
+
+test("code stream tabs follow the WAI-ARIA keyboard pattern", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/#projects");
+  const tabs = page.locator('[role="tab"]');
+  await expect(tabs).toHaveCount(4);
+  await tabs.first().focus();
+  await page.keyboard.press("ArrowRight");
+  await expect(tabs.nth(1)).toHaveAttribute("aria-selected", "true");
+  await expect(tabs.nth(1)).toBeFocused();
+  await expect(page.locator('[role="tabpanel"]:visible')).toHaveCount(1);
+  await page.keyboard.press("End");
+  await expect(tabs.nth(3)).toHaveAttribute("aria-selected", "true");
+  await page.keyboard.press("ArrowRight");
+  await expect(tabs.first()).toHaveAttribute("aria-selected", "true");
+});
+
+test("pinned code stream advances with scroll only when motion is allowed", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Pinned mode is desktop-only");
+  await page.goto("/");
+  const stream = page.locator("[data-stream]");
+  await expect(stream).toHaveClass(/is-pinned/);
+  await page.evaluate(() => {
+    const el = document.querySelector("[data-stream]");
+    const top = el.getBoundingClientRect().top + scrollY;
+    scrollTo(0, top + (el.offsetHeight - innerHeight) * 0.9);
+  });
+  await expect(page.locator('[role="tab"]').nth(3)).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.reload();
+  await expect(stream).not.toHaveClass(/is-pinned/);
+  await expect(page.locator(".hero-mesh-canvas")).toHaveCount(0);
+});
+
+test("credential stack advances by button, keyboard and drag", async ({
+  page,
+}, testInfo) => {
+  await page.goto("/#credentials");
+  const status = page.locator(".stack-status");
+  const total = await page.locator(".stack-card").count();
+  await expect(status).toHaveText(new RegExp(`1 de ${total}`));
+  await page.locator("[data-stack-next]").click();
+  await expect(status).toHaveText(new RegExp(`2 de ${total}`));
+  await expect(page.locator(".stack-card.is-top")).toHaveCount(1);
+  expect(
+    await page.locator(".stack-card:not(.is-top)").evaluateAll((cards) =>
+      cards.every((card) => card.inert),
+    ),
+  ).toBe(true);
+  await page.locator("[data-stack-prev]").focus();
+  await page.keyboard.press("ArrowLeft");
+  await expect(status).toHaveText(new RegExp(`1 de ${total}`));
+  await page.keyboard.press("ArrowLeft");
+  await expect(status).toHaveText(new RegExp(`${total} de ${total}`));
+  await page.keyboard.press("ArrowRight");
+  await expect(status).toHaveText(new RegExp(`1 de ${total}`));
+
+  // Mouse drag is exercised on desktop only; touch devices keep the buttons above.
+  if (testInfo.project.name !== "desktop") return;
+  const card = page.locator(".stack-card.is-top");
+  const box = await card.boundingBox();
+  const y = box.y + box.height - 40;
+  await page.mouse.move(box.x + box.width / 2, y);
+  await page.mouse.down();
+  for (let step = 1; step <= 8; step += 1)
+    await page.mouse.move(box.x + box.width / 2 + step * 60, y);
+  await page.mouse.up();
+  await expect(status).toHaveText(new RegExp(`2 de ${total}`));
+});
+
+test("hero mesh keeps a smooth frame rate and pauses off-screen", async ({
+  page,
+}, testInfo) => {
+  test.skip(testInfo.project.name !== "desktop", "Frame budget measured on desktop");
+  await page.goto("/");
+  await expect(page.locator(".hero-mesh-canvas")).toHaveCount(1);
+  const fps = await page.evaluate(
+    () =>
+      new Promise((resolve) => {
+        let frames = 0;
+        const start = performance.now();
+        const tick = (now) => {
+          frames += 1;
+          if (now - start < 2000) requestAnimationFrame(tick);
+          else resolve((frames * 1000) / (now - start));
+        };
+        requestAnimationFrame(tick);
+      }),
+  );
+  testInfo.annotations.push({ type: "hero-mesh-fps", description: fps.toFixed(1) });
+  // Regression guard; headless CI runners vary, so the bar sits below 60 fps.
+  expect(fps).toBeGreaterThan(30);
+});

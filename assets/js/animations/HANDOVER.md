@@ -1,0 +1,21 @@
+# Handover: Code & Animation
+- **Última Atualização**: 2026-11-12 por Claude Code (sessão do roadmap de craft)
+- **Status Atual**: Orquestrador de progressive enhancement, barra de status (relógio de Belém + tempo de render medido), code stream de projetos (abas WAI-ARIA + modo fixado por rolagem) e pilha de credenciais arrastável com mola. Tudo funciona sem JS e com movimento reduzido.
+- **Arquivos sob Propriedade Rígida**:
+  - `assets/js/animations/orchestrator.js` — define `data-motion` e importa módulos sob demanda
+  - `assets/js/animations/status-bar.js`
+  - `assets/js/animations/scroll-stream.js`
+  - `assets/js/animations/draggable-cards.js`
+  - Blocos "Craft roadmap — Phase 1–4" no fim de `assets/css/portfolio.css`
+- **Decisões Técnicas Consolidadas**:
+  - Vanilla, sem GSAP/Lenis: `position: sticky` + `scroll` passivo com `requestAnimationFrame` cobrem o pinning; o smooth scroll nativo basta.
+  - Preenchimento dos ciclos via CSS `animation-timeline: view()` dentro de `@supports` — zero JS.
+  - Modo fixado só com movimento completo e viewport ≥ 900px; nos demais casos, abas simples.
+  - Pilha: cartões fora do topo ficam `inert`; botões e setas sempre disponíveis; arrastar só com movimento completo.
+  - Menu mobile recolhido já com `html.js` (definido pelo `boot.js` síncrono), não só com `.nav-ready`: eliminou o CLS de ~0,06 que existia no hero.
+  - Todo JS novo entra na allowlist de `build_site.py` e no `test:syntax` de `package.json`.
+  - Todo `data-track` novo entra no catálogo embutido em `analytics/collector.gs` (o teste `test_collector_gs_default_catalog_supports_v1_and_v2` cobra).
+- **Próximas Tarefas Imediatas**:
+  - [ ] Reimplantar o Apps Script com o catálogo atualizado (eventos `stream-*`, `stack-*`, `process-*`, `nav-process`).
+- **Bloqueios ou Dependências de Outros Agentes**:
+  - Cartão de auditoria da pilha depende de `site.audit` em `content/site.json` (Agente 4), com números medidos em produção.

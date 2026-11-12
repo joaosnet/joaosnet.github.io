@@ -1,6 +1,6 @@
 # Roadmap de Melhorias: Craft, Animações & Identidade de Marca
 
-> **Status**: Aprovado para Implementação via Multi-Agentes  
+> **Status**: Fases 1–5 implementadas em 2026-11-12 (ver §8); pendências de produção listadas abaixo  
 > **Referência Conceitual**: Portfólio Aonnoy Sengupta (`aonnoysengupta.com`) adaptado para Engenharia de Sistemas  
 > **Pilar Central**: *Craft Visual AAA com Arquitetura Static-First, Zero FOUC e WCAG 2.2 AAA Preservados*
 
@@ -231,3 +231,26 @@ flowchart LR
   - Testes end-to-end com Playwright (`@playwright/test` e `@axe-core/playwright`).
   - Auditoria de taxas de quadros (60 FPS contínuos) e validação de acessibilidade WCAG 2.2 AAA.
   - Build final via `build_site.py` e deploy no GitHub Pages.
+
+---
+
+## 8. Status de Execução (2026-11-12)
+
+| Fase | Status | Entrega |
+| :--- | :--- | :--- |
+| 1. Marca & governança | ✅ | Tokens (`specs/brand/tokens.json`), JetBrains Mono auto-hospedada, anotações `fig. 0X`, 4 `HANDOVER.md` |
+| 2. Telemetria & ciclos | ✅ | Barra de status (relógio de Belém + render medido), seção `#process` com 4 ciclos em `<details>` |
+| 3. Code stream | ✅ | Abas WAI-ARIA + modo fixado por rolagem (vanilla, sem GSAP/Lenis) com `outcomes` reais dos projetos |
+| 4. Hero mesh & pilha | ✅ | Canvas 2D (sem Three.js) com pôster SVG de fallback; pilha de credenciais arrastável com mola |
+| 5. Auditoria | ⚠️ parcial | 42 testes Playwright verdes (axe A/AA nos dois temas, sem JS, movimento reduzido, 320px); Lighthouse local: A11y/BP/SEO 100, CLS 0,004 |
+
+**Desvios conscientes do plano original**
+- Sem GSAP, Lenis e Three.js: as interações foram resolvidas com APIs nativas, mantendo a CSP `script-src 'self'` e zero dependências de runtime.
+- A meta "Lighthouse Performance 100" **não** foi atingida/medida em produção: o servidor local não comprime respostas, o que distorce LCP. Medir após o deploy.
+- Nenhuma métrica fictícia (ex.: "99.98% uptime") foi usada.
+
+**Pendências**
+- [ ] Reimplantar o coletor do Apps Script com o catálogo atualizado (`analytics/collector.gs`).
+- [ ] Medir Lighthouse em produção e preencher `site.audit` para ativar o cartão de auditoria.
+- [ ] Medir CPU do hero mesh em hardware real.
+

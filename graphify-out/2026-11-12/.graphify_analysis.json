@@ -1,0 +1,660 @@
+{
+  "communities": {
+    "0": [
+      "readme_1_acessibilidade_e_design_system_aaa",
+      "readme_1_clonagem_e_instalação",
+      "readme_2_compilação_e_prévia_local",
+      "readme_2_internacionalização_híbrida_i18n",
+      "readme_3_coleta_de_métricas_privacy_first",
+      "readme_4_geração_programática_de_currículos",
+      "readme_atualização_de_projetos",
+      "readme_começando_desenvolvimento_local",
+      "readme_contato_redes",
+      "readme_destaques_de_engenharia_padrão_aaa",
+      "readme_documentação_detalhada",
+      "readme_estrutura_do_repositório",
+      "readme_garantia_de_qualidade_critérios_the_bar",
+      "readme_joão_silva_neto_portfolio",
+      "readme_pré_requisitos",
+      "readme_visão_geral"
+    ],
+    "1": [
+      "github_workflows_pages_deploy_environment",
+      "github_workflows_pages_deploy_needs",
+      "github_workflows_pages_deploy_permissions",
+      "github_workflows_pages_deploy_runs_on",
+      "github_workflows_pages_deploy_steps",
+      "github_workflows_pages_environment_name",
+      "github_workflows_pages_environment_url",
+      "github_workflows_pages_jobs",
+      "github_workflows_pages_jobs_deploy",
+      "github_workflows_pages_jobs_package",
+      "github_workflows_pages_jobs_validate",
+      "github_workflows_pages_package_needs",
+      "github_workflows_pages_package_runs_on",
+      "github_workflows_pages_package_steps",
+      "github_workflows_pages_permissions_id_token",
+      "github_workflows_pages_permissions_pages",
+      "github_workflows_pages_steps_id",
+      "github_workflows_pages_steps_name",
+      "github_workflows_pages_steps_run",
+      "github_workflows_pages_steps_uses",
+      "github_workflows_pages_steps_with",
+      "github_workflows_pages_validate_if",
+      "github_workflows_pages_validate_uses",
+      "github_workflows_pages_with_path",
+      "github_workflows_pages_with_persist_credentials",
+      "github_workflows_pages_with_python_version"
+    ],
+    "2": [
+      "ast",
+      "docs_architecture_security_isolation",
+      "docs_architecture_security_isolation_1_topologia_do_sistema_e_fronteira_de_publicação",
+      "docs_architecture_security_isolation_3_isolamento_e_segurança_de_projetos_privados_private_preview",
+      "docs_architecture_security_isolation_4_testes_de_segurança_em_ambiente_sintético_tests_test_env_variables_py",
+      "docs_architecture_security_isolation_5_diretriz_universal_para_agentes_de_ia_knowledge_graph_first",
+      "docs_architecture_security_isolation_a_proibição_estrita_de_varredura_especulativa",
+      "docs_architecture_security_isolation_arquitetura_governança_de_dados_e_isolamento_de_segurança",
+      "docs_architecture_security_isolation_b_ordem_de_navegação_obrigatória",
+      "docs_architecture_security_isolation_c_protocolo_de_delegação_para_subagentes",
+      "docs_architecture_security_isolation_d_higiene_e_atualização_do_grafo",
+      "pytest",
+      "tests_test_env_variables",
+      "tests_test_env_variables_rationale_1",
+      "tests_test_env_variables_test_import_does_not_load_dotenv",
+      "tests_test_env_variables_test_private_import_without_token_does_not_access_network",
+      "tests_test_env_variables_test_private_review_and_env_are_ignored"
+    ],
+    "3": [
+      "docs_analytics_apps_script",
+      "docs_analytics_apps_script_dados_e_controles",
+      "docs_analytics_apps_script_estado_da_entrega",
+      "docs_analytics_apps_script_extrair_insights",
+      "docs_analytics_apps_script_implantação_após_a_revisão",
+      "docs_analytics_apps_script_métricas_de_interação_coletor_v1",
+      "docs_analytics_apps_script_retenção_segurança_e_limites",
+      "docs_preview_review",
+      "docs_preview_review_comparação_visual",
+      "docs_preview_review_evidências_de_validação",
+      "docs_preview_review_limitações_que_permanecem_explícitas",
+      "docs_preview_review_o_que_mudou",
+      "docs_preview_review_origem_da_imagem_social",
+      "docs_preview_review_prévia_para_avaliação_8_de_setembro_de_2026",
+      "docs_private_projects",
+      "docs_private_projects_importação_seletiva_de_projetos_privados",
+      "docs_security_review",
+      "docs_security_review_controles_novos",
+      "docs_security_review_fontes_de_conteúdo",
+      "docs_security_review_fronteira_de_publicação",
+      "docs_security_review_limites_do_github_pages",
+      "docs_security_review_material_histórico_identificado",
+      "docs_security_review_revisão_de_segurança_da_evolução_do_portfólio",
+      "readme"
+    ],
+    "4": [
+      "github_workflows_pages",
+      "github_workflows_pages_concurrency",
+      "github_workflows_pages_concurrency_cancel_in_progress",
+      "github_workflows_pages_concurrency_group",
+      "github_workflows_pages_name",
+      "github_workflows_pages_on",
+      "github_workflows_pages_on_push",
+      "github_workflows_pages_on_workflow_dispatch",
+      "github_workflows_pages_permissions",
+      "github_workflows_pages_permissions_contents",
+      "github_workflows_pages_push_branches"
+    ],
+    "5": [
+      "github_dependabot",
+      "github_dependabot_dependencies_patterns",
+      "github_dependabot_groups_dependencies",
+      "github_dependabot_schedule_interval",
+      "github_dependabot_updates",
+      "github_dependabot_updates_directory",
+      "github_dependabot_updates_groups",
+      "github_dependabot_updates_package_ecosystem",
+      "github_dependabot_updates_schedule",
+      "github_dependabot_version"
+    ],
+    "6": [
+      "html",
+      "reportlab_lib",
+      "reportlab_lib_pagesizes",
+      "reportlab_lib_styles",
+      "reportlab_platypus",
+      "scripts_build_cv",
+      "scripts_build_cv_rationale_1"
+    ],
+    "7": [
+      "package",
+      "package_devdependencies",
+      "package_devdependencies_axe_core_playwright",
+      "package_devdependencies_lighthouse",
+      "package_devdependencies_playwright_test",
+      "package_devdependencies_prettier",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_audit_performance",
+      "package_scripts_test",
+      "package_scripts_test_browser",
+      "package_scripts_test_syntax",
+      "package_version",
+      "playwright_config",
+      "playwright_config_defineconfig",
+      "playwright_config_path",
+      "ref_axe_core_playwright",
+      "ref_chrome_launcher",
+      "ref_lighthouse",
+      "ref_node_fs",
+      "ref_node_path",
+      "ref_playwright_test",
+      "ref_prettier",
+      "scripts_capture_preview",
+      "scripts_capture_preview_chromium",
+      "scripts_capture_preview_fs",
+      "scripts_lighthouse",
+      "scripts_lighthouse_fs",
+      "scripts_lighthouse_path",
+      "tests_browser_portfolio_spec",
+      "tests_browser_portfolio_spec_fs",
+      "tests_browser_portfolio_spec_get",
+      "tests_browser_portfolio_spec_test_expect"
+    ],
+    "8": [
+      "github_workflows_maintenance",
+      "github_workflows_maintenance_jobs",
+      "github_workflows_maintenance_jobs_maintenance",
+      "github_workflows_maintenance_maintenance_runs_on",
+      "github_workflows_maintenance_maintenance_steps",
+      "github_workflows_maintenance_maintenance_timeout_minutes",
+      "github_workflows_maintenance_name",
+      "github_workflows_maintenance_on",
+      "github_workflows_maintenance_on_schedule",
+      "github_workflows_maintenance_on_workflow_dispatch",
+      "github_workflows_maintenance_permissions",
+      "github_workflows_maintenance_permissions_contents",
+      "github_workflows_maintenance_permissions_pull_requests",
+      "github_workflows_maintenance_schedule_cron",
+      "github_workflows_maintenance_steps_name",
+      "github_workflows_maintenance_steps_run",
+      "github_workflows_maintenance_steps_uses",
+      "github_workflows_maintenance_steps_with",
+      "github_workflows_maintenance_with_body",
+      "github_workflows_maintenance_with_branch",
+      "github_workflows_maintenance_with_cache",
+      "github_workflows_maintenance_with_commit_message",
+      "github_workflows_maintenance_with_delete_branch",
+      "github_workflows_maintenance_with_labels",
+      "github_workflows_maintenance_with_node_version",
+      "github_workflows_maintenance_with_persist_credentials",
+      "github_workflows_maintenance_with_python_version",
+      "github_workflows_maintenance_with_title",
+      "github_workflows_maintenance_with_token"
+    ],
+    "9": [
+      "ref_node_assert",
+      "ref_node_crypto",
+      "ref_node_test",
+      "ref_node_vm",
+      "tests_collector_test",
+      "tests_collector_test_assert",
+      "tests_collector_test_catalog",
+      "tests_collector_test_context",
+      "tests_collector_test_event",
+      "tests_collector_test_fs",
+      "tests_collector_test_randomuuid",
+      "tests_collector_test_runtime",
+      "tests_collector_test_sheet",
+      "tests_collector_test_sheet_appendrow",
+      "tests_collector_test_sheet_autoresizecolumns",
+      "tests_collector_test_sheet_clear",
+      "tests_collector_test_sheet_clearcontents",
+      "tests_collector_test_sheet_constructor",
+      "tests_collector_test_sheet_getlastcolumn",
+      "tests_collector_test_sheet_getlastrow",
+      "tests_collector_test_sheet_getrange",
+      "tests_collector_test_sheet_setcolumnwidth",
+      "tests_collector_test_sheet_setfrozenrows",
+      "tests_collector_test_sheet_settabcolor",
+      "tests_collector_test_source",
+      "tests_collector_test_test",
+      "tests_collector_test_validate",
+      "tests_collector_test_vm"
+    ],
+    "10": [
+      "github_workflows_update_projects",
+      "github_workflows_update_projects_jobs",
+      "github_workflows_update_projects_jobs_update_projects",
+      "github_workflows_update_projects_name",
+      "github_workflows_update_projects_on",
+      "github_workflows_update_projects_on_push",
+      "github_workflows_update_projects_on_schedule",
+      "github_workflows_update_projects_on_workflow_dispatch",
+      "github_workflows_update_projects_permissions",
+      "github_workflows_update_projects_permissions_contents",
+      "github_workflows_update_projects_push_branches",
+      "github_workflows_update_projects_push_paths",
+      "github_workflows_update_projects_schedule_cron",
+      "github_workflows_update_projects_steps_name",
+      "github_workflows_update_projects_steps_run",
+      "github_workflows_update_projects_steps_uses",
+      "github_workflows_update_projects_steps_with",
+      "github_workflows_update_projects_update_projects_if",
+      "github_workflows_update_projects_update_projects_runs_on",
+      "github_workflows_update_projects_update_projects_steps",
+      "github_workflows_update_projects_update_projects_timeout_minutes",
+      "github_workflows_update_projects_with_python_version"
+    ],
+    "12": [
+      "claude",
+      "claude_graphify_knowledge_graph_first"
+    ],
+    "13": [
+      "github_workflows_validate_steps_with",
+      "github_workflows_validate_with_cache",
+      "github_workflows_validate_with_filters",
+      "github_workflows_validate_with_if_no_files_found",
+      "github_workflows_validate_with_include_hidden_files",
+      "github_workflows_validate_with_name",
+      "github_workflows_validate_with_node_version",
+      "github_workflows_validate_with_path",
+      "github_workflows_validate_with_persist_credentials",
+      "github_workflows_validate_with_python_version",
+      "github_workflows_validate_with_retention_days"
+    ],
+    "14": [
+      "github_workflows_validate",
+      "github_workflows_validate_jobs",
+      "github_workflows_validate_jobs_validate_python",
+      "github_workflows_validate_name",
+      "github_workflows_validate_permissions",
+      "github_workflows_validate_permissions_contents",
+      "github_workflows_validate_validate_python_if",
+      "github_workflows_validate_validate_python_needs",
+      "github_workflows_validate_validate_python_runs_on",
+      "github_workflows_validate_validate_python_timeout_minutes"
+    ],
+    "15": [
+      "github_workflows_validate_changes_outputs",
+      "github_workflows_validate_changes_runs_on",
+      "github_workflows_validate_changes_steps",
+      "github_workflows_validate_jobs_changes",
+      "github_workflows_validate_outputs_browser",
+      "github_workflows_validate_outputs_node",
+      "github_workflows_validate_outputs_python",
+      "github_workflows_validate_steps_id"
+    ],
+    "16": [
+      "gemini",
+      "gemini_graphify_knowledge_graph_first"
+    ],
+    "17": [
+      "github_workflows_validate_jobs_validate",
+      "github_workflows_validate_steps_name",
+      "github_workflows_validate_validate_if",
+      "github_workflows_validate_validate_needs",
+      "github_workflows_validate_validate_runs_on",
+      "github_workflows_validate_validate_steps"
+    ],
+    "18": [
+      "assets_js_analytics"
+    ],
+    "19": [
+      "assets_js_boot"
+    ],
+    "20": [
+      "assets_js_easter_eggs"
+    ],
+    "21": [
+      "tests_testes_1_testes_unitários_tests_test_update_projects_py",
+      "tests_testes_2_testes_de_estrutura_tests_test_site_structure_py",
+      "tests_testes_3_testes_de_variáveis_de_ambiente_tests_test_env_variables_py",
+      "tests_testes_adicionando_novos_testes",
+      "tests_testes_codeblock_1",
+      "tests_testes_codeblock_10",
+      "tests_testes_codeblock_11",
+      "tests_testes_codeblock_2",
+      "tests_testes_codeblock_3",
+      "tests_testes_codeblock_4",
+      "tests_testes_codeblock_5",
+      "tests_testes_codeblock_6",
+      "tests_testes_codeblock_7",
+      "tests_testes_codeblock_8",
+      "tests_testes_codeblock_9",
+      "tests_testes_configurando_variáveis_de_ambiente",
+      "tests_testes_debugando_testes_falhando",
+      "tests_testes_dependências",
+      "tests_testes_documentação_adicional",
+      "tests_testes_executar_todos_os_testes",
+      "tests_testes_importante_segurança",
+      "tests_testes_md",
+      "tests_testes_primeiro_uso",
+      "tests_testes_quick_start",
+      "tests_testes_resultado_esperado",
+      "tests_testes_resumo_de_comandos",
+      "tests_testes_testes_disponíveis",
+      "tests_testes_testes_locais_portfolio_website",
+      "tests_testes_valida_o_do_portf_lio",
+      "tests_testes_validação_do_portfólio"
+    ],
+    "22": [
+      "assets_js_languages"
+    ],
+    "23": [
+      "assets_js_portfolio"
+    ],
+    "24": [
+      "tests_init"
+    ],
+    "28": [
+      "github_workflows_validate_steps_if",
+      "github_workflows_validate_steps_run",
+      "github_workflows_validate_steps_uses",
+      "github_workflows_validate_validate_browser_steps",
+      "github_workflows_validate_validate_node_steps",
+      "github_workflows_validate_validate_python_steps"
+    ],
+    "30": [
+      "github_workflows_validate_jobs_validate_browser",
+      "github_workflows_validate_validate_browser_if",
+      "github_workflows_validate_validate_browser_needs",
+      "github_workflows_validate_validate_browser_runs_on",
+      "github_workflows_validate_validate_browser_timeout_minutes"
+    ],
+    "39": [
+      "github_workflows_validate_jobs_validate_node",
+      "github_workflows_validate_validate_node_if",
+      "github_workflows_validate_validate_node_needs",
+      "github_workflows_validate_validate_node_runs_on",
+      "github_workflows_validate_validate_node_timeout_minutes"
+    ],
+    "42": [
+      "github_workflows_validate_on",
+      "github_workflows_validate_on_pull_request",
+      "github_workflows_validate_on_push",
+      "github_workflows_validate_on_workflow_call",
+      "github_workflows_validate_push_branches"
+    ],
+    "44": [
+      "docs_crv_pdf",
+      "index_html"
+    ],
+    "46": [
+      "pkg_joaosnet_portfolio"
+    ],
+    "57": [
+      "agents",
+      "agents_graphify_knowledge_graph_first",
+      "agents_rules_for_all_agents_subagents",
+      "argparse",
+      "base64",
+      "build_site",
+      "build_site_build",
+      "build_site_load_projects",
+      "build_site_rationale_1",
+      "build_site_read_json",
+      "build_site_safe_url",
+      "datetime",
+      "docs_architecture_security_isolation_2_ponto_de_entrada_main_e_governança_de_dados",
+      "hashlib",
+      "jinja2",
+      "json",
+      "os",
+      "pathlib",
+      "re",
+      "requests",
+      "scripts_build_cv_generate_cvs",
+      "scripts_build_cv_generate_cvs_p",
+      "scripts_build_cv_generate_cvs_section",
+      "scripts_fetch_assets",
+      "scripts_fetch_assets_rationale_1",
+      "shutil",
+      "sys",
+      "tests_conftest",
+      "tests_test_site_structure_test_private_projects_require_review_and_cannot_export_sources",
+      "tests_test_telemetry",
+      "tests_test_telemetry_rationale_1",
+      "tests_test_telemetry_test_collector_gs_default_catalog_supports_v1_and_v2",
+      "tests_test_telemetry_test_live_production_telemetry_health",
+      "tests_test_telemetry_test_telemetry_config_and_catalog_alignment",
+      "tests_test_update_projects",
+      "tests_test_update_projects_client",
+      "tests_test_update_projects_py_parametrize",
+      "tests_test_update_projects_test_api_failure_does_not_accept_redirect_or_data",
+      "tests_test_update_projects_test_changed_review_digest_is_rejected",
+      "tests_test_update_projects_test_private_preview_is_local_and_contains_no_token",
+      "tests_test_update_projects_test_private_preview_needs_explicit_local_allowlist",
+      "tests_test_update_projects_test_public_import_never_uses_environment_tokens",
+      "tests_test_update_projects_test_public_to_private_change_is_rejected",
+      "tests_test_update_projects_test_raw_private_payload_cannot_be_promoted",
+      "tests_test_update_projects_test_repository_identifier_injection_is_rejected",
+      "tests_test_update_projects_test_unsafe_links_are_rejected",
+      "tests_test_update_projects_test_wrong_repository_response_is_rejected",
+      "unittest_mock",
+      "update_projects",
+      "update_projects_approve_export",
+      "update_projects_discover_public_repos",
+      "update_projects_fetch_repository",
+      "update_projects_main",
+      "update_projects_private_preview",
+      "update_projects_public_snapshot",
+      "update_projects_rationale_1",
+      "urllib_request"
+    ],
+    "58": [
+      "fixture",
+      "html_parser",
+      "htmlparser",
+      "pypdf",
+      "tests_test_site_structure",
+      "tests_test_site_structure_built",
+      "tests_test_site_structure_page",
+      "tests_test_site_structure_page_find",
+      "tests_test_site_structure_page_handle_starttag",
+      "tests_test_site_structure_page_init",
+      "tests_test_site_structure_py_parametrize",
+      "tests_test_site_structure_test_bilingual_routes_metadata_and_names",
+      "tests_test_site_structure_test_build_cannot_delete_other_directories",
+      "tests_test_site_structure_test_cv_is_one_page_selectable_and_factual",
+      "tests_test_site_structure_test_every_local_link_and_asset_exists",
+      "tests_test_site_structure_test_metrics_have_no_transport_before_backend_validation",
+      "tests_test_site_structure_test_only_allowlisted_public_files_are_built",
+      "tests_test_site_structure_test_sitemap_covers_all_indexable_pages",
+      "tests_test_site_structure_test_strict_csp_and_no_inline_event_handlers",
+      "urllib_parse",
+      "xml_etree_elementtree"
+    ],
+    "136": [
+      "http_server",
+      "scripts_preview",
+      "scripts_preview_handler",
+      "scripts_preview_handler_end_headers",
+      "scripts_preview_handler_init",
+      "scripts_preview_handler_send_error",
+      "scripts_preview_rationale_1",
+      "simplehttprequesthandler"
+    ]
+  },
+  "cohesion": {
+    "0": 0.125,
+    "1": 0.08,
+    "2": 0.14705882352941177,
+    "3": 0.09057971014492754,
+    "4": 0.18181818181818182,
+    "5": 0.2,
+    "6": 0.2857142857142857,
+    "7": 0.07308377896613191,
+    "8": 0.06896551724137931,
+    "9": 0.07407407407407407,
+    "10": 0.09090909090909091,
+    "12": 1.0,
+    "13": 0.18181818181818182,
+    "14": 0.2,
+    "15": 0.25,
+    "16": 1.0,
+    "17": 0.3333333333333333,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 0.07126436781609195,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0,
+    "28": 0.4666666666666667,
+    "30": 0.4,
+    "39": 0.4,
+    "42": 0.4,
+    "44": 1.0,
+    "46": 1.0,
+    "57": 0.07769423558897243,
+    "58": 0.11904761904761904,
+    "136": 0.2857142857142857
+  },
+  "gods": [
+    {
+      "id": "github_workflows_validate_steps_with",
+      "label": "with",
+      "degree": 14
+    },
+    {
+      "id": "tests_collector_test_sheet",
+      "label": "Sheet",
+      "degree": 13
+    },
+    {
+      "id": "build_site_build",
+      "label": "build()",
+      "degree": 12
+    },
+    {
+      "id": "update_projects_private_preview",
+      "label": "private_preview()",
+      "degree": 12
+    },
+    {
+      "id": "github_workflows_maintenance_steps_with",
+      "label": "with",
+      "degree": 12
+    },
+    {
+      "id": "update_projects_main",
+      "label": "main()",
+      "degree": 11
+    },
+    {
+      "id": "build_site_read_json",
+      "label": "read_json()",
+      "degree": 10
+    },
+    {
+      "id": "tests_testes_testes_locais_portfolio_website",
+      "label": "Testes Locais - Portfolio Website",
+      "degree": 10
+    },
+    {
+      "id": "readme_joão_silva_neto_portfolio",
+      "label": "João Silva Neto · Portfolio",
+      "degree": 9
+    },
+    {
+      "id": "tests_test_site_structure_page",
+      "label": "Page",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "Limitações que permanecem explícitas",
+      "target": "main()",
+      "source_files": [
+        "docs/preview-review.md",
+        "update_projects.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities; peripheral node `Limitações que permanecem explícitas` unexpectedly reaches hub `main()`"
+    },
+    {
+      "source": "3. Isolamento e Segurança de Projetos Privados (`private_preview`)",
+      "target": "private_preview()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "update_projects.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities; peripheral node `3. Isolamento e Segurança de Projetos Privados (`private_preview`)` unexpectedly reaches hub `private_preview()`"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "test_private_review_and_env_are_ignored()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "tests/test_env_variables.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `test_private_review_and_env_are_ignored()` unexpectedly reaches hub `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)`"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "private_preview()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "update_projects.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)",
+      "target": "test_import_does_not_load_dotenv()",
+      "source_files": [
+        "docs/architecture-security-isolation.md",
+        "tests/test_env_variables.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `main()` connect `Build System and Agent Rules` to `Analytics and Review Documentation`?",
+      "why": "High betweenness centrality (0.098) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 3 inferred relationships involving `private_preview()` (e.g. with `Rules for All Agents & Subagents:` and `3. Isolamento e Segurança de Projetos Privados (`private_preview`)`) actually correct?",
+      "why": "`private_preview()` has 3 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `joaosnet-portfolio` to the rest of the system?",
+      "why": "1 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Portfolio Features and Documentation` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.125 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `Limitações que permanecem explícitas` connect `Analytics and Review Documentation` to `Build System and Agent Rules`?",
+      "why": "High betweenness centrality (0.091) - this node is a cross-community bridge."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Deployment Pipeline Configuration` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Security Architecture and Governance` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
