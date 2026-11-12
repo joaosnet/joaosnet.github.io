@@ -1,0 +1,14 @@
+# Handover: Copy & Tech Docs
+- **Última Atualização**: 2026-11-12 por Claude Code (sessão do roadmap de craft)
+- **Status Atual**: Strings trilíngues (pt/en/es) para barra de status, ciclos, code stream e pilha em `ui.json`; 4 ciclos de engenharia em `services.json` → `cycles`. A intro do hero deixa explícita a formação em Engenharia de Computação (UFPA).
+- **Arquivos sob Propriedade Rígida**:
+  - `content/site.json`, `content/ui.json`, `content/services.json`
+  - `docs/next-improvements-roadmap.md`
+- **Decisões Técnicas Consolidadas**:
+  - Nenhuma métrica inventada: o code stream usa só os `outcomes` já existentes em `projects.json`; os ciclos não prometem prazos.
+  - Formação: graduação em **Engenharia de Computação** (em andamento, conclusão prevista em 2026). "Engenheiro de software" aparece apenas como função profissional.
+  - `projects.json` é regravado por `update_projects.py`; não editar à mão campos sincronizados.
+- **Próximas Tarefas Imediatas**:
+  - [ ] Preencher `site.audit` (`title`/`note` em pt/en/es, `tool`, `date`, `scores[{label, value}]`) com Lighthouse medido em produção após o deploy — o cartão só aparece quando a chave existe.
+- **Bloqueios ou Dependências de Outros Agentes**:
+  - Nenhum.

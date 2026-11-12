@@ -1,0 +1,16 @@
+# Handover: Brand & Design
+- **Última Atualização**: 2026-11-12 por Claude Code (sessão do roadmap de craft)
+- **Status Atual**: Tokens de fonte, escala 1.25, espaçamento 4/8, bordas e movimento definidos e aplicados no CSS. JetBrains Mono auto-hospedada para metadados. Anotações `fig. 0X` nas seções.
+- **Arquivos sob Propriedade Rígida**:
+  - `specs/brand/tokens.json`, `specs/brand/typography.md`
+  - Bloco de tokens no topo de `assets/css/portfolio.css`
+  - `assets/fonts/`
+- **Decisões Técnicas Consolidadas**:
+  - Outfit mantida como sans (identidade existente); só a mono foi adicionada.
+  - Mono com `font-display: optional` e sem preload: com preload, o LCP mobile piorava ~400–700 ms no Lighthouse local.
+  - Paleta continua derivada de `--theme-hue` para não quebrar o seletor de cores do visitante.
+- **Próximas Tarefas Imediatas**:
+  - [ ] Migrar gradualmente tamanhos fixos (`10px`, `0.78rem`…) para `--step-*`.
+  - [ ] Avaliar fallback métrico (`size-adjust`) para a Outfit — ainda há troca de fonte no hero.
+- **Bloqueios ou Dependências de Outros Agentes**:
+  - Nenhum.

@@ -21,8 +21,14 @@
         <a href="{{ site.github }}" target="_blank" rel="noopener noreferrer" data-track="github">GitHub ↗</a>
       </div>
     </div>
-    <div class="hero-art">
+    <div class="hero-art" data-hero-mesh>
       <div class="portrait-frame">
+        {% set mesh_traces = ['40,40 140,40 140,100 100,100', '140,40 260,40', '260,40 360,40 360,140', '260,40 260,100 300,100', '40,140 100,140 100,100', '360,140 300,140 300,100', '40,140 40,260', '40,260 100,260 100,300', '360,260 360,360 260,360', '300,300 300,260 360,260', '300,300 260,300 260,360', '260,360 140,360', '40,360 140,360 140,300 100,300'] %}
+        {% set mesh_nodes = ['40,40', '140,40', '260,40', '360,140', '100,100', '300,100', '40,140', '40,260', '360,260', '100,300', '300,300', '40,360', '140,360', '260,360'] %}
+        <svg class="hero-mesh-poster" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+          {% for points in mesh_traces %}<polyline points="{{ points }}" data-mesh-trace></polyline>{% endfor %}
+          {% for node in mesh_nodes %}{% set xy = node.split(',') %}<circle cx="{{ xy[0] }}" cy="{{ xy[1] }}" r="3.5" data-mesh-node></circle>{% endfor %}
+        </svg>
         <div class="portrait-orbit orbit-one"></div>
         <div class="portrait-orbit orbit-two"></div>
         <div class="portrait-dots" aria-hidden="true"></div>
@@ -41,7 +47,7 @@
 <section class="section services-section" id="services" data-section="services">
   <div class="container">
     <div class="section-heading">
-      <div><p class="eyebrow">{{ t.services_kicker }}</p><h2>{{ t.services_title }}</h2></div>
+      <div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 01 · kernel</span>{{ t.services_kicker }}</p><h2>{{ t.services_title }}</h2></div>
       <p class="section-intro">{{ t.services_intro }}</p>
     </div>
     <div class="services-grid">
@@ -87,9 +93,69 @@
   </div>
 </section>
 
+<section class="section process-section" id="process" data-section="process">
+  <div class="container">
+    <div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 02 · bus</span>{{ t.process_kicker }}</p><h2>{{ t.process_title }}</h2></div><p class="section-intro">{{ t.process_intro }}</p></div>
+    <ol class="cycle-grid">
+      {% for cycle in services.cycles %}
+      <li class="cycle">
+        <details class="cycle-details" data-cycle="{{ cycle.id }}">
+          <summary data-track="process-{{ cycle.id }}">
+            <span class="cycle-index">{{ t.process_cycle }} {{ '%02d' % loop.index }}</span>
+            <span class="cycle-title">{{ cycle[lang].title }}</span>
+            <span class="cycle-summary">{{ cycle[lang].summary }}</span>
+            <span class="cycle-meter" aria-hidden="true"><span class="cycle-meter-fill"></span></span>
+          </summary>
+          <div class="cycle-body">
+            <p class="cycle-label">{{ t.process_deliverables }}</p>
+            <ul class="cycle-deliverables">
+              {% for item in cycle[lang].deliverables %}<li>{{ item }}</li>{% endfor %}
+            </ul>
+            <p class="cycle-acceptance"><span class="cycle-label">{{ t.process_acceptance }}</span>{{ cycle[lang].acceptance }}</p>
+          </div>
+        </details>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
 <section class="section projects-section" id="projects" data-section="projects">
   <div class="container">
-    <div class="section-heading"><div><p class="eyebrow">{{ t.projects_kicker }}</p><h2>{{ t.projects_title }}</h2></div><p class="section-intro">{{ t.projects_intro }}</p></div>
+    <div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 03 · silicon</span>{{ t.projects_kicker }}</p><h2>{{ t.projects_title }}</h2></div><p class="section-intro">{{ t.projects_intro }}</p></div>
+    {% set ext_map = {'Rust': 'rs', 'Flutter': 'dart', 'Dart': 'dart', 'Python': 'py', 'JavaScript': 'js', 'Canvas 2D': 'js'} %}
+    {% set featured = (projects|selectattr('visibility', 'equalto', 'public')|list)[:4] %}
+    <div class="stream" data-stream>
+      <p class="stream-hint" hidden>{{ t.stream_hint }}</p>
+      <div class="stream-sticky">
+        <div class="stream-tabs" role="tablist" aria-label="{{ t.stream_label }}" hidden>
+          {% for p in featured %}<button type="button" class="stream-tab" role="tab" id="stream-tab-{{ p.id }}" aria-controls="stream-panel-{{ p.id }}" aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}" data-track="stream-tab" data-project="{{ p.id }}">{{ p.id }}.{{ ext_map.get(p.tags[0], 'txt') }}</button>{% endfor %}
+        </div>
+        <div class="stream-panels">
+          {% for p in featured %}
+          <article class="stream-panel" id="stream-panel-{{ p.id }}" aria-labelledby="stream-title-{{ p.id }}" data-project="{{ p.id }}">
+            <div class="stream-editor">
+              <p class="stream-file"><span class="stream-filename">{{ p.id }}.{{ ext_map.get(p.tags[0], 'txt') }}</span><span class="stream-meta">{{ p.tags[:3]|join(' · ') }}</span></p>
+              <ol class="stream-code">
+                <li class="tok-comment">// {{ p[lang].eyebrow }}</li>
+                <li><h3 class="stream-title" id="stream-title-{{ p.id }}">{{ p.name }}</h3></li>
+                <li class="stream-summary">{{ p[lang].summary }}</li>
+                {% for o in p[lang].get('outcomes', [])[:3] %}<li class="tok-result"><span class="tok-key">result:</span> <strong>{{ o.value }}</strong> <span class="tok-comment">// {{ o.label }}</span></li>{% endfor %}
+                <li><a class="stream-link" href="{{ base }}projects/{{ p.id }}/" data-track="stream-case" data-project="{{ p.id }}">{{ t.case }} <span aria-hidden="true">→</span></a></li>
+              </ol>
+            </div>
+            <svg class="stream-schematic" viewBox="0 0 240 240" aria-hidden="true" focusable="false">
+              <g class="schematic-grid">{% for i in range(1, 6) %}<line x1="{{ i * 40 }}" y1="0" x2="{{ i * 40 }}" y2="240"></line><line x1="0" y1="{{ i * 40 }}" x2="240" y2="{{ i * 40 }}"></line>{% endfor %}</g>
+              {% set paths = ['M20 200 H80 V120 H160 V40 H220', 'M20 40 H100 V160 H180 V200 H220', 'M20 120 H60 V40 H140 V200 H220', 'M40 20 V100 H120 V220 M120 100 H200 V20'] %}
+              <path class="schematic-trace" d="{{ paths[loop.index0 % 4] }}" pathLength="1"></path>
+              <rect class="schematic-chip" x="96" y="96" width="48" height="48" rx="4"></rect>
+              <text class="schematic-label" x="120" y="124" text-anchor="middle">{{ '%02d' % loop.index }}</text>
+            </svg>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
     <div class="filters" role="group" aria-label="{{ t.filter }}" hidden>{% for skill in ['backend', 'devices', 'data', 'interfaces'] %}<button type="button" class="filter-button{{ ' selected' if loop.first else '' }}" data-filter="{{ skill }}" aria-pressed="{{ 'true' if loop.first else 'false' }}" data-track="filter-{{ skill }}"><span class="filter-text">{{ t[skill] }}</span><svg class="pill-border-timer" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true"><rect class="pill-track" x="1" y="1" width="98" height="38" rx="19"></rect><rect class="pill-progress" x="1" y="1" width="98" height="38" rx="19" pathLength="100"></rect></svg></button>{% endfor %}<button type="button" class="filter-button filter-all-btn" data-filter="all" aria-pressed="false" data-track="filter-all"><span class="filter-text">{{ t.filter_all_label }}</span></button></div>
     <p class="sr-only" id="filter-status" role="status" data-results="{{ t.results }}" data-empty="{{ t.project_count_zero }}"></p>
     <!-- PROJECTS_START -->
@@ -102,7 +168,7 @@
 </section>
 
 <section class="section lab-section" id="published" data-section="lab">
-  <div class="container"><div class="section-heading"><div><p class="eyebrow">{{ t.lab_kicker }}</p><h2>{{ t.lab_title }}</h2></div><p class="section-intro">{{ t.lab_intro }}</p></div>
+  <div class="container"><div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 04 · compiler</span>{{ t.lab_kicker }}</p><h2>{{ t.lab_title }}</h2></div><p class="section-intro">{{ t.lab_intro }}</p></div>
   <div class="lab-panel"><div class="lab-info"><p class="experiment-label"><span class="tiny-dot" aria-hidden="true"></span>{{ t.lab_tag }}</p><h3>{{ t.lab_name }}</h3><p>{{ t.lab_description }}</p><div class="lab-controls" hidden><label for="noise">{{ t.noise }}<output id="noise-value" for="noise">0.45</output></label><input id="noise" type="range" min="0" max="1" step="0.05" value="0.45" data-track="lab-noise"><label for="smoothing">{{ t.smoothing }}<output id="smoothing-value" for="smoothing">9</output></label><input id="smoothing" type="range" min="1" max="25" step="2" value="9" data-track="lab-smoothing"><button class="text-button lab-reset" type="button" data-track="lab-reset">↺ {{ t.reset }}</button></div><noscript><p>{{ t.nojs_lab }}</p></noscript><p class="lab-disclaimer">{{ t.lab_note }}</p></div>
   <div class="lab-chart"><div class="chart-header"><span>signal.playground</span><span class="chart-indicator">LOCAL / SYNTHETIC</span></div><div class="chart-legend"><span class="legend-raw">{{ t.raw }}</span><span class="legend-filtered">{{ t.filtered }}</span></div><canvas id="signal-canvas" width="800" height="360" aria-hidden="true"></canvas><div class="chart-summary" aria-live="polite"><span>{{ t.rms }}</span><div><span class="legend-raw">{{ t.raw }}: <output id="raw-rms">—</output></span><span class="legend-filtered">{{ t.filtered }}: <output id="filtered-rms">—</output></span></div></div></div></div>
   <!-- PAGES_START -->
@@ -132,59 +198,82 @@
     </div>
   </div>
 
-  {% if site.testimonial %}
-  <div class="container testimonial-container">
+  {% if site.testimonial or site.software_registration %}
+  <div class="container stack-container" id="credentials">
     <div class="section-subheading">
-      <p class="eyebrow">{{ t.testimonials_kicker }}</p>
-      <h3>{{ t.testimonials_title }}</h3>
+      <p class="eyebrow">{{ t.stack_kicker }}</p>
+      <h3>{{ t.stack_title }}</h3>
+      <p class="stack-hint" hidden>{{ t.stack_hint }}</p>
     </div>
-    <article class="testimonial-card">
-      <div class="testimonial-badge">
-        <span class="grade-pill">{{ site.testimonial.evaluation.grade }}</span>
-        <span class="grade-label">{{ site.testimonial.evaluation.rating[lang] }}</span>
+    <div class="stack" data-stack role="region" aria-roledescription="carousel" aria-label="{{ t.stack_kicker }}">
+      <ol class="stack-cards">
+        {% if site.testimonial %}
+        <li class="stack-card">
+          <article class="testimonial-card">
+            <h4 class="stack-card-title">{{ t.testimonials_title }}</h4>
+            <div class="testimonial-badge">
+              <span class="grade-pill">{{ site.testimonial.evaluation.grade }}</span>
+              <span class="grade-label">{{ site.testimonial.evaluation.rating[lang] }}</span>
+            </div>
+            <blockquote class="testimonial-quote">
+              “{{ site.testimonial.quote[lang] }}”
+            </blockquote>
+            <footer class="testimonial-meta">
+              <div class="author-info">
+                <strong class="author-name">{{ site.testimonial.author }}</strong>
+                <span class="author-role">{{ site.testimonial.role[lang] }} · {{ site.testimonial.affiliation }}</span>
+              </div>
+            </footer>
+          </article>
+        </li>
+        {% endif %}
+        {% if site.software_registration %}
+        <li class="stack-card">
+          <article class="ip-card">
+            <h4 class="stack-card-title">{{ t.ip_title }}</h4>
+            <div class="ip-card-header">
+              <span class="ip-badge"><span class="tiny-dot" aria-hidden="true"></span>{{ t.ip_badge }}</span>
+              <p class="ip-program-title">{{ site.software_registration.program_title }}</p>
+            </div>
+            <div class="ip-meta-grid">
+              <div class="ip-meta-item">
+                <span class="ip-meta-label">{{ t.ip_holders_label }}</span>
+                <span class="ip-meta-value">{{ site.software_registration.holders|join(', ') }}</span>
+              </div>
+              <div class="ip-meta-item">
+                <span class="ip-meta-label">{{ t.ip_issued_label }}</span>
+                <span class="ip-meta-value">{{ site.software_registration.issued_date }} · Lei 9.609/1998</span>
+              </div>
+            </div>
+            <div class="ip-hash-box">
+              <span class="ip-hash-label">{{ t.ip_hash_label }}</span>
+              <code class="ip-hash-code">{{ site.software_registration.hash_value }}</code>
+            </div>
+            <div class="ip-card-footer">
+              <a class="button outline ip-verify-btn" href="{{ site.software_registration.certificate_pdf }}" target="_blank" rel="noopener noreferrer" data-track="ip-certificate">{{ t.ip_verify_cta }} <span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </li>
+        {% endif %}
+        {% set audit = site.get('audit') %}{% if audit %}
+        <li class="stack-card">
+          <article class="audit-card">
+            <h4 class="stack-card-title">{{ audit.title[lang] }}</h4>
+            <p class="audit-meta">{{ audit.tool }} · {{ audit.date }}</p>
+            <dl class="audit-scores">
+              {% for score in audit.scores %}<div><dt>{{ score.label[lang] }}</dt><dd>{{ score.value }}</dd></div>{% endfor %}
+            </dl>
+            <p class="audit-note">{{ audit.note[lang] }}</p>
+          </article>
+        </li>
+        {% endif %}
+      </ol>
+      <div class="stack-controls" hidden>
+        <button type="button" class="stack-button" data-stack-prev data-track="stack-prev" aria-label="{{ t.stack_prev }}"><span aria-hidden="true">←</span></button>
+        <p class="stack-status" aria-live="polite" data-template="{{ t.stack_position }}"></p>
+        <button type="button" class="stack-button" data-stack-next data-track="stack-next" aria-label="{{ t.stack_next }}"><span aria-hidden="true">→</span></button>
       </div>
-      <blockquote class="testimonial-quote">
-        “{{ site.testimonial.quote[lang] }}”
-      </blockquote>
-      <footer class="testimonial-meta">
-        <div class="author-info">
-          <strong class="author-name">{{ site.testimonial.author }}</strong>
-          <span class="author-role">{{ site.testimonial.role[lang] }} · {{ site.testimonial.affiliation }}</span>
-        </div>
-      </footer>
-    </article>
-  </div>
-  {% endif %}
-
-  {% if site.software_registration %}
-  <div class="container ip-container">
-    <div class="section-subheading">
-      <p class="eyebrow">{{ t.ip_kicker }}</p>
-      <h3>{{ t.ip_title }}</h3>
     </div>
-    <article class="ip-card">
-      <div class="ip-card-header">
-        <span class="ip-badge"><span class="tiny-dot" aria-hidden="true"></span>{{ t.ip_badge }}</span>
-        <h4 class="ip-program-title">{{ site.software_registration.program_title }}</h4>
-      </div>
-      <div class="ip-meta-grid">
-        <div class="ip-meta-item">
-          <span class="ip-meta-label">{{ t.ip_holders_label }}</span>
-          <span class="ip-meta-value">{{ site.software_registration.holders|join(', ') }}</span>
-        </div>
-        <div class="ip-meta-item">
-          <span class="ip-meta-label">{{ t.ip_issued_label }}</span>
-          <span class="ip-meta-value">{{ site.software_registration.issued_date }} · Lei 9.609/1998</span>
-        </div>
-      </div>
-      <div class="ip-hash-box">
-        <span class="ip-hash-label">{{ t.ip_hash_label }}</span>
-        <code class="ip-hash-code">{{ site.software_registration.hash_value }}</code>
-      </div>
-      <div class="ip-card-footer">
-        <a class="button outline ip-verify-btn" href="{{ site.software_registration.certificate_pdf }}" target="_blank" rel="noopener noreferrer" data-track="ip-certificate">{{ t.ip_verify_cta }} <span aria-hidden="true">↗</span></a>
-      </div>
-    </article>
   </div>
   {% endif %}
 

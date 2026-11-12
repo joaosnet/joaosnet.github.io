@@ -5,7 +5,7 @@
   "scripts": {
     "test": "node --test tests/collector.test.cjs",
     "test:browser": "playwright test",
-    "test:syntax": "node --check assets/js/boot.js && node --check assets/js/portfolio.js && node --check assets/js/analytics.js && node --check assets/js/languages.js && node --check assets/js/easter-eggs.js",
+    "test:syntax": "node --check assets/js/boot.js && node --check assets/js/portfolio.js && node --check assets/js/analytics.js && node --check assets/js/languages.js && node --check assets/js/easter-eggs.js && node --check assets/js/animations/orchestrator.js && node --check assets/js/animations/status-bar.js && node --check assets/js/animations/scroll-stream.js && node --check assets/js/animations/draggable-cards.js && node --check assets/js/3d/hero-mesh.js",
     "audit:performance": "node scripts/lighthouse.cjs",
     "install:hooks": "uv run python scripts/install_hooks.py"
   },

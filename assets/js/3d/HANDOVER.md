@@ -1,0 +1,16 @@
+# Handover: 3D & Shaders
+- **Última Atualização**: 2026-11-12 por Claude Code (sessão do roadmap de craft)
+- **Status Atual**: Hero "topology mesh" em Canvas 2D atrás do retrato: parallax por cursor (lerp), pulsos ambientes e pulsos disparados ao passar sobre os nós. Pausa fora da viewport e com a aba oculta. ~54 fps medidos no Edge headless (teste Playwright).
+- **Arquivos sob Propriedade Rígida**:
+  - `assets/js/3d/hero-mesh.js`
+  - Pôster SVG `.hero-mesh-poster` em `templates/home.html` (fonte da geometria)
+- **Decisões Técnicas Consolidadas**:
+  - Canvas 2D em vez de WebGL/Three.js: a cena é 2D, cabe em ~8 KB sem dependência e respeita a CSP `script-src 'self'`.
+  - A geometria vive no SVG do template; o JS lê `polyline[data-mesh-trace]` e `circle[data-mesh-node]`, então pôster e animação não divergem.
+  - Só carrega com `data-motion="full"` (sem movimento reduzido, sem Save-Data/2G, mais de 2 núcleos) e quando o hero entra na viewport.
+  - Cores lidas de `--line/--cyan/--violet/--surface` e relidas quando tema ou hue mudam (MutationObserver em `<html>`).
+  - Sem acelerômetro: exige permissão no iOS e não agrega.
+- **Próximas Tarefas Imediatas**:
+  - [ ] Medir CPU em GPU integrada real (meta < 2%).
+- **Bloqueios ou Dependências de Outros Agentes**:
+  - Nenhum.
