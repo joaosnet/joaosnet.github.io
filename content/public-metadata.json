@@ -1,6 +1,6 @@
 {
   "aethersense": {
-    "updated_at": "2026-11-07T15:00:28Z",
+    "updated_at": "2026-11-13T05:18:18Z",
     "stars": 0,
     "image_sha": "d4f5525e3609b1ea498fce576e58138fcbcc69a8"
   },
@@ -12,7 +12,7 @@
   },
   "varedura": {
     "updated_at": "2026-11-07T15:21:22Z",
-    "stars": 0,
+    "stars": 1,
     "image_sha": "26175e13dc70f22ce9fc3d7ac25df100a40e9296",
     "image_remote": "screenshots/demo.gif"
   },
