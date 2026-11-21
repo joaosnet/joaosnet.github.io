@@ -46,57 +46,39 @@
 
 <section class="section services-section" id="services" data-section="services">
   <div class="container">
-    <div class="section-heading">
+    <div class="section-heading" data-reveal>
       <div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 01 · kernel</span>{{ t.services_kicker }}</p><h2>{{ t.services_title }}</h2></div>
       <p class="section-intro">{{ t.services_intro }}</p>
     </div>
     <div class="services-grid">
       {% for pkg in services.packages %}
-      <article class="service-card" data-service="{{ pkg.id }}">
+      <article class="service-card" data-service="{{ pkg.id }}" data-reveal>
         <div class="service-header">
           <span class="service-badge" aria-hidden="true">{% if pkg.icon == 'backend' %}{&nbsp;}{% elif pkg.icon == 'automation' %}&gt;_{% else %}∿{% endif %}</span>
           <h3>{{ pkg[lang].title }}</h3>
         </div>
         <p class="service-description">{{ pkg[lang].description }}</p>
-        <ul class="service-deliverables">
-          {% for item in pkg[lang].deliverables %}
-          <li><span class="bullet-check" aria-hidden="true">✓</span> {{ item }}</li>
-          {% endfor %}
-        </ul>
+        <details class="disclosure service-details">
+          <summary>{{ t.services_details }}</summary>
+          <ul class="service-deliverables disclosure-body">
+            {% for item in pkg[lang].deliverables %}
+            <li><span class="bullet-check" aria-hidden="true">✓</span> {{ item }}</li>
+            {% endfor %}
+          </ul>
+        </details>
         <div class="service-footer">
           <a class="service-proof-link" href="#projects" data-track="service-proof-{{ pkg.id }}">{{ pkg[lang].proof_label }} <span aria-hidden="true">↓</span></a>
         </div>
       </article>
       {% endfor %}
     </div>
-
-    <div class="models-container">
-      <div class="section-subheading">
-        <p class="eyebrow">{{ t.services_kicker }}</p>
-        <h3>{{ t.models_title }}</h3>
-        <p class="section-intro">{{ t.models_intro }}</p>
-      </div>
-      <div class="pricing-grid">
-        {% for model in services.models %}
-        <div class="pricing-card" data-model="{{ model.id }}">
-          <div class="pricing-header">
-            <h4>{{ model[lang].title }}</h4>
-            <p class="pricing-subtitle">{{ model[lang].subtitle }}</p>
-          </div>
-          <div class="pricing-rate">{{ model[lang].price }}</div>
-          <p class="pricing-note">{{ model[lang].note }}</p>
-          <a class="button outline pricing-cta" href="#contact" data-track="pricing-cta-{{ model.id }}">{{ t.contact }} <span aria-hidden="true">→</span></a>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
   </div>
 </section>
 
 <section class="section process-section" id="process" data-section="process">
   <div class="container">
-    <div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 02 · bus</span>{{ t.process_kicker }}</p><h2>{{ t.process_title }}</h2></div><p class="section-intro">{{ t.process_intro }}</p></div>
-    <ol class="cycle-grid">
+    <div class="section-heading" data-reveal><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 02 · bus</span>{{ t.process_kicker }}</p><h2>{{ t.process_title }}</h2></div><p class="section-intro">{{ t.process_intro }}</p></div>
+    <ol class="cycle-grid" data-reveal>
       {% for cycle in services.cycles %}
       <li class="cycle">
         <details class="cycle-details" data-cycle="{{ cycle.id }}">
@@ -122,7 +104,7 @@
 
 <section class="section projects-section" id="projects" data-section="projects">
   <div class="container">
-    <div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 03 · silicon</span>{{ t.projects_kicker }}</p><h2>{{ t.projects_title }}</h2></div><p class="section-intro">{{ t.projects_intro }}</p></div>
+    <div class="section-heading" data-reveal><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 03 · silicon</span>{{ t.projects_kicker }}</p><h2>{{ t.projects_title }}</h2></div><p class="section-intro">{{ t.projects_intro }}</p></div>
     {% set ext_map = {'Rust': 'rs', 'Flutter': 'dart', 'Dart': 'dart', 'Python': 'py', 'JavaScript': 'js', 'Canvas 2D': 'js'} %}
     {% set featured = (projects|selectattr('visibility', 'equalto', 'public')|list)[:4] %}
     <div class="stream" data-stream>
@@ -163,13 +145,14 @@
       <a class="visual-link" href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" tabindex="-1" aria-hidden="true" data-track="project-visual"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ visual(p, t) }}</a>
       <div class="project-body"><p class="card-eyebrow">{{ p[lang].eyebrow }}</p><h3><a href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-title"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ p.name }} <span aria-hidden="true">↗</span></a></h3><p class="project-summary">{{ p[lang].summary }}</p><ul class="tags" aria-label="{{ t.filter }}">{% for tag in p.tags[:4] %}<li>{{ tag }}</li>{% endfor %}</ul><div class="card-footer"><a href="{{ p.get('card_cta_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-case"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ (t.demo if p.demo else t.code) if p.get('card_url') else t.case }} <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">{{ p.number }}</span></div></div>
     </article>{% endfor %}</div>
+    <p class="projects-more-row"><button type="button" class="button outline projects-more" hidden>{{ t.projects_more }} <span aria-hidden="true">↓</span></button></p>
     <!-- PROJECTS_END -->
   </div>
 </section>
 
 <section class="section lab-section" id="published" data-section="lab">
-  <div class="container"><div class="section-heading"><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 04 · compiler</span>{{ t.lab_kicker }}</p><h2>{{ t.lab_title }}</h2></div><p class="section-intro">{{ t.lab_intro }}</p></div>
-  <div class="lab-panel"><div class="lab-info"><p class="experiment-label"><span class="tiny-dot" aria-hidden="true"></span>{{ t.lab_tag }}</p><h3>{{ t.lab_name }}</h3><p>{{ t.lab_description }}</p><div class="lab-controls" hidden><label for="noise">{{ t.noise }}<output id="noise-value" for="noise">0.45</output></label><input id="noise" type="range" min="0" max="1" step="0.05" value="0.45" data-track="lab-noise"><label for="smoothing">{{ t.smoothing }}<output id="smoothing-value" for="smoothing">9</output></label><input id="smoothing" type="range" min="1" max="25" step="2" value="9" data-track="lab-smoothing"><button class="text-button lab-reset" type="button" data-track="lab-reset">↺ {{ t.reset }}</button></div><noscript><p>{{ t.nojs_lab }}</p></noscript><p class="lab-disclaimer">{{ t.lab_note }}</p></div>
+  <div class="container"><div class="section-heading" data-reveal><div><p class="eyebrow"><span class="fig-label" aria-hidden="true">fig. 04 · compiler</span>{{ t.lab_kicker }}</p><h2>{{ t.lab_title }}</h2></div><p class="section-intro">{{ t.lab_intro }}</p></div>
+  <div class="lab-panel" data-reveal><div class="lab-info"><p class="experiment-label"><span class="tiny-dot" aria-hidden="true"></span>{{ t.lab_tag }}</p><h3>{{ t.lab_name }}</h3><p>{{ t.lab_description }}</p><div class="lab-controls" hidden><label for="noise">{{ t.noise }}<output id="noise-value" for="noise">0.45</output></label><input id="noise" type="range" min="0" max="1" step="0.05" value="0.45" data-track="lab-noise"><label for="smoothing">{{ t.smoothing }}<output id="smoothing-value" for="smoothing">9</output></label><input id="smoothing" type="range" min="1" max="25" step="2" value="9" data-track="lab-smoothing"><button class="text-button lab-reset" type="button" data-track="lab-reset">↺ {{ t.reset }}</button></div><noscript><p>{{ t.nojs_lab }}</p></noscript><p class="lab-disclaimer">{{ t.lab_note }}</p></div>
   <div class="lab-chart"><div class="chart-header"><span>signal.playground</span><span class="chart-indicator">LOCAL / SYNTHETIC</span></div><div class="chart-legend"><span class="legend-raw">{{ t.raw }}</span><span class="legend-filtered">{{ t.filtered }}</span></div><canvas id="signal-canvas" width="800" height="360" aria-hidden="true"></canvas><div class="chart-summary" aria-live="polite"><span>{{ t.rms }}</span><div><span class="legend-raw">{{ t.raw }}: <output id="raw-rms">—</output></span><span class="legend-filtered">{{ t.filtered }}: <output id="filtered-rms">—</output></span></div></div></div></div>
   <!-- PAGES_START -->
   {% set ev_lab = (projects|selectattr('id', 'equalto', 'evolutionary-lab')|first) %}
@@ -180,7 +163,7 @@
 
 <section class="section about-section" id="education" data-section="about">
   <div class="container about-grid">
-    <div class="about-copy">
+    <div class="about-copy" data-reveal>
       <p class="eyebrow">{{ t.about_kicker }}</p>
       <h2>{{ t.about_title }}</h2>
       <p>{{ profile.about }}</p>
@@ -189,17 +172,16 @@
     </div>
     <div class="timeline" aria-label="{{ t.experience }}">
       {% for date, title, description in profile.experience %}
-      <article class="timeline-entry">
-        <p class="timeline-date">{{ date }}</p>
-        <h3>{{ title }}</h3>
-        <p>{{ description }}</p>
-      </article>
+      <details class="timeline-entry disclosure" data-reveal{% if loop.first %} open{% endif %}>
+        <summary><span class="timeline-date">{{ date }}</span><h3>{{ title }}</h3></summary>
+        <p class="disclosure-body">{{ description }}</p>
+      </details>
       {% endfor %}
     </div>
   </div>
 
   {% if site.testimonial or site.software_registration %}
-  <div class="container stack-container" id="credentials">
+  <div class="container stack-container" id="credentials" data-reveal>
     <div class="section-subheading">
       <p class="eyebrow">{{ t.stack_kicker }}</p>
       <h3>{{ t.stack_title }}</h3>
@@ -277,7 +259,7 @@
   </div>
   {% endif %}
 
-  <div class="container skills-map" id="skills">
+  <div class="container skills-map" id="skills" data-reveal>
     <p>{{ t.skills_intro }}</p>
     <div class="skill-network">
       {% for key, symbol in [('backend','{ }'),('devices','∿'),('data','∑'),('interfaces','⌘')] %}
@@ -289,7 +271,7 @@
 
 <section class="section contact-section" id="contact" data-section="contact">
   <div class="container contact-grid">
-    <div class="contact-copy">
+    <div class="contact-copy" data-reveal>
       <p class="eyebrow">{{ t.contact_kicker }}</p>
       <h2>{{ t.contact_title }}</h2>
       <p>{{ t.contact_intro }}</p>
@@ -332,9 +314,9 @@
         <div class="field">
           <label for="reason">{{ t.reason }}</label>
           <select id="reason" name="reason" data-track="contact-reason">
+            <option value="job">{{ t.reason_job }}</option>
             <option value="project">{{ t.reason_project }}</option>
             <option value="consulting">{{ t.reason_consulting }}</option>
-            <option value="job">{{ t.reason_job }}</option>
             <option value="collaboration">{{ t.reason_collab }}</option>
             <option value="feedback">{{ t.reason_question }}</option>
           </select>

@@ -227,14 +227,25 @@
     }, carouselRemaining);
   };
 
+  // Progressive disclosure: at most PROJECT_PREVIEW cards per filter until the
+  // visitor asks for the rest. Without JS every card stays visible.
+  const PROJECT_PREVIEW = 3;
+  const moreProjects = $(".projects-more");
+  let projectsExpanded = false;
+  let currentFilter = "all";
+
   const applyFilter = (value) => {
+    currentFilter = value;
     let count = 0;
     $$(".project-card").forEach((card) => {
-      const visible =
+      const matches =
         value === "all" || card.dataset.skills.split(" ").includes(value);
-      card.hidden = !visible;
-      if (visible) count++;
+      if (matches) count++;
+      card.hidden =
+        !matches || (!projectsExpanded && count > PROJECT_PREVIEW);
     });
+    if (moreProjects)
+      moreProjects.hidden = projectsExpanded || count <= PROJECT_PREVIEW;
     $$(".filter-button").forEach((button) => {
       const selected = button.dataset.filter === value;
       button.classList.toggle("selected", selected);
@@ -251,6 +262,16 @@
     filtersContainer.hidden = false;
     applyFilter(carouselCategories[0]);
     startCarouselTimer(7000);
+
+    moreProjects?.addEventListener("click", () => {
+      projectsExpanded = true;
+      // The visitor chose to read everything: stop rotating the filter.
+      carouselDisabled = true;
+      clearTimeout(carouselTimer);
+      filtersContainer.classList.add("paused");
+      projectsSection?.classList.add("paused");
+      applyFilter(currentFilter);
+    });
 
     $$(".filter-button").forEach((button) =>
       button.addEventListener("click", () => {

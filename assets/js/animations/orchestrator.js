@@ -21,6 +21,7 @@ const context = { motion };
 load("./status-bar.js", context);
 if (document.querySelector("[data-stream]")) load("./scroll-stream.js", context);
 if (document.querySelector("[data-stack]")) load("./draggable-cards.js", context);
+if (document.querySelector("[data-reveal]")) load("./reveal.js", context);
 
 const heroArt = document.querySelector("[data-hero-mesh]");
 if (heroArt && motion === "full" && "IntersectionObserver" in window) {

@@ -4,32 +4,32 @@
       "id": "apis",
       "icon": "backend",
       "pt": {
-        "title": "APIs & Microsserviços de Alta Performance",
-        "description": "Arquitetura e desenvolvimento de backends assíncronos e escaláveis em Python (FastAPI) e Rust, integrados à nuvem AWS e bancos de dados relacionais.",
+        "title": "Integração e implantação em produção",
+        "description": "Levo APIs e serviços do protótipo ao ambiente real: backend assíncrono em Python (FastAPI), nuvem AWS e banco de dados relacional.",
         "deliverables": [
-          "Endpoints assíncronos e documentados (OpenAPI / Swagger)",
-          "Conteinerização Docker e pipelines de implantação em nuvem",
-          "Auditoria de desempenho, observabilidade e saneamento de memory leaks"
+          "APIs documentadas (OpenAPI) prontas para integrar com outros sistemas",
+          "Conteinerização Docker e pipeline de implantação em nuvem",
+          "Diagnóstico de falhas em produção: desempenho e vazamentos de memória"
         ],
         "proof_label": "Ver projetos relacionados"
       },
       "en": {
-        "title": "High-Performance APIs & Microservices",
-        "description": "Design and implementation of asynchronous, scalable backends in Python (FastAPI) and Rust, integrated with AWS and relational databases.",
+        "title": "Integration & production deployment",
+        "description": "I take APIs and services from prototype to the real environment: asynchronous Python backend (FastAPI), AWS, and a relational database.",
         "deliverables": [
-          "Documented async REST APIs (OpenAPI / Swagger)",
-          "Docker containerization and cloud deployment pipelines",
-          "Performance auditing, telemetry, and memory leak mitigation"
+          "Documented APIs (OpenAPI) ready to integrate with other systems",
+          "Docker containerization and a cloud deployment pipeline",
+          "Production failure diagnosis: performance and memory leaks"
         ],
         "proof_label": "Explore related projects"
       },
       "es": {
-        "title": "APIs y Microservicios de Alto Rendimiento",
-        "description": "Arquitectura y desarrollo de backends asíncronos y escalables en Python (FastAPI) y Rust, integrados con la nube AWS y bases de datos relacionales.",
+        "title": "Integración e implementación en producción",
+        "description": "Llevo APIs y servicios del prototipo al entorno real: backend asíncrono en Python (FastAPI), nube AWS y base de datos relacional.",
         "deliverables": [
-          "Endpoints asíncronos y documentados (OpenAPI / Swagger)",
-          "Contenerización Docker y pipelines de despliegue en la nube",
-          "Auditoría de rendimiento, observabilidad y mitigación de memory leaks"
+          "APIs documentadas (OpenAPI) listas para integrarse con otros sistemas",
+          "Contenerización Docker y pipeline de despliegue en la nube",
+          "Diagnóstico de fallos en producción: rendimiento y memory leaks"
         ],
         "proof_label": "Ver proyectos relacionados"
       },
@@ -39,32 +39,32 @@
       "id": "automation",
       "icon": "automation",
       "pt": {
-        "title": "Automações de Segurança & Servidores MCP",
-        "description": "Ferramentas CLI assíncronas, conectores de IA via protocolo MCP (Model Context Protocol) e automações para varredura e produtividade técnica.",
+        "title": "Automação com IA e servidores MCP",
+        "description": "Conecto assistentes de IA a sistemas e dados reais via Model Context Protocol (MCP), com ferramentas de linha de comando reprodutíveis.",
         "deliverables": [
-          "Servidores MCP sob medida para integração com Claude, Gemini e IDEs",
-          "Ferramentas CLI rápidas e reprodutíveis em Python e Rust",
-          "Pipelines de varredura assíncrona e auditoria de superfície de ataque"
+          "Servidores MCP sob medida para Claude, Gemini e IDEs",
+          "Ferramentas CLI assíncronas e reprodutíveis em Python",
+          "Automação de varredura e auditoria de superfície de ataque"
         ],
         "proof_label": "Ver automações"
       },
       "en": {
-        "title": "Security Automations & MCP Servers",
-        "description": "Asynchronous CLI tools, AI connectors via Model Context Protocol (MCP), and automated recon/productivity pipelines.",
+        "title": "AI automation & MCP servers",
+        "description": "I connect AI assistants to real systems and data through the Model Context Protocol (MCP), with reproducible command-line tools.",
         "deliverables": [
-          "Custom MCP servers for LLM tool integration (Claude, Gemini, IDEs)",
-          "Fast, reproducible CLI tools in Python and Rust",
-          "High-throughput asynchronous reconnaissance and attack-surface scanning"
+          "Custom MCP servers for Claude, Gemini, and IDEs",
+          "Asynchronous, reproducible CLI tools in Python",
+          "Automated reconnaissance and attack-surface auditing"
         ],
         "proof_label": "Explore automations"
       },
       "es": {
-        "title": "Automatizaciones de Seguridad y Servidores MCP",
-        "description": "Herramientas CLI asíncronas, conectores de IA mediante protocolo MCP (Model Context Protocol) y canalizaciones automatizadas de reconocimiento y productividad técnica.",
+        "title": "Automatización con IA y servidores MCP",
+        "description": "Conecto asistentes de IA con sistemas y datos reales mediante Model Context Protocol (MCP), con herramientas de línea de comandos reproducibles.",
         "deliverables": [
-          "Servidores MCP a medida para integración con Claude, Gemini e IDEs",
-          "Herramientas CLI rápidas y reproducibles en Python y Rust",
-          "Pipelines de escaneo asíncrono y auditoría de superficie de ataque"
+          "Servidores MCP a medida para Claude, Gemini e IDEs",
+          "Herramientas CLI asíncronas y reproducibles en Python",
+          "Automatización de escaneo y auditoría de superficie de ataque"
         ],
         "proof_label": "Ver automatizaciones"
       },
@@ -74,32 +74,32 @@
       "id": "iot",
       "icon": "devices",
       "pt": {
-        "title": "Sistemas Embarcados, IoT & Dashboards",
-        "description": "Firmware para microcontroladores ESP32, processamento de sinais de sensores, telemetria em tempo real e dashboards analíticos.",
+        "title": "Dados, telemetria e diagnóstico",
+        "description": "Transformo sinais de dispositivos e dados do sistema em painéis que alguém consegue ler para decidir.",
         "deliverables": [
-          "Firmware ESP32 com Wi-Fi/MQTT e protocolos customizados de pacotes",
-          "Pipelines de processamento de sinais e inferência neural embarcada (ONNX)",
-          "Dashboards analíticos em Dash (Python) e gráficos interativos a 120 FPS"
+          "Dashboards analíticos em Dash (Python)",
+          "Telemetria em tempo real de dispositivos ESP32 (Wi-Fi/MQTT)",
+          "Processamento de sinais e inferência neural embarcada (ONNX)"
         ],
         "proof_label": "Ver sistemas"
       },
       "en": {
-        "title": "Embedded Systems, IoT & Analytics Dashboards",
-        "description": "ESP32 firmware, sensor signal processing, real-time telemetry, and analytical browser dashboards.",
+        "title": "Data, telemetry & diagnosis",
+        "description": "I turn device signals and system data into dashboards someone can read to make a decision.",
         "deliverables": [
-          "ESP32 firmware with Wi-Fi/MQTT and custom packet protocols",
-          "Signal processing pipelines and embedded neural inference (ONNX)",
-          "Interactive analytical dashboards with Dash (Python) and 120 FPS Canvas"
+          "Analytical dashboards with Dash (Python)",
+          "Real-time telemetry from ESP32 devices (Wi-Fi/MQTT)",
+          "Signal processing and embedded neural inference (ONNX)"
         ],
         "proof_label": "Explore systems"
       },
       "es": {
-        "title": "Sistemas Embebidos, IoT y Paneles Analíticos",
-        "description": "Firmware para microcontroladores ESP32, procesamiento de señales de sensores, telemetría en tiempo real y paneles analíticos en el navegador.",
+        "title": "Datos, telemetría y diagnóstico",
+        "description": "Convierto señales de dispositivos y datos del sistema en paneles que alguien puede leer para decidir.",
         "deliverables": [
-          "Firmware ESP32 con Wi-Fi/MQTT y protocolos personalizados de paquetes",
-          "Pipelines de procesamiento de señales e inferencia neuronal embebida (ONNX)",
-          "Paneles interactivos en Dash (Python) y gráficos a 120 FPS en Canvas"
+          "Paneles analíticos en Dash (Python)",
+          "Telemetría en tiempo real de dispositivos ESP32 (Wi-Fi/MQTT)",
+          "Procesamiento de señales e inferencia neuronal embebida (ONNX)"
         ],
         "proof_label": "Ver sistemas"
       },
@@ -182,7 +182,7 @@
           "Diagrama de arquitetura e contratos de API (OpenAPI)",
           "Lista de riscos, dependências e o que fica fora"
         ],
-        "acceptance": "Você aprova o escopo escrito antes de qualquer código."
+        "acceptance": "O escopo escrito é aprovado por quem pediu antes de qualquer código."
       },
       "en": {
         "title": "Specification & modeling",
@@ -192,7 +192,7 @@
           "Architecture diagram and API contracts (OpenAPI)",
           "List of risks, dependencies and what stays out"
         ],
-        "acceptance": "You sign off the written scope before any code is written."
+        "acceptance": "The written scope is signed off by whoever asked for it before any code is written."
       },
       "es": {
         "title": "Especificación y modelado",
@@ -202,7 +202,7 @@
           "Diagrama de arquitectura y contratos de API (OpenAPI)",
           "Lista de riesgos, dependencias y lo que queda fuera"
         ],
-        "acceptance": "Apruebas el alcance escrito antes de cualquier línea de código."
+        "acceptance": "El alcance escrito lo aprueba quien lo pidió antes de cualquier línea de código."
       }
     },
     {
@@ -242,7 +242,7 @@
       "id": "build",
       "pt": {
         "title": "Prototipagem incremental",
-        "summary": "Entregas pequenas e funcionando, num ambiente que você consegue abrir.",
+        "summary": "Entregas pequenas e funcionando, num ambiente que o time consegue abrir.",
         "deliverables": [
           "Entregas semanais em ambiente de homologação",
           "Ambiente reproduzível com Docker Compose",
@@ -252,7 +252,7 @@
       },
       "en": {
         "title": "Incremental prototyping",
-        "summary": "Small, working increments in an environment you can open yourself.",
+        "summary": "Small, working increments in an environment the team can open.",
         "deliverables": [
           "Weekly increments on a staging environment",
           "Reproducible environment with Docker Compose",
@@ -262,7 +262,7 @@
       },
       "es": {
         "title": "Prototipado incremental",
-        "summary": "Entregas pequeñas y funcionando, en un entorno que puedes abrir tú mismo.",
+        "summary": "Entregas pequeñas y funcionando, en un entorno que el equipo puede abrir.",
         "deliverables": [
           "Entregas semanales en entorno de pruebas",
           "Entorno reproducible con Docker Compose",

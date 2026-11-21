@@ -1,0 +1,25 @@
+{% extends 'base.html' %}{% block title %}{{ t.rates_link }} | {{ site.name }}{% endblock %}
+{% block content %}
+<section class="section services-section rates-page" data-section="services">
+  <div class="container">
+    <a class="back-link" href="{{ base }}" data-track="page">← {{ t.home }}</a>
+    <p class="eyebrow">{{ t.rates_kicker }}</p>
+    <h1>{{ t.models_title }}</h1>
+    <p class="section-intro">{{ t.models_intro }}</p>
+    <div class="pricing-grid">
+      {% for model in services.models %}
+      <div class="pricing-card" data-model="{{ model.id }}">
+        <div class="pricing-header">
+          <h2>{{ model[lang].title }}</h2>
+          <p class="pricing-subtitle">{{ model[lang].subtitle }}</p>
+        </div>
+        <div class="pricing-rate">{{ model[lang].price }}</div>
+        <p class="pricing-note">{{ model[lang].note }}</p>
+        <a class="button outline pricing-cta" href="{{ base }}#contact" data-track="pricing-cta-{{ model.id }}">{{ t.contact }} <span aria-hidden="true">→</span></a>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="rates-note">{{ t.rates_note }}</p>
+  </div>
+</section>
+{% endblock %}

@@ -29,7 +29,7 @@ def built():
 
 def test_only_allowlisted_public_files_are_built(built):
     files = [str(p.relative_to(built)).replace("\\", "/") for p in built.rglob("*") if p.is_file()]
-    assert len(list(built.rglob("*.html"))) == 25
+    assert len(list(built.rglob("*.html"))) == 28
     for path in files:
         assert not any(
             x in path
@@ -165,13 +165,31 @@ def test_commercial_positioning_and_services(built):
     assert "looking for a software internship" not in home_en.lower()
     assert "busco una pasantía" not in home_es.lower()
 
-    # Pricing & Services
-    assert "R$ 120 / hora" in home_pt
-    assert "$25 USD / hour" in home_en
-    assert "$25 USD / hora" in home_es
-    assert "A partir de R$ 3.500" in home_pt
-    assert "Starting at $800 USD" in home_en
-    assert "A partir de $800 USD" in home_es
+    # Positioning: hiring-first title, no freelance pricing on the home page
+    assert "Engenheiro de Soluções de IA" in home_pt
+    assert "AI Solutions Engineer" in home_en
+    assert "Ingeniero de Soluciones de IA" in home_es
+
+    # Pricing lives on its own page, linked from the footer
+    rates_pt = (built / "services/index.html").read_text(encoding="utf-8")
+    rates_en = (built / "en/services/index.html").read_text(encoding="utf-8")
+    rates_es = (built / "es/services/index.html").read_text(encoding="utf-8")
+    assert "R$ 120 / hora" in rates_pt
+    assert "$25 USD / hour" in rates_en
+    assert "$25 USD / hora" in rates_es
+    assert "A partir de R$ 3.500" in rates_pt
+    assert "Starting at $800 USD" in rates_en
+    assert "A partir de $800 USD" in rates_es
+    for home, base in ((home_pt, "/"), (home_en, "/en/"), (home_es, "/es/")):
+        assert "pricing-card" not in home
+        assert "R$ 120" not in home and "$25 USD" not in home and "$800 USD" not in home
+        assert f'href="{base}services/"' in home
+
+    # Progressive disclosure keeps every detail in the static HTML
+    assert home_pt.count('data-reveal') >= 8
+    assert 'class="disclosure service-details"' in home_pt
+    assert 'class="timeline-entry disclosure"' in home_pt
+    assert (built / "assets/js/animations/reveal.js").exists()
 
     # Cal.com scheduling link
     assert "https://cal.com/joao-neto-xqw0df/15min" in home_pt

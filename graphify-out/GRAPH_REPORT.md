@@ -1,17 +1,17 @@
-# Graph Report - joaosnet.github.io  (2026-11-12)
+# Graph Report - joaosnet.github.io  (2026-11-21)
 
 ## Corpus Check
-- 61 files · ~91,364 words
+- 62 files · ~96,004 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 4, .woff2 2, .gs 1)
 
 ## Summary
-- 526 nodes · 672 edges · 45 communities (25 shown, 20 thin omitted)
+- 529 nodes · 673 edges · 46 communities (25 shown, 21 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `08049be1`
+- Built from commit: `0525c4b8`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -27,7 +27,6 @@
 - Maintenance Workflow
 - Node.js Core Utilities
 - Project Update Workflow
-- preview.py
 - Claude Agent Guidelines
 - with
 - João Natividade · Portfólio
@@ -78,7 +77,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (45 total, 20 thin omitted)
+## Communities (46 total, 21 thin omitted)
 
 ### Community 0 - "João Natividade · Portfolio"
 Cohesion: 0.14
@@ -93,8 +92,8 @@ Cohesion: 0.15
 Nodes (12): 1. Topologia do Sistema e Fronteira de Publicação, 3. Isolamento e Segurança de Projetos Privados (`private_preview`), 4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`), 5. Diretriz Universal para Agentes de IA: Knowledge Graph First, A. Proibição Estrita de Varredura Especulativa, Arquitetura, Governança de Dados e Isolamento de Segurança, B. Ordem de Navegação Obrigatória, C. Protocolo de Delegação para Subagentes (+4 more)
 
 ### Community 3 - "Analytics and Review Documentation"
-Cohesion: 0.09
-Nodes (22): Dados e controles, Estado da entrega, Extrair insights, Implantação após a revisão, Métricas de interação · coletor v1, Retenção, segurança e limites, Comparação visual, Evidências de validação (+14 more)
+Cohesion: 0.11
+Nodes (19): Dados e controles, Estado da entrega, Extrair insights, Implantação após a revisão, Métricas de interação · coletor v1, Retenção, segurança e limites, Comparação visual, Evidências de validação (+11 more)
 
 ### Community 4 - "João Natividade · Portafolio"
 Cohesion: 0.14
@@ -110,7 +109,7 @@ Nodes (40): graphify & Knowledge Graph First, Rules for All Agents & Subagents:,
 
 ### Community 7 - "Frontend Dependencies and Testing"
 Cohesion: 0.07
-Nodes (26): devDependencies, @axe-core/playwright@4.14.0, lighthouse@13.5.0, @playwright/test@1.64.1, prettier@3.9.10, name, private, scripts (+18 more)
+Nodes (26): devDependencies, @axe-core/playwright@4.14.0, lighthouse@13.5.0, @playwright/test@1.65.0, prettier@3.10.1, name, private, scripts (+18 more)
 
 ### Community 8 - "Maintenance Workflow"
 Cohesion: 0.07
@@ -141,8 +140,8 @@ Cohesion: 0.25
 Nodes (8): outputs, runs-on, steps, changes, browser, node, python, id
 
 ### Community 21 - "Local Test Suite Execution"
-Cohesion: 0.08
-Nodes (26): 1. Testes Unitários (`tests/test_update_projects.py`), 2. Testes de Estrutura (`tests/test_site_structure.py`), 3. Testes de Variáveis de Ambiente (`tests/test_env_variables.py`), 📝 Adicionando Novos Testes, code:python (import pytest), code:bash (# Ver saída detalhada), code:bash (uv run pytest tests/test_update_projects.py -v), code:bash (uv run pytest tests/test_site_structure.py -v) (+18 more)
+Cohesion: 0.07
+Nodes (29): 1. Testes Unitários (`tests/test_update_projects.py`), 2. Testes de Estrutura (`tests/test_site_structure.py`), 3. Testes de Variáveis de Ambiente (`tests/test_env_variables.py`), 📝 Adicionando Novos Testes, code:powershell (uv run ruff check build_site.py update_projects.py scripts t), code:python (import pytest), code:bash (# Ver saída detalhada), code:bash (uv run pytest tests/test_update_projects.py -v) (+21 more)
 
 ### Community 26 - "validate"
 Cohesion: 0.33
@@ -177,19 +176,19 @@ Cohesion: 0.40
 Nodes (5): on, pull_request, push, workflow_call, branches
 
 ### Community 136 - "build_site.py"
-Cohesion: 0.08
-Nodes (8): Handover: Code & Animation, generate_cvs(), fetch(), get(), install(), test_collector_gs_default_catalog_supports_v1_and_v2(), test_live_production_telemetry_health(), test_telemetry_config_and_catalog_alignment()
+Cohesion: 0.06
+Nodes (9): Handover: Code & Animation, generate_cvs(), fetch(), get(), install(), Handler, test_collector_gs_default_catalog_supports_v1_and_v2(), test_live_production_telemetry_health() (+1 more)
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `joaosnet-portfolio`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 302 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **20 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 305 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **21 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `main()` connect `build_site.py` to `Analytics and Review Documentation`?**
-  _High betweenness centrality (0.067) - this node is a cross-community bridge._
+  _High betweenness centrality (0.066) - this node is a cross-community bridge._
 - **What connects `joaosnet-portfolio` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `João Natividade · Portfolio` be split into smaller, more focused modules?**
@@ -201,4 +200,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `test_env_variables.py` be split into smaller, more focused modules?**
   _Cohesion score 0.14705882352941177 - nodes in this community are weakly interconnected._
 - **Should `Analytics and Review Documentation` be split into smaller, more focused modules?**
-  _Cohesion score 0.09462365591397849 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

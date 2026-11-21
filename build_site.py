@@ -176,7 +176,11 @@ def build(output=None):
 
     for lang in ("pt", "en", "es"):
         base = "/" if lang == "pt" else f"/{lang}/"
-        routes = [("home.html", base, None), ("privacy.html", base + "privacy/", None)]
+        routes = [
+            ("home.html", base, None),
+            ("privacy.html", base + "privacy/", None),
+            ("services.html", base + "services/", None),
+        ]
         routes += [("project.html", base + "projects/" + p["id"] + "/", p) for p in projects]
         routes.append(("404.html", base + "404.html", None))
 
@@ -231,6 +235,26 @@ def build(output=None):
                     schema_data["datePublished"] = reg["issued_date"]
                     schema_data["copyrightHolder"] = [{"@type": "Organization", "name": h} for h in reg["holders"]]
             elif template == "home.html":
+                schema_data = {
+                    "@context": "https://schema.org",
+                    "@type": "Person",
+                    "name": site["name"],
+                    "url": site["url"],
+                    "description": site["profile"][lang]["description"],
+                    "jobTitle": site["profile"][lang]["title"],
+                    "sameAs": [site["github"], site["linkedin"], site["lattes"]],
+                    "knowsAbout": [
+                        "Python",
+                        "FastAPI",
+                        "AWS",
+                        "Docker",
+                        "Model Context Protocol",
+                        "System integration",
+                        "Rust",
+                        "ESP32",
+                    ],
+                }
+            elif template == "services.html":
                 price_range = "R$$" if lang == "pt" else "$$"
                 offer_cat_names = {
                     "pt": "Serviços & Soluções",
@@ -239,44 +263,23 @@ def build(output=None):
                 }
                 schema_data = {
                     "@context": "https://schema.org",
-                    "@graph": [
-                        {
-                            "@type": "Person",
-                            "name": site["name"],
-                            "url": site["url"],
-                            "description": site["profile"][lang]["description"],
-                            "jobTitle": site["profile"][lang]["title"],
-                            "sameAs": [site["github"], site["linkedin"], site["lattes"]],
-                            "knowsAbout": [
-                                "Python",
-                                "FastAPI",
-                                "Rust",
-                                "AWS",
-                                "ESP32",
-                                "Docker",
-                                "Model Context Protocol",
-                            ],
-                        },
-                        {
-                            "@type": "ProfessionalService",
-                            "name": f"{site['name']} · Software Engineering",
-                            "url": site["url"],
-                            "priceRange": price_range,
-                            "areaServed": "Worldwide",
-                            "hasOfferCatalog": {
-                                "@type": "OfferCatalog",
-                                "name": offer_cat_names[lang],
-                                "itemListElement": [
-                                    {
-                                        "@type": "Offer",
-                                        "name": pkg[lang]["title"],
-                                        "description": pkg[lang]["description"],
-                                    }
-                                    for pkg in services["packages"]
-                                ],
-                            },
-                        },
-                    ],
+                    "@type": "ProfessionalService",
+                    "name": f"{site['name']} · {ui[lang]['rates_link']}",
+                    "url": site["url"] + path,
+                    "priceRange": price_range,
+                    "areaServed": "Worldwide",
+                    "hasOfferCatalog": {
+                        "@type": "OfferCatalog",
+                        "name": offer_cat_names[lang],
+                        "itemListElement": [
+                            {
+                                "@type": "Offer",
+                                "name": pkg[lang]["title"],
+                                "description": pkg[lang]["description"],
+                            }
+                            for pkg in services["packages"]
+                        ],
+                    },
                 }
             else:
                 schema_data = {
@@ -329,6 +332,7 @@ def build(output=None):
         "assets/js/animations/orchestrator.js",
         "assets/js/animations/status-bar.js",
         "assets/js/animations/scroll-stream.js",
+        "assets/js/animations/reveal.js",
         "assets/js/animations/draggable-cards.js",
         "assets/js/3d/hero-mesh.js",
         "assets/images/hero-avatar.jpg",
@@ -444,7 +448,7 @@ def build(output=None):
             priority = "1.0" if p == "/" else "0.9"
             changefreq = "weekly"
             lastmod = static_lastmod
-        elif "privacy" in p:
+        elif "privacy" in p or p.endswith("/services/"):
             priority = "0.3"
             changefreq = "monthly"
             lastmod = static_lastmod
@@ -492,7 +496,7 @@ def build(output=None):
     shutil.copyfile(destination / "404.html", ROOT / "404.html")
     (ROOT / "assets").mkdir(parents=True, exist_ok=True)
     shutil.copyfile(destination / "assets/analytics-config.json", ROOT / "assets/analytics-config.json")
-    for route in ("projects", "en", "es", "privacy"):
+    for route in ("projects", "en", "es", "privacy", "services"):
         src = destination / route
         dest = ROOT / route
         if src.exists():

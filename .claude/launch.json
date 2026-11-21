@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "static",
-      "runtimeExecutable": "python",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
       "runtimeArgs": ["-m", "http.server", "8099"],
       "port": 8099
     }

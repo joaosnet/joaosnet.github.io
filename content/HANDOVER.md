@@ -1,14 +1,20 @@
 # Handover: Copy & Tech Docs
-- **Última Atualização**: 2026-11-12 por Claude Code (sessão do roadmap de craft)
-- **Status Atual**: Strings trilíngues (pt/en/es) para barra de status, ciclos, code stream e pilha em `ui.json`; 4 ciclos de engenharia em `services.json` → `cycles`. A intro do hero deixa explícita a formação em Engenharia de Computação (UFPA).
+- **Última Atualização**: 2026-11-21 por Claude Code (reposicionamento para vagas próximas de FDE)
+- **Status Atual**: Home e currículos reposicionados para contratação, com o título "Engenheiro de Soluções de IA". Preços de freelance saíram da home e vivem em `/services/` (pt/en/es), com link só no rodapé. A home revela o conteúdo sob demanda: blocos entram ao rolar (`data-reveal` + `assets/js/animations/reveal.js`) e os detalhes abrem em `<details class="disclosure">`; a grade de projetos mostra 3 cartões por filtro até o visitante pedir o resto.
 - **Arquivos sob Propriedade Rígida**:
   - `content/site.json`, `content/ui.json`, `content/services.json`
   - `docs/next-improvements-roadmap.md`
 - **Decisões Técnicas Consolidadas**:
   - Nenhuma métrica inventada: o code stream usa só os `outcomes` já existentes em `projects.json`; os ciclos não prometem prazos.
-  - Formação: graduação em **Engenharia de Computação** (em andamento, conclusão prevista em 2026). "Engenheiro de software" aparece apenas como função profissional.
+  - Formação: graduação em **Engenharia de Computação** (em andamento, conclusão prevista em 2026).
+  - Título profissional: **Engenheiro de Soluções de IA** / **AI Solutions Engineer** / **Ingeniero de Soluciones de IA**. "Engenharia de software" aparece só como área (no "sobre" e no resumo do CV) e no nome real do estágio. "IA" se apoia em integração e implantação (MCP, ONNX), nunca em treino de modelos. "Forward deployed" é citado como perfil de atuação, não como cargo ocupado.
+  - Linha do tempo: estágio no LaPS (mar–set 2026) e um freelance (ago 2025, período tirado dos commits do repositório privado do cliente); o restante é rotulado como "projetos próprios". O cliente do freelance é descrito como "loja de varejo (venda online e física)", sem citar o segmento.
+  - Todo o texto continua no HTML estático; o JS só anima e recolhe. Nada fica oculto sem `reveal-ready`, que só é ativado com movimento completo.
+  - Nenhum `data-track` novo foi criado, para não exigir mudança no catálogo de elementos do coletor.
   - `projects.json` é regravado por `update_projects.py`; não editar à mão campos sincronizados.
 - **Próximas Tarefas Imediatas**:
+  - [ ] Opcional: nomear as ferramentas de segurança, de automação e o gerenciador de contêineres usados no DMóvel (o João ainda não disse quais eram) em `scripts/build_cv.py`.
+  - [ ] Reimplantar o Apps Script (`analytics/collector.gs`) para o coletor aceitar eventos das páginas `/services/`.
   - [ ] Preencher `site.audit` (`title`/`note` em pt/en/es, `tool`, `date`, `scores[{label, value}]`) com Lighthouse medido em produção após o deploy — o cartão só aparece quando a chave existe.
 - **Bloqueios ou Dependências de Outros Agentes**:
   - Nenhum.

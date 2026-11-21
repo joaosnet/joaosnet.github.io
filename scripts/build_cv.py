@@ -46,6 +46,16 @@ def generate_cvs(output, site, projects):
         )
         styles.add(
             ParagraphStyle(
+                name="CVTitle",
+                fontName=bold,
+                fontSize=9.5,
+                leading=13,
+                alignment=1,
+                textColor=primary_color,
+            )
+        )
+        styles.add(
+            ParagraphStyle(
                 name="CVCivilName",
                 fontName=family,
                 fontSize=8,
@@ -130,6 +140,7 @@ def generate_cvs(output, site, projects):
 
         # Header
         p(escape(site["name"]), "CVName")
+        p(escape(profile["title"]), "CVTitle")
         p("João da Cruz de Natividade e Silva Neto (João Silva Neto) · " + escape(profile["location"]), "CVCivilName")
 
         site_lang_path = "" if lang == "pt" else f"/{lang}"
@@ -151,27 +162,25 @@ def generate_cvs(output, site, projects):
 
         if lang == "pt":
             summary_text = (
-                "Engenheiro de software e formando em Engenharia de Computação na UFPA com foco em desenvolvimento "
-                "backend, microsserviços, automação MCP, nuvem (AWS) e IoT. Coautor de propriedade intelectual de "
-                "software registrada no INPI (BR512025004902-1). Experiência prática na manutenção e otimização de "
-                "APIs em Python (FastAPI) e sistemas em Rust, saneamento de vazamentos de memória em aplicações "
-                "multiplataforma (Flutter/Dart), dashboards em Dash e interfaces a 120 FPS em Canvas."
+                "Engenheiro de soluções de IA e formando em Engenharia de Computação na UFPA. Levo sistemas do "
+                "problema do usuário à produção: entendo a necessidade com quem usa, construo em Python (FastAPI) e "
+                "implanto na AWS. Conecto assistentes de IA a sistemas reais com servidores MCP. Base em engenharia "
+                "de software, com coautoria de programa registrado no INPI (BR512025004902-1)."
             )
         elif lang == "en":
             summary_text = (
-                "Software engineer and Computer Engineering senior at UFPA specializing in backend development, "
-                "microservices, MCP automation, AWS cloud, and IoT. Co-author of registered software intellectual "
-                "property at INPI (#BR512025004902-1). Hands-on experience optimizing Python APIs (FastAPI) and "
-                "Rust systems, resolving mobile memory leaks (Flutter/Dart), building Dash dashboards, and crafting "
-                "120 FPS Canvas graphics."
+                "AI solutions engineer and Computer Engineering senior at UFPA (Brazil). I take systems from the "
+                "user's problem to production: I work out the need with the people who use the system, build in "
+                "Python (FastAPI), and deploy on AWS. I connect AI assistants to real systems with MCP servers. "
+                "Software engineering background, co-author of a program registered at INPI (#BR512025004902-1)."
             )
         else:
             summary_text = (
-                "Ingeniero de software y estudiante de último año de Ingeniería de Computación en la UFPA con enfoque "
-                "en desarrollo backend, microservicios, automatización MCP, nube (AWS) e IoT. Coautor de propiedad "
-                "intelectual de software registrada en el INPI (BR512025004902-1). Experiencia práctica en "
-                "mantenimiento y optimización de APIs en Python (FastAPI) y sistemas en Rust, saneamiento de memory "
-                "leaks en Flutter/Dart y paneles a 120 FPS."
+                "Ingeniero de soluciones de IA y estudiante de último año de Ingeniería de Computación en la UFPA. "
+                "Llevo sistemas del problema del usuario a producción: entiendo la necesidad con quienes lo usan, "
+                "construyo en Python (FastAPI) y despliego en AWS. Conecto asistentes de IA con sistemas reales "
+                "mediante servidores MCP. Base en ingeniería de software, coautor de un programa registrado en el "
+                "INPI (BR512025004902-1)."
             )
         p(summary_text)
 
@@ -187,75 +196,116 @@ def generate_cvs(output, site, projects):
             p("Estagiário em Engenharia de Software · LaPS / UFPA (Projeto DMóvel)", "CVJobTitle")
             p("Março de 2026 — Setembro de 2026 | Belém, PA | Carga Horária: 360 horas", "CVJobMeta")
             p(
-                "• Coautoria de Propriedade Intelectual registrada no INPI (Processo nº BR512025004902-1 · "
-                "DMóvel · Parceria UFOPA / UFPA / UEMA · Proteção de 50 anos pela Lei 9.609/1998).",
+                "• Implantei e operei na AWS os serviços conteinerizados do DMóvel, aplicativo assistivo para "
+                "pessoas com deficiência (UFOPA, UFPA e UEMA): gerenciador de contêineres, IAM (usuários, grupos "
+                "e permissões) e controle de custos e faturas.",
                 "CVBullet",
             )
             p(
-                "• Manutenção e refatoração do backend em Python com FastAPI, integrado a bancos de dados e "
-                "serviços na Amazon Web Services (AWS).",
+                "• Mantive a API do sistema, primeiro em PHP/Laravel e depois em Python/FastAPI, e os dashboards "
+                "de análise de dados e de gerenciamento.",
                 "CVBullet",
             )
             p(
-                "• Desenvolvimento e manutenção de interface assistiva multiplataforma em Flutter/Dart e "
-                "dashboards analíticos com Dash (Python), HTML, CSS e JavaScript.",
+                "• Acompanhei os erros dos usuários com GlitchTip, usei ferramentas de segurança e de automação "
+                "para verificar o funcionamento dos aplicativos e eliminei vazamentos de memória no app "
+                "Flutter/Dart.",
                 "CVBullet",
             )
             p(
-                "• Diagnóstico e saneamento de vazamentos de memória (memory leaks) e gargalos de runtime em produção "
-                "no aplicativo móvel.",
+                "• Conversei com usuários e parceiros (LED, LAMIC e estudantes da Alemanha) e apresentei o "
+                "sistema a alunos de computação da UFPA em dois dias de demonstração.",
                 "CVBullet",
             )
             p(
-                "• Desempenho técnico avaliado com nota máxima 10,0 (Conceito Excelente) pelo orientador permanente.",
+                "• Coautor do programa registrado no INPI (BR512025004902-1); desempenho avaliado com nota 10,0 "
+                "(Excelente) pelo orientador.",
                 "CVBullet",
             )
         elif lang == "en":
             p("Software Engineering Intern · LaPS / UFPA (DMóvel Assistive Technology)", "CVJobTitle")
             p("March 2026 — September 2026 | Belém, Brazil | 360 Hours", "CVJobMeta")
             p(
-                "• Registered Software Intellectual Property co-author at INPI (Process #BR512025004902-1 · "
-                "DMóvel · UFOPA / UFPA / UEMA · 50-year protection under Law 9.609/1998).",
+                "• Deployed and operated on AWS the containerized services of DMóvel, an assistive app for people"
+                " with disabilities (UFOPA, UFPA, and UEMA): container manager, IAM (users, groups, and "
+                "permissions), and cost and billing control.",
                 "CVBullet",
             )
             p(
-                "• Maintained and refactored Python/FastAPI backend integrated with databases and cloud services on "
-                "Amazon Web Services (AWS).",
+                "• Maintained the system API, first in PHP/Laravel and then in Python/FastAPI, along with the "
+                "data analysis and management dashboards.",
                 "CVBullet",
             )
             p(
-                "• Developed and maintained cross-platform assistive UI in Flutter/Dart and interactive dashboards "
-                "using Dash (Python), HTML, CSS, and JavaScript.",
+                "• Tracked user errors with GlitchTip, used security and automation tools to verify the apps were"
+                " working, and removed memory leaks in the Flutter/Dart app.",
                 "CVBullet",
             )
             p(
-                "• Diagnosed and resolved mobile memory leaks and runtime bottlenecks in production.",
+                "• Talked with users and partners (LED, LAMIC, and students from Germany) and demoed the system "
+                "to computing students at UFPA over two days.",
                 "CVBullet",
             )
-            p("• Graded 10.0/10 (Concept Excellent) by the permanent lab advisor.", "CVBullet")
+            p(
+                "• Co-author of the program registered at INPI (#BR512025004902-1); performance graded 10.0/10 "
+                "(Excellent) by the lab advisor.",
+                "CVBullet",
+            )
         else:
             p("Pasante en Ingeniería de Software · LaPS / UFPA (Proyecto DMóvel)", "CVJobTitle")
             p("Marzo de 2026 — Septiembre de 2026 | Belém, Brasil | 360 Horas", "CVJobMeta")
             p(
-                "• Coautoría de Propiedad Intelectual registrada en el INPI (Proceso nº BR512025004902-1 · "
-                "DMóvel · Alianza interinstitucional UFOPA / UFPA / UEMA · Protección de 50 años por Ley 9.609/1998).",
+                "• Desplegué y operé en AWS los servicios en contenedores de DMóvel, aplicación asistiva para "
+                "personas con discapacidad (UFOPA, UFPA y UEMA): gestor de contenedores, IAM (usuarios, grupos y "
+                "permisos) y control de costes y facturas.",
                 "CVBullet",
             )
             p(
-                "• Mantenimiento y refactorización del backend en Python con FastAPI, integrado a bases de datos y "
-                "servicios en Amazon Web Services (AWS).",
+                "• Mantuve la API del sistema, primero en PHP/Laravel y luego en Python/FastAPI, y los paneles de"
+                " análisis de datos y de gestión.",
                 "CVBullet",
             )
             p(
-                "• Desarrollo de interfaz asistiva en Flutter/Dart y paneles analíticos con Dash (Python), "
-                "HTML, CSS y JavaScript.",
+                "• Seguí los errores de los usuarios con GlitchTip, usé herramientas de seguridad y de "
+                "automatización para verificar el funcionamiento de las aplicaciones y eliminé fugas de memoria "
+                "en la app Flutter/Dart.",
                 "CVBullet",
             )
             p(
-                "• Diagnóstico y saneamiento de fugas de memoria (memory leaks) y cuellos de botella en la app móvil.",
+                "• Conversé con usuarios y socios (LED, LAMIC y estudiantes de Alemania) y presenté el sistema a "
+                "alumnos de computación de la UFPA en dos días de demostración.",
                 "CVBullet",
             )
-            p("• Evaluado con calificación máxima 10,0 (Concepto Excelente) por el orientador permanente.", "CVBullet")
+            p(
+                "• Coautor del programa registrado en el INPI (BR512025004902-1); desempeño evaluado con nota "
+                "10,0 (Excelente) por el orientador.",
+                "CVBullet",
+            )
+
+        if lang == "pt":
+            p("Desenvolvedor Freelance · Loja de varejo (venda online e física)", "CVJobTitle")
+            p("Agosto de 2025", "CVJobMeta")
+            p(
+                "• Entreguei direto ao cliente um site em Django com catálogo e busca por categoria, carrinho e "
+                "checkout, e painel de gerenciamento de produtos.",
+                "CVBullet",
+            )
+        elif lang == "en":
+            p("Freelance Developer · Retail store (online and in-person sales)", "CVJobTitle")
+            p("August 2025", "CVJobMeta")
+            p(
+                "• Delivered directly to the client a Django website with catalog and category search, cart and "
+                "checkout, and a product management panel.",
+                "CVBullet",
+            )
+        else:
+            p("Desarrollador Freelance · Tienda minorista (venta en línea y física)", "CVJobTitle")
+            p("Agosto de 2025", "CVJobMeta")
+            p(
+                "• Entregué directamente al cliente un sitio en Django con catálogo y búsqueda por categoría, "
+                "carrito y checkout, y panel de gestión de productos.",
+                "CVBullet",
+            )
 
         # Selected Projects
         proj_titles = {
@@ -265,7 +315,8 @@ def generate_cvs(output, site, projects):
         }
         section(proj_titles[lang])
 
-        for project in projects[:4]:
+        by_id = {project["id"]: project for project in projects}
+        for project in (by_id[i] for i in ("dmovel", "varedura", "aethersense") if i in by_id):
             d = project[lang]
             tags_str = ", ".join(project.get("tags", [])[:5])
             p(f"<b>{escape(project['name'])}</b> ({tags_str})", "CVJobTitle")
@@ -295,17 +346,17 @@ def generate_cvs(output, site, projects):
         section(skills_titles[lang])
 
         if lang == "pt":
-            p("<b>Linguagens:</b> Python, Rust, JavaScript, TypeScript, Dart, C, SQL, HTML5, CSS3")
-            p("<b>Backend & Nuvem:</b> FastAPI, AWS, Docker, REST APIs, MCP (Model Context Protocol), Dash")
-            p("<b>Sistemas & Ferramentas:</b> Git, GitHub Actions, Linux, ESP32, Canvas 2D, Three.js, WebSockets")
+            p("<b>Implantação & Nuvem:</b> AWS (IAM, custos), Docker, GitHub Actions, Linux, GlitchTip")
+            p("<b>Integrações & IA:</b> MCP (Model Context Protocol), FastAPI, Django, Laravel, Dash, ONNX")
+            p("<b>Linguagens:</b> Python, PHP, Rust, TypeScript, JavaScript, Dart, SQL, C")
         elif lang == "en":
-            p("<b>Languages:</b> Python, Rust, JavaScript, TypeScript, Dart, C, SQL, HTML5, CSS3")
-            p("<b>Backend & Cloud:</b> FastAPI, AWS, Docker, REST APIs, MCP (Model Context Protocol), Dash")
-            p("<b>Systems & Tools:</b> Git, GitHub Actions, Linux, ESP32, Canvas 2D, Three.js, WebSockets")
+            p("<b>Deployment & Cloud:</b> AWS (IAM, billing), Docker, GitHub Actions, Linux, GlitchTip")
+            p("<b>Integrations & AI:</b> MCP (Model Context Protocol), FastAPI, Django, Laravel, Dash, ONNX")
+            p("<b>Languages:</b> Python, PHP, Rust, TypeScript, JavaScript, Dart, SQL, C")
         else:
-            p("<b>Lenguajes:</b> Python, Rust, JavaScript, TypeScript, Dart, C, SQL, HTML5, CSS3")
-            p("<b>Backend & Nube:</b> FastAPI, AWS, Docker, REST APIs, MCP (Model Context Protocol), Dash")
-            p("<b>Sistemas & Herramientas:</b> Git, GitHub Actions, Linux, ESP32, Canvas 2D, Three.js, WebSockets")
+            p("<b>Implementación & Nube:</b> AWS (IAM, custos), Docker, GitHub Actions, Linux, GlitchTip")
+            p("<b>Integraciones & IA:</b> MCP (Model Context Protocol), FastAPI, Django, Laravel, Dash, ONNX")
+            p("<b>Lenguajes:</b> Python, PHP, Rust, TypeScript, JavaScript, Dart, SQL, C")
 
         # Education
         edu_titles = {

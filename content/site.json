@@ -68,107 +68,107 @@
   },
   "profile": {
     "pt": {
-      "title": "Engenheiro de Software · Backend Python & Rust, Automação e IoT",
-      "description": "João Natividade — engenheiro de software com foco em backend Python, sistemas em Rust, automação MCP, computação em nuvem (AWS) e IoT. Coautor de software registrado no INPI (BR512025004902-1). Disponível para projetos sob demanda, consultoria e contratação remota.",
-      "availability": "Disponível para projetos sob demanda, consultoria técnica e vagas remotas",
-      "headline": "Engenharia de software,",
-      "headline_accent": "sistemas e interfaces.",
-      "intro": "Sou João Natividade, engenheiro de software e formando em Engenharia de Computação na UFPA. Construo APIs de alta performance em Python e Rust, automações de segurança e servidores MCP, sistemas IoT com ESP32 e interfaces analíticas em tempo real.",
-      "focus": "Backend · Python & Rust · Nuvem AWS & Automação MCP",
+      "title": "Engenheiro de Soluções de IA · Implantação, integrações e automação",
+      "description": "João Natividade — engenheiro de soluções de IA: leva sistemas do problema do usuário à produção com APIs em Python, integrações de IA via MCP e nuvem AWS. Formando em Engenharia de Computação (UFPA) e coautor de software registrado no INPI (BR512025004902-1). Disponível para contratação remota.",
+      "availability": "Disponível para contratação remota · CLT, PJ ou contrato",
+      "headline": "Do problema do usuário",
+      "headline_accent": "ao sistema em produção.",
+      "intro": "Sou João Natividade, engenheiro de soluções de IA e formando em Engenharia de Computação na UFPA. Entendo o problema com quem usa o sistema, construo a solução em Python e a coloco em produção: APIs, integrações de IA via MCP e nuvem AWS.",
+      "focus": "Implantação · Integrações de IA (MCP) · Python & AWS",
       "location": "Belém, PA · Brasil (Remoto)",
       "education": "Engenharia de Computação · UFPA",
       "education_detail": "Bacharelado em andamento · previsão de conclusão em 2026. Inglês avançado.",
-      "about": "Foco no desenvolvimento de software de ponta a ponta: do projeto de APIs assíncronas e serviços na nuvem (AWS) à conteinerização, automação com MCP e telemetria de sensores em tempo real. Coautor de software registrado no INPI (BR512025004902-1) e experiência comprovada em produção com avaliação máxima (10,0) no laboratório LaPS da UFPA.",
+      "about": "Atuo no perfil que o mercado chama de forward deployed: engenharia de software feita perto de quem usa. No DMóvel, tecnologia assistiva desenvolvida entre UFOPA, UFPA e UEMA, implantei e operei os serviços conteinerizados na AWS, acompanhei os erros de quem usava o aplicativo, conversei com usuários e parceiros (LED, LAMIC e estudantes da Alemanha) e apresentei o sistema a alunos de computação da UFPA. Coautor de software registrado no INPI (BR512025004902-1), com avaliação máxima (10,0) no laboratório LaPS da UFPA.",
       "experience": [
         [
-          "2026",
-          "Engenharia de Software & Backend · LaPS / UFPA (DMóvel)",
-          "Manutenção de backend em FastAPI na AWS, refatoração de telas em Flutter/Dart com eliminação de vazamentos de memória e criação de dashboards em Dash. Coautor de software registrado no INPI (BR512025004902-1) e avaliado com nota máxima 10,0 (Excelente)."
+          "Mar — Set 2026 · estágio",
+          "Engenharia de Software · LaPS / UFPA (DMóvel)",
+          "Serviços conteinerizados implantados e operados na AWS: API (de PHP/Laravel para FastAPI), dashboards de dados e monitoramento de erros com GlitchTip, além de IAM e controle de custos. Conversas com usuários e parceiros (LED, LAMIC, estudantes da Alemanha) e dois dias de demonstração a alunos de computação da UFPA. Coautor do registro INPI BR512025004902-1 e avaliação 10,0 (Excelente)."
         ],
         [
-          "2024 — atual",
-          "Automação & Servidores MCP",
-          "Desenvolvimento de servidores MCP para conectividade de IA, ferramentas CLI assíncronas de segurança (Varedura) e conteinerização com Docker."
+          "Ago 2025 · freelance",
+          "Site de loja de varejo (venda online e física)",
+          "Site em Django entregue direto ao cliente: catálogo com busca por categoria, carrinho e checkout, e painel de gerenciamento de produtos."
         ],
         [
-          "2023 — atual",
-          "Sistemas Embarcados & IoT",
-          "Processamento de sinais e WiFi Sensing com ESP32 e Rust (AetherSense) e laboratórios interativos em Canvas a 120 FPS."
+          "2024 — atual · projetos próprios",
+          "Integrações de IA e automação (MCP)",
+          "Servidores MCP que conectam assistentes de IA a sistemas reais (Varedura, sigaa-mcp), com ferramentas CLI assíncronas e empacotamento em Docker, publicados em código aberto."
         ],
         [
-          "2022 — atual",
-          "Engenharia Web & APIs",
-          "Desenvolvimento de aplicações web completas, APIs REST e ferramentas com foco em código aberto, segurança e reprodutibilidade."
+          "2023 — atual · projetos próprios",
+          "Dispositivos e dados em tempo real",
+          "AetherSense: sinais Wi-Fi de ESP32 processados em Rust, com inferência ONNX e interface web para acompanhar o resultado."
         ]
       ]
     },
     "en": {
-      "title": "Software Engineer · Backend Python & Rust, Automation & IoT",
-      "description": "João Natividade — software engineer specializing in Python backend, Rust systems, MCP automation, cloud computing (AWS), and IoT. Registered software IP co-author at INPI (#BR512025004902-1). Available for contract projects, technical consulting, and remote roles.",
-      "availability": "Available for contract projects, technical consulting, and remote roles",
-      "headline": "Software engineering,",
-      "headline_accent": "systems and interfaces.",
-      "intro": "I'm João Natividade, a software engineer and Computer Engineering senior at UFPA (Brazil). I build high-performance APIs in Python and Rust, security automations and MCP servers, IoT systems with ESP32, and real-time analytical browser interfaces.",
-      "focus": "Backend · Python & Rust · AWS Cloud & MCP Automation",
+      "title": "AI Solutions Engineer · Deployment, integrations & automation",
+      "description": "João Natividade — AI solutions engineer who takes systems from the user's problem to production with Python APIs, AI integrations over MCP, and AWS. Computer Engineering senior at UFPA and co-author of software registered at INPI (#BR512025004902-1). Available for remote roles.",
+      "availability": "Available for remote roles · full-time or contract",
+      "headline": "From the user's problem",
+      "headline_accent": "to a system in production.",
+      "intro": "I'm João Natividade, an AI solutions engineer and Computer Engineering senior at UFPA (Brazil). I work out the problem with the people who use the system, build the solution in Python, and put it into production: APIs, AI integrations over MCP, and AWS.",
+      "focus": "Deployment · AI integrations (MCP) · Python & AWS",
       "location": "Belém, Brazil · Remote",
       "education": "Computer Engineering · UFPA",
       "education_detail": "Bachelor's degree in progress · expected graduation in 2026. Advanced English.",
-      "about": "Focused on end-to-end software engineering: from async API design and cloud infrastructure (AWS) to Docker containerization, MCP protocol automation, and real-time sensor telemetry. Registered software IP co-author at INPI (#BR512025004902-1) and proven production track record graded 10.0/10 at UFPA's LaPS laboratory.",
+      "about": "I work in what the market calls a forward deployed profile: software engineering done close to the people who use it. On DMóvel, an assistive technology built by UFOPA, UFPA, and UEMA, I deployed and operated the containerized services on AWS, tracked the errors hitting the app's users, talked with users and partners (LED, LAMIC, and students from Germany), and demoed the system to computing students at UFPA. Co-author of software registered at INPI (#BR512025004902-1), graded 10.0/10 at UFPA's LaPS laboratory.",
       "experience": [
         [
-          "2026",
-          "Software Engineering & Backend · LaPS / UFPA (DMóvel)",
-          "FastAPI backend maintenance on AWS, Flutter/Dart mobile screens with memory leak remediation, and Dash dashboards. Registered software IP co-author at INPI (#BR512025004902-1) and graded 10.0/10 (Excellent)."
+          "Mar — Sep 2026 · internship",
+          "Software Engineering · LaPS / UFPA (DMóvel)",
+          "Containerized services deployed and operated on AWS: API (from PHP/Laravel to FastAPI), data dashboards, and error monitoring with GlitchTip, plus IAM and cost control. Conversations with users and partners (LED, LAMIC, students from Germany) and two days of demos to computing students at UFPA. Co-author of INPI registration #BR512025004902-1, graded 10.0/10 (Excellent)."
         ],
         [
-          "2024 — present",
-          "Automation & MCP Servers",
-          "Custom MCP servers for AI workflows, asynchronous security CLI tools (Varedura), and Docker containerization."
+          "Aug 2025 · freelance",
+          "Website for a retail store (online and in-person sales)",
+          "Django website delivered directly to the client: catalog with category search, cart and checkout, and a product management panel."
         ],
         [
-          "2023 — present",
-          "Embedded Systems & IoT",
-          "Signal processing and WiFi Sensing with ESP32 and Rust (AetherSense) and 120 FPS interactive Canvas labs."
+          "2024 — present · own projects",
+          "AI integrations & automation (MCP)",
+          "MCP servers that connect AI assistants to real systems (Varedura, sigaa-mcp), with asynchronous CLI tools and Docker packaging, published as open source."
         ],
         [
-          "2022 — present",
-          "Web Engineering & APIs",
-          "Full-stack web applications, REST APIs, and tools focused on open source, security, and reproducibility."
+          "2023 — present · own projects",
+          "Devices & real-time data",
+          "AetherSense: Wi-Fi signals from ESP32 processed in Rust, with ONNX inference and a web interface to follow the result."
         ]
       ]
     },
     "es": {
-      "title": "Ingeniero de Software · Backend Python & Rust, Automatización e IoT",
-      "description": "João Natividade — ingeniero de software enfocado en backend Python, sistemas en Rust, automatización MCP, computación en la nube (AWS) e IoT. Coautor de software registrado en INPI (BR512025004902-1). Disponible para proyectos a medida, consultoría y contratación remota.",
-      "availability": "Disponible para proyectos a medida, consultoría técnica y roles remotos",
-      "headline": "Ingeniería de software,",
-      "headline_accent": "sistemas e interfaces.",
-      "intro": "Soy João Natividade, ingeniero de software y estudiante de último año de Ingeniería de Computación en la UFPA. Construyo APIs de alto rendimiento en Python y Rust, automatizaciones de seguridad y servidores MCP, sistemas IoT con ESP32 e interfaces analíticas en tiempo real en el navegador.",
-      "focus": "Backend · Python & Rust · Nube AWS & Automatización MCP",
+      "title": "Ingeniero de Soluciones de IA · Implementación, integraciones y automatización",
+      "description": "João Natividade — ingeniero de soluciones de IA: lleva sistemas del problema del usuario a producción con APIs en Python, integraciones de IA vía MCP y nube AWS. Estudiante de último año de Ingeniería de Computación (UFPA) y coautor de software registrado en el INPI (BR512025004902-1). Disponible para contratación remota.",
+      "availability": "Disponible para contratación remota · tiempo completo o contrato",
+      "headline": "Del problema del usuario",
+      "headline_accent": "al sistema en producción.",
+      "intro": "Soy João Natividade, ingeniero de soluciones de IA y estudiante de último año de Ingeniería de Computación en la UFPA. Entiendo el problema con quienes usan el sistema, construyo la solución en Python y la pongo en producción: APIs, integraciones de IA vía MCP y nube AWS.",
+      "focus": "Implementación · Integraciones de IA (MCP) · Python & AWS",
       "location": "Belém, Brasil · Remoto",
       "education": "Ingeniería de Computación · UFPA",
       "education_detail": "Grado en curso · graduación prevista en 2026. Inglés avanzado.",
-      "about": "Enfoque en ingeniería de software integral: desde el diseño de APIs asíncronas e infraestructura en la nube (AWS) hasta contenerización Docker, automatización con protocolo MCP y telemetría de sensores en tiempo real. Coautor de software registrado en el INPI (BR512025004902-1) y calificación máxima (10,0) en el laboratorio LaPS de la UFPA.",
+      "about": "Trabajo en el perfil que el mercado llama forward deployed: ingeniería de software hecha cerca de quienes la usan. En DMóvel, tecnología asistiva desarrollada entre UFOPA, UFPA y UEMA, desplegué y operé los servicios en contenedores en AWS, seguí los errores de quienes usaban la aplicación, conversé con usuarios y socios (LED, LAMIC y estudiantes de Alemania) y presenté el sistema a alumnos de computación de la UFPA. Coautor de software registrado en el INPI (BR512025004902-1), con calificación máxima (10,0) en el laboratorio LaPS de la UFPA.",
       "experience": [
         [
-          "2026",
-          "Ingeniería de Software & Backend · LaPS / UFPA (DMóvel)",
-          "Mantenimiento de backend en FastAPI en AWS, refactorización de pantallas móviles en Flutter/Dart con eliminación de memory leaks y paneles en Dash. Coautor de registro INPI (BR512025004902-1) y evaluado con nota máxima 10,0 (Excelente)."
+          "Mar — Sep 2026 · pasantía",
+          "Ingeniería de Software · LaPS / UFPA (DMóvel)",
+          "Servicios en contenedores desplegados y operados en AWS: API (de PHP/Laravel a FastAPI), paneles de datos y monitoreo de errores con GlitchTip, además de IAM y control de costes. Conversaciones con usuarios y socios (LED, LAMIC, estudiantes de Alemania) y dos días de demostración a alumnos de computación de la UFPA. Coautor del registro INPI BR512025004902-1 y calificación 10,0 (Excelente)."
         ],
         [
-          "2024 — actual",
-          "Automatización & Servidores MCP",
-          "Servidores MCP personalizados para flujos de IA, herramientas CLI asíncronas de seguridad (Varedura) y contenerización con Docker."
+          "Ago 2025 · freelance",
+          "Sitio de una tienda minorista (venta en línea y física)",
+          "Sitio en Django entregado directamente al cliente: catálogo con búsqueda por categoría, carrito y checkout, y panel de gestión de productos."
         ],
         [
-          "2023 — actual",
-          "Sistemas Embebidos & IoT",
-          "Procesamiento de señales y WiFi Sensing con ESP32 y Rust (AetherSense) y laboratorios interactivos en Canvas a 120 FPS."
+          "2024 — actual · proyectos propios",
+          "Integraciones de IA y automatización (MCP)",
+          "Servidores MCP que conectan asistentes de IA con sistemas reales (Varedura, sigaa-mcp), con herramientas CLI asíncronas y empaquetado en Docker, publicados como código abierto."
         ],
         [
-          "2022 — actual",
-          "Ingeniería Web & APIs",
-          "Aplicaciones web completas, APIs REST y herramientas orientadas a código abierto, seguridad y reproducibilidad."
+          "2023 — actual · proyectos propios",
+          "Dispositivos y datos en tiempo real",
+          "AetherSense: señales Wi-Fi de ESP32 procesadas en Rust, con inferencia ONNX e interfaz web para seguir el resultado."
         ]
       ]
     }

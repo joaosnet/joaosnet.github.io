@@ -50,6 +50,7 @@ var DEFAULT_CATALOG = {
   pages: [
     "/",
     "/privacy/",
+    "/services/",
     "/projects/aethersense/",
     "/projects/dmovel/",
     "/projects/varedura/",
@@ -58,6 +59,7 @@ var DEFAULT_CATALOG = {
     "/404.html",
     "/en/",
     "/en/privacy/",
+    "/en/services/",
     "/en/projects/aethersense/",
     "/en/projects/dmovel/",
     "/en/projects/varedura/",
@@ -66,6 +68,7 @@ var DEFAULT_CATALOG = {
     "/en/404.html",
     "/es/",
     "/es/privacy/",
+    "/es/services/",
     "/es/projects/aethersense/",
     "/es/projects/dmovel/",
     "/es/projects/varedura/",
