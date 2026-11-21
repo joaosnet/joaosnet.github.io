@@ -1,7 +1,7 @@
 # Graph Report - joaosnet.github.io  (2026-11-21)
 
 ## Corpus Check
-- 62 files · ~95,641 words
+- 62 files · ~96,037 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 4, .woff2 2, .gs 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `0525c4b8`
+- Built from commit: `2235e19d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 

@@ -163,22 +163,25 @@ def generate_cvs(output, site, projects):
         if lang == "pt":
             summary_text = (
                 "Engenheiro de soluções de IA e formando em Engenharia de Computação na UFPA. Levo sistemas do "
-                "problema do usuário à produção: entendo a necessidade com quem usa, construo em Python (FastAPI) e "
-                "implanto na AWS. Conecto assistentes de IA a sistemas reais com servidores MCP. Base em engenharia "
-                "de software, com coautoria de programa registrado no INPI (BR512025004902-1)."
+                "problema do usuário à produção: entendo a necessidade com quem usa, construo com a tecnologia que "
+                "o problema pede (Python, PHP, Rust, Dart) e implanto na AWS. Conecto assistentes de IA a sistemas "
+                "reais com servidores MCP. Base em engenharia de software, com coautoria de programa "
+                "registrado no INPI (BR512025004902-1)."
             )
         elif lang == "en":
             summary_text = (
                 "AI solutions engineer and Computer Engineering senior at UFPA (Brazil). I take systems from the "
-                "user's problem to production: I work out the need with the people who use the system, build in "
-                "Python (FastAPI), and deploy on AWS. I connect AI assistants to real systems with MCP servers. "
-                "Software engineering background, co-author of a program registered at INPI (#BR512025004902-1)."
+                "user's problem to production: I work out the need with the people who use the system, build with "
+                "the technology the problem calls for (Python, PHP, Rust, Dart), and deploy on AWS. I connect AI "
+                "assistants to real systems with MCP servers. Software engineering background, co-author of "
+                "a program registered at INPI (#BR512025004902-1)."
             )
         else:
             summary_text = (
                 "Ingeniero de soluciones de IA y estudiante de último año de Ingeniería de Computación en la UFPA. "
                 "Llevo sistemas del problema del usuario a producción: entiendo la necesidad con quienes lo usan, "
-                "construyo en Python (FastAPI) y despliego en AWS. Conecto asistentes de IA con sistemas reales "
+                "construyo con la tecnología que el problema pide (Python, PHP, Rust, Dart) y despliego en AWS. "
+                "Conecto asistentes de IA con sistemas reales "
                 "mediante servidores MCP. Base en ingeniería de software, coautor de un programa registrado en el "
                 "INPI (BR512025004902-1)."
             )
