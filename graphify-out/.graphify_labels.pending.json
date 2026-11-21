@@ -24,6 +24,7 @@
   "38": "status-bar.js",
   "39": "content/HANDOVER.md",
   "40": "brand/HANDOVER.md",
-  "41": "parametrize",
+  "41": "json",
+  "43": "reveal.js",
   "136": "build_site.py"
 }

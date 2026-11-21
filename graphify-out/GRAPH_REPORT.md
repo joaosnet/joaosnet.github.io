@@ -6,12 +6,12 @@
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 4, .woff2 2, .gs 1)
 
 ## Summary
-- 529 nodes · 673 edges · 46 communities (25 shown, 21 thin omitted)
+- 529 nodes · 674 edges · 47 communities (26 shown, 21 thin omitted)
 - Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 18 edges (avg confidence: 0.92)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2235e19d`
+- Built from commit: `ebf7e949`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -27,6 +27,7 @@
 - Maintenance Workflow
 - Node.js Core Utilities
 - Project Update Workflow
+- reveal.js
 - Claude Agent Guidelines
 - with
 - João Natividade · Portfólio
@@ -46,6 +47,7 @@
 - 3d/HANDOVER.md
 - content/HANDOVER.md
 - brand/HANDOVER.md
+- json
 - Workflow Trigger Rules
 - Project Root Identifier
 - build_site.py
@@ -77,7 +79,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (46 total, 21 thin omitted)
+## Communities (47 total, 21 thin omitted)
 
 ### Community 0 - "João Natividade · Portfolio"
 Cohesion: 0.14
@@ -105,7 +107,7 @@ Nodes (9): patterns, dependencies, interval, updates, directory, groups, package
 
 ### Community 6 - "build_site.py"
 Cohesion: 0.07
-Nodes (40): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, build(), get_content_lastmod(), load_projects(), read_json(), safe_url(), 2. Ponto de Entrada `main()` e Governança de Dados (+32 more)
+Nodes (40): graphify & Knowledge Graph First, Rules for All Agents & Subagents:, load_projects(), read_json(), safe_url(), 2. Ponto de Entrada `main()` e Governança de Dados, test_metrics_have_no_transport_before_backend_validation(), test_private_projects_require_review_and_cannot_export_sources() (+32 more)
 
 ### Community 7 - "Frontend Dependencies and Testing"
 Cohesion: 0.07
@@ -160,8 +162,8 @@ Cohesion: 0.40
 Nodes (5): validate-node, if, needs, runs-on, timeout-minutes
 
 ### Community 30 - "test_site_structure.py"
-Cohesion: 0.11
-Nodes (10): built(), Page, test_404_pages_exclude_canonical_and_alternate(), test_bilingual_routes_metadata_and_names(), test_build_cannot_delete_other_directories(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_metrics_have_no_transport_before_backend_validation() (+2 more)
+Cohesion: 0.15
+Nodes (6): Page, test_404_pages_exclude_canonical_and_alternate(), test_bilingual_routes_metadata_and_names(), test_cv_is_one_page_selectable_and_factual(), test_every_local_link_and_asset_exists(), test_strict_csp_and_no_inline_event_handlers()
 
 ### Community 31 - "Roadmap de Melhorias: Craft, Animações & Identidade de Marca"
 Cohesion: 0.10
@@ -171,13 +173,17 @@ Nodes (19): 1. Visão Estratégica & Diagnóstico, 2.1 Conceito: "Engenharia de 
 Cohesion: 0.70
 Nodes (4): buildTrace(), init(), parsePoints(), pointAt()
 
+### Community 41 - "json"
+Cohesion: 0.31
+Nodes (4): Handover: Code & Animation, test_collector_gs_default_catalog_supports_v1_and_v2(), test_live_production_telemetry_health(), test_telemetry_config_and_catalog_alignment()
+
 ### Community 42 - "Workflow Trigger Rules"
 Cohesion: 0.40
 Nodes (5): on, pull_request, push, workflow_call, branches
 
 ### Community 136 - "build_site.py"
-Cohesion: 0.06
-Nodes (9): Handover: Code & Animation, generate_cvs(), fetch(), get(), install(), Handler, test_collector_gs_default_catalog_supports_v1_and_v2(), test_live_production_telemetry_health() (+1 more)
+Cohesion: 0.08
+Nodes (8): build(), get_content_lastmod(), generate_cvs(), fetch(), get(), install(), built(), test_build_cannot_delete_other_directories()
 
 ## Knowledge Gaps
 - **1 isolated node(s):** `joaosnet-portfolio`
@@ -187,8 +193,8 @@ Nodes (9): Handover: Code & Animation, generate_cvs(), fetch(), get(), install()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `main()` connect `build_site.py` to `Analytics and Review Documentation`?**
-  _High betweenness centrality (0.066) - this node is a cross-community bridge._
+- **Why does `main()` connect `build_site.py` to `json`, `Analytics and Review Documentation`?**
+  _High betweenness centrality (0.067) - this node is a cross-community bridge._
 - **What connects `joaosnet-portfolio` to the rest of the system?**
   _1 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `João Natividade · Portfolio` be split into smaller, more focused modules?**

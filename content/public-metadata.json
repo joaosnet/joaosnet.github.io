@@ -1,17 +1,17 @@
 {
   "aethersense": {
-    "updated_at": "2026-11-07T15:00:28Z",
+    "updated_at": "2026-11-13T13:54:43Z",
     "stars": 0,
     "image_sha": "d4f5525e3609b1ea498fce576e58138fcbcc69a8"
   },
   "dmovel": {
-    "updated_at": "2026-11-12T04:04:17Z",
+    "updated_at": "2026-11-20T22:31:01Z",
     "stars": 6,
     "image_sha": "a04bcae1ea6be20945f642b9f31b57563de0fa73",
     "image_remote": "assets/banner.png"
   },
   "varedura": {
-    "updated_at": "2026-11-07T15:21:22Z",
+    "updated_at": "2026-11-21T03:56:22Z",
     "stars": 0,
     "image_sha": "26175e13dc70f22ce9fc3d7ac25df100a40e9296",
     "image_remote": "screenshots/demo.gif"
@@ -23,7 +23,7 @@
     "image_remote": "demo.gif"
   },
   "interactive-signals": {
-    "updated_at": "2026-11-07T16:09:46Z",
+    "updated_at": "2026-11-18T01:53:38Z",
     "stars": 0,
     "image_sha": "fe168bb831e76e2ba8e7a72e340e8d1dd1883b1f",
     "image_remote": "assets/demo.gif"
