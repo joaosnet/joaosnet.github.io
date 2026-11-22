@@ -1,7 +1,7 @@
 # Graph Report - joaosnet.github.io  (2026-11-21)
 
 ## Corpus Check
-- 62 files · ~96,039 words
+- 62 files · ~96,141 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 11 file(s) not represented in the graph (top: (none) 4, .woff2 2, .gs 1)
 
@@ -11,7 +11,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ebf7e949`
+- Built from commit: `1b7141aa`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -73,8 +73,8 @@
   docs/architecture-security-isolation.md → tests/test_env_variables.py
 - `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `private_preview()`  [INFERRED]
   docs/architecture-security-isolation.md → update_projects.py
-- `Handover: Code & Animation` --references--> `test_collector_gs_default_catalog_supports_v1_and_v2()`  [INFERRED]
-  assets/js/animations/HANDOVER.md → tests/test_telemetry.py
+- `4. Testes de Segurança em Ambiente Sintético (`tests/test_env_variables.py`)` --references--> `test_import_does_not_load_dotenv()`  [INFERRED]
+  docs/architecture-security-isolation.md → tests/test_env_variables.py
 
 ## Import Cycles
 - None detected.

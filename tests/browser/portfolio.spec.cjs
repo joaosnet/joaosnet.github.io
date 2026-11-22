@@ -44,7 +44,7 @@ test("first visit is readable, has no modal, no overflow or JS errors", async ({
 
   await expect(page.locator("#raw-rms")).not.toHaveText("—");
 
-  await expect(page.locator("h1")).toContainText("Engenharia de software");
+  await expect(page.locator("h1")).toContainText("Do problema do usuário");
 
   await expect(page.locator("[role=dialog]:visible")).toHaveCount(0);
 
@@ -193,30 +193,24 @@ test("keyboard skip link moves focus to main and menu closes with Escape", async
 
 
 test("filters and skill map select real projects", async ({ page }) => {
-
   await page.goto("/");
-
+  const cards = page.locator(".project-card:visible");
+  const more = page.locator(".projects-more");
+  // Progressive disclosure: three cards per filter until the visitor asks.
   await page.locator("[data-filter=backend]").click();
-
-  await expect(page.locator(".project-card:visible")).toHaveCount(4);
-
-  await expect(page.locator(".project-card:visible h3").first()).toContainText(
-
-    "AetherSense",
-
-  );
-
+  await expect(cards).toHaveCount(3);
+  await expect(cards.locator("h3").first()).toContainText("AetherSense");
+  await expect(more).toBeVisible();
   await page.locator("[data-skill=interfaces]").click();
-
-  await expect(page.locator(".project-card:visible")).toHaveCount(5);
-
+  await expect(cards).toHaveCount(3);
+  await more.click();
+  await expect(cards).toHaveCount(5);
+  await expect(more).toBeHidden();
+  await page.locator("[data-filter=backend]").click();
+  await expect(cards).toHaveCount(4);
   await page.locator("[data-filter=all]").click();
-
-  await expect(page.locator(".project-card:visible")).toHaveCount(10);
-
+  await expect(cards).toHaveCount(10);
 });
-
-
 
 test("lab computes actual results and reset restores them", async ({
 

@@ -3758,6 +3758,13 @@ a:hover.text-link {
   justify-content: center;
   margin: 28px 0 0;
 }
+.projects-more {
+  font-family: inherit;
+  cursor: pointer;
+}
+.projects-more.is-idle {
+  visibility: hidden;
+}
 .rates-page h1 {
   font-size: clamp(2rem, 5vw, 3rem);
   margin: 10px 0 16px;

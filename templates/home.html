@@ -145,7 +145,7 @@
       <a class="visual-link" href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" tabindex="-1" aria-hidden="true" data-track="project-visual"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ visual(p, t) }}</a>
       <div class="project-body"><p class="card-eyebrow">{{ p[lang].eyebrow }}</p><h3><a href="{{ p.get('card_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-title"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ p.name }} <span aria-hidden="true">↗</span></a></h3><p class="project-summary">{{ p[lang].summary }}</p><ul class="tags" aria-label="{{ t.filter }}">{% for tag in p.tags[:4] %}<li>{{ tag }}</li>{% endfor %}</ul><div class="card-footer"><a href="{{ p.get('card_cta_url', base ~ 'projects/' ~ p.id ~ '/') }}" data-track="project-case"{% if p.get('card_url') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ (t.demo if p.demo else t.code) if p.get('card_url') else t.case }} <span aria-hidden="true">→</span></a><span class="project-number" aria-hidden="true">{{ p.number }}</span></div></div>
     </article>{% endfor %}</div>
-    <p class="projects-more-row"><button type="button" class="button outline projects-more" hidden>{{ t.projects_more }} <span aria-hidden="true">↓</span></button></p>
+    <p class="projects-more-row"><button type="button" class="button secondary projects-more" hidden>{{ t.projects_more }} <span aria-hidden="true">↓</span></button></p>
     <!-- PROJECTS_END -->
   </div>
 </section>

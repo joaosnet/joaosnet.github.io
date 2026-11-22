@@ -244,8 +244,14 @@
       card.hidden =
         !matches || (!projectsExpanded && count > PROJECT_PREVIEW);
     });
-    if (moreProjects)
-      moreProjects.hidden = projectsExpanded || count <= PROJECT_PREVIEW;
+    if (moreProjects) {
+      // Keep the row's height while the filter rotates, so the sections below
+      // do not jump; it only collapses once the visitor expands the grid.
+      const idle = count <= PROJECT_PREVIEW;
+      moreProjects.hidden = projectsExpanded;
+      moreProjects.disabled = idle;
+      moreProjects.classList.toggle("is-idle", idle);
+    }
     $$(".filter-button").forEach((button) => {
       const selected = button.dataset.filter === value;
       button.classList.toggle("selected", selected);
@@ -262,6 +268,12 @@
     filtersContainer.hidden = false;
     applyFilter(carouselCategories[0]);
     startCarouselTimer(7000);
+    // Collapsing the grid shortens the page after the browser has already
+    // scrolled to a #section link, so land on that section again.
+    if (location.hash.length > 1)
+      document
+        .getElementById(location.hash.slice(1))
+        ?.scrollIntoView({ behavior: "instant" });
 
     moreProjects?.addEventListener("click", () => {
       projectsExpanded = true;
